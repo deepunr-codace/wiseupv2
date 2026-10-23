@@ -304,3 +304,7 @@
   .pc-eq i { transform: scaleY(.6); }
 }
 @media (max-width: 899px) { .pc-stk--mic { left: -6px; bottom: -22px; } .pc-stk--hp { right: -6px; top: -18px; } }
+
+/* gallery with the real shoot photos (all landscape): faces sit in the upper-middle, so crop from there */
+.pc-gal__btn img { object-position: 50% 35%; }
+.pc-gal__item--tall { grid-row: span 1; }

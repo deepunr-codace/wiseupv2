@@ -64,18 +64,20 @@ const hosts = [
   { name: 'Sreerag', role: 'Host', img: '/podcast/host-sreerag.webp' },
 ];
 
-// Gallery: real WiseUp Podcast photos only. Add more by appending { img, w, h, alt, cap, span } (span: 'big' 2x2, 'tall' 1x2,
-// 'wide' 2x1, or none for 1x1).
+// Gallery: real WiseUp Podcast shoot photos (public/podcast/gallery/gN.webp + -sm). Add one per line:
+// { n: <file number>, w, h, cap, span } (span: 'big' 2x2, 'wide' 2x1, or none for 1x1). Captions stay generic:
+// guests aren't named here unless confirmed.
 const gallery = [
-  { img: '/podcast/hero-team.webp', w: 1400, h: 916, alt: 'The WiseUp Podcast team holding their award', cap: 'Top ranked Malayalam business podcast', span: 'big' },
-  { img: '/podcast/quote-jijo.webp', w: 700, h: 795, alt: 'Jijo Sunny in the WiseUp Podcast studio', cap: 'Jijo Sunny, Buy Me a Coffee', span: 'tall' },
-  { img: '/podcast/host-jijin.webp', w: 400, h: 500, alt: 'Jijin Mohan, host of the WiseUp Podcast', cap: 'Jijin Mohan, host', span: 'tall' },
-  { img: '/podcast/host-chethana.webp', w: 400, h: 500, alt: 'Chethana, host of the WiseUp Podcast', cap: 'Chethana, host', span: 'tall' },
-  { img: '/podcast/yt-featured.webp', w: 640, h: 360, alt: 'On set with Jijo Sunny', cap: 'On set: Buy Me a Coffee', span: 'wide' },
-  { img: '/podcast/host-sreerag.webp', w: 400, h: 500, alt: 'Sreerag, host of the WiseUp Podcast', cap: 'Sreerag, host', span: 'tall' },
-  { img: '/podcast/yt-abcgroup.webp', w: 640, h: 360, alt: 'On set with ABC Group', cap: 'On set: ABC Group' },
-  { img: '/podcast/yt-litmus7.webp', w: 640, h: 360, alt: 'On set with Venu Gopalakrishnan of Litmus7', cap: 'On set: Litmus7' },
-];
+  { n: 1, w: 1600, h: 1068, cap: 'In the studio', span: 'big' },
+  { n: 5, w: 1600, h: 900, cap: 'On set' },
+  { n: 2, w: 1600, h: 900, cap: 'Studio session' },
+  { n: 7, w: 1600, h: 1067, cap: 'Behind the microphone' },
+  { n: 4, w: 1600, h: 1146, cap: 'Studio day' },
+  { n: 3, w: 1600, h: 1067, cap: 'After the recording', span: 'wide' },
+  { n: 6, w: 1600, h: 1067, cap: 'On location', span: 'wide' },
+  { n: 8, w: 1600, h: 1132, cap: 'Book launch conversation', span: 'wide' },
+  { n: 9, w: 1600, h: 1091, cap: 'With our guest', span: 'wide' },
+].map((g) => ({ ...g, img: `/podcast/gallery/g${g.n}.webp`, sm: `/podcast/gallery/g${g.n}-sm.webp`, alt: `WiseUp Podcast team with a guest: ${g.cap.toLowerCase()}` }));
 
 // Video testimonials: the 9:16 testimonial videos from wiseup.in, linked directly (poster + mp4 on the live site's
 // media library, nothing copied into this repo). Add one: { poster: '<base name in 2026/06>', video: '<mp4 URL>' }.
@@ -312,7 +314,7 @@ const jsonLd = {
           {gallery.map((g, i) => (
             <li class:list={['pc-gal__item', g.span && `pc-gal__item--${g.span}`]} data-reveal="up" data-delay={String((i % 4) * 0.06)}>
               <button class="pc-gal__btn" type="button" data-gal-open={i} data-src={g.img} data-cap={g.cap} aria-label={`Open photo: ${g.cap}`}>
-                <img src={g.img} alt={g.alt} width={g.w} height={g.h} loading="lazy" />
+                <img src={g.sm} srcset={`${g.sm} 800w, ${g.img} 1600w`} sizes={g.span === 'big' ? '(min-width: 700px) 50vw, 100vw' : g.span ? '(min-width: 700px) 50vw, 100vw' : '(min-width: 700px) 25vw, 50vw'} alt={g.alt} width={g.w} height={g.h} loading="lazy" />
                 <span class="pc-gal__cap">{g.cap}</span>
               </button>
             </li>
