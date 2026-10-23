@@ -308,3 +308,10 @@
 /* gallery with the real shoot photos (all landscape): faces sit in the upper-middle, so crop from there */
 .pc-gal__btn img { object-position: 50% 35%; }
 .pc-gal__item--tall { grid-row: span 1; }
+@media (max-width: 599px) {
+  .pc-onair { height: 30px; padding: 0 11px 0 10px; gap: 7px; font-size: 11px; }
+  .pc-eq { height: 11px; }
+  .pc-hero__tagrow { gap: 8px; margin-bottom: 18px; }
+  .pc-person__tag, .pc-ep__new { font-size: 11px; padding: 5px 11px; }
+  .proc__tag { font-size: 12px; }
+}
