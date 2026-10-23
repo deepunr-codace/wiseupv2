@@ -23,6 +23,7 @@ export function setupMotion() {
   themeToggle();
   heroLunar();
   cursorDot();
+  cardSpot();
   heroDots(); // no-ops now: [data-hero-dots] isn't on the page, reverted back to heroType(), see index.astro
   heroAqua();
   aboutPhoto();
@@ -582,5 +583,17 @@ function contactMorph() {
       .call(() => label && (label.textContent = "Let's talk"))
       .to({}, { duration: 1.2 });
     whileVisible(fig, tl);
+  });
+}
+
+/** Pointer-following spotlight for [data-spot] cards: sets --mx/--my (used by .proc__card::before/::after). */
+function cardSpot() {
+  if (isTouch()) return;
+  document.querySelectorAll<HTMLElement>('[data-spot]').forEach((el) => {
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    }, { passive: true });
   });
 }
