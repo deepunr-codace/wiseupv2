@@ -221,16 +221,16 @@ const jsonLd = {
         </div>
         <ul class="pc-eps__grid">
           {episodes.map((ep, i) => (
-            <li class:list={['pc-ep card', { 'pc-ep--lead': i === 0 }]} data-reveal="up" data-delay={String((i % 3) * 0.06)}>
+            <li class="pc-ep" data-reveal="up" data-delay={String((i % 3) * 0.06)}>
               <a class="pc-ep__th" data-embed data-video-id={ep.videoId} href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener" aria-label={`Play: ${ep.title}`}>
-                <img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes={i === 0 ? '(min-width: 1000px) 60vw, 90vw' : '(min-width: 1000px) 30vw, 80vw'} alt={ep.title} width="640" height="360" loading={i < 3 ? 'eager' : 'lazy'} />
+                <img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes="(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 82vw" alt={ep.title} width="640" height="360" loading={i < 3 ? 'eager' : 'lazy'} />
                 <span class="pc-ep__play yt" set:html={ytPlay} />
-                {i === 0 && <span class="pc-ep__new">New episode</span>}
+                {i === 0 && <span class="pc-ep__new"><i></i>Latest</span>}
               </a>
               <div class="pc-ep__body">
                 <span class="pc-ep__tag">{ep.tag}</span>
                 <h3><a href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener">{ep.title}</a></h3>
-                <span class="pc-ep__go" aria-hidden="true">Watch on YouTube<Icon name="arrow-ur" size={16} /></span>
+                <span class="pc-ep__go" aria-hidden="true">Watch episode<i><Icon name="arrow-ur" size={15} /></i></span>
               </div>
             </li>
           ))}
