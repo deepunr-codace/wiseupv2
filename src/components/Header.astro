@@ -9,6 +9,9 @@ import { Image } from 'astro:assets';
 // invert mechanism (:root[data-theme='light'] .hd__logo img { filter: invert(1) }, and
 // .hd__logo--dark for /about) needs no changes — it already handles any white-glyph logo.
 import logo from '../assets/brand/logo.png';
+// /podcast only: the full-colour "WiseUp Podcast" mark (orange + green on transparent, user-supplied 2026-10-23).
+// It reads on both white and black, so it skips the light-theme invert, and it scrolls back to the page's #top.
+import podcastLogo from '../assets/brand/podcast-logo.png';
 // `current` marks a whole page as current (e.g. 'contact' on /contact) for the logo-invert logic
 // below; `cta` is where the header button points. The nav itself (site.nav) is now the real
 // wiseup.in menu — external links to other WiseUp properties, not in-page anchors on this site —
@@ -21,11 +24,18 @@ const { current, cta = '/#contact' } = Astro.props;
 const links = site.nav;
 // The logo scrolls back to #top on the home page; on every other page (no #top there) it goes home.
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html';
+const isPodcast = current === 'podcast';
 ---
 <header class="hd" data-head>
-  <a class:list={['hd__logo', { 'hd__logo--dark': current === 'about' }]} href={isHome ? '#top' : '/'} aria-label={isHome ? 'WiseUp, back to top' : 'WiseUp home'}>
-    <Image src={logo} alt="WiseUp" width={315} height={114} />
-  </a>
+  {isPodcast ? (
+    <a class="hd__logo hd__logo--podcast" href="#top" aria-label="WiseUp Podcast, back to top">
+      <Image src={podcastLogo} alt="WiseUp Podcast" width={404} height={174} />
+    </a>
+  ) : (
+    <a class:list={['hd__logo', { 'hd__logo--dark': current === 'about' }]} href={isHome ? '#top' : '/'} aria-label={isHome ? 'WiseUp, back to top' : 'WiseUp home'}>
+      <Image src={logo} alt="WiseUp" width={315} height={114} />
+    </a>
+  )}
 
   <nav class="hd__nav" aria-label="WiseUp sites">
     {links.map((l) => (

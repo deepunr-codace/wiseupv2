@@ -308,6 +308,8 @@
    hero included. `.hd--over-hero` itself is still tracked/toggled (unused by any CSS right now)
    rather than ripped out, in case a future section needs that same "am I over the hero" signal. */
 :root[data-theme='light'] .hd__logo img { filter: invert(1); }
+/* the podcast's full-colour mark: no invert in either theme, a touch taller (its "Podcast" line sits under the script) */
+:root[data-theme='light'] .hd__logo--podcast img, .hd__logo--podcast img { filter: none; height: clamp(44px, 4.2vw, 62px); }
 /* .hd__logo--dark (forced-invert for /about) retired 2026-10-23: About's "day mood" white
    background is now scoped to light theme only (see [data-mood='day'] in tokens.css), so it's
    white exactly when the rule above already inverts the logo — a separate always-on rule would
