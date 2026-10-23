@@ -19,9 +19,11 @@ import logo from '../assets/brand/logo.png';
 interface Props { current?: string; cta?: string }
 const { current, cta = '/#contact' } = Astro.props;
 const links = site.nav;
+// The logo scrolls back to #top on the home page; on every other page (no #top there) it goes home.
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html';
 ---
 <header class="hd" data-head>
-  <a class:list={['hd__logo', { 'hd__logo--dark': current === 'about' }]} href="#top" aria-label="WiseUp, back to top">
+  <a class:list={['hd__logo', { 'hd__logo--dark': current === 'about' }]} href={isHome ? '#top' : '/'} aria-label={isHome ? 'WiseUp, back to top' : 'WiseUp home'}>
     <Image src={logo} alt="WiseUp" width={315} height={114} />
   </a>
 
