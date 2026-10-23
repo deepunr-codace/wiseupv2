@@ -622,3 +622,10 @@
 @keyframes pc-sheen { 0%, 55% { translate: 0 0; } 100% { translate: 520% 0; } }
 .pc-person__cap { z-index: 4; }
 @media (prefers-reduced-motion: reduce) { .pc-person__glass::after { animation: none; display: none; } }
+/* card titles share one scale across episodes and topics */
+.pc-topic h3, .pc-ep h3 { font-size: clamp(1.02rem, .95rem + .3vw, 1.18rem); }
+/* responsive pass: keep the hero's last word with its full stop; blobs off on small phones (they sat behind copy);
+   a touch more air between sections on phones */
+.nw { white-space: nowrap; }
+@media (max-width: 699px) { .pc-page .blob { display: none; } .pc-page .sec { padding-block: 40px; } }
+@media (max-width: 379px) { .pc-hero__row .b { font-size: 12px; padding: 0 8px; } }
