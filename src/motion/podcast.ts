@@ -126,7 +126,7 @@ function featuredStack() {
     const tl = gsap.timeline({ defaults: { ease: 'none' } });
     cards.slice(1).forEach((card, i) => {
       tl.fromTo(card, { y: () => innerHeight }, { y: 0, duration: 1 }, i)
-        .to(cards[i], { scale: 0.92, opacity: 0.35, duration: 1 }, i);
+        .to(cards[i], { scale: 0.92, opacity: 0.2, duration: 1 }, i);
     });
     const st = ScrollTrigger.create({
       trigger: stack.closest('section') || stack, start: 'top top+=' + Math.round(innerHeight * 0.1), end: () => '+=' + innerHeight * 0.9 * (cards.length - 1),
