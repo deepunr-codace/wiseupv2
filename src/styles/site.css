@@ -931,17 +931,35 @@ html:not(.js) .loop-nav { display: none; }
   background-image: linear-gradient(#baffe7, #a6ffe0); filter: blur(175px); opacity: 0.05; }
 .lunar { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; row-gap: 48.31px; width: 100%; padding-inline: 40px; text-align: center; }
 /* The wordmark SVG is Syne 470 at the reference's size: 1 svg unit = 1px, cap height 225 (the Lunar logo is 874 units wide
-   for 5 letters; "wiseup" is 995). The negative margins trim the i-dot above the cap line and the p descender below the
+   for 5 letters; "wiseup" is 961). The negative margins trim the i-dot above the cap line and the p descender below the
    reference box, so the cap top and the subtitle sit exactly where the Lunar logo's do. */
-.lunar__mark { --w: min(995px, 100%); margin: 0; line-height: 0; width: var(--w); }
-.lunar__img { display: block; width: 100%; height: auto; margin-top: calc(var(--w) * -0.022796); margin-bottom: calc(var(--w) * -0.060641); }
-:root[data-theme='light'] .lunar__img { filter: invert(1); }
+.lunar__mark { --w: min(961px, 100%); margin: 0; line-height: 0; width: var(--w); }
+.lunar__img { display: block; width: 100%; height: auto; margin-top: calc(var(--w) * -0.023614); margin-bottom: calc(var(--w) * -0.062816); }
+/* Wordmark details (inline SVG, motion in hero-lunar.ts): per-letter paths sharing one gradient, a glowing mint i-dot
+   that breathes, and a glossy light sweep (::after masked by the same SVG) crossing the word every few seconds. */
+.lunar__img svg { display: block; width: 100%; height: auto; overflow: visible; }
+.lunar__img { position: relative; }
+.wm__l { transform-box: fill-box; transform-origin: 50% 100%; }
+.wm__dot { transform-box: fill-box; transform-origin: 50% 50%; filter: drop-shadow(0 0 10px rgb(86 220 173 / 0.75)) drop-shadow(0 0 28px rgb(86 220 173 / 0.35)); animation: wm-breathe 3.2s ease-in-out infinite; }
+@keyframes wm-breathe { 50% { filter: drop-shadow(0 0 16px rgb(86 220 173 / 0.95)) drop-shadow(0 0 44px rgb(86 220 173 / 0.5)); } }
+.lunar__img::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  -webkit-mask: url('/brand/hero-wiseup-lunar-logo-big.svg') center / 100% 100% no-repeat; mask: url('/brand/hero-wiseup-lunar-logo-big.svg') center / 100% 100% no-repeat;
+  background: linear-gradient(105deg, transparent 40%, rgb(255 255 255 / 0.75) 50%, transparent 60%) no-repeat; background-size: 250% 100%; background-position: 150% 0;
+  animation: wm-sheen 7s ease-in-out 2.4s infinite; }
+@keyframes wm-sheen { 0% { background-position: 150% 0; } 30%, 100% { background-position: -60% 0; } }
+:root[data-theme='light'] .wm__s0 { stop-color: #0a0a0b; }
+:root[data-theme='light'] .wm__s1 { stop-color: #6c6c72; }
+:root[data-theme='light'] .wm__d0 { stop-color: #e4f7a6; }
+:root[data-theme='light'] .wm__d1 { stop-color: #8fb82a; }
+:root[data-theme='light'] .wm__dot { filter: drop-shadow(0 0 10px rgb(143 184 42 / 0.6)); animation-name: wm-breathe-l; }
+@keyframes wm-breathe-l { 50% { filter: drop-shadow(0 0 18px rgb(143 184 42 / 0.85)); } }
+@media (prefers-reduced-motion: reduce) { .wm__dot, .lunar__img::after { animation: none; } }
 .lunar__sub { margin: 0; font-family: 'Inter', var(--font); font-size: 26px; font-weight: 500; letter-spacing: -0.262px; line-height: 1.2em; color: var(--head-a); }
 :root:not([data-theme='light']) .lunar__sub { color: #fff; }
 @media (max-width: 991px) { .lunar { padding-inline: 24px; } }
 @media (max-width: 767px) {
   .lunar { row-gap: 24px; padding-inline: 16px; }
-  .lunar__mark { --w: min(359px, 100%); }
+  .lunar__mark { --w: min(347px, 100%); }
   .lunar__sub { font-size: 20px; font-weight: 400; }
 }
 .hero--lunar .hero__orbit { display: none; }
