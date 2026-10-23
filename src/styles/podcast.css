@@ -474,3 +474,19 @@
 /* bolder arrows across the podcast page */
 .pc-page .ico { stroke-width: 2.2; }
 .pc-ep { translate: 0 var(--py, 0px); }
+
+/* ---- FAQ: sticky left column (heading, studio mic photo, contact), questions on the right ---- */
+.pc-faq { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
+.pc-faq__side { position: sticky; top: calc(var(--head-h, 96px) + 24px); display: grid; gap: 24px; }
+.pc-faq__side .sh { margin-bottom: 0; }
+.pc-faq__img { margin: 0; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 4 / 3; }
+.pc-faq__img img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+.pc-faq__ask { margin: 0; color: var(--mute); font-size: 15px; }
+.pc-faq__ask a { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: #beda52; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.pc-faq .faq { margin: 0; }
+@media (max-width: 899px) {
+  .pc-faq { grid-template-columns: 1fr; }
+  .pc-faq__side { position: static; }
+  .pc-faq__img { aspect-ratio: 16 / 9; }
+}
+.pc-faq .faq { gap: 10px; } .pc-faq .faq__q { padding-block: 18px; } .pc-faq .faq__q h3 { font-size: 16px; }

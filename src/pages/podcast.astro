@@ -390,10 +390,16 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- FAQ: exact homepage pattern -->
+    <!-- FAQ: two columns. Left (sticky): heading, the studio mic photo and a contact line; right: the questions. -->
     <section class="sec" id="faq" aria-labelledby="faq-h">
-      <div class="wrap">
-        <SecHead eyebrow="FAQ" id="faq-h" lines={['Questions,', 'answered.']} />
+      <div class="wrap pc-faq">
+        <aside class="pc-faq__side">
+          <SecHead eyebrow="FAQ" id="faq-h" lines={['Questions,', 'answered.']} />
+          <figure class="pc-faq__img" data-reveal="up">
+            <img src="/podcast/community-bg-m.webp" alt="The WiseUp Podcast studio: microphones on the desk, the WiseUp logo on screen" width="800" height="667" loading="lazy" />
+          </figure>
+          <p class="pc-faq__ask" data-reveal="up">Still curious? <a href="mailto:wiseuppod@gmail.com">wiseuppod@gmail.com</a></p>
+        </aside>
         <div class="faq" data-faq>
           {faqs.map((f, i) => (
             <details class="faq__item" name="podcast-faq" data-reveal="up" data-delay={String(Math.min(i, 3) * 0.05)}>
