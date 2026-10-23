@@ -153,6 +153,36 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     </div>
   </section>
 
+  <!-- WORK: two rows of covers drifting in opposite directions (workRows() in motion/main.ts).
+       Each row repeats one set of covers ROW_SETS times for a seamless loop; only the first set is
+       focusable and announced, the copies are aria-hidden. -->
+  <section class="sec" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <SecHead eyebrow={work.tag} id="work-title" lines={work.heading} />
+    </div>
+    <div class="rows" data-reveal="up">
+      {[rowA, rowB].map((row, r) => (
+        <div class="rows__row" data-work-row data-dir={r === 0 ? '-1' : '1'}>
+          <ul class="rows__track" data-sets={ROW_SETS}>
+            {Array.from({ length: ROW_SETS }, (_, s) => row.map((p) => (
+              <li class="rows__tile" aria-hidden={s > 0 ? 'true' : undefined}>
+                <a class="rows__link" href={p.externalUrl} tabindex={s > 0 ? -1 : undefined} aria-label={`${p.title}, ${p.category}: view case study`}>
+                  <Image src={p.cover.src} alt="" widths={[360, 540, 720]} sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" />
+                </a>
+              </li>
+            ))).flat()}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="wrap">
+      <div class="work-more">
+        <Button href="https://wiseup.in/case-studies/" label="All case studies" look="teal" />
+        <Button href="https://wiseup.in/studio/portfolio/" label="Full portfolio" />
+      </div>
+    </div>
+  </section>
+
   <!-- LOGOS -->
   <section class="logos" aria-label="Brands we have worked with">
     <div class="logos__rail">
@@ -265,35 +295,6 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     </div>
   </section>
 
-  <!-- WORK: two rows of covers drifting in opposite directions (workRows() in motion/main.ts).
-       Each row repeats one set of covers ROW_SETS times for a seamless loop; only the first set is
-       focusable and announced, the copies are aria-hidden. -->
-  <section class="sec" id="work" aria-labelledby="work-title">
-    <div class="wrap">
-      <SecHead eyebrow={work.tag} id="work-title" lines={work.heading} />
-    </div>
-    <div class="rows" data-reveal="up">
-      {[rowA, rowB].map((row, r) => (
-        <div class="rows__row" data-work-row data-dir={r === 0 ? '-1' : '1'}>
-          <ul class="rows__track" data-sets={ROW_SETS}>
-            {Array.from({ length: ROW_SETS }, (_, s) => row.map((p) => (
-              <li class="rows__tile" aria-hidden={s > 0 ? 'true' : undefined}>
-                <a class="rows__link" href={p.externalUrl} tabindex={s > 0 ? -1 : undefined} aria-label={`${p.title}, ${p.category}: view case study`}>
-                  <Image src={p.cover.src} alt="" widths={[360, 540, 720]} sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" />
-                </a>
-              </li>
-            ))).flat()}
-          </ul>
-        </div>
-      ))}
-    </div>
-    <div class="wrap">
-      <div class="work-more">
-        <Button href="https://wiseup.in/case-studies/" label="All case studies" look="teal" />
-        <Button href="https://wiseup.in/studio/portfolio/" label="Full portfolio" />
-      </div>
-    </div>
-  </section>
 
   <!-- CODEACE: dynamic morphing mark + cards -->
   <section class="sec" id="codeace" aria-labelledby="codeace-title">
