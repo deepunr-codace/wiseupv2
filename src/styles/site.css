@@ -119,7 +119,9 @@
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.05), 0 0 0 1px var(--edge); font-size: 14px; font-weight: 500; color: var(--ink); }
 .eyebrow__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); box-shadow: 0 0 10px rgb(42 157 143 / 0.8); }
 .sh { display: grid; justify-items: start; gap: 24px; margin-bottom: clamp(40px, 5vw, 68px); }
-.sh__h { font-size: clamp(2.25rem, 1.35rem + 3.2vw, 4.25rem); font-weight: 450; letter-spacing: -0.042em; line-height: 1.06; max-width: 24ch; }
+/* One heading size for every section heading on the home page (section heads, the About statement, the #voice line). */
+:root { --h-sec: clamp(2.25rem, 1.35rem + 3.2vw, 4.25rem); }
+.sh__h { font-size: var(--h-sec); font-weight: 450; letter-spacing: -0.042em; line-height: 1.06; max-width: 24ch; }
 .sh__a, .sh__b { display: block; }
 .sh__a { color: var(--head-a); }
 .sh__b { color: var(--sub-a); }
@@ -371,7 +373,7 @@
 .seq__copy { position: relative; z-index: 2; padding-bottom: clamp(48px, 9vh, 110px); }
 /* Sized against both width and height so the three lines never crowd a short laptop screen: ~36px on phones, ~64px at
    1440, capped at 84px; never more than 9.5vh. Tracking eases off as the size drops (tight tracking only suits big type). */
-.seq__line { max-width: none; font-size: clamp(2.25rem, min(1.2rem + 3.4vw, 9.5vh), 5.25rem); font-weight: 450; letter-spacing: -0.04em; line-height: 1.06; color: var(--head-a); text-wrap: balance; }
+.seq__line { max-width: none; font-size: var(--h-sec); font-weight: 450; letter-spacing: -0.042em; line-height: 1.06; color: var(--head-a); text-wrap: balance; }
 @media (max-width: 600px) { .seq__line { letter-spacing: -0.03em; line-height: 1.1; } }
 .seq__line > span { display: block; }
 .seq__b { color: var(--sub-a); }
@@ -416,8 +418,8 @@
 /* Statement (full width, its own line) -> body + photo (2 col) -> proof pairs (strip). */
 .about-sec .sh__h { max-width: none; }
 .about-sec .sh__a, .about-sec .sh__b { display: block; }
-.about-sec .sh__h { width: 100%; font-size: clamp(2rem, 0.6rem + 3.6vw, 4.75rem); letter-spacing: -0.045em; line-height: 1.04; text-wrap: pretty; }
-@media (min-width: 1000px) { .about-sec .sh__a, .about-sec .sh__b { white-space: nowrap; } }
+.about-sec .sh__h { width: 100%; font-size: var(--h-sec); text-wrap: pretty; }
+@media (min-width: 1280px) { .about-sec .sh__a, .about-sec .sh__b { white-space: nowrap; } }
 /* Below the photo: statement left, body copy right, sharing one top line. */
 .about { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 6vw, 96px); align-items: start; margin-top: clamp(36px, 5vw, 72px); }
 .about > * { min-width: 0; }
