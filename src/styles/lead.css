@@ -174,3 +174,28 @@
 .lead-fab { padding: 9px; gap: 0; }
 .lead-fab__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .lead-fab .lead-bot { --s: 40px; }
+
+/* left column content: perks + WhatsApp line (wide screens only; phones keep the short version) */
+.lead__perks, .lead__or { display: none; }
+@media (min-width: 900px) {
+  .lead__perks { list-style: none; margin: 22px 0 0; padding: 18px 0 0; border-top: 1px solid rgb(255 255 255 / .1); display: grid; gap: 12px; }
+  .lead__perks li { display: flex; align-items: center; gap: 12px; font-size: 14.5px; color: rgb(255 255 255 / .85); }
+  .lead__perks svg { flex: none; width: 22px; height: 22px; padding: 4px; border-radius: 50%; background: rgb(190 218 82 / .16); fill: none; stroke: #beda52; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+  .lead__or { display: block; margin: 20px 0 0; font-size: 13.5px; color: rgb(255 255 255 / .55); }
+  .lead__or a { color: #beda52; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  /* roomier form */
+  .lead__card { padding: clamp(28px, 3.2vw, 40px); align-items: center; }
+  .lead__form, .lead__row { gap: 16px; }
+  .lead__frame { width: min(100% - 48px, 1020px); }
+}
+/* short but wide screens: keep the left column, trim the form a little instead */
+@media (min-width: 900px) and (max-height: 700px) {
+  .lead__kicker { display: inline-flex; }
+  .lead__sub { display: block; }
+  .lead__card { padding: 24px 32px; }
+  .lead__form, .lead__row { gap: 13px; }
+  .lead__perks { margin-top: 16px; padding-top: 14px; gap: 9px; }
+  .lead__or { margin-top: 14px; }
+  .lf textarea { min-height: 44px; }
+}
+@media (min-width: 900px) and (max-height: 600px) { .lead__perks li:nth-child(3), .lead__or, .lead__sub { display: none; } }

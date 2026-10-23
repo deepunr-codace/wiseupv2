@@ -24,6 +24,9 @@ const title = isPodcast ? ['Let’s make', 'something worth hearing.'] : ['Get y
 const sub = isPodcast
   ? 'Guest spots, sponsorships or a podcast for your brand. Tell us a little and the team will call you back.'
   : 'Tell us where you want your brand to go. We send a plan before we ever talk numbers.';
+const perks = isPodcast
+  ? ['Guest slots planned 2 to 4 weeks ahead', 'Studio or on-location recording', 'Sponsorship packages for brands']
+  : ['A strategy before any price', 'One team for brand, web and ads', 'A reply within 24 hours'];
 ---
 <button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog">
   <span class="lead-bot lead-bot--sm" set:html={bot} />
@@ -37,6 +40,10 @@ const sub = isPodcast
         <p class="lead__kicker"><i class="lead__live" aria-hidden="true"></i>Replies within 24 hours</p>
         <h2 class="lead__title" id="lead-title"><span>{title[0]}</span> <span>{title[1]}</span></h2>
         <p class="lead__sub" id="lead-sub">{sub}</p>
+        <ul class="lead__perks">
+          {perks.map((p) => <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>{p}</li>)}
+        </ul>
+        <p class="lead__or">Prefer to talk? <a href="https://wa.me/916282434503" target="_blank" rel="noopener">WhatsApp us</a></p>
       </div>
 
       <form class="lead__form" id="lead-form" data-lead-form action={action || undefined} method="post" novalidate>
