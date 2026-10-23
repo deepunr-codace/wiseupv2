@@ -111,19 +111,13 @@
 .pc-comm-banner:hover, .pc-comm-banner:focus-visible { transform: translateY(-4px); }
 .pc-comm-banner img { width: 100%; height: auto; display: block; }
 
-/* ---- people: hosts + guests, infinite loop (reuses main.ts loopedPanels() via the same
-   [data-loop]/[data-loop-track]/[data-loop-prev]/[data-loop-next] attributes as the Clients
-   section). GAP must match the 22px used in --pw below (loopedPanels() hardcodes GAP=28 for its
-   own [data-loop]; see note in markup). ---- */
-.pc-loop { position: relative; overflow: clip; padding: 2px; margin: -2px; }
-.pc-loop__track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; list-style: none; margin: 0; padding: 0; }
-/* `.js` is added to <html> before paint (Base.astro's inline script). With JS driving layout via
-   transform, the fixed 4-col template is dropped so the grid area is indefinite — a grid item's
-   containing block then falls back to the grid container's own content box, which is what lets
-   `width: var(--pw)` (a percentage calc, set by loopedPanels()) resolve against the *track's* full
-   width instead of one quarter-width column. Exact technique the homepage's own .loop uses. */
-.js .pc-loop__track { grid-template-columns: none; }
-.pc-person { grid-area: 1 / 1; width: var(--pw, 100%); height: 100%; will-change: transform; }
+/* ---- hosts: three portrait cards in one row; a swipe row on phones ---- */
+.pc-hosts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); }
+@media (max-width: 599px) {
+  .pc-hosts { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gx); gap: 12px; margin-inline: calc(-1 * var(--gx)); padding: 4px var(--gx) 12px; scrollbar-width: none; }
+  .pc-hosts::-webkit-scrollbar { display: none; }
+  .pc-person { flex: none; width: 74vw; scroll-snap-align: start; }
+}
 .pc-person__card { position: relative; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 3/4; background: var(--card); box-shadow: 0 0 0 1px var(--edge); }
 .pc-person__card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
 .pc-person__tag { position: absolute; left: 10px; top: 10px; padding: 5px 12px; border-radius: var(--r-pill); background: var(--teal); color: var(--on-teal); font-size: 11px; font-weight: 600; }
@@ -154,7 +148,6 @@
 @media (max-width: 767px) { .pc-page { --gx: 16px; } }
 
 .pc-side { color: var(--mute); max-width: 34ch; font-size: 16px; line-height: 1.6; margin: 0; }
-.pc-side--hosts { max-width: 56ch; margin: 0 0 clamp(28px, 3vw, 40px); }
 .pc-feat__ml { color: var(--mute); font-weight: 700; margin: 16px 0 0; }
 .pc-feat__sub { color: var(--ink-2); font-size: 16px; line-height: 1.6; max-width: 46ch; margin: 0; }
 .pc-feat__title { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); }

@@ -5,7 +5,7 @@
 // now Base + Header + Footer, tokens.css's teal/lime accent and Epilogue/Inter type, and the
 // shared site.css vocabulary (.wrap/.sec/.sh/.b/.card/.faq/.hgal/.loop/.cta-row), forced to the
 // light ("day") mood throughout via `data-mood="day"` on the page's own wrapper, same technique
-// about.astro uses. Motion: episodes are a static bento grid (lime hover); the hosts/guests loop runs on the shared
+// about.astro uses. Motion: episodes are a static bento grid (lime hover); the three hosts sit in a fixed row; the shared
 // engine's own loopedPanels() (motion/main.ts) via the same data attributes
 // the homepage uses — not reimplemented. Only the click-to-embed thumbnail behaviour is page-
 // specific (motion/podcast.ts, registered into the shared setupMotion()).
@@ -61,12 +61,6 @@ const hosts = [
   { name: 'Chethana', role: 'Host', img: '/podcast/host-chethana.webp' },
   { name: 'Sreerag', role: 'Host', img: '/podcast/host-sreerag.webp' },
 ];
-// No real photo exists in this project for the owner's other referenced guests (Vishnu IAS,
-// Akhil, Nikhil) — left out rather than filled with a stand-in photo for a real, named person.
-const guests = [
-  { name: 'Jijo Sunny', role: 'Buy Me a Coffee', img: '/podcast/quote-jijo.webp' },
-];
-const people = [...hosts, ...guests];
 
 const faqs = [
   { q: 'What is WiseUp Podcast?', a: "It's a business and entrepreneurship podcast featuring founders, business leaders, marketers, investors and industry experts." },
@@ -214,23 +208,17 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- HOSTS + GUESTS: loopedPanels() via [data-loop]/[data-loop-track], same mechanic as the
-         homepage's Clients section. -->
+    <!-- HOSTS: the three hosts in one fixed row (a swipe row on phones), lime rim on hover. -->
     <section class="sec" id="hosts" aria-labelledby="hosts-h">
-    <svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
+    <svg class="blob blob--a" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
       <div class="wrap">
         <div class="loop-head">
-          <SecHead eyebrow="Hosts & guests" id="hosts-h" lines={['The voices', 'behind WiseUp.']} />
-          <div class="loop-nav">
-            <button class="loop-btn" type="button" aria-label="Previous" data-loop-prev><Icon name="chev-l" size={18} /></button>
-            <button class="loop-btn" type="button" aria-label="Next" data-loop-next><Icon name="chev-r" size={18} /></button>
-          </div>
+          <SecHead eyebrow="Our hosts" id="hosts-h" lines={['The voices', 'behind WiseUp.']} />
+          <p class="pc-side" data-reveal="fade">Conversations led by creators, entrepreneurs and curious minds who believe in the power of real stories.</p>
         </div>
-        <p class="pc-side pc-side--hosts" data-reveal="fade">Conversations led by creators, entrepreneurs and curious minds who believe in the power of real stories, and the guests who've shared theirs.</p>
-        <div class="pc-loop" data-loop role="region" aria-roledescription="carousel" aria-label="Hosts and guests">
-          <ul class="pc-loop__track" data-loop-track>
-            {people.map((p) => (
-              <li class="pc-person" aria-roledescription="slide">
+        <ul class="pc-hosts">
+            {hosts.map((p, i) => (
+              <li class="pc-person" data-reveal="up" data-delay={String(i * 0.08)}>
                 <div class="pc-person__card">
                   <img src={p.img} alt={p.name} width="400" height="500" loading="lazy" />
                   <span class="pc-person__tag">{p.role}</span>
@@ -238,8 +226,7 @@ const jsonLd = {
                 </div>
               </li>
             ))}
-          </ul>
-        </div>
+        </ul>
       </div>
     </section>
 
