@@ -10,7 +10,7 @@ import { onPage, onScroll, isMobile, isTouch, prefersReducedMotion, ease } from 
 import { site } from '../data/site';
 import { setupAbout } from './about';
 import { setupPodcast } from './podcast';
-import { heroMark } from './hero-mark';
+import { heroLunar } from './hero-lunar';
 import { heroAqua } from './hero-aqua';
 import { heroDots } from './hero-dots';
 import { stripVideos } from './hero-strip-video';
@@ -21,7 +21,7 @@ export function setupMotion() {
   header();
   menu();
   themeToggle();
-  heroMark();
+  heroLunar();
   heroDots(); // no-ops now: [data-hero-dots] isn't on the page, reverted back to heroType(), see index.astro
   heroAqua();
   aboutPhoto();

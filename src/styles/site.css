@@ -914,3 +914,34 @@ html:not(.js) .loop-nav { display: none; }
   animation: hero-aurora 22s ease-in-out infinite alternate; }
 @keyframes hero-aurora { from { transform: translate3d(-2%, 0, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.06); } }
 @media (prefers-reduced-motion: reduce) { :root[data-theme='light'] .hero__glow { animation: none; } }
+
+/* ---------- Hero, Lunar-template layout (heroLunar() in motion/hero-lunar.ts) ---------- */
+@font-face { font-family: 'Unbounded Variable'; src: url('/fonts/unbounded-latin-wght.woff2') format('woff2'); font-weight: 200 900; font-style: normal; font-display: swap; }
+.hero--lunar { justify-content: flex-start; height: 100svh; min-height: 560px; padding-top: calc(var(--head-h) + clamp(28px, 8vh, 96px)); background: var(--bg); }
+.hero--lunar::after { display: none; }
+.lunar { position: relative; z-index: 2; display: grid; justify-items: center; gap: clamp(14px, 3.2vh, 40px); text-align: center; }
+/* the wordmark is the converted reference SVG (public/brand/hero-wiseup-lunar-logo-big.svg, built by scripts/make-lunar-wordmark.mjs):
+   white to #999; on the light theme it is inverted to black to #666 (the "black font" alternative) */
+.lunar__mark { margin: 0; line-height: 0; width: min(64vw, 1180px, 150vh); }
+.lunar__img { display: block; width: 100%; height: auto; }
+:root[data-theme='light'] .lunar__img { filter: invert(1); }
+.lunar__sub { margin: 0; font-family: var(--font); font-weight: 500; font-size: clamp(1.05rem, 0.8rem + 1.3vw, 2.25rem); letter-spacing: -0.02em; line-height: 1.2; color: var(--head-a); }
+/* faint ring behind the wordmark + the glowing dot that orbits it (rotated by heroStrip) */
+.hero--lunar .hero__orbit { display: block; top: 42%; background: none; box-shadow: none; z-index: 0; }
+.hero--lunar .hero__orbit::before { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(closest-side, transparent 78%, rgb(255 255 255 / 0.035) 79%, transparent 80%), radial-gradient(closest-side, rgb(255 255 255 / 0.03), transparent 82%); }
+:root[data-theme='light'] .hero--lunar .hero__orbit::before { background: radial-gradient(closest-side, transparent 78%, rgb(0 0 0 / 0.05) 79%, transparent 80%), radial-gradient(closest-side, rgb(0 0 0 / 0.025), transparent 82%); }
+.hero--lunar .hero__orb { display: block; left: 3.5%; top: 52%; width: 18px; height: 18px; background: var(--teal-hi); filter: blur(1.5px);
+  box-shadow: 0 0 22px 8px rgb(111 220 201 / 0.5), 0 0 60px 18px rgb(42 157 143 / 0.28); }
+:root[data-theme='light'] .hero--lunar .hero__orb { background: #9bc13a; box-shadow: 0 0 22px 8px rgb(155 193 58 / 0.45), 0 0 60px 18px rgb(155 193 58 / 0.22); }
+/* the tilted strip sits at the bottom of the first screen, as in the template */
+.hero--lunar .strip { position: relative; z-index: 1; flex: 1; min-height: 0; margin-top: clamp(8px, 4vh, 48px); }
+.hero__edge { position: absolute; top: 0; bottom: 0; width: clamp(60px, 14vw, 280px); z-index: 3; pointer-events: none; }
+.hero__edge--l { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+.hero__edge--r { right: 0; background: linear-gradient(270deg, var(--bg), transparent); }
+.hero--lunar::before { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(60% 55% at 50% 38%, rgb(255 255 255 / 0.05), transparent 70%); }
+:root[data-theme='light'] .hero--lunar::before { background: radial-gradient(60% 55% at 50% 38%, rgb(0 0 0 / 0.035), transparent 70%); }
+@media (max-width: 700px) {
+  .lunar__mark { width: 88vw; }
+  .hero--lunar { padding-top: calc(var(--head-h) + clamp(40px, 11vh, 90px)); }
+  .hero--lunar .strip { --cw: 70vw; margin-top: clamp(24px, 6vh, 60px); }
+}
