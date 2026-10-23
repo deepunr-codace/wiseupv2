@@ -1,0 +1,87 @@
+---
+// Lead popup, on every page (Base.astro). A <dialog>: a white frame holding a dark card that fades to deep olive,
+// outlined fields with the label notched into the border, and a footer row outside the card: the blinking lime
+// blob mascot, a 3D lime "Send message" button and a red close button. Opened by [data-lead-open], the header
+// CTA, links to the contact section, the floating launcher, and once per visit on exit intent / deep scroll
+// (motion/lead.ts).
+//
+// ACTION: set `action` below (or define window.WISEUP_LEAD = { endpoint, nonce } on the page) and the form POSTs
+// JSON there: { name, email, phone, service, message, page, source }. With neither set, sending opens WhatsApp
+// with the details filled in, so no lead is lost meanwhile.
+import Icon from './Icon.astro';
+import { services } from '../data/site';
+import '../styles/lead.css';
+
+const action = ''; // e.g. 'https://wiseup.in/wp-json/wiseup/v1/lead'
+const isPodcast = Astro.url.pathname.startsWith('/podcast');
+const options = isPodcast
+  ? ['Be a guest on the podcast', 'Sponsor an episode', 'Podcast production for my brand', ...services.items.map((s) => s.title)]
+  : services.items.map((s) => s.title);
+const title = isPodcast ? ['Let’s make', 'something worth hearing.'] : ['Get your growth plan,', 'free in 24 hours.'];
+const sub = isPodcast
+  ? 'Guest spots, sponsorships or a podcast for your brand. Tell us a little and the team will call you back.'
+  : 'Tell us where you want your brand to go. We send a plan before we ever talk numbers.';
+---
+<button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog">
+  <span class="lead-blob lead-blob--sm" aria-hidden="true"><i class="lead-blob__eyes"><b></b><b></b></i></span>
+  <span class="lead-fab__label">{isPodcast ? 'Talk to the team' : 'Get a free plan'}</span>
+</button>
+
+<dialog class="lead" data-lead-modal aria-labelledby="lead-title" aria-describedby="lead-sub">
+  <div class="lead__frame">
+    <div class="lead__card">
+      <div class="lead__head">
+        <p class="lead__kicker"><i class="lead__live" aria-hidden="true"></i>Replies within 24 hours</p>
+        <h2 class="lead__title" id="lead-title"><span>{title[0]}</span> <span>{title[1]}</span></h2>
+        <p class="lead__sub" id="lead-sub">{sub}</p>
+      </div>
+
+      <form class="lead__form" id="lead-form" data-lead-form action={action || undefined} method="post" novalidate>
+        <fieldset class="lf">
+          <legend>Full Name <em aria-hidden="true">*</em></legend>
+          <input name="name" type="text" autocomplete="name" placeholder="Enter your name" required aria-label="Full name" />
+        </fieldset>
+        <div class="lead__row">
+          <fieldset class="lf">
+            <legend>Email <em aria-hidden="true">*</em></legend>
+            <input name="email" type="email" autocomplete="email" placeholder="you@company.com" required aria-label="Email" />
+          </fieldset>
+          <fieldset class="lf">
+            <legend>Phone Number <em aria-hidden="true">*</em></legend>
+            <input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" pattern="[0-9+()\s-]{7,}" required aria-label="Phone number" />
+          </fieldset>
+        </div>
+        <fieldset class="lf lf--select">
+          <legend>Services <em aria-hidden="true">*</em></legend>
+          <select name="service" required aria-label="Service">
+            <option value="" selected disabled>Choose a service</option>
+            {options.map((o) => <option value={o}>{o}</option>)}
+          </select>
+          <svg class="lf__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </fieldset>
+        <fieldset class="lf lf--area">
+          <legend>Description <em aria-hidden="true">*</em></legend>
+          <textarea name="message" rows="3" placeholder="Type something you want us to know." required aria-label="Description"></textarea>
+        </fieldset>
+        <label class="lead__hp" aria-hidden="true">Leave empty<input type="text" name="hp_website" tabindex="-1" autocomplete="off" /></label>
+        <p class="lead__note" data-lead-note aria-live="polite"></p>
+      </form>
+
+      <div class="lead__done" data-lead-done hidden>
+        <span class="lead-blob lead-blob--lg lead-blob--happy" aria-hidden="true"><i class="lead-blob__eyes"><b></b><b></b></i><i class="lead-blob__smile"></i></span>
+        <h3>Got it, thank you!</h3>
+        <p data-lead-done-text>The WiseUp team will reach out within 24 hours.</p>
+      </div>
+    </div>
+
+    <div class="lead__foot">
+      <span class="lead-blob" aria-hidden="true" data-lead-mascot><i class="lead-blob__eyes"><b></b><b></b></i></span>
+      <span class="lead__trust"><b>120+</b> brands grown</span>
+      <button class="lead__send" type="submit" form="lead-form" data-lead-send>
+        <span>Send Message</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="lead__close" type="button" data-lead-close aria-label="Close"><Icon name="x" size={22} /></button>
+    </div>
+  </div>
+</dialog>

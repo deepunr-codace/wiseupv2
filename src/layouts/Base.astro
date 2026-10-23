@@ -38,6 +38,7 @@ const jsonLd = {
   parentOrganization: { '@type': 'Organization', name: 'CodeAce', url: 'https://codeace.com' },
   sameAs: site.socials.map((s) => s.href),
 };
+import LeadModal from '../components/LeadModal.astro';
 ---
 <!doctype html>
 <html lang="en">
@@ -84,6 +85,7 @@ const jsonLd = {
       <slot />
     </main>
     <slot name="footer" />
+    <LeadModal />
     <script>
       import { boot } from '../engine';
       import { setupMotion } from "../motion/main";

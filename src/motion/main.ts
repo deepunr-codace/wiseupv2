@@ -10,6 +10,7 @@ import { onPage, onScroll, isMobile, isTouch, prefersReducedMotion, ease } from 
 import { site } from '../data/site';
 import { setupAbout } from './about';
 import { setupPodcast } from './podcast';
+import { setupLead } from './lead';
 import { heroLunar, cursorDot } from './hero-lunar';
 import { heroAqua } from './hero-aqua';
 import { heroDots } from './hero-dots';
@@ -42,6 +43,7 @@ export function setupMotion() {
   contactMorph();
   setupAbout();
   setupPodcast();
+  setupLead();
 }
 
 /** Play a looping timeline only while its element is on screen. */
