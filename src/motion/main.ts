@@ -10,7 +10,7 @@ import { onPage, onScroll, isMobile, isTouch, prefersReducedMotion, ease } from 
 import { site } from '../data/site';
 import { setupAbout } from './about';
 import { setupPodcast } from './podcast';
-import { heroLunar } from './hero-lunar';
+import { heroLunar, cursorDot } from './hero-lunar';
 import { heroAqua } from './hero-aqua';
 import { heroDots } from './hero-dots';
 import { stripVideos } from './hero-strip-video';
@@ -22,6 +22,7 @@ export function setupMotion() {
   menu();
   themeToggle();
   heroLunar();
+  cursorDot();
   heroDots(); // no-ops now: [data-hero-dots] isn't on the page, reverted back to heroType(), see index.astro
   heroAqua();
   aboutPhoto();
@@ -161,7 +162,7 @@ function heroStrip() {
     const track = document.querySelector<HTMLElement>('[data-strip-track]');
     const orbit = document.querySelector<HTMLElement>('[data-orbit]');
     if (!strip || !track || prefersReducedMotion()) return;
-    intro.from(strip, { yPercent: 24, autoAlpha: 0, duration: 1.6, ease: 'expo.out' }, 0.35);
+    intro.from(strip, { y: 100, autoAlpha: 0, duration: 1.6, ease: 'expo.out' }, 0.35);
     const orbitTl = orbit ? gsap.to(orbit, { rotation: 360, duration: 90, ease: 'none', repeat: -1 }) : undefined;
     // The strip now lives in its own section (.strip-sec), not inside .hero — see index.astro's
     // comment on the hero rebuild. `.closest('section')` still resolves correctly, just to that
@@ -172,9 +173,10 @@ function heroStrip() {
     const stripSec = strip.closest('section') || strip;
     // Testimonial videos: the controller slows the drift to a stop on the card it is playing, then releases it.
     const videos = stripVideos(track, { mobile: isMobile(), hero: stripSec });
+    // Lunar template: a constant leftward marquee (~67px/s), not pushed by scroll and not paused on videos.
+    void videos.scale;
     const stop = driftTrack(track, {
-      dir: 1, speed: isMobile() ? 26 : 38, scrollEl: stripSec, scrollStart: 'top top', scrollShare: 0.55,
-      speedScale: videos.scale,
+      dir: -1, speed: 67, scrollEl: stripSec, scrollStart: 'top top', scrollShare: 0,
       onVisible: (v) => orbitTl?.paused(!v),
     });
     return () => { stop(); videos.destroy(); orbitTl?.kill(); };

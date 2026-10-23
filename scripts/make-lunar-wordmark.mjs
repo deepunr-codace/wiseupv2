@@ -1,35 +1,48 @@
 // Builds the hero wordmark SVG in the Lunar template's style (reference: hero-lunar-logo-big.svg): one outlined compound
 // path, cap height 225 units, fill = horizontal gradient white -> #999999.
-// Font: Unbounded at weight 340, cut from the variable font (the reference's stem/cap-height ratio is 0.145; this is 0.144).
+// Font: Syne (Google Fonts, OFL) at weight 470, cut from the variable font. The reference "Lunar" logo is Syne: its L, u
+// and n overlap Syne 470 at 96% / 87% / 87% per pixel (its a and r are custom-drawn, but WiseUp uses neither), and its
+// letters are set ~24 units tighter than Syne's default spacing at this size, i.e. tracking -0.069em.
+// Set in lowercase ("wiseup"), so its u is the very letter the reference uses; the letter size and baseline are the
+// reference's (cap height 225, so the x-height matches the Lunar logo's lowercase).
 // Usage: node scripts/make-lunar-wordmark.mjs   (needs opentype.js: npm i --no-save opentype.js)
 import * as ot from 'opentype.js';
 import fs from 'node:fs';
 const opentype = ot.default ?? ot;
 
-const TEXT = 'WiseUp';
-const FONT = new URL('./fonts/Unbounded-wght340.ttf', import.meta.url);
-const CAP = 225; // cap height in svg units, as in the reference
+const FONT = new URL('./fonts/Syne-wght470.ttf', import.meta.url);
+const TEXT = 'wiseup';
+const TRACK = -0.069; // em
+const CAP = 225;
 const OUT = new URL('../public/brand/hero-wiseup-lunar-logo-big.svg', import.meta.url);
 
-const buf = fs.readFileSync(FONT);
-const font = opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
+const load = (u) => { const b = fs.readFileSync(u); return opentype.parse(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength)); };
+const font = load(FONT);
 const capUnits = -font.charToGlyph('L').getPath(0, 0, font.unitsPerEm).getBoundingBox().y1;
 const size = (CAP / capUnits) * font.unitsPerEm;
-const path = font.getPath(TEXT, 0, 0, size, { kerning: true, letterSpacing: -0.012 });
-const bb = path.getBoundingBox();
-const dx = -bb.x1, dy = -bb.y1;
+const k = size / font.unitsPerEm;
+
+// collect commands in absolute coords, then shift to the ink bbox
+const cmds = [];
+const add = (path, fx = (x) => x) => path.commands.forEach((c) => {
+  const o = { type: c.type };
+  for (const [kx, ky] of [['x', 'y'], ['x1', 'y1'], ['x2', 'y2']]) if (kx in c) { o[kx] = fx(c[kx]); o[ky] = c[ky]; }
+  cmds.push(o);
+});
+let x = 0;
+const glyphs = font.stringToGlyphs(TEXT);
+glyphs.forEach((g, i) => {
+  add(g.getPath(x, 0, size));
+  x += g.advanceWidth * k + TRACK * size + (i < glyphs.length - 1 ? font.getKerningValue(g, glyphs[i + 1]) * k : 0);
+});
+
+let x1 = Infinity, y1 = Infinity, x2 = -Infinity, y2 = -Infinity;
+cmds.forEach((c) => { if ('x' in c) { x1 = Math.min(x1, c.x); x2 = Math.max(x2, c.x); y1 = Math.min(y1, c.y); y2 = Math.max(y2, c.y); } });
 const f = (n) => Number(n.toFixed(3));
-const d = path.commands.map((c) => {
-  const p = (x, y) => `${f(x + dx)} ${f(y + dy)}`;
-  switch (c.type) {
-    case 'M': return `M${p(c.x, c.y)}`;
-    case 'L': return `L${p(c.x, c.y)}`;
-    case 'C': return `C${p(c.x1, c.y1)} ${p(c.x2, c.y2)} ${p(c.x, c.y)}`;
-    case 'Q': return `Q${p(c.x1, c.y1)} ${p(c.x, c.y)}`;
-    case 'Z': return 'Z';
-  }
-}).join('');
-const w = f(bb.x2 - bb.x1), h = f(bb.y2 - bb.y1);
+const P = (px, py) => `${f(px - x1)} ${f(py - y1)}`;
+const d = cmds.map((c) => c.type === 'M' ? `M${P(c.x, c.y)}` : c.type === 'L' ? `L${P(c.x, c.y)}` : c.type === 'C' ? `C${P(c.x1, c.y1)} ${P(c.x2, c.y2)} ${P(c.x, c.y)}` : c.type === 'Q' ? `Q${P(c.x1, c.y1)} ${P(c.x, c.y)}` : 'Z').join('');
+const w = f(x2 - x1), h = f(y2 - y1);
+const capTop = f(-CAP - y1), baseline = f(-y1);
 const svg = `<svg width="${Math.round(w)}" height="${Math.round(h)}" viewBox="0 0 ${w} ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="nonzero" clip-rule="nonzero" d="${d}" fill="url(#paint0_linear_wiseup)"/>
 <defs>
@@ -41,4 +54,5 @@ const svg = `<svg width="${Math.round(w)}" height="${Math.round(h)}" viewBox="0 
 </svg>
 `;
 fs.writeFileSync(OUT, svg);
-console.log({ w, h, bytes: svg.length });
+// CSS margins that trim the box to the reference's (cap top .. baseline + 9)
+console.log({ w, h, capTop, baseline, marginTop: +(capTop / w).toFixed(6), marginBottom: +((h - baseline - 9) / w).toFixed(6) });
