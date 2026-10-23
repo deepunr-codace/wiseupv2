@@ -428,3 +428,16 @@
 }
 @media (max-width: 999px) { .pc-eps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 699px) { .pc-ep, .pc-ep--lead { width: 80vw; } .pc-ep__play.yt { width: 40px; } }
+
+/* community banner: an overall dark overlay on the photo (on top of the side fades) so every line reads cleanly */
+.pc-cb__bg::after { content: ''; position: absolute; inset: 0; background: rgb(3 8 8 / .45); }
+.pc-cb__bg { overflow: hidden; }
+@media (max-width: 699px) {
+  .pc-cb { padding: 62vw 20px 22px; gap: 22px; }
+  .pc-cb__h { font-size: clamp(1.7rem, 1.2rem + 2.6vw, 2.1rem); }
+  .pc-cb__big { font-size: 1.6em; }
+  .pc-cb__p { font-size: 15px; }
+  .pc-cb__row { gap: 14px; }
+  .pc-cb__faces img { width: 38px; height: 38px; margin-left: -10px; }
+  .pc-cb__sub { width: 100%; justify-content: center; height: 52px; font-size: 15px; }
+}
