@@ -102,9 +102,10 @@ export const process = {
   // to its own section here). No 4th step: an earlier "Watch it against the goal." step had no
   // basis in that content file and has been removed.
   steps: [
-    { id: 'brief', title: 'Listen first.', text: 'Who we are is shaped by who you are. We align with your business and ambition.' },
-    { id: 'plan', title: 'Plan before we price.', text: 'You see the strategy before you see a number.' },
-    { id: 'launch', title: 'Execute with intent.', text: "Every asset has a job. If it doesn't serve a purpose, we don't make it." },
+    // img: public/process/step-N.webp (+ -sm), the step's own illustration; label + chips are read off that image.
+    { id: 'brief', title: 'Listen first.', text: 'Who we are is shaped by who you are. We align with your business and ambition.', label: 'Understand', chips: ['Business goals', 'Audience', 'Insights', 'Opportunities'] },
+    { id: 'plan', title: 'Plan before we price.', text: 'You see the strategy before you see a number.', label: 'Strategy', chips: ['Research', 'Positioning', 'Roadmap', 'KPIs'] },
+    { id: 'launch', title: 'Execute with intent.', text: "Every asset has a job. If it doesn't serve a purpose, we don't make it.", label: 'Build & launch', chips: ['Design', 'Content', 'Development', 'Campaigns'] },
   ],
 };
 
