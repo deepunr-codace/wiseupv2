@@ -182,3 +182,10 @@
 .pc-feat__play.yt { width: 84px; }
 .pc-ep--lead .pc-ep__play.yt { width: 84px; height: auto; }
 .pc-ep__play.yt { width: 52px; height: auto; }
+
+/* hero, trimmed: eyebrow -> heading -> Malayalam line -> buttons -> proof */
+.pc-hero .eyebrow { margin-bottom: 22px; }
+.pc-hero__ml { margin-bottom: 30px; }
+:root:not([data-theme='light']) .pc-hero h1 em { color: #beda52; }
+:root:not([data-theme='light']) .pc-ep__tag, :root:not([data-theme='light']) .pc-feat__guest { color: #beda52; }
+@media (hover: hover) { :root:not([data-theme='light']) .pc-ep:hover .pc-ep__tag { color: #11150a; } }
