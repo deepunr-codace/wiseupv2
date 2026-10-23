@@ -3,12 +3,15 @@
 // episode filmstrip, the hosts/guests loop, stat counters) now runs on the shared engine's own
 // mechanisms (horizontalGallery(), loopedPanels(), aboutCounters()) via the same data attributes
 // the homepage uses, so there's nothing page-specific left to duplicate for them.
-import { onPage } from '../engine';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { onPage, prefersReducedMotion } from '../engine';
 
 export function setupPodcast() {
   embedThumbnails();
   galleryLightbox();
   testimonialVideos();
+  featuredStack();
 }
 
 /* Thumbnails stay real <a href="youtube.com/watch?v=..."> links (work with JS off, middle-click,
@@ -106,5 +109,26 @@ function testimonialVideos() {
       prev?.removeEventListener('click', onPrev); next?.removeEventListener('click', onNext);
       track.querySelectorAll('video').forEach((v) => v.pause());
     };
+  });
+}
+
+/* Featured stack: only the first card shows; the section pins and scrolling slides each next card up from below
+   over it while the one underneath shrinks back and dims. Without JS / reduced motion the cards simply stack. */
+function featuredStack() {
+  onPage(() => {
+    const stack = document.querySelector<HTMLElement>('[data-fstack]');
+    const cards = gsap.utils.toArray<HTMLElement>('[data-fcard]');
+    if (!stack || cards.length < 2 || prefersReducedMotion()) return;
+    stack.classList.add('is-stacked');
+    const tl = gsap.timeline({ defaults: { ease: 'none' } });
+    cards.slice(1).forEach((card, i) => {
+      tl.fromTo(card, { y: () => innerHeight }, { y: 0, duration: 1 }, i)
+        .to(cards[i], { scale: 0.92, opacity: 0.35, duration: 1 }, i);
+    });
+    const st = ScrollTrigger.create({
+      trigger: stack.closest('section') || stack, start: 'top top+=' + Math.round(innerHeight * 0.1), end: () => '+=' + innerHeight * 0.9 * (cards.length - 1),
+      pin: true, scrub: 0.6, animation: tl, invalidateOnRefresh: true,
+    });
+    return () => { st.kill(); tl.kill(); stack.classList.remove('is-stacked'); gsap.set(cards, { clearProps: 'all' }); };
   });
 }

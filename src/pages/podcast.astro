@@ -35,6 +35,16 @@ const featured = {
   titleMl: 'കാപ്പി വഴി ലക്ഷങ്ങൾ, പക്ഷെ കാപ്പിക്കടയല്ല',
   sub: 'A ₹400 crore Malayali startup, built around the idea of "buy me a coffee." Jijo Sunny on turning a small tip jar into a global platform.',
 };
+// Featured stack: two cards; the second slides up over the first on scroll (featuredStack() in motion/podcast.ts).
+const featuredList = [
+  { ...featured, tag: 'Featured episode' },
+  {
+    videoId: 'CrUDF-dJHXI', img: '/podcast/yt-litmus7.webp', tag: 'Also featured',
+    guest: 'Venu Gopalakrishnan', guestRole: 'CEO, Litmus7',
+    title: 'How Litmus7 CEO Shapes the Future of Retail & Tech', titleMl: '',
+    sub: 'Venu Gopalakrishnan on where retail and technology are heading, and what it takes to build a company that serves both.',
+  },
+];
 
 const episodes = [
   { videoId: 'ejaRfh4zpzY', img: '/podcast/yt-bootland2.webp', title: 'How to Grow a Retail Business in India', tag: 'Bootland Footwear & Lifestyle Expo' },
@@ -185,24 +195,31 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- FEATURED EPISODE -->
-    <section class="sec" id="featured" aria-labelledby="featured-h">
-      <div class="wrap pc-feat">
-        <a class="pc-feat__frame" data-embed data-video-id={featured.videoId} href={`https://www.youtube.com/watch?v=${featured.videoId}`} target="_blank" rel="noopener" data-reveal="up">
-          <img src={featured.img} alt={`${featured.guest} on the WiseUp Podcast: ${featured.title}`} width="800" height="500" loading="eager" />
-          <span class="pc-feat__play yt" set:html={ytPlay} />
-        </a>
-        <div data-reveal="up">
-          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Featured episode</p>
-          <p class="pc-ml pc-feat__ml" lang="ml">{featured.titleMl}</p>
-          <h2 class="pc-feat__title" id="featured-h">{featured.title}</h2>
-          <p class="pc-feat__guest">{featured.guest} · {featured.guestRole}</p>
-          <p class="pc-feat__sub">{featured.sub}</p>
-          <div class="pc-feat__row">
-            <Button href={`https://www.youtube.com/watch?v=${featured.videoId}`} label="Play Episode" look="teal" external />
-            <Button href="#episodes" label="More Episodes" />
-          </div>
-        </div>
+    <!-- FEATURED: a stack of two episode cards. Each card sticks below the header; scrolling slides the next one up
+         over it while the one underneath shrinks back and dims (featuredStack(), motion/podcast.ts). -->
+    <section class="sec" id="featured" aria-label="Featured episodes">
+      <div class="wrap">
+        <ul class="pc-fstack" data-fstack>
+          {featuredList.map((f, i) => (
+            <li class="pc-fcard" data-fcard>
+              <a class="pc-feat__frame" data-embed data-video-id={f.videoId} href={`https://www.youtube.com/watch?v=${f.videoId}`} target="_blank" rel="noopener">
+                <img src={f.img} alt={`${f.guest} on the WiseUp Podcast: ${f.title}`} width="800" height="450" loading={i === 0 ? 'eager' : 'lazy'} />
+                <span class="pc-feat__play yt" set:html={ytPlay} />
+              </a>
+              <div class="pc-fcard__body">
+                <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>{f.tag}</p>
+                {f.titleMl && <p class="pc-ml pc-feat__ml" lang="ml">{f.titleMl}</p>}
+                <h2 class="pc-feat__title" id={i === 0 ? 'featured-h' : undefined}>{f.title}</h2>
+                <p class="pc-feat__guest">{f.guest} · {f.guestRole}</p>
+                <p class="pc-feat__sub">{f.sub}</p>
+                <div class="pc-feat__row">
+                  <Button href={`https://www.youtube.com/watch?v=${f.videoId}`} label="Play Episode" look="teal" external />
+                  <Button href="#episodes" label="More Episodes" />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
 
