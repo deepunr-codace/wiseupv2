@@ -369,8 +369,8 @@
    in dark theme too; var(--bg) is #fff in light / #000 in dark, satisfying both asks at once.
    Text below follows suit (themed tokens, not the hardcoded dark values from the white-only pass). */
 .seq { position: relative; background: var(--bg); }
-.seq__pin { position: relative; display: grid; align-items: end; min-height: 420px; padding-top: clamp(64px, 10vh, 140px); }
-.seq__copy { position: relative; z-index: 2; padding-bottom: clamp(48px, 9vh, 110px); }
+.seq__pin { position: relative; display: grid; align-items: end; min-height: 0; padding-top: clamp(40px, 6vw, 88px); }
+.seq__copy { position: relative; z-index: 2; padding-bottom: 0; }
 /* Sized against both width and height so the three lines never crowd a short laptop screen: ~36px on phones, ~64px at
    1440, capped at 84px; never more than 9.5vh. Tracking eases off as the size drops (tight tracking only suits big type). */
 .seq__line { max-width: none; font-size: var(--h-sec); font-weight: 450; letter-spacing: -0.042em; line-height: 1.06; color: var(--head-a); text-wrap: balance; }
@@ -389,7 +389,7 @@
 @media (hover: hover) {
   #hero-title:hover .seq__a, #hero-title:hover .seq__b, #hero-title:hover .seq__c { -webkit-text-fill-color: transparent; color: transparent; }
 }
-.seq__after { padding-block: clamp(48px, 6vw, 84px) calc(var(--sec) * 0.45); }
+.seq__after { padding-block: clamp(24px, 3vw, 40px) calc(var(--sec) * 0.45); }
 .seq__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 40px; }
 /* Back to themed tokens: .seq now follows var(--bg) (see .seq above), so text here should too. */
 .seq__lede { max-width: 52ch; color: var(--ink-2); font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; }
