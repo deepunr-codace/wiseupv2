@@ -197,7 +197,7 @@
 :root[data-theme='light'] .hero__glow::before,
 :root[data-theme='light'] .hero__glow::after {
   content: ''; position: absolute; width: 140%; height: 38%; filter: blur(60px);
-  background: linear-gradient(90deg, transparent, rgb(150 175 150 / 0.3), transparent); transform: rotate(-38deg);
+  background: linear-gradient(90deg, transparent, rgb(150 190 90 / 0.34), transparent); transform: rotate(-38deg);
 }
 :root[data-theme='light'] .hero__glow::before { left: -70%; top: 35%; }
 :root[data-theme='light'] .hero__glow::after { right: -75%; top: 5%; opacity: 0.8; }
@@ -209,7 +209,7 @@
 .hero__title { position: relative; z-index: 2; display: grid; justify-items: center; gap: clamp(6px, 1.2vh, 16px); text-align: center; font-family: 'Figtree', var(--font); }
 /* Category line (reference: "STRATEGY • DESIGN • DIGITAL GROWTH") above the wordmark. */
 .hero__cat { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 1.6vw, 18px);
-  font-size: clamp(11px, 0.6rem + 0.2vw, 13px); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sub-a); }
+  font-size: clamp(11px, 0.6rem + 0.2vw, 13px); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-2); }
 .hero__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex: none; }
 .hero__dot--inline { display: inline-block; margin-left: 10px; vertical-align: middle; }
 /* Headline + lede below the wordmark (reference copy, see index.astro's comment on the hero rebuild).
@@ -231,8 +231,8 @@
    creative studio" / "Scroll" row). */
 .hero__foot { position: absolute; left: 0; right: 0; bottom: clamp(20px, 3.5vw, 40px); z-index: 2;
   display: flex; align-items: flex-end; justify-content: space-between; padding-inline: var(--gx); pointer-events: none; font-family: 'Figtree', var(--font); }
-.hero__tag { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--sub-a); }
-.hero__scroll { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sub-b); }
+.hero__tag { display: flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 500; color: var(--ink-2); }
+.hero__scroll { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sub-a); }
 .hero__scroll-line { width: 1px; height: 28px; background: var(--edge-2); }
 @media (max-width: 760px) { .hero__foot { flex-direction: column; align-items: flex-start; gap: 16px; } .hero__scroll { flex-direction: row; } .hero__scroll-line { width: 28px; height: 1px; } }
 /* Capped width (was full-bleed 100vw): in the rebuilt hero (reference layout) the wordmark shares
@@ -245,7 +245,7 @@
    150vh, worked out from the wrong end of the ratio (too permissive — at a 650px-tall viewport it
    still rendered the full 60vw-wide image, overlapping the header above and the CTAs below);
    re-derived correctly and verified at 650/700/800px heights this time, not just computed. */
-.hero__art { position: relative; width: min(60vw, 760px, 52vh); margin-inline: auto; aspect-ratio: 1620 / 736; }
+.hero__art { position: relative; width: min(66vw, 880px, 58vh); margin-inline: auto; aspect-ratio: 1620 / 736; }
 /* .hero__art-photo/.hero__art-dynamic per-theme toggle removed (2026-10-23): the flat image
    wordmark they switched between is gone, heroType()'s dynamic letters now run in both themes —
    see index.astro's comment and .hero-face-ink below. */
@@ -854,4 +854,7 @@ html:not(.js) .loop-nav { display: none; }
    request ("remove this image and make it similar fonts with this 3d effects") to drop the flat
    image wordmark and make the dynamic letters look like it instead, in both themes now. */
 .hero-face-ink { fill: #ffffff; }
+/* Light theme: a rich green face (gradient defined in hero-type.ts) so the word is solid against the white page;
+   the lime extruded rim stays. White faces on a white page only showed as an outline. */
+:root[data-theme='light'] .hero-face-ink { fill: url(#hero-face-green); }
 @media (max-width: 700px) { .hero-letters { width: 62vw; margin-top: 6%; } }

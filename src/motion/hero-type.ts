@@ -91,6 +91,9 @@ export function heroType() {
         <feComposite in="d" in2="SourceAlpha" operator="in" result="lit"/>
         <feBlend in="SourceGraphic" in2="lit" mode="multiply"/>
       </filter>
+      <linearGradient id="hero-face-green" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2a8a34"/><stop offset="0.55" stop-color="#14661f"/><stop offset="1" stop-color="#0a4515"/>
+      </linearGradient>
       <filter id="hero-shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="10"/></filter>`);
     const flowPos = { x: 0 };
     const flowTween = gsap.to(flowPos, { x: vb.width * 0.5, duration: 4, ease: 'none', repeat: -1, paused: true, onUpdate: () => flow.setAttribute('gradientTransform', `translate(${flowPos.x} 0)`) });
