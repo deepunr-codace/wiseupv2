@@ -8,6 +8,7 @@ import { onPage } from '../engine';
 export function setupPodcast() {
   embedThumbnails();
   galleryLightbox();
+  testimonialVideos();
 }
 
 /* Thumbnails stay real <a href="youtube.com/watch?v=..."> links (work with JS off, middle-click,
@@ -70,6 +71,40 @@ function galleryLightbox() {
       btnPrev?.removeEventListener('click', prev); btnNext?.removeEventListener('click', next); btnClose?.removeEventListener('click', close);
       dlg.removeEventListener('keydown', key); dlg.removeEventListener('click', backdrop);
       if (dlg.open) dlg.close();
+    };
+  });
+}
+
+/* Testimonials: a click swaps the poster for the mp4 (linked from wiseup.in), playing in place with controls;
+   starting one pauses every other. Prev/next scroll the row by one visible page. */
+function testimonialVideos() {
+  onPage(() => {
+    const track = document.querySelector<HTMLElement>('[data-tst-track]');
+    if (!track) return;
+    const btns = [...track.querySelectorAll<HTMLButtonElement>('[data-tst-video]')];
+    const play = (e: Event) => {
+      const b = e.currentTarget as HTMLButtonElement;
+      if (b.classList.contains('is-playing')) return;
+      track.querySelectorAll('video').forEach((v) => v.pause());
+      const v = document.createElement('video');
+      v.src = b.dataset.tstVideo!;
+      v.controls = true; v.playsInline = true; v.autoplay = true; v.preload = 'auto';
+      v.poster = b.querySelector('img')?.currentSrc || '';
+      v.addEventListener('play', () => track.querySelectorAll('video').forEach((o) => o !== v && o.pause()));
+      b.replaceChildren(v);
+      b.classList.add('is-playing');
+      b.removeAttribute('aria-label');
+      v.play().catch(() => {});
+    };
+    const page = (dir: number) => track.scrollBy({ left: dir * track.clientWidth, behavior: 'smooth' });
+    const prev = document.querySelector('[data-tst-prev]'), next = document.querySelector('[data-tst-next]');
+    const onPrev = () => page(-1), onNext = () => page(1);
+    btns.forEach((b) => b.addEventListener('click', play));
+    prev?.addEventListener('click', onPrev); next?.addEventListener('click', onNext);
+    return () => {
+      btns.forEach((b) => b.removeEventListener('click', play));
+      prev?.removeEventListener('click', onPrev); next?.removeEventListener('click', onNext);
+      track.querySelectorAll('video').forEach((v) => v.pause());
     };
   });
 }

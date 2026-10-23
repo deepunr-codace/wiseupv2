@@ -77,6 +77,20 @@ const gallery = [
   { img: '/podcast/yt-litmus7.webp', w: 640, h: 360, alt: 'On set with Venu Gopalakrishnan of Litmus7', cap: 'On set: Litmus7' },
 ];
 
+// Video testimonials: the 9:16 testimonial videos from wiseup.in, linked directly (poster + mp4 on the live site's
+// media library, nothing copied into this repo). Add one: { poster: '<base name in 2026/06>', video: '<mp4 URL>' }.
+const WP = 'https://wiseup.in/wp-content/uploads/2026';
+const testimonials = [
+  { poster: 'afsal', video: `${WP}/07/afsal-1.mp4` },
+  { poster: 'bheegaran', video: `${WP}/07/Bheegaran-Testimonial-1.mp4` },
+  { poster: 'Chef-vinod', video: `${WP}/07/Chef-Testimonial-1.mp4` },
+  { poster: 'JONAH', video: `${WP}/07/Brightside-Testimonial-1.mp4` },
+  { poster: 'kasinath', video: `${WP}/07/Aswathy-Achu-Testimonial-1-1.mp4` },
+  { poster: 'SAJEEV-NAIR', video: `${WP}/07/Sajeev-Nair-Testimoni-compressed.mp4` },
+  { poster: 'tr-shamsudheen', video: `${WP}/07/TR-Shamsudheen-Testimonial-1-compressed.mp4` },
+  { poster: 'wac-1', video: `${WP}/07/compressed-video.mp4` },
+];
+
 const faqs = [
   { q: 'What is WiseUp Podcast?', a: "It's a business and entrepreneurship podcast featuring founders, business leaders, marketers, investors and industry experts." },
   { q: 'Who can be a guest on the podcast?', a: 'Founders, CEOs, business owners, industry experts, investors, creators and professionals with valuable insights or stories to share.' },
@@ -284,6 +298,30 @@ const jsonLd = {
         <button class="pc-lb__btn pc-lb__prev" type="button" aria-label="Previous photo" data-lb-prev><Icon name="chev-l" size={20} /></button>
         <button class="pc-lb__btn pc-lb__next" type="button" aria-label="Next photo" data-lb-next><Icon name="chev-r" size={20} /></button>
       </dialog>
+    </section>
+
+    <!-- VIDEO TESTIMONIALS: reel-style 9:16 cards in a swipe row with prev/next. A click swaps the poster for the
+         video, playing in place (motion/podcast.ts); starting one pauses any other. -->
+    <section class="sec" id="testimonials" aria-labelledby="testimonials-h">
+      <div class="wrap">
+        <div class="loop-head">
+          <SecHead eyebrow="Testimonials" id="testimonials-h" lines={['In their', 'own words.']} />
+          <div class="loop-nav">
+            <button class="loop-btn" type="button" aria-label="Previous videos" data-tst-prev><Icon name="chev-l" size={18} /></button>
+            <button class="loop-btn" type="button" aria-label="Next videos" data-tst-next><Icon name="chev-r" size={18} /></button>
+          </div>
+        </div>
+        <ul class="pc-tst" data-tst-track>
+          {testimonials.map((t, i) => (
+            <li class="pc-tst__card" data-reveal="up" data-delay={String((i % 4) * 0.06)}>
+              <button class="pc-tst__media" type="button" data-tst-video={t.video} aria-label={`Play testimonial video ${i + 1} of ${testimonials.length}`}>
+                <img src={`${WP}/06/${t.poster}-576x1024.webp`} srcset={`${WP}/06/${t.poster}-169x300.webp 169w, ${WP}/06/${t.poster}-576x1024.webp 576w, ${WP}/06/${t.poster}-768x1365.webp 768w`} sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy" />
+                <span class="pc-tst__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
 
     <!-- FAQ: exact homepage pattern -->
