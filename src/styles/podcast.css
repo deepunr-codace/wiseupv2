@@ -236,22 +236,9 @@
 @keyframes pc-lb-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .pc-lb[open] { animation: none; } }
 
-/* hero backdrop: a few soft off-white shapes (warm glows + a rounded panel behind the photo) on the white page */
-.pc-hero { position: relative; isolation: isolate; overflow: clip;
-  background:
-    radial-gradient(38% 52% at 8% 18%, #f4f2e9 0%, rgb(244 242 233 / 0) 100%),
-    radial-gradient(28% 34% at 40% 62%, #f1f0e6 0%, rgb(241 240 230 / 0) 100%),
-    radial-gradient(34% 46% at 92% 8%, #f6f4ec 0%, rgb(246 244 236 / 0) 100%); }
-.pc-hero::before { content: ''; position: absolute; z-index: -1; right: 0; top: calc(var(--head-h) + 8px); bottom: clamp(16px, 3vw, 40px); width: min(52vw, 760px);
-  border-radius: 48px 0 0 48px; background: linear-gradient(160deg, #f5f3eb, #efede3); }
-.pc-hero::after { content: ''; position: absolute; z-index: -1; left: 34%; top: 14%; width: clamp(120px, 14vw, 220px); aspect-ratio: 1; border-radius: 50%; background: #f3f1e8; }
-:root:not([data-theme='light']) .pc-hero {
-  background:
-    radial-gradient(38% 52% at 8% 18%, rgb(244 242 233 / .05) 0%, rgb(244 242 233 / 0) 100%),
-    radial-gradient(34% 46% at 92% 8%, rgb(246 244 236 / .05) 0%, rgb(246 244 236 / 0) 100%); }
-:root:not([data-theme='light']) .pc-hero::before { background: linear-gradient(160deg, rgb(245 243 235 / .06), rgb(239 237 227 / .03)); }
-:root:not([data-theme='light']) .pc-hero::after { background: rgb(243 241 232 / .04); }
-@media (max-width: 899px) { .pc-hero::before { top: auto; bottom: clamp(24px, 6vw, 48px); height: 40%; width: 100%; border-radius: 36px 36px 0 0; } .pc-hero::after { left: auto; right: 6%; top: 8%; } }
+/* hero backdrop: one solid off-white fill, edge to edge (it also sits behind the fixed header) */
+.pc-hero { background: #f5f3eb; }
+:root:not([data-theme='light']) .pc-hero { background: #0c0c0a; }
 
 /* ---- video testimonials: 9:16 reel cards in a scroll-snap row (4 visible on desktop), lime play button ---- */
 .pc-tst { list-style: none; margin: 0; padding: 0 0 8px; display: flex; gap: clamp(12px, 1.6vw, 20px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
