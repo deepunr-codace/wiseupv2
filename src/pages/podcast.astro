@@ -227,7 +227,6 @@ const jsonLd = {
             <Button href={CHANNEL} label="View All Episodes" icon="arrow-ur" external />
           </div>
         </div>
-        <p class="pc-eps__marquee" aria-hidden="true" data-eps-marquee><span>Business · People · Ideas · Growth · Malayalam · Business · People · Ideas · Growth · Malayalam ·</span></p>
         <ul class="pc-eps__grid" data-eps-grid>
           {latest.map((ep, i) => (
             <li class="pc-ep" data-ep>
@@ -393,8 +392,23 @@ const jsonLd = {
       <div class="wrap pc-faq">
         <aside class="pc-faq__side">
           <SecHead eyebrow="FAQ" id="faq-h" lines={['Questions,', 'answered.']} />
-          <figure class="pc-faq__img" data-reveal="up">
-            <img src="/podcast/community-bg-m.webp" alt="The WiseUp Podcast studio: microphones on the desk, the WiseUp logo on screen" width="800" height="667" loading="lazy" />
+          <figure class="pc-faq__art" data-reveal="up" aria-hidden="true">
+            <svg viewBox="0 0 480 400">
+              <path class="fa-blob" fill="#beda52" d="M250 40c70-8 150 30 172 98 22 66-12 146-78 184-64 38-160 42-222 6C62 292 34 220 52 158 70 92 168 50 250 40Z"/>
+              <g class="fa-waves" fill="none" stroke="#11150a" stroke-width="6" stroke-linecap="round">
+                <path d="M150 150a90 90 0 0 0 0 110"/><path d="M118 126a130 130 0 0 0 0 158" opacity=".55"/>
+                <path d="M330 150a90 90 0 0 1 0 110"/><path d="M362 126a130 130 0 0 1 0 158" opacity=".55"/>
+              </g>
+              <g class="fa-mic">
+                <rect x="196" y="92" width="88" height="150" rx="44" fill="#11150a"/>
+                <path d="M210 130h60M210 152h60M210 174h60M210 196h60" stroke="#beda52" stroke-width="5" stroke-linecap="round"/>
+                <path d="M172 196a68 68 0 0 0 136 0" fill="none" stroke="#11150a" stroke-width="12" stroke-linecap="round"/>
+                <path d="M240 264v44M196 316h88" stroke="#11150a" stroke-width="12" stroke-linecap="round"/>
+              </g>
+              <g class="fa-q fa-q1"><rect x="20" y="52" width="92" height="70" rx="22" fill="#11150a"/><path d="M40 122l-4 22 22-22z" fill="#11150a"/><text x="66" y="104" text-anchor="middle" font-size="46" font-weight="700" fill="#beda52" font-family="Inter, sans-serif">?</text></g>
+              <g class="fa-q fa-q2"><rect x="378" y="250" width="84" height="64" rx="20" fill="#fff" stroke="#11150a" stroke-width="4"/><path d="M440 312l6 20-22-18z" fill="#fff" stroke="#11150a" stroke-width="4" stroke-linejoin="round"/><text x="420" y="298" text-anchor="middle" font-size="40" font-weight="700" fill="#11150a" font-family="Inter, sans-serif">!</text></g>
+              <g class="fa-q fa-q3"><circle cx="404" cy="78" r="26" fill="#11150a"/><text x="404" y="92" text-anchor="middle" font-size="36" font-weight="700" fill="#beda52" font-family="Inter, sans-serif">?</text></g>
+            </svg>
           </figure>
           <p class="pc-faq__ask" data-reveal="up">Still curious? <a href="mailto:wiseuppod@gmail.com">wiseuppod@gmail.com</a></p>
         </aside>

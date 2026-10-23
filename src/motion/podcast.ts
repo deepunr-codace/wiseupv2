@@ -136,7 +136,7 @@ function featuredStack() {
 
 /* Page-wide scroll motion for /podcast (Lenis smooth scroll + reveals come from the shared engine):
    - hero: the team photo zooms out and drifts, the text lifts away as the hero leaves
-   - episodes: a giant outlined word marquee slides with scroll; cards flip up into place row by row (3D, staggered
+   - episodes: cards flip up into place row by row (3D, staggered
      by column) and the three columns then drift at different speeds while the grid passes (parallax)
    - community banner: the studio photo slowly zooms; gallery tiles drift at alternating speeds */
 function podcastScroll() {
@@ -150,8 +150,6 @@ function podcastScroll() {
     if (heroImg) add(gsap.fromTo(heroImg, { scale: 1.12 }, { scale: 1, yPercent: 6, ease: 'none', scrollTrigger: { trigger: '.pc-hero', start: 'top top', end: 'bottom top', scrub: true } }));
     if (heroText) add(gsap.to(heroText, { y: -60, opacity: 0.2, ease: 'none', scrollTrigger: { trigger: '.pc-hero', start: 'center top+=30%', end: 'bottom top', scrub: true } }));
 
-    const marquee = document.querySelector<HTMLElement>('[data-eps-marquee] span');
-    if (marquee) add(gsap.fromTo(marquee, { xPercent: 0 }, { xPercent: -35, ease: 'none', scrollTrigger: { trigger: '#episodes', start: 'top bottom', end: 'bottom top', scrub: true } }));
 
     const cards = gsap.utils.toArray<HTMLElement>('[data-ep]');
     if (cards.length) {

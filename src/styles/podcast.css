@@ -490,3 +490,26 @@
   .pc-faq__img { aspect-ratio: 16 / 9; }
 }
 .pc-faq .faq { gap: 10px; } .pc-faq .faq__q { padding-block: 18px; } .pc-faq .faq__q h3 { font-size: 16px; }
+
+/* FAQ illustration: lime blob, studio mic, sound waves, floating question bubbles */
+.pc-faq__art { margin: 0; }
+.pc-faq__art svg { display: block; width: 100%; max-width: 440px; height: auto; overflow: visible; }
+.fa-mic { transform-box: fill-box; transform-origin: 50% 100%; animation: fa-sway 4s ease-in-out infinite; }
+.fa-waves path { transform-box: fill-box; animation: fa-wave 2.4s ease-out infinite; }
+.fa-waves path:nth-child(2), .fa-waves path:nth-child(4) { animation-delay: .4s; }
+.fa-waves path:nth-child(-n+2) { transform-origin: right center; }
+.fa-waves path:nth-child(n+3) { transform-origin: left center; }
+.fa-q { animation: fa-float 5s ease-in-out infinite; }
+.fa-q2 { animation-delay: -1.6s; } .fa-q3 { animation-delay: -3.2s; }
+.fa-blob { transform-box: fill-box; transform-origin: center; animation: fa-blob 14s ease-in-out infinite; }
+:root:not([data-theme='light']) .fa-q2 rect, :root:not([data-theme='light']) .fa-q2 path { fill: #1b1d17; stroke: #beda52; }
+:root:not([data-theme='light']) .fa-q2 text { fill: #beda52; }
+@keyframes fa-sway { 50% { rotate: 3deg; } }
+@keyframes fa-wave { 0% { opacity: 0; scale: .8; } 35% { opacity: 1; } 100% { opacity: 0; scale: 1.1; } }
+@keyframes fa-float { 50% { translate: 0 -10px; } }
+@keyframes fa-blob { 50% { scale: 1.04; rotate: 4deg; } }
+@media (prefers-reduced-motion: reduce) { .fa-mic, .fa-waves path, .fa-q, .fa-blob { animation: none; } }
+@media (max-width: 899px) { .pc-faq__art svg { max-width: 320px; margin-inline: auto; } }
+
+/* latest episodes: no lift on hover (image zoom + arrow only) */
+@media (hover: hover) { .pc-ep:hover { translate: 0 var(--py, 0px); box-shadow: inset 0 0 0 1px var(--edge); } }
