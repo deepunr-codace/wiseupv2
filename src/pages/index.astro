@@ -63,13 +63,6 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     <div class="hero__orbit" aria-hidden="true" data-orbit><span class="hero__orb"></span></div>
     <div class="lunar">
       <h1 class="lunar__mark" data-lunar-mark><span class="lunar__img" set:html={wordmarkSvg} /></h1>
-      <span class="sticker" aria-hidden="true">
-        <svg viewBox="0 0 120 120"><defs><path id="stk" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
-          <circle cx="60" cy="60" r="58" fill="#beda52"/>
-          <text><textPath href="#stk" startOffset="0">SINCE 2018 · KERALA · SINCE 2018 · KERALA ·</textPath></text>
-          <g class="sticker__star"><path d="M60 44l4.2 11.8L76 60l-11.8 4.2L60 76l-4.2-11.8L44 60l11.8-4.2z" fill="#11150a"/></g>
-        </svg>
-      </span>
       <p class="lunar__sub" data-lunar-sub>Branding &amp; Marketing Agency</p>
     </div>
     <div class="strip" data-strip>
@@ -142,7 +135,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
         <h1 id="hero-title" class="seq__line" data-words>
           <span class="seq__a">{hero.line[0]}</span>
           <span class="seq__b">{hero.line[1]}</span>
-          <span class="seq__c"><span class="marker">{hero.line[2]}</span></span>
+          <span class="seq__c">{hero.line[2]}</span>
         </h1>
       </div>
     </div>
@@ -191,7 +184,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
         <div class="about__l">
           <p class="contrast__statement" data-reveal="up">
             <span class="contrast__dim">{about.contrast.statement[0]}</span>
-            <span class="contrast__bold"><span class="marker">{about.contrast.statement[1]}</span></span>
+            <span class="contrast__bold">{about.contrast.statement[1]}</span>
           </p>
           <div class="contrast__rows" data-reveal="up">
           {about.contrast.rows.map((r) => (

@@ -1037,8 +1037,8 @@ html:not(.js) .loop-nav { display: none; }
    are ink with a lime marker or a hand-drawn lime underline, and the olive (--teal-hi) stays only on small text/icons. */
 :root[data-theme='light'] { --drum-c: #11150a; }
 .marker { background: linear-gradient(transparent 58%, #beda52 58%, #beda52 92%, transparent 92%); padding-inline: 0.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
-:root[data-theme='light'] .seq__c, :root[data-theme='light'] .seq__c .marker { color: #11150a; -webkit-text-fill-color: #11150a; }
-:root[data-theme='light'] .contrast__statement .contrast__bold { color: #11150a; }
+:root[data-theme='light'] .seq__c { color: #5e8a14; -webkit-text-fill-color: #5e8a14; }
+:root[data-theme='light'] .contrast__statement .contrast__bold { color: #5e8a14; }
 :root:not([data-theme='light']) .marker { background: none; }
 /* hand-drawn underline: an inline SVG squiggle, drawn on when it scrolls in (.is-drawn set by scribbles() in main.ts) */
 .scribble { position: relative; white-space: nowrap; }
