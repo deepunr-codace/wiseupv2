@@ -137,3 +137,40 @@
 @media (prefers-reduced-motion: reduce) {
   .lead-bot, .lb__eyes, .lb__face, .lb__dots, .lb__dots circle, .lead__live, .lead__frame, .lead::backdrop, .lead[open] .lead__head, .lead[open] .lf, .lf.is-bad { animation: none !important; }
 }
+
+/* ---- fit on screen, no scrollbar ----
+   Wide screens: a wider modal with the heading left and the form right, so it is about half as tall.
+   Short screens: tighter spacing, a smaller heading and a shorter description box. The card can still scroll
+   on very small phones, but never shows a scrollbar. */
+.lead__card { scrollbar-width: none; }
+.lead__card::-webkit-scrollbar { display: none; }
+@media (min-width: 900px) {
+  .lead__frame { width: min(100% - 48px, 960px); }
+  .lead__card { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); column-gap: clamp(28px, 3.4vw, 48px); align-items: center; }
+  .lead__head { margin: 0; }
+  .lead__title { font-size: clamp(1.9rem, 1.2rem + 1.4vw, 2.5rem); }
+  .lead__done { grid-column: 1 / -1; }
+}
+@media (max-height: 820px) {
+  .lead__card { padding-block: 22px 18px; }
+  .lead__head { margin-bottom: 16px; }
+  .lead__kicker { margin-bottom: 10px; }
+  .lead__form, .lead__row { gap: 10px; }
+  .lf input, .lf select, .lf textarea { padding-bottom: 10px; }
+  .lf textarea { min-height: 52px; }
+  .lead__foot { padding-top: 10px; }
+}
+@media (max-height: 700px) {
+  .lead__title { font-size: clamp(1.45rem, 1.1rem + 1.2vw, 1.9rem); }
+  .lead__sub { display: none; }
+  .lead__kicker { display: none; }
+  .lf textarea { min-height: 40px; }
+  .lead-bot { --s: 44px; }
+  .lead__send, .lead__close { height: 46px; }
+  .lead__close { width: 46px; }
+}
+
+/* launcher: icon only (the label stays for screen readers) */
+.lead-fab { padding: 9px; gap: 0; }
+.lead-fab__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.lead-fab .lead-bot { --s: 40px; }
