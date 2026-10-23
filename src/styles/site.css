@@ -245,7 +245,7 @@
    150vh, worked out from the wrong end of the ratio (too permissive — at a 650px-tall viewport it
    still rendered the full 60vw-wide image, overlapping the header above and the CTAs below);
    re-derived correctly and verified at 650/700/800px heights this time, not just computed. */
-.hero__art { position: relative; width: min(66vw, 880px, 58vh); margin-inline: auto; aspect-ratio: 1620 / 736; }
+.hero__art { position: relative; width: min(78vw, 1060px, 80vh); margin-inline: auto; aspect-ratio: 1620 / 736; }
 /* .hero__art-photo/.hero__art-dynamic per-theme toggle removed (2026-10-23): the flat image
    wordmark they switched between is gone, heroType()'s dynamic letters now run in both themes —
    see index.astro's comment and .hero-face-ink below. */
