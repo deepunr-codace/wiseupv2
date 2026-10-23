@@ -1054,8 +1054,11 @@ html:not(.js) .loop-nav { display: none; }
 .scribble.is-drawn::after, html:not(.motion) .scribble::after { clip-path: inset(0 0 0 0); }
 .sh__h { position: relative; z-index: 0; }
 /* lime tag chips */
-.eyebrow { background: #beda52; color: #11150a; box-shadow: none; transition: translate 0.5s var(--ease); }
-.eyebrow__dot { background: #11150a; box-shadow: none; }
+.eyebrow { background: #11150a; color: #fff; box-shadow: none; transition: translate 0.5s var(--ease); }
+.eyebrow__dot { background: #beda52; box-shadow: 0 0 8px rgb(190 218 82 / .7); }
+/* pills contrast with the lime buttons: black pill on light pages, white pill on dark ones */
+:root:not([data-theme='light']) .eyebrow { background: #fff; color: #11150a; }
+:root:not([data-theme='light']) .eyebrow__dot { background: #5e8a14; box-shadow: none; }
 @media (hover: hover) { .eyebrow:hover { translate: 0 -2px; } }
 /* rotating "Since 2018 · Kerala" sticker beside the hero wordmark */
 .lunar { position: relative; }
