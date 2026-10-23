@@ -180,16 +180,45 @@ function heroStrip() {
     // to .hero__sub was removed along with that element — the strip is a full screen away from the
     // hero now, so that tight visual pairing no longer applies.)
     const stripSec = strip.closest('section') || strip;
-    // Testimonial videos: the controller slows the drift to a stop on the card it is playing, then releases it.
-    const videos = stripVideos(track, { mobile: isMobile(), hero: stripSec });
-    // Lunar template: a constant leftward marquee (~67px/s), not pushed by scroll and not paused on videos.
-    void videos.scale;
+    // Videos: on mouse/trackpad devices a card plays while hovered and the strip eases to a stop under the pointer;
+    // touch devices keep the auto controller (the card at the focus point plays, see hero-strip-video.ts).
+    const hoverable = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    let ease = 1, easeTarget = 1;
+    const videos = hoverable
+      ? hoverVideos(track, (playing) => { easeTarget = playing ? 0 : 1; })
+      : stripVideos(track, { mobile: isMobile(), hero: stripSec });
+    // Constant leftward marquee (~67px/s) plus a push from page scroll while the hero scrolls away.
     const stop = driftTrack(track, {
-      dir: -1, speed: 67, scrollEl: stripSec, scrollStart: 'top top', scrollShare: 0,
+      dir: -1, speed: 67, scrollEl: stripSec, scrollStart: 'top top', scrollShare: 0.5,
+      speedScale: () => (ease += (easeTarget - ease) * 0.08),
       onVisible: (v) => orbitTl?.paused(!v),
     });
     return () => { stop(); videos.destroy(); orbitTl?.kill(); };
   });
+}
+
+/** Hero strip, pointer devices: a card's muted video loads and plays while it is hovered and pauses when the
+ *  pointer leaves (the src is kept, so a return resumes instantly). `onPlay(true)` lets the caller hold the drift. */
+function hoverVideos(track: HTMLElement, onPlay: (playing: boolean) => void) {
+  const cards = [...track.querySelectorAll<HTMLElement>('[data-vcard]')];
+  const offs: (() => void)[] = [];
+  cards.forEach((el) => {
+    const v = el.querySelector<HTMLVideoElement>('video');
+    if (!v || !el.dataset.video) return;
+    v.muted = true; v.playsInline = true;
+    const enter = () => {
+      onPlay(true);
+      if (!v.getAttribute('src')) { el.classList.add('is-loading'); v.preload = 'auto'; v.src = el.dataset.video!; }
+      v.play().catch(() => {});
+    };
+    const leave = () => { onPlay(false); v.pause(); el.classList.remove('is-playing', 'is-loading'); };
+    const playing = () => { el.classList.remove('is-loading'); if (el.matches(':hover')) el.classList.add('is-playing'); };
+    const error = () => { el.classList.remove('is-loading', 'is-playing'); el.classList.add('is-failed'); };
+    el.addEventListener('pointerenter', enter); el.addEventListener('pointerleave', leave);
+    v.addEventListener('playing', playing); v.addEventListener('error', error);
+    offs.push(() => { el.removeEventListener('pointerenter', enter); el.removeEventListener('pointerleave', leave); v.removeEventListener('playing', playing); v.removeEventListener('error', error); v.pause(); });
+  });
+  return { scale: () => 1, destroy: () => offs.forEach((f) => f()) };
 }
 
 /* ------------------------------------------------------------------ *

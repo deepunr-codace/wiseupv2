@@ -1166,3 +1166,24 @@ section:has(> .blob) > :not(.blob) { position: relative; z-index: 1; }
 @media (max-width: 379px) {
   :is(.seq__ctas, .work-more, .pc-hero__row, .pc-feat__row) > .b { padding: 0 9px; font-size: 12.5px; letter-spacing: -0.01em; }
 }
+
+/* ---------- Hero strip, video reels: every card keeps its video's shape (--ar = w/h) at one shared height, so
+   portrait testimonials and landscape AI/CGI films show whole; cards take the pointer (hover plays, heroStrip()). */
+.hero--lunar .strip__card { --h: 480px; height: var(--h); width: calc(var(--h) * var(--ar, .5625)); aspect-ratio: auto; pointer-events: auto; cursor: pointer; background: #0b0c0a; }
+.hero--lunar .strip__card img, .hero--lunar .strip__video { object-fit: cover; }
+.hero--lunar .strip__card::after { transition: opacity .4s; }
+.hero--lunar .strip__card.is-playing::after { opacity: 0; }
+.strip__tag { position: absolute; left: 18px; bottom: 18px; z-index: 3; display: inline-flex; align-items: center; gap: 10px; max-width: calc(100% - 36px); padding: 7px 14px 7px 8px; border-radius: 999px;
+  background: rgb(10 10 12 / .72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: opacity .35s; }
+.strip__tag span { padding: 3px 9px; border-radius: 999px; background: #beda52; color: #11150a; font-size: 11px; font-weight: 600; letter-spacing: .02em; }
+.strip__card.is-playing .strip__tag { opacity: 0; }
+@media (max-width: 991px) { .hero--lunar .strip__card { --h: 460px; } }
+@media (max-width: 767px) { .hero--lunar .strip__card { --h: 380px; border-radius: 26px; } .hero--lunar .strip__card::after { border-radius: 26px; } .strip__tag { left: 12px; bottom: 12px; font-size: 12px; } }
+
+/* Process cards, simplified: shorter 16:9 image, title + one line, nothing else */
+@media (min-width: 900px) { .motion .proc__card { width: clamp(420px, 34vw, 540px); } }
+.proc__stage { aspect-ratio: 16 / 9; }
+.proc__stage::before { display: none; }
+.proc__meta { padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 28px) clamp(22px, 2.2vw, 28px); }
+.proc__h { margin-top: 0; }
+.proc__card::before, .proc__card::after { display: none; }

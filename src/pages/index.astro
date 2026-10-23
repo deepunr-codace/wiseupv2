@@ -6,25 +6,14 @@ import Header from '../components/Header.astro';
 import SecHead from '../components/SecHead.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
-import { testimonials } from '../data/testimonials';
+import { reels } from '../data/reels';
 import { site, hero, marquee, about, process, services, clients, projects, work, codeace, faq, contact } from '../data/site';
 import aboutPhoto from '../assets/about/team.webp';
 
-// Hero strip: client testimonial videos with portfolio case-study covers interleaved (one project
-// after each of the first 5 testimonials — explicit user request, "add portfolio images also"),
-// repeated so the loop never shows an edge. Videos are only fetched for the card being played
-// (see hero-strip-video.ts); project cards are plain images, no video, and link out to the case study.
-const STRIP_SETS = 4;
-type StripItem =
-  | { kind: 'testimonial'; name: string; poster: { src: string; srcset: string }; video: string }
-  | { kind: 'project'; title: string; cover: (typeof projects)[number]['cover']; href: string };
-const stripItems: StripItem[] = [];
-testimonials.forEach((t, i) => {
-  stripItems.push({ kind: 'testimonial', ...t });
-  const p = projects[i];
-  if (p) stripItems.push({ kind: 'project', title: p.title, cover: p.cover, href: p.externalUrl });
-});
-const strip = Array.from({ length: STRIP_SETS }, () => stripItems).flat();
+// Hero strip: two client testimonials plus AI / concept / CGI portfolio videos (data/reels.ts), each card at its
+// video's own shape; repeated STRIP_SETS times so the loop never shows an edge.
+const STRIP_SETS = 3;
+const strip = Array.from({ length: STRIP_SETS }, () => reels).flat();
 // Work rows: same five covers, the second row in a different order so columns never line up.
 const ROW_SETS = 3;
 const rowA = projects;
@@ -68,19 +57,12 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     <div class="strip" data-strip>
     <div class="strip__plane">
       <div class="strip__track" data-strip-track data-sets={STRIP_SETS}>
-        {strip.map((t, i) => t.kind === 'project' ? (
-          <figure class="strip__card strip__card--proj">
-            <a href={t.href} target="_blank" rel="noopener" aria-label={`${t.title}: view case study`}>
-              <Image src={t.cover.src} alt="" widths={[360, 540, 720]} sizes="(max-width: 640px) 62vw, 20vw" loading={i < 8 ? 'eager' : 'lazy'} />
-              <span class="strip__cap">{t.title}</span>
-            </a>
-          </figure>
-        ) : (
-          <figure class="strip__card" data-vcard data-video={t.video}>
-            <img src={t.poster.src} srcset={t.poster.srcset} sizes="(max-width: 640px) 62vw, 20vw" alt="" width="576" height="1024"
-              loading={i < 8 ? 'eager' : 'lazy'} decoding="async" fetchpriority={i === 0 ? 'high' : undefined} />
-            <video class="strip__video" muted playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true"></video>
+        {strip.map((t, i) => (
+          <figure class="strip__card" data-vcard data-video={t.video} style={`--ar:${t.ar.toFixed(4)}`} aria-hidden={i >= reels.length ? 'true' : undefined}>
+            <img src={t.poster} srcset={t.srcset} sizes={t.srcset ? '(max-width: 767px) 40vw, 320px' : undefined} alt="" loading={i < 6 ? 'eager' : 'lazy'} decoding="async" fetchpriority={i === 0 ? 'high' : undefined} />
+            <video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true"></video>
             <span class="strip__load" aria-hidden="true"></span>
+            <figcaption class="strip__tag"><span>{t.label}</span>{t.title}</figcaption>
           </figure>
         ))}
       </div>
@@ -239,24 +221,17 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
           <SecHead eyebrow={process.tag} id="process-title" lines={process.heading} />
           <p class="hgal__hint" aria-hidden="true"><Icon name="arrow-r" size={16} />Keep scrolling</p>
         </div>
-        <!-- Each step's own illustration (public/process/step-N.webp, 3:2) fills an inset frame at its natural ratio;
-             a glass step chip, an outlined step number and an arrow chip sit over it; the meta below carries the step
-             copy and keyword chips read off the image. data-spot drives the pointer spotlight (cardSpot()). -->
+        <!-- Each step: its illustration (public/process/step-N.webp) in an inset frame, then the title and one line of
+             copy. No numbers, chips or progress lines. data-spot drives the pointer spotlight (cardSpot()). -->
         <ol class="hgal__list">
           {process.steps.map((s, i) => (
             <li class="card proc__card" data-spot>
               <div class="proc__stage" aria-hidden="true">
                 <img class="proc__shot" src={`/process/step-${i + 1}.webp`} srcset={`/process/step-${i + 1}-sm.webp 800w, /process/step-${i + 1}.webp 1536w`} sizes="(max-width: 899px) 92vw, 46vw" alt="" width="1536" height="1024" loading="lazy" decoding="async" />
-                <span class="proc__num">{pad(i + 1)}</span>
-                <span class="proc__tag"><span class="proc__tag-dot"></span>Step {pad(i + 1)} · {s.label}</span>
-                <span class="proc__go"><Icon name="arrow-ur" size={18} /></span>
               </div>
               <div class="proc__meta">
-                <p class="proc__step">Step {pad(i + 1)} <span>/ {pad(process.steps.length)}</span></p>
                 <h3 class="proc__h">{s.title}</h3>
                 <p class="proc__p">{s.text}</p>
-                <ul class="proc__chips">{s.chips.map((c) => <li>{c}</li>)}</ul>
-                <span class="proc__bar" aria-hidden="true"><span></span></span>
               </div>
             </li>
           ))}
