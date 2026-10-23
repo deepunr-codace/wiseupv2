@@ -934,7 +934,7 @@ html:not(.js) .loop-nav { display: none; }
    for 5 letters; "wiseup" is 995). The negative margins trim the i-dot above the cap line and the p descender below the
    reference box, so the cap top and the subtitle sit exactly where the Lunar logo's do. */
 .lunar__mark { --w: min(995px, 100%); margin: 0; line-height: 0; width: var(--w); }
-.lunar__img { display: block; width: 100%; height: auto; margin-top: calc(var(--w) * -0.018815); margin-bottom: calc(var(--w) * -0.060642); }
+.lunar__img { display: block; width: 100%; height: auto; margin-top: calc(var(--w) * -0.022796); margin-bottom: calc(var(--w) * -0.060641); }
 :root[data-theme='light'] .lunar__img { filter: invert(1); }
 .lunar__sub { margin: 0; font-family: 'Inter', var(--font); font-size: 26px; font-weight: 500; letter-spacing: -0.262px; line-height: 1.2em; color: var(--head-a); }
 :root:not([data-theme='light']) .lunar__sub { color: #fff; }

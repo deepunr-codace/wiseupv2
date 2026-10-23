@@ -31,8 +31,30 @@ const add = (path, fx = (x) => x) => path.commands.forEach((c) => {
 });
 let x = 0;
 const glyphs = font.stringToGlyphs(TEXT);
+// The i's square tittle is replaced by a round dot: a circle 1.35x the stem width, centred over the stem, at the same height.
+const roundDot = (path) => {
+  const contours = [];
+  path.commands.forEach((c) => { if (c.type === 'M') contours.push([]); contours[contours.length - 1].push(c); });
+  const box = (cs) => { const xs = cs.filter((c) => 'x' in c).map((c) => c.x), ys = cs.filter((c) => 'y' in c).map((c) => c.y);
+    return { x1: Math.min(...xs), x2: Math.max(...xs), y1: Math.min(...ys), y2: Math.max(...ys) }; };
+  const boxes = contours.map(box);
+  const di = boxes.reduce((b, bb, i) => (bb.y1 < boxes[b].y1 ? i : b), 0);
+  const stem = boxes[di === 0 ? 1 : 0], dot = boxes[di];
+  const cx = (stem.x1 + stem.x2) / 2, cy = (dot.y1 + dot.y2) / 2, r = ((stem.x2 - stem.x1) * 1.35) / 2, q = r * 0.5523;
+  contours[di] = [
+    { type: 'M', x: cx + r, y: cy },
+    { type: 'C', x1: cx + r, y1: cy + q, x2: cx + q, y2: cy + r, x: cx, y: cy + r },
+    { type: 'C', x1: cx - q, y1: cy + r, x2: cx - r, y2: cy + q, x: cx - r, y: cy },
+    { type: 'C', x1: cx - r, y1: cy - q, x2: cx - q, y2: cy - r, x: cx, y: cy - r },
+    { type: 'C', x1: cx + q, y1: cy - r, x2: cx + r, y2: cy - q, x: cx + r, y: cy },
+    { type: 'Z' },
+  ];
+  path.commands = contours.flat();
+  return path;
+};
 glyphs.forEach((g, i) => {
-  add(g.getPath(x, 0, size));
+  const gp = g.getPath(x, 0, size);
+  add(g.name === 'i' || TEXT[i] === 'i' ? roundDot(gp) : gp);
   x += g.advanceWidth * k + TRACK * size + (i < glyphs.length - 1 ? font.getKerningValue(g, glyphs[i + 1]) * k : 0);
 });
 
