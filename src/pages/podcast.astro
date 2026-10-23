@@ -51,11 +51,11 @@ const episodes = [
 // Cover photos: real CC-licensed photography (Wikimedia Commons), standing in for brand
 // photography WiseUp hasn't supplied yet for these 5 categories — see CLAUDE.md.
 const topics = [
-  { n: '01', label: 'Business & Entrepreneurship', icon: 'target', img: '/podcast/topic-business.webp' },
-  { n: '02', label: 'Marketing & Branding', icon: 'megaphone', img: '/podcast/topic-marketing.webp' },
-  { n: '03', label: 'Technology & AI', icon: 'code', img: '/podcast/topic-tech.webp' },
-  { n: '04', label: 'Leadership & Career', icon: 'sprout', img: '/podcast/topic-leadership.webp' },
-  { n: '05', label: 'Creators & Media', icon: 'video', img: '/podcast/topic-creators.webp' },
+  { n: '01', label: 'Business & Entrepreneurship', desc: 'Founders on building, funding and scaling.', icon: 'target', img: '/podcast/topic-business.webp' },
+  { n: '02', label: 'Marketing & Branding', desc: 'How brands win attention and trust.', icon: 'megaphone', img: '/podcast/topic-marketing.webp' },
+  { n: '03', label: 'Technology & AI', desc: 'The tools changing how business works.', icon: 'code', img: '/podcast/topic-tech.webp' },
+  { n: '04', label: 'Leadership & Career', desc: 'Lessons on leading people and growing.', icon: 'sprout', img: '/podcast/topic-leadership.webp' },
+  { n: '05', label: 'Creators & Media', desc: 'Building an audience and a business on it.', icon: 'video', img: '/podcast/topic-creators.webp' },
 ];
 
 const hosts = [
@@ -254,17 +254,18 @@ const jsonLd = {
     <section class="sec" id="topics" aria-labelledby="topics-h">
       <div class="wrap">
         <SecHead eyebrow="Explore topics" id="topics-h" lines={['Conversations across', 'what matters.']} />
-        <div class="pc-topics">
+        <ul class="pc-topics">
           {topics.map((t) => (
-            <a class="pc-topic card" href={CHANNEL} target="_blank" rel="noopener" data-reveal="up">
-              <img class="pc-topic__bg" src={t.img} srcset={`${t.img.replace('.webp', '-sm.webp')} 340w, ${t.img} 600w`} sizes="(min-width: 900px) 240px, 45vw" alt="" width="600" height="760" loading="lazy" />
-              <span class="pc-topic__scrim" aria-hidden="true"></span>
-              <span class="pc-topic__ico"><Icon name={t.icon} size={18} /></span>
-              <span class="pc-topic__n">{t.n}</span>
-              <h3>{t.label}</h3>
-            </a>
+            <li data-reveal="up">
+              <a class="pc-topic" href={CHANNEL} target="_blank" rel="noopener">
+                <span class="pc-topic__ico" aria-hidden="true"><Icon name={t.icon} size={22} /></span>
+                <h3>{t.label}</h3>
+                <p>{t.desc}</p>
+                <span class="pc-topic__go" aria-hidden="true"><Icon name="arrow-ur" size={18} /></span>
+              </a>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
 
