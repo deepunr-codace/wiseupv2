@@ -85,7 +85,8 @@ function header() {
     const off = onScroll(({ y }) => {
       syncDock(y);
       if (y < 160 || y < last - 2) head.classList.remove('is-hidden');
-      else if (y > last + 2 && !head.contains(document.activeElement)) head.classList.add('is-hidden');
+      // stays up only for keyboard focus (:focus-visible); a mouse click on the theme toggle or a link mustn't pin it
+      else if (y > last + 2 && !head.querySelector(':focus-visible')) head.classList.add('is-hidden');
       last = y;
       syncHeroOverlap();
     });

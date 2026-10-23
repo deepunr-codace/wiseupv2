@@ -321,3 +321,11 @@
 :root[data-theme='light'] .pc-eq i { background: #5e8a14; }
 /* "New episode" badge sits on a photo: black so it doesn't echo the lime buttons */
 .pc-ep__new { background: #11150a; color: #fff; }
+
+/* testimonials: no outline at rest or on hover, just the lift and a soft shadow */
+.pc-tst__media { box-shadow: none; }
+@media (hover: hover) { .pc-tst__media:not(.is-playing):hover { box-shadow: 0 20px 40px -24px rgb(0 0 0 / .45); } }
+/* gallery: the four wide photos span two rows so they sit close to their natural 3:2 shape; on phones rows
+   shrink to 30vw so the small tiles stay landscape too */
+.pc-gal__item--wide { grid-row: span 2; }
+@media (max-width: 699px) { .pc-gal { grid-auto-rows: 30vw; } }

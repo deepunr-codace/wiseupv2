@@ -1112,13 +1112,10 @@ section:has(> .blob) > :not(.blob) { position: relative; z-index: 1; }
 
 /* Header dock: at the very top the header floats free; once the page scrolls (.is-docked, header() in main.ts) the
    whole header (logo, nav pill and actions) sits on one dark frosted bar that hugs the header's own width, not the
-   viewport, raised like a 3D slab, so nothing floats bare over content when it returns on scroll-up. */
+   viewport, on a plain dark bar, so nothing floats bare over content when it returns on scroll-up. */
 .hd { isolation: isolate; }
 .hd::before { content: ''; position: absolute; inset: -9px -12px; border-radius: 200px; pointer-events: none; opacity: 0; transition: opacity .45s var(--ease), inset .5s var(--ease); }
-.hd::before { z-index: -1; background: linear-gradient(180deg, rgb(34 35 38 / .96) 0%, rgb(16 16 18 / .96) 55%, rgb(10 10 12 / .97) 100%); -webkit-backdrop-filter: blur(16px) saturate(1.4); backdrop-filter: blur(16px) saturate(1.4);
-  /* 3D slab: lit top edge, shaded lower lip, a solid extruded underside, then the cast shadow */
-  box-shadow: inset 0 1.5px 0 rgb(255 255 255 / .14), inset 0 -3px 0 rgb(0 0 0 / .55), inset 0 0 0 1px rgb(255 255 255 / .04),
-    0 5px 0 #050506, 0 6px 0 rgb(255 255 255 / .03), 0 22px 36px -14px rgb(0 0 0 / .6), 0 40px 60px -30px rgb(60 80 10 / .35); }
+.hd::before { z-index: -1; background: #0d0d0f; }
 .hd.is-docked::before { opacity: 1; }
 .hd .hd__logo { padding-left: 10px; transition: padding .5s var(--ease); }
 .hd .hd__logo img { transition: height .5s var(--ease), rotate .5s var(--ease), scale .5s var(--ease); }
