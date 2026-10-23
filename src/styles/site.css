@@ -1187,3 +1187,29 @@ section:has(> .blob) > :not(.blob) { position: relative; z-index: 1; }
 .proc__meta { padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 28px) clamp(22px, 2.2vw, 28px); }
 .proc__h { margin-top: 0; }
 .proc__card::before, .proc__card::after { display: none; }
+
+/* ---------- About: fit test (redesign) ----------
+   Statement left, body right; below, two cards: a quiet "Not our fit" card with crosses and a lime "Built for you"
+   card with ticks. "Posts fade." gets a lime strike that draws in as it scrolls into view. */
+.about { align-items: end; }
+.contrast__statement { max-width: none; font-size: clamp(2.25rem, 1.35rem + 3.2vw, 4.25rem); font-weight: 500; }
+.contrast__strike { position: relative; justify-self: start; }
+.contrast__strike::after { content: ''; position: absolute; left: -2%; right: -2%; top: 54%; height: .09em; border-radius: 99px; background: #beda52; transform-origin: left; }
+@supports (animation-timeline: view()) {
+  .contrast__strike::after { animation: strike-in linear both; animation-timeline: view(); animation-range: entry 40% cover 45%; }
+}
+@keyframes strike-in { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.fit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 22px); margin-top: clamp(36px, 4.5vw, 64px); }
+.fit__card { border-radius: var(--r-card); padding: clamp(24px, 2.6vw, 36px); }
+.fit__card--no { background: var(--card); box-shadow: inset 0 0 0 1px var(--edge); color: var(--mute); }
+.fit__card--yes { background: #beda52; color: #11150a; }
+.fit__h { display: flex; align-items: center; gap: 12px; margin: 0 0 clamp(16px, 2vw, 24px); font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+.fit__ico { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; flex: none; }
+.fit__ico svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.fit__card--no .fit__ico { background: var(--card-2); box-shadow: inset 0 0 0 1px var(--edge); }
+.fit__card--yes .fit__ico { background: #11150a; color: #beda52; }
+.fit__list { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(12px, 1.4vw, 18px); }
+.fit__list li { font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.4rem); line-height: 1.3; letter-spacing: -0.015em; }
+.fit__card--no .fit__list li { color: var(--mute); }
+.fit__card--yes .fit__list li { font-weight: 500; }
+@media (max-width: 767px) { .fit { grid-template-columns: 1fr; } }

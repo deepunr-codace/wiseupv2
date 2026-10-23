@@ -192,23 +192,24 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
       <figure class="about__g" data-about-photo>
         <Image src={aboutPhoto} data-parallax="0.1" alt="The WiseUp and CodeAce team on stage at a brand launch event" widths={[760, 1200, 1600]} sizes="(max-width: 900px) 100vw, 90vw" loading="lazy" />
       </figure>
+      <!-- Statement + body side by side, then the fit test as two cards: "Not our fit" (quiet, crosses) against
+           "Built for you" (lime, ticks). -->
       <div class="about">
-        <div class="about__l">
-          <p class="contrast__statement" data-reveal="up">
-            <span class="contrast__dim">{about.contrast.statement[0]}</span>
-            <span class="contrast__bold">{about.contrast.statement[1]}</span>
-          </p>
-          <div class="contrast__rows" data-reveal="up">
-          {about.contrast.rows.map((r) => (
-            <p class="contrast__row">
-              <span class="contrast__dim">{r.no}</span>
-              <Icon name="arrow-r" size={18} class="contrast__arrow" />
-              <span class="contrast__bold">{r.yes}</span>
-            </p>
-          ))}
-          </div>
-        </div>
+        <p class="contrast__statement" data-reveal="up">
+          <span class="contrast__dim contrast__strike">{about.contrast.statement[0]}</span>
+          <span class="contrast__bold">{about.contrast.statement[1]}</span>
+        </p>
         <p class="about__body" data-reveal="up">{about.body}</p>
+      </div>
+      <div class="fit" data-reveal="up">
+        <div class="fit__card fit__card--no">
+          <p class="fit__h"><span class="fit__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></span>Not our fit</p>
+          <ul class="fit__list">{about.contrast.rows.map((r) => <li>{r.no}</li>)}</ul>
+        </div>
+        <div class="fit__card fit__card--yes">
+          <p class="fit__h"><span class="fit__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>Built for you</p>
+          <ul class="fit__list">{about.contrast.rows.map((r) => <li>{r.yes}</li>)}</ul>
+        </div>
       </div>
     </div>
   </section>
