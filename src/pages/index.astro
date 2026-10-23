@@ -63,6 +63,13 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     <div class="hero__orbit" aria-hidden="true" data-orbit><span class="hero__orb"></span></div>
     <div class="lunar">
       <h1 class="lunar__mark" data-lunar-mark><span class="lunar__img" set:html={wordmarkSvg} /></h1>
+      <span class="sticker" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><defs><path id="stk" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="#beda52"/>
+          <text><textPath href="#stk" startOffset="0">SINCE 2018 · KERALA · SINCE 2018 · KERALA ·</textPath></text>
+          <g class="sticker__star"><path d="M60 44l4.2 11.8L76 60l-11.8 4.2L60 76l-4.2-11.8L44 60l11.8-4.2z" fill="#11150a"/></g>
+        </svg>
+      </span>
       <p class="lunar__sub" data-lunar-sub>Branding &amp; Marketing Agency</p>
     </div>
     <div class="strip" data-strip>
@@ -103,7 +110,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
         <h1 id="hero-title" class="seq__line" data-words>
           <span class="seq__a">{hero.line[0]}</span>
           <span class="seq__b">{hero.line[1]}</span>
-          <span class="seq__c">{hero.line[2]}</span>
+          <span class="seq__c"><span class="marker">{hero.line[2]}</span></span>
         </h1>
       </div>
     </div>
@@ -140,6 +147,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
 
   <!-- ABOUT (day) -->
   <section class="sec about-sec" id="about" data-mood="day" aria-labelledby="about-title">
+    <svg class="blob blob--a" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
     <div class="wrap">
       <SecHead eyebrow={about.tag} id="about-title" lines={about.heading} />
       <!-- Wide, centred photo with a parallax window: the frame is fixed, the image inside drifts against the
@@ -151,7 +159,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
         <div class="about__l">
           <p class="contrast__statement" data-reveal="up">
             <span class="contrast__dim">{about.contrast.statement[0]}</span>
-            <span class="contrast__bold">{about.contrast.statement[1]}</span>
+            <span class="contrast__bold"><span class="marker">{about.contrast.statement[1]}</span></span>
           </p>
           <div class="contrast__rows" data-reveal="up">
           {about.contrast.rows.map((r) => (
@@ -206,6 +214,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
 
   <!-- SERVICES: rolling text drum + rows -->
   <section class="sec" id="services" aria-labelledby="services-title">
+    <svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
     <div class="wrap">
       <div class="svc-head">
         <SecHead eyebrow={services.tag} id="services-title" lines={services.heading} />
@@ -347,6 +356,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
        no visible label row) — matches the reference's contact split exactly. Still composes the
        same WhatsApp message on submit (contactForm() in motion/main.ts), just plainer styling. -->
   <section class="sec" id="contact" aria-labelledby="contact-title">
+    <svg class="blob blob--c" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
     <div class="wrap contact">
       <header class="contact__head">
         <SecHead eyebrow={contact.tag} id="contact-title" lines={contact.heading} />

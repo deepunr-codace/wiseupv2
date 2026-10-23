@@ -84,8 +84,8 @@ ${[...TEXT].map((ch, i) => `<path class="wm__l" data-ch="${ch}" d="${dOf(cmds.fi
 <stop class="wm__s1" offset="1" stop-color="#999999"/>
 </linearGradient>
 <radialGradient id="paint1_radial_wiseup" cx="0.38" cy="0.32" r="0.75">
-<stop class="wm__d0" stop-color="#c8ffe9"/>
-<stop class="wm__d1" offset="1" stop-color="#56dcad"/>
+<stop class="wm__d0" stop-color="#eef7c8"/>
+<stop class="wm__d1" offset="1" stop-color="#beda52"/>
 </radialGradient>
 </defs>
 </svg>

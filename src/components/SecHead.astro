@@ -2,11 +2,15 @@
 // Reference formula: a pill eyebrow with a teal dot, then a two-line heading (bright line, quiet line).
 interface Props { eyebrow: string; lines: string[]; id: string; tag?: 'h2' | 'h1' }
 const { eyebrow, lines, id, tag: Tag = 'h2' } = Astro.props;
+// *word* in a heading line gets the hand-drawn lime underline (.scribble in site.css)
+const parts = (t: string) => t.split('*').map((p, i) => ({ t: p, mark: i % 2 === 1 }));
 ---
 <div class="sh">
   <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>{eyebrow}</p>
-  <Tag id={id} class="sh__h" data-split="lines">
-    <span class="sh__a">{lines[0]}</span>
-    {lines[1] && <span class="sh__b">{lines[1]}</span>}
+  <!-- Headings with a *scribble* skip the line-split reveal (SplitText would rebuild the line and drop the underline span);
+       they fade up instead. -->
+  <Tag id={id} class="sh__h" data-split={lines.some((l) => l.includes('*')) ? undefined : 'lines'} data-reveal={lines.some((l) => l.includes('*')) ? 'up' : undefined}>
+    <span class="sh__a">{parts(lines[0]).map((p) => (p.mark ? <span class="scribble">{p.t}</span> : p.t))}</span>
+    {lines[1] && <span class="sh__b">{parts(lines[1]).map((p) => (p.mark ? <span class="scribble">{p.t}</span> : p.t))}</span>}
   </Tag>
 </div>

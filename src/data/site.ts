@@ -82,7 +82,7 @@ export const marquee = [
 
 export const about = {
   tag: 'Our point of view',
-  heading: ['We do one thing: scale your business.', 'Because that is the only way we scale ours.'],
+  heading: ['We do one thing: *scale your business.*', 'Because that is the only way we scale ours.'],
   body:
     "We are a brand strategy agency and digital marketing agency in Kozhikode, Kerala: AI-integrated and technologically advanced, yet deeply human. We work with brands across Kerala, India and the Middle East, from startups to established names. If you believe your brand has untapped potential, connect with us. We don't just provide a service. We provide that future.",
   // The fit/not-fit distinction, as a contrast statement rather than a checklist.
@@ -110,7 +110,7 @@ export const process = {
 
 export const services = {
   tag: 'What we do',
-  heading: ['Every channel.', 'One strategy.'],
+  heading: ['Every channel.', 'One *strategy.*'],
   lead: 'Branding, design, web and digital marketing for businesses in Kozhikode, Kerala and across India, all from one team.',
   // Words on the rolling drum: the channels, in short form.
   drum: ['Identity', 'Packaging', 'Websites', 'SEO', 'Google Ads', 'Meta Ads', 'Reels', 'Influencers', 'TV ads', 'Product shoots', 'OOH', 'Media buying'],
@@ -194,7 +194,7 @@ export const projects: Project[] = [
 
 export const work = {
   tag: 'Selected work',
-  heading: ['Proof, not bluff.', 'Restaurants, cafés, expos and space tech, from Kozhikode to the Gulf.'],
+  heading: ['*Proof,* not bluff.', 'Restaurants, cafés, expos and space tech, from Kozhikode to the Gulf.'],
 };
 
 export const codeace = {
@@ -271,7 +271,7 @@ export const aboutPage = {
 
 export const contact = {
   tag: "Let's talk",
-  heading: ['Ready to light', 'the fire?'],
+  heading: ['Ready to light', 'the *fire?*'],
   body: "Tell us where you want your brand to go. We'll send the plan before we talk numbers.",
 };
 

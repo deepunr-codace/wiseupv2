@@ -24,6 +24,7 @@ export function setupMotion() {
   heroLunar();
   cursorDot();
   cardSpot();
+  scribbles();
   heroDots(); // no-ops now: [data-hero-dots] isn't on the page, reverted back to heroType(), see index.astro
   heroAqua();
   aboutPhoto();
@@ -596,4 +597,10 @@ function cardSpot() {
       el.style.setProperty('--my', `${e.clientY - r.top}px`);
     }, { passive: true });
   });
+}
+
+/** Draws each hand-drawn lime underline (.scribble) once it scrolls into view. */
+function scribbles() {
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-drawn'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -15% 0px' });
+  document.querySelectorAll('.scribble').forEach((el) => io.observe(el));
 }
