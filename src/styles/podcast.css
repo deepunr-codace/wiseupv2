@@ -236,9 +236,11 @@
 @keyframes pc-lb-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .pc-lb[open] { animation: none; } }
 
-/* hero backdrop: one solid off-white fill, edge to edge (it also sits behind the fixed header) */
-.pc-hero { background: #f5f3eb; }
-:root:not([data-theme='light']) .pc-hero { background: #0c0c0a; }
+/* hero backdrop: one solid off-white fill, edge to edge, starting a clear gap below the fixed header (the strip
+   behind the header stays the page colour), with generous room above the hero content inside the fill */
+.pc-hero { --pc-gap: clamp(16px, 2vw, 28px); background: linear-gradient(#f5f3eb, #f5f3eb) no-repeat 0 calc(var(--head-h) + var(--pc-gap)) / 100% 100%; }
+.pc-page .sec.pc-hero { padding-top: calc(var(--head-h) + var(--pc-gap) + clamp(40px, 6vw, 88px)); }
+:root:not([data-theme='light']) .pc-hero { background-image: linear-gradient(#0c0c0a, #0c0c0a); }
 
 /* ---- video testimonials: 9:16 reel cards in a scroll-snap row (4 visible on desktop), lime play button ---- */
 .pc-tst { list-style: none; margin: 0; padding: 0 0 8px; display: flex; gap: clamp(12px, 1.6vw, 20px); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
