@@ -21,6 +21,8 @@ import Icon from '../components/Icon.astro';
 import SecHead from '../components/SecHead.astro';
 import { site } from '../data/site';
 import podcastCss from '../styles/podcast.css?raw';
+// Latest episodes: pulled from the channel's long-form feed by scripts/fetch-episodes.py (rerun to refresh).
+import latest from '../data/episodes.json';
 
 const CHANNEL = 'https://www.youtube.com/@WiseUpPodcast_';
 // YouTube's play button (red rounded rect + white triangle), shown over every video thumbnail
@@ -46,17 +48,6 @@ const featuredList = [
   },
 ];
 
-const episodes = [
-  { videoId: 'ejaRfh4zpzY', img: '/podcast/yt-bootland2.webp', title: 'How to Grow a Retail Business in India', tag: 'Bootland Footwear & Lifestyle Expo' },
-  { videoId: 'kanbmwUHio0', img: '/podcast/yt-abcgroup.webp', title: 'From One Room to 9 Countries: 100+ Companies, 4000+ Employees', tag: 'ABC Group' },
-  { videoId: 'jgVrZalE6io', img: '/podcast/yt-eduflair.webp', title: "Kozhikode's Largest Language Campus?", tag: 'Eduflair Podcast · Adv. K.M. Roy' },
-  { videoId: 'h9kHyyUruSg', img: '/podcast/yt-featured.webp', title: 'Lakhs Flow Through Coffee, But It Is Not a Coffee Shop', tag: 'Jijo Sunny · Buy Me a Coffee' },
-  { videoId: 'CrUDF-dJHXI', img: '/podcast/yt-litmus7.webp', title: 'How Litmus7 CEO Shapes the Future of Retail & Tech', tag: 'Venu Gopalakrishnan · Litmus7' },
-  { videoId: 'qXbPA48XcOs', img: '/podcast/yt-mend.webp', title: 'Can You Build a Fashion Business in Kerala? Mend Did.', tag: 'Mend' },
-  { videoId: 'hpVHpprI6s0', img: '/podcast/yt-trs.webp', title: "The Producer's Formula: Success in Film and Education", tag: 'T. R. Shamsudeen' },
-  { videoId: 'nccuN47XdbM', img: '/podcast/yt-sajeevnair.webp', title: "If You Haven't Achieved Success Yet, This Might Be Why", tag: 'Sajeev Nair' },
-  { videoId: '26T1GMmQFng', img: '/podcast/yt-johnkuriakose.webp', title: "From ₹250 Salary to Asia's Largest Dental Lab", tag: 'John Kuriakose' },
-];
 
 // Cover photos: real CC-licensed photography (Wikimedia Commons), standing in for brand
 // photography WiseUp hasn't supplied yet for these 5 categories — see CLAUDE.md.
@@ -121,6 +112,8 @@ const faqs = [
   { q: 'How can I contact the WiseUp Podcast team?', a: 'By phone, email (wiseuppod@gmail.com), WhatsApp (+91 6282 434 503) or the website contact form. The team responds within 24 to 48 hours.' },
 ];
 
+const views = (n: number) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${Math.round(n / 1e3)}K` : String(n)) + ' views';
+const ago = (d: string) => new Date(d).toLocaleDateString('en-IN', { month: 'short', year: 'numeric' });
 const title = 'WiseUp Podcast | The Malayalam Podcast for Online Business Owners';
 const description = 'A Malayalam business podcast with entrepreneurs, creators and changemakers who are building a better tomorrow.';
 const jsonLd = {
@@ -232,22 +225,24 @@ const jsonLd = {
         <div class="loop-head">
           <SecHead eyebrow="Latest episodes" id="episodes-h" lines={['Fresh stories,', 'every week.']} />
           <div class="pc-eps__aside" data-reveal="fade">
-            <p class="pc-side">New conversations, fresh perspectives, real insights. {episodes.length} recent episodes, all free on YouTube.</p>
+            <p class="pc-side">New conversations, fresh perspectives, real insights. {latest.length} recent episodes, all free on YouTube.</p>
             <Button href={CHANNEL} label="View All Episodes" icon="arrow-ur" external />
           </div>
         </div>
-        <ul class="pc-eps__grid">
-          {episodes.map((ep, i) => (
-            <li class="pc-ep" data-reveal="up" data-delay={String((i % 3) * 0.06)}>
+        <p class="pc-eps__marquee" aria-hidden="true" data-eps-marquee><span>Business · People · Ideas · Growth · Malayalam · Business · People · Ideas · Growth · Malayalam ·</span></p>
+        <ul class="pc-eps__grid" data-eps-grid>
+          {latest.map((ep, i) => (
+            <li class="pc-ep" data-ep>
               <a class="pc-ep__th" data-embed data-video-id={ep.videoId} href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener" aria-label={`Play: ${ep.title}`}>
                 <img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes="(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 82vw" alt={ep.title} width="640" height="360" loading={i < 3 ? 'eager' : 'lazy'} />
                 <span class="pc-ep__play yt" set:html={ytPlay} />
                 {i === 0 && <span class="pc-ep__new"><i></i>Latest</span>}
+                <span class="pc-ep__meta">{views(ep.views)} · {ago(ep.date)}</span>
               </a>
               <div class="pc-ep__body">
-                <span class="pc-ep__tag">{ep.tag}</span>
+                {ep.tag && <span class="pc-ep__tag">{ep.tag}</span>}
                 <h3><a href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener">{ep.title}</a></h3>
-                <span class="pc-ep__go" aria-hidden="true">Watch episode<i><Icon name="arrow-ur" size={15} /></i></span>
+                <span class="pc-ep__go" aria-hidden="true">Watch episode<i><svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i></span>
               </div>
             </li>
           ))}
