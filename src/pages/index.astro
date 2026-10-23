@@ -97,6 +97,38 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     <div class="hero__edge hero__edge--r" aria-hidden="true"></div>
   </section>
 
+  <!-- SERVICES: rolling text drum + rows -->
+  <section class="sec" id="services" aria-labelledby="services-title">
+    <svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
+    <div class="wrap">
+      <div class="svc-head">
+        <SecHead eyebrow={services.tag} id="services-title" lines={services.heading} />
+        <div class="drum" aria-hidden="true" data-drum>
+          <div class="drum__ring" data-drum-ring>
+            {services.drum.map((w, i) => <span class="drum__word" style={`--i:${i}`}>{w}</span>)}
+          </div>
+        </div>
+      </div>
+      <ul class="svc">
+        {services.items.map((s, i) => (
+          <li class="svc__item" data-reveal="up" data-delay={String(Math.min(i, 4) * 0.04)}>
+            <h3>
+              <button class="svc__btn" type="button" aria-expanded="false" aria-controls={`svc-${i}`} data-acc>
+                <span class="svc__n">{pad(i + 1)}</span>
+                <Icon name={s.icon} size={26} class="svc__ico" />
+                <span class="svc__t">{s.title}</span>
+                <span class="svc__dot" aria-hidden="true"></span>
+              </button>
+            </h3>
+            <div class="svc__panel" id={`svc-${i}`} role="region" aria-label={s.title}>
+              <div class="svc__inner"><ul class="chips">{s.tags.map((t) => <li>{t}</li>)}</ul></div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
   <!-- STRIP: one tilted row of work that slides on its own and is pushed further along its
        diagonal by scroll (heroStrip() in motion/main.ts) — moved out of .hero, see its comment. -->
 
@@ -212,37 +244,6 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     </div>
   </section>
 
-  <!-- SERVICES: rolling text drum + rows -->
-  <section class="sec" id="services" aria-labelledby="services-title">
-    <svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
-    <div class="wrap">
-      <div class="svc-head">
-        <SecHead eyebrow={services.tag} id="services-title" lines={services.heading} />
-        <div class="drum" aria-hidden="true" data-drum>
-          <div class="drum__ring" data-drum-ring>
-            {services.drum.map((w, i) => <span class="drum__word" style={`--i:${i}`}>{w}</span>)}
-          </div>
-        </div>
-      </div>
-      <ul class="svc">
-        {services.items.map((s, i) => (
-          <li class="svc__item" data-reveal="up" data-delay={String(Math.min(i, 4) * 0.04)}>
-            <h3>
-              <button class="svc__btn" type="button" aria-expanded="false" aria-controls={`svc-${i}`} data-acc>
-                <span class="svc__n">{pad(i + 1)}</span>
-                <Icon name={s.icon} size={26} class="svc__ico" />
-                <span class="svc__t">{s.title}</span>
-                <span class="svc__dot" aria-hidden="true"></span>
-              </button>
-            </h3>
-            <div class="svc__panel" id={`svc-${i}`} role="region" aria-label={s.title}>
-              <div class="svc__inner"><ul class="chips">{s.tags.map((t) => <li>{t}</li>)}</ul></div>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
 
   <!-- CLIENTS: infinite looped panels -->
   <section class="sec" id="clients" aria-labelledby="clients-title">
