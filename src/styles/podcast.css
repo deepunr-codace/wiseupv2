@@ -264,3 +264,43 @@
   .pc-tst__card { width: 68vw; }
   .pc-tst__play { width: 54px; height: 54px; margin: -27px 0 0 -27px; }
 }
+
+/* ---- hero podcast icons: "On air" pill with live dot + equalizer, mic and headphones stickers on the photo ---- */
+.pc-hero__tagrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 22px; }
+.pc-hero__tagrow .eyebrow { margin: 0; }
+.pc-onair { display: inline-flex; align-items: center; gap: 9px; height: 36px; padding: 0 14px 0 12px; border-radius: var(--r-pill); background: #11150a; color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.pc-onair__dot { width: 8px; height: 8px; border-radius: 50%; background: #ff3b30; box-shadow: 0 0 0 0 rgb(255 59 48 / .6); animation: pc-live 1.6s ease-out infinite; }
+.pc-eq { display: inline-flex; align-items: flex-end; gap: 2.5px; height: 14px; }
+.pc-eq i { width: 3px; height: 100%; border-radius: 2px; background: #beda52; transform-origin: bottom; animation: pc-eq 1s ease-in-out infinite; }
+.pc-eq i:nth-child(2) { animation-duration: .8s; animation-delay: -.3s; }
+.pc-eq i:nth-child(3) { animation-duration: 1.15s; animation-delay: -.6s; }
+.pc-eq i:nth-child(4) { animation-duration: .9s; animation-delay: -.15s; }
+.pc-eq i:nth-child(5) { animation-duration: 1.05s; animation-delay: -.45s; }
+@keyframes pc-eq { 0%, 100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+@keyframes pc-live { 70% { box-shadow: 0 0 0 7px rgb(255 59 48 / 0); } 100% { box-shadow: 0 0 0 0 rgb(255 59 48 / 0); } }
+
+.pc-hero__media { position: relative; }
+.pc-stk { position: absolute; z-index: 2; display: grid; place-items: center; border-radius: 50%; pointer-events: none; }
+.pc-stk svg { width: 100%; height: 100%; overflow: visible; }
+.pc-stk--mic { left: clamp(-36px, -2.4vw, -18px); bottom: clamp(-30px, -2vw, -16px); width: clamp(88px, 9vw, 124px); aspect-ratio: 1; background: #beda52; box-shadow: 0 0 0 6px #f5f3eb, 0 18px 34px -16px rgb(60 80 10 / .55); animation: pc-bob 5s ease-in-out infinite; }
+.pc-stk--hp { right: clamp(-26px, -1.8vw, -14px); top: clamp(-26px, -1.8vw, -14px); width: clamp(64px, 6.4vw, 88px); aspect-ratio: 1; background: #11150a; box-shadow: 0 0 0 6px #f5f3eb, 0 16px 30px -16px rgb(0 0 0 / .5); animation: pc-bob 6s ease-in-out -2s infinite; }
+:root:not([data-theme='light']) .pc-stk--mic, :root:not([data-theme='light']) .pc-stk--hp { box-shadow: 0 0 0 6px #0c0c0a; }
+:root:not([data-theme='light']) .pc-stk--hp { background: #1b1f12; }
+.pc-stk__waves path { transform-box: fill-box; opacity: 0; animation: pc-wave 2.2s ease-out infinite; }
+.pc-stk__waves path:nth-child(odd) { transform-origin: right center; }
+.pc-stk__waves path:nth-child(n+3):nth-child(odd), .pc-stk__waves path:nth-child(4) { transform-origin: left center; }
+.pc-stk__waves .w2 { animation-delay: .35s; }
+.pc-stk__mic { transform-box: fill-box; transform-origin: 50% 100%; animation: pc-sway 3.2s ease-in-out infinite; }
+.pc-stk__hp { transform-box: fill-box; transform-origin: 50% 70%; animation: pc-beat 1.2s ease-in-out infinite; }
+.pc-stk__notes circle { animation: pc-note 1.2s ease-in-out infinite; }
+@keyframes pc-bob { 0%, 100% { translate: 0 0; rotate: -4deg; } 50% { translate: 0 -8px; rotate: 4deg; } }
+@keyframes pc-wave { 0% { opacity: 0; transform: scale(.7); } 30% { opacity: 1; } 100% { opacity: 0; transform: scale(1.15); } }
+@keyframes pc-sway { 0%, 100% { rotate: -5deg; } 50% { rotate: 5deg; } }
+@keyframes pc-beat { 0%, 100% { scale: 1; } 15% { scale: 1.08; } 30% { scale: 1; } 45% { scale: 1.05; } }
+@keyframes pc-note { 0%, 100% { opacity: .2; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pc-onair__dot, .pc-eq i, .pc-stk, .pc-stk__waves path, .pc-stk__mic, .pc-stk__hp, .pc-stk__notes circle { animation: none; }
+  .pc-stk__waves path { opacity: 1; }
+  .pc-eq i { transform: scaleY(.6); }
+}
+@media (max-width: 899px) { .pc-stk--mic { left: -6px; bottom: -22px; } .pc-stk--hp { right: -6px; top: -18px; } }

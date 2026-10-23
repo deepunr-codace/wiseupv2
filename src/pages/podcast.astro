@@ -135,7 +135,10 @@ const jsonLd = {
     <svg class="blob blob--a" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
       <div class="wrap pc-hero__grid">
         <div>
-          <p class="eyebrow" data-reveal="fade" data-intro><span class="eyebrow__dot" aria-hidden="true"></span>WiseUp Podcast</p>
+          <div class="pc-hero__tagrow" data-reveal="fade" data-intro>
+            <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>WiseUp Podcast</p>
+            <span class="pc-onair" aria-hidden="true"><i class="pc-onair__dot"></i>On air<span class="pc-eq"><i></i><i></i><i></i><i></i><i></i></span></span>
+          </div>
           <h1 data-split="lines" data-intro data-delay="0.1">The Malayalam Podcast for <em>Online Business Owners</em>.</h1>
           <p class="pc-hero__ml pc-ml" lang="ml" data-reveal="up" data-intro data-delay="0.2">ഓൺലൈൻ ബിസിനസ്സ് വളർത്താൻ, ഇനി കാര്യങ്ങൾ കുറച്ചുകൂടി എളുപ്പം.</p>
           <div class="pc-hero__row" data-reveal="up" data-intro data-delay="0.3">
@@ -147,8 +150,35 @@ const jsonLd = {
             <div><b><span data-count="91">91</span>K+</b>YouTube Subscribers</div>
           </div>
         </div>
-        <div class="pc-hero__img" data-reveal="up" data-delay="0.2">
+        <div class="pc-hero__media" data-reveal="up" data-delay="0.2">
+          <div class="pc-hero__img">
           <img src="/podcast/hero-team.webp" srcset="/podcast/hero-team-sm.webp 900w, /podcast/hero-team.webp 1400w" sizes="(min-width: 900px) 50vw, 100vw" alt="The WiseUp Podcast team holding their award" width="1400" height="916" loading="eager" fetchpriority="high" />
+        </div>
+          <!-- animated podcast stickers on the photo's corners: studio mic with sound waves, headphones -->
+          <span class="pc-stk pc-stk--mic" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <g class="pc-stk__waves" fill="none" stroke="#11150a" stroke-width="3.2" stroke-linecap="round">
+                <path class="w1" d="M30 42a26 26 0 0 0 0 30"/><path class="w2" d="M20 34a38 38 0 0 0 0 46"/>
+                <path class="w1" d="M90 42a26 26 0 0 1 0 30"/><path class="w2" d="M100 34a38 38 0 0 1 0 46"/>
+              </g>
+              <g class="pc-stk__mic">
+                <rect x="47" y="22" width="26" height="46" rx="13" fill="#11150a"/>
+                <path d="M51 34h18M51 41h18M51 48h18" stroke="#beda52" stroke-width="2.4" stroke-linecap="round"/>
+                <path d="M39 55a21 21 0 0 0 42 0" fill="none" stroke="#11150a" stroke-width="4" stroke-linecap="round"/>
+                <path d="M60 76v12M48 92h24" stroke="#11150a" stroke-width="4" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </span>
+          <span class="pc-stk pc-stk--hp" aria-hidden="true">
+            <svg viewBox="0 0 80 80">
+              <g class="pc-stk__hp" fill="none" stroke="#beda52" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 46v-6a20 20 0 0 1 40 0v6"/>
+                <rect x="15" y="44" width="11" height="18" rx="4" fill="#beda52"/>
+                <rect x="54" y="44" width="11" height="18" rx="4" fill="#beda52"/>
+              </g>
+              <g class="pc-stk__notes" fill="#beda52"><circle cx="40" cy="58" r="2.6"/></g>
+            </svg>
+          </span>
         </div>
       </div>
     </section>
