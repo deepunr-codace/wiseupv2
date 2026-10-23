@@ -1050,11 +1050,10 @@ html:not(.js) .loop-nav { display: none; }
   clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.6,.1,.2,1) 0.2s; }
 .scribble.is-drawn::after, html:not(.motion) .scribble::after { clip-path: inset(0 0 0 0); }
 .sh__h { position: relative; z-index: 0; }
-/* tilted, lime tag chips */
-.eyebrow { background: #beda52; color: #11150a; box-shadow: none; rotate: -3deg; transition: rotate 0.5s var(--ease), translate 0.5s var(--ease); }
-section:nth-of-type(even) .eyebrow { rotate: 2.5deg; }
+/* lime tag chips */
+.eyebrow { background: #beda52; color: #11150a; box-shadow: none; transition: translate 0.5s var(--ease); }
 .eyebrow__dot { background: #11150a; box-shadow: none; }
-@media (hover: hover) { .eyebrow:hover { rotate: 0deg; translate: 0 -2px; } }
+@media (hover: hover) { .eyebrow:hover { translate: 0 -2px; } }
 /* rotating "Since 2018 · Kerala" sticker beside the hero wordmark */
 .lunar { position: relative; }
 .sticker { position: absolute; z-index: 3; top: -34px; left: calc(50% + min(470px, 44vw) - 70px); width: 118px; height: 118px; rotate: 12deg; pointer-events: auto; transition: scale 0.5s var(--ease); }
