@@ -17,13 +17,16 @@ const isPodcast = Astro.url.pathname.startsWith('/podcast');
 const options = isPodcast
   ? ['Be a guest on the podcast', 'Sponsor an episode', 'Podcast production for my brand', ...services.items.map((s) => s.title)]
   : services.items.map((s) => s.title);
+// The mascot: a small flat chat bubble with a face. CSS (lead.css) makes it bob, blink, glance and now and then
+// "type" (eyes swap for three bouncing dots); the --happy variant smiles with closed eyes on the success panel.
+const bot = '<svg viewBox="0 0 48 48" aria-hidden="true"><path class="lb__body" d="M12 7h24a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H23l-8.5 6.5V38H12a9 9 0 0 1-9-9V16a9 9 0 0 1 9-9Z"/><g class="lb__face"><g class="lb__eyes"><rect x="15.5" y="17" width="4" height="7.5" rx="2"/><rect x="28.5" y="17" width="4" height="7.5" rx="2"/></g><path class="lb__smile" d="M19.5 29.5q4.5 3.5 9 0"/></g><g class="lb__dots"><circle cx="17" cy="22.5" r="2.4"/><circle cx="24" cy="22.5" r="2.4"/><circle cx="31" cy="22.5" r="2.4"/></g><g class="lb__joy"><path d="M15 21.5q2.5-3 5 0M28 21.5q2.5-3 5 0"/></g></svg>';
 const title = isPodcast ? ['Let’s make', 'something worth hearing.'] : ['Get your growth plan,', 'free in 24 hours.'];
 const sub = isPodcast
   ? 'Guest spots, sponsorships or a podcast for your brand. Tell us a little and the team will call you back.'
   : 'Tell us where you want your brand to go. We send a plan before we ever talk numbers.';
 ---
 <button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog">
-  <span class="lead-blob lead-blob--sm" aria-hidden="true"><i class="lead-blob__eyes"><b></b><b></b></i></span>
+  <span class="lead-bot lead-bot--sm" set:html={bot} />
   <span class="lead-fab__label">{isPodcast ? 'Talk to the team' : 'Get a free plan'}</span>
 </button>
 
@@ -68,14 +71,14 @@ const sub = isPodcast
       </form>
 
       <div class="lead__done" data-lead-done hidden>
-        <span class="lead-blob lead-blob--lg lead-blob--happy" aria-hidden="true"><i class="lead-blob__eyes"><b></b><b></b></i><i class="lead-blob__smile"></i></span>
+        <span class="lead-bot lead-bot--lg lead-bot--happy" set:html={bot} />
         <h3>Got it, thank you!</h3>
         <p data-lead-done-text>The WiseUp team will reach out within 24 hours.</p>
       </div>
     </div>
 
     <div class="lead__foot">
-      <span class="lead-blob" aria-hidden="true" data-lead-mascot><i class="lead-blob__eyes"><b></b><b></b></i></span>
+      <span class="lead-bot" data-lead-mascot set:html={bot} />
       <span class="lead__trust"><b>120+</b> brands grown</span>
       <button class="lead__send" type="submit" form="lead-form" data-lead-send>
         <span>Send Message</span>
