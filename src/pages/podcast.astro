@@ -23,6 +23,8 @@ import { site } from '../data/site';
 import podcastCss from '../styles/podcast.css?raw';
 
 const CHANNEL = 'https://www.youtube.com/@WiseUpPodcast_';
+// YouTube's play button (red rounded rect + white triangle), shown over every video thumbnail
+const ytPlay = '<svg viewBox="0 0 68 48" aria-hidden="true"><path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>';
 
 const featured = {
   videoId: 'h9kHyyUruSg',
@@ -131,7 +133,7 @@ const jsonLd = {
       <div class="wrap pc-feat">
         <a class="pc-feat__frame" data-embed data-video-id={featured.videoId} href={`https://www.youtube.com/watch?v=${featured.videoId}`} target="_blank" rel="noopener" data-reveal="up">
           <img src={featured.img} alt={`${featured.guest} on the WiseUp Podcast: ${featured.title}`} width="800" height="500" loading="eager" />
-          <span class="pc-feat__play"><Icon name="arrow-r" size={24} /></span>
+          <span class="pc-feat__play yt" set:html={ytPlay} />
         </a>
         <div data-reveal="up">
           <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Featured episode</p>
@@ -165,7 +167,7 @@ const jsonLd = {
             <li class:list={['pc-ep card', { 'pc-ep--lead': i === 0 }]} data-reveal="up" data-delay={String((i % 3) * 0.06)}>
               <a class="pc-ep__th" data-embed data-video-id={ep.videoId} href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener" aria-label={`Play: ${ep.title}`}>
                 <img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes={i === 0 ? '(min-width: 1000px) 60vw, 90vw' : '(min-width: 1000px) 30vw, 80vw'} alt={ep.title} width="640" height="360" loading={i < 3 ? 'eager' : 'lazy'} />
-                <span class="pc-ep__play" aria-hidden="true"><Icon name="arrow-r" size={i === 0 ? 24 : 18} /></span>
+                <span class="pc-ep__play yt" set:html={ytPlay} />
                 {i === 0 && <span class="pc-ep__new">New episode</span>}
               </a>
               <div class="pc-ep__body">

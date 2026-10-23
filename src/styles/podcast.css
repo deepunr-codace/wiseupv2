@@ -84,7 +84,8 @@
   .pc-ep:hover h3, .pc-ep:hover .pc-ep__tag, .pc-ep:hover .pc-ep__go { color: #11150a; }
   .pc-ep:hover .pc-ep__go { gap: 10px; }
   .pc-ep:hover .pc-ep__th img { transform: scale(1.05); }
-  .pc-ep:hover .pc-ep__play { transform: scale(1.12); background: #11150a; border-color: #11150a; color: #beda52; }
+  .pc-ep:hover .pc-ep__play { transform: scale(1.12); }
+  .pc-ep:hover .yt__bg, .pc-feat__frame:hover .yt__bg { fill: #f00; fill-opacity: 1; }
 }
 @media (max-width: 999px) { .pc-eps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pc-ep--lead { grid-row: auto; } }
 @media (max-width: 699px) {
@@ -152,7 +153,6 @@
 .pc-pitch__rows { max-width: 460px; }
 
 /* brand lime: play buttons, episode tags, topic chips */
-.pc-feat__play, .pc-ep__play { background: #beda52; border-color: #beda52; color: #11150a; }
 .pc-ep__tag { color: #5e8a14; }
 .pc-topic__ico { transition: background .3s, color .3s; }
 @media (hover: hover) {
@@ -173,3 +173,12 @@
 .pc-person__cap { position: absolute; left: clamp(18px, 2vw, 28px); right: clamp(18px, 2vw, 28px); bottom: clamp(18px, 2vw, 26px); z-index: 1; display: grid; gap: 6px; padding-top: 14px; border-top: 2px solid #beda52; width: max-content; max-width: calc(100% - 2 * clamp(18px, 2vw, 28px)); }
 .pc-person__name { font-size: clamp(1.25rem, 1rem + 0.7vw, 1.6rem); font-weight: 500; letter-spacing: -0.02em; line-height: 1.1; color: #fff; }
 .pc-person__role { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgb(255 255 255 / .72); }
+
+/* YouTube play button over thumbnails: the real mark, dark-translucent at rest and full YouTube red on hover
+   (how YouTube's own embeds behave), sized by width with the logo's 68:48 ratio */
+.yt { position: absolute; inset: 0; margin: auto; width: 56px; height: auto; aspect-ratio: 68 / 48; border: 0; border-radius: 0; background: none; display: block; filter: drop-shadow(0 4px 12px rgb(0 0 0 / .35)); transition: transform .4s var(--ease); }
+.yt svg { display: block; width: 100%; height: 100%; }
+.yt__bg { fill: #f00; fill-opacity: .92; transition: fill-opacity .3s; }
+.pc-feat__play.yt { width: 84px; }
+.pc-ep--lead .pc-ep__play.yt { width: 84px; height: auto; }
+.pc-ep__play.yt { width: 52px; height: auto; }
