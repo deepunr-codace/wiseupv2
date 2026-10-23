@@ -14,6 +14,7 @@ export function setupPodcast() {
   featuredStack();
   podcastScroll();
   miniPlayer();
+  hostCards3d();
 }
 
 /* Thumbnails stay real <a href="youtube.com/watch?v=..."> links (work with JS off, middle-click,
@@ -254,5 +255,22 @@ function miniPlayer() {
     });
     offs.push(() => st.kill());
     return () => { offs.forEach((f) => f()); stopVideo(); };
+  });
+}
+
+/* Host cards turn in 3D with scroll: entering, the outer cards are angled inward (a half-open triptych) and tilted
+   back; at the centre of the viewport they lie flat; leaving, they tip the other way. Scrubbed, desktop and phones. */
+function hostCards3d() {
+  onPage(() => {
+    const cards = gsap.utils.toArray<HTMLElement>('.pc-person__card');
+    if (!cards.length || prefersReducedMotion()) return;
+    const wide = matchMedia('(min-width: 600px)').matches;
+    const tws = cards.map((card, i) => {
+      const side = wide ? (i === 0 ? 1 : i === cards.length - 1 ? -1 : 0) : 0;
+      return gsap.timeline({ scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: 0.8 } })
+        .fromTo(card, { rotateY: side * 26, rotateX: 14, z: -60 }, { rotateY: 0, rotateX: 0, z: 0, ease: 'power2.out', duration: 1 })
+        .to(card, { rotateY: -side * 10, rotateX: -10, z: -30, ease: 'power1.in', duration: 1 });
+    });
+    return () => tws.forEach((t) => { t.scrollTrigger?.kill(); t.kill(); });
   });
 }
