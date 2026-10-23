@@ -369,7 +369,10 @@
 .seq { position: relative; background: var(--bg); }
 .seq__pin { position: relative; display: grid; align-items: end; min-height: 420px; padding-top: clamp(64px, 10vh, 140px); }
 .seq__copy { position: relative; z-index: 2; padding-bottom: clamp(48px, 9vh, 110px); }
-.seq__line { max-width: 15ch; font-size: clamp(2.5rem, 1.1rem + 5.4vw, 6.5rem); font-weight: 450; letter-spacing: -0.048em; line-height: 1.02; color: var(--head-a); }
+/* Sized against both width and height so the three lines never crowd a short laptop screen: ~36px on phones, ~64px at
+   1440, capped at 84px; never more than 9.5vh. Tracking eases off as the size drops (tight tracking only suits big type). */
+.seq__line { max-width: none; font-size: clamp(2.25rem, min(1.2rem + 3.4vw, 9.5vh), 5.25rem); font-weight: 450; letter-spacing: -0.04em; line-height: 1.06; color: var(--head-a); text-wrap: balance; }
+@media (max-width: 600px) { .seq__line { letter-spacing: -0.03em; line-height: 1.1; } }
 .seq__line > span { display: block; }
 .seq__b { color: var(--sub-a); }
 .seq__c { color: var(--teal); }
