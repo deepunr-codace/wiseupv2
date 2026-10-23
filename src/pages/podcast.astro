@@ -370,7 +370,7 @@ const jsonLd = {
             <li class="pc-tst__card" data-reveal="up" data-delay={String((i % 4) * 0.06)}>
               <button class="pc-tst__media" type="button" data-tst-video={t.video} aria-label={`Play testimonial video ${i + 1} of ${testimonials.length}`}>
                 <img src={`${WP}/06/${t.poster}-576x1024.webp`} srcset={`${WP}/06/${t.poster}-169x300.webp 169w, ${WP}/06/${t.poster}-576x1024.webp 576w, ${WP}/06/${t.poster}-768x1365.webp 768w`} sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy" />
-                <span class="pc-tst__play" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+                <span class="pc-tst__play" aria-hidden="true"><i><svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></i>Watch story</span>
               </button>
             </li>
           ))}
