@@ -20,6 +20,9 @@
 .b--teal::before { background: #ffffff; }
 .b--block { width: 100%; }
 .b--small { min-height: 46px; padding: 0 22px; font-size: 14px; }
+/* .b--outline and .b--night.b--glow (one hero rebuild's one-off secondary/glow looks) removed
+   2026-10-23 — "use our design systems buttons everywhere" reverted that page back to the two
+   standard looks above, so there's nothing left to style here. */
 .b:focus-visible::before { transform: scaleX(1); transform-origin: left center; }
 .b:focus-visible .b__ico .ico:first-child { translate: 140% 0; }
 .b:focus-visible .b__ico .ico + .ico { translate: 0 0; }
@@ -33,8 +36,10 @@
 }
 
 /* ---------- Header ---------- */
+/* width/margin/padding match .wrap exactly (not a separate hardcoded max-width) so the header's
+   content edges line up with every section's content edges at every viewport width. */
 .hd { position: fixed; inset: 18px 0 auto; z-index: 50; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
-  width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: 40px; pointer-events: none; transition: translate 0.55s var(--ease); }
+  width: min(100% - 2 * var(--gx), var(--maxw)); margin-inline: auto; pointer-events: none; transition: translate 0.55s var(--ease); }
 .hd > * { pointer-events: auto; }
 .hd.is-hidden { translate: 0 calc(-100% - 30px); }
 .hd__logo { justify-self: start; display: grid; place-items: center; }
@@ -70,8 +75,18 @@
 .hd__cta-glow { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: inherit; }
 .hd__cta-glow::before { content: ''; width: 60%; height: 70%; margin-left: 60%; filter: blur(5px);
   background-image: radial-gradient(circle at 25%, var(--teal), #fff); opacity: 1; transition: opacity 0.8s var(--ease); }
+/* The dim 92% of the ring used a fixed rgb(255 255 255 / 0.06) — a near-invisible white-on-white
+   tint that only ever read against the old permanently-dark page behind it. Now that the page
+   background is themed (light by default), that same value is literally white-on-white in light
+   theme — the ring vanished except for the brief bright sweep passing through, which is exactly
+   what was reported ("animation around this not visible on light mode"). First fix tried
+   var(--edge-2) (the token built for "a faint rim, visible in either theme") — still too subtle at
+   only a 2px-wide ring (--edge-2's 0.14 light-theme opacity is tuned for card borders, a much
+   bigger visible area). Switched to a dedicated, always-opaque colour instead of a
+   theme/backdrop-dependent transparency, so the rim reads the same regardless of what's behind the
+   button: a muted dark-teal-grey that's visibly part of the button's own "dark island" styling. */
 .hd__cta-border { position: absolute; inset: 0; z-index: 1; border-radius: inherit;
-  background: conic-gradient(from var(--cta-angle), rgb(255 255 255 / 0.06) 0deg, rgb(255 255 255 / 0.06) 270deg, var(--teal) 315deg, #fff 330deg, rgb(255 255 255 / 0.06) 345deg);
+  background: conic-gradient(from var(--cta-angle), #2b3330 0deg, #2b3330 270deg, var(--teal) 315deg, #fff 330deg, #2b3330 345deg);
   animation: cta-sweep 3.5s linear infinite; }
 .hd__cta-shine { position: absolute; inset: 0; z-index: 2; border-radius: inherit;
   background-image: radial-gradient(circle, #fff, rgb(255 255 255 / 0)); translate: 100% 0; transition: translate 0.8s var(--ease); }
@@ -110,7 +125,23 @@
 .sh__b { color: var(--sub-a); }
 
 /* ---------- Hero ---------- */
-.hero { position: relative; display: flex; flex-direction: column; min-height: 100svh; padding-top: 0; overflow: clip; background: #020405; }
+/* Follows the theme (light by default as of 2026-10-23), not hardcoded dark — the hero used to be
+   a deliberate permanently-dark opening moment regardless of the toggle, but that's been retired:
+   "make everything white including hero" (explicit user request). heroAqua()'s fluid canvas and
+   heroType()'s letter-face colour both also switch to match, see their own comments. */
+/* height (hard cap), not min-height (a floor only) — "fit hero section inside 100vh" explicit
+   request: at min-height, content taller than one screen just grew the section past it (measured
+   ~68px of overflow at 1440x800). Capped here, with every element inside also made to respond to
+   viewport *height*, not just width (see .hero__art, .hero__title, .hero__foot below), so content
+   actually shrinks to fit a short screen instead of merely being clipped by this cap. */
+.hero { position: relative; display: flex; flex-direction: column; justify-content: center; height: 100svh; min-height: 560px; padding-top: var(--head-h); padding-bottom: clamp(24px, 5vh, 64px); overflow: clip; background: var(--bg); }
+/* Fades to #000 (the .seq section's own hardcoded background below), not var(--bg): both .hero and
+   .seq are permanently dark regardless of the light/dark toggle, but --bg flips to white in light
+   mode — using it here created a visible white/grey seam between two sections that are supposed to
+   blend into one continuous dark passage. */
+/* Fades to #fff (the .seq section's own hardcoded-white background, see .seq below), not #000 —
+   .seq is no longer dark (video/shade removed, pure-white background, explicit user request), so
+   fading the strip to black right before a white section created a new hard seam of its own. */
 .hero::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; height: 14%; pointer-events: none; background: linear-gradient(transparent, var(--bg)); }
 /* Subpage intro (About/Contact): same top clearance formula as .hero, for a section that opens
    directly under the fixed header instead of behind the full wordmark hero. */
@@ -156,16 +187,98 @@
 .cx-map { overflow: hidden; border-radius: var(--r-card); box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 0 0 1px var(--edge); }
 .cx-map__frame { display: block; width: 100%; height: clamp(320px, 44vw, 480px); border: 0; }
 
-.hero__glow { position: absolute; inset: -10% 0 auto; height: 90vh; pointer-events: none;
-  background: none; }
-.hero__title { position: relative; z-index: 2; display: grid; justify-items: center; gap: clamp(14px, 2vw, 26px); text-align: center; }
-/* Hero artwork: full-bleed, in flow so the strip below it keeps its place. The tagline rides up over
-   the image's reflection area. The SVG wordmark is kept for screen readers only. */
-.hero__art { position: relative; width: 100vw; margin-inline: calc(50% - 50vw); aspect-ratio: 1738 / 640; }
-.hero__title .hero__sub { margin-top: calc(-1 * clamp(40px, 9vw, 150px)); position: relative; z-index: 2; text-shadow: 0 2px 18px rgb(0 0 0 / 0.6); }
+/* Soft diagonal light streaks, light theme only — the reference's background texture. A radial
+   wash plus two blurred rotated bands, not a photo, so it costs nothing and never clashes with a
+   theme colour change. */
+.hero__glow { position: absolute; inset: -10% 0 auto; height: 90vh; pointer-events: none; background: none; }
+:root[data-theme='light'] .hero__glow {
+  background: radial-gradient(60% 55% at 50% 48%, rgb(255 255 255 / 0.9), transparent 70%);
+}
+:root[data-theme='light'] .hero__glow::before,
+:root[data-theme='light'] .hero__glow::after {
+  content: ''; position: absolute; width: 140%; height: 38%; filter: blur(60px);
+  background: linear-gradient(90deg, transparent, rgb(150 175 150 / 0.3), transparent); transform: rotate(-38deg);
+}
+:root[data-theme='light'] .hero__glow::before { left: -70%; top: 35%; }
+:root[data-theme='light'] .hero__glow::after { right: -75%; top: 5%; opacity: 0.8; }
+/* gap mixes in vh (was vw-only) so it compresses on a short screen, not just a narrow one. */
+/* Figtree (loaded in index.astro's head slot, see its comment) for the rebuilt hero's own text —
+   the reference's font, applied once here so .hero__cat/.hero__headline/.hero__lede2/.hero__ctas'
+   button labels all inherit it rather than repeating the declaration on each. Scoped to just this
+   hero content, not the site's --font (Inter) used everywhere else. */
+.hero__title { position: relative; z-index: 2; display: grid; justify-items: center; gap: clamp(6px, 1.2vh, 16px); text-align: center; font-family: 'Figtree', var(--font); }
+/* Category line (reference: "STRATEGY • DESIGN • DIGITAL GROWTH") above the wordmark. */
+.hero__cat { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 1.6vw, 18px);
+  font-size: clamp(11px, 0.6rem + 0.2vw, 13px); font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--sub-a); }
+.hero__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex: none; }
+.hero__dot--inline { display: inline-block; margin-left: 10px; vertical-align: middle; }
+/* Headline + lede below the wordmark (reference copy, see index.astro's comment on the hero rebuild).
+   font-size/margin now also scale down on a short viewport (vh terms added alongside the vw ones). */
+/* font-family set directly here, not just inherited from .hero__title: base.css's
+   `h1, h2, h3, h4 { font-family: var(--font) }` targets this <h2> element itself, and a rule
+   matching the element always wins over an inherited value regardless of the ancestor's
+   specificity — found when the headline alone came back plain Inter despite .hero__title's rule
+   computing correctly. */
+.hero__headline { max-width: 19ch; font-size: clamp(1.25rem, 0.85rem + 1.4vw + 1.1vh, 2.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; color: var(--head-a); margin-top: clamp(2px, 1vh, 14px); font-family: 'Figtree', var(--font); }
+/* The reference image's own green (#wiseup-3d.webp's baked-in edge colour, ~#3ecb3e) — sampled to
+   match this specific asset, not the site's lime (#BEDA52) used everywhere else; the image can't
+   be recoloured, so the nearest text next to it borrows its tone instead for visual harmony. */
+.hero__accent { color: #2fae2f; }
+:root:not([data-theme='light']) .hero__accent { color: var(--teal); }
+.hero__lede2 { max-width: 46ch; margin-top: clamp(4px, 1vh, 10px); font-size: clamp(0.8125rem, 0.78rem + 0.2vw, 0.9375rem); color: var(--sub-a); line-height: 1.5; }
+.hero__ctas { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px; margin-top: clamp(10px, 2.2vh, 28px); }
+/* Bottom-corner labels, pinned to the hero's own bottom edge (the reference's "Independent
+   creative studio" / "Scroll" row). */
+.hero__foot { position: absolute; left: 0; right: 0; bottom: clamp(20px, 3.5vw, 40px); z-index: 2;
+  display: flex; align-items: flex-end; justify-content: space-between; padding-inline: var(--gx); pointer-events: none; font-family: 'Figtree', var(--font); }
+.hero__tag { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--sub-a); }
+.hero__scroll { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--sub-b); }
+.hero__scroll-line { width: 1px; height: 28px; background: var(--edge-2); }
+@media (max-width: 760px) { .hero__foot { flex-direction: column; align-items: flex-start; gap: 16px; } .hero__scroll { flex-direction: row; } .hero__scroll-line { width: 28px; height: 1px; } }
+/* Capped width (was full-bleed 100vw): in the rebuilt hero (reference layout) the wordmark shares
+   the viewport with a category line, headline, lede and two CTAs above/below it, so it can no
+   longer claim the section's full width — at 100vw its aspect-ratio-driven height alone exceeded
+   one screen, pushing everything else below the fold. */
+/* Width capped three ways: by viewport width (60vw), by a hard max (760px), and — the one that
+   matters for "fit inside 100vh" — by viewport *height* too, via a width-equivalent of a ~24vh-tall
+   image (24vh * the box's own aspect-ratio 1620/736 ≈ 52vh of width). First attempt at this used
+   150vh, worked out from the wrong end of the ratio (too permissive — at a 650px-tall viewport it
+   still rendered the full 60vw-wide image, overlapping the header above and the CTAs below);
+   re-derived correctly and verified at 650/700/800px heights this time, not just computed. */
+.hero__art { position: relative; width: min(60vw, 760px, 52vh); margin-inline: auto; aspect-ratio: 1620 / 736; }
+/* .hero__art-photo/.hero__art-dynamic per-theme toggle removed (2026-10-23): the flat image
+   wordmark they switched between is gone, heroType()'s dynamic letters now run in both themes —
+   see index.astro's comment and .hero-face-ink below. */
+/* text-shadow removed per explicit user request — it was tuned for the old permanently-dark hero
+   (legibility over busy art) and just reads as an odd dark halo now that the hero is white. */
+.hero__title .hero__sub { margin-top: calc(-1 * clamp(40px, 9vw, 150px)); position: relative; z-index: 2; }
+/* Plain-text hero heading (.hero__art--text) sits in normal flow, not the old SVG's bled/reflection
+   art, so it doesn't need the negative pull-up above — that was overlapping the eyebrow text. */
+.hero__title:has(.hero__art--text) .hero__sub { margin-top: 0; }
 .hero__word { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; margin: 0; line-height: 0; }
-.hero__word .hero__logo { width: min(78vw, 1000px); height: auto; margin-top: 1%;  }
+/* Fills .hero__art's own (now capped, see above) width — was an independent vw-based cap that
+   could exceed .hero__art's bounds and defeat its new cap. */
+.hero__word .hero__logo { width: 100%; height: auto; margin-top: 1%; }
+.hero__word svg { width: 100%; height: auto; display: block; }
+/* Glowing Dot Typography (heroDots() in motion/hero-dots.ts): the canvas fills .hero__word's own
+   box (which .hero__art already sizes/reserves via its aspect-ratio) — the build() step in that
+   script measures this element and sets the canvas's pixel + CSS size to match, so no extra width
+   constraint is needed here, just block display to avoid the usual inline-canvas baseline gap. */
+.hero__word--dots canvas { display: block; }
 .hero__logo { display: block; overflow: visible; width: 100%; height: auto; }
+/* Hero heading, plain-text version: a normal bold sans, no SVG/3D rig. .hero__art normally carries a
+   fixed aspect-ratio sized for the brush-script artwork — not wanted here, so the text variant drops
+   it and sizes to the line itself. */
+.hero__art--text { width: auto; margin-inline: 0; aspect-ratio: auto; display: grid; place-items: center; padding-top: calc(var(--head-h) + clamp(24px, 6vh, 72px)); }
+.hero__word--text {
+  position: static; display: block; line-height: 1; font-weight: 800;
+  font-size: clamp(3.5rem, 1.6rem + 7.5vw, 9rem); letter-spacing: -0.03em; color: #ffffff;
+  transition: color 0.45s var(--ease);
+}
+.hero__word--text:hover { color: var(--lime, #beda52); }
+/* var(--head-a) again, not hardcoded white: the hero now follows the theme like everything else
+   (see .hero's own comment, 2026-10-23), so this should track it the normal way. It was briefly
+   hardcoded white while the hero was still permanently dark — no longer true. */
 .hero__sub { font-size: clamp(1.125rem, 0.95rem + 0.7vw, 1.625rem); font-weight: 500; color: var(--head-a); letter-spacing: -0.015em; }
 /* Wordmark art (scripts/make-hero-wordmark.mjs): every letter is a dark glyph holding blurred smoke
    blobs and tiny colour balls (palette from the brand swatch strip), clipped to the glyph. Their drift
@@ -185,11 +298,18 @@
 @keyframes wm-nod { 0%, 100% { transform: rotate(7deg); } 50% { transform: rotate(13deg) translateY(0.6px); } }
 @keyframes wm-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
 /* The header logo is white brush-script art on a transparent ground (see CLAUDE.md) — it has no
-   background chip behind it like the nav pill or CTA, so it needs to invert for light mode. */
+   background chip behind it like the nav pill or CTA, so it needs to invert for light mode. Used
+   to exempt "still over the hero" (.hd--over-hero, tracked in header() in motion/main.ts) because
+   the hero was permanently dark regardless of theme — that's no longer true (2026-10-23, hero now
+   follows the theme like everything else), so the exemption is gone and this applies everywhere,
+   hero included. `.hd--over-hero` itself is still tracked/toggled (unused by any CSS right now)
+   rather than ripped out, in case a future section needs that same "am I over the hero" signal. */
 :root[data-theme='light'] .hd__logo img { filter: invert(1); }
-/* Same reasoning, independent of the global theme toggle: /about runs white "day mood" the whole
-   way down (no dark hero above it), so the white logo needs to invert there too. */
-.hd__logo--dark img { filter: invert(1); }
+/* .hd__logo--dark (forced-invert for /about) retired 2026-10-23: About's "day mood" white
+   background is now scoped to light theme only (see [data-mood='day'] in tokens.css), so it's
+   white exactly when the rule above already inverts the logo — a separate always-on rule would
+   now incorrectly invert the logo to black while About is legitimately dark (toggled). The class
+   is still applied by Header.astro (harmless, unused) rather than touching that file too. */
 
 /* Hero wordmark entrance (heroWordmark() in motion/main.ts): each letter clips/blurs up into
    place, tightly staggered, then one soft diagonal sheen sweeps across the settled glyphs once.
@@ -210,8 +330,12 @@
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.035); }
 .hero__orb { position: absolute; left: 92%; top: 22%; width: 12px; height: 12px; border-radius: 50%; background: var(--teal-hi);
   box-shadow: 0 0 14px 4px rgb(111 220 201 / 0.45), 0 0 46px 12px rgb(42 157 143 / 0.22); }
+/* Wraps .strip now that it's its own section (moved out of .hero — see index.astro's comment on
+   the hero rebuild), reached by scrolling past the hero instead of poking into view at the bottom
+   of it. */
+.strip-sec { position: relative; overflow: clip; padding-block: clamp(48px, 8vw, 110px); background: var(--bg); }
 .strip { --cw: clamp(150px, 20vw, 420px); --gap: clamp(18px, 3.4vw, 72px);
-  position: relative; z-index: 1; flex: 1; min-height: clamp(260px, 34vw, 560px); margin-top: clamp(40px, 7vw, 120px); pointer-events: none; }
+  position: relative; z-index: 1; min-height: clamp(260px, 34vw, 560px); pointer-events: none; }
 .strip__plane { position: absolute; left: 50%; top: 0; transform-origin: 50% 0;
   transform: translateX(-50%) perspective(1800px) rotateY(-10deg) rotate(-10deg) skewX(21deg); }
 .strip__track { display: flex; gap: var(--gap); width: max-content; padding-right: var(--gap); will-change: transform; }
@@ -227,26 +351,41 @@
 .strip__load { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s;
   background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.1) 50%, transparent 70%); background-size: 250% 100%; }
 .strip__card.is-loading .strip__load { opacity: 1; animation: strip-load 1.4s linear infinite; }
+/* Portfolio cover cards interleaved into the strip ("add portfolio images also") — a plain image,
+   no video/dwell behaviour, linking out to the case study. */
+.strip__card--proj a { position: absolute; inset: 0; display: block; }
+.strip__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 16px 12px; font-size: 13px; font-weight: 600; color: #fff;
+  background: linear-gradient(0deg, rgb(0 0 0 / 0.65), transparent); }
 @keyframes strip-load { from { background-position: 150% 0; } to { background-position: -100% 0; } }
 @media (prefers-reduced-motion: reduce) { .strip__card.is-loading .strip__load { animation: none; } }
 @keyframes slide { to { transform: translateX(-50%); } }
 
-/* Image sequence: pinned flame + the H1 */
-.seq { position: relative; background: #000; }
-.seq__pin { position: relative; display: grid; align-items: end; height: 100svh; min-height: 560px; overflow: hidden; }
-.seq__poster, .seq__canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.js.motion .seq__poster { display: none; }
-.seq__pin--empty { background: radial-gradient(40% 50% at 70% 55%, rgb(42 157 143 / 0.35), transparent 70%), #000; }
-html:not(.motion) .seq__canvas { display: none; }
-.seq__shade { position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, #050506 0%, rgb(5 5 6 / 0) 22%, rgb(5 5 6 / 0) 48%, rgb(5 5 6 / 0.88) 100%), linear-gradient(90deg, rgb(5 5 6 / 0.7), transparent 60%); }
+/* Image sequence section: video/canvas removed per explicit user request ("remove video.. make
+   background pure white"). Now follows the theme (var(--bg)) rather than a hardcoded #fff — a
+   later request ("in dark mode make every section bg black") means this needs to go pure black
+   in dark theme too; var(--bg) is #fff in light / #000 in dark, satisfying both asks at once.
+   Text below follows suit (themed tokens, not the hardcoded dark values from the white-only pass). */
+.seq { position: relative; background: var(--bg); }
+.seq__pin { position: relative; display: grid; align-items: end; min-height: 420px; padding-top: clamp(64px, 10vh, 140px); }
 .seq__copy { position: relative; z-index: 2; padding-bottom: clamp(48px, 9vh, 110px); }
-.seq__line { max-width: 15ch; font-size: clamp(2.5rem, 1.1rem + 5.4vw, 6.5rem); font-weight: 450; letter-spacing: -0.048em; line-height: 1.02; color: #f4f4f5; }
+.seq__line { max-width: 15ch; font-size: clamp(2.5rem, 1.1rem + 5.4vw, 6.5rem); font-weight: 450; letter-spacing: -0.048em; line-height: 1.02; color: var(--head-a); }
 .seq__line > span { display: block; }
-.seq__b { color: #b4b4ba; }
-.seq__c { color: var(--teal-hi); }
+.seq__b { color: var(--sub-a); }
+.seq__c { color: var(--teal); }
+/* Hero title hover: the three lines sweep to one gradient together, instead of keeping their
+   separate near-black/grey/lime tones. background-clip:text + a matching -webkit-text-fill-color
+   lets the swap transition smoothly like a color change, rather than needing to crossfade elements. */
+.seq__a, .seq__b, .seq__c { background-image: linear-gradient(100deg, var(--lime-lo) 0%, var(--teal) 55%, var(--lime-hi) 100%);
+  -webkit-background-clip: text; background-clip: text; transition: -webkit-text-fill-color 0.45s var(--ease), color 0.45s var(--ease); }
+.seq__a { -webkit-text-fill-color: var(--head-a); }
+.seq__b { -webkit-text-fill-color: var(--sub-a); }
+.seq__c { -webkit-text-fill-color: var(--teal); }
+@media (hover: hover) {
+  #hero-title:hover .seq__a, #hero-title:hover .seq__b, #hero-title:hover .seq__c { -webkit-text-fill-color: transparent; color: transparent; }
+}
 .seq__after { padding-block: clamp(48px, 6vw, 84px) calc(var(--sec) * 0.45); }
 .seq__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 40px; }
+/* Back to themed tokens: .seq now follows var(--bg) (see .seq above), so text here should too. */
 .seq__lede { max-width: 52ch; color: var(--ink-2); font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem); line-height: 1.55; }
 .seq__ctas { display: flex; flex-wrap: wrap; gap: 12px; }
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: clamp(48px, 6vw, 80px); border-top: 1px solid var(--edge-2); }
@@ -255,13 +394,19 @@ html:not(.motion) .seq__canvas { display: none; }
 .stats dt { font-size: 14px; color: var(--mute); }
 
 /* ---------- Logos ---------- */
-.logos { padding-block: clamp(36px, 4.5vw, 64px); background: var(--bg); display: grid; align-items: center; }
+/* Hardcoded #000, not var(--bg): explicit user request, a deliberate dark band right after the
+   now-pure-white .seq section above — not theme-reactive, same "fixed regardless of toggle"
+   pattern as .seq's own background. */
+.logos { padding-block: clamp(36px, 4.5vw, 64px); background: #000; display: grid; align-items: center; }
 .logos__rail { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
 .logos__track { display: flex; width: max-content; animation: slide 55s linear infinite; }
 .logos__set { display: flex; align-items: center; gap: clamp(48px, 6vw, 96px); padding-right: clamp(48px, 6vw, 96px); }
 .logos__item { flex: none; display: grid; place-items: center; height: clamp(56px, 6vw, 84px); }
+/* brightness(1.9) pushed logos toward white on the old white background (tuned for grey-on-white);
+   kept as-is here since it still reads as faint pale marks on black, just verified live rather
+   than re-tuned blind. */
 .logos__item img { height: 100%; max-height: clamp(52px, 5.6vw, 80px); width: auto; max-width: clamp(130px, 14vw, 210px); object-fit: contain; filter: grayscale(1) brightness(1.9); opacity: 0.55; }
-.logos__item span { font-size: clamp(22px, 2vw, 30px); font-weight: 600; letter-spacing: -0.03em; color: #85858c; white-space: nowrap; }
+.logos__item span { font-size: clamp(22px, 2vw, 30px); font-weight: 600; letter-spacing: -0.03em; color: #9a9aa1; white-space: nowrap; }
 
 /* ---------- About (day) ---------- */
 /* Statement (full width, its own line) -> body + photo (2 col) -> proof pairs (strip). */
@@ -580,6 +725,13 @@ html:not(.js) .loop-nav { display: none; }
 .bfield--select select option { color: var(--ink); background: var(--card); }
 .bfield__chev { position: absolute; right: 22px; top: 50%; translate: 0 -50%; pointer-events: none; color: var(--mute); }
 .bform .b { min-height: 64px; margin-top: 4px; border-radius: 12px; }
+/* Honeypot (see the form markup comment): off-screen for everyone, not just visually — real
+   keyboard/AT users can never reach or perceive it, only a bot filling every field blindly can. */
+.bform__hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.form__note[data-state='sending'] { color: var(--mute); }
+.form__note[data-state='ok'] { color: var(--teal-hi); }
+.form__note[data-state='error'] { color: #ff8a7a; }
+.form__note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
 /* ---------- Footer: teal band, giant wordmark ---------- */
 .ft { padding: clamp(28px, 3vw, 44px) var(--gx) 30px; overflow: hidden; color: #031210;
@@ -612,13 +764,8 @@ html:not(.js) .loop-nav { display: none; }
   .hd__nav, .hd__cta { display: none; }
   .hd__menu { display: inline-flex; }
   .contact, .roots { grid-template-columns: 1fr; }
-  /* Contact: one column; the preview drops between the sentence and the send row. */
-  .cx-hero__foot { grid-template-columns: 1fr 1fr; }
-  .cx-hero__lede { grid-column: 1 / -1; }
-  .cx-brief { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: 'intro' 'say' 'msg' 'send'; }
-  .cx-msg { position: static; }
-  .cx-ch, .cx-faq { grid-template-columns: minmax(0, 1fr); }
-  .cx-ch__h, .cx-faq .sh { position: static; }
+  /* Contact: channel rows + socials stack above the form, one column. */
+  .cx-grid { grid-template-columns: 1fr; }
   .form__row { grid-template-columns: 1fr; }
   .svc-head { grid-template-columns: 1fr; }
   .drum { perspective-origin: 0% 50%; }
@@ -651,18 +798,24 @@ html:not(.js) .loop-nav { display: none; }
   .cx-follow { grid-area: f; grid-column: auto; }
 }
 
-/* Small screens: the artwork box is a short banner, so give the brush heading more room. */
-@media (max-width: 700px) {
-  .hero__art { min-height: 70vw; }
-  .hero__word .hero__logo { width: 90vw; margin-top: 6%; }
-  .hero__title .hero__sub { margin-top: calc(-1 * clamp(12px, 6vw, 40px)); }
-}
+/* Stale rules removed (2026-10-23): this whole block was tuned for the old full-bleed (100vw)
+   hero artwork, before .hero__art was capped to min(60vw, 760px) for the rebuilt hero — the
+   min-height: 70vw override alone was forcing a ~273px-tall empty box on mobile (the new capped
+   image only renders ~104px tall at that width), leaving a large dead gap before the headline.
+   .hero__word .hero__logo and .hero__title .hero__sub both target elements that no longer exist
+   (the old full-bleed logo markup and the removed .hero__sub paragraph) — confirmed dead, not
+   just unused-for-now, so removed rather than left stale. */
 
 
 /* ---------- Hero digital aquarium (heroAqua() in motion/hero-aqua.ts) ---------- */
 .aqua { position: absolute; inset: 0 0 auto; height: 100svh; min-height: 560px; z-index: 0; overflow: hidden; pointer-events: none;
   -webkit-mask-image: linear-gradient(#000 82%, transparent); mask-image: linear-gradient(#000 82%, transparent); }
 .aqua__fluid { position: absolute; inset: 0; width: 100%; height: 100%; }
+/* Pure white hero background on light theme, no gradient wash: the fluid canvas still paints
+   itself every frame (see heroAqua() in motion/hero-aqua.ts) but is hidden here rather than made
+   to draw nothing, so toggling back to dark needs no extra JS state. Floating icons stay — they're
+   not a "shadow", just decoration — only the tinted gradient/vignette layer goes. */
+:root[data-theme='light'] .aqua__fluid { display: none; }
 .aqua__icons { position: absolute; inset: 0; perspective: 900px; perspective-origin: 50% 40%; }
 /* One icon: stacked layers in preserve-3d give the tile real thickness; the front face is glass. */
 .aqua-ico { position: absolute; top: 100%; width: var(--s); height: var(--s); margin-left: calc(var(--s) / -2);
@@ -682,7 +835,23 @@ html:not(.js) .loop-nav { display: none; }
 /* Hero letters: each letter is its own <svg>; they stack over one another in the same coordinate box
    (all depth layers first, then all white faces). The original inline svg only supplies the outlines. */
 .hero-logo--src { position: absolute; width: 0; height: 0; overflow: hidden; visibility: hidden; }
-.hero-letters { position: relative; grid-area: 1 / 1; width: min(46vw, 600px); }
+/* 52vh cap added ("fit hero section inside 100vh", 2026-10-23): unlike .hero__art-photo, this
+   JS-built stack (heroType() in motion/hero-type.ts) has its own independent width rule and
+   doesn't reserve height via an aspect-ratio box the way the static image does, so on a short
+   viewport it kept rendering at its full 46vw/600px width regardless of the now-shrunk .hero__art
+   around it — overlapping the headline below it in dark theme (the only theme that still uses
+   this dynamic wordmark). Same vh value as .hero__art-photo's cap, tuned there, reused here. */
+.hero-letters { position: relative; grid-area: 1 / 1; width: min(46vw, 600px, 52vh); }
+/* drop-shadow removed from light theme per explicit request ("in light version remove shadows") —
+   it was added two entries up to match the reference render's own soft shadow, but read as an
+   unwanted dark blob under the letters against a white page. Kept in dark theme (not flagged
+   there, and a dark shadow barely shows against an already-dark background anyway). */
+:root:not([data-theme='light']) .hero-letters { filter: drop-shadow(0 14px 22px rgb(0 0 0 / 0.18)); }
 .hero-l { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
 .hero-l--face use[data-ch] { pointer-events: visiblePainted; }
+/* The visible letter face: always white (was var(--ink), flipping to near-black in light theme) —
+   matched to a user-supplied 3D render reference (glossy white letters, green glow), explicit
+   request ("remove this image and make it similar fonts with this 3d effects") to drop the flat
+   image wordmark and make the dynamic letters look like it instead, in both themes now. */
+.hero-face-ink { fill: #ffffff; }
 @media (max-width: 700px) { .hero-letters { width: 62vw; margin-top: 6%; } }

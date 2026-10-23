@@ -20,8 +20,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { onPage, isTouch, prefersReducedMotion } from '../engine';
 
 const NS = 'http://www.w3.org/2000/svg';
-// Hover colour: a flowing parrot-green gradient.
-const PAL = ['#3fae1f', '#62c926', '#8be02f', '#a8ec4a', '#8be02f', '#62c926'];
+// Hover colour: a flowing brand-lime gradient (#BEDA52).
+const PAL = ['#8fa838', '#beda52', '#d8ec8a', '#eef7c8', '#d8ec8a', '#beda52'];
 
 const svgEl = (tag: string, attrs: Record<string, string | number> = {}) => {
   const e = document.createElementNS(NS, tag);
@@ -36,11 +36,12 @@ const mix = (a: [number, number, number], b: [number, number, number], t: number
 const PARTNER: Record<string, string> = { i: 's', s: 'i', u: 'p', p: 'u' };
 const DEPTH = 42;          // number of stacked layers
 const STEP = 0.6;          // svg units between layers
-// Sides are never light grey (no white haze): a soft teal rim picked up from the stage right behind the face,
-// falling off to near-black at the back (ambient occlusion), so the pure white face stays crisp against them.
-const NEAR: [number, number, number] = [86, 140, 146];
-const MID: [number, number, number] = [30, 58, 64];
-const FAR: [number, number, number] = [5, 10, 13];
+// Sides are a glowing lime/green rim (was a teal-tinted grey) — matched to a user-supplied 3D
+// render reference (glossy white letters, bright green edge glow), 2026-10-23 — falling off to
+// near-black at the back (ambient occlusion), so the pure white face stays crisp against them.
+const NEAR: [number, number, number] = [63, 196, 63];
+const MID: [number, number, number] = [20, 84, 24];
+const FAR: [number, number, number] = [4, 12, 5];
 const sideColor = (t: number) => (t < 0.3 ? mix(NEAR, MID, t / 0.3) : mix(MID, FAR, (t - 0.3) / 0.7));
 
 type Unit = {
@@ -133,7 +134,7 @@ export function heroType() {
       const ch = el.dataset.ch!;
       const ls: SVGUseElement[] = [];
       // soft contact shadow under the whole extrusion (ambient occlusion on the stage)
-      const shadow = svgEl('use', { href: `#${el.id}`, fill: '#010608', opacity: 0.55, filter: 'url(#hero-shadow)' }) as SVGUseElement;
+      const shadow = svgEl('use', { href: `#${el.id}`, fill: '#010608', opacity: 0.4 }) as SVGUseElement;
       depthSvgs[ch].appendChild(shadow);
       shadows[ch] = shadow;
       for (let i = DEPTH; i >= 1; i--) {
@@ -154,9 +155,12 @@ export function heroType() {
       faceSvgs[ch].appendChild(fdefs);
       const faceG = svgEl('g', { 'clip-path': partner ? `url(#hero-fc-${ch})` : '' });
       if (!partner) faceG.removeAttribute('clip-path');
-      const bev = svgEl('g', { filter: 'url(#hero-bevel)' });
-      bev.appendChild(svgEl('use', { href: `#${el.id}`, fill: '#ffffff', 'data-ch': ch }));
-      if (partner) bev.appendChild(svgEl('use', { href: `#${partner.id}`, fill: '#ffffff', 'pointer-events': 'none' }));
+      // fill is set in CSS (.hero-face-ink { fill: var(--ink) }), not inline: the face now follows
+      // the theme (white face on dark, near-black face on light) same as the hero's own
+      // background, instead of being permanently white for a permanently-dark hero.
+      const bev = svgEl('g');
+      bev.appendChild(svgEl('use', { href: `#${el.id}`, class: 'hero-face-ink', 'data-ch': ch }));
+      if (partner) bev.appendChild(svgEl('use', { href: `#${partner.id}`, class: 'hero-face-ink', 'pointer-events': 'none' }));
       faceG.appendChild(bev);
       faceSvgs[ch].appendChild(faceG);
       // The hover colour is built exactly like the face (bevelled pair union, clipped to this letter), so the
@@ -164,7 +168,7 @@ export function heroType() {
       const tintG = svgEl('g', { opacity: 0, 'pointer-events': 'none' });
       const tintClip = svgEl('g', { 'clip-path': partner ? `url(#hero-fc-${ch})` : '' });
       if (!partner) tintClip.removeAttribute('clip-path');
-      const tbev = svgEl('g', { filter: 'url(#hero-bevel-color)' });
+      const tbev = svgEl('g');
       tbev.appendChild(svgEl('use', { href: `#${el.id}`, fill: 'url(#hero-color-flow)' }));
       if (partner) tbev.appendChild(svgEl('use', { href: `#${partner.id}`, fill: 'url(#hero-color-flow)' }));
       tintClip.appendChild(tbev);
@@ -280,8 +284,13 @@ export function heroType() {
         const ndx = u.dx + (ldx - u.dx) * k2, ndy = u.dy + (ldy - u.dy) * k2;
         if (Math.abs(ndx - u.dx) + Math.abs(ndy - u.dy) > 0.0008) { u.dx = ndx; u.dy = ndy; setDepth(u); }
 
-        // faint colour: strongest on the hovered letter, a little on its neighbours
-        const wantC = anyHover ? 1 : 0; // hovering any letter turns the whole word parrot-green
+        // Colour: hovering turns the whole word fully lime; otherwise an ambient "glint" briefly
+        // breathes the brand colour through the letters on its own every ~9s (sin^6 narrows a
+        // smooth sine into a short pulse with a long rest, so it reads as an occasional accent
+        // rather than a distracting constant flicker) — a creative animation that doesn't depend
+        // on the visitor ever touching the word.
+        const ambient = Math.pow(Math.max(0, Math.sin(t * 0.7 + u.idle.p * 0.3)), 6) * 0.6;
+        const wantC = anyHover ? 1 : ambient;
         u.color += (wantC - u.color) * (1 - Math.exp(-dt * 9));
         const o = u.color < 0.01 ? 0 : u.color;
         u.letters.forEach((c) => tints[c].setAttribute('opacity', o.toFixed(3)));

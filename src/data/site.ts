@@ -28,11 +28,16 @@ export const site = {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wiseup-marketing-agency/' },
     { label: 'Behance', href: 'https://www.behance.net/brandingwithwiseup' },
   ],
+  // Real wiseup.in nav (the live site's own WordPress menu, user-supplied 2026-10-23) — external
+  // links to other WiseUp properties, not in-page anchors on this site. Replaces the previous
+  // in-page nav (Who we are/Work/Services/CodeAce); Header.astro renders these as plain external
+  // links (target="_blank"), not the old scroll-spy/current-section-highlight anchors.
   nav: [
-    { label: 'Who we are', href: '/#about' },
-    { label: 'Work', href: '/#work' },
-    { label: 'Services', href: '/#services' },
-    { label: 'CodeAce', href: '/#codeace' },
+    { label: 'WiseUp Podcast', href: 'https://wiseup.in/podcast/' },
+    { label: 'WiseUp TV', href: 'https://wiseup.in/wiseup-tv/' },
+    { label: 'WiseUp Studio', href: 'https://wiseup.in/wiseup-studio/' },
+    { label: 'Case Studies', href: 'https://wiseup.in/case-studies/' },
+    { label: 'Portfolio', href: 'https://wiseup.in/studio/portfolio/' },
   ],
   cta: 'Get our plan first',
   ctaShort: 'Get our plan',
@@ -253,7 +258,7 @@ export const aboutPage = {
   team: {
     tag: 'Our team',
     text: 'Our team is made up of talented professionals who bring creativity, technical expertise and dedication to every project. We collaborate, share ideas and keep learning, so every client gets our best work.',
-    photo: { src: 'https://wiseup.in/wp-content/uploads/2026/10/DSC00377-copy-1-2.webp', alt: 'The WiseUp team together on stage at a brand launch event', width: 540, height: 341 },
+    photo: { src: 'https://wiseup.in/wp-content/uploads/2026/10/DSC00377-copy-1.png', alt: 'The WiseUp team together on stage at a brand launch event', width: 540, height: 341 },
   },
   founders: {
     tag: 'Our founders',

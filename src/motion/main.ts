@@ -9,8 +9,10 @@ import { Observer } from 'gsap/Observer';
 import { onPage, onScroll, isMobile, isTouch, prefersReducedMotion, ease } from '../engine';
 import { site } from '../data/site';
 import { setupAbout } from './about';
+import { setupPodcast } from './podcast';
 import { heroType } from './hero-type';
 import { heroAqua } from './hero-aqua';
+import { heroDots } from './hero-dots';
 import { stripVideos } from './hero-strip-video';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, MorphSVGPlugin, Observer);
@@ -20,6 +22,7 @@ export function setupMotion() {
   menu();
   themeToggle();
   heroType();
+  heroDots(); // no-ops now: [data-hero-dots] isn't on the page, reverted back to heroType(), see index.astro
   heroAqua();
   aboutPhoto();
   heroStrip();
@@ -35,6 +38,7 @@ export function setupMotion() {
   contactForm();
   contactMorph();
   setupAbout();
+  setupPodcast();
 }
 
 /** Play a looping timeline only while its element is on screen. */
@@ -61,11 +65,20 @@ function header() {
       if (sec) ScrollTrigger.create({ trigger: sec, start: 'top 45%', end: 'bottom 45%', onToggle: (s) => { if (s.isActive) set(a); else if (current === a) set(null); } });
     });
     if (!head) return;
+    // The hero is always dark (its own hardcoded background, baked-in illustrated art — doesn't
+    // follow the light/dark toggle, see CLAUDE.md), so the header logo must stay un-inverted
+    // while it's still over the hero even in light mode, or it goes invisible (dark-on-dark).
+    // `.hd--over-hero` tracks that independent of theme; the invert rule in site.css only fires
+    // in light mode AND once this class is gone.
+    const hero = document.querySelector<HTMLElement>('.hero');
+    const syncHeroOverlap = () => head.classList.toggle('hd--over-hero', !hero || scrollY < hero.offsetHeight - 80);
+    syncHeroOverlap();
     let last = scrollY;
     const off = onScroll(({ y }) => {
       if (y < 160 || y < last - 2) head.classList.remove('is-hidden');
       else if (y > last + 2 && !head.contains(document.activeElement)) head.classList.add('is-hidden');
       last = y;
+      syncHeroOverlap();
     });
     const show = () => head.classList.remove('is-hidden');
     head.addEventListener('focusin', show);
@@ -150,22 +163,21 @@ function heroStrip() {
     if (!strip || !track || prefersReducedMotion()) return;
     intro.from(strip, { yPercent: 24, autoAlpha: 0, duration: 1.6, ease: 'expo.out' }, 0.35);
     const orbitTl = orbit ? gsap.to(orbit, { rotation: 360, duration: 90, ease: 'none', repeat: -1 }) : undefined;
-    const hero = strip.closest('section') || strip;
-    // The tagline under the heading tilts with the scroll to the strip's own angle (the plane is rotated -10deg),
-    // so it reads as the heading of the cards below it. Scrubbed to scroll, so it un-tilts on the way back up.
-    const sub = document.querySelector<HTMLElement>('.hero__sub');
-    const subTilt = sub ? gsap.to(sub, {
-      rotation: -10, x: () => -innerWidth * 0.1, y: () => innerHeight * 0.1, transformOrigin: '50% 50%', ease: 'none',
-      scrollTrigger: { trigger: hero, start: 'top top', end: () => `+=${innerHeight * 0.55}`, scrub: 0.6, invalidateOnRefresh: true },
-    }) : undefined;
+    // The strip now lives in its own section (.strip-sec), not inside .hero — see index.astro's
+    // comment on the hero rebuild. `.closest('section')` still resolves correctly, just to that
+    // section instead; scroll/drift triggers below are keyed off wherever the strip actually sits,
+    // so this needed no further change. (The old "tagline tilts with the strip's scroll" coupling
+    // to .hero__sub was removed along with that element — the strip is a full screen away from the
+    // hero now, so that tight visual pairing no longer applies.)
+    const stripSec = strip.closest('section') || strip;
     // Testimonial videos: the controller slows the drift to a stop on the card it is playing, then releases it.
-    const videos = stripVideos(track, { mobile: isMobile(), hero });
+    const videos = stripVideos(track, { mobile: isMobile(), hero: stripSec });
     const stop = driftTrack(track, {
-      dir: 1, speed: isMobile() ? 26 : 38, scrollEl: hero, scrollStart: 'top top', scrollShare: 0.55,
+      dir: 1, speed: isMobile() ? 26 : 38, scrollEl: stripSec, scrollStart: 'top top', scrollShare: 0.55,
       speedScale: videos.scale,
       onVisible: (v) => orbitTl?.paused(!v),
     });
-    return () => { stop(); videos.destroy(); orbitTl?.kill(); subTilt?.scrollTrigger?.kill(); subTilt?.kill(); };
+    return () => { stop(); videos.destroy(); orbitTl?.kill(); };
   });
 }
 
@@ -457,25 +469,86 @@ function faqRefresh() {
 
 /* Contact: no backend. The form composes one WhatsApp message from all three fields.
    Without JS it still submits the message field to wa.me as ?text=. */
+/* Contact form: real submission via WordPress (wp_mail), with WhatsApp as the honest fallback —
+   never a fake "message sent" when nothing actually happened. The WP page templates
+   (scripts/gen-wp-template.mjs) inject `window.WISEUP_CONTACT = { endpoint, nonce }` from PHP
+   (rest_url() + wp_create_nonce('wp_rest')) pointing at the REST route the
+   wiseup-contact-mail plugin registers; that global is absent in local/preview builds (no
+   WordPress backend to call), so this degrades to the original WhatsApp-compose behaviour there
+   automatically — not a special case, just "no backend configured yet". */
 function contactForm() {
   onPage(() => {
     const form = document.querySelector<HTMLFormElement>('[data-form]');
     if (!form) return;
-    const submit = (e: SubmitEvent) => {
-      e.preventDefault();
-      const data = new FormData(form);
+    const note = form.querySelector<HTMLElement>('[data-form-note]');
+    const submitBtn = form.querySelector<HTMLButtonElement>('[data-form-submit]');
+    const backend = (window as unknown as { WISEUP_CONTACT?: { endpoint: string; nonce: string } }).WISEUP_CONTACT;
+    const setNote = (text: string, state?: 'sending' | 'ok' | 'error') => {
+      if (!note) return;
+      note.textContent = text;
+      if (state) note.dataset.state = state; else delete note.dataset.state;
+    };
+    const waMessage = (data: FormData) => {
       const name = String(data.get('name') || '').trim();
       const email = String(data.get('email') || '').trim();
       const phone = String(data.get('phone') || '').trim();
       const service = String(data.get('service') || '').trim();
       const text = String(data.get('text') || '').trim();
-      const msg = [
+      return [
         name && `Hi WiseUp, I'm ${name}.`,
         service && `I'm interested in: ${service}.`,
         text,
         [email && `Email: ${email}`, phone && `Phone: ${phone}`].filter(Boolean).join(' · '),
       ].filter(Boolean).join('\n\n') || 'Hi WiseUp, I would like your plan.';
-      window.open(`${site.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+    };
+    const waHref = (data: FormData) => `${site.whatsapp}?text=${encodeURIComponent(waMessage(data))}`;
+    const openWhatsApp = (data: FormData) => window.open(waHref(data), '_blank', 'noopener');
+    // A real <a> the visitor clicks, not another window.open() — a window.open() called after an
+    // await (i.e. outside the submit event's own synchronous call stack) loses the user-gesture
+    // context and gets silently popup-blocked in real browsers, found by testing this exact path.
+    const showWhatsAppFallback = (data: FormData) => {
+      if (!note) return;
+      note.textContent = "Couldn't send that right now — ";
+      note.dataset.state = 'error';
+      const link = document.createElement('a');
+      link.href = waHref(data);
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = 'send it on WhatsApp instead';
+      note.append(link, document.createTextNode('.'));
+    };
+
+    if (!backend) {
+      setNote('Opens WhatsApp with your message ready to send.');
+      const submit = (e: SubmitEvent) => { e.preventDefault(); openWhatsApp(new FormData(form)); };
+      form.addEventListener('submit', submit);
+      return () => form.removeEventListener('submit', submit);
+    }
+
+    const submit = async (e: SubmitEvent) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      if (String(data.get('hp_website') || '').trim()) return; // honeypot caught a bot: drop silently
+      submitBtn?.setAttribute('disabled', 'true');
+      setNote('Sending…', 'sending');
+      try {
+        const res = await fetch(backend.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': backend.nonce },
+          body: JSON.stringify({
+            name: data.get('name'), email: data.get('email'), phone: data.get('phone'),
+            service: data.get('service'), message: data.get('text'),
+          }),
+        });
+        const json = await res.json().catch(() => null);
+        if (!res.ok || !json?.ok) throw new Error('submit failed');
+        form.reset();
+        setNote("Thanks — we've got it and will reply by email soon.", 'ok');
+      } catch {
+        showWhatsAppFallback(data);
+      } finally {
+        submitBtn?.removeAttribute('disabled');
+      }
     };
     form.addEventListener('submit', submit);
     return () => form.removeEventListener('submit', submit);

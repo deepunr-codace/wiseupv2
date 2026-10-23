@@ -17,8 +17,10 @@
 }
 
 :root {
-  /* Night (default) */
-  --bg: #050506;
+  /* Night (default). --bg is pure #000 (was #050506) per explicit request ("in dark mode make
+     every section bg black") — every section that reads var(--bg) (html/body in base.css, .hero,
+     and now .seq below) goes pure black together, not just near-black. */
+  --bg: #000000;
   --card: #0e0e10;
   --card-2: #16161a;
   --card-3: #1d1d22;
@@ -32,11 +34,28 @@
   --sub-a: #a3a3a9;
   --sub-b: #6f6f76;
 
-  /* Accent: WiseUp teal and two tints of it */
-  --teal: #2a9d8f;
-  --teal-hi: #6fdcc9;
-  --teal-lo: #1f7a6f;
-  --on-teal: #03110e;
+  /* Accent: WiseUp's primary brand color is lime #BEDA52 (2026-10-23 rebrand — was teal #2A9D8F).
+     Kept under the --teal* token names rather than renaming every consumer across the codebase
+     (buttons, focus rings, nav dots, hover states, ...); "teal" here now means "primary accent". */
+  --teal: #beda52;
+  --teal-hi: #d8ec8a;
+  --teal-lo: #8fa838;
+  --on-teal: #11150a;
+
+  /* Hover gradient (hero title, #hero-title .seq__a/b/c in site.css): a light-to-deep sweep
+     anchored on the brand teal at its midpoint. */
+  --mint: #a8f0dc;
+  --teal-green: #2a9d8f;
+  --teal-deep: #0b4a42;
+
+  /* Lime: WiseUp's primary brand colour, #BEDA52 (as of the 2026-10-23 rebrand, this is also what
+     --teal/--teal-hi/--teal-lo above now resolve to). Kept as its own named token too, for any
+     spot that wants lime specifically rather than "whatever --teal currently means". --on-lime is
+     near-black: lime is too light for white text to sit on. */
+  --lime: #beda52;
+  --lime-hi: #d8ec8a;
+  --lime-lo: #8fa838;
+  --on-lime: #11150a;
 
   /* Ember: the About/Contact mark-and-seal concept's transient accent — the colour of the burn
      itself, used only in the press/sear reveal (see .mark-in in site.css), never at rest. Keeps
@@ -59,11 +78,13 @@
 }
 
 /* Day: the white mood, applied per section — and, with :root[data-theme='light'], the whole
-   page at once (the header's light/dark toggle, see Header.astro + engine/theme.ts). The toggle
-   only changes this root default; a section that already hardcodes `data-mood="day"` (About,
-   Clients, FAQ) stays exactly as designed either way, since its own attribute is the nearer
-   custom-property source and wins over the root value. */
-[data-mood='day'], :root[data-theme='light'] {
+   page at once (the header's light/dark toggle, see Header.astro + engine/theme.ts).
+   [data-mood='day'] (About, Clients, FAQ) is scoped to :root[data-theme='light'] here, not
+   unconditional — explicit request, 2026-10-23: "in dark mode make every section bg black".
+   Previously these sections stayed permanently white regardless of the toggle; now they only do
+   that while the global theme is light (which is the default, so nothing changes there) and fall
+   back to :root's own dark tokens once the visitor toggles to dark, same as every other section. */
+:root[data-theme='light'] [data-mood='day'], :root[data-theme='light'] {
   --bg: #ffffff;
   --card: #f4f4f6;
   --card-2: #ebebee;
@@ -77,5 +98,10 @@
   --head-b: #2d2d33;
   --sub-a: #6d6d74;
   --sub-b: #9a9aa1;
-  --teal-hi: #1f7a6f;
+  --teal-hi: #8fa838;
 }
+
+/* `.home-lime` (the homepage's experimental per-page teal->lime override) is retired as of the
+   2026-10-23 rebrand above — lime is now the --teal* value everywhere, site-wide, so a per-page
+   swap is redundant. The class is still applied on the homepage's <Base mainClass="home-lime">
+   for now (harmless no-op); remove it there whenever convenient. */

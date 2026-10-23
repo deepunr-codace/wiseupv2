@@ -8,8 +8,15 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  mainClass?: string;
+  mood?: 'day';
+  /** Theme this page should open in before the visitor has ever toggled (localStorage empty).
+   *  Once they've toggled once (on any page), their choice persists everywhere as normal.
+   *  Defaults to 'light' — light is the site's default theme as of 2026-10-23; pass undefined
+   *  explicitly on a page that must still open dark pre-toggle (none currently do). */
+  defaultTheme?: 'light';
 }
-const { title, description = site.description, image = '/og.png' } = Astro.props;
+const { title, description = site.description, image = '/og.png', mainClass, mood, defaultTheme = 'light' } = Astro.props;
 const fullTitle = title ?? `Branding & Marketing Agency in Kerala (Kozhikode) | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImage = new URL(image, Astro.site ?? site.url).href;
@@ -55,20 +62,25 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     <link rel="preload" href="/fonts/inter-300_700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/outfit-200_500-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <script is:inline>
+    <slot name="head" />
+    <script is:inline define:vars={{ defaultTheme }}>
       document.documentElement.classList.add('js');
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
       // Applied before paint so there's no flash of the wrong theme. themeToggle() in
       // motion/main.ts owns the click handler and keeps this in sync after first load.
+      // `defaultTheme` only covers a visitor who has never toggled anywhere (no stored key) —
+      // an explicit past choice (light OR dark) always wins once one exists.
       try {
-        if (localStorage.getItem('wu-theme') === 'light') document.documentElement.dataset.theme = 'light';
+        const stored = localStorage.getItem('wu-theme');
+        const theme = stored ?? defaultTheme;
+        if (theme === 'light') document.documentElement.dataset.theme = 'light';
       } catch {}
     </script>
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>
     <slot name="header" />
-    <main id="main" tabindex="-1">
+    <main id="main" tabindex="-1" class={mainClass} data-mood={mood}>
       <slot />
     </main>
     <slot name="footer" />

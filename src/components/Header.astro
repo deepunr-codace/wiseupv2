@@ -3,21 +3,31 @@ import { site } from '../data/site';
 import Icon from './Icon.astro';
 import Button from './Button.astro';
 import { Image } from 'astro:assets';
-import logo from '../assets/brand/w-logo-wiseup-branding-v3-1.webp';
-// `current` marks a whole page as current (e.g. 'contact' on /contact); on the homepage the nav
-// marks sections on scroll instead. `cta` is where the header button points.
+// User-supplied 2026-10-23 (D:\projects\wiseup\reference\logo.png, "logo for white bg") — a
+// cleaner single-line "Wise Up" brush-script mark, no "Branding" subtitle, replacing the previous
+// two-line lockup. Same white-on-transparent asset type as before, so the existing light/dark
+// invert mechanism (:root[data-theme='light'] .hd__logo img { filter: invert(1) }, and
+// .hd__logo--dark for /about) needs no changes — it already handles any white-glyph logo.
+import logo from '../assets/brand/logo.png';
+// `current` marks a whole page as current (e.g. 'contact' on /contact) for the logo-invert logic
+// below; `cta` is where the header button points. The nav itself (site.nav) is now the real
+// wiseup.in menu — external links to other WiseUp properties, not in-page anchors on this site —
+// so there's no scroll-spy/current-link highlighting to do for it any more (none of these hrefs
+// correspond to a section on this page, so header()'s ScrollTrigger-per-link setup in
+// motion/main.ts already no-ops safely for all of them: it only acts when
+// document.getElementById(id) finds a matching on-page section).
 interface Props { current?: string; cta?: string }
 const { current, cta = '/#contact' } = Astro.props;
-const links = [...site.nav.map((n) => ({ label: n.label, id: n.href.split('#')[1] })), { label: 'Contact', id: 'contact' }];
+const links = site.nav;
 ---
 <header class="hd" data-head>
-  <a class:list={['hd__logo', { 'hd__logo--dark': false }]} href="#top" aria-label="WiseUp, back to top">
-    <Image src={logo} alt="WiseUp" width={160} height={83} />
+  <a class:list={['hd__logo', { 'hd__logo--dark': current === 'about' }]} href="#top" aria-label="WiseUp, back to top">
+    <Image src={logo} alt="WiseUp" width={315} height={114} />
   </a>
 
-  <nav class="hd__nav" aria-label="Sections">
+  <nav class="hd__nav" aria-label="WiseUp sites">
     {links.map((l) => (
-      <a class:list={['hd__link', { 'is-current': l.id === current }]} href={l.id === current ? `/${l.id}` : `/#${l.id}`} data-nav={l.id} aria-current={l.id === current ? 'page' : undefined}><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>
+      <a class="hd__link" href={l.href} target="_blank" rel="noopener"><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>
     ))}
   </nav>
 
@@ -41,7 +51,7 @@ const links = [...site.nav.map((n) => ({ label: n.label, id: n.href.split('#')[1
     </button>
   </div>
   <div class="menu" id="menu" hidden data-menu>
-    {links.map((l) => <a href={l.id === current ? `/${l.id}` : `/#${l.id}`} aria-current={l.id === current ? 'page' : undefined} data-menu-link><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>)}
+    {links.map((l) => <a href={l.href} target="_blank" rel="noopener" data-menu-link><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>)}
     <Button href={cta} label={site.ctaShort} look="teal" block data-menu-link />
   </div>
 </header>

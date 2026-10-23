@@ -64,8 +64,8 @@ const js = readFileSync(path.join(DIST, '_astro', jsFile), 'utf8');
 
 const ASSET_BASE = "<?php echo get_template_directory_uri(); ?>/wiseup-assets";
 const rewriteAssetPaths = (body) => body
-  .replace(/(src|srcset|data-seq-base)="\/(_astro|process|seq)\//g, (_, attr, dir) => `${attr}="${ASSET_BASE}/${dir}/`)
-  .replace(/srcset="([^"]+)"/g, (m, val) => `srcset="${val.replace(/(?<=,\s*)\/(_astro|process|seq)\//g, (_, dir) => `${ASSET_BASE}/${dir}/`)}"`);
+  .replace(/(src|srcset|data-seq-base)="\/(_astro|process|seq|clients|brand)\//g, (_, attr, dir) => `${attr}="${ASSET_BASE}/${dir}/`)
+  .replace(/srcset="([^"]+)"/g, (m, val) => `srcset="${val.replace(/(?<=,\s*)\/(_astro|process|seq|clients|brand)\//g, (_, dir) => `${ASSET_BASE}/${dir}/`)}"`);
 
 // ---------- 3. One PHP file per page. ----------
 const PAGES = [
@@ -73,6 +73,12 @@ const PAGES = [
     slug: 'home', distDir: '.', outFile: 'template-wiseup-home.php', templateName: 'WiseUp Home',
     title: 'Branding &amp; Marketing Agency in Kerala (Kozhikode) | WiseUp',
     description: 'WiseUp is a branding and digital marketing agency in Kozhikode (Calicut), Kerala, serving brands across India and the Middle East.',
+    // Figtree (hero text font, see index.astro's head slot) — this generator reads <body> only and
+    // builds its own hardcoded <head> below, so anything added to a page's Astro `head` slot has to
+    // be mirrored here by hand too, or it silently never reaches the deployed WP template.
+    extraHead: `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">`,
   },
   {
     slug: 'about', distDir: 'about', outFile: 'template-wiseup-about.php', templateName: 'WiseUp About',
@@ -158,6 +164,7 @@ for (const page of PAGES) {
 <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/wiseup-assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/wiseup-assets/fonts/inter-300_700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/wiseup-assets/fonts/outfit-200_500-normal.woff2" as="font" type="font/woff2" crossorigin>
+${page.extraHead || ''}
 <script>
 document.documentElement.classList.add('js');
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
@@ -168,6 +175,14 @@ ${(pageCss ? `${css}\n${pageCss}` : css).replace(/url\((['"]?)\/fonts\//g, (_, q
 </head>
 <body <?php body_class( 'wiseup-home' ); ?>>
 ${body}
+<script>
+<?php // Real contact-form backend (wiseup-contact-mail plugin, see wordpress-plugin/) — absent
+      // if that plugin isn't installed/active, in which case contactForm() in the inlined script
+      // below falls back to its original WhatsApp-compose behaviour, not a fake "sent" state. ?>
+<?php if ( function_exists( 'rest_url' ) ) : ?>
+window.WISEUP_CONTACT = { endpoint: '<?php echo esc_js( rest_url( 'wiseup-contact/v1/submit' ) ); ?>', nonce: '<?php echo esc_js( wp_create_nonce( 'wp_rest' ) ); ?>' };
+<?php endif; ?>
+</script>
 <script type="module">
 ${js}
 </script>
@@ -193,4 +208,8 @@ cpSync(path.join(DIST, 'seq'), path.join(OUT_ASSETS, 'seq'), { recursive: true }
 mkdirSync(path.join(OUT_ASSETS, 'fonts'), { recursive: true });
 cpSync('public/fonts', path.join(OUT_ASSETS, 'fonts'), { recursive: true });
 cpSync('public/favicon.svg', path.join(OUT_ASSETS, 'favicon.svg'));
+// Client logos (homepage marquee) and brand marks (inlined SVG wordmark's own folder, kept for
+// any other page that references it by URL) — referenced as root-relative /clients/, /brand/.
+if (existsSync('public/clients')) cpSync('public/clients', path.join(OUT_ASSETS, 'clients'), { recursive: true });
+if (existsSync('public/brand')) cpSync('public/brand', path.join(OUT_ASSETS, 'brand'), { recursive: true });
 console.log(`Copied assets to ${OUT_ASSETS}`);

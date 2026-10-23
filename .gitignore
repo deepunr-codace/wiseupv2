@@ -27,3 +27,8 @@ pnpm-debug.log*
 
 # generated clip cache
 scripts/.cache/
+
+.shots/
+wiseup/
+check_mobile.py
+mobile_contact.png

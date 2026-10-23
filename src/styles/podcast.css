@@ -1,0 +1,129 @@
+/* Noto Sans Malayalam loads via a <link rel="stylesheet"> in <head> now (podcast.astro, slot
+   "head" — added to Base.astro for this), not an @import in this inlined <style>: an @import
+   here was render-blocking the whole stylesheet behind a second font fetch and showed up as a
+   real mobile LCP regression (hero text became the LCP element at ~4.5s instead of the hero
+   image at well under 2s) — fixed by moving it to <head> where the browser discovers it during
+   initial HTML parse, same as every other font link on this site. */
+
+/* One accent-text colour this page needs that tokens.css doesn't have a light-mode-safe version
+   of: --teal-hi (#8fa838 in light mode) is calibrated for icons/large marks elsewhere, not body
+   text — on white it's 2.68:1, under both the 3:1 (large) and 4.5:1 (normal) WCAG AA minimums.
+   --pc-accent-text is a darkened lime that clears 4.5:1 (4.88:1), for the two places this page
+   puts the accent in actual text (the hero's emphasised span, the episode-card tag labels). */
+:root { --pc-accent-text: #507c41; }
+
+/* WiseUp Podcast (/podcast), rebuilt on the homepage's own design system (2026-10-23): same
+   Base/Header/Footer, same tokens.css palette (teal/lime accent, Epilogue + Inter), same card/
+   button/eyebrow/FAQ/hgal/loop classes from site.css, forced to the light ("day") mood throughout
+   rather than the site's usual dark default. Only truly podcast-specific shapes get new rules
+   here (`.pc-*`), scoped and inlined the same way about.css is. Noto Sans Malayalam is the one
+   addition with no homepage equivalent: Epilogue/Inter don't carry Malayalam glyphs, and this
+   page has real Malayalam headline/quote text to render. */
+
+.pc-ml { font-family: 'Noto Sans Malayalam', 'Inter', sans-serif; }
+
+/* Tighter section rhythm than the homepage's own .sec (padding-block: calc(var(--sec) * 0.6),
+   ~58-108px) — scoped to this page's own wrapper so the homepage/About/Contact keep their normal
+   spacing. This page has many more, shorter sections back to back (episodes/topics/people/faq/
+   guest) than a typical homepage section, so the usual rhythm reads as too much dead air between
+   them. */
+.pc-page .sec { padding-block: clamp(32px, 4.5vw, 64px); }
+/* .pc-page .sec (two classes) is more specific than .pc-hero alone (one), so without this it was
+   overriding the hero's own padding-top — stripping its clearance for the fixed header and
+   letting the header overlap the hero content. Restore it at equal specificity to the rule above. */
+.pc-page .sec.pc-hero { padding-top: calc(var(--head-h) + clamp(28px, 5vh, 64px)); }
+
+/* ---- hero ---- */
+.pc-hero { padding-top: calc(var(--head-h) + clamp(32px, 6vh, 80px)); padding-bottom: clamp(48px, 6vw, 80px); }
+.pc-hero__grid { display: grid; gap: clamp(32px, 5vw, 56px); align-items: center; }
+.pc-hero__tags { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--mute); margin: 0 0 16px; }
+.pc-hero h1 { font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem); font-weight: 450; letter-spacing: -0.04em; line-height: 1.04; color: var(--head-a); margin: 0 0 16px; }
+.pc-hero h1 em { font-style: normal; color: var(--pc-accent-text); }
+.pc-hero__ml { font-size: clamp(0.95rem, 0.85rem + 0.45vw, 1.2rem); font-weight: 700; line-height: 1.45; color: var(--ink); margin: 0 0 14px; max-width: 34ch; }
+.pc-hero__lede { font-size: clamp(1.0625rem, 0.95rem + 0.4vw, 1.25rem); color: var(--ink-2); max-width: 46ch; margin: 0 0 28px; }
+.pc-hero__row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+.pc-hero__proof { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--mute); }
+.pc-faces { display: flex; }
+.pc-faces img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--bg); margin-left: -8px; }
+.pc-faces img:first-child { margin-left: 0; }
+.pc-hero__proof b { display: block; font-size: 17px; color: var(--ink); font-weight: 500; }
+.pc-hero__img { position: relative; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 4/3; }
+.pc-hero__img img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 900px) { .pc-hero__grid { grid-template-columns: minmax(0,6fr) minmax(0,6fr); } }
+
+/* ---- featured ---- */
+.pc-feat { display: grid; gap: clamp(28px, 4vw, 48px); align-items: center; }
+.pc-feat__frame { position: relative; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 16/10; background: var(--card); box-shadow: inset 0 1px 0 rgb(255 255 255 / .04), 0 0 0 1px var(--edge); }
+.pc-feat__frame img { width: 100%; height: 100%; object-fit: cover; }
+.pc-feat__play { position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border-radius: 50%; background: rgb(5 5 6 / .55); border: 2px solid rgb(255 255 255 / .8); display: grid; place-items: center; color: #fff; transition: transform .3s; }
+.pc-feat__frame:hover .pc-feat__play { transform: scale(1.08); }
+.pc-feat__title { font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem); font-weight: 450; letter-spacing: -0.03em; line-height: 1.1; color: var(--head-a); margin: 10px 0 8px; }
+.pc-feat__guest { color: var(--mute); font-size: 15px; margin: 0 0 14px; }
+.pc-feat__row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+@media (min-width: 900px) { .pc-feat { grid-template-columns: minmax(0,6fr) minmax(0,6fr); } }
+
+/* ---- episodes: reuses the homepage's horizontalGallery() mechanic (main.ts) via the same
+   [data-hgal]/[data-hgal-track] attributes, just a flex filmstrip instead of Process's 2-col grid
+   — "every section a different layout family" is the site's own stated rule, not a deviation. ---- */
+.pc-hgal__view { overflow: hidden; }
+.pc-hgal__track { display: flex; gap: 20px; width: max-content; }
+.pc-ep { width: min(80vw, 300px); flex: none; }
+.pc-ep__th { position: relative; overflow: hidden; border-radius: var(--r-inner); aspect-ratio: 16/9; background: var(--card-2); }
+.pc-ep__th img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.pc-ep:hover .pc-ep__th img { transform: scale(1.06); }
+.pc-ep__play { position: absolute; inset: 0; margin: auto; width: 46px; height: 46px; border-radius: 50%; background: rgb(5 5 6 / .55); border: 2px solid rgb(255 255 255 / .8); display: grid; place-items: center; color: #fff; transition: transform .3s; }
+.pc-ep:hover .pc-ep__play { transform: scale(1.1); }
+.pc-ep__tag { display: block; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: var(--pc-accent-text); margin: 12px 0 0; }
+.pc-ep h3 { font-size: 15px; line-height: 1.4; font-weight: 450; color: var(--ink); margin: 4px 0 0; }
+@media (max-width: 899px) { .pc-hgal__view { overflow-x: auto; } .pc-hgal__track { scroll-snap-type: x mandatory; } .pc-ep { scroll-snap-align: start; } }
+
+/* ---- topics: full-cover photo cards on the shared .card radius/shadow ---- */
+.pc-topics { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+.pc-topic { position: relative; border-radius: var(--r-card); overflow: hidden; min-height: 230px; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; color: #fff; box-shadow: 0 0 0 1px var(--edge); transition: transform .3s; }
+.pc-topic:hover { transform: translateY(-4px); }
+.pc-topic:hover .pc-topic__bg { transform: scale(1.06); }
+.pc-topic__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.pc-topic__scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgb(5 5 6 / .1) 0%, rgb(5 5 6 / .4) 55%, rgb(5 5 6 / .85) 100%); }
+.pc-topic__ico { position: relative; z-index: 1; width: 38px; height: 38px; border-radius: 10px; background: rgb(255 255 255 / .18); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; margin-bottom: auto; }
+.pc-topic__n { position: relative; z-index: 1; font-size: 15px; opacity: .75; }
+.pc-topic h3 { position: relative; z-index: 1; font-size: 14px; font-weight: 450; margin: 4px 0 0; line-height: 1.3; }
+@media (min-width: 900px) { .pc-topics { grid-template-columns: repeat(5, minmax(0,1fr)); } .pc-topic { min-height: 320px; } }
+
+/* ---- community banner link ---- */
+.pc-comm-banner { display: block; border-radius: var(--r-card); overflow: hidden; transition: transform .3s; }
+.pc-comm-banner:hover, .pc-comm-banner:focus-visible { transform: translateY(-4px); }
+.pc-comm-banner img { width: 100%; height: auto; display: block; }
+
+/* ---- people: hosts + guests, infinite loop (reuses main.ts loopedPanels() via the same
+   [data-loop]/[data-loop-track]/[data-loop-prev]/[data-loop-next] attributes as the Clients
+   section). GAP must match the 22px used in --pw below (loopedPanels() hardcodes GAP=28 for its
+   own [data-loop]; see note in markup). ---- */
+.pc-loop { position: relative; overflow: clip; padding: 2px; margin: -2px; }
+.pc-loop__track { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; list-style: none; margin: 0; padding: 0; }
+/* `.js` is added to <html> before paint (Base.astro's inline script). With JS driving layout via
+   transform, the fixed 4-col template is dropped so the grid area is indefinite — a grid item's
+   containing block then falls back to the grid container's own content box, which is what lets
+   `width: var(--pw)` (a percentage calc, set by loopedPanels()) resolve against the *track's* full
+   width instead of one quarter-width column. Exact technique the homepage's own .loop uses. */
+.js .pc-loop__track { grid-template-columns: none; }
+.pc-person { grid-area: 1 / 1; width: var(--pw, 100%); height: 100%; will-change: transform; }
+.pc-person__card { position: relative; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 3/4; background: var(--card); box-shadow: 0 0 0 1px var(--edge); }
+.pc-person__card img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.pc-person__tag { position: absolute; left: 10px; top: 10px; padding: 5px 12px; border-radius: var(--r-pill); background: var(--teal); color: var(--on-teal); font-size: 11px; font-weight: 600; }
+.pc-person__name { position: absolute; left: 10px; right: 10px; bottom: 10px; background: var(--bg); border-radius: 12px; padding: 10px 12px; }
+.pc-person__name b { display: block; font-size: 14px; font-weight: 500; color: var(--ink); }
+.pc-person__name span { display: block; font-size: 12px; color: var(--mute); margin-top: 1px; }
+
+/* ---- community band ---- */
+.pc-comm { border-radius: var(--r-card); background: var(--card); box-shadow: inset 0 1px 0 rgb(255 255 255 / .04), 0 0 0 1px var(--edge); padding: clamp(26px, 3.4vw, 44px); display: grid; gap: clamp(28px, 3vw, 44px); }
+.pc-comm__h { font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2.1rem); font-weight: 450; letter-spacing: -0.03em; line-height: 1.12; color: var(--head-a); margin: 0; }
+.pc-comm__h em { font-style: normal; color: var(--teal-hi); display: block; }
+.pc-comm__p { color: var(--mute); font-size: 15px; margin: 10px 0 0; }
+.pc-comm__row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 20px; }
+@media (min-width: 900px) { .pc-comm { grid-template-columns: minmax(0,7fr) minmax(0,5fr); align-items: center; } }
+
+/* ---- guest pitch (mirrors the homepage's .cta-row contact pattern) ---- */
+.pc-pitch { display: grid; gap: clamp(28px, 4vw, 48px); align-items: center; }
+.pc-pitch__img { position: relative; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 16/9; }
+.pc-pitch__img img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 900px) { .pc-pitch { grid-template-columns: minmax(0,5fr) minmax(0,7fr); } }

@@ -62,28 +62,51 @@ export function heroAqua() {
       cw = Math.max(2, Math.round(w * scale)); ch = Math.max(2, Math.round(h * scale));
       canvas.width = cw; canvas.height = ch;
     };
+    // Read live, not cached: the canvas paints itself every frame regardless, so sampling --bg
+    // here (instead of hardcoding a colour) keeps the fluid's base tone in sync with the current
+    // theme automatically, light or dark, including a toggle mid-visit — no separate light/dark
+    // branch needed. Falls back to the original dark tone if --bg can't be read for any reason.
+    const baseColor = () => getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#020405';
+    // 'lighter' (additive) is how the blobs glow on a dark base — on a light/white base it does
+    // the opposite of what's wanted: adding colour to white just pushes everything further toward
+    // white, so the blobs wash out to near-invisible. 'multiply' tints a light base with the blob
+    // colour instead (the dark-base look doesn't translate, so alpha is boosted to compensate —
+    // multiply's effect is naturally more subtle than additive glow).
     const drawFluid = (t: number) => {
+      const light = document.documentElement.dataset.theme === 'light';
+      const blend = light ? 'multiply' : 'lighter';
+      const boost = light ? 2.2 : 1;
       ctx.globalCompositeOperation = 'source-over';
-      ctx.fillStyle = '#020405';
+      ctx.fillStyle = baseColor();
       ctx.fillRect(0, 0, cw, ch);
-      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalCompositeOperation = blend;
       for (const b of blobs) {
         const x = (b.ox + Math.sin((t / b.px) * 6.2832 + b.ox * 9) * b.ax) * cw;
         const y = (b.oy + Math.cos((t / b.py) * 6.2832 + b.oy * 7) * b.ay) * ch;
         const r = b.r * Math.max(cw, ch);
         const g = ctx.createRadialGradient(x, y, 0, x, y, r);
         const [R, G2, B] = b.c;
-        g.addColorStop(0, `rgba(${R},${G2},${B},${b.a * 0.24})`);
-        g.addColorStop(0.5, `rgba(${R},${G2},${B},${b.a * 0.08})`);
-        g.addColorStop(1, `rgba(${R},${G2},${B},0)`);
+        const a = b.a * boost;
+        if (light) {
+          // multiply needs an opaque-ish centre fading to white (not to transparent) to read as a
+          // soft tinted wash rather than a hard-edged disc.
+          g.addColorStop(0, `rgba(${R},${G2},${B},${Math.min(0.5, a * 0.3)})`);
+          g.addColorStop(0.5, `rgba(${R},${G2},${B},${a * 0.1})`);
+          g.addColorStop(1, 'rgba(255,255,255,0)');
+        } else {
+          g.addColorStop(0, `rgba(${R},${G2},${B},${a * 0.24})`);
+          g.addColorStop(0.5, `rgba(${R},${G2},${B},${a * 0.08})`);
+          g.addColorStop(1, `rgba(${R},${G2},${B},0)`);
+        }
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, cw, ch);
       }
       // a faint, slowly travelling band of light: the water's surface catching the sun
-      ctx.globalCompositeOperation = 'lighter';
+      ctx.globalCompositeOperation = blend;
       const bx = (0.5 + Math.sin(t / 37) * 0.45) * cw;
       const lg = ctx.createLinearGradient(bx - cw * 0.35, 0, bx + cw * 0.35, ch);
-      lg.addColorStop(0, 'rgba(120,200,210,0)'); lg.addColorStop(0.5, 'rgba(120,200,210,0.03)'); lg.addColorStop(1, 'rgba(120,200,210,0)');
+      const glintA = light ? 0.06 : 0.03;
+      lg.addColorStop(0, 'rgba(120,200,210,0)'); lg.addColorStop(0.5, `rgba(120,200,210,${glintA})`); lg.addColorStop(1, 'rgba(120,200,210,0)');
       ctx.fillStyle = lg; ctx.fillRect(0, 0, cw, ch);
     };
     size();
@@ -93,7 +116,9 @@ export function heroAqua() {
     if (reduced) return () => removeEventListener('resize', onResize);
 
     // ---- Icons ---------------------------------------------------------------------------------------
-    const count = mobile ? 8 : BRAND_ICONS.length;
+    // Disabled per explicit user request ("remove social media icons from hero") — count forced to 0
+    // rather than deleting the loop below, so this is a one-line revert if they come back.
+    const count = 0;
     const tweens: gsap.core.Animation[] = [];
     const nodes: HTMLElement[] = [];
     for (let i = 0; i < count; i++) {

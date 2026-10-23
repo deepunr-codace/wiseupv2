@@ -75,8 +75,11 @@ import { site, contact, services, contactPage as c } from '../data/site';
           <Icon name="chev-r" size={16} class="bfield__chev" />
         </label>
         <label class="bfield bfield--area"><span>Message</span><textarea name="text" rows="5" placeholder="Tell us where you want your brand to go." required></textarea></label>
-        <Button type="submit" label="Send on WhatsApp" look="teal" icon="whatsapp" block />
-        <p class="form__note">Opens WhatsApp with your message ready to send.</p>
+        <!-- Honeypot: real visitors never see or fill this (visually hidden, tabindex -1); a filled
+             value means a bot, and the server silently drops the submission without sending mail. -->
+        <label class="bform__hp" aria-hidden="true"><span>Leave this field empty</span><input type="text" name="hp_website" tabindex="-1" autocomplete="off" /></label>
+        <Button type="submit" label="Send message" look="teal" icon="whatsapp" block data-form-submit />
+        <p class="form__note" data-form-note aria-live="polite">We'll reply by email, usually within a day.</p>
       </form>
     </div>
   </section>

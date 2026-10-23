@@ -1,0 +1,279 @@
+---
+// WiseUp Podcast, rebuilt on the homepage's own design system (2026-10-23), per direct owner
+// instruction: "use our homepage design system to rebuild the podcast page... same as homepage
+// (default light version)". Supersedes the standalone warm-paper/gold page this was before —
+// now Base + Header + Footer, tokens.css's teal/lime accent and Epilogue/Inter type, and the
+// shared site.css vocabulary (.wrap/.sec/.sh/.b/.card/.faq/.hgal/.loop/.cta-row), forced to the
+// light ("day") mood throughout via `data-mood="day"` on the page's own wrapper, same technique
+// about.astro uses. Motion: episode filmstrip and the hosts/guests loop now run on the shared
+// engine's own horizontalGallery()/loopedPanels() (motion/main.ts) via the same data attributes
+// the homepage uses — not reimplemented. Only the click-to-embed thumbnail behaviour is page-
+// specific (motion/podcast.ts, registered into the shared setupMotion()).
+//
+// Content carried over unchanged from the prior standalone build: all real video IDs (oembed-
+// confirmed), real host/guest photos, the real "91K+"/"100+" stats, all 15 FAQ entries, the real
+// community banner and guest-CTA banner images. See CLAUDE.md for the full sourcing history
+// (which topic-card photos are real vs. placeholder stock, the Deepu/guest-photo gaps, etc.).
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Button from '../components/Button.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/site';
+import podcastCss from '../styles/podcast.css?raw';
+
+const CHANNEL = 'https://www.youtube.com/@WiseUpPodcast_';
+
+const featured = {
+  videoId: 'h9kHyyUruSg',
+  img: '/podcast/yt-featured.webp',
+  guest: 'Jijo Sunny',
+  guestRole: 'Co-founder & CEO, Buy Me a Coffee',
+  title: 'Lakhs Flow Through Coffee, But It Is Not a Coffee Shop',
+  titleMl: 'കാപ്പി വഴി ലക്ഷങ്ങൾ, പക്ഷെ കാപ്പിക്കടയല്ല',
+  sub: 'A ₹400 crore Malayali startup, built around the idea of "buy me a coffee." Jijo Sunny on turning a small tip jar into a global platform.',
+};
+
+const episodes = [
+  { videoId: 'ejaRfh4zpzY', img: '/podcast/yt-bootland2.webp', title: 'How to Grow a Retail Business in India', tag: 'Bootland Footwear & Lifestyle Expo' },
+  { videoId: 'kanbmwUHio0', img: '/podcast/yt-abcgroup.webp', title: 'From One Room to 9 Countries: 100+ Companies, 4000+ Employees', tag: 'ABC Group' },
+  { videoId: 'jgVrZalE6io', img: '/podcast/yt-eduflair.webp', title: "Kozhikode's Largest Language Campus?", tag: 'Eduflair Podcast · Adv. K.M. Roy' },
+  { videoId: 'h9kHyyUruSg', img: '/podcast/yt-featured.webp', title: 'Lakhs Flow Through Coffee, But It Is Not a Coffee Shop', tag: 'Jijo Sunny · Buy Me a Coffee' },
+  { videoId: 'CrUDF-dJHXI', img: '/podcast/yt-litmus7.webp', title: 'How Litmus7 CEO Shapes the Future of Retail & Tech', tag: 'Venu Gopalakrishnan · Litmus7' },
+  { videoId: 'qXbPA48XcOs', img: '/podcast/yt-mend.webp', title: 'Can You Build a Fashion Business in Kerala? Mend Did.', tag: 'Mend' },
+  { videoId: 'hpVHpprI6s0', img: '/podcast/yt-trs.webp', title: "The Producer's Formula: Success in Film and Education", tag: 'T. R. Shamsudeen' },
+  { videoId: 'nccuN47XdbM', img: '/podcast/yt-sajeevnair.webp', title: "If You Haven't Achieved Success Yet, This Might Be Why", tag: 'Sajeev Nair' },
+  { videoId: '26T1GMmQFng', img: '/podcast/yt-johnkuriakose.webp', title: "From ₹250 Salary to Asia's Largest Dental Lab", tag: 'John Kuriakose' },
+];
+
+// Cover photos: real CC-licensed photography (Wikimedia Commons), standing in for brand
+// photography WiseUp hasn't supplied yet for these 5 categories — see CLAUDE.md.
+const topics = [
+  { n: '01', label: 'Business & Entrepreneurship', icon: 'target', img: '/podcast/topic-business.webp' },
+  { n: '02', label: 'Marketing & Branding', icon: 'megaphone', img: '/podcast/topic-marketing.webp' },
+  { n: '03', label: 'Technology & AI', icon: 'code', img: '/podcast/topic-tech.webp' },
+  { n: '04', label: 'Leadership & Career', icon: 'sprout', img: '/podcast/topic-leadership.webp' },
+  { n: '05', label: 'Creators & Media', icon: 'video', img: '/podcast/topic-creators.webp' },
+];
+
+const hosts = [
+  { name: 'Jijin Mohan', role: 'Host', img: '/podcast/host-jijin.webp' },
+  { name: 'Chethana', role: 'Host', img: '/podcast/host-chethana.webp' },
+  { name: 'Sreerag', role: 'Host', img: '/podcast/host-sreerag.webp' },
+];
+// No real photo exists in this project for the owner's other referenced guests (Vishnu IAS,
+// Akhil, Nikhil) — left out rather than filled with a stand-in photo for a real, named person.
+const guests = [
+  { name: 'Jijo Sunny', role: 'Buy Me a Coffee', img: '/podcast/quote-jijo.webp' },
+];
+const people = [...hosts, ...guests];
+
+const faqs = [
+  { q: 'What is WiseUp Podcast?', a: "It's a business and entrepreneurship podcast featuring founders, business leaders, marketers, investors and industry experts." },
+  { q: 'Who can be a guest on the podcast?', a: 'Founders, CEOs, business owners, industry experts, investors, creators and professionals with valuable insights or stories to share.' },
+  { q: 'How can I apply to be a guest?', a: 'Submit your details through the inquiry form or contact the team directly. Guests are selected based on relevance and audience value.' },
+  { q: 'Is there a fee to appear on the podcast?', a: 'Participation may be free or part of a promotional collaboration. The team can share the details.' },
+  { q: 'How long is a typical podcast episode?', a: 'Most episodes run between 30 and 90 minutes.' },
+  { q: 'Where are the episodes published?', a: 'On YouTube, Spotify, Instagram, Facebook and other WiseUp platforms.' },
+  { q: 'Can brands sponsor an episode?', a: 'Yes. Brands can sponsor a single episode or take a monthly partnership package.' },
+  { q: 'What sponsorship opportunities are available?', a: 'Episode sponsorship, product placement, host mentions, thumbnail branding, intro/outro branding, reels and shorts branding, social media promotions and long-term partnerships.' },
+  { q: 'What audience does the podcast reach?', a: 'Entrepreneurs, startup founders, business owners, professionals, marketers, students and aspiring leaders.' },
+  { q: 'Will I receive the podcast recording?', a: 'Yes. Guests receive the published episode link and selected promotional assets.' },
+  { q: 'Can you record podcasts at our office or location?', a: 'Yes. Both studio and on-location recordings are offered.' },
+  { q: 'How far in advance should I book?', a: 'Book at least 2 to 4 weeks ahead.' },
+  { q: 'Do you provide podcast production services?', a: 'Yes, including recording, multi-camera setup, thumbnails, reels and shorts, publishing support and podcast marketing.' },
+  { q: 'How do I become a sponsor?', a: 'Contact the team with your brand details and campaign goals to get a recommended package.' },
+  { q: 'How can I contact the WiseUp Podcast team?', a: 'By phone, email (wiseuppod@gmail.com), WhatsApp (+91 6282 434 503) or the website contact form. The team responds within 24 to 48 hours.' },
+];
+
+const title = 'WiseUp Podcast | The Malayalam Podcast for Online Business Owners';
+const description = 'A Malayalam business podcast with entrepreneurs, creators and changemakers who are building a better tomorrow.';
+const jsonLd = {
+  '@context': 'https://schema.org', '@type': 'PodcastSeries', name: 'WiseUp Podcast', description,
+  url: 'https://wiseup.in/podcast', image: 'https://wiseup.in/podcast/banner.jpg', inLanguage: 'ml', sameAs: [CHANNEL],
+};
+---
+<Base title={title} description={description} image="/podcast/banner.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com" slot="head" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin slot="head" />
+  <!-- Non-blocking: the Malayalam font swaps in once loaded (FOUC-safe, Inter already covers
+       Latin text in the interim) rather than holding up first paint — a render-blocking
+       <link rel="stylesheet"> here measurably delayed the hero text's paint on throttled mobile. -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" slot="head" />
+  <noscript slot="head"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@700;800&display=swap" rel="stylesheet" /></noscript>
+  <Header slot="header" current="podcast" />
+  <style is:inline set:html={podcastCss}></style>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="pc-page" data-mood="day">
+
+    <!-- HERO -->
+    <section class="sec pc-hero" id="top" aria-label="WiseUp Podcast">
+      <div class="wrap pc-hero__grid">
+        <div>
+          <p class="pc-hero__tags" data-reveal="fade" data-intro>Business / People / Ideas / Growth</p>
+          <h1 data-split="lines" data-intro data-delay="0.1">The Malayalam Podcast for <em>Online Business Owners</em>.</h1>
+          <p class="pc-hero__ml pc-ml" lang="ml" data-reveal="up" data-intro data-delay="0.2">ഓൺലൈൻ ബിസിനസ്സ് വളർത്താൻ, ഇനി കാര്യങ്ങൾ കുറച്ചുകൂടി എളുപ്പം.</p>
+          <p class="pc-hero__lede" data-reveal="up" data-intro data-delay="0.3">Real conversations with Malayalam entrepreneurs, creators and changemakers, practical ideas you can use to grow your own online business.</p>
+          <div class="pc-hero__row" data-reveal="up" data-intro data-delay="0.4">
+            <Button href={`https://www.youtube.com/watch?v=${featured.videoId}`} label="Watch Latest Episode" look="teal" external />
+            <Button href={CHANNEL} label="Subscribe on YouTube" external />
+          </div>
+          <div class="pc-hero__proof" data-reveal="up" data-intro data-delay="0.5">
+            <div class="pc-faces">{hosts.map((h) => <img src={h.img} alt="" width="36" height="36" />)}</div>
+            <div><b><span data-count="91">91</span>K+</b>YouTube Subscribers</div>
+          </div>
+        </div>
+        <div class="pc-hero__img" data-reveal="up" data-delay="0.2">
+          <img src="/podcast/hero-team.webp" srcset="/podcast/hero-team-sm.webp 900w, /podcast/hero-team.webp 1400w" sizes="(min-width: 900px) 50vw, 100vw" alt="The WiseUp Podcast team holding their award" width="1400" height="916" loading="eager" fetchpriority="high" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED EPISODE -->
+    <section class="sec" id="featured" aria-labelledby="featured-h">
+      <div class="wrap pc-feat">
+        <a class="pc-feat__frame" data-embed data-video-id={featured.videoId} href={`https://www.youtube.com/watch?v=${featured.videoId}`} target="_blank" rel="noopener" data-reveal="up">
+          <img src={featured.img} alt={`${featured.guest} on the WiseUp Podcast: ${featured.title}`} width="800" height="500" loading="eager" />
+          <span class="pc-feat__play"><Icon name="arrow-r" size={24} /></span>
+        </a>
+        <div data-reveal="up">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Featured episode</p>
+          <p class="pc-ml" lang="ml" style="color:var(--mute);font-weight:700;margin:14px 0 0">{featured.titleMl}</p>
+          <h2 class="pc-feat__title" id="featured-h">{featured.title}</h2>
+          <p class="pc-feat__guest">{featured.guest} · {featured.guestRole}</p>
+          <p style="color:var(--ink-2);font-size:16px;line-height:1.6;max-width:46ch">{featured.sub}</p>
+          <div class="pc-feat__row">
+            <Button href={`https://www.youtube.com/watch?v=${featured.videoId}`} label="Play Episode" look="teal" external />
+            <Button href="#episodes" label="More Episodes" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EPISODES: horizontalGallery() via [data-hgal]/[data-hgal-track], same mechanic as the
+         homepage's Process section. -->
+    <section class="sec" id="episodes" aria-labelledby="episodes-h">
+      <div class="wrap">
+        <div class="loop-head">
+          <div class="sh" style="margin-bottom:0">
+            <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>Latest episodes</p>
+            <h2 class="sh__h" id="episodes-h">Fresh stories, every week.</h2>
+          </div>
+          <p style="color:var(--mute);max-width:32ch" data-reveal="fade">New conversations, fresh perspectives, real insights.</p>
+        </div>
+      </div>
+      <div class="hgal__view pc-hgal__view" data-hgal>
+        <div class="pc-hgal__track" data-hgal-track>
+          {episodes.map((ep) => (
+            <a class="pc-ep" data-embed data-video-id={ep.videoId} href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener">
+              <div class="pc-ep__th"><img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes="(min-width: 900px) 290px, 80vw" alt={ep.title} width="640" height="360" loading="lazy" /><span class="pc-ep__play"><Icon name="arrow-r" size={16} /></span></div>
+              <span class="pc-ep__tag">{ep.tag}</span>
+              <h3>{ep.title}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="wrap" style="margin-top:28px">
+        <Button href={CHANNEL} label="View All Episodes" icon="arrow-ur" external />
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section class="sec" id="topics" aria-labelledby="topics-h">
+      <div class="wrap">
+        <div class="sh">
+          <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>Explore topics</p>
+          <h2 class="sh__h" id="topics-h"><span class="sh__a">Conversations across</span><span class="sh__b">what matters.</span></h2>
+        </div>
+        <div class="pc-topics">
+          {topics.map((t) => (
+            <a class="pc-topic card" href={CHANNEL} target="_blank" rel="noopener" data-reveal="up">
+              <img class="pc-topic__bg" src={t.img} srcset={`${t.img.replace('.webp', '-sm.webp')} 340w, ${t.img} 600w`} sizes="(min-width: 900px) 240px, 45vw" alt="" width="600" height="760" loading="lazy" />
+              <span class="pc-topic__scrim" aria-hidden="true"></span>
+              <span class="pc-topic__ico"><Icon name={t.icon} size={18} /></span>
+              <span class="pc-topic__n">{t.n}</span>
+              <h3>{t.label}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY BANNER -->
+    <section class="sec" aria-label="Join the WiseUp Podcast community">
+      <div class="wrap">
+        <div data-reveal="up">
+          <a href={CHANNEL} target="_blank" rel="noopener" class="card pc-comm-banner">
+            <img src="/podcast/community-banner.webp" alt="Join a growing community of 91K+ curious minds. Watch, learn, grow, be part of the conversation. 100+ episodes, 91K+ subscribers, real stories, weekly content." width="2000" height="667" loading="lazy" />
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOSTS + GUESTS: loopedPanels() via [data-loop]/[data-loop-track], same mechanic as the
+         homepage's Clients section. -->
+    <section class="sec" id="hosts" aria-labelledby="hosts-h">
+      <div class="wrap">
+        <div class="loop-head">
+          <div class="sh" style="margin-bottom:0">
+            <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>Hosts & guests</p>
+            <h2 class="sh__h" id="hosts-h">The voices behind WiseUp.</h2>
+          </div>
+          <div class="loop-nav">
+            <button class="loop-btn" type="button" aria-label="Previous" data-loop-prev><Icon name="chev-l" size={18} /></button>
+            <button class="loop-btn" type="button" aria-label="Next" data-loop-next><Icon name="chev-r" size={18} /></button>
+          </div>
+        </div>
+        <p style="color:var(--mute);max-width:52ch;margin:-40px 0 40px">Conversations led by creators, entrepreneurs and curious minds who believe in the power of real stories, and the guests who've shared theirs.</p>
+        <div class="pc-loop" data-loop role="region" aria-roledescription="carousel" aria-label="Hosts and guests">
+          <ul class="pc-loop__track" data-loop-track>
+            {people.map((p) => (
+              <li class="pc-person" aria-roledescription="slide">
+                <div class="pc-person__card">
+                  <img src={p.img} alt={p.name} width="400" height="500" loading="lazy" />
+                  <span class="pc-person__tag">{p.role}</span>
+                  <div class="pc-person__name"><b>{p.name}</b></div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ: exact homepage pattern -->
+    <section class="sec" id="faq" aria-labelledby="faq-h">
+      <div class="wrap">
+        <div class="sh">
+          <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>FAQ</p>
+          <h2 class="sh__h" id="faq-h">Questions, answered.</h2>
+        </div>
+        <div class="faq" data-faq>
+          {faqs.map((f, i) => (
+            <details class="faq__item" name="podcast-faq" data-reveal="up" data-delay={String(Math.min(i, 3) * 0.05)}>
+              <summary class="faq__q"><h3>{f.q}</h3><span class="faq__dot" aria-hidden="true"></span></summary>
+              <p class="faq__a">{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- GUEST PITCH -->
+    <section class="sec" id="guest" aria-labelledby="guest-h">
+      <div class="wrap pc-pitch">
+        <div data-reveal="up">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Be a guest</p>
+          <h2 class="sh__h" id="guest-h" style="font-size:clamp(1.75rem,1.3rem+2vw,2.75rem)">Have a story worth sharing?</h2>
+          <p style="color:var(--mute);font-size:16px;line-height:1.6;max-width:46ch;margin-top:16px">We're always excited to talk with entrepreneurs, creators, experts and interesting people from diverse fields. Share your journey, inspire others, and be part of the WiseUp conversation.</p>
+          <div style="margin-top:24px"><Button href={site.whatsapp} label="Apply to Be a Guest" look="teal" external /></div>
+        </div>
+        <div class="pc-pitch__img" data-reveal="up" data-delay="0.1">
+          <img src="/podcast/guest-banner.webp" alt="Top ranked Malayalam business podcast banner with the WiseUp team" width="1400" height="231" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</Base>
