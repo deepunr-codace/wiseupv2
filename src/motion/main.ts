@@ -76,8 +76,12 @@ function header() {
     const hero = document.querySelector<HTMLElement>('.hero');
     const syncHeroOverlap = () => head.classList.toggle('hd--over-hero', !hero || scrollY < hero.offsetHeight - 80);
     syncHeroOverlap();
+    // Past the top, the logo docks into its own frosted pill (.is-docked) so it never floats bare over content.
+    const syncDock = (y: number) => head.classList.toggle('is-docked', y > 40);
+    syncDock(scrollY);
     let last = scrollY;
     const off = onScroll(({ y }) => {
+      syncDock(y);
       if (y < 160 || y < last - 2) head.classList.remove('is-hidden');
       else if (y > last + 2 && !head.contains(document.activeElement)) head.classList.add('is-hidden');
       last = y;
