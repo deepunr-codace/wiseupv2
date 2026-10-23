@@ -56,6 +56,8 @@ type Unit = {
   vx: number; vy: number; vr: number;
   dx: number; dy: number;       // current depth direction (unit vector)
   color: number;                // 0..1 colour-gradient strength
+  on: boolean;                  // hover colour wave has reached this unit
+  timer: gsap.core.Tween | null;
 };
 
 export function heroType() {
@@ -91,10 +93,19 @@ export function heroType() {
         <feComposite in="d" in2="SourceAlpha" operator="in" result="lit"/>
         <feBlend in="SourceGraphic" in2="lit" mode="multiply"/>
       </filter>
+      <linearGradient id="hero-shine" gradientUnits="userSpaceOnUse" x1="${vb.x - vb.width * 0.3}" y1="${vb.y + vb.height}" x2="${vb.x}" y2="${vb.y}">
+        <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.62"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+      </linearGradient>
       <linearGradient id="hero-face-green" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#2a8a34"/><stop offset="0.55" stop-color="#14661f"/><stop offset="1" stop-color="#0a4515"/>
       </linearGradient>
       <filter id="hero-shadow" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="10"/></filter>`);
+    const shinePos = { x: 0 };
+    const shineGrad = defs.querySelector<SVGLinearGradientElement>('#hero-shine')!;
+    const shineTween = gsap.to(shinePos, {
+      x: vb.width * 1.55, duration: 1.7, ease: 'power2.inOut', repeat: -1, repeatDelay: 4.2, delay: 3.2, paused: true,
+      onUpdate: () => shineGrad.setAttribute('gradientTransform', `translate(${shinePos.x} 0)`),
+    });
     const flowPos = { x: 0 };
     const flowTween = gsap.to(flowPos, { x: vb.width * 0.5, duration: 4, ease: 'none', repeat: -1, paused: true, onUpdate: () => flow.setAttribute('gradientTransform', `translate(${flowPos.x} 0)`) });
 
@@ -177,6 +188,14 @@ export function heroType() {
       tintClip.appendChild(tbev);
       tintG.appendChild(tintClip);
       tints[ch] = faceSvgs[ch].appendChild(tintG);
+      // A glossy light sweep crosses every letter in turn (one shared gradient, translated in the ticker below).
+      const shineG = svgEl('g', { 'pointer-events': 'none' });
+      const shineClip = svgEl('g');
+      if (partner) shineClip.setAttribute('clip-path', `url(#hero-fc-${ch})`);
+      shineClip.appendChild(svgEl('use', { href: `#${el.id}`, fill: 'url(#hero-shine)' }));
+      if (partner) shineClip.appendChild(svgEl('use', { href: `#${partner.id}`, fill: 'url(#hero-shine)' }));
+      shineG.appendChild(shineClip);
+      faceSvgs[ch].appendChild(shineG);
     });
     const unitPx = () => stack.clientWidth / vb.width; // svg units -> css px
     const units: Unit[] = specs.map((d) => {
@@ -190,7 +209,7 @@ export function heroType() {
       gsap.set(boxes, { transformOrigin: origin });
       return {
         els, letters: d.l, boxes, cx: (x1 + x2) / 2, cy: (y1 + y2) / 2, idle: d.idle, spread: d.spread, hover: false,
-        x: 0, y: 0, r: 0, vx: 0, vy: 0, vr: 0, dx: 0.62, dy: 0.78, color: 0,
+        x: 0, y: 0, r: 0, vx: 0, vy: 0, vr: 0, dx: 0.62, dy: 0.78, color: 0, on: false, timer: null,
       };
     });
     const setDepth = (u: Unit) => {
@@ -208,7 +227,7 @@ export function heroType() {
     // ---- Entrance: one brush-slant wipe across the whole word ------------------------------------------
     gsap.set(wrap, { visibility: 'visible' });
     let ready = reduced;
-    const tl = gsap.timeline({ paused: true, onComplete: () => { ready = true; } });
+    const tl = gsap.timeline({ paused: true, onComplete: () => { ready = true; units.forEach((u, i) => gsap.delayedCall(0.12 * i, () => { u.vy -= 520; u.vr += (i % 2 ? 1 : -1) * 30; })); } });
     if (!reduced) {
       tl.fromTo(allBoxes,
         { clipPath: 'polygon(-30% -30%, -30% -30%, -50% 130%, -50% 130%)', autoAlpha: 0.001 },
@@ -237,14 +256,49 @@ export function heroType() {
       }
       active = inside;
     };
+    // Hover: the colour travels outward from the hovered letter as a wave (0.12s per letter of distance), each
+    // letter gets a springy kick, and leaving fades the wave back out the same way. Click: every letter hops in a
+    // staggered ripple. The whole word also tilts in 3D toward the pointer.
+    const wave = (from: number, on: boolean) => {
+      units.forEach((u, i) => {
+        u.timer?.kill();
+        u.timer = gsap.delayedCall(Math.abs(i - from) * (on ? 0.12 : 0.09), () => { u.on = on; });
+      });
+    };
+    const kick = (from: number, power: number) => {
+      units.forEach((u, i) => {
+        const near = Math.max(0, 1 - Math.abs(i - from) * 0.45);
+        u.vy -= power * near; u.vr += (i % 2 ? 1 : -1) * power * 0.05 * near;
+      });
+    };
+    gsap.set(stack, { transformPerspective: 1100, transformOrigin: '50% 60%' });
+    const tiltX = gsap.quickTo(stack, 'rotationX', { duration: 0.7, ease: 'power3.out' });
+    const tiltY = gsap.quickTo(stack, 'rotationY', { duration: 0.7, ease: 'power3.out' });
+    const onTilt = (e: PointerEvent) => {
+      const r = wrap.getBoundingClientRect();
+      const nx = clamp(((e.clientX - r.left) / r.width - 0.5) * 2, -1.2, 1.2);
+      const ny = clamp(((e.clientY - r.top) / r.height - 0.5) * 2, -1.2, 1.2);
+      tiltY(nx * 9); tiltX(-ny * 6);
+    };
     if (fine) {
       addEventListener('pointermove', onMove, { passive: true });
+      addEventListener('pointermove', onTilt, { passive: true });
       letters.forEach((el) => {
         const ch = el.dataset.ch!;
         const face = faceSvgs[ch].querySelector<SVGElement>('use[data-ch]')!;
         face.style.cursor = 'pointer';
-        face.addEventListener('pointerenter', () => { unitOfCh(ch).hover = true; });
-        face.addEventListener('pointerleave', () => { unitOfCh(ch).hover = false; });
+        face.addEventListener('pointerenter', () => {
+          const u = unitOfCh(ch), i = units.indexOf(u);
+          u.hover = true; wave(i, true); kick(i, 430);
+        });
+        face.addEventListener('pointerleave', () => {
+          const u = unitOfCh(ch);
+          u.hover = false;
+          if (!units.some((x) => x.hover)) wave(units.indexOf(u), false);
+        });
+        face.addEventListener('pointerdown', () => {
+          units.forEach((u, i) => gsap.delayedCall(i * 0.07, () => { u.vy -= 760; u.vr += (i % 2 ? 1 : -1) * 38; }));
+        });
       });
     }
 
@@ -257,7 +311,6 @@ export function heroType() {
       if (active) { const k = 1 - Math.exp(-dt * 14); sx += (tx - sx) * k; sy += (ty - sy) * k; }
       scrollP += (clamp(scrollY / (innerHeight * 0.7), 0, 1) - scrollP) * (1 - Math.exp(-dt * 8));
       let anyColor = false;
-      const anyHover = units.some((x) => x.hover);
 
       units.forEach((u) => {
         const dx = u.cx - sx, dy = u.cy - sy, d = Math.hypot(dx, dy) || 1;
@@ -293,7 +346,7 @@ export function heroType() {
         // rather than a distracting constant flicker) — a creative animation that doesn't depend
         // on the visitor ever touching the word.
         const ambient = Math.pow(Math.max(0, Math.sin(t * 0.7 + u.idle.p * 0.3)), 6) * 0.6;
-        const wantC = anyHover ? 1 : ambient;
+        const wantC = u.on ? 1 : ambient;
         u.color += (wantC - u.color) * (1 - Math.exp(-dt * 9));
         const o = u.color < 0.01 ? 0 : u.color;
         u.letters.forEach((c) => tints[c].setAttribute('opacity', o.toFixed(3)));
@@ -305,13 +358,14 @@ export function heroType() {
 
     const st = ScrollTrigger.create({
       trigger: wrap, start: 'top bottom', end: 'bottom top',
-      onToggle: (s) => { if (s.isActive) gsap.ticker.add(tick); else { gsap.ticker.remove(tick); flowTween.pause(); flowOn = false; } },
+      onToggle: (s) => { if (s.isActive) { gsap.ticker.add(tick); shineTween.play(); } else { gsap.ticker.remove(tick); flowTween.pause(); shineTween.pause(); flowOn = false; } },
     });
 
     return () => {
-      st.kill(); tl.kill(); flowTween.kill();
+      st.kill(); tl.kill(); flowTween.kill(); shineTween.kill(); units.forEach((u) => u.timer?.kill());
       gsap.ticker.remove(tick);
       removeEventListener('pointermove', onMove);
+      removeEventListener('pointermove', onTilt);
       stack.remove();
     };
   });

@@ -841,7 +841,7 @@ html:not(.js) .loop-nav { display: none; }
    viewport it kept rendering at its full 46vw/600px width regardless of the now-shrunk .hero__art
    around it — overlapping the headline below it in dark theme (the only theme that still uses
    this dynamic wordmark). Same vh value as .hero__art-photo's cap, tuned there, reused here. */
-.hero-letters { position: relative; grid-area: 1 / 1; width: min(46vw, 600px, 52vh); }
+.hero-letters { position: relative; grid-area: 1 / 1; width: 100%; }
 /* drop-shadow removed from light theme per explicit request ("in light version remove shadows") —
    it was added two entries up to match the reference render's own soft shadow, but read as an
    unwanted dark blob under the letters against a white page. Kept in dark theme (not flagged
@@ -857,4 +857,4 @@ html:not(.js) .loop-nav { display: none; }
 /* Light theme: a rich green face (gradient defined in hero-type.ts) so the word is solid against the white page;
    the lime extruded rim stays. White faces on a white page only showed as an outline. */
 :root[data-theme='light'] .hero-face-ink { fill: url(#hero-face-green); }
-@media (max-width: 700px) { .hero-letters { width: 62vw; margin-top: 6%; } }
+@media (max-width: 700px) { .hero__art { width: 90vw; } .hero-letters { margin-top: 2%; } }
