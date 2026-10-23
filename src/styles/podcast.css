@@ -173,3 +173,8 @@
 }
 .pc-person__tag { background: #beda52; color: #11150a; }
 @media (max-width: 899px) { .pc-hero > .blob { display: none; } }
+/* phones/tablets: 5 topics in a 2-col grid would leave the last one alone, so it spans the row as a wide tile */
+@media (max-width: 899px) { .pc-topic:last-child { grid-column: 1 / -1; min-height: 180px; } }
+/* the guest banner is a 6:1 strip; a wider crop keeps "RANKED ... PODCAST" and the team in frame */
+.pc-pitch__img img { object-position: 35% 50%; }
+@media (max-width: 899px) { .pc-pitch__img { aspect-ratio: 2 / 1; } }

@@ -1037,8 +1037,9 @@ html:not(.js) .loop-nav { display: none; }
    are ink with a lime marker or a hand-drawn lime underline, and the olive (--teal-hi) stays only on small text/icons. */
 :root[data-theme='light'] { --drum-c: #5e8a14; }
 .drum__word { font-weight: 700; }
-/* lifted 50px above the heading row's baseline */
-.drum { top: -50px; }
+/* lifted 50px above the heading row's baseline, only while heading and drum sit side by side;
+   stacked (<=900px) the lift would push the words up over the heading */
+@media (min-width: 901px) { .drum { top: -50px; } }
 .marker { background: linear-gradient(transparent 58%, #beda52 58%, #beda52 92%, transparent 92%); padding-inline: 0.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 :root[data-theme='light'] .seq__c { color: #5e8a14; -webkit-text-fill-color: #5e8a14; }
 :root[data-theme='light'] .contrast__statement .contrast__bold { color: #5e8a14; }
@@ -1070,6 +1071,12 @@ section:has(> .blob) > :not(.blob) { position: relative; z-index: 1; }
 .blob--a { top: 34%; right: -8%; }
 .blob--b { top: 18%; left: -9%; width: clamp(140px, 16vw, 260px); animation-direction: reverse; }
 .blob--c { bottom: -6%; right: -6%; width: clamp(160px, 18vw, 300px); }
+/* stacked layouts: text runs edge to edge on the left, so blobs keep to the right edge and shrink */
+@media (max-width: 900px) {
+  .blob { width: clamp(120px, 26vw, 200px); }
+  .blob--b { top: 6%; left: auto; right: -14%; }
+  .root { min-height: 0; }
+}
 @keyframes blob-turn { 50% { rotate: 180deg; scale: 1.08; } to { rotate: 360deg; } }
 :root:not([data-theme='light']) .blob { opacity: 0.14; }
 @media (prefers-reduced-motion: reduce) { .sticker svg, .sticker__star, .blob { animation: none; } .scribble::after { transition: none; clip-path: none; } }

@@ -47,7 +47,7 @@ export function setupMotion() {
 /** Play a looping timeline only while its element is on screen. */
 function whileVisible(el: Element, tl: gsap.core.Timeline) {
   tl.pause();
-  ScrollTrigger.create({ trigger: el, start: 'top bottom', end: 'bottom top', onToggle: (s) => (s.isActive ? tl.play() : tl.pause()) });
+  return ScrollTrigger.create({ trigger: el, start: 'top bottom', end: 'bottom top', onToggle: (s) => (s.isActive ? tl.play() : tl.pause()) });
 }
 
 /* Header: current section marked in the nav; steps aside reading down, returns on the way up. */
@@ -422,8 +422,9 @@ function loopedPanels() {
 }
 
 /* ------------------------------------------------------------------ *
- * CodeAce: dynamic morphing. One SVG path cycles CodeAce mark -> WiseUp
- * mark -> flame -> back, in time with the section's scroll progress.
+ * CodeAce: the CodeAce "C" turns into the WiseUp "w" (the real wordmark glyph, fitted to the
+ * 200x200 box) and back, looping while the section is on screen. The C makes one full turn as it
+ * morphs, lands with a small overshoot, and the label swaps CodeAce -> WiseUp with the shape.
  * ------------------------------------------------------------------ */
 function dynamicMorph() {
   onPage(() => {
@@ -431,16 +432,22 @@ function dynamicMorph() {
     const path = fig?.querySelector<SVGPathElement>('[data-morph-path]');
     const label = fig?.querySelector<HTMLElement>('[data-morph-label]');
     if (!fig || !path || prefersReducedMotion()) return;
-    const shapeW = 'M40 90 60 150 100 60 140 150 160 90 100 20Z'; // W
-    const shapeFlame = 'M100 15C130 55 148 90 148 118A48 48 0 1 1 52 118C52 96 66 86 78 72A30 30 0 0 0 100 15Z';
-    const tl = gsap.timeline({
-      scrollTrigger: { trigger: fig.closest('section'), start: 'top 60%', end: 'bottom top', scrub: 0.7 },
-    })
-      .to(path, { morphSVG: shapeW, duration: 1, ease: 'none' })
-      .call(() => label && (label.textContent = 'WiseUp'), [], 0.5)
-      .to(path, { morphSVG: shapeFlame, duration: 1, ease: 'none' }, 1)
-      .call(() => label && (label.textContent = 'One team'), [], 1.5);
-    return () => tl.scrollTrigger?.kill();
+    const shapeC = path.getAttribute('d')!;
+    const shapeW = 'M111.6 41.3 137.8 139.8 132 139.6 158.4 41.3 180 41.3 144.9 158.7 126.4 158.7 96.9 59.4 102.7 59.4 72.8 158.7 54.3 158.7 20 41.3 41.4 41.3 67 139.6 61.4 139.8 88.4 41.3Z'; // wordmark "w"
+    const swap = (t: string) => label && gsap.timeline()
+      .to(label, { opacity: 0, y: -6, duration: 0.2, ease: 'power2.in' })
+      .call(() => { label.textContent = t; })
+      .fromTo(label, { y: 6 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+    gsap.set(path, { transformOrigin: '50% 50%' });
+    const tl = gsap.timeline({ repeat: -1, repeatDelay: 1.4, delay: 0.6 })
+      .to(path, { morphSVG: { shape: shapeW, shapeIndex: 'auto' }, rotation: 360, duration: 1.2, ease: 'back.inOut(1.4)' })
+      .to(path, { scale: 1.08, duration: 0.18, ease: 'power2.out', yoyo: true, repeat: 1 }, '>-0.05')
+      .call(() => swap('WiseUp'), [], 0.55)
+      .to(path, { morphSVG: { shape: shapeC, shapeIndex: 'auto' }, rotation: 720, duration: 1.2, ease: 'back.inOut(1.4)' }, '+=1.6')
+      .call(() => swap('CodeAce'), [], '<0.55')
+      .set(path, { rotation: 0 });
+    const st = whileVisible(fig, tl);
+    return () => { st.kill(); tl.kill(); gsap.set(path, { clearProps: 'transform', attr: { d: shapeC } }); };
   });
 }
 
