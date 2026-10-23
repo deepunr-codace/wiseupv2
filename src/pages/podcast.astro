@@ -268,13 +268,35 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- COMMUNITY BANNER -->
-    <section class="sec" aria-label="Join the WiseUp Podcast community">
+    <!-- COMMUNITY BANNER: live HTML over the studio photo (public/podcast/community-bg*.webp). Left: heading with the
+         subscriber count, line, face stack + subscribe pill; right: four stats. Phones get a tighter crop and stack. -->
+    <section class="sec" aria-labelledby="comm-h">
       <div class="wrap">
-        <div data-reveal="up">
-          <a href={CHANNEL} target="_blank" rel="noopener" class="card pc-comm-banner">
-            <img src="/podcast/community-banner.webp" alt="Join a growing community of 91K+ curious minds. Watch, learn, grow, be part of the conversation. 100+ episodes, 91K+ subscribers, real stories, weekly content." width="2000" height="667" loading="lazy" />
-          </a>
+        <div class="pc-cb" data-reveal="up">
+          <picture class="pc-cb__bg" aria-hidden="true">
+            <source media="(max-width: 699px)" srcset="/podcast/community-bg-m.webp" />
+            <img src="/podcast/community-bg.webp" srcset="/podcast/community-bg-sm.webp 900w, /podcast/community-bg.webp 2000w" sizes="(min-width: 700px) 95vw, 100vw" alt="" width="2000" height="667" loading="lazy" />
+          </picture>
+          <div class="pc-cb__main">
+            <h2 class="pc-cb__h" id="comm-h">Join a Growing<br />Community of<br /><span class="pc-cb__big"><span data-count="91">91</span>K+</span> Curious Minds</h2>
+            <p class="pc-cb__p">Watch. Learn. Grow. Be part of the conversation.</p>
+            <div class="pc-cb__row">
+              <div class="pc-cb__faces" aria-hidden="true">
+                {[...hosts.map((h) => h.img), '/podcast/quote-jijo.webp'].map((src) => <img src={src} alt="" width="48" height="48" loading="lazy" />)}
+              </div>
+              <a class="pc-cb__sub" href={`${CHANNEL}?sub_confirmation=1`} target="_blank" rel="noopener">
+                <svg class="pc-cb__yt" viewBox="0 0 68 48" aria-hidden="true"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+                <span>Subscribe on YouTube</span>
+                <svg class="pc-cb__arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+          <ul class="pc-cb__stats">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M15.5 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>100+ Episodes</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M10 8.5v7l6-3.5z" fill="currentColor" stroke="none"/></svg>91K+ Subscribers</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z"/><circle cx="8" cy="12" r=".9" fill="currentColor"/><circle cx="12" cy="12" r=".9" fill="currentColor"/><circle cx="16" cy="12" r=".9" fill="currentColor"/></svg>Real Stories</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><circle cx="8.5" cy="14" r=".9" fill="currentColor"/><circle cx="12" cy="14" r=".9" fill="currentColor"/><circle cx="15.5" cy="14" r=".9" fill="currentColor"/><circle cx="8.5" cy="17.2" r=".9" fill="currentColor"/><circle cx="12" cy="17.2" r=".9" fill="currentColor"/></svg>Weekly Content</li>
+          </ul>
         </div>
       </div>
     </section>
