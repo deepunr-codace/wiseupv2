@@ -192,6 +192,7 @@
    theme colour change. */
 .hero__glow { position: absolute; inset: -10% 0 auto; height: 90vh; pointer-events: none; background: none; }
 :root[data-theme='light'] .hero__glow {
+  inset: -8% -6% -8% -6%; height: auto;
   background: radial-gradient(60% 55% at 50% 48%, rgb(255 255 255 / 0.9), transparent 70%);
 }
 :root[data-theme='light'] .hero__glow::before,
@@ -858,3 +859,58 @@ html:not(.js) .loop-nav { display: none; }
    the lime extruded rim stays. White faces on a white page only showed as an outline. */
 :root[data-theme='light'] .hero-face-ink { fill: url(#hero-face-green); }
 @media (max-width: 700px) { .hero__art { width: 90vw; } .hero-letters { margin-top: 2%; } }
+
+/* ---------- Hero heading as real text (heroMark() in motion/hero-mark.ts) ---------- */
+@font-face { font-family: 'Lobster'; src: url('/fonts/lobster-latin-400.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+.hero__art--mark { width: auto; aspect-ratio: auto; margin-inline: auto; display: grid; place-items: center; perspective: 1100px; }
+.hero__mark { --dx: 0.62; --dy: 0.78; margin: 0; display: flex; justify-content: center; align-items: baseline; font-family: 'Lobster', 'Figtree', cursive; font-weight: 400;
+  font-size: clamp(4rem, min(27vw, 26vh), 16rem); line-height: 1.05; letter-spacing: -0.012em; transform-style: preserve-3d; will-change: transform; }
+@media (min-width: 701px) { .hero__mark { font-size: clamp(5rem, min(14.5vw, 25vh), 17rem); } }
+.hero__mark { padding-bottom: 0.2em; }
+.mk__l { position: relative; display: inline-block; cursor: pointer; will-change: transform; }
+.mk__in { position: relative; display: inline-block; }
+.mk__d, .mk__f, .mk__h, .mk__s { display: block; font-style: normal; font-weight: 400; text-decoration: none; white-space: pre; }
+.mk__f, .mk__h, .mk__s { position: absolute; inset: 0; }
+/* depth: the extruded side wall, one text-shadow per step, shaded lime at the face down to near-black (the light follows the pointer via --dx/--dy) */
+.mk__d { color: #062e0e; text-shadow:
+    calc(var(--dx, 0.62) * 0.0062em) calc(var(--dy, 0.78) * 0.0062em) 0 #9ad84a,
+    calc(var(--dx, 0.62) * 0.0124em) calc(var(--dy, 0.78) * 0.0124em) 0 #7dc142,
+    calc(var(--dx, 0.62) * 0.0186em) calc(var(--dy, 0.78) * 0.0186em) 0 #60ab3a,
+    calc(var(--dx, 0.62) * 0.0248em) calc(var(--dy, 0.78) * 0.0248em) 0 #439533,
+    calc(var(--dx, 0.62) * 0.0310em) calc(var(--dy, 0.78) * 0.0310em) 0 #267f2b,
+    calc(var(--dx, 0.62) * 0.0372em) calc(var(--dy, 0.78) * 0.0372em) 0 #1d7528,
+    calc(var(--dx, 0.62) * 0.0434em) calc(var(--dy, 0.78) * 0.0434em) 0 #1b6f26,
+    calc(var(--dx, 0.62) * 0.0496em) calc(var(--dy, 0.78) * 0.0496em) 0 #196923,
+    calc(var(--dx, 0.62) * 0.0558em) calc(var(--dy, 0.78) * 0.0558em) 0 #176321,
+    calc(var(--dx, 0.62) * 0.0620em) calc(var(--dy, 0.78) * 0.0620em) 0 #155d1f,
+    calc(var(--dx, 0.62) * 0.0682em) calc(var(--dy, 0.78) * 0.0682em) 0 #13571d,
+    calc(var(--dx, 0.62) * 0.0744em) calc(var(--dy, 0.78) * 0.0744em) 0 #11511b,
+    calc(var(--dx, 0.62) * 0.0806em) calc(var(--dy, 0.78) * 0.0806em) 0 #0f4b18,
+    calc(var(--dx, 0.62) * 0.0868em) calc(var(--dy, 0.78) * 0.0868em) 0 #0d4516,
+    calc(var(--dx, 0.62) * 0.0930em) calc(var(--dy, 0.78) * 0.0930em) 0 #0b3f14,
+    calc(var(--dx, 0.62) * 0.0992em) calc(var(--dy, 0.78) * 0.0992em) 0 #093912,
+    calc(var(--dx, 0.62) * 0.1054em) calc(var(--dy, 0.78) * 0.1054em) 0 #073310,
+    calc(var(--dx, 0.62) * 0.1116em) calc(var(--dy, 0.78) * 0.1116em) 0 #062e0e; }
+.mk__f { background: linear-gradient(155deg, #3fb24a 0%, #1b7a28 45%, #0c4d18 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+/* hover colour: a flowing lime gradient that fades in per letter (opacity driven by the wave) */
+.mk__h { opacity: 0; background: linear-gradient(110deg, #9be22f, #d8f05a 35%, #7fd130 65%, #b6ea3a); background-size: 220% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: mk-flow 2.4s linear infinite; }
+@keyframes mk-flow { to { background-position: -220% 0; } }
+/* glossy sweep: a white band travelling across the face (position driven per letter) */
+.mk__s { background: linear-gradient(105deg, transparent 38%, rgb(255 255 255 / 0.85) 50%, transparent 62%); background-size: 300% 100%; background-position: 160% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; pointer-events: none; }
+.hero__art--mark::after { content: ''; position: absolute; left: 12%; right: 12%; bottom: -4%; height: 14%; background: radial-gradient(closest-side, rgb(10 60 20 / 0.28), transparent); filter: blur(10px); z-index: -1; }
+@media (prefers-reduced-motion: reduce) { .mk__h { animation: none; } }
+
+/* ---------- Hero, light theme: soft aurora + dotted grid ---------- */
+.hero__grid { display: none; }
+:root[data-theme='light'] .hero__grid { display: block; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image: radial-gradient(rgb(20 100 30 / 0.16) 1.1px, transparent 1.4px); background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, #000 15%, transparent 72%); mask-image: radial-gradient(ellipse 55% 50% at 50% 42%, #000 15%, transparent 72%); }
+:root[data-theme='light'] .hero__glow {
+  background:
+    radial-gradient(34% 40% at 16% 28%, rgb(190 226 80 / 0.42), transparent 72%),
+    radial-gradient(32% 38% at 86% 24%, rgb(110 200 130 / 0.32), transparent 72%),
+    radial-gradient(40% 36% at 72% 92%, rgb(216 238 150 / 0.5), transparent 72%),
+    radial-gradient(60% 55% at 50% 48%, rgb(255 255 255 / 0.9), transparent 70%);
+  animation: hero-aurora 22s ease-in-out infinite alternate; }
+@keyframes hero-aurora { from { transform: translate3d(-2%, 0, 0) scale(1); } to { transform: translate3d(2%, 2%, 0) scale(1.06); } }
+@media (prefers-reduced-motion: reduce) { :root[data-theme='light'] .hero__glow { animation: none; } }

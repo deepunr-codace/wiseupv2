@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import heroWordmarkSvg from '../../public/brand/hero-wiseup-wormark-letters.svg?raw';
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import SecHead from '../components/SecHead.astro';
@@ -39,6 +38,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     <!-- Figtree: the hero text's font in the user-supplied reference (wiseup-hero.html), loaded
          here only (not in Base.astro) since it's used nowhere else on the site yet — same
          "only load what's used on this page" pattern as the podcast page's Malayalam font. -->
+    <link rel="preload" href="/fonts/lobster-latin-400.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -62,15 +62,21 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
       <div class="aqua__icons" data-aqua-icons></div>
     </div>
     <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__grid" aria-hidden="true"></div>
     <div class="hero__title">
       <div class="hero__orbit" aria-hidden="true" data-orbit><span class="hero__orb"></span></div>
-      <div class="hero__art">
-        <!-- Flat image wordmark (wiseup-3d.webp) removed per explicit request ("remove this image
-             and make it similar fonts with this 3d effects") — heroType() now renders a white
-             glossy face + a glowing lime/green extruded rim (tuned in motion/hero-type.ts /
-             .hero-face-ink in site.css) to match that reference image's look, in both themes,
-             instead of swapping between a static photo and the dynamic SVG per theme. -->
-        <p class="hero__word" data-wordmark set:html={heroWordmarkSvg} />
+      <div class="hero__art hero__art--mark">
+        <!-- Hero heading as real text: Lobster (bold script, self-hosted in public/fonts) set letter by letter, with an
+             extruded 3D rim made of stacked text-shadows, a gradient face, a lime hover layer and a light-sweep layer.
+             heroMark() in motion/hero-mark.ts animates it. (The old traced-SVG wordmark and hero-type.ts are kept
+             in the repo but no longer used here.) -->
+        <h1 class="hero__mark" data-mark aria-label="WiseUp">
+          {[...'WiseUp'].map((ch) => (
+            <span class="mk__l" data-ch={ch} aria-hidden="true"><span class="mk__in">
+              <i class="mk__d">{ch}</i><b class="mk__f">{ch}</b><u class="mk__h">{ch}</u><em class="mk__s">{ch}</em>
+            </span></span>
+          ))}
+        </h1>
       </div>
       <h2 class="hero__headline" data-reveal="fade" data-intro data-delay="0.35">Branding that moves businesses <span class="hero__accent">forward.</span><span class="hero__dot hero__dot--inline" aria-hidden="true"></span></h2>
       <p class="hero__lede2" data-reveal="fade" data-intro data-delay="0.42">A branding and marketing agency from Kerala, building distinctive brands for a digital-first world.</p>
