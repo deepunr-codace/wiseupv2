@@ -1,0 +1,76 @@
+---
+// Floating mini player for /podcast, bottom-left, like YouTube's miniplayer. It slides in once the hero is passed
+// as a compact "now streaming" pill; tapping it opens the player: a 16:9 stage (poster, then a youtube-nocookie
+// embed), the episode's title and stats, Next / YouTube actions, and four shelves: Up next, Most viewed, Most liked
+// and Viral Shorts. Data: src/data/episodes.json + shorts.json (scripts/fetch-episodes.py). Behaviour: miniPlayer()
+// in motion/podcast.ts. Comment counts are not in the public feed, so there is no "most commented" shelf.
+import latest from '../data/episodes.json';
+import shorts from '../data/shorts.json';
+
+type Item = { videoId: string; title: string; tag?: string; views: number; likes: number; date?: string; img: string };
+const eps = latest as Item[];
+const num = (n: number) => (n >= 1e6 ? `${(n / 1e6).toFixed(1)}M` : n >= 1e3 ? `${(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K` : String(n));
+const shelves: { id: string; label: string; items: Item[]; short?: boolean }[] = [
+  { id: 'next', label: 'Up next', items: eps },
+  { id: 'viewed', label: 'Most viewed', items: [...eps].sort((a, b) => b.views - a.views) },
+  { id: 'liked', label: 'Most liked', items: [...eps].sort((a, b) => b.likes - a.likes) },
+  { id: 'viral', label: 'Viral Shorts', items: shorts as Item[], short: true },
+];
+const first = eps[0];
+---
+<aside class="mp" data-mp aria-label="WiseUp Podcast player">
+  <!-- collapsed pill -->
+  <button class="mp__pill" type="button" data-mp-open aria-expanded="false" aria-controls="mp-panel">
+    <span class="mp__pthumb"><img src={first.img.replace('.webp', '-sm.webp')} alt="" width="96" height="54" data-mp-pthumb /></span>
+    <span class="mp__ptext">
+      <span class="mp__pkick"><span class="mp__eq" aria-hidden="true"><i></i><i></i><i></i></span><span data-mp-pkick>Latest episode</span></span>
+      <span class="mp__ptitle" data-mp-ptitle>{first.title}</span>
+    </span>
+    <span class="mp__pplay" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+  </button>
+  <button class="mp__x mp__x--pill" type="button" data-mp-close aria-label="Close player"><svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+
+  <!-- expanded panel -->
+  <div class="mp__panel" id="mp-panel" role="dialog" aria-label="WiseUp Podcast player" data-mp-panel hidden>
+    <div class="mp__bar">
+      <span class="mp__brand"><i class="mp__live"></i>WiseUp Podcast</span>
+      <button class="mp__icon" type="button" data-mp-min aria-label="Minimise player"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+      <button class="mp__icon" type="button" data-mp-close aria-label="Close player"><svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17"/></svg></button>
+    </div>
+    <div class="mp__stage" data-mp-stage>
+      <img class="mp__poster" src={first.img} alt="" width="640" height="360" data-mp-poster />
+      <button class="mp__big" type="button" data-mp-play aria-label="Play this episode"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
+    </div>
+    <div class="mp__now">
+      <p class="mp__title" data-mp-title>{first.title}</p>
+      <p class="mp__stats"><span data-mp-views>{num(first.views)} views</span><span data-mp-likes>{num(first.likes)} likes</span></p>
+      <div class="mp__acts">
+        <button class="mp__btn mp__btn--next" type="button" data-mp-next>Play next<svg viewBox="0 0 24 24"><path d="M6 5.5v13l9-6.5zM17 5v14"/></svg></button>
+        <a class="mp__btn" href={`https://www.youtube.com/watch?v=${first.videoId}`} target="_blank" rel="noopener" data-mp-yt>Watch on YouTube<svg viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5"/></svg></a>
+      </div>
+    </div>
+    <div class="mp__tabs" role="tablist">
+      {shelves.map((s, i) => <button class="mp__tab" type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-mp-tab={s.id}>{s.label}</button>)}
+    </div>
+    {shelves.map((s, i) => (
+      <ul class:list={['mp__list', { 'mp__list--shorts': s.short }]} role="tabpanel" data-mp-list={s.id} hidden={i !== 0}>
+        {s.items.map((it, k) => (
+          <li>
+            <button class="mp__item" type="button" data-mp-item={it.videoId} data-title={it.title} data-img={it.img} data-views={num(it.views)} data-likes={num(it.likes)} data-short={s.short ? '1' : undefined}>
+              <span class="mp__ithumb">
+                <img src={s.short ? it.img : it.img.replace('.webp', '-sm.webp')} alt="" width={s.short ? 108 : 120} height={s.short ? 192 : 68} loading="lazy" />
+                {s.id !== 'next' && <b class="mp__rank">{k + 1}</b>}
+                <span class="mp__playing" aria-hidden="true"><i></i><i></i><i></i></span>
+              </span>
+              <span class="mp__itext">
+                <span class="mp__ititle">{it.title}</span>
+                <span class="mp__imeta">{s.id === 'liked' ? `${num(it.likes)} likes` : `${num(it.views)} views`}</span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    ))}
+  </div>
+</aside>
+<button class="mp__back" type="button" data-mp-back aria-label="Show the podcast player" hidden><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></button>
