@@ -5,8 +5,8 @@
 // now Base + Header + Footer, tokens.css's teal/lime accent and Epilogue/Inter type, and the
 // shared site.css vocabulary (.wrap/.sec/.sh/.b/.card/.faq/.hgal/.loop/.cta-row), forced to the
 // light ("day") mood throughout via `data-mood="day"` on the page's own wrapper, same technique
-// about.astro uses. Motion: episode filmstrip and the hosts/guests loop now run on the shared
-// engine's own horizontalGallery()/loopedPanels() (motion/main.ts) via the same data attributes
+// about.astro uses. Motion: episodes are a static bento grid (lime hover); the hosts/guests loop runs on the shared
+// engine's own loopedPanels() (motion/main.ts) via the same data attributes
 // the homepage uses — not reimplemented. Only the click-to-embed thumbnail behaviour is page-
 // specific (motion/podcast.ts, registered into the shared setupMotion()).
 //
@@ -18,6 +18,7 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
+import SecHead from '../components/SecHead.astro';
 import { site } from '../data/site';
 import podcastCss from '../styles/podcast.css?raw';
 
@@ -108,8 +109,10 @@ const jsonLd = {
 
     <!-- HERO -->
     <section class="sec pc-hero" id="top" aria-label="WiseUp Podcast">
+    <svg class="blob blob--a" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
       <div class="wrap pc-hero__grid">
         <div>
+          <p class="eyebrow" data-reveal="fade" data-intro><span class="eyebrow__dot" aria-hidden="true"></span>WiseUp Podcast</p>
           <p class="pc-hero__tags" data-reveal="fade" data-intro>Business / People / Ideas / Growth</p>
           <h1 data-split="lines" data-intro data-delay="0.1">The Malayalam Podcast for <em>Online Business Owners</em>.</h1>
           <p class="pc-hero__ml pc-ml" lang="ml" data-reveal="up" data-intro data-delay="0.2">ഓൺലൈൻ ബിസിനസ്സ് വളർത്താൻ, ഇനി കാര്യങ്ങൾ കുറച്ചുകൂടി എളുപ്പം.</p>
@@ -138,10 +141,10 @@ const jsonLd = {
         </a>
         <div data-reveal="up">
           <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Featured episode</p>
-          <p class="pc-ml" lang="ml" style="color:var(--mute);font-weight:700;margin:14px 0 0">{featured.titleMl}</p>
+          <p class="pc-ml pc-feat__ml" lang="ml">{featured.titleMl}</p>
           <h2 class="pc-feat__title" id="featured-h">{featured.title}</h2>
           <p class="pc-feat__guest">{featured.guest} · {featured.guestRole}</p>
-          <p style="color:var(--ink-2);font-size:16px;line-height:1.6;max-width:46ch">{featured.sub}</p>
+          <p class="pc-feat__sub">{featured.sub}</p>
           <div class="pc-feat__row">
             <Button href={`https://www.youtube.com/watch?v=${featured.videoId}`} label="Play Episode" look="teal" external />
             <Button href="#episodes" label="More Episodes" />
@@ -150,41 +153,42 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- EPISODES: horizontalGallery() via [data-hgal]/[data-hgal-track], same mechanic as the
-         homepage's Process section. -->
-    <section class="sec" id="episodes" aria-labelledby="episodes-h">
+    <!-- EPISODES: a bento grid on the homepage's .card surface. The newest episode leads (2x2 on desktop), the rest
+         fill the grid; every card lifts and fills brand lime on hover (same language as the homepage's list rows). The
+         thumbnail is the click-to-embed link (motion/podcast.ts swaps it for the player in place); the title links out.
+         Below 700px the grid becomes a swipe row. -->
+    <section class="sec pc-eps" id="episodes" aria-labelledby="episodes-h">
       <div class="wrap">
         <div class="loop-head">
-          <div class="sh" style="margin-bottom:0">
-            <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>Latest episodes</p>
-            <h2 class="sh__h" id="episodes-h">Fresh stories, every week.</h2>
+          <SecHead eyebrow="Latest episodes" id="episodes-h" lines={['Fresh stories,', 'every week.']} />
+          <div class="pc-eps__aside" data-reveal="fade">
+            <p class="pc-side">New conversations, fresh perspectives, real insights. {episodes.length} recent episodes, all free on YouTube.</p>
+            <Button href={CHANNEL} label="View All Episodes" icon="arrow-ur" external />
           </div>
-          <p style="color:var(--mute);max-width:32ch" data-reveal="fade">New conversations, fresh perspectives, real insights.</p>
         </div>
-      </div>
-      <div class="hgal__view pc-hgal__view" data-hgal>
-        <div class="pc-hgal__track" data-hgal-track>
-          {episodes.map((ep) => (
-            <a class="pc-ep" data-embed data-video-id={ep.videoId} href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener">
-              <div class="pc-ep__th"><img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes="(min-width: 900px) 290px, 80vw" alt={ep.title} width="640" height="360" loading="lazy" /><span class="pc-ep__play"><Icon name="arrow-r" size={16} /></span></div>
-              <span class="pc-ep__tag">{ep.tag}</span>
-              <h3>{ep.title}</h3>
-            </a>
+        <ul class="pc-eps__grid">
+          {episodes.map((ep, i) => (
+            <li class:list={['pc-ep card', { 'pc-ep--lead': i === 0 }]} data-reveal="up" data-delay={String((i % 3) * 0.06)}>
+              <a class="pc-ep__th" data-embed data-video-id={ep.videoId} href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener" aria-label={`Play: ${ep.title}`}>
+                <img src={ep.img} srcset={`${ep.img.replace('.webp', '-sm.webp')} 360w, ${ep.img} 640w`} sizes={i === 0 ? '(min-width: 1000px) 60vw, 90vw' : '(min-width: 1000px) 30vw, 80vw'} alt={ep.title} width="640" height="360" loading={i < 3 ? 'eager' : 'lazy'} />
+                <span class="pc-ep__play" aria-hidden="true"><Icon name="arrow-r" size={i === 0 ? 24 : 18} /></span>
+                {i === 0 && <span class="pc-ep__new">New episode</span>}
+              </a>
+              <div class="pc-ep__body">
+                <span class="pc-ep__tag">{ep.tag}</span>
+                <h3><a href={`https://www.youtube.com/watch?v=${ep.videoId}`} target="_blank" rel="noopener">{ep.title}</a></h3>
+                <span class="pc-ep__go" aria-hidden="true">Watch on YouTube<Icon name="arrow-ur" size={16} /></span>
+              </div>
+            </li>
           ))}
-        </div>
-      </div>
-      <div class="wrap" style="margin-top:28px">
-        <Button href={CHANNEL} label="View All Episodes" icon="arrow-ur" external />
+        </ul>
       </div>
     </section>
 
     <!-- TOPICS -->
     <section class="sec" id="topics" aria-labelledby="topics-h">
       <div class="wrap">
-        <div class="sh">
-          <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>Explore topics</p>
-          <h2 class="sh__h" id="topics-h"><span class="sh__a">Conversations across</span><span class="sh__b">what matters.</span></h2>
-        </div>
+        <SecHead eyebrow="Explore topics" id="topics-h" lines={['Conversations across', 'what matters.']} />
         <div class="pc-topics">
           {topics.map((t) => (
             <a class="pc-topic card" href={CHANNEL} target="_blank" rel="noopener" data-reveal="up">
@@ -213,18 +217,16 @@ const jsonLd = {
     <!-- HOSTS + GUESTS: loopedPanels() via [data-loop]/[data-loop-track], same mechanic as the
          homepage's Clients section. -->
     <section class="sec" id="hosts" aria-labelledby="hosts-h">
+    <svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
       <div class="wrap">
         <div class="loop-head">
-          <div class="sh" style="margin-bottom:0">
-            <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>Hosts & guests</p>
-            <h2 class="sh__h" id="hosts-h">The voices behind WiseUp.</h2>
-          </div>
+          <SecHead eyebrow="Hosts & guests" id="hosts-h" lines={['The voices', 'behind WiseUp.']} />
           <div class="loop-nav">
             <button class="loop-btn" type="button" aria-label="Previous" data-loop-prev><Icon name="chev-l" size={18} /></button>
             <button class="loop-btn" type="button" aria-label="Next" data-loop-next><Icon name="chev-r" size={18} /></button>
           </div>
         </div>
-        <p style="color:var(--mute);max-width:52ch;margin:-40px 0 40px">Conversations led by creators, entrepreneurs and curious minds who believe in the power of real stories, and the guests who've shared theirs.</p>
+        <p class="pc-side pc-side--hosts" data-reveal="fade">Conversations led by creators, entrepreneurs and curious minds who believe in the power of real stories, and the guests who've shared theirs.</p>
         <div class="pc-loop" data-loop role="region" aria-roledescription="carousel" aria-label="Hosts and guests">
           <ul class="pc-loop__track" data-loop-track>
             {people.map((p) => (
@@ -244,10 +246,7 @@ const jsonLd = {
     <!-- FAQ: exact homepage pattern -->
     <section class="sec" id="faq" aria-labelledby="faq-h">
       <div class="wrap">
-        <div class="sh">
-          <p class="eyebrow" data-reveal="fade"><span class="eyebrow__dot" aria-hidden="true"></span>FAQ</p>
-          <h2 class="sh__h" id="faq-h">Questions, answered.</h2>
-        </div>
+        <SecHead eyebrow="FAQ" id="faq-h" lines={['Questions,', 'answered.']} />
         <div class="faq" data-faq>
           {faqs.map((f, i) => (
             <details class="faq__item" name="podcast-faq" data-reveal="up" data-delay={String(Math.min(i, 3) * 0.05)}>
@@ -259,14 +258,29 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- GUEST PITCH -->
+    <!-- GUEST PITCH: the homepage's contact pattern (SecHead + lime-hover .cta-row links) beside the banner -->
     <section class="sec" id="guest" aria-labelledby="guest-h">
+    <svg class="blob blob--c" viewBox="0 0 200 200" aria-hidden="true"><path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)"/></svg>
       <div class="wrap pc-pitch">
-        <div data-reveal="up">
-          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Be a guest</p>
-          <h2 class="sh__h" id="guest-h" style="font-size:clamp(1.75rem,1.3rem+2vw,2.75rem)">Have a story worth sharing?</h2>
-          <p style="color:var(--mute);font-size:16px;line-height:1.6;max-width:46ch;margin-top:16px">We're always excited to talk with entrepreneurs, creators, experts and interesting people from diverse fields. Share your journey, inspire others, and be part of the WiseUp conversation.</p>
-          <div style="margin-top:24px"><Button href={site.whatsapp} label="Apply to Be a Guest" look="teal" external /></div>
+        <div>
+          <SecHead eyebrow="Be a guest" id="guest-h" lines={['Have a story', 'worth sharing?']} />
+          <p class="pc-pitch__p" data-reveal="up">We're always excited to talk with entrepreneurs, creators, experts and interesting people from diverse fields. Share your journey, inspire others, and be part of the WiseUp conversation.</p>
+          <ul class="cta-rows pc-pitch__rows" data-reveal="up">
+            <li>
+              <a class="cta-row" href={site.whatsapp} rel="noopener" target="_blank">
+                <Icon name="whatsapp" size={22} class="cta-row__ico" />
+                <span class="cta-row__body"><span class="cta-row__t">Apply on WhatsApp</span><span class="cta-row__v">{site.phone}</span></span>
+                <Icon name="arrow-ur" size={18} class="cta-row__go" />
+              </a>
+            </li>
+            <li>
+              <a class="cta-row" href="mailto:wiseuppod@gmail.com">
+                <Icon name="mail" size={22} class="cta-row__ico" />
+                <span class="cta-row__body"><span class="cta-row__t">Email the podcast team</span><span class="cta-row__v">wiseuppod@gmail.com</span></span>
+                <Icon name="arrow-ur" size={18} class="cta-row__go" />
+              </a>
+            </li>
+          </ul>
         </div>
         <div class="pc-pitch__img" data-reveal="up" data-delay="0.1">
           <img src="/podcast/guest-banner.webp" alt="Top ranked Malayalam business podcast banner with the WiseUp team" width="1400" height="231" loading="lazy" />

@@ -36,9 +36,9 @@
 /* ---- hero ---- */
 .pc-hero { padding-top: calc(var(--head-h) + clamp(32px, 6vh, 80px)); padding-bottom: clamp(48px, 6vw, 80px); }
 .pc-hero__grid { display: grid; gap: clamp(32px, 5vw, 56px); align-items: center; }
-.pc-hero__tags { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--mute); margin: 0 0 16px; }
-.pc-hero h1 { font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem); font-weight: 450; letter-spacing: -0.04em; line-height: 1.04; color: var(--head-a); margin: 0 0 16px; }
-.pc-hero h1 em { font-style: normal; color: var(--pc-accent-text); }
+.pc-hero__tags { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500; color: var(--mute); margin: 18px 0 14px; }
+.pc-hero h1 { font-size: var(--h-sec); font-weight: 450; letter-spacing: -0.04em; line-height: 1.04; color: var(--head-a); margin: 0 0 16px; }
+.pc-hero h1 em { font-style: normal; font-weight: 600; color: #5e8a14; }
 .pc-hero__ml { font-size: clamp(0.95rem, 0.85rem + 0.45vw, 1.2rem); font-weight: 700; line-height: 1.45; color: var(--ink); margin: 0 0 14px; max-width: none; }
 .pc-hero__lede { font-size: clamp(1.0625rem, 0.95rem + 0.4vw, 1.25rem); color: var(--ink-2); max-width: 46ch; margin: 0 0 28px; }
 .pc-hero__row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
@@ -62,20 +62,37 @@
 .pc-feat__row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 @media (min-width: 900px) { .pc-feat { grid-template-columns: minmax(0,6fr) minmax(0,6fr); } }
 
-/* ---- episodes: reuses the homepage's horizontalGallery() mechanic (main.ts) via the same
-   [data-hgal]/[data-hgal-track] attributes, just a flex filmstrip instead of Process's 2-col grid
-   — "every section a different layout family" is the site's own stated rule, not a deviation. ---- */
-.pc-hgal__view { overflow: hidden; }
-.pc-hgal__track { display: flex; gap: 20px; width: max-content; }
-.pc-ep { width: min(80vw, 300px); flex: none; }
-.pc-ep__th { position: relative; overflow: hidden; border-radius: var(--r-inner); aspect-ratio: 16/9; background: var(--card-2); }
-.pc-ep__th img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
-.pc-ep:hover .pc-ep__th img { transform: scale(1.06); }
-.pc-ep__play { position: absolute; inset: 0; margin: auto; width: 46px; height: 46px; border-radius: 50%; background: rgb(5 5 6 / .55); border: 2px solid rgb(255 255 255 / .8); display: grid; place-items: center; color: #fff; transition: transform .3s; }
-.pc-ep:hover .pc-ep__play { transform: scale(1.1); }
-.pc-ep__tag { display: block; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; color: var(--pc-accent-text); margin: 12px 0 0; }
-.pc-ep h3 { font-size: 15px; line-height: 1.4; font-weight: 450; color: var(--ink); margin: 4px 0 0; }
-@media (max-width: 899px) { .pc-hgal__view { overflow-x: auto; } .pc-hgal__track { scroll-snap-type: x mandatory; } .pc-ep { scroll-snap-align: start; } }
+/* ---- episodes: bento grid of .card tiles (lead episode 2x2), lime fill on hover, swipe row on phones ---- */
+.pc-eps__aside { display: grid; justify-items: start; gap: 20px; }
+.pc-eps__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.pc-ep { display: flex; flex-direction: column; padding: 10px; border-radius: var(--r-card); transition: background .4s var(--ease), box-shadow .4s var(--ease), translate .5s var(--ease); }
+.pc-ep--lead { grid-column: span 2; grid-row: span 2; }
+.pc-ep__th { position: relative; display: block; overflow: hidden; border-radius: calc(var(--r-card) - 8px); aspect-ratio: 16/9; background: var(--card-2); }
+.pc-ep__th img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.pc-ep__play { position: absolute; inset: 0; margin: auto; width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; transition: transform .4s var(--ease); }
+.pc-ep--lead .pc-ep__play { width: 76px; height: 76px; }
+.pc-ep__new { position: absolute; left: 14px; top: 14px; padding: 6px 14px; border-radius: var(--r-pill); background: #beda52; color: #11150a; font-size: 12px; font-weight: 600; }
+.pc-ep__body { display: flex; flex-direction: column; flex: 1; padding: 16px 8px 8px; }
+.pc-ep__tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; transition: color .4s; }
+.pc-ep h3 { font-size: 16px; line-height: 1.35; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); margin: 6px 0 16px; }
+.pc-ep h3 a { color: inherit; }
+.pc-ep--lead .pc-ep__body { padding: 22px 14px 12px; }
+.pc-ep--lead h3 { font-size: clamp(1.4rem, 1rem + 1.4vw, 2.1rem); line-height: 1.12; letter-spacing: -0.03em; font-weight: 450; max-width: 22ch; }
+.pc-ep__go { margin-top: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: var(--mute); transition: color .4s, gap .4s var(--ease); }
+@media (hover: hover) {
+  .pc-ep:hover { background: #beda52; box-shadow: 0 18px 36px -22px rgb(95 120 20 / .7); translate: 0 -4px; }
+  .pc-ep:hover h3, .pc-ep:hover .pc-ep__tag, .pc-ep:hover .pc-ep__go { color: #11150a; }
+  .pc-ep:hover .pc-ep__go { gap: 10px; }
+  .pc-ep:hover .pc-ep__th img { transform: scale(1.05); }
+  .pc-ep:hover .pc-ep__play { transform: scale(1.12); background: #11150a; border-color: #11150a; color: #beda52; }
+}
+@media (max-width: 999px) { .pc-eps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pc-ep--lead { grid-row: auto; } }
+@media (max-width: 699px) {
+  .pc-eps__grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--gx); gap: 12px; margin-inline: calc(-1 * var(--gx)); padding: 4px var(--gx) 12px; scrollbar-width: none; }
+  .pc-eps__grid::-webkit-scrollbar { display: none; }
+  .pc-ep, .pc-ep--lead { flex: none; width: 82vw; scroll-snap-align: start; }
+  .pc-ep--lead h3 { font-size: 1.25rem; }
+}
 
 /* ---- topics: full-cover photo cards on the shared .card radius/shadow ---- */
 .pc-topics { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
@@ -127,3 +144,32 @@
 .pc-pitch__img { position: relative; border-radius: var(--r-card); overflow: hidden; aspect-ratio: 16/9; }
 .pc-pitch__img img { width: 100%; height: 100%; object-fit: cover; }
 @media (min-width: 900px) { .pc-pitch { grid-template-columns: minmax(0,5fr) minmax(0,7fr); } }
+
+/* ---- design-system pass (2026-10-23): page width = header width, shared heads, brand-lime details ---- */
+/* The header uses the Lunar-template metrics (min(100% - 80px, 1360px), 48px/32px gutters below 992/768,
+   site.css). Re-pointing this page's --maxw/--gx at the same numbers makes every .wrap, and the episode
+   strip's start edge, line up with the logo and the CTA at every width. */
+.pc-page { --maxw: 1360px; --gx: 40px; }
+@media (max-width: 991px) { .pc-page { --gx: 24px; } }
+@media (max-width: 767px) { .pc-page { --gx: 16px; } }
+
+.pc-side { color: var(--mute); max-width: 34ch; font-size: 16px; line-height: 1.6; margin: 0; }
+.pc-side--hosts { max-width: 56ch; margin: 0 0 clamp(28px, 3vw, 40px); }
+.pc-feat__ml { color: var(--mute); font-weight: 700; margin: 16px 0 0; }
+.pc-feat__sub { color: var(--ink-2); font-size: 16px; line-height: 1.6; max-width: 46ch; margin: 0; }
+.pc-feat__title { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.75rem); }
+.pc-feat__guest { color: #5e8a14; font-weight: 500; }
+.pc-pitch__p { color: var(--mute); font-size: 16px; line-height: 1.6; max-width: 46ch; margin: calc(-1 * clamp(16px, 2vw, 36px)) 0 24px; }
+.pc-pitch__rows { max-width: 460px; }
+
+/* brand lime: play buttons, episode tags, topic chips */
+.pc-feat__play, .pc-ep__play { background: #beda52; border-color: #beda52; color: #11150a; }
+.pc-ep__tag { color: #5e8a14; }
+.pc-topic__ico { transition: background .3s, color .3s; }
+@media (hover: hover) {
+  .pc-topic:hover .pc-topic__ico { background: #beda52; color: #11150a; }
+  .pc-person__card { transition: translate .5s var(--ease), box-shadow .5s var(--ease); }
+  .pc-person:hover .pc-person__card { translate: 0 -4px; box-shadow: 0 0 0 2px #beda52, 0 18px 34px -20px rgb(95 120 20 / .6); }
+}
+.pc-person__tag { background: #beda52; color: #11150a; }
+@media (max-width: 899px) { .pc-hero > .blob { display: none; } }
