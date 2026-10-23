@@ -189,3 +189,13 @@
 :root:not([data-theme='light']) .pc-hero h1 em { color: #beda52; }
 :root:not([data-theme='light']) .pc-ep__tag, :root:not([data-theme='light']) .pc-feat__guest { color: #beda52; }
 @media (hover: hover) { :root:not([data-theme='light']) .pc-ep:hover .pc-ep__tag { color: #11150a; } }
+
+/* channel banner band */
+.pc-band__link { display: block; border-radius: var(--r-card); overflow: hidden; box-shadow: 0 0 0 1px var(--edge); transition: translate .5s var(--ease), box-shadow .5s var(--ease); }
+.pc-band__link img { display: block; width: 100%; height: auto; }
+@media (hover: hover) { .pc-band__link:hover { translate: 0 -4px; box-shadow: 0 0 0 2px #beda52, 0 20px 40px -24px rgb(95 120 20 / .7); } }
+/* guest pitch without the image: heading + text left, contact rows right, bottom-aligned */
+.pc-pitch { align-items: end; }
+.pc-pitch__p { margin-bottom: 0; }
+.pc-pitch__rows { max-width: none; }
+@media (min-width: 900px) { .pc-pitch { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); } }

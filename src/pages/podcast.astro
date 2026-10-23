@@ -179,6 +179,18 @@ const jsonLd = {
       </div>
     </section>
 
+    <!-- CHANNEL BANNER: the YouTube channel art, shown whole (a tighter crop on phones), linking to the subscribe prompt -->
+    <section class="sec pc-band" aria-label="Subscribe to the WiseUp Podcast on YouTube">
+      <div class="wrap">
+        <a class="pc-band__link" href={`${CHANNEL}?sub_confirmation=1`} target="_blank" rel="noopener" data-reveal="up">
+          <picture>
+            <source media="(max-width: 699px)" srcset="/podcast/channel-banner-sm.webp" width="1050" height="282" />
+            <img src="/podcast/channel-banner.webp" alt="Top ranked Malayalam business podcast: weekly episodes. Subscribe and enable notifications." width="1707" height="282" loading="lazy" />
+          </picture>
+        </a>
+      </div>
+    </section>
+
     <!-- TOPICS -->
     <section class="sec" id="topics" aria-labelledby="topics-h">
       <div class="wrap">
@@ -254,6 +266,8 @@ const jsonLd = {
         <div>
           <SecHead eyebrow="Be a guest" id="guest-h" lines={['Have a story', 'worth sharing?']} />
           <p class="pc-pitch__p" data-reveal="up">We're always excited to talk with entrepreneurs, creators, experts and interesting people from diverse fields. Share your journey, inspire others, and be part of the WiseUp conversation.</p>
+        </div>
+        <div>
           <ul class="cta-rows pc-pitch__rows" data-reveal="up">
             <li>
               <a class="cta-row" href={site.whatsapp} rel="noopener" target="_blank">
@@ -270,9 +284,6 @@ const jsonLd = {
               </a>
             </li>
           </ul>
-        </div>
-        <div class="pc-pitch__img" data-reveal="up" data-delay="0.1">
-          <img src="/podcast/guest-banner.webp" alt="Top ranked Malayalam business podcast banner with the WiseUp team" width="1400" height="231" loading="lazy" />
         </div>
       </div>
     </section>
