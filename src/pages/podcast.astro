@@ -64,6 +64,19 @@ const hosts = [
   { name: 'Sreerag', role: 'Host', img: '/podcast/host-sreerag.webp' },
 ];
 
+// Gallery: real WiseUp Podcast photos only. Add more by appending { img, w, h, alt, cap, span } (span: 'big' 2x2, 'tall' 1x2,
+// 'wide' 2x1, or none for 1x1).
+const gallery = [
+  { img: '/podcast/hero-team.webp', w: 1400, h: 916, alt: 'The WiseUp Podcast team holding their award', cap: 'Top ranked Malayalam business podcast', span: 'big' },
+  { img: '/podcast/quote-jijo.webp', w: 700, h: 795, alt: 'Jijo Sunny in the WiseUp Podcast studio', cap: 'Jijo Sunny, Buy Me a Coffee', span: 'tall' },
+  { img: '/podcast/host-jijin.webp', w: 400, h: 500, alt: 'Jijin Mohan, host of the WiseUp Podcast', cap: 'Jijin Mohan, host', span: 'tall' },
+  { img: '/podcast/host-chethana.webp', w: 400, h: 500, alt: 'Chethana, host of the WiseUp Podcast', cap: 'Chethana, host', span: 'tall' },
+  { img: '/podcast/yt-featured.webp', w: 640, h: 360, alt: 'On set with Jijo Sunny', cap: 'On set: Buy Me a Coffee', span: 'wide' },
+  { img: '/podcast/host-sreerag.webp', w: 400, h: 500, alt: 'Sreerag, host of the WiseUp Podcast', cap: 'Sreerag, host', span: 'tall' },
+  { img: '/podcast/yt-abcgroup.webp', w: 640, h: 360, alt: 'On set with ABC Group', cap: 'On set: ABC Group' },
+  { img: '/podcast/yt-litmus7.webp', w: 640, h: 360, alt: 'On set with Venu Gopalakrishnan of Litmus7', cap: 'On set: Litmus7' },
+];
+
 const faqs = [
   { q: 'What is WiseUp Podcast?', a: "It's a business and entrepreneurship podcast featuring founders, business leaders, marketers, investors and industry experts." },
   { q: 'Who can be a guest on the podcast?', a: 'Founders, CEOs, business owners, industry experts, investors, creators and professionals with valuable insights or stories to share.' },
@@ -242,6 +255,35 @@ const jsonLd = {
             ))}
         </ul>
       </div>
+    </section>
+
+    <!-- GALLERY: bento grid of real podcast photos; a click opens the lightbox (motion/podcast.ts). -->
+    <section class="sec" id="gallery" aria-labelledby="gallery-h">
+      <div class="wrap">
+        <div class="loop-head">
+          <SecHead eyebrow="Gallery" id="gallery-h" lines={['Behind the', 'microphone.']} />
+          <p class="pc-side" data-reveal="fade">Moments from the studio, the sets and the people who make every episode happen.</p>
+        </div>
+        <ul class="pc-gal" data-gallery>
+          {gallery.map((g, i) => (
+            <li class:list={['pc-gal__item', g.span && `pc-gal__item--${g.span}`]} data-reveal="up" data-delay={String((i % 4) * 0.06)}>
+              <button class="pc-gal__btn" type="button" data-gal-open={i} data-src={g.img} data-cap={g.cap} aria-label={`Open photo: ${g.cap}`}>
+                <img src={g.img} alt={g.alt} width={g.w} height={g.h} loading="lazy" />
+                <span class="pc-gal__cap">{g.cap}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <dialog class="pc-lb" data-lightbox aria-label="Photo viewer">
+        <figure class="pc-lb__fig">
+          <img data-lb-img alt="" />
+          <figcaption data-lb-cap></figcaption>
+        </figure>
+        <button class="pc-lb__btn pc-lb__close" type="button" aria-label="Close" data-lb-close><Icon name="x" size={20} /></button>
+        <button class="pc-lb__btn pc-lb__prev" type="button" aria-label="Previous photo" data-lb-prev><Icon name="chev-l" size={20} /></button>
+        <button class="pc-lb__btn pc-lb__next" type="button" aria-label="Next photo" data-lb-next><Icon name="chev-r" size={20} /></button>
+      </dialog>
     </section>
 
     <!-- FAQ: exact homepage pattern -->

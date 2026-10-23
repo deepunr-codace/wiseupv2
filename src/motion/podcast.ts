@@ -7,6 +7,7 @@ import { onPage } from '../engine';
 
 export function setupPodcast() {
   embedThumbnails();
+  galleryLightbox();
 }
 
 /* Thumbnails stay real <a href="youtube.com/watch?v=..."> links (work with JS off, middle-click,
@@ -34,5 +35,41 @@ function embedThumbnails() {
     };
     els.forEach((el) => el.addEventListener('click', onClick));
     return () => els.forEach((el) => el.removeEventListener('click', onClick));
+  });
+}
+
+/* Gallery: a click opens the photo in a native <dialog> (Esc closes, focus is trapped and restored by the
+   browser); prev/next buttons and the arrow keys step through, a click on the dark backdrop closes. */
+function galleryLightbox() {
+  onPage(() => {
+    const dlg = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+    const items = [...document.querySelectorAll<HTMLButtonElement>('[data-gal-open]')];
+    const img = dlg?.querySelector<HTMLImageElement>('[data-lb-img]');
+    const cap = dlg?.querySelector<HTMLElement>('[data-lb-cap]');
+    if (!dlg || !img || !cap || !items.length) return;
+    let at = 0;
+    const show = (i: number) => {
+      at = (i + items.length) % items.length;
+      const b = items[at];
+      img.src = b.dataset.src!;
+      img.alt = b.querySelector('img')?.alt || '';
+      cap.textContent = b.dataset.cap || '';
+    };
+    const open = (e: Event) => { show(Number((e.currentTarget as HTMLElement).dataset.galOpen)); dlg.showModal(); };
+    const prev = () => show(at - 1);
+    const next = () => show(at + 1);
+    const close = () => dlg.close();
+    const key = (e: KeyboardEvent) => { if (e.key === 'ArrowLeft') prev(); else if (e.key === 'ArrowRight') next(); };
+    const backdrop = (e: MouseEvent) => { if (e.target === dlg) close(); };
+    const btnPrev = dlg.querySelector('[data-lb-prev]'), btnNext = dlg.querySelector('[data-lb-next]'), btnClose = dlg.querySelector('[data-lb-close]');
+    items.forEach((b) => b.addEventListener('click', open));
+    btnPrev?.addEventListener('click', prev); btnNext?.addEventListener('click', next); btnClose?.addEventListener('click', close);
+    dlg.addEventListener('keydown', key); dlg.addEventListener('click', backdrop);
+    return () => {
+      items.forEach((b) => b.removeEventListener('click', open));
+      btnPrev?.removeEventListener('click', prev); btnNext?.removeEventListener('click', next); btnClose?.removeEventListener('click', close);
+      dlg.removeEventListener('keydown', key); dlg.removeEventListener('click', backdrop);
+      if (dlg.open) dlg.close();
+    };
   });
 }
