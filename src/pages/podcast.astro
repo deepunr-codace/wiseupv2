@@ -219,11 +219,13 @@ const jsonLd = {
         <ul class="pc-hosts">
             {hosts.map((p, i) => (
               <li class="pc-person" data-reveal="up" data-delay={String(i * 0.08)}>
-                <div class="pc-person__card">
-                  <img src={p.img} alt={p.name} width="400" height="500" loading="lazy" />
-                  <span class="pc-person__tag">{p.role}</span>
-                  <div class="pc-person__name"><b>{p.name}</b></div>
-                </div>
+                <figure class="pc-person__card">
+                  <img src={p.img} alt={`${p.name}, host of the WiseUp Podcast`} width="400" height="500" loading="lazy" />
+                  <figcaption class="pc-person__cap">
+                    <span class="pc-person__name">{p.name}</span>
+                    <span class="pc-person__role">Host, WiseUp Podcast</span>
+                  </figcaption>
+                </figure>
               </li>
             ))}
         </ul>
