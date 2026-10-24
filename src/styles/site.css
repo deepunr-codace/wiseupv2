@@ -1213,3 +1213,25 @@ section:has(> .blob) > :not(.blob) { position: relative; z-index: 1; }
 .fit__card--no .fit__list li { color: var(--mute); }
 .fit__card--yes .fit__list li { font-weight: 500; }
 @media (max-width: 767px) { .fit { grid-template-columns: 1fr; } }
+
+/* ---------- Responsive pass (all pages) ----------
+   1. One gutter system: content edges line up with the header's edges at every width (the header uses the Lunar
+      metrics: 1360px max, 40px gutters; 24px below 992px; 16px below 768px).
+   2. One section rhythm on phones (44px top and bottom), so every page breathes the same.
+   3. Small phones: the header keeps the logo readable (icon-only Menu, slightly smaller round buttons). */
+:root { --maxw: 1360px; --gx: 40px; }
+@media (max-width: 991px) { :root { --gx: 24px; } }
+@media (max-width: 767px) { :root { --gx: 16px; } }
+@media (max-width: 767px) { .sec { padding-block: 44px; } .sec.page-head { padding-top: calc(var(--head-h) + 40px); } }
+.hd__logo { flex: none; min-width: max-content; min-height: 44px; }
+@media (max-width: 379px) {
+  .hd__actions { gap: 8px; }
+  .hd__theme, .hd__sub { width: 44px; height: 44px; }
+  .hd__sub { padding: 0; justify-content: center; }
+  .hd__menu { height: 44px; padding: 0 14px; }
+  .hd__menu span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .hd__logo img { height: 34px; }
+  .hd__logo--podcast img { height: 38px; }
+}
+@media (max-width: 899px) { .hd__actions > * { flex: none; } }
+@media (max-width: 379px) { .hd__sub { width: 44px; min-width: 44px; } .hd__sub-label, .hd__sub-count { display: none; } }

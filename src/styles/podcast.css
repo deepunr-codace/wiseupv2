@@ -536,7 +536,7 @@
 /* responsive pass: keep the hero's last word with its full stop; blobs off on small phones (they sat behind copy);
    a touch more air between sections on phones */
 .nw { white-space: nowrap; }
-@media (max-width: 699px) { .pc-page .blob { display: none; } .pc-page .sec { padding-block: 40px; } }
+@media (max-width: 699px) { .pc-page .blob { display: none; } .pc-page .sec { padding-block: 44px; } }
 @media (max-width: 379px) { .pc-hero__row .b { font-size: 12px; padding: 0 8px; } }
 :root[data-theme='light'] .pc-person__card { box-shadow: none; }
 
