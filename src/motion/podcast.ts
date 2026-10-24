@@ -114,24 +114,54 @@ function testimonialVideos() {
   });
 }
 
-/* Featured stack: only the first card shows; the section pins and scrolling slides each next card up from below
-   over it while the one underneath shrinks back and dims. Without JS / reduced motion the cards simply stack. */
+/* Featured stack: the cards stick under the header (CSS position: sticky) and each next one scrolls up over the
+   previous one while that one shrinks back and dims. No pin, so the page above and below stays in normal flow.
+   Without JS / reduced motion the cards are a plain list. */
 function featuredStack() {
   onPage(() => {
     const stack = document.querySelector<HTMLElement>('[data-fstack]');
     const cards = gsap.utils.toArray<HTMLElement>('[data-fcard]');
     if (!stack || cards.length < 2 || prefersReducedMotion()) return;
+    // Cards are position: sticky (CSS .is-stacked); scrolling itself moves the next card up over the
+    // previous one. GSAP only shrinks/dims the card underneath while the next one covers it.
     stack.classList.add('is-stacked');
-    const tl = gsap.timeline({ defaults: { ease: 'none' } });
-    cards.slice(1).forEach((card, i) => {
-      tl.fromTo(card, { y: () => innerHeight }, { y: 0, duration: 1 }, i)
-        .to(cards[i], { scale: 0.92, opacity: 0.2, duration: 1 }, i);
+    // The side watermark columns run past the stack by an amount based on the last card's height (CSS .pc-fwm).
+    const stage = stack.parentElement!;
+    const last = cards[cards.length - 1];
+    const ro = new ResizeObserver(() => stage.style.setProperty('--fc-last', `${last.offsetHeight}px`));
+    ro.observe(last);
+    // Measured off the (non-sticky) stack: a stuck card's own rect depends on scroll position.
+    const offset = (n: number) => {
+      const gap = parseFloat(getComputedStyle(stack).rowGap) || 0;
+      return cards.slice(0, n).reduce((y, c) => y + c.offsetHeight + gap, 0);
+    };
+    const tweens = cards.slice(1).map((card, i) => gsap.to(cards[i], {
+      scale: 0.92, '--dim': 0.7, ease: 'none',
+      scrollTrigger: {
+        trigger: stack, scrub: 0.6, invalidateOnRefresh: true,
+        start: () => `top+=${offset(i + 1)} bottom`,
+        end: () => `top+=${offset(i + 1)} ${parseFloat(getComputedStyle(card).top) || 0}px`,
+      },
+    }));
+    // Stack progress for the mobile watermark band's lime fill (--p, CSS .pc-fwm): 0 when the first card sticks,
+    // 1 when the last one has slid in.
+    const stuckTop = (c: HTMLElement) => parseFloat(getComputedStyle(c).top) || 0;
+    const progress = ScrollTrigger.create({
+      trigger: stack, invalidateOnRefresh: true,
+      start: () => `top ${stuckTop(cards[0])}px`,
+      end: () => `top+=${offset(cards.length - 1)} ${stuckTop(last)}px`,
+      onUpdate: (self) => stage.style.setProperty('--p', self.progress.toFixed(3)),
+      onRefresh: (self) => stage.style.setProperty('--p', self.progress.toFixed(3)),
     });
-    const st = ScrollTrigger.create({
-      trigger: stack.closest('section') || stack, start: 'top top+=' + Math.round(innerHeight * 0.1), end: () => '+=' + innerHeight * 0.9 * (cards.length - 1),
-      pin: true, scrub: 0.6, animation: tl, invalidateOnRefresh: true,
-    });
-    return () => { st.kill(); tl.kill(); stack.classList.remove('is-stacked'); gsap.set(cards, { clearProps: 'all' }); };
+    return () => {
+      progress.kill();
+      stage.style.removeProperty('--p');
+      tweens.forEach((t) => { t.scrollTrigger?.kill(); t.kill(); });
+      stack.classList.remove('is-stacked');
+      gsap.set(cards, { clearProps: 'all' });
+      ro.disconnect();
+      stage.style.removeProperty('--fc-last');
+    };
   });
 }
 

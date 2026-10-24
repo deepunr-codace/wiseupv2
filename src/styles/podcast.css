@@ -447,19 +447,63 @@
   padding: clamp(14px, 1.4vw, 20px); padding-right: clamp(20px, 3vw, 44px); border-radius: calc(var(--r-card) + 6px); background: var(--card); box-shadow: inset 0 0 0 1px var(--edge), 0 24px 50px -30px rgb(0 0 0 / .35);
   transform-origin: 50% 0; will-change: transform; }
 .pc-fcard .pc-feat__frame { aspect-ratio: 16 / 9; border-radius: var(--r-card); box-shadow: none; }
-.pc-fcard__body .eyebrow { margin-bottom: 4px; }
 .pc-fcard .pc-feat__title { font-size: clamp(1.6rem, 1.1rem + 1.7vw, 2.6rem); }
 @media (max-width: 899px) {
   .pc-fcard { grid-template-columns: 1fr; padding: 12px 12px 22px; gap: 18px; }
   .pc-fcard__body { padding: 0 8px; }
 }
 @media (max-height: 760px) and (min-width: 900px) { .pc-fcard .pc-feat__sub { display: none; } }
-/* JS on (featuredStack): cards share one cell; the section pins and the next card slides up over the first */
-.pc-fstack.is-stacked { gap: 0; }
-.pc-fstack.is-stacked > .pc-fcard { grid-area: 1 / 1; }
-.pc-fcard { transform-origin: 50% 0; }
-#featured { overflow: clip; }
-@media (max-width: 899px) { .pc-fstack.is-stacked > .pc-fcard { align-content: start; } }
+/* JS on (featuredStack): each card sticks under the header and the next one scrolls up over it in normal
+   flow (no pin, so the page above/below stays visible and no empty pin-spacer). Each later card sticks a
+   little lower so the edge of the one behind still shows. */
+/* --fs-top follows the site header: just under it while it shows, near the top of the screen while it's hidden
+   on scroll-down (no empty band). */
+#featured { --fs-top: calc(var(--head-h) + 12px); }
+:root:has(.hd.is-hidden) #featured { --fs-top: 16px; }
+.pc-fstack.is-stacked > .pc-fcard { position: sticky; top: calc(var(--fs-top) + 8px); transition: top .55s var(--ease); }
+.pc-fstack.is-stacked > .pc-fcard + .pc-fcard { top: calc(var(--fs-top) + 24px); }
+@media (max-height: 760px) { .pc-fstack.is-stacked .pc-feat__sub { display: none; } }
+
+/* Watermark words framing the stack, in the section-heading type as a faint solid fill: "Featured" up the left side,
+   "Podcasts" down the right, kept beside the cards while the stack scrolls (sticky inside full-height grid columns).
+   Mobile has its own treatment, see the max-width: 899px block below. */
+.pc-fstage { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; column-gap: clamp(10px, 1.4vw, 22px); }
+.pc-fstage > .pc-fstack { grid-column: 2; grid-row: 1; }
+/* The negative margin stretches each word column past the stack by (screen - last card's stuck bottom edge), so the
+   screen-tall sticky box below releases together with the last card instead of a screen-height early.
+   --fc-last = the last card's height, set by featuredStack. */
+.pc-fwm { grid-row: 1; pointer-events: none; user-select: none;
+  margin-bottom: min(0px, calc(var(--fs-top) + 24px + var(--fc-last, 100svh) - 100svh)); }
+.pc-fwm--l { grid-column: 1; }
+.pc-fwm--r { grid-column: 3; }
+/* A screen-tall sticky box pinned to the top, so the word sits centred between the top and bottom of the screen */
+.pc-fwm > span { position: sticky; top: 0; display: grid; place-items: center; height: 100vh; height: 100svh;
+  writing-mode: vertical-rl; white-space: nowrap; font-size: clamp(3.4rem, 1.4rem + 4vw, 6.6rem); font-weight: 700; line-height: 0.8; letter-spacing: -0.04em;
+  color: rgb(255 255 255 / 0.07); }
+:root[data-theme='light'] .pc-fwm > span { color: rgb(17 21 10 / 0.06); }
+.pc-fwm--l > span { rotate: 180deg; }
+/* Mobile: "Featured  Podcasts" is one band that sticks above the cards and doubles as the stack's progress bar:
+   a lime fill sweeps through the letters, "Featured" then "Podcasts", as you scroll through the cards (--p 0..1,
+   set by featuredStack). The cards stick just below the band. */
+@media (max-width: 899px) {
+  .pc-fstage { --wm-fs: clamp(2.2rem, 10vw, 4.4rem); --wm-h: calc(var(--wm-fs) * 1.1);
+    --wm-base: rgb(255 255 255 / 0.12); --wm-fill: #beda52;
+    grid-template-columns: auto auto; grid-template-rows: var(--wm-h) auto; justify-content: space-between; row-gap: 12px; }
+  :root[data-theme='light'] .pc-fstage { --wm-base: rgb(17 21 10 / 0.1); --wm-fill: #8fa838; }
+  .pc-fstage > .pc-fstack { grid-column: 1 / -1; grid-row: 2; }
+  .pc-fwm { grid-row: 1 / 3; margin-bottom: 0; }
+  .pc-fwm--r { grid-column: 2; }
+  .pc-fwm > span { top: var(--fs-top); display: block; height: auto; writing-mode: horizontal-tb; rotate: none; font-size: var(--wm-fs); line-height: 1.1;
+    color: transparent; -webkit-background-clip: text; background-clip: text;
+    background-image: linear-gradient(90deg, var(--wm-fill) 0 var(--q), var(--wm-base) var(--q)); transition: top .55s var(--ease); }
+  .pc-fwm--l > span { --q: calc(clamp(0, var(--p, 0) * 2, 1) * 100%); }
+  .pc-fwm--r > span { --q: calc(clamp(0, var(--p, 0) * 2 - 1, 1) * 100%); }
+  .pc-fstack.is-stacked > .pc-fcard { top: calc(var(--fs-top) + var(--wm-h) + 10px); }
+  .pc-fstack.is-stacked > .pc-fcard + .pc-fcard { top: calc(var(--fs-top) + var(--wm-h) + 26px); }
+}
+/* A covered card dims toward the page colour through this overlay (--dim, animated by featuredStack)
+   rather than fading its own opacity, which let the cards behind ghost through. */
+.pc-fstack.is-stacked > .pc-fcard::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: var(--bg); opacity: var(--dim, 0); pointer-events: none; }
 
 /* ---- episodes v3: view count + date on the thumbnail, Malayalam-ready titles, giant outlined marquee ---- */
 .pc-ep h3 { font-family: 'Inter', 'Noto Sans Malayalam', sans-serif; }

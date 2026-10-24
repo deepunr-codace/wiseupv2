@@ -1,8 +1,10 @@
-// Generates template-wiseup-{home,about,contact}.php from the current production build (dist/),
-// following the project's established WordPress conventions: fully self-contained (no
+// Generates template-wiseup-{home,about,contact,podcast}.php from the current production build
+// (dist/), following the project's established WordPress conventions: fully self-contained (no
 // get_header/get_footer), wp_head()/wp_footer() hooked in for plugin compatibility, every bare-tag
 // selector scoped to .wiseup-home AND wrapped in :where() so it can neither leak onto the theme's
-// own markup nor outrank one of our own component rules. All three pages share one scoped
+// own markup nor outrank one of our own component rules, and every theme/plugin stylesheet actively
+// dequeued on these pages so none of the active theme's own CSS can apply to or conflict with ours
+// (see the wp_dequeue_style loop in each generated template's <head>). All pages share one scoped
 // stylesheet/script (same design system) and one asset folder — only the body markup, title and
 // meta description differ per page.
 // Usage: npm run build && node scripts/gen-wp-template.mjs
@@ -18,7 +20,7 @@ const OUT_ASSETS = path.join(ROOT, 'wiseup-assets'); // copy this whole folder, 
 // the WP theme, admin bar, or any other plugin-injected chrome sharing the page outside our own
 // markup — and wrap every one of those in :where() so it also can't outrank one of our own
 // single-class component rules by specificity. Shared verbatim across all three generated pages. --
-let tokens = readFileSync('src/styles/tokens.css', 'utf8');
+const tokens = readFileSync('src/styles/tokens.css', 'utf8');
 let base = readFileSync('src/styles/base.css', 'utf8');
 const site = readFileSync('src/styles/site.css', 'utf8');
 
@@ -50,22 +52,32 @@ const scopeBase = (css) => {
   return out;
 };
 base = scopeBase(base);
-// tokens.css only defines custom-property values (no bare-tag selectors) — safe to keep as-is,
-// except its two root blocks, which we also scope so page-specific tokens never leak site-wide.
-// Tokens sit on our <html> (so the html background rule above can read var(--bg)), and on our body
-// too as a fallback for the rare browser without :has().
-tokens = tokens.replace(/^:root \{/m, `${OUR_HTML}, :where(.wiseup-home) {`).replace(/^\[data-mood='day'\] \{/m, ":where(.wiseup-home) [data-mood='day'] {");
+// tokens.css stays on plain :root: each template prints its own <html>, so :root is always ours.
+// Don't also declare the tokens on body.wiseup-home: that re-sets the dark values on <body>, so the
+// light-mode override (:root[data-theme='light'] { --bg: #fff ... }) never reached anything inside
+// it and the theme toggle only half-worked on the live site.
 
-const css = `/* ===== tokens ===== */\n${tokens}\n/* ===== base (scoped to .wiseup-home) ===== */\n${base}\n/* ===== components ===== */\n${site}`;
+// lead.css: LeadModal.astro's own stylesheet, imported by the component directly (not re-exported
+// through site.css) and included on every page via Base.astro — found missing from every generated
+// template (the popup's HTML was there, none of its CSS was, so it rendered completely unstyled)
+// while investigating "why the popup form style broken". All class-scoped already (.lead*), no
+// bare-tag selectors, so it's safe to concatenate as-is, same as site.css.
+const lead = readFileSync('src/styles/lead.css', 'utf8');
+
+const css = `/* ===== tokens ===== */\n${tokens}\n/* ===== base (scoped to .wiseup-home) ===== */\n${base}\n/* ===== components ===== */\n${site}\n/* ===== lead popup (Base.astro, every page) ===== */\n${lead}`;
 
 // ---------- 2. JS: the compiled module bundle, inlined verbatim. Identical on every page. ----------
 const jsFile = readdirSync(path.join(DIST, '_astro')).find((f) => f.startsWith('Base.astro_astro_type_script'));
 const js = readFileSync(path.join(DIST, '_astro', jsFile), 'utf8');
 
 const ASSET_BASE = "<?php echo get_template_directory_uri(); ?>/wiseup-assets";
+// "podcast" added 2026-10-24 for the /podcast page's own real asset folder (public/podcast/,
+// banner/host photos/channel art, including its ep/ and gallery/ subfolders — same prefix match
+// catches those too). "strip" added same day for the homepage hero strip's own image set
+// (public/strip/) — found missing via this script's own unrewritten-path warning, not assumed.
 const rewriteAssetPaths = (body) => body
-  .replace(/(src|srcset|data-seq-base)="\/(_astro|process|seq|clients|brand)\//g, (_, attr, dir) => `${attr}="${ASSET_BASE}/${dir}/`)
-  .replace(/srcset="([^"]+)"/g, (m, val) => `srcset="${val.replace(/(?<=,\s*)\/(_astro|process|seq|clients|brand)\//g, (_, dir) => `${ASSET_BASE}/${dir}/`)}"`);
+  .replace(/(src|srcset|data-seq-base)="\/(_astro|process|seq|clients|brand|podcast|strip)\//g, (_, attr, dir) => `${attr}="${ASSET_BASE}/${dir}/`)
+  .replace(/srcset="([^"]+)"/g, (m, val) => `srcset="${val.replace(/(?<=,\s*)\/(_astro|process|seq|clients|brand|podcast|strip)\//g, (_, dir) => `${ASSET_BASE}/${dir}/`)}"`);
 
 // ---------- 3. One PHP file per page. ----------
 const PAGES = [
@@ -93,6 +105,19 @@ const PAGES = [
     title: 'Contact Us | WiseUp',
     description: "Tell us where you want your brand to go. We'll send the plan before we talk numbers.",
   },
+  {
+    slug: 'podcast', distDir: 'podcast', outFile: 'template-wiseup-podcast.php', templateName: 'WiseUp Podcast',
+    // Page-only stylesheet, same pattern as about.css.
+    extraCss: ['src/styles/podcast.css'],
+    title: 'WiseUp Podcast | The Malayalam Podcast for Online Business Owners',
+    description: 'A Malayalam business podcast with entrepreneurs, creators and changemakers who are building a better tomorrow.',
+    // Mirrors podcast.astro's own <Fragment slot="head"> verbatim — see the "extraHead" note on
+    // the home page entry above for why this has to be kept in sync by hand.
+    extraHead: `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@700;800&display=swap" rel="stylesheet"></noscript>`,
+  },
 ];
 
 for (const page of PAGES) {
@@ -112,6 +137,11 @@ for (const page of PAGES) {
   // the PAGES values are only a fallback.
   const title = html.match(/<title>([^<]*)<\/title>/)?.[1] || page.title;
   const description = html.match(/<meta name="description" content="([^"]*)"/)?.[1] || page.description;
+  // Base.astro's inline head script (js/motion classes + restoring the visitor's saved light/dark
+  // theme before first paint), taken from the built page rather than hand-copied: a hand copy here
+  // once kept only the first two lines, so WP pages always opened dark whatever the visitor chose.
+  const headScript = html.match(/<head>([\s\S]*?)<\/head>/)?.[1].match(/<script>[\s\S]*?wu-theme[\s\S]*?<\/script>/)?.[0];
+  if (!headScript) throw new Error(`${page.slug}: Base.astro's theme-init <script> not found in the built <head>`);
   const pageCss = (page.extraCss || []).map((f) => `/* ===== ${path.basename(f)} (this page only) ===== */\n${readFileSync(f, 'utf8')}`).join('\n');
 
   const php = `<?php
@@ -123,9 +153,12 @@ for (const page of PAGES) {
  * (wiseup-site/) on ${new Date().toISOString().slice(0, 10)}. Deliberately does NOT call
  * get_header()/get_footer() so none of the active theme's markup, nav or styles leak into this
  * page — only wp_head() / wp_footer() are hooked in, for plugin/script compatibility (analytics,
- * SEO meta, admin bar, etc). No global/bare-tag CSS at all: every reset in the stylesheet below is
- * scoped to .wiseup-home AND wrapped in :where() (zero specificity), so it can neither apply
- * outside our own markup nor outrank one of our own component rules.
+ * SEO meta, etc). No global/bare-tag CSS at all: every reset in the stylesheet below is scoped to
+ * .wiseup-home AND wrapped in :where() (zero specificity), so it can neither apply outside our own
+ * markup nor outrank one of our own component rules. On top of that, every stylesheet the active
+ * theme/plugins would otherwise enqueue on this page is actively dequeued (and the admin bar
+ * hidden, since its CSS came from that same queue) so none of the theme's own CSS loads here at
+ * all — this page uses only our styles.
  *
  * Install:
  *  1. Copy this file into your active theme's root folder.
@@ -153,6 +186,33 @@ for (const page of PAGES) {
  * remove_action() line and the two hardcoded tags below, and let the plugin manage them instead.
  */
 ?>
+<?php
+// Reported "these files dont use themes styles... there are some conflicts" (2026-10-24): body_class()
+// below adds the active theme's OWN body classes alongside ours, and wp_head() lets the theme/Gutenberg
+// enqueue their own stylesheets on this same page — so theme CSS could still match our markup or get
+// overridden by it unpredictably. Fix: dequeue every stylesheet the theme/plugins queued for this
+// request (we need none of them, everything is in our own inlined <style> below) and hide the admin
+// bar (its CSS came from the same queue, so without this an admin would see it unstyled). Theme-agnostic
+// - works regardless of which theme is active, so it survives a future theme switch too.
+add_filter( 'show_admin_bar', '__return_false' );
+$wiseup_dequeue_styles = function () {
+	global $wp_styles;
+	if ( $wp_styles instanceof WP_Styles ) {
+		foreach ( $wp_styles->queue as $handle ) {
+			wp_dequeue_style( $handle );
+		}
+	}
+};
+add_action( 'wp_enqueue_scripts', $wiseup_dequeue_styles, 100 );
+add_action( 'wp_print_styles', $wiseup_dequeue_styles, 0 );
+add_action( 'wp_footer', $wiseup_dequeue_styles, 0 );
+// Printed outside the style queue, so dequeuing doesn't catch them: WP's theme.json global styles
+// and the Customizer's "Additional CSS".
+remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+remove_action( 'wp_footer', 'wp_enqueue_stored_styles', 1 );
+remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -165,10 +225,7 @@ for (const page of PAGES) {
 <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/wiseup-assets/fonts/inter-300_700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/wiseup-assets/fonts/outfit-200_500-normal.woff2" as="font" type="font/woff2" crossorigin>
 ${page.extraHead || ''}
-<script>
-document.documentElement.classList.add('js');
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('motion');
-</script>
+${headScript}
 <style>
 ${(pageCss ? `${css}\n${pageCss}` : css).replace(/url\((['"]?)\/fonts\//g, (_, q) => `url(${q}<?php echo get_template_directory_uri(); ?>/wiseup-assets/fonts/`)}
 </style>
@@ -212,4 +269,8 @@ cpSync('public/favicon.svg', path.join(OUT_ASSETS, 'favicon.svg'));
 // any other page that references it by URL) — referenced as root-relative /clients/, /brand/.
 if (existsSync('public/clients')) cpSync('public/clients', path.join(OUT_ASSETS, 'clients'), { recursive: true });
 if (existsSync('public/brand')) cpSync('public/brand', path.join(OUT_ASSETS, 'brand'), { recursive: true });
+// Podcast page's own real asset folder (banner/host photos/channel art, ep/ and gallery/ subfolders).
+if (existsSync('public/podcast')) cpSync('public/podcast', path.join(OUT_ASSETS, 'podcast'), { recursive: true });
+// Homepage hero strip's own image set.
+if (existsSync('public/strip')) cpSync('public/strip', path.join(OUT_ASSETS, 'strip'), { recursive: true });
 console.log(`Copied assets to ${OUT_ASSETS}`);

@@ -15,6 +15,7 @@ import { heroLunar, cursorDot } from './hero-lunar';
 import { heroAqua } from './hero-aqua';
 import { heroDots } from './hero-dots';
 import { stripVideos } from './hero-strip-video';
+import { footerWordmark } from './footer-wordmark';
 
 gsap.registerPlugin(ScrollTrigger, SplitText, MorphSVGPlugin, Observer);
 
@@ -44,6 +45,7 @@ export function setupMotion() {
   setupAbout();
   setupPodcast();
   setupLead();
+  footerWordmark();
 }
 
 /** Play a looping timeline only while its element is on screen. */

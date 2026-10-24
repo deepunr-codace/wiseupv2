@@ -4,6 +4,7 @@
 // in five short blocks. Copy is the owner's own, in site.ts `aboutPage`; motion in motion/about.ts.
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import { site, aboutPage as a } from '../data/site';
 // Inlined (not a linked file): one less render-blocking request before the first paint on phones.
@@ -116,4 +117,5 @@ const index = [
     </div>
   </div>
 
+  <Footer slot="footer" />
 </Base>

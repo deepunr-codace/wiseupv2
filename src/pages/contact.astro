@@ -4,6 +4,7 @@
 // without JS it still submits the message field to wa.me as ?text=.
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import { site, contact, services, contactPage as c } from '../data/site';
@@ -100,4 +101,5 @@ import { site, contact, services, contactPage as c } from '../data/site';
     </div>
   </section>
 
+  <Footer slot="footer" />
 </Base>

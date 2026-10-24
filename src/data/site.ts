@@ -22,11 +22,20 @@ export const site = {
   whatsapp: 'https://wa.me/916282434503',
   coords: '11.2588°N 75.7804°E',
   city: 'Kozhikode (Calicut), Kerala',
-  footerLine: 'Branding & marketing agency, Kozhikode, Kerala · Creative wing of CodeAce',
   socials: [
     { label: 'Instagram', href: 'https://www.instagram.com/branding_with_wiseup/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wiseup-marketing-agency/' },
     { label: 'Behance', href: 'https://www.behance.net/brandingwithwiseup' },
+  ],
+  // Footer social row on /podcast, matching the live wiseup.in/podcast/ footer (checked 2026-10-24): the
+  // podcast's own Instagram and YouTube, the agency's WhatsApp, LinkedIn and email. Other pages use
+  // WhatsApp + `socials` + email, matching wiseup.in's footer. Labels must match an icon in Footer.astro.
+  podcastSocials: [
+    { label: 'WhatsApp', href: 'https://wa.me/916282434503' },
+    { label: 'Instagram', href: 'https://www.instagram.com/wiseuppod/' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wiseup-marketing-agency/' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@WiseUpPodcast_' },
+    { label: 'Email', href: 'mailto:brandingwithwiseup@gmail.com' },
   ],
   // Real wiseup.in nav (the live site's own WordPress menu, user-supplied 2026-10-23) — external
   // links to other WiseUp properties, not in-page anchors on this site. Replaces the previous

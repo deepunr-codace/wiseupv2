@@ -16,6 +16,7 @@
 // (which topic-card photos are real vs. placeholder stock, the Deepu/guest-photo gaps, etc.).
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import Icon from '../components/Icon.astro';
 import SecHead from '../components/SecHead.astro';
@@ -37,30 +38,30 @@ const featured = {
   titleMl: 'കാപ്പി വഴി ലക്ഷങ്ങൾ, പക്ഷെ കാപ്പിക്കടയല്ല',
   sub: 'A ₹400 crore Malayali startup, built around the idea of "buy me a coffee." Jijo Sunny on turning a small tip jar into a global platform.',
 };
-// Featured stack: two cards; the second slides up over the first on scroll (featuredStack() in motion/podcast.ts).
+// Featured stack: each card slides up over the previous one on scroll (featuredStack() in motion/podcast.ts).
 const featuredList = [
-  { ...featured, tag: 'Featured episode' },
+  featured,
   {
-    videoId: 'CrUDF-dJHXI', img: '/podcast/yt-litmus7.webp', tag: 'Also featured',
+    videoId: 'CrUDF-dJHXI', img: '/podcast/yt-litmus7.webp',
     guest: 'Venu Gopalakrishnan', guestRole: 'CEO, Litmus7',
     title: 'How Litmus7 CEO Shapes the Future of Retail & Tech', titleMl: '',
     sub: 'Venu Gopalakrishnan on where retail and technology are heading, and what it takes to build a company that serves both.',
   },
   // Hosted by Jijin Mohan (confirmed by the owner). Copy condensed from each episode's YouTube description.
   {
-    videoId: 'iLJtOFl7NUo', img: '/podcast/ep/iLJtOFl7NUo.webp', tag: 'Hosted by Jijin Mohan',
+    videoId: 'iLJtOFl7NUo', img: '/podcast/ep/iLJtOFl7NUo.webp',
     guest: 'Sunil Kumar Gurukkal', guestRole: 'CVN Kalari',
     title: 'Kalaripayattu vs Kung Fu: Did India’s Ancient Martial Art Influence the World?', titleMl: '',
     sub: 'Inside a 75-year-old Kalari: the history of Kalaripayattu, Marma Chikitsa and the 108 marma points, and training stars from Jackie Chan to Mohanlal.',
   },
   {
-    videoId: 'A7picrOFIU8', img: '/podcast/ep/A7picrOFIU8.webp', tag: 'Hosted by Jijin Mohan',
+    videoId: 'A7picrOFIU8', img: '/podcast/ep/A7picrOFIU8.webp',
     guest: 'Sajeev Nair', guestRole: 'Biohacking & Performance',
     title: 'Can Fixing Your Gut Actually Make You Richer?', titleMl: '',
     sub: 'Sajeev Nair breaks down biohacking, gut health, burnout and longevity, and why performance, not just health, is the new goal.',
   },
   {
-    videoId: 'iH2KxFNPYrI', img: '/podcast/ep/iH2KxFNPYrI.webp', tag: 'Hosted by Jijin Mohan',
+    videoId: 'iH2KxFNPYrI', img: '/podcast/ep/iH2KxFNPYrI.webp',
     guest: 'Dr. A. V. Anoop', guestRole: 'Chairman & MD, AVA Group',
     title: 'How Medimix Became India’s Most Trusted Ayurvedic Soap Brand', titleMl: '',
     sub: 'From a small Ayurvedic soap to a trusted FMCG brand: Dr. A. V. Anoop on branding, consumer trust and building AVA Group.',
@@ -205,10 +206,13 @@ const jsonLd = {
       </div>
     </section>
 
-    <!-- FEATURED: a stack of two episode cards. Each card sticks below the header; scrolling slides the next one up
-         over it while the one underneath shrinks back and dims (featuredStack(), motion/podcast.ts). -->
-    <section class="sec" id="featured" aria-label="Featured episodes">
-      <div class="wrap">
+    <!-- FEATURED: a stack of episode cards. Each card sticks below the header; scrolling slides the next one up
+         over it while the one underneath shrinks back and dims (featuredStack(), motion/podcast.ts). No heading:
+         two outlined watermark words frame it instead, vertical down the sides on desktop, one row on top on mobile. -->
+    <section class="sec" id="featured" aria-label="Featured podcasts">
+      <div class="wrap pc-fstage">
+        <span class="pc-fwm pc-fwm--l" aria-hidden="true"><span>Featured</span></span>
+        <span class="pc-fwm pc-fwm--r" aria-hidden="true"><span>Podcasts</span></span>
         <ul class="pc-fstack" data-fstack>
           {featuredList.map((f, i) => (
             <li class="pc-fcard" data-fcard>
@@ -217,9 +221,8 @@ const jsonLd = {
                 <span class="pc-feat__play yt" set:html={ytPlay} />
               </a>
               <div class="pc-fcard__body">
-                <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>{f.tag}</p>
                 {f.titleMl && <p class="pc-ml pc-feat__ml" lang="ml">{f.titleMl}</p>}
-                <h2 class="pc-feat__title" id={i === 0 ? 'featured-h' : undefined}>{f.title}</h2>
+                <h2 class="pc-feat__title">{f.title}</h2>
                 <p class="pc-feat__guest">{f.guest} · {f.guestRole}</p>
                 <p class="pc-feat__sub">{f.sub}</p>
                 <div class="pc-feat__row">
@@ -474,4 +477,5 @@ const jsonLd = {
 
   </div>
 
+  <Footer slot="footer" />
 </Base>

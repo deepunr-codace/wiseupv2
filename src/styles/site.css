@@ -741,17 +741,72 @@ html:not(.js) .loop-nav { display: none; }
 .form__note[data-state='error'] { color: #ff8a7a; }
 .form__note a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 
-/* ---------- Footer: teal band, giant wordmark ---------- */
-.ft { padding: clamp(28px, 3vw, 44px) var(--gx) 30px; overflow: hidden; color: #031210;
-  background: linear-gradient(110deg, #2a9d8f 0%, #57c9b8 42%, #a8eee2 78%, #d2faf3 100%); }
-.ft__word { font-family: var(--font-mark); font-weight: 400; font-size: clamp(6rem, 0.5rem + 23vw, 23rem); line-height: 0.8; letter-spacing: -0.06em; margin-left: -0.05em;
-  padding-bottom: 0.08em; user-select: none; }
-.ft__row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-top: clamp(80px, 13vw, 220px); font-size: 15px; }
-.ft__addr { display: grid; justify-items: start; gap: 2px; }
-.ft__nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 32px; }
-.ft__link { display: inline-block; padding-block: 5px; background: linear-gradient(currentColor, currentColor) 0 calc(100% - 3px) / 0 1px no-repeat; transition: background-size 0.45s var(--ease); }
-.ft__link:focus-visible { background-size: 100% 1px; outline-color: #031210; }
-@media (hover: hover) { .ft__link:hover { background-size: 100% 1px; } }
+/* ---------- Footer: tagline + podcast channel card + socials, three link columns, giant dotted wordmark ---------- */
+.ft { overflow: hidden; padding-top: clamp(36px, 4.5vw, 64px); background: var(--bg); color: var(--ink); box-shadow: inset 0 1px 0 var(--edge); }
+.ft__top { display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.5vw, 56px); }
+.ft__tag { max-width: 34ch; margin-bottom: 18px; font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem); line-height: 1.5; color: var(--head-a); }
+.ft__yt { display: flex; align-items: center; gap: 16px; max-width: 480px; padding: 14px 14px 14px 16px; border-radius: 20px;
+  background: linear-gradient(110deg, rgb(63 196 63 / 0.12), var(--card) 55%); box-shadow: inset 0 0 0 1px var(--edge); }
+.ft__yt-ava { flex: none; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--card-2); box-shadow: inset 0 0 0 2px rgb(63 196 63 / 0.35); }
+.ft__yt-ava svg { width: 24px; height: auto; }
+.ft__yt-meta { flex: 1 1 0; display: grid; gap: 2px; min-width: 0; font-size: 13px; line-height: 1.35; color: var(--mute); }
+.ft__yt-meta b { font-size: 16px; font-weight: 600; color: var(--head-a); }
+.ft__yt-sub { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 46px; margin-left: auto; padding: 0 22px; border-radius: var(--r-pill);
+  background: linear-gradient(180deg, #ff3b3b, #e50914); color: #fff; font-size: 15px; font-weight: 600;
+  box-shadow: 0 6px 14px -8px rgb(255 0 0 / 0.35); transition: translate 0.3s var(--ease); }
+:root[data-theme='light'] .ft__yt-sub { box-shadow: none; }
+@media (hover: hover) { .ft__yt-sub:hover { translate: 0 -2px; } }
+.ft__follow .ft__social { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+/* Original brand logos in their own colours (Footer.astro); hover lifts the button and rings it in the brand colour */
+.ft__soc { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--card); box-shadow: inset 0 0 0 1px var(--edge-2);
+  transition: translate 0.3s var(--ease), box-shadow 0.3s; }
+.ft__soc svg { width: 20px; height: 20px; }
+.ft__soc--wa { --c: #25d366; } .ft__soc--ig { --c: #d6249f; } .ft__soc--in { --c: #0a66c2; } .ft__soc--be { --c: #1769ff; } .ft__soc--yt { --c: #f00; } .ft__soc--mail { --c: #ea4335; }
+@media (hover: hover) { .ft__soc:hover { translate: 0 -2px; box-shadow: inset 0 0 0 1.5px var(--c); } }
+.ft__soc:focus-visible { box-shadow: inset 0 0 0 1.5px var(--c); }
+.ft__yt-glyph { width: 20px; height: 20px; }
+.ft__h { margin-bottom: 12px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: var(--head-a); }
+.ft__col ul { display: grid; gap: 4px; }
+.ft__col p { max-width: 24ch; font-size: 15px; line-height: 1.6; color: var(--ink-2); }
+.ft__link { display: inline-block; padding-block: 3px; font-size: 15px; color: var(--ink-2);
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 1px) / 0 1px no-repeat; transition: background-size 0.45s var(--ease), color 0.3s; }
+.ft__link:focus-visible { background-size: 100% 1px; color: var(--head-a); }
+@media (hover: hover) { .ft__link:hover { background-size: 100% 1px; color: var(--head-a); } }
+/* Footer wordmark: an interactive particle "wiseup" on a canvas (motion/footer-wordmark.ts: the dots fly in, scatter
+   from the pointer and settle back). The invisible text below only sets the box size and the font the canvas samples. */
+.ft__word { position: relative; margin: clamp(20px, 3vw, 44px) 0 0; user-select: none; }
+.ft__canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+.ft__word-text { display: block; visibility: hidden; padding-bottom: 0.1em; text-align: center;
+  font-family: var(--font-mark); font-weight: 500; font-size: clamp(4rem, 1rem + 14vw, 14rem); line-height: 0.9; letter-spacing: -0.02em; }
+/* Full-width band under the wordmark: the divider line the word sits on, and a dot-grid ground the "p" tail drops
+   into. The dots are interactive particles on the band's own canvas (motion/footer-wordmark.ts, clipped to the band);
+   the CSS dot grid is the no-JS fallback, dropped once the canvas is live. Dark dots: near-black charcoal (pure black
+   would vanish on the black page); black on light. The word stacks above the band so the "p" tail stays on top. */
+.ft__word { z-index: 2; }
+.ft__ground { --ft-dot: #2c2c2c; position: relative; background: radial-gradient(circle, var(--ft-dot) 0 1px, transparent 1.5px) 0 0 / 6px 6px;
+  box-shadow: inset 0 1px 0 var(--edge); }
+:root[data-theme='light'] .ft__ground { --ft-dot: rgb(0 0 0 / 0.4); }
+.ft__ground.is-live { background: none; }
+/* padding-right keeps the credit clear of the fixed lead-popup button (.lead-fab, about 84px in from the screen's right
+   edge at most) once the page is scrolled to the bottom; zero on wide screens where the button sits in the gutter */
+.ft__base { position: relative; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; padding: 12px 0 16px;
+  padding-right: max(0px, calc(94px - max(var(--gx), (100vw - var(--maxw)) / 2)));
+  font-size: 13px; color: var(--mute); }
+.ft__base p { padding: 2px 10px; background: var(--bg); }
+.ft__credit { font-weight: 600; color: var(--head-a); }
+@media (max-width: 991px) {
+  .ft__top { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .ft__intro { grid-column: 1 / -1; }
+}
+@media (max-width: 599px) {
+  .ft__top { grid-template-columns: 1fr 1fr; row-gap: 24px; }
+  /* phones: the Follow Us heading and text are hidden, its social icons stay as a full-width row */
+  .ft__follow { grid-column: 1 / -1; }
+  .ft__follow > .ft__h, .ft__follow > p { display: none; }
+  .ft__follow .ft__social { margin-top: 0; }
+  .ft__yt { flex-wrap: wrap; }
+  .ft__yt-sub { width: 100%; justify-content: center; margin-left: 0; }
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 991px) {
@@ -792,7 +847,6 @@ html:not(.js) .loop-nav { display: none; }
   .roots-head { grid-template-columns: 1fr; }
   .morph { justify-self: center; }
   .root { min-height: 0; }
-  .ft__row { flex-direction: column; align-items: flex-start; }
   .cx-hero__foot { grid-template-columns: 1fr; }
   .cx-hero__cta { justify-content: flex-start; }
   .cx-chip__t { font-size: 14px; padding-inline: 12px 16px; }
