@@ -12,11 +12,10 @@ interface Props {
   mood?: 'day';
   /** Theme this page should open in before the visitor has ever toggled (localStorage empty).
    *  Once they've toggled once (on any page), their choice persists everywhere as normal.
-   *  Defaults to 'light' — light is the site's default theme as of 2026-10-23; pass undefined
-   *  explicitly on a page that must still open dark pre-toggle (none currently do). */
-  defaultTheme?: 'light';
+   *  Defaults to 'dark' (the site's default theme as of 2026-10-24); pass 'light' on a page that must open light. */
+  defaultTheme?: 'light' | 'dark';
 }
-const { title, description = site.description, image = '/og.png', mainClass, mood, defaultTheme = 'light' } = Astro.props;
+const { title, description = site.description, image = '/og.png', mainClass, mood, defaultTheme = 'dark' } = Astro.props;
 const fullTitle = title ?? `Branding & Marketing Agency in Kerala (Kozhikode) | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImage = new URL(image, Astro.site ?? site.url).href;

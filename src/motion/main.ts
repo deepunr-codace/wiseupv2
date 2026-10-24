@@ -185,7 +185,7 @@ function heroStrip() {
     const hoverable = matchMedia('(hover: hover) and (pointer: fine)').matches;
     let ease = 1, easeTarget = 1;
     const videos = hoverable
-      ? hoverVideos(track, (playing) => { easeTarget = playing ? 0 : 1; })
+      ? hoverVideos(track, (playing) => { easeTarget = playing || track.querySelector('.is-live') ? 0 : 1; })
       : stripVideos(track, { mobile: isMobile(), hero: stripSec });
     // Constant leftward marquee (~67px/s) plus a push from page scroll while the hero scrolls away.
     const stop = driftTrack(track, {
@@ -193,7 +193,42 @@ function heroStrip() {
       speedScale: () => (ease += (easeTarget - ease) * 0.08),
       onVisible: (v) => orbitTl?.paused(!v),
     });
-    return () => { stop(); videos.destroy(); orbitTl?.kill(); };
+    // Flatten + pin: when the strip reaches the top of the screen the hero holds, the tilted plane straightens into
+    // a flat row (scrubbed), play buttons appear on every card, then the page scrolls on to the next section.
+    const plane = strip.querySelector<HTMLElement>('.strip__plane');
+    const hero = strip.closest<HTMLElement>('.hero') || stripSec;
+    let flatSt: ScrollTrigger | undefined;
+    if (plane) {
+      const flatTl = gsap.timeline({ defaults: { ease: 'none' } })
+        .fromTo(plane, { transform: getComputedStyle(plane).transform }, { transform: 'matrix3d(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1)', duration: 1 })
+        .to({}, { duration: 0.8 }); // hold flat for a moment before release
+      flatSt = ScrollTrigger.create({
+        trigger: strip, start: 'center center', end: () => '+=' + Math.round(innerHeight * 1.1),
+        pin: hero, scrub: 0.6, animation: flatTl, invalidateOnRefresh: true,
+        onUpdate: (s) => strip.classList.toggle('is-flat', s.progress > 0.5),
+        onLeaveBack: () => strip.classList.remove('is-flat'),
+      });
+    }
+    // Play with sound (shown while flat): a separate live <video> with controls on top of the card; one at a time,
+    // and the drift holds while one plays.
+    const live = new Set<HTMLVideoElement>();
+    const syncHold = () => { easeTarget = live.size ? 0 : 1; };
+    const onPlay = (e: Event) => {
+      const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-strip-play]');
+      if (!btn) return;
+      e.preventDefault(); e.stopPropagation();
+      const card = btn.closest<HTMLElement>('[data-vcard]')!;
+      live.forEach((v) => { v.pause(); v.closest('[data-vcard]')?.classList.remove('is-live'); v.remove(); }); live.clear();
+      const v = document.createElement('video');
+      v.className = 'strip__live'; v.src = card.dataset.video!; v.controls = true; v.playsInline = true; v.autoplay = true;
+      v.addEventListener('ended', () => { live.delete(v); v.remove(); card.classList.remove('is-live'); syncHold(); });
+      v.addEventListener('pause', () => { if (v.ended) return; });
+      card.appendChild(v); card.classList.add('is-live'); live.add(v); syncHold();
+      v.play().catch(() => {});
+    };
+    track.addEventListener('click', onPlay);
+    const stopLive = ScrollTrigger.create({ trigger: stripSec, start: 'top bottom', end: 'bottom top', onToggle: (s) => { if (!s.isActive) { live.forEach((v) => { v.pause(); v.remove(); v.closest('[data-vcard]')?.classList.remove('is-live'); }); live.clear(); syncHold(); } } });
+    return () => { stop(); videos.destroy(); orbitTl?.kill(); flatSt?.kill(); stopLive.kill(); track.removeEventListener('click', onPlay); live.forEach((v) => v.remove()); };
   });
 }
 
