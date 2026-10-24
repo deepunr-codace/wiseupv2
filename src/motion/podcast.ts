@@ -13,7 +13,6 @@ export function setupPodcast() {
   testimonialVideos();
   featuredStack();
   podcastScroll();
-  miniPlayer();
   hostCards3d();
 }
 
@@ -178,83 +177,6 @@ function podcastScroll() {
     });
 
     return () => kill.forEach((f) => f());
-  });
-}
-
-/* Floating mini player: slides in after the hero as a pill; opens into a player with shelves. Picking an item loads
-   it on the stage (poster first, the embed once played), "Play next" walks the active shelf, Escape or the chevron
-   minimises, the x dismisses for this visit (a small lime tab brings it back). */
-function miniPlayer() {
-  onPage(() => {
-    const mp = document.querySelector<HTMLElement>('[data-mp]');
-    if (!mp) return;
-    const $ = <T extends Element>(s: string) => mp.querySelector<T>(s)!;
-    const panel = $<HTMLElement>('[data-mp-panel]'), pill = $<HTMLButtonElement>('[data-mp-open]');
-    const stage = $<HTMLElement>('[data-mp-stage]'), poster = $<HTMLImageElement>('[data-mp-poster]');
-    const back = document.querySelector<HTMLButtonElement>('[data-mp-back]');
-    const offs: (() => void)[] = [];
-    const on = (el: EventTarget, ev: string, fn: (e: any) => void) => { el.addEventListener(ev, fn); offs.push(() => el.removeEventListener(ev, fn)); };
-    let cur = '';
-    let shelf = 'next';
-    const store = (k: string, v?: string) => { try { return v === undefined ? sessionStorage.getItem(k) : sessionStorage.setItem(k, v); } catch { return null; } };
-
-    const setOpen = (open: boolean) => {
-      mp.classList.toggle('is-open', open); panel.hidden = !open; pill.setAttribute('aria-expanded', String(open));
-      if (open) $<HTMLElement>('[data-mp-min]').focus({ preventScroll: true });
-    };
-    const stopVideo = () => stage.querySelector('iframe')?.remove();
-    const playEmbed = () => {
-      stopVideo();
-      const f = document.createElement('iframe');
-      f.src = `https://www.youtube-nocookie.com/embed/${cur}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
-      f.title = $<HTMLElement>('[data-mp-title]').textContent || 'WiseUp Podcast';
-      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
-      stage.appendChild(f);
-      $<HTMLElement>('[data-mp-pkick]').textContent = 'Now playing';
-    };
-    const load = (btn: HTMLElement, autoplay: boolean) => {
-      cur = btn.dataset.mpItem!;
-      const d = btn.dataset;
-      poster.src = d.img!; $<HTMLElement>('[data-mp-title]').textContent = d.title!;
-      $<HTMLElement>('[data-mp-views]').textContent = `${d.views} views`; $<HTMLElement>('[data-mp-likes]').textContent = `${d.likes} likes`;
-      $<HTMLAnchorElement>('[data-mp-yt]').href = d.short ? `https://www.youtube.com/shorts/${cur}` : `https://www.youtube.com/watch?v=${cur}`;
-      $<HTMLImageElement>('[data-mp-pthumb]').src = d.img!.replace(/(\.webp)$/, d.short ? '$1' : '-sm$1');
-      $<HTMLElement>('[data-mp-ptitle]').textContent = d.title!;
-      mp.querySelectorAll('[data-mp-item]').forEach((b) => b.classList.toggle('is-current', (b as HTMLElement).dataset.mpItem === cur));
-      stopVideo();
-      if (autoplay) playEmbed();
-    };
-    const items = (id = shelf) => [...mp.querySelectorAll<HTMLElement>(`[data-mp-list="${id}"] [data-mp-item]`)];
-    load(items()[0], false);
-
-    on(pill, 'click', () => setOpen(true));
-    mp.querySelectorAll('[data-mp-min]').forEach((b) => on(b, 'click', () => setOpen(false)));
-    mp.querySelectorAll('[data-mp-close]').forEach((b) => on(b, 'click', () => {
-      stopVideo(); setOpen(false); mp.classList.remove('is-in'); store('wu-mp-closed', '1'); if (back) back.hidden = false;
-    }));
-    if (back) on(back, 'click', () => { back.hidden = true; store('wu-mp-closed', '0'); mp.classList.add('is-in'); setOpen(true); });
-    on($('[data-mp-play]'), 'click', playEmbed);
-    on($('[data-mp-next]'), 'click', () => {
-      const list = items(); const i = list.findIndex((b) => b.dataset.mpItem === cur);
-      load(list[(i + 1) % list.length], true);
-    });
-    mp.querySelectorAll<HTMLButtonElement>('[data-mp-tab]').forEach((t) => on(t, 'click', () => {
-      shelf = t.dataset.mpTab!;
-      mp.querySelectorAll('[data-mp-tab]').forEach((x) => x.setAttribute('aria-selected', String(x === t)));
-      mp.querySelectorAll<HTMLElement>('[data-mp-list]').forEach((l) => { l.hidden = l.dataset.mpList !== shelf; });
-    }));
-    mp.querySelectorAll<HTMLElement>('[data-mp-item]').forEach((b) => on(b, 'click', () => load(b, true)));
-    on(mp, 'keydown', (e: KeyboardEvent) => { if (e.key === 'Escape' && mp.classList.contains('is-open')) { setOpen(false); pill.focus(); } });
-
-    // slide in after the hero, unless dismissed this visit
-    const hero = document.querySelector('.pc-hero');
-    const st = ScrollTrigger.create({
-      trigger: hero || document.body, start: 'bottom 60%',
-      onEnter: () => { if (store('wu-mp-closed') === '1') { if (back) back.hidden = false; } else mp.classList.add('is-in'); },
-      onLeaveBack: () => { if (!mp.classList.contains('is-open')) mp.classList.remove('is-in'); },
-    });
-    offs.push(() => st.kill());
-    return () => { offs.forEach((f) => f()); stopVideo(); };
   });
 }
 
