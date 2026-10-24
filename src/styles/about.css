@@ -92,3 +92,11 @@
   .ab__stats { gap: 36px; }
   .ab__val:nth-child(2) { padding-top: 22px; }
 }
+/* About on phones: one 48px rhythm between the intro, lede and each block (was 72-90px), and no double rule where the
+   values list's last divider met the next block's top border */
+@media (max-width: 899px) {
+  .ab__grid { gap: 40px; }
+  .ab__side { margin-bottom: 0; }
+  .ab__main { gap: 48px; padding-top: 0; }
+  .ab__val:last-child { border-bottom: 0; padding-bottom: 0; }
+}

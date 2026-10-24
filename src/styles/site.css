@@ -1247,3 +1247,10 @@ section:has(> .blob) > :not(.blob) { position: relative; z-index: 1; }
 .strip__live { position: absolute; inset: 0; z-index: 5; width: 100%; height: 100%; object-fit: contain; background: #000; }
 .hero--lunar .strip.is-flat { pointer-events: auto; }
 @media (max-width: 767px) { .strip__play { width: 56px; height: 56px; margin: -28px 0 0 -28px; } .strip__play svg { width: 20px; height: 20px; } }
+/* Contact on phones: the page's sections are one flow (head, channels + form, map), so keep the tight joins the
+   44px rhythm overrode: ~40px between blocks, 64px before the footer */
+@media (max-width: 767px) {
+  .sec.page-head.cx-hero { padding-bottom: 28px; }
+  .sec.cx-sec { padding-top: 12px; padding-bottom: 28px; }
+  .sec.cx-sec.cx-map-sec { padding-bottom: 64px; }
+}
