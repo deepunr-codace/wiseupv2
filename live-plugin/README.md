@@ -9,3 +9,7 @@ Upload), then clear the WP Rocket cache.
 
 Note: `npm run wp:plugin` builds a plugin from the Astro source into `../wiseup-plugin/`; that build does NOT contain
 the live-only changes above, so do not replace this folder with it.
+
+Phones only, also live-only: the homepage's extra scroll choreography (`wiseup/assets/js/home-mobile.js` and
+`wiseup/assets/css/home-mobile.css`, loaded from `includes/render.php` below 768px and without reduced motion). It
+runs beside the site script without touching the elements' own transforms; see the comments at the top of both files.

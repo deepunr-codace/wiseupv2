@@ -72,7 +72,24 @@ add_action( 'wp_footer', function () {
 		wp_json_encode( wp_create_nonce( 'wp_rest' ) )
 	);
 	echo '<script type="module" src="' . esc_url( wiseup_versioned( wiseup_manifest()['script'] ) ) . "\"></script>\n";
+	if ( 'home' === wiseup_page_slug() ) wiseup_home_mobile_motion();
 }, 20 );
+
+/**
+ * Homepage, phones only: the extra scroll choreography in assets/js/home-mobile.js (+ its CSS). It runs its own copy of
+ * GSAP from assets/js/vendor, loaded only after the site script has evaluated (module scripts run in document order),
+ * so the two copies never register into each other. Skipped on wider screens and under reduced motion.
+ */
+function wiseup_home_mobile_motion() {
+	$file = function ( $path ) { return esc_url( WISEUP_URL . 'assets/' . $path . '?ver=' . filemtime( WISEUP_DIR . 'assets/' . $path ) ); };
+	$js   = array();
+	foreach ( array( 'js/vendor/gsap.min.js', 'js/vendor/ScrollTrigger.min.js', 'js/vendor/SplitText.min.js', 'js/home-mobile.js' ) as $path ) $js[] = $file( $path );
+	printf(
+		"<script type=\"module\">(function(){if(!matchMedia('(max-width: 767px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var l=document.createElement('link');l.rel='stylesheet';l.href=%s;document.head.appendChild(l);var q=%s;(function next(){var u=q.shift();if(!u)return;var s=document.createElement('script');s.src=u;s.onload=next;document.body.appendChild(s);})();})();</script>\n",
+		wp_json_encode( $file( 'css/home-mobile.css' ) ),
+		wp_json_encode( $js )
+	);
+}
 
 // ---------- Helpers for the parts ----------
 

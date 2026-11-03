@@ -1,0 +1,61 @@
+/*
+ * Homepage scroll choreography on phones (assets/js/home-mobile.js). Loaded only below 768px without reduced motion,
+ * and every rule is scoped to html.wm-on, which the script sets once it runs.
+ *
+ * The site script already owns each element's `transform` (reveals, drifts, pins) and `opacity` (reveals), so this
+ * layer never writes either: it moves things through the individual `translate` / `rotate` / `scale` properties and
+ * fades them through `filter`, driven by the custom properties below, and the two compose. They are !important
+ * because GSAP writes `translate/rotate/scale: none` inline on every element it transforms. `--wm-ax` is the rotation
+ * axis ("1 0 0" tips forward, "0 1 0" swings sideways).
+ */
+.wm-on .wm-t {
+	translate: var(--wm-x, 0px) var(--wm-y, 0px) !important;
+	rotate: var(--wm-ax, 0 0 1) var(--wm-r, 0deg) !important;
+	scale: var(--wm-s, 1) !important;
+	transition-property: background, box-shadow, border-color, color !important; /* scrubbed, so no easing on the transforms */
+}
+.wm-on .wm-f { filter: opacity(var(--wm-o, 1)) blur(var(--wm-blur, 0px)); }
+.wm-on .wm-skew { transform: skewY(var(--wm-skew, 0deg)); transform-origin: 50% 50%; }
+
+/* depth for the 3D tips and swings */
+.wm-on .svc, .wm-on .roots, .wm-on .faq, .wm-on .loop, .wm-on .fit, .wm-on .grow__stats, .wm-on .hgal__list { perspective: 900px; }
+.wm-on .svc__item, .wm-on .faq__item { transform-origin: 50% 0%; }
+
+/* ---------- scroll progress ---------- */
+.wm-progress {
+	position: fixed; inset: 0 0 auto; z-index: 2147483001; height: 2px; pointer-events: none;
+	background: linear-gradient(90deg, var(--lime-lo, #8fa838), var(--lime, #beda52) 70%, var(--lime-hi, #d8ec8a));
+	box-shadow: 0 0 10px rgb(190 218 82 / .7);
+	transform-origin: 0 50%; transform: scaleX(var(--wm-p, 0));
+}
+
+/* ---------- hero ---------- */
+.wm-on .wm-lw { translate: var(--wm-x, 0px) var(--wm-y, 0px); rotate: var(--wm-r, 0deg); transform-box: fill-box; transform-origin: 50% 100%; }
+.wm-on .lunar__sub { letter-spacing: var(--wm-ls, 0em); white-space: nowrap; }
+
+/* ---------- services: the row crossing the middle of the screen lights up ---------- */
+.wm-on .svc__item.wm-focus { box-shadow: inset 0 1px 0 rgb(255 255 255 / .06), 0 0 0 1px rgb(190 218 82 / .55), 0 18px 40px -18px rgb(190 218 82 / .45); }
+.wm-on .svc__n, .wm-on .svc__ico { transition: color .4s, rotate .6s cubic-bezier(.2, .9, .2, 1.3), scale .6s cubic-bezier(.2, .9, .2, 1.3); }
+.wm-on .svc__item.wm-focus .svc__n { color: var(--lime, #beda52); }
+.wm-on .svc__item.wm-focus .svc__ico { rotate: -12deg; scale: 1.15; color: var(--lime, #beda52); }
+
+/* ---------- about: "Posts fade. Brands last." ---------- */
+.wm-on .contrast__statement > span { display: inline-block; }
+.wm-on .fit__card--yes { transition: box-shadow .6s; }
+.wm-on .fit__card--yes.wm-lit { box-shadow: 0 24px 60px -20px rgb(190 218 82 / .65); }
+
+/* ---------- process: a deck of sticky cards, each one settling under the next ---------- */
+.wm-on .hgal__list { display: grid; gap: 18px; }
+.wm-on .hgal__list > .proc__card { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px + var(--wm-i, 0) * 12px); transform-origin: 50% 0%; }
+.wm-dim { position: absolute; inset: 0; z-index: 5; border-radius: inherit; background: #000; opacity: var(--wm-dim, 0); pointer-events: none; }
+.wm-on .hgal__list .proc__shot { scale: var(--wm-zoom, 1) !important; }
+
+/* ---------- footer ---------- */
+.wm-on .ft__social a { display: inline-grid; }
+
+/* ---------- tap ripple ---------- */
+.wm-on .wm-rip { position: relative; overflow: hidden; isolation: isolate; }
+.wm-ripple {
+	position: absolute; z-index: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; pointer-events: none;
+	background: radial-gradient(circle, rgb(190 218 82 / .45), rgb(190 218 82 / 0) 70%);
+}
