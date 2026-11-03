@@ -29,3 +29,6 @@ against a local copy of the plugin served with gzip and long cache headers: 51 b
   first screen load with the page (two with `fetchpriority="high"`), the rest of the strip's images get their address
   once the page has loaded.
 - `parts/footer.php`: the dot wordmark's script is fetched once the footer is a couple of screens away.
+- Lead popup: the bundle (second "WiseUp plugin patch") and `assets/js/lead-popup.js` focus the first field only for
+  mouse and keyboard users, and the close button carries `autofocus` (added at render time, and in
+  `landing/lead-popup.php`), so opening the popup on a phone no longer pops the keyboard up mid-entrance.

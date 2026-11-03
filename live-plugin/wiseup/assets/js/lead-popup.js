@@ -22,7 +22,8 @@
 		document.documentElement.style.overflow = 'hidden';
 		if (fab) fab.classList.add('is-away');
 		set(sessionStorage, SEEN, '1');
-		setTimeout(function () { var n = form.querySelector('input[name="name"]'); if (n) n.focus({ preventScroll: true }); }, 350);
+		// focus the first field for keyboard and mouse users only: on a touch screen the keyboard would jump up mid-entrance
+		if (matchMedia('(hover: hover) and (pointer: fine)').matches) setTimeout(function () { var n = form.querySelector('input[name="name"]'); if (n) n.focus({ preventScroll: true }); }, 350);
 	};
 	var close = function () {
 		if (!dlg.open || dlg.classList.contains('is-closing')) return;

@@ -40,6 +40,10 @@ function wiseup_versioned( $path ) {
  * first screen, nothing breaks: those cards just fill in a moment later.
  */
 function wiseup_page_html( $slug, $html ) {
+	// Lead popup: when a dialog opens the browser focuses its first field, which on a phone pops the keyboard up in the
+	// middle of the entrance. autofocus on the close button gives that first focus to a button instead (mouse and
+	// keyboard users still land in the first field: the site script focuses it for them).
+	$html = str_replace( '<button class="lead__close" type="button"', '<button class="lead__close" type="button" autofocus', $html );
 	if ( 'home' === $slug && preg_match( '#data-strip-track[^>]*data-sets="(\d+)"#', $html, $sets ) ) {
 		$count = preg_match_all( '#<figure class="strip__card#', $html );
 		$per   = max( 1, intdiv( $count, max( 1, (int) $sets[1] ) ) );

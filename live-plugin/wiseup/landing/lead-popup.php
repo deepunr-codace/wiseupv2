@@ -237,7 +237,7 @@ $wu_popup_ver = file_exists( WISEUP_DIR . 'assets/js/lead-popup.js' ) ? filemtim
 					</path>
 				</svg>
 			</button>
-			<button class="lead__close" type="button" data-lead-close aria-label="Close">
+			<button class="lead__close" type="button" autofocus data-lead-close aria-label="Close">
 				<svg class="ico" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
 					<path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/>
 				</svg>
