@@ -116,7 +116,8 @@ $wu_tagline = $wu_podcast
 	</div>
 	<?php if ( wiseup_opt( 'wordmark' ) ) : ?>
 		<div class="ft__word" aria-hidden="true" data-ft-word2><span class="ft__word-text">wiseup</span><canvas class="ft__canvas"></canvas></div>
-		<script src="<?php echo esc_url( WISEUP_ASSETS . '/js/footer-word.js?v=13' ); ?>" defer></script>
+		<?php // The dot wordmark builds itself from the text on start (a few hundred ms on a phone), so its script is fetched only once the footer is a couple of screens away. ?>
+		<script>(function(){var w=document.querySelector('[data-ft-word2]');if(!w)return;var load=function(){var s=document.createElement('script');s.src=<?php echo wp_json_encode( WISEUP_ASSETS . '/js/footer-word.js?v=13' ); ?>;document.body.appendChild(s);};if(!('IntersectionObserver' in window))return load();var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();load();}},{rootMargin:'0px 0px 200% 0px'});io.observe(w);})();</script>
 	<?php endif; ?>
 		<div class="wrap ft__base">
 			<p>© <?php echo esc_html( gmdate( 'Y' ) . ' ' . wiseup_opt( 'copyright' ) ); ?></p>

@@ -14,8 +14,7 @@
  * Top to bottom: a hairline scroll progress line; the hero wordmark easing up and away as the page scrolls on; section
  * titles drifting up and dimming as they leave; the service row in the middle of the screen marked; figures counting
  * up; the logo band and the CodeAce mark moving at their own depth; "Posts fade." fading as it is read; the fit cards
- * settling (one dims, one is lit); press columns drifting against each other and the reach photos sliding across;
- * the process cards stacking as a deck with their photos easing in; swipe between client tiers; FAQ answers easing
+ * settling (one dims, one is lit); press columns drifting against each other; the process cards stacking as a deck with their photos easing in; swipe between client tiers; FAQ answers easing
  * open; and the footer arriving in turn.
  */
 (function () {
@@ -110,13 +109,12 @@
 		if (no) scrub(mark([no], 'wm-f'), { '--wm-o': 1 }, { '--wm-o': 0.5 }, no, 'top 55%', 'bottom 30%');
 		if (yes) ST.create({ trigger: yes, start: 'top 70%', end: 'bottom 20%', toggleClass: 'wm-lit' });
 
-		// ---------- growing: press columns drift against each other, the reach photos slide across ----------
+		// ---------- growing: press columns drift against each other (the reach photos already slide with the site's own
+		// scroll drift; a second slide on top raced them off screen faster than they could load) ----------
 		$$('.press__col').forEach(function (col, i) {
 			var d = i % 2 ? 1 : -1;
 			scrub(mark([col]), { '--wm-y': d * -28 + 'px' }, { '--wm-y': d * 28 + 'px' }, col.closest('.press') || col);
 		});
-		var reach = $('.reach__track');
-		if (reach) scrub(mark([reach]), { '--wm-x': '0px' }, { '--wm-x': function () { return -Math.max(0, reach.scrollWidth - innerWidth + 32) + 'px'; } }, reach.closest('.reach') || reach, 'top bottom', 'bottom 25%');
 
 		// ---------- process: a sticky deck; each photo eases in, each card settles back under the next ----------
 		var cards = $$('.hgal__list > .proc__card');

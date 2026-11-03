@@ -26,6 +26,41 @@ function wiseup_versioned( $path ) {
 	return add_query_arg( 'ver', wiseup_manifest()['build'], wiseup_asset( $path ) );
 }
 
+/**
+ * Small render-time adjustments to a generated page body (generated/pages/{slug}.php), kept here so a rebuild of those
+ * files doesn't lose them.
+ *
+ * Homepage hero strip: only the cards on the first screen load with the page. With the track's CSS start offset (one
+ * set in, see the head) and the plane's tilt, those are the 8th to 10th cards of the last set at every screen width;
+ * the 8th and 9th fill most of a phone's first screen (one of them is the page's LCP), so they get fetchpriority="high"
+ * and the default decoding (decoding="async" let the browser paint them a few frames after they had arrived). Every
+ * other card's image holds its address in data-wu-src / data-wu-srcset until the page has loaded or the visitor first
+ * touches it (wiseup_home_strip_images() below), so 30-odd posters, several of them large, don't compete with the first
+ * screen; the drift takes seconds to bring the next card in. If the cards change and the indexes no longer match the
+ * first screen, nothing breaks: those cards just fill in a moment later.
+ */
+function wiseup_page_html( $slug, $html ) {
+	if ( 'home' === $slug && preg_match( '#data-strip-track[^>]*data-sets="(\d+)"#', $html, $sets ) ) {
+		$count = preg_match_all( '#<figure class="strip__card#', $html );
+		$per   = max( 1, intdiv( $count, max( 1, (int) $sets[1] ) ) );
+		$base  = $count - $per;
+		$i     = -1;
+		$html  = preg_replace_callback( '#<figure class="strip__card.*?</figure>#s', function ( $m ) use ( &$i, $base ) {
+			$i++;
+			$card = str_replace( ' loading="lazy"', ' loading="eager"', $m[0] );
+			if ( $i === $base + 7 || $i === $base + 8 ) return preg_replace( '#<img #', '<img fetchpriority="high" ', str_replace( ' decoding="async"', '', $card ), 1 );
+			if ( $i === $base + 9 ) return $card;
+			return preg_replace( '#(<img\b[^>]*?) (src|srcset)="#', '$1 data-wu-$2="', preg_replace( '#(<img\b[^>]*?) (src|srcset)="#', '$1 data-wu-$2="', $card ) );
+		}, $html );
+	}
+	return $html;
+}
+
+/** Homepage: gives the held-back hero strip images (see wiseup_page_html()) their addresses once the page has loaded. */
+function wiseup_home_strip_images() {
+	echo "<script>(function(){var done=0,go=function(){if(done)return;done=1;document.querySelectorAll('img[data-wu-src],img[data-wu-srcset]').forEach(function(i){if(i.dataset.wuSrcset){i.srcset=i.dataset.wuSrcset;i.removeAttribute('data-wu-srcset');}if(i.dataset.wuSrc){i.src=i.dataset.wuSrc;i.removeAttribute('data-wu-src');}});};if(document.readyState==='complete')go();else addEventListener('load',go,{once:true});['touchstart','pointerdown','scroll','keydown'].forEach(function(e){addEventListener(e,go,{once:true,passive:true});});})();</script>\n";
+}
+
 /** Includes a header/footer part with the current page's slug available as $wu_slug. */
 function wiseup_part( $name ) {
 	$wu_slug = wiseup_page_slug();
@@ -50,7 +85,16 @@ add_action( 'wp_head', function () {
 	foreach ( array( 'fonts/inter-300_700-normal.woff2', 'fonts/outfit-200_500-normal.woff2' ) as $font ) {
 		echo '<link rel="preload" href="' . esc_url( wiseup_asset( $font ) ) . "\" as=\"font\" type=\"font/woff2\" crossorigin>\n";
 	}
-	if ( $page && $page['extra_head'] ) echo $page['extra_head'] . "\n"; // phpcs:ignore -- static markup from the build (font links)
+	if ( $page && $page['extra_head'] ) {
+		$extra = $page['extra_head'];
+		// Figtree is served from the plugin (assets/fonts, one variable file for 400-800, latin) instead of Google Fonts:
+		// the Google stylesheet blocked the first paint and cost two extra connections before anything could show.
+		if ( false !== strpos( $extra, 'family=Figtree' ) ) {
+			$extra = preg_replace( '#<link[^>]+fonts\.(googleapis|gstatic)\.com[^>]*>\s*#', '', $extra );
+			$extra .= "<style>@font-face{font-family:'Figtree';font-style:normal;font-weight:400 800;font-display:swap;src:url('" . esc_url( wiseup_asset( 'fonts/figtree-latin-400_800.woff2' ) ) . "') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}</style>";
+		}
+		echo $extra . "\n"; // phpcs:ignore -- static markup from the build (font links)
+	}
 	foreach ( $page ? $page['css'] : array( 'wiseup.css' ) as $css ) {
 		echo '<link rel="stylesheet" href="' . esc_url( wiseup_versioned( 'css/' . $css ) ) . "\">\n";
 	}
@@ -59,12 +103,34 @@ add_action( 'wp_head', function () {
 		echo "<style id=\"wiseup-plugin-css\">\n" . $plugin_css . "\n</style>\n"; // Static plugin stylesheet; inlining avoids a separate render-blocking request.
 	}
 	if ( 'home' === $slug ) {
-		// Phones only: one spacing scale for every homepage section (assets/css/home-mobile-layout.css).
-		echo '<link rel="stylesheet" media="(max-width: 767px)" href="' . esc_url( WISEUP_URL . 'assets/css/home-mobile-layout.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/home-mobile-layout.css' ) ) . "\">\n";
+		// Phones only: one spacing scale for every homepage section (assets/css/home-mobile-layout.css), inlined so it
+		// costs no extra render-blocking request.
+		$layout_css = file_get_contents( WISEUP_DIR . 'assets/css/home-mobile-layout.css' );
+		if ( false !== $layout_css ) echo "<style id=\"wiseup-home-mobile-layout\">\n" . $layout_css . "\n</style>\n"; // phpcs:ignore -- static plugin stylesheet
+		// The hero strip is the page's largest first-screen element (its LCP). The site script fades it in from invisible
+		// after it has loaded and run, which held the LCP back by seconds on phones; it is shown from the first paint
+		// instead (the cards still drift, flatten and play as before).
+		// Its looping track holds identical sets and the drift starts one set in (x = -set width); starting it there in CSS
+		// too means the first frame of the drift doesn't jump it, which counted as a full-screen layout shift. While the
+		// track's markup is still arriving that offset would be wrong, so the strip waits until something after it in the
+		// hero has been parsed (or, failing that, the whole document: html.wu-parsed, set at the end of the body).
+		echo "<style id=\"wiseup-home-lcp\">.wiseup-page-home [data-strip]{opacity:1!important;visibility:visible!important}"
+			. 'html:not(.wu-parsed) .wiseup-page-home .hero:not(:has(> [data-strip] ~ *)) > [data-strip]{visibility:hidden!important}'
+			. '.wiseup-page-home [data-strip-track][data-sets="2"]{transform:translateX(-50%)}'
+			. '.wiseup-page-home [data-strip-track][data-sets="3"]{transform:translateX(-33.3333%)}'
+			. '.wiseup-page-home [data-strip-track][data-sets="4"]{transform:translateX(-25%)}'
+			. "</style>\n";
 	}
 	// Restores the visitor's saved light/dark choice before first paint; first-time visitors get the default theme.
 	echo str_replace( '__WISEUP_DEFAULT_THEME__', wp_json_encode( 'light' === wiseup_opt( 'default_theme' ) ? 'light' : 'dark' ), $m['head_script'] ) . "\n"; // phpcs:ignore -- static script from the build
 }, 5 );
+
+// The document has been parsed (see the hero strip note in the head above), and the held-back strip images.
+add_action( 'wp_footer', function () {
+	if ( 'home' !== wiseup_page_slug() ) return;
+	echo "<script>document.documentElement.classList.add('wu-parsed')</script>\n";
+	wiseup_home_strip_images();
+}, 1 );
 
 add_action( 'wp_footer', function () {
 	if ( ! wiseup_page_slug() ) return;
@@ -75,21 +141,33 @@ add_action( 'wp_footer', function () {
 		wp_json_encode( rest_url( 'wiseup/v1/enquiry' ) ),
 		wp_json_encode( wp_create_nonce( 'wp_rest' ) )
 	);
-	echo '<script type="module" src="' . esc_url( wiseup_versioned( wiseup_manifest()['script'] ) ) . "\"></script>\n";
-	if ( 'home' === wiseup_page_slug() ) wiseup_home_mobile_motion();
+	$script = wiseup_versioned( wiseup_manifest()['script'] );
+	if ( 'home' === wiseup_page_slug() ) {
+		// Homepage: nothing on the first screen waits for the site script (the hero is visible without it), so it is
+		// fetched once the document has been parsed, rather than alongside the hero's images and the stylesheet, which
+		// it otherwise competed with for the first screen's bandwidth. It still runs after parsing, as a module script
+		// would; it just starts downloading then.
+		printf( "<script>addEventListener('DOMContentLoaded',function(){var s=document.createElement('script');s.type='module';s.src=%s;document.body.appendChild(s);});</script>\n", wp_json_encode( esc_url_raw( $script ) ) );
+		wiseup_home_mobile_motion();
+	} else {
+		echo '<script type="module" src="' . esc_url( $script ) . "\"></script>\n";
+	}
 }, 20 );
 
 /**
- * Homepage, phones only: the extra scroll choreography in assets/js/home-mobile.js (+ its CSS). It runs its own copy of
- * GSAP from assets/js/vendor, loaded only after the site script has evaluated (module scripts run in document order),
- * so the two copies never register into each other. Skipped on wider screens and under reduced motion.
+ * Homepage, phones only: the extra scroll motion in assets/js/home-mobile.js (+ its CSS). It runs its own copy of GSAP
+ * from assets/js/vendor, loaded only once the site script has booted (html.is-booted), so the two copies never register
+ * into each other. Skipped on wider screens and under reduced motion.
+ *
+ * Everything it does follows the visitor's scrolling, so it is fetched on the first touch, scroll, wheel or key press
+ * rather than during page load: the page's first paint and main-thread time stay the site script's alone.
  */
 function wiseup_home_mobile_motion() {
 	$file = function ( $path ) { return esc_url( WISEUP_URL . 'assets/' . $path . '?ver=' . filemtime( WISEUP_DIR . 'assets/' . $path ) ); };
 	$js   = array();
-	foreach ( array( 'js/vendor/gsap.min.js', 'js/vendor/ScrollTrigger.min.js', 'js/vendor/SplitText.min.js', 'js/home-mobile.js' ) as $path ) $js[] = $file( $path );
+	foreach ( array( 'js/vendor/gsap.min.js', 'js/vendor/ScrollTrigger.min.js', 'js/home-mobile.js' ) as $path ) $js[] = $file( $path );
 	printf(
-		"<script type=\"module\">(function(){if(!matchMedia('(max-width: 767px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var l=document.createElement('link');l.rel='stylesheet';l.href=%s;document.head.appendChild(l);var q=%s;(function next(){var u=q.shift();if(!u)return;var s=document.createElement('script');s.src=u;s.onload=next;document.body.appendChild(s);})();})();</script>\n",
+		"<script type=\"module\">(function(){if(!matchMedia('(max-width: 767px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var ev=['touchstart','pointerdown','scroll','wheel','keydown'],done=false;var h=document.documentElement,booted=function(f){if(h.classList.contains('is-booted'))return f();var o=new MutationObserver(function(){if(h.classList.contains('is-booted')){o.disconnect();f();}});o.observe(h,{attributes:true,attributeFilter:['class']});};var go=function(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,go,{passive:true})});booted(load);};var load=function(){var l=document.createElement('link');l.rel='stylesheet';l.href=%s;document.head.appendChild(l);var q=%s;(function next(){var u=q.shift();if(!u)return;var s=document.createElement('script');s.src=u;s.onload=next;document.body.appendChild(s);})();};ev.forEach(function(e){addEventListener(e,go,{passive:true})});})();</script>\n",
 		wp_json_encode( $file( 'css/home-mobile.css' ) ),
 		wp_json_encode( $js )
 	);

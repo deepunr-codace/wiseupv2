@@ -44,7 +44,9 @@ if ( 'theme' === $wu_header && ! $wu_block ) {
 }
 if ( 'theme' === $wu_header ) echo '<div class="wiseup-home wiseup-in-theme wiseup-page-' . esc_attr( $wu_slug ) . '">';
 
+ob_start();
 require WISEUP_DIR . 'generated/pages/' . $wu_slug . '.php';
+echo wiseup_page_html( $wu_slug, ob_get_clean() ); // phpcs:ignore -- the generated page body, adjusted in render.php
 
 if ( 'plugin' === $wu_footer ) wiseup_part( 'footer' );
 if ( 'theme' === $wu_header ) echo '</div>';
