@@ -52,10 +52,11 @@ import { site, contact, services, contactPage as c } from '../data/site';
             </a>
           </li>
           <li>
-            <span class="cta-row cta-row--static">
-              <Icon name="globe" size={22} class="cta-row__ico" />
-              <span class="cta-row__body"><span class="cta-row__t">Visit us</span><span class="cta-row__v">{site.city}</span></span>
-            </span>
+            <a class="cta-row" href={site.mapHref} rel="noopener" target="_blank">
+              <Icon name="pin" size={22} class="cta-row__ico" />
+              <span class="cta-row__body"><span class="cta-row__t">Visit us</span><span class="cta-row__v cta-row__v--addr">{site.address}</span></span>
+              <Icon name="arrow-ur" size={18} class="cta-row__go" />
+            </a>
           </li>
         </ul>
         <ul class="socials" data-reveal="up">
@@ -79,7 +80,7 @@ import { site, contact, services, contactPage as c } from '../data/site';
         <!-- Honeypot: real visitors never see or fill this (visually hidden, tabindex -1); a filled
              value means a bot, and the server silently drops the submission without sending mail. -->
         <label class="bform__hp" aria-hidden="true"><span>Leave this field empty</span><input type="text" name="hp_website" tabindex="-1" autocomplete="off" /></label>
-        <Button type="submit" label="Send message" look="teal" icon="whatsapp" block data-form-submit />
+        <Button type="submit" label="Send message" look="teal" icon="send" block data-form-submit />
         <p class="form__note" data-form-note aria-live="polite">We'll reply by email, usually within a day.</p>
       </form>
     </div>
@@ -93,7 +94,7 @@ import { site, contact, services, contactPage as c } from '../data/site';
         <iframe
           class="cx-map__frame"
           src={c.mapEmbed}
-          title={`Map centred on ${site.city}`}
+          title={`Map: ${site.address}`}
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
         ></iframe>

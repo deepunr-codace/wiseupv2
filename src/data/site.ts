@@ -9,6 +9,7 @@ import karak from '../assets/work/case-karak.jpg';
 import indusgo from '../assets/work/case-indusgo.jpg';
 import bootland from '../assets/work/case-bootland.jpg';
 import erets from '../assets/work/case-erets.jpg';
+import sathya from '../assets/work/case-sathya.jpg';
 
 export const site = {
   name: 'WiseUp',
@@ -26,6 +27,8 @@ export const site = {
     { label: 'Instagram', href: 'https://www.instagram.com/branding_with_wiseup/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/wiseup-marketing-agency/' },
     { label: 'Behance', href: 'https://www.behance.net/brandingwithwiseup' },
+    { label: 'Pinterest', href: 'https://in.pinterest.com/brandingwithwiseup/' },
+    { label: 'YouTube', href: 'https://www.youtube.com/@Brandingwithwiseup' },
   ],
   // Footer social row on /podcast, matching the live wiseup.in/podcast/ footer (checked 2026-10-24): the
   // podcast's own Instagram and YouTube, the agency's WhatsApp, LinkedIn and email. Other pages use
@@ -41,13 +44,24 @@ export const site = {
   // links to other WiseUp properties, not in-page anchors on this site. Replaces the previous
   // in-page nav (Who we are/Work/Services/CodeAce); Header.astro renders these as plain external
   // links (target="_blank"), not the old scroll-spy/current-section-highlight anchors.
+  // Owner's menu (2026-11-03): Podcast, TV, Studio, Services, Portfolio, Resources (Blogs, Case Studies), About Us.
+  // Contact is a phone-icon button beside the menu (Header.astro), not a text link.
   nav: [
     { label: 'WiseUp Podcast', href: 'https://wiseup.in/podcast/' },
     { label: 'WiseUp TV', href: 'https://wiseup.in/wiseup-tv/' },
-    { label: 'WiseUp Studio', href: 'https://wiseup.in/wiseup-studio/' },
-    { label: 'Case Studies', href: 'https://wiseup.in/case-studies/' },
+    { label: 'Studio', href: 'https://wiseup.in/wiseup-studio/' },
+    { label: 'Services', href: 'https://wiseup.in/services/' },
     { label: 'Portfolio', href: 'https://wiseup.in/studio/portfolio/' },
+    { label: 'Resources', children: [
+      { label: 'Blogs', href: '/blog/' },
+      { label: 'Case Studies', href: 'https://wiseup.in/case-studies/' },
+    ] },
+    { label: 'About Us', href: '/about/' },
   ],
+  contactHref: '/contact/',
+  // Street address as given by the owner, 2026-11-03 (same as wiseup.in's LocalBusiness schema).
+  address: 'Third Floor, Sahya Building Govt. Cyberpark, Nellikkode, Kozhikode, Kerala 673016',
+  mapHref: 'https://www.google.com/maps/search/?api=1&query=Sahya+Building+Govt+Cyberpark+Nellikkode+Kozhikode',
   cta: 'Get our plan first',
   ctaShort: 'Get our plan',
 };
@@ -70,23 +84,32 @@ export const hero = {
 // which, e.g. Smoke House/Bootland/Erets Space, are case-study clients shown elsewhere on the
 // site but aren't actually in this particular ticker). Logo files mirrored to public/clients/.
 export const marquee = [
-  { name: 'CADD Centre', src: '/clients/client-logo-01-sm.webp' },
-  { name: 'FIRSTCOMPANi', src: 'https://wiseup.in/wp-content/uploads/2026/10/firstcompani-logo-sm.webp' },
-  { name: 'KNP Export', src: 'https://wiseup.in/wp-content/uploads/2026/10/knp-export-logo-sm.webp' },
-  { name: 'Scientific Health Tips', src: '/clients/client-logo-04-sm.webp' },
-  { name: 'Palaxi Cinemas', src: 'https://wiseup.in/wp-content/uploads/2026/10/palaxi-cinemas-logo-sm.webp' },
-  { name: 'MGF Events', src: '/clients/client-logo-06-sm.webp' },
-  { name: 'Dimora Hotels & Resorts', src: '/clients/client-logo-07-sm.webp' },
-  { name: 'Cake Studio', src: 'https://wiseup.in/wp-content/uploads/2026/10/cake-studio-logo-sm.webp' },
-  { name: 'Paraiso', src: '/clients/client-logo-09-sm.webp' },
-  { name: 'Eduzet', src: '/clients/client-logo-10-sm.webp' },
-  { name: 'Nidra Inn', src: 'https://wiseup.in/wp-content/uploads/2026/10/nidra-inn-logo-sm.webp' },
-  { name: 'Cellphonix', src: '/clients/client-logo-12-sm.webp' },
-  { name: 'OnShopUp', src: 'https://wiseup.in/wp-content/uploads/2026/10/onshopup-logo-sm.webp' },
-  { name: 'Hayath Medicare', src: '/clients/client-logo-14-sm.webp' },
-  { name: 'Coco Coopa', src: '/clients/client-logo-15-sm.webp' },
-  { name: 'Britco & Bridco', src: '/clients/client-logo-16-sm.webp' },
-  { name: 'Livewire', src: '/clients/client-logo-17-sm.webp' },
+  { name: 'Amarapushpa', src: '/clients/client-logos-2026/amarapushpa.webp', tile: true },
+  { name: 'BM Prime', src: '/clients/client-logos-2026/bm-prime.webp' },
+  { name: 'Bucho', src: '/clients/client-logos-2026/bucho.webp', tile: true },
+  { name: 'CADD', src: '/clients/client-logos-2026/cadd.webp', tile: true },
+  { name: 'Cellar de mahe', src: '/clients/client-logos-2026/cellar-de-mahe.webp', tile: true },
+  { name: 'Clair veda', src: '/clients/client-logos-2026/clair-veda.webp' },
+  { name: 'Eduwizz', src: '/clients/client-logos-2026/eduwizz.webp', tile: true },
+  { name: 'Ellisto', src: '/clients/client-logos-2026/ellisto.webp' },
+  { name: 'Erets', src: '/clients/client-logos-2026/erets.webp', tile: true },
+  { name: 'Flora fauna', src: '/clients/client-logos-2026/flora-fauna.webp', tile: true },
+  { name: 'Formaa', src: '/clients/client-logos-2026/formaa.webp', tile: true },
+  { name: 'Gloveda', src: '/clients/client-logos-2026/gloveda.webp', tile: true },
+  { name: 'Golden Karak', src: '/clients/golden-karak-sm.webp' },
+  { name: 'Hayath', src: '/clients/client-logos-2026/hayath.webp', tile: true },
+  { name: 'Intervel', src: '/clients/client-logos-2026/intervel.webp', tile: true },
+  { name: 'Lullaby', src: '/clients/client-logos-2026/lullaby.webp', tile: true },
+  { name: 'Lunar', src: '/clients/client-logos-2026/lunar.webp', tile: true },
+  { name: 'MGF', src: '/clients/client-logos-2026/mgf.webp', tile: true },
+  { name: 'mooss', src: '/clients/client-logos-2026/mooss.webp', tile: true },
+  { name: 'Onesto Marcado', src: '/clients/client-logos-2026/onesto-marcado.webp', tile: true },
+  { name: 'Philips', src: '/clients/client-logos-2026/philips.webp', tile: true },
+  { name: 'Popees', src: '/clients/client-logos-2026/popees.webp' },
+  { name: 'Sathya', src: '/clients/client-logos-2026/sathya.webp' },
+  { name: 'Superhuman', src: '/clients/client-logos-2026/superhuman.webp', tile: true },
+  { name: 'Tiny Mafia', src: '/clients/client-logos-2026/tiny-mafia.webp', tile: true },
+  { name: 'Wellah', src: '/clients/client-logos-2026/wellah.webp', tile: true },
 ];
 
 export const about = {
@@ -130,7 +153,8 @@ export const services = {
     { title: 'Web Development', icon: 'code', tags: ['Business Websites', 'Online Stores', 'Built to be found and to convert'] },
     { title: 'SEO Services', icon: 'search', tags: ['Search Engine Optimization', 'Local SEO in Kozhikode & Kerala', 'Be found. Be chosen.'] },
     { title: 'Performance Marketing', icon: 'target', tags: ['Google Ads', 'Meta Ads', 'Lead generation & PPC'] },
-    { title: 'Digital Marketing & Social Media', icon: 'chat', tags: ['Strategy & Creatives', 'Reels', 'Influencer Marketing', 'PR & Crisis Management', 'Engagement & Sponsorship'] },
+    { title: 'Digital Marketing', icon: 'globe', tags: ['Strategy & Creatives', 'PR & Crisis Management'] },
+    { title: 'Social Media Marketing', icon: 'chat', tags: ['Reels', 'Influencer Marketing', 'Engagement & Sponsorship'], href: 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/' },
     { title: 'Video & Photography', icon: 'video', tags: ['TV Commercials', 'Theater & Digital Ads', 'Photoshoot & Product Shoot', 'Corporate & Concept Films', 'CGI & AI Videos'] },
     { title: 'Campaigns & Media Buying', icon: 'megaphone', tags: ['OOH, Print & Radio Campaigns', 'Digital & Video Campaigns', 'Media Planning & Buying', 'Monitoring'] },
   ],
@@ -200,6 +224,15 @@ export const projects: Project[] = [
     cover: { src: erets, alt: 'Erets wordmark in white and red between a satellite and a blue planet in a field of debris' },
     externalUrl: 'https://wiseup.in/case-studies/erets/',
   },
+  {
+    slug: 'sathya-agencies',
+    title: 'Sathya Agencies',
+    category: 'Brand launch campaign',
+    place: 'Kerala',
+    summary: 'WiseUp created a memorable brand launch campaign for Sathya Agencies across Kerala through creative storytelling and integrated marketing.',
+    cover: { src: sathya, alt: 'Sathya “Spreading Happiness” logo on a red backdrop, with home appliances on one side and a brand ambassador holding a phone on the other' },
+    externalUrl: 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/',
+  },
 ];
 
 export const work = {
@@ -268,7 +301,7 @@ export const aboutPage = {
   team: {
     tag: 'Our team',
     text: 'Our team is made up of talented professionals who bring creativity, technical expertise and dedication to every project. We collaborate, share ideas and keep learning, so every client gets our best work.',
-    photo: { src: 'https://wiseup.in/wp-content/uploads/2026/10/DSC00377-copy-1.png', alt: 'The WiseUp team together on stage at a brand launch event', width: 540, height: 341 },
+    photo: { src: 'https://wiseup.in/wp-content/uploads/2026/10/DSC00377-copy.webp', alt: 'The WiseUp team together on stage at a brand launch event', width: 1500, height: 822 },
   },
   founders: {
     tag: 'Our founders',
@@ -295,5 +328,5 @@ export const contactPage = {
   detailsHeading: 'Reach us directly',
   mapHeading: 'Find us',
   // city-level coordinates (site.coords): no street address is on file for the studio yet.
-  mapEmbed: 'https://www.google.com/maps?q=11.2588,75.7804&z=12&output=embed',
+  mapEmbed: 'https://www.google.com/maps?q=Sahya+Building,+Govt.+Cyberpark,+Nellikkode,+Kozhikode&z=16&output=embed', // the studio's building (owner's address, 2026-11-03)
 };

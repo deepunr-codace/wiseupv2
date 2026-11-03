@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { Observer } from 'gsap/Observer';
-import { onPage, onScroll, isMobile, isTouch, prefersReducedMotion, ease } from '../engine';
+import { onPage, onScroll, isMobile, isTouch, prefersReducedMotion, ease, scrollToTarget } from '../engine';
 import { site } from '../data/site';
 import { setupAbout } from './about';
 import { setupPodcast } from './podcast';
@@ -31,6 +31,7 @@ export function setupMotion() {
   heroAqua();
   aboutPhoto();
   heroStrip();
+  heroNext();
   imageSequence();
   heroLine();
   horizontalGallery();
@@ -231,6 +232,18 @@ function heroStrip() {
     track.addEventListener('click', onPlay);
     const stopLive = ScrollTrigger.create({ trigger: stripSec, start: 'top bottom', end: 'bottom top', onToggle: (s) => { if (!s.isActive) { live.forEach((v) => { v.pause(); v.remove(); v.closest('[data-vcard]')?.classList.remove('is-live'); }); live.clear(); syncHold(); } } });
     return () => { stop(); videos.destroy(); orbitTl?.kill(); flatSt?.kill(); stopLive.kill(); track.removeEventListener('click', onPlay); live.forEach((v) => v.remove()); };
+  });
+}
+
+/* Scroll-on button at the bottom right of the hero: moves the page on to the next section (#voice). Bound on every
+ * device, since under reduced motion the strip never flattens and the button stays visible (see site.css). */
+function heroNext() {
+  onPage(() => {
+    const next = document.querySelector<HTMLElement>('[data-hero-next]');
+    if (!next) return;
+    const go = () => scrollToTarget('#voice');
+    next.addEventListener('click', go);
+    return () => next.removeEventListener('click', go);
   });
 }
 
@@ -560,18 +573,39 @@ function faqRefresh() {
    wiseup-contact-mail plugin registers; that global is absent in local/preview builds (no
    WordPress backend to call), so this degrades to the original WhatsApp-compose behaviour there
    automatically — not a special case, just "no backend configured yet". */
+// Every [data-form] on the page is a contact form (the homepage/contact forms, the podcast's Get featured and Sponsor
+// popups). Each one is bound on its own.
 function contactForm() {
   onPage(() => {
-    const form = document.querySelector<HTMLFormElement>('[data-form]');
-    if (!form) return;
+    const cleanups = [...document.querySelectorAll<HTMLFormElement>('[data-form]')].map((form) => bindContactForm(form));
+    return () => cleanups.forEach((c) => c?.());
+  });
+}
+
+function bindContactForm(form: HTMLFormElement): (() => void) | undefined {
     const note = form.querySelector<HTMLElement>('[data-form-note]');
     const submitBtn = form.querySelector<HTMLButtonElement>('[data-form-submit]');
+    // data-lead forms (the podcast's Get featured and Sponsor enquiries) are leads, not WhatsApp messages.
+    const lead = form.hasAttribute('data-lead');
     const backend = (window as unknown as { WISEUP_CONTACT?: { endpoint: string; nonce: string } }).WISEUP_CONTACT;
     const setNote = (text: string, state?: 'sending' | 'ok' | 'error') => {
       if (!note) return;
       note.textContent = text;
       if (state) note.dataset.state = state; else delete note.dataset.state;
     };
+    // Any named field beyond the standard five is a detail some form asks for (type, brand, link, budget, interests...).
+    // The backend stores name/email/phone/service/message only, so these are folded into the message text as "Label: value".
+    const STANDARD = new Set(['name', 'email', 'phone', 'service', 'text', 'hp_website']);
+    const labelOf = (key: string) => { const t = key.replace(/_/g, ' '); return t.charAt(0).toUpperCase() + t.slice(1); };
+    const extras = (data: FormData) => {
+      const byKey = new Map<string, string[]>();
+      data.forEach((v, k) => {
+        if (STANDARD.has(k) || typeof v !== 'string' || !v.trim()) return;
+        byKey.set(k, [...(byKey.get(k) ?? []), v.trim()]);
+      });
+      return [...byKey.entries()].map(([k, vs]) => `${labelOf(k)}: ${vs.join(', ')}`);
+    };
+    const messageOf = (data: FormData) => [extras(data).join('\n'), String(data.get('text') ?? '').trim()].filter(Boolean).join('\n\n');
     const waMessage = (data: FormData) => {
       const name = String(data.get('name') || '').trim();
       const email = String(data.get('email') || '').trim();
@@ -581,6 +615,7 @@ function contactForm() {
       return [
         name && `Hi WiseUp, I'm ${name}.`,
         service && `I'm interested in: ${service}.`,
+        ...extras(data),
         text,
         [email && `Email: ${email}`, phone && `Phone: ${phone}`].filter(Boolean).join(' · '),
       ].filter(Boolean).join('\n\n') || 'Hi WiseUp, I would like your plan.';
@@ -603,6 +638,12 @@ function contactForm() {
     };
 
     if (!backend) {
+      if (lead) {
+        // No backend here: a lead is never sent from the local build, and no text is shown.
+        const submitLead = (e: SubmitEvent) => { e.preventDefault(); };
+        form.addEventListener('submit', submitLead);
+        return () => form.removeEventListener('submit', submitLead);
+      }
       setNote('Opens WhatsApp with your message ready to send.');
       const submit = (e: SubmitEvent) => { e.preventDefault(); openWhatsApp(new FormData(form)); };
       form.addEventListener('submit', submit);
@@ -621,7 +662,7 @@ function contactForm() {
           headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': backend.nonce },
           body: JSON.stringify({
             name: data.get('name'), email: data.get('email'), phone: data.get('phone'),
-            service: data.get('service'), message: data.get('text'),
+            service: data.get('service'), message: messageOf(data), source: form.dataset.source || 'contact',
           }),
         });
         const json = await res.json().catch(() => null);
@@ -629,14 +670,14 @@ function contactForm() {
         form.reset();
         setNote("Thanks — we've got it and will reply by email soon.", 'ok');
       } catch {
-        showWhatsAppFallback(data);
+        if (lead) setNote("Couldn't send that right now. Please try again.", 'error');
+        else showWhatsAppFallback(data);
       } finally {
         submitBtn?.removeAttribute('disabled');
       }
     };
     form.addEventListener('submit', submit);
     return () => form.removeEventListener('submit', submit);
-  });
 }
 
 /* Contact morph: the same device as the CodeAce figure (dynamicMorph() above) — one path

@@ -15,7 +15,7 @@ import '../styles/lead.css';
 const action = ''; // e.g. 'https://wiseup.in/wp-json/wiseup/v1/lead'
 const isPodcast = Astro.url.pathname.startsWith('/podcast');
 const options = isPodcast
-  ? ['Be a guest on the podcast', 'Sponsor an episode', 'Podcast production for my brand', ...services.items.map((s) => s.title)]
+  ? ['Get featured on the podcast', 'Sponsor an episode', 'Podcast production for my brand', ...services.items.map((s) => s.title)]
   : services.items.map((s) => s.title);
 // The mascot: a small flat chat bubble with a face. CSS (lead.css) makes it bob, blink, glance and now and then
 // "type" (eyes swap for three bouncing dots); the --happy variant smiles with closed eyes on the success panel.

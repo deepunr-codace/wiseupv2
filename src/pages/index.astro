@@ -15,10 +15,10 @@ import aboutPhoto from '../assets/about/team.webp';
 // video's own shape; repeated STRIP_SETS times so the loop never shows an edge.
 const STRIP_SETS = 3;
 const strip = Array.from({ length: STRIP_SETS }, () => reels).flat();
-// Work rows: same five covers, the second row in a different order so columns never line up.
+// Work rows: same six covers, the second row in a different order so columns never line up.
 const ROW_SETS = 3;
 const rowA = projects;
-const rowB = [projects[3], projects[0], projects[4], projects[2], projects[1]];
+const rowB = [projects[3], projects[0], projects[4], projects[2], projects[1], projects[5]];
 const pad = (n: number) => String(n).padStart(2, '0');
 
 // CodeAce figure: one path that morphs CodeAce mark -> WiseUp mark -> flame. The C is the static frame.
@@ -55,6 +55,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
       <h1 class="lunar__mark" data-lunar-mark><span class="lunar__img" set:html={wordmarkSvg} /></h1>
       <p class="lunar__sub" data-lunar-sub>Branding &amp; Marketing Agency</p>
     </div>
+    <button class="hero__next" type="button" data-hero-next aria-label="Scroll to the next section"><Icon name="arrow-r" size={22} /></button>
     <div class="strip" data-strip>
     <div class="strip__plane">
       <div class="strip__track" data-strip-track data-sets={STRIP_SETS}>
@@ -98,7 +99,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
               </button>
             </h3>
             <div class="svc__panel" id={`svc-${i}`} role="region" aria-label={s.title}>
-              <div class="svc__inner"><ul class="chips">{s.tags.map((t) => <li>{t}</li>)}</ul></div>
+              <div class="svc__inner"><ul class="chips">{s.tags.map((t) => <li>{t}</li>)}</ul>{(s as { href?: string }).href && <a class="svc__more" href={(s as { href?: string }).href}>Explore service<Fragment set:html={'<svg class="svc__more-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>'} /></a>}</div>
             </div>
           </li>
         ))}
@@ -145,7 +146,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
       <SecHead eyebrow={work.tag} id="work-title" lines={work.heading} />
     </div>
     <div class="rows" data-reveal="up">
-      {[rowA, rowB].map((row, r) => (
+      {[rowA].map((row, r) => ( /* one row (owner, 2026-11-03) */
         <div class="rows__row" data-work-row data-dir={r === 0 ? '-1' : '1'}>
           <ul class="rows__track" data-sets={ROW_SETS}>
             {Array.from({ length: ROW_SETS }, (_, s) => row.map((p) => (
@@ -174,7 +175,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
         {[0, 1].map((copy) => (
           <ul class="logos__set" aria-hidden={copy === 1 ? 'true' : undefined}>
             {marquee.map((m) => (
-              <li class="logos__item">
+              <li class:list={['logos__item', m.tile && 'is-tile']}>
                 {m.src ? <img src={m.src} alt={copy === 0 ? m.name : ''} width="140" height="48" loading="lazy" decoding="async" /> : <span>{m.name}</span>}
               </li>
             ))}
@@ -216,6 +217,132 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     </div>
   </section>
 
+  <!-- CODEACE: dynamic morphing mark + cards -->
+  <section class="sec" id="codeace" aria-labelledby="codeace-title">
+    <div class="wrap">
+      <div class="roots-head">
+        <div>
+          <SecHead eyebrow={codeace.tag} id="codeace-title" lines={codeace.heading} />
+          <Button href={codeace.href} label="Visit codeace.com" icon="arrow-ur" small external />
+        </div>
+        <figure class="morph" aria-hidden="true" data-morph>
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <linearGradient id="morph-g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#beda52" />
+                <stop offset="1" stop-color="#7fa52a" />
+              </linearGradient>
+            </defs>
+            <path d={shapeC} fill="url(#morph-g)" data-morph-path />
+          </svg>
+          <figcaption class="morph__label" data-morph-label>CodeAce</figcaption>
+        </figure>
+      </div>
+      <ul class="roots">
+        {codeace.cards.map((r, i) => (
+          <li class="card root" data-reveal="up" data-delay={String(i * 0.07)}>
+            <div class="root__who">
+              <span class:list={['root__av', `root__av--${i}`]} aria-hidden="true">{r.mono}</span>
+              <span><strong>{r.name}</strong><span>{r.role}</span></span>
+            </div>
+            <p class="root__text">{r.text}</p>
+            <p class="root__mark">{r.mark}</p>
+          </li>
+        ))}
+      </ul>
+      </div>
+  </section>
+
+  <section class="sec grow-sec" id="growing" aria-labelledby="growing-title">
+    <div class="wrap">
+      <div class="grow" data-grow>
+        <h2 class="grow__title" id="growing-title"><span class="grow__l1">We&rsquo;re growing,</span> <span class="grow__l2">day by day.</span></h2>
+        <div class="grow__chart">
+          <ul class="grow__stats">
+            <li style="--i:0"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i><b><span data-count="8">8</span></b><span>Years of CodeAce engineering</span></li>
+            <li style="--i:2"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17.5 14.2c2.4.2 4 1.7 4.5 4.3"/></svg></i><b><span data-count="3">3</span>M<em>+</em></b><span>Audience reached</span></li>
+            <li style="--i:3"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3.5"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg></i><b><span data-count="91">91</span>K<em>+</em></b><span>YouTube subscribers</span></li>
+            <li style="--i:4"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></i><b><span data-count="66">66</span>K<em>+</em></b><span>Instagram followers</span></li>
+          </ul>
+          <div class="press" aria-labelledby="press-t">
+          <h3 class="sr-only" id="press-t">CodeAce in the press</h3>
+          <ul class="sr-only">
+            <li>BusinessLine: CodeAce IT Solutions plans global expansion</li>
+            <li>The Hindu: Duo build digital marketing firm with million dollar annual turnover</li>
+            <li>Outlook: From a late-night search to a global powerhouse</li>
+            <li>Manorama Online: 115 employees, 80 overseas clients, offices abroad</li>
+            <li>BW Businessworld: The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</li>
+            <li>The Hindu: CodeAce opens second office at Cyberpark</li>
+          </ul>
+          <div class="press__wall" aria-hidden="true">
+            <div class="press__col press__col--1"><div class="press__run"><figure class="press__card"><img src="/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure></div></div>
+            <div class="press__col press__col--2"><div class="press__run"><figure class="press__card"><img src="/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure></div></div>
+            <div class="press__col press__col--3"><div class="press__run"><figure class="press__card"><img src="/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure></div></div>
+          </div>
+        </div>
+        <div class="reach" aria-labelledby="reach-t">
+          <h3 class="reach__h" id="reach-t"><span class="reach__dot" aria-hidden="true"></span>Global reach</h3>
+          <div class="reach__view">
+            <ul class="reach__track">
+              <li><figure><img src="/reach/reach-trophy.webp" alt="Our team on stage with a trophy and a prize cheque" width="780" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-creator-collective.webp" alt="Our team at YouTube Creator Collective, Kochi" width="693" height="520" loading="lazy" decoding="async" /><figcaption>Creator Collective, Kochi</figcaption></figure></li>
+              <li><figure><img src="/reach/reach-cliff.webp" alt="Our team on a coastal trip" width="390" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-knowledge-partner.webp" alt="Our team on stage as Knowledge Partner" width="780" height="520" loading="lazy" decoding="async" /><figcaption>Knowledge Partner</figcaption></figure></li>
+              <li><figure><img src="/reach/reach-arch.webp" alt="Our team on a coastal trip" width="292" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-award.webp" alt="Our team with an award" width="795" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-bangkok.webp" alt="Our team at Affiliate World Asia 2023 in Bangkok" width="480" height="520" loading="lazy" decoding="async" /><figcaption>Affiliate World Asia 2023, Bangkok</figcaption></figure></li>
+              <li><figure><img src="/reach/reach-rooftop.webp" alt="Our team at an event abroad" width="390" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-conference.webp" alt="Our team at a conference abroad" width="693" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-thailand.webp" alt="Our team at the highest spot in Thailand" width="390" height="520" loading="lazy" decoding="async" /><figcaption>Highest spot in Thailand</figcaption></figure></li>
+              <li><figure><img src="/reach/reach-night.webp" alt="Our team at an event abroad" width="292" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-team.webp" alt="Our team at an event abroad" width="693" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li><figure><img src="/reach/reach-event.webp" alt="Our team at an event abroad" width="390" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-trophy.webp" alt="" width="780" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-creator-collective.webp" alt="" width="693" height="520" loading="lazy" decoding="async" /><figcaption>Creator Collective, Kochi</figcaption></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-cliff.webp" alt="" width="390" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-knowledge-partner.webp" alt="" width="780" height="520" loading="lazy" decoding="async" /><figcaption>Knowledge Partner</figcaption></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-arch.webp" alt="" width="292" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-award.webp" alt="" width="795" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-bangkok.webp" alt="" width="480" height="520" loading="lazy" decoding="async" /><figcaption>Affiliate World Asia 2023, Bangkok</figcaption></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-rooftop.webp" alt="" width="390" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-conference.webp" alt="" width="693" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-thailand.webp" alt="" width="390" height="520" loading="lazy" decoding="async" /><figcaption>Highest spot in Thailand</figcaption></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-night.webp" alt="" width="292" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-team.webp" alt="" width="693" height="520" loading="lazy" decoding="async" /></figure></li>
+              <li aria-hidden="true"><figure><img src="/reach/reach-event.webp" alt="" width="390" height="520" loading="lazy" decoding="async" /></figure></li>
+            </ul>
+          </div>
+        </div>
+        </div>
+      
+      <script is:inline>
+        (function () {
+          var s = document.querySelector('[data-grow]');
+          if (!s) return;
+          var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var count = function () {
+            s.querySelectorAll('[data-count]').forEach(function (el) {
+              var end = +el.dataset.count, t0 = performance.now(), dur = 1400;
+              (function tick(now) {
+                var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+                el.textContent = Math.round(end * e);
+                if (k < 1) requestAnimationFrame(tick);
+              })(t0);
+            });
+          };
+          if (still || !('IntersectionObserver' in window)) { s.classList.add('is-in'); return; }
+          var io = new IntersectionObserver(function (es) {
+            if (!es[0].isIntersecting) return;
+            s.classList.add('is-in'); count(); io.disconnect();
+          }, { threshold: 0.25 });
+          io.observe(s);
+        })();
+      </script>
+    </div>
+    </div>
+  </section>
+
+
   <!-- PROCESS: horizontal scrolling gallery (pinned on desktop) -->
   <section class="sec hgal" id="process" aria-labelledby="process-title">
     <div class="hgal__view" data-hgal>
@@ -230,7 +357,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
           {process.steps.map((s, i) => (
             <li class="card proc__card" data-spot>
               <div class="proc__stage" aria-hidden="true">
-                <img class="proc__shot" src={`/process/step-${i + 1}.webp`} srcset={`/process/step-${i + 1}-sm.webp 800w, /process/step-${i + 1}.webp 1536w`} sizes="(max-width: 899px) 92vw, 46vw" alt="" width="1536" height="1024" loading="lazy" decoding="async" />
+                <img class="proc__shot" src={`/process/step-${i + 1}.webp?v=2`} srcset={`/process/step-${i + 1}-sm.webp?v=2 800w, /process/step-${i + 1}.webp?v=2 1920w`} sizes="(max-width: 899px) 92vw, 46vw" alt="" width="1920" height="1246" loading="lazy" decoding="async" />
               </div>
               <div class="proc__meta">
                 <h3 class="proc__h">{s.title}</h3>
@@ -271,42 +398,6 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
     </div>
   </section>
 
-
-  <!-- CODEACE: dynamic morphing mark + cards -->
-  <section class="sec" id="codeace" aria-labelledby="codeace-title">
-    <div class="wrap">
-      <div class="roots-head">
-        <div>
-          <SecHead eyebrow={codeace.tag} id="codeace-title" lines={codeace.heading} />
-          <Button href={codeace.href} label="Visit codeace.com" icon="arrow-ur" small external />
-        </div>
-        <figure class="morph" aria-hidden="true" data-morph>
-          <svg viewBox="0 0 200 200">
-            <defs>
-              <linearGradient id="morph-g" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#beda52" />
-                <stop offset="1" stop-color="#7fa52a" />
-              </linearGradient>
-            </defs>
-            <path d={shapeC} fill="url(#morph-g)" data-morph-path />
-          </svg>
-          <figcaption class="morph__label" data-morph-label>CodeAce</figcaption>
-        </figure>
-      </div>
-      <ul class="roots">
-        {codeace.cards.map((r, i) => (
-          <li class="card root" data-reveal="up" data-delay={String(i * 0.07)}>
-            <div class="root__who">
-              <span class:list={['root__av', `root__av--${i}`]} aria-hidden="true">{r.mono}</span>
-              <span><strong>{r.name}</strong><span>{r.role}</span></span>
-            </div>
-            <p class="root__text">{r.text}</p>
-            <p class="root__mark">{r.mark}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  </section>
 
   <!-- FAQ -->
   <section class="sec" id="faq" aria-labelledby="faq-title">
@@ -358,10 +449,11 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
             </a>
           </li>
           <li>
-            <span class="cta-row cta-row--static">
-              <Icon name="globe" size={22} class="cta-row__ico" />
-              <span class="cta-row__body"><span class="cta-row__t">Visit us</span><span class="cta-row__v">{site.city}</span></span>
-            </span>
+            <a class="cta-row" href={site.mapHref} rel="noopener" target="_blank">
+              <Icon name="pin" size={22} class="cta-row__ico" />
+              <span class="cta-row__body"><span class="cta-row__t">Visit us</span><span class="cta-row__v cta-row__v--addr">{site.address}</span></span>
+              <Icon name="arrow-ur" size={18} class="cta-row__go" />
+            </a>
           </li>
         </ul>
         </div>
@@ -380,7 +472,7 @@ const shapeC = 'M156.6 43.4A80 80 0 1 0 156.6 156.6L132.5 132.5A46 46 0 1 1 132.
         <!-- Honeypot: real visitors never see or fill this (visually hidden, tabindex -1); a filled
              value means a bot, and the server silently drops the submission without sending mail. -->
         <label class="bform__hp" aria-hidden="true"><span>Leave this field empty</span><input type="text" name="hp_website" tabindex="-1" autocomplete="off" /></label>
-        <Button type="submit" label="Send message" look="teal" icon="whatsapp" block data-form-submit />
+        <Button type="submit" label="Send message" look="teal" icon="send" block data-form-submit />
         <p class="form__note" data-form-note aria-live="polite">We'll reply by email, usually within a day.</p>
       </form>
       </div>

@@ -1,0 +1,83 @@
+---
+// "Get featured" popup for /podcast. A <dialog> opened by any link to #get-featured (the header pill, the hero button,
+// the guest section, the footer link via /podcast/#get-featured). Left: the featuring details, laid out as a ticket, a
+// three-step path and who we feature. Right: the entry form. The form keeps data-form, so contactForm() in
+// motion/main.ts sends it (name/email/phone/service/message, with type/brand/link folded into the message).
+// Opening, closing and the arrival-by-link case live in motion/podcast.ts (featuredDialog()).
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+const perks = [
+  'Guest slots planned 2 to 4 weeks ahead',
+  'Studio or on-location recording',
+  'Published on the WiseUp Podcast YouTube channel',
+];
+const path = [
+  { t: 'Tell us your story', d: 'Your details and what you would talk about.' },
+  { t: 'We review and reply', d: 'The team reads every entry and replies by email.' },
+  { t: 'We record and publish', d: 'We plan the conversation and release the episode.' },
+];
+const who = ['Founders', 'Brands & businesses', 'Creators', 'Experts'];
+---
+<dialog class="feat-dialog" data-featured-modal aria-labelledby="feat-title" aria-describedby="feat-sub">
+  <button class="feat-dialog__close" type="button" data-featured-close aria-label="Close">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <div class="feat-dialog__mhead" aria-hidden="true">
+    <p class="feat-dialog__mtitle">Be featured on WiseUp Podcast</p>
+  </div>
+  <div class="feat-dialog__inner">
+    <div class="feat-dialog__intro">
+      <p class="feat-dialog__kicker">
+        
+        Get featured
+      </p>
+      <h2 class="feat-dialog__h" id="feat-title">You, on WiseUp Podcast.</h2>
+      <p class="feat-dialog__sub" id="feat-sub">Founders, brands, creators and experts share their story in a Malayalam conversation.</p>
+
+      <div class="feat-dialog__ticket">
+        <p class="feat-dialog__ticket-h">What you get</p>
+        <ul>
+          {perks.map((t) => <li><Icon name="check" size={16} />{t}</li>)}
+        </ul>
+      </div>
+
+      <ol class="feat-dialog__path">
+        {path.map((s, i) => (
+          <li>
+            <span class="feat-dialog__num">{i + 1}</span>
+            <span><b>{s.t}</b><span class="feat-dialog__step-d">{s.d}</span></span>
+          </li>
+        ))}
+      </ol>
+
+      <ul class="feat-dialog__chips" aria-label="Who we feature">
+        {who.map((w) => <li>{w}</li>)}
+      </ul>
+    </div>
+
+    <form class="bform feat-dialog__form" data-form data-lead data-source="get-featured">
+      <label class="bfield"><span>Full name</span><input name="name" autocomplete="name" placeholder="Full name" required /></label>
+      <label class="bfield"><span>Email</span><input type="email" name="email" autocomplete="email" placeholder="Email address" required /></label>
+      <label class="bfield"><span>Phone number</span><input type="tel" name="phone" autocomplete="tel" placeholder="Phone number" required /></label>
+      <label class="bfield bfield--select"><span>I am a</span>
+        <select name="type" required>
+          <option value="" selected disabled>Choose one</option>
+          <option>Founder or entrepreneur</option>
+          <option>Brand or business</option>
+          <option>Creator or influencer</option>
+          <option>Expert or professional</option>
+          <option>Other</option>
+        </select>
+        <Icon name="chev-r" size={16} class="bfield__chev" />
+      </label>
+      <label class="bfield"><span>Brand or business name</span><input name="brand" placeholder="Brand or business name" /></label>
+      <label class="bfield"><span>Website or social link</span><input type="url" name="link" placeholder="Website or social link" /></label>
+      <label class="bfield bfield--area"><span>Your story</span><textarea name="text" rows="4" placeholder="What would you talk about on the show?" required></textarea></label>
+      <input type="hidden" name="service" value="Get featured" />
+      <label class="bform__hp" aria-hidden="true"><span>Leave this field empty</span><input type="text" name="hp_website" tabindex="-1" autocomplete="off" /></label>
+      <Button type="submit" label="Get featured" look="teal" block data-form-submit />
+      <p class="form__note" data-form-note aria-live="polite">We'll reply by email, usually within a day.</p>
+    </form>
+  </div>
+</dialog>

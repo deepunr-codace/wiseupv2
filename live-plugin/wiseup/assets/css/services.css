@@ -1,0 +1,331 @@
+/* WiseUp services listing page (landing/services.php). Dark, lime accent, same language as the blog and landing pages. */
+body.wu-svc-page { background: #000; color: #fff; margin: 0; }
+.wu-svc { --lime: #BEDA52; --lime-hi: #D8EC8A; --line: rgba(255, 255, 255, .12); --muted: rgba(255, 255, 255, .64);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif; color: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+.wu-svc *, .wu-svc *::before, .wu-svc *::after { box-sizing: border-box; }
+.wu-svc a { color: inherit; text-decoration: none; }
+.wu-svc h1, .wu-svc h2, .wu-svc p, .wu-svc ul, .wu-svc ol { margin: 0; padding: 0; }
+.wu-svc ul, .wu-svc ol { list-style: none; }
+.wu-svc button { font: inherit; cursor: pointer; }
+/* headings: outside styles colour h1/h2 dark, so set ours explicitly */
+.wu-svc :is(h1, h2) { color: #fff; font-family: inherit; }
+.wu-svc .sv-hero h1 .sv-dim { color: rgba(255, 255, 255, .42); }
+.wu-svc :is(a, button).sv-link { font-family: inherit; font-size: 14.5px; line-height: 1; }
+.wu-svc :is(a, button).sv-btn { font-family: inherit; font-size: 15.5px; line-height: 1; }
+.sv-wrap { position: relative; width: min(100% - 2 * clamp(20px, 4vw, 40px), 1440px); margin-inline: auto; }
+
+/* hero */
+.sv-hero { position: relative; padding: clamp(150px, 16vw, 230px) 0 clamp(36px, 4vw, 60px); }
+.sv-glow { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(45% 60% at 85% 10%, rgba(190, 218, 82, .16), transparent 70%), radial-gradient(35% 50% at 0% 90%, rgba(190, 218, 82, .07), transparent 70%); }
+.sv-pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 12px; border-radius: 999px; background: rgba(255, 255, 255, .05); border: 1px solid var(--line); font-size: 13.5px; font-weight: 500; }
+.sv-dot { width: 14px; height: 14px; border-radius: 50%; background: radial-gradient(circle, #E9F98A 0%, #9DBA35 70%); box-shadow: 0 0 12px var(--lime); }
+.sv-hero h1 { margin-top: 24px; font-size: clamp(42px, 6.4vw, 96px); font-weight: 500; letter-spacing: -.05em; line-height: .98; }
+.sv-hero h1 span { display: block; }
+.sv-hero h1 .sv-dim { color: rgba(255, 255, 255, .42); }
+.sv-hero p { margin-top: 22px; max-width: 640px; font-size: clamp(16px, 1.3vw, 19px); color: var(--muted); }
+.sv-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+.sv-jump a { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line); font-size: 14px; color: rgba(255, 255, 255, .8); transition: background .3s, color .3s, border-color .3s; }
+.sv-jump a:hover, .sv-jump a:focus-visible { background: var(--lime); border-color: var(--lime); color: #11150a; }
+
+/* cards */
+.sv-list { padding: clamp(20px, 3vw, 40px) 0 clamp(60px, 7vw, 110px); }
+.sv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); }
+.sv-card { position: relative; display: flex; flex-direction: column; gap: 18px; padding: clamp(22px, 2.2vw, 34px); border-radius: 26px; overflow: hidden; scroll-margin-top: 110px;
+  background: #0d0d0f; border: 1px solid rgba(255, 255, 255, .08); transition: transform .5s cubic-bezier(.2, .8, .2, 1), border-color .35s, background .35s;
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px)); will-change: transform; }
+.sv-card::before { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(420px circle at var(--mx, 100%) var(--my, 0%), rgba(190, 218, 82, .18), transparent 65%); }
+.sv-card:hover, .sv-card:focus-within, .sv-card:target { --ty: -6px; border-color: rgba(190, 218, 82, .45); }
+.sv-card:hover::before, .sv-card:focus-within::before, .sv-card:target::before { opacity: 1; }
+.sv-card > * { position: relative; }
+.sv-card__top { display: flex; align-items: flex-start; justify-content: space-between; }
+.sv-card__ico { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 18px; background: rgba(190, 218, 82, .1); color: var(--lime); border: 1px solid rgba(190, 218, 82, .22); transition: background .35s, color .35s; }
+.sv-card:hover .sv-card__ico { background: var(--lime); color: #11150a; }
+.sv-card__n { font-size: clamp(44px, 4vw, 64px); font-weight: 600; letter-spacing: -.06em; line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .2); transition: -webkit-text-stroke-color .35s; }
+.sv-card:hover .sv-card__n { -webkit-text-stroke-color: rgba(190, 218, 82, .7); }
+.sv-card__t { margin-top: 8px; font-size: clamp(22px, 1.9vw, 30px); font-weight: 500; letter-spacing: -.035em; line-height: 1.1; }
+.sv-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.sv-chips li { padding: 6px 13px; border-radius: 999px; background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .08); font-size: 13.5px; color: rgba(255, 255, 255, .8); }
+.sv-card__foot { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 8px; }
+.sv-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: var(--lime); color: #11150a; font-size: 14.5px; font-weight: 600; transition: background .3s, color .3s, border-color .3s; }
+.sv-link:hover, .sv-link:focus-visible { background: var(--lime-hi); }
+.sv-link svg { transition: transform .3s; }
+.sv-link:hover svg { transform: translate(3px, -3px); }
+.sv-link--ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .22); }
+.sv-link--ghost:hover, .sv-link--ghost:focus-visible { background: transparent; border-color: var(--lime); color: var(--lime-hi); }
+
+/* closing call to action */
+.sv-cta { padding: 0 0 clamp(60px, 7vw, 110px); }
+.sv-cta__box { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding: clamp(28px, 4vw, 60px); border-radius: 28px;
+  background: radial-gradient(60% 120% at 100% 0%, rgba(190, 218, 82, .2), transparent 70%), #0d0d0f; border: 1px solid rgba(255, 255, 255, .1); }
+.sv-cta__box h2 { font-size: clamp(26px, 3.2vw, 48px); font-weight: 500; letter-spacing: -.04em; line-height: 1.05; max-width: 640px; }
+.sv-cta__btns { display: flex; flex-wrap: wrap; gap: 12px; }
+.sv-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 0 30px; border-radius: 999px; border: 0; background: var(--lime); color: #11150a; font-size: 15.5px; font-weight: 600; transition: background .3s, transform .3s, border-color .3s, color .3s; }
+.sv-btn:hover, .sv-btn:focus-visible { background: var(--lime-hi); transform: translateY(-2px); }
+.sv-btn--ghost { background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, .25); }
+.sv-btn--ghost:hover, .sv-btn--ghost:focus-visible { background: transparent; border-color: var(--lime); color: var(--lime-hi); }
+
+@media (max-width: 1100px) { .sv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) {
+  .sv-grid { grid-template-columns: 1fr; }
+  .sv-jump { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * clamp(20px, 4vw, 40px)); padding-inline: clamp(20px, 4vw, 40px); scrollbar-width: none; }
+  .sv-jump a { flex: none; }
+  .sv-cta__btns, .sv-btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { .wu-svc * { transition: none !important; } .sv-card { --ty: 0px !important; --rx: 0deg !important; --ry: 0deg !important; } }
+
+/* motion (assets/js/services.js): hidden only while html.wu-motion is set, which the head script adds unless reduced motion */
+.wu-motion .wu-svc [data-split] { visibility: hidden; }
+.wu-motion .wu-svc [data-reveal], .wu-motion .wu-svc [data-card], .wu-motion .wu-svc [data-chips] a { opacity: 0; }
+.wu-svc .split-line { padding-bottom: .06em; }
+.sv-glow { will-change: transform; transform-origin: 80% 10%; }
+.wu-motion .sv-card:not(.is-in) { transition: none; }
+.wu-motion .sv-btn { transition: background .3s, border-color .3s, color .3s; }
+.wu-motion .sv-btn:hover { transform: none; }
+/* room under the masked lines so descenders (g, y) aren't cut, without changing the line spacing */
+.wu-svc [class*="split-line"] { padding-bottom: .16em; margin-bottom: -.16em; }
+/* the glow drifts, so it is oversized, clipped to the hero and faded out at the bottom (no hard edges) */
+.sv-hero { overflow: clip; }
+.sv-glow { inset: -18% -12% 0; -webkit-mask-image: linear-gradient(#000 70%, transparent); mask-image: linear-gradient(#000 70%, transparent); }
+
+/* ================= bento cards with animated illustrations (landing/services-visuals.php) ================= */
+.sv-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.sv-card { grid-column: span 4; padding: 0; gap: 0; }
+.sv-card:nth-child(1), .sv-card:nth-child(7), .sv-card:nth-child(8) { grid-column: span 7; }
+.sv-card:nth-child(2), .sv-card:nth-child(6), .sv-card:nth-child(9) { grid-column: span 5; }
+.sv-vis { position: relative; height: 210px; overflow: hidden; border-bottom: 1px solid rgba(255, 255, 255, .06);
+  background: radial-gradient(60% 80% at 50% 40%, rgba(190, 218, 82, .09), transparent 70%), radial-gradient(rgba(255, 255, 255, .07) 1px, transparent 1.4px) 0 0 / 18px 18px; }
+.sv-vis .vz { width: 100%; height: 100%; display: block; transition: transform .8s cubic-bezier(.2, .8, .2, 1), opacity .5s; opacity: .9; }
+.sv-card:hover .sv-vis .vz { transform: scale(1.05); opacity: 1; }
+.sv-card__body { display: flex; flex-direction: column; gap: 16px; flex: 1; padding: clamp(22px, 2vw, 30px); }
+.sv-card__ico { width: 42px; height: 42px; border-radius: 13px; }
+.sv-card__top { align-items: center; }
+.sv-card__n { font-size: clamp(36px, 3vw, 48px); }
+.sv-card__t { margin-top: 0; }
+.sv-card--wide { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); }
+.sv-card--wide .sv-vis { height: auto; min-height: 320px; border-bottom: 0; border-right: 1px solid rgba(255, 255, 255, .06); }
+.sv-card--wide:nth-child(7) .sv-vis { order: 2; border-right: 0; border-left: 1px solid rgba(255, 255, 255, .06); }
+.sv-card--wide .sv-card__body { justify-content: center; }
+.sv-card--wide .sv-card__foot { margin-top: 8px; }
+
+/* shared drawing styles */
+svg.vz { fill: none; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.vz * { transform-box: fill-box; }
+
+/* 01 brand: construction grid, guides turning, the mark drawing itself */
+.vz-brand .vz-grid line { stroke: rgba(255, 255, 255, .05); }
+.vz-guide { stroke: rgba(190, 218, 82, .3); stroke-dasharray: 3 7; transform-origin: center; animation: vzSpin 30s linear infinite; }
+.vz-guide--2 { animation-direction: reverse; animation-duration: 20s; }
+.vz-draw { stroke: #BEDA52; stroke-width: 11; stroke-dasharray: 1; stroke-dashoffset: 1; animation: vzDraw 5s cubic-bezier(.6, 0, .3, 1) infinite; filter: drop-shadow(0 0 12px rgba(190, 218, 82, .45)); }
+.vz-pts circle { fill: #0d0d0f; stroke: #fff; stroke-width: 2; transform-origin: center; animation: vzPop 5s infinite; }
+.vz-pts circle:nth-child(2) { animation-delay: .15s; } .vz-pts circle:nth-child(3) { animation-delay: .3s; } .vz-pts circle:nth-child(4) { animation-delay: .45s; } .vz-pts circle:nth-child(5) { animation-delay: .6s; }
+.vz-swatch circle { stroke: rgba(255, 255, 255, .2); transform-origin: center; animation: vzPop 5s infinite 1.2s; }
+.vz-swatch circle:nth-child(2) { animation-delay: 1.35s; } .vz-swatch circle:nth-child(3) { animation-delay: 1.5s; }
+@keyframes vzDraw { 0% { stroke-dashoffset: 1; } 45%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }
+@keyframes vzPop { 0%, 8% { transform: scale(0); } 18%, 82% { transform: scale(1); } 92%, 100% { transform: scale(0); } }
+@keyframes vzSpin { to { transform: rotate(360deg); } }
+
+/* 02 packaging: a branded box turning */
+.vz-pack { position: relative; display: grid; place-items: center; perspective: 700px; }
+.vz-cube { position: relative; width: 92px; height: 92px; transform-style: preserve-3d; animation: vzCube 12s linear infinite; }
+.vz-cube .f { position: absolute; inset: 0; display: grid; place-items: center; border: 1.5px solid rgba(190, 218, 82, .75); background: rgba(13, 13, 15, .82); border-radius: 4px; }
+.vz-cube .f b { font-size: 42px; font-weight: 700; letter-spacing: -.06em; color: #BEDA52; }
+.vz-cube .f1 { transform: translateZ(46px); } .vz-cube .f2 { transform: rotateY(90deg) translateZ(46px); }
+.vz-cube .f3 { transform: rotateY(180deg) translateZ(46px); } .vz-cube .f4 { transform: rotateY(-90deg) translateZ(46px); }
+.vz-cube .f5 { transform: rotateX(90deg) translateZ(46px); background: rgba(190, 218, 82, .3); } .vz-cube .f6 { transform: rotateX(-90deg) translateZ(46px); }
+.vz-floor { position: absolute; left: 50%; bottom: 26px; width: 150px; height: 20px; margin-left: -75px; border-radius: 50%; background: radial-gradient(closest-side, rgba(190, 218, 82, .35), transparent); animation: vzFloor 3s ease-in-out infinite; }
+@keyframes vzCube { from { transform: rotateX(-24deg) rotateY(0); } to { transform: rotateX(-24deg) rotateY(360deg); } }
+@keyframes vzFloor { 50% { transform: scaleX(.8); opacity: .6; } }
+
+/* 03 web: the page builds, the cursor clicks the button */
+.vz-web .vz-frame { stroke: rgba(255, 255, 255, .22); stroke-width: 1.5; fill: rgba(255, 255, 255, .015); }
+.vz-dotc { fill: rgba(255, 255, 255, .25); } .vz-url { fill: rgba(255, 255, 255, .06); }
+.vz-bar { fill: rgba(255, 255, 255, .16); transform-origin: left; animation: vzGrow 6s cubic-bezier(.6, 0, .3, 1) infinite; }
+.vz-bar.b1 { fill: rgba(255, 255, 255, .75); } .vz-bar.b2 { animation-delay: .2s; } .vz-bar.b3 { animation-delay: .35s; }
+.vz-btn { fill: #BEDA52; transform-origin: center; animation: vzBtn 6s infinite; }
+.vz-tile { fill: rgba(190, 218, 82, .12); stroke: rgba(190, 218, 82, .45); transform-origin: bottom; animation: vzGrowY 6s cubic-bezier(.6, 0, .3, 1) infinite .5s; }
+.vz-tile.t2 { animation-delay: .65s; }
+.vz-cursor { fill: #fff; stroke: #0d0d0f; stroke-width: 1.2; transform-box: view-box; animation: vzCursor 6s cubic-bezier(.6, 0, .3, 1) infinite; }
+@keyframes vzGrow { 0% { transform: scaleX(0); } 18%, 88% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@keyframes vzGrowY { 0% { transform: scaleY(0); } 18%, 88% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
+@keyframes vzBtn { 0%, 52% { transform: scale(1); } 56% { transform: scale(.88); } 62%, 100% { transform: scale(1); } }
+@keyframes vzCursor { 0%, 15% { transform: translate(330px, 196px); } 50%, 70% { transform: translate(120px, 152px); } 100% { transform: translate(330px, 196px); } }
+
+/* 04 seo: typing, our result climbs to the top */
+.vz-seo { display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 20px clamp(20px, 2.4vw, 32px); }
+.vz-q { display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 16px; border-radius: 999px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12); font-size: 13.5px; color: #fff; }
+.vz-q svg { width: 16px; height: 16px; flex: none; fill: none; stroke: #BEDA52; stroke-width: 2.2; stroke-linecap: round; }
+.vz-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; border-right: 2px solid #BEDA52; animation: vzType 7s steps(25) infinite, vzCaret .75s step-end infinite; }
+.vz-res { position: relative; height: 106px; }
+.vz-res .r { position: absolute; left: 0; right: 0; height: 30px; display: flex; flex-direction: column; justify-content: center; gap: 5px; padding: 0 14px; border-radius: 10px; background: rgba(255, 255, 255, .035); border: 1px solid rgba(255, 255, 255, .07); }
+.vz-res .r i { display: block; width: 55%; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .2); }
+.vz-res .r i + i { width: 80%; background: rgba(255, 255, 255, .09); }
+.vz-res .r1 { top: 0; animation: vzDown 7s cubic-bezier(.6, 0, .3, 1) infinite; } .vz-res .r2 { top: 38px; animation: vzDown 7s cubic-bezier(.6, 0, .3, 1) infinite; }
+.vz-res .r-us { top: 76px; background: rgba(190, 218, 82, .1); border-color: rgba(190, 218, 82, .55); animation: vzUp 7s cubic-bezier(.6, 0, .3, 1) infinite; }
+.vz-res .r-us i { background: rgba(190, 218, 82, .7); } .vz-res .r-us i + i { background: rgba(190, 218, 82, .3); }
+.vz-res .r-us em { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-style: normal; font-size: 12px; font-weight: 700; color: #BEDA52; }
+.vz-res .r-us em::before { content: '#'; }
+@keyframes vzType { 0% { width: 0; } 35%, 92% { width: 25ch; } 100% { width: 0; } }
+@keyframes vzCaret { 50% { border-color: transparent; } }
+@keyframes vzUp { 0%, 40% { transform: translateY(0); } 55%, 92% { transform: translateY(-76px); } 100% { transform: translateY(0); } }
+@keyframes vzDown { 0%, 40% { transform: translateY(0); } 55%, 92% { transform: translateY(38px); } 100% { transform: translateY(0); } }
+
+/* 05 performance: bars rise, the growth line draws */
+.vz-axis { stroke: rgba(255, 255, 255, .15); }
+.vz-col { fill: rgba(190, 218, 82, .16); stroke: rgba(190, 218, 82, .45); transform-origin: bottom; animation: vzRise 6s cubic-bezier(.6, 0, .3, 1) infinite; animation-delay: calc(var(--i) * .08s); }
+.vz-line { stroke: #BEDA52; stroke-width: 3.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: vzLine 6s cubic-bezier(.6, 0, .3, 1) infinite; filter: drop-shadow(0 0 8px rgba(190, 218, 82, .6)); }
+.vz-head { fill: #BEDA52; transform-origin: center; animation: vzHead 6s infinite; }
+@keyframes vzRise { 0% { transform: scaleY(0); } 22%, 88% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
+@keyframes vzLine { 0%, 20% { stroke-dashoffset: 1; } 55%, 88% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes vzHead { 0%, 52% { transform: scale(0); } 58% { transform: scale(1.6); } 64%, 88% { transform: scale(1); } 100% { transform: scale(0); } }
+
+/* 06 digital: a turning globe with a satellite */
+.vz-sphere { stroke: rgba(255, 255, 255, .22); fill: rgba(190, 218, 82, .04); }
+.vz-mer .m { stroke: rgba(190, 218, 82, .5); transform-origin: center; animation: vzMer 6s linear infinite; }
+.vz-mer .m2 { animation-delay: -2s; } .vz-mer .m3 { animation-delay: -4s; }
+.vz-lat { stroke: rgba(255, 255, 255, .1); }
+.vz-ring { stroke: rgba(190, 218, 82, .35); stroke-dasharray: 3 7; }
+.vz-sat { fill: #BEDA52; transform-box: view-box; offset-path: path("M340 110 A140 40 0 1 1 60 110 A140 40 0 1 1 340 110"); animation: vzOrbit 7s linear infinite; filter: drop-shadow(0 0 8px #BEDA52); }
+@keyframes vzMer { 0% { transform: scaleX(1); opacity: .15; } 50% { transform: scaleX(0); opacity: .9; } 100% { transform: scaleX(-1); opacity: .15; } }
+@keyframes vzOrbit { to { offset-distance: 100%; } }
+
+/* 07 social: a reel playing, likes floating up */
+.vz-social { position: relative; display: grid; place-items: center; }
+.vz-phone { position: relative; width: 104px; height: 182px; border-radius: 20px; overflow: hidden; border: 1.5px solid rgba(255, 255, 255, .28);
+  background: linear-gradient(160deg, rgba(190, 218, 82, .3), rgba(190, 218, 82, .03) 65%), #0b0c08; }
+.vz-prog { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; gap: 4px; }
+.vz-prog i { position: relative; flex: 1; height: 3px; border-radius: 2px; overflow: hidden; background: rgba(255, 255, 255, .22); }
+.vz-prog i::after { content: ""; position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; animation: vzP1 6s linear infinite; }
+.vz-prog i:nth-child(2)::after { animation-name: vzP2; } .vz-prog i:nth-child(3)::after { animation-name: vzP3; }
+.vz-play { position: absolute; left: 50%; top: 50%; width: 30px; height: 30px; margin: -15px 0 0 -13px; fill: rgba(255, 255, 255, .85); animation: vzBeat 1.6s ease-in-out infinite; }
+.vz-cap { position: absolute; left: 12px; right: 30px; bottom: 14px; display: grid; gap: 5px; }
+.vz-cap i { height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .5); } .vz-cap i + i { width: 60%; background: rgba(255, 255, 255, .25); }
+.vz-heart { position: absolute; left: calc(50% + 42px); bottom: 48px; font-size: 20px; line-height: 1; color: #BEDA52; opacity: 0; animation: vzFloat 3.2s ease-out infinite; --dx: 26px; }
+.vz-heart.h2 { animation-delay: .8s; color: #fff; --dx: -6px; font-size: 15px; }
+.vz-heart.h3 { animation-delay: 1.6s; --dx: 40px; font-size: 24px; }
+.vz-heart.h4 { animation-delay: 2.4s; color: #ff6b8a; --dx: 12px; }
+@keyframes vzP1 { 0% { transform: scaleX(0); } 33%, 100% { transform: scaleX(1); } }
+@keyframes vzP2 { 0%, 33% { transform: scaleX(0); } 66%, 100% { transform: scaleX(1); } }
+@keyframes vzP3 { 0%, 66% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+@keyframes vzBeat { 50% { transform: scale(1.12); } }
+@keyframes vzFloat { 0% { opacity: 0; transform: translate(0, 0) scale(.5); } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), -120px) scale(1.15); } }
+
+/* 08 video: a viewfinder recording */
+.vz-thirds line { stroke: rgba(255, 255, 255, .08); }
+.vz-corner { stroke: rgba(255, 255, 255, .8); stroke-width: 3; }
+.vz-focus { stroke: #BEDA52; stroke-width: 2; transform-origin: center; animation: vzFocus 3.4s cubic-bezier(.6, 0, .3, 1) infinite; }
+.vz-rec { fill: #ff4d4d; animation: vzBlink 1.2s step-end infinite; }
+.vz-rectext { fill: #fff; stroke: none; font: 600 13px/1 Inter, system-ui, sans-serif; letter-spacing: .12em; }
+.vz-scan { fill: rgba(190, 218, 82, .35); stroke: none; transform-box: view-box; animation: vzScan 3.6s linear infinite; }
+@keyframes vzFocus { 0% { transform: scale(1.8); opacity: .25; } 30% { transform: scale(.92); opacity: 1; } 38%, 85% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.8); opacity: .25; } }
+@keyframes vzBlink { 50% { opacity: 0; } }
+@keyframes vzScan { from { transform: translateY(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } to { transform: translateY(170px); opacity: 0; } }
+
+/* 09 campaigns: a megaphone broadcasting, channels running past */
+.vz-cast { display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.vz-cast svg { width: 100%; height: 150px; fill: none; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.vz-mega { stroke: rgba(255, 255, 255, .85); stroke-width: 2.5; fill: rgba(190, 218, 82, .12); transform-box: fill-box; transform-origin: left center; animation: vzKick 1.8s ease-in-out infinite; }
+.vz-wave { stroke: #BEDA52; stroke-width: 3.5; opacity: 0; animation: vzWave 1.8s ease-out infinite; }
+.vz-wave.w2 { animation-delay: .22s; } .vz-wave.w3 { animation-delay: .44s; }
+.vz-tick { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent); }
+.vz-tick > div { display: flex; width: max-content; animation: vzTick 14s linear infinite; }
+.vz-tick span { padding-right: 28px; font-size: 12.5px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .5); }
+.vz-tick span:nth-child(even) { color: #BEDA52; }
+@keyframes vzKick { 0%, 100% { transform: rotate(0); } 10% { transform: rotate(-4deg); } 20% { transform: rotate(0); } }
+@keyframes vzWave { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes vzTick { to { transform: translateX(-50%); } }
+
+/* animations run only while the card is on screen (services.js toggles .is-live), and never under reduced motion */
+.wu-motion .sv-card:not(.is-live) .sv-vis *, .wu-motion .sv-card:not(.is-live) .sv-vis *::after { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) {
+  .sv-vis *, .sv-vis *::after { animation: none !important; }
+  .vz-draw, .vz-line { stroke-dashoffset: 0; } .vz-type { width: 25ch; } .vz-heart { opacity: .8; }
+}
+
+/* bento on tablets and phones */
+@media (max-width: 1100px) {
+  .sv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sv-card, .sv-card:nth-child(n) { grid-column: span 1; }
+  .sv-card--wide, .sv-card--wide:nth-child(n) { grid-column: 1 / -1; }
+}
+@media (max-width: 680px) {
+  .sv-grid { grid-template-columns: 1fr; }
+  .sv-card--wide { display: flex; }
+  .sv-card--wide .sv-vis, .sv-card--wide:nth-child(7) .sv-vis { order: 0; height: 210px; min-height: 0; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .06); }
+}
+
+/* layout fix: the illustration wrappers keep their own display (the general .sv-vis .vz rule was turning them into blocks) */
+.sv-vis .vz-pack, .sv-vis .vz-social { display: grid; place-items: center; }
+.sv-vis .vz-seo, .sv-vis .vz-cast { display: flex; }
+
+/* 02 packaging, v2: a kraft-card product box in real 3D (W 110 x H 130 x D 70), lit per face */
+.vz-pack { perspective: 900px; }
+.vz-box { --w: 110px; --h: 130px; --d: 70px; position: relative; width: var(--w); height: var(--h); transform-style: preserve-3d; animation: vzBox 14s linear infinite; }
+.vz-box .f { position: absolute; display: block; overflow: hidden; backface-visibility: hidden; border-radius: 2px;
+  /* kraft card: base tone, fibre noise, faint corrugation lines */
+  background:
+    var(--light, linear-gradient(transparent, transparent)),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .22 0 0 0 0 .12 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(90deg, rgba(90, 60, 30, .07) 0 1px, transparent 1px 5px),
+    linear-gradient(160deg, #c99b62, #b0834f);
+  box-shadow: inset 0 0 0 1px rgba(70, 45, 20, .35), inset 0 0 18px rgba(70, 45, 20, .25); }
+.vz-box .f-front, .vz-box .f-back { width: var(--w); height: var(--h); }
+.vz-box .f-left, .vz-box .f-right { width: var(--d); height: var(--h); left: calc((var(--w) - var(--d)) / 2); }
+.vz-box .f-top, .vz-box .f-bottom { width: var(--w); height: var(--d); top: calc((var(--h) - var(--d)) / 2); }
+.vz-box .f-front { transform: translateZ(calc(var(--d) / 2)); --light: linear-gradient(160deg, rgba(255, 240, 210, .18), rgba(0, 0, 0, .05)); }
+.vz-box .f-back { transform: rotateY(180deg) translateZ(calc(var(--d) / 2)); --light: linear-gradient(rgba(0, 0, 0, .28), rgba(0, 0, 0, .28)); }
+.vz-box .f-right { transform: rotateY(90deg) translateZ(calc(var(--w) / 2)); --light: linear-gradient(90deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .34)); }
+.vz-box .f-left { transform: rotateY(-90deg) translateZ(calc(var(--w) / 2)); --light: linear-gradient(90deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .14)); }
+.vz-box .f-top { transform: rotateX(90deg) translateZ(calc(var(--h) / 2)); --light: linear-gradient(rgba(255, 245, 220, .28), rgba(255, 245, 220, .12)); }
+.vz-box .f-bottom { transform: rotateX(-90deg) translateZ(calc(var(--h) / 2)); --light: linear-gradient(rgba(0, 0, 0, .45), rgba(0, 0, 0, .45)); }
+/* print on the box */
+.vz-box i { position: absolute; display: block; font-style: normal; }
+.vz-lbl { left: 12px; right: 12px; top: 34px; height: 54px; border-radius: 6px; background: #0d0d0f; display: grid !important; place-items: center; align-content: center; gap: 2px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .15) inset, 0 2px 4px rgba(60, 35, 10, .35); }
+.vz-lbl b { font-size: 26px; line-height: 1; font-weight: 700; letter-spacing: -.06em; color: #BEDA52; }
+.vz-lbl em { font-style: normal; font-size: 8.5px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: rgba(255, 255, 255, .75); }
+.vz-tape { left: 0; right: 0; top: 50%; height: 22px; margin-top: -11px; background: linear-gradient(rgba(240, 225, 190, .55), rgba(220, 200, 160, .45)); box-shadow: 0 0 0 1px rgba(120, 90, 50, .15); }
+.vz-tape-v { left: 50%; top: 0; width: 22px; height: 16px; margin-left: -11px; background: rgba(235, 220, 185, .5); }
+.vz-stripe { left: 0; right: 0; bottom: 22px; height: 10px; background: #BEDA52; opacity: .9; }
+.vz-icons { left: 14px; top: 16px; width: 40px; height: 12px;
+  background: radial-gradient(circle at 6px 6px, rgba(40, 25, 10, .55) 3.5px, transparent 4px) 0 0 / 14px 12px repeat-x; }
+.vz-pack .vz-floor { bottom: 18px; width: 170px; margin-left: -85px; height: 24px; background: radial-gradient(closest-side, rgba(0, 0, 0, .75), rgba(190, 218, 82, .12) 70%, transparent); }
+@keyframes vzBox { from { transform: rotateX(-20deg) rotateY(0); } to { transform: rotateX(-20deg) rotateY(360deg); } }
+.sv-card--box:hover .vz-box { animation-duration: 6s; }
+/* social: likes start beside the phone, not from the panel bottom; seo: caret ends at the last letter */
+.vz-heart { bottom: auto; top: calc(50% + 40px); }
+@keyframes vzType { 0% { width: 0; } 35%, 92% { width: 13.2em; } 100% { width: 0; } }
+@media (prefers-reduced-motion: reduce) { .vz-type { width: 13.2em; } }
+/* the wide cards have a taller picture panel: draw the phone larger there */
+@media (min-width: 681px) { .sv-card--wide .vz-social { transform: scale(1.35); } .sv-card--wide:hover .vz-social { transform: scale(1.4); } }
+/* hero service chips: one line at every width, a strip that runs to the screen edge, fades where more chips are hidden, scrolls by trackpad/touch and drags with a mouse */
+.sv-jump { flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; margin-right: calc(-1 * max(clamp(20px, 4vw, 40px), (100vw - 1440px) / 2)); padding-right: 40px; cursor: grab;
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 90px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 90px), transparent); }
+.sv-jump::-webkit-scrollbar { display: none; }
+.sv-jump.is-end { -webkit-mask-image: linear-gradient(90deg, transparent, #000 90px); mask-image: linear-gradient(90deg, transparent, #000 90px); }
+.sv-jump.is-mid { -webkit-mask-image: linear-gradient(90deg, transparent, #000 90px, #000 calc(100% - 90px), transparent); mask-image: linear-gradient(90deg, transparent, #000 90px, #000 calc(100% - 90px), transparent); }
+.sv-jump.is-fit { -webkit-mask-image: none; mask-image: none; cursor: auto; }
+.sv-jump.is-drag { cursor: grabbing; user-select: none; }
+.sv-jump a { flex: none; white-space: nowrap; }
+/* cards: no hover effects on the card itself (no lift, tilt, spotlight, border, icon, number or picture change); only the buttons inside react */
+.sv-card, .sv-card:hover, .sv-card:focus-within, .sv-card:target { --ty: 0px; --rx: 0deg; --ry: 0deg; transform: none; border-color: rgba(255, 255, 255, .08); }
+.sv-card::before { display: none; }
+.sv-card:hover .sv-card__ico { background: rgba(190, 218, 82, .1); color: var(--lime); }
+.sv-card:hover .sv-card__n { -webkit-text-stroke-color: rgba(255, 255, 255, .2); }
+.sv-card:hover .sv-vis .vz { transform: none; opacity: .9; }
+.sv-card--box:hover .vz-box { animation-duration: 14s; }
+@media (min-width: 681px) { .sv-card--wide:hover .vz-social { transform: scale(1.35); } }
+/* chip strip spans the full screen width; the first chip still lines up with the heading */
+.sv-jump { --edge: max(clamp(20px, 4vw, 40px), (100vw - 1440px) / 2); width: 100vw; margin-left: calc(-1 * var(--edge)); margin-right: 0; padding-left: var(--edge); padding-right: var(--edge); scroll-padding-left: var(--edge); }
+@media (max-width: 680px) { .sv-jump { margin-inline: 0 0; margin-left: calc(-1 * var(--edge)); padding-inline: var(--edge); } }
+/* card tags: a consistent list (one per row, lime dot, hairline dividers) instead of pills that wrap unevenly */
+.sv-chips { flex-direction: column; flex-wrap: nowrap; gap: 0; border-top: 1px solid rgba(255, 255, 255, .08); }
+.sv-chips li { display: flex; align-items: center; gap: 12px; padding: 10px 2px; border: 0; border-bottom: 1px solid rgba(255, 255, 255, .08); border-radius: 0; background: none; font-size: 14.5px; line-height: 1.35; color: rgba(255, 255, 255, .78); }
+.sv-chips li::before { content: ""; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--lime); opacity: .85; }
+/* picture panels: plain black shade, no dot pattern or glow */
+.sv-vis { background: #151517; }
+
+/* "Explore service" (solid lime) button: dark text and arrow; a general link rule was turning both white (2026-11-03) */
+.wu-svc a.sv-link:not(.sv-link--ghost), .wu-svc a.sv-link:not(.sv-link--ghost):hover, .wu-svc a.sv-link:not(.sv-link--ghost):focus-visible { color: #11150a !important; }
+.wu-svc a.sv-link:not(.sv-link--ghost) svg { stroke: currentColor; color: #11150a; }

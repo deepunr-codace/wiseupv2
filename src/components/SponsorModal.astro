@@ -1,0 +1,101 @@
+---
+// "Sponsor the show" enquiry popup for /podcast: a short step-by-step form. Five steps, each a short question with its
+// fields grouped together, a progress bar, Back and Next; the last step sends. Opened by any link to #sponsor-enquiry.
+// The form keeps data-form, so contactForm() in motion/main.ts sends it, folding the non-standard answers into the
+// message as "Label: value". The wizard itself (steps, validation, progress) is in motion/podcast.ts (sponsorDialog()).
+import Button from './Button.astro';
+import Icon from './Icon.astro';
+
+const sponsorships = ['Sponsored episode', 'Shorts and Reels', 'Instagram carousels', 'Brand story episode', 'Not sure yet'];
+const budgets = ['Under ₹25,000', '₹25,000 to ₹1 lakh', '₹1 to 3 lakh', 'More than ₹3 lakh', 'Not decided yet'];
+const starts = ['This month', 'In the next 1 to 3 months', 'Later this year', 'Just exploring'];
+
+// Each step is one short question with its fields. `req` marks a required field; a step with only optional fields can
+// be passed with Next.
+const steps = [
+  {
+    q: "Let's start with you",
+    fields: [
+      { name: 'name', label: 'Full name', kind: 'input', type: 'text', ph: 'Full name', req: true, ac: 'name' },
+      { name: 'email', label: 'Work email', kind: 'input', type: 'email', ph: 'you@company.com', req: true, ac: 'email' },
+    ],
+  },
+  {
+    q: 'How can we reach you?',
+    fields: [
+      { name: 'phone', label: 'WhatsApp number', kind: 'input', type: 'tel', ph: '+91 00000 00000', req: true, ac: 'tel' },
+      { name: 'company', label: 'Company', kind: 'input', type: 'text', ph: 'Company name', req: true, ac: 'organization' },
+      { name: 'website', label: 'Company website (optional)', kind: 'input', type: 'url', ph: 'https://', req: false, ac: 'url' },
+    ],
+  },
+  {
+    q: 'Tell us about the sponsorship',
+    fields: [
+      { name: 'role', label: 'Are you the brand, or an agency?', kind: 'select', req: true, options: ['I work at the brand', "I'm an agency, writing for a brand"] },
+      { name: 'sponsorship', label: 'Sponsorship type', kind: 'select', req: true, options: sponsorships },
+    ],
+  },
+  {
+    q: 'Budget and timing (optional)',
+    fields: [
+      { name: 'budget', label: 'Roughly what budget?', kind: 'select', req: false, options: budgets },
+      { name: 'start', label: 'When would you like to start?', kind: 'select', req: false, options: starts },
+    ],
+  },
+  {
+    q: 'What would you like to promote?',
+    fields: [
+      { name: 'text', label: 'Your product or service, and who it is for', kind: 'textarea', req: true, ph: 'Tell us in a line or two' },
+    ],
+  },
+];
+const total = steps.length;
+---
+<dialog class="feat-dialog sp-dialog" data-sponsor-modal aria-labelledby="sp-title">
+  <button class="feat-dialog__close" type="button" data-sponsor-close aria-label="Close">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <form class="sp-wiz" data-form data-lead data-source="sponsor" data-sp-wizard>
+    <h2 class="sp-wiz__title" id="sp-title">Sponsor the show</h2>
+    <div class="sp-wiz__top">
+      <p class="sp-wiz__count" data-sp-count aria-live="polite">Step 1 of {total}</p>
+      <div class="sp-wiz__bar" aria-hidden="true"><i data-sp-bar></i></div>
+    </div>
+
+    {steps.map((s, i) => (
+      <div class="sp-step" data-sp-step hidden={i > 0 ? true : undefined}>
+        <p class="sp-step__q">{s.q}</p>
+        {s.fields.map((f) => (
+          <div class="sp-field">
+            <label class="sp-field__l" for={`sp-${f.name}`}>{f.label}{f.req && <b aria-hidden="true"> *</b>}</label>
+            {f.kind === 'input' && (
+              <input class="sp-step__in" id={`sp-${f.name}`} name={f.name} type={f.type} placeholder={f.ph} autocomplete={f.ac} required={f.req || undefined} />
+            )}
+            {f.kind === 'select' && (
+              <div class="sp-step__sel">
+                <select class="sp-step__in" id={`sp-${f.name}`} name={f.name} required={f.req || undefined}>
+                  <option value="" selected disabled>Choose one</option>
+                  {f.options!.map((o) => <option>{o}</option>)}
+                </select>
+                <Icon name="chev-r" size={18} class="sp-step__chev" />
+              </div>
+            )}
+            {f.kind === 'textarea' && (
+              <textarea class="sp-step__in sp-step__ta" id={`sp-${f.name}`} name={f.name} rows="4" placeholder={f.ph} required={f.req || undefined}></textarea>
+            )}
+          </div>
+        ))}
+      </div>
+    ))}
+
+    <input type="hidden" name="service" value="Sponsor the show" />
+    <label class="bform__hp" aria-hidden="true"><span>Leave this field empty</span><input type="text" name="hp_website" tabindex="-1" autocomplete="off" /></label>
+
+    <div class="sp-wiz__nav">
+      <button class="sp-wiz__back" type="button" data-sp-back>Back</button>
+      <button class="sp-wiz__next" type="button" data-sp-next>Next <Icon name="arrow-ur" size={16} /></button>
+      <Button type="submit" label="Send enquiry" look="teal" class="sp-wiz__send" data-form-submit hidden />
+    </div>
+    <p class="form__note" data-form-note aria-live="polite">We'll reply by email.</p>
+  </form>
+</dialog>

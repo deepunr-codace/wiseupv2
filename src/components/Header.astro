@@ -19,14 +19,20 @@ import podcastLogo from '../assets/brand/podcast-logo.png';
 // correspond to a section on this page, so header()'s ScrollTrigger-per-link setup in
 // motion/main.ts already no-ops safely for all of them: it only acts when
 // document.getElementById(id) finds a matching on-page section).
-interface Props { current?: string; cta?: string }
-const { current, cta = '/#contact' } = Astro.props;
-const links = site.nav;
+interface Props { current?: string; cta?: string; ctaLabel?: string }
+const { current, cta = '/#contact', ctaLabel } = Astro.props;
+const links: { label: string; href?: string; children?: { label: string; href: string }[] }[] = site.nav;
+// Absolute URLs are other WiseUp properties (new tab); /about/ and /contact/ are this site (same tab).
+const ext = (href = '') => /^https?:/.test(href);
 // The logo scrolls back to #top on the home page; on every other page (no #top there) it goes home.
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/index.html';
 const isPodcast = current === 'podcast';
 // /podcast swaps the plan CTA for a YouTube subscribe pill (opens the channel with YouTube's subscribe prompt)
+// Services mega menu (owner, 2026-11-03): nine service tiles plus a feature card; opens on hover / focus like the Resources dropdown.
+const megaHtml = '<div class="hd__item hd__item--mega"><button class="hd__link hd__link--parent" type="button" aria-haspopup="true"><span class="hd__dot" aria-hidden="true"></span>Services<svg class="hd__chev" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 3.5 3 3 3-3"/></svg></button><div class="hd__mega"><div class="mega"><div class="mega__grid"><a class="mega__tile" href="https://wiseup.in/services/#svc-1" style="--d:0"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c2-6 3.5-11 5-11 1.5 0 .5 7-1 10s-1 2 1 0 3-5 4-5 0 4 1 4 2-3 3-3 1 2 2 2 2-1 2-1"/></svg></span><span class="mega__txt"><b>Brand Strategy &amp; Identity</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-2" style="--d:1"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></svg></span><span class="mega__txt"><b>Packaging Design &amp; Events</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-3" style="--d:2"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg></span><span class="mega__txt"><b>Web Development</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-4" style="--d:3"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span><span class="mega__txt"><b>SEO Services</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-5" style="--d:4"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r=".6"/></svg></span><span class="mega__txt"><b>Performance Marketing</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-6" style="--d:5"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/></svg></span><span class="mega__txt"><b>Digital Marketing</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/social-media-marketing-agency-in-kerala/" style="--d:6"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/></svg></span><span class="mega__txt"><b>Social Media Marketing</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-8" style="--d:7"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="m16 10.5 5-3v9l-5-3"/></svg></span><span class="mega__txt"><b>Video &amp; Photography</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a><a class="mega__tile" href="https://wiseup.in/services/#svc-9" style="--d:8"><span class="mega__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v4a1 1 0 0 0 1 1h2l7 4V5L7 9H5a1 1 0 0 0-1 1Z"/><path d="M17.5 9.5a3.5 3.5 0 0 1 0 5"/></svg></span><span class="mega__txt"><b>Campaigns &amp; Media Buying</b></span><span class="mega__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M6.5 17.5 16 8M9 7h8.5v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></div><aside class="mega__feat"><span class="mega__kick">Our services</span><p class="mega__h"><span class="mega__360">360°</span> Marketing Services</p><p class="mega__p">See the plan before you see a price. Branding, ads and digital strategy from one team.</p><a class="mega__plan" href="/#contact">Get our plan</a></aside></div></div></div>';
 const ytSub = 'https://www.youtube.com/@WiseUpPodcast_?sub_confirmation=1';
+// The contact button's filled phone handset (Material Icons "call", Apache 2.0).
+const callSvg = '<svg class="ico-call" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>';
 ---
 <header class="hd" data-head>
   {isPodcast ? (
@@ -40,12 +46,22 @@ const ytSub = 'https://www.youtube.com/@WiseUpPodcast_?sub_confirmation=1';
   )}
 
   <nav class="hd__nav" aria-label="WiseUp sites">
-    {links.map((l) => (
-      <a class="hd__link" href={l.href} target="_blank" rel="noopener"><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>
+    {links.map((l) => l.label === 'Services' ? (
+      <Fragment set:html={megaHtml} />
+    ) : l.children ? (
+      <div class="hd__item">
+        <button class="hd__link hd__link--parent" type="button" aria-haspopup="true"><span class="hd__dot" aria-hidden="true"></span>{l.label}<svg class="hd__chev" width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 3.5 3 3 3-3"/></svg></button>
+        <div class="hd__drop">
+          {l.children.map((c) => <a href={c.href} target={ext(c.href) ? '_blank' : undefined} rel={ext(c.href) ? 'noopener' : undefined}>{c.label}</a>)}
+        </div>
+      </div>
+    ) : (
+      <a class="hd__link" href={l.href} target={ext(l.href) ? '_blank' : undefined} rel={ext(l.href) ? 'noopener' : undefined}><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>
     ))}
   </nav>
 
   <div class="hd__actions">
+    <a class="hd__call" href={site.contactHref} aria-label="Contact us"><Fragment set:html={callSvg} /></a>
     <button class="hd__theme" type="button" data-theme-toggle aria-label="Switch to light mode" aria-pressed="false">
       <span class="hd__theme-ico">
         <Icon name="moon" size={18} class="ico--moon" />
@@ -53,18 +69,18 @@ const ytSub = 'https://www.youtube.com/@WiseUpPodcast_?sub_confirmation=1';
       </span>
     </button>
 
-    {isPodcast ? (
-      <a class="hd__sub" href={ytSub} target="_blank" rel="noopener" aria-label="Subscribe to WiseUp Podcast on YouTube, 91 thousand subscribers">
+    {isPodcast && (
+      <a class="hd__sub" href={ytSub} target="_blank" rel="noopener" aria-label="Subscribe to WiseUp Podcast on YouTube">
         <svg class="hd__sub-yt" viewBox="0 0 68 48" aria-hidden="true"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
         <span class="hd__sub-label">Subscribe</span>
-        <span class="hd__sub-count" aria-hidden="true">91K</span>
       </a>
-    ) : (
+    )}
+    {!isPodcast && (
       <a class="hd__cta" href={cta}>
         <span class="hd__cta-glow" aria-hidden="true"></span>
         <span class="hd__cta-border" aria-hidden="true"></span>
         <span class="hd__cta-shine" aria-hidden="true"></span>
-        <span class="hd__cta-inner"><span class="hd__cta-label">{site.ctaShort}</span></span>
+        <span class="hd__cta-inner"><span class="hd__cta-label">{ctaLabel || site.ctaShort}</span></span>
       </a>
     )}
 
@@ -73,7 +89,14 @@ const ytSub = 'https://www.youtube.com/@WiseUpPodcast_?sub_confirmation=1';
     </button>
   </div>
   <div class="menu" id="menu" hidden data-menu>
-    {links.map((l) => <a href={l.href} target="_blank" rel="noopener" data-menu-link><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>)}
-    <Button href={cta} label={site.ctaShort} look="teal" block data-menu-link />
+    {links.map((l) => l.children ? (
+      <details class="menu__group">
+        <summary><span class="hd__dot" aria-hidden="true"></span>{l.label}<svg class="hd__chev" width="12" height="12" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 3.5 3 3 3-3"/></svg></summary>
+        {l.children.map((c) => <a class="menu__sub" href={c.href} target={ext(c.href) ? '_blank' : undefined} rel={ext(c.href) ? 'noopener' : undefined} data-menu-link>{c.label}</a>)}
+      </details>
+    ) : <a href={l.href} target={ext(l.href) ? '_blank' : undefined} rel={ext(l.href) ? 'noopener' : undefined} data-menu-link><span class="hd__dot" aria-hidden="true"></span>{l.label}</a>)}
+    <a class="menu__call" href={site.contactHref} data-menu-link><Fragment set:html={callSvg} />Contact Us</a>
+    {!isPodcast && <Button href={cta} label={ctaLabel || site.ctaShort} look="teal" block data-menu-link />}
   </div>
 </header>
+<script is:inline src="/js/mega-rope.js" defer></script>

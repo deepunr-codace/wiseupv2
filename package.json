@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "higgsfield": "node index.ts",
-    "astro": "astro"
+    "astro": "astro",
+    "wp:plugin": "astro build && node scripts/build-wp-plugin.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",

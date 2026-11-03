@@ -32,3 +32,8 @@ scripts/.cache/
 wiseup/
 check_mobile.py
 mobile_contact.png
+
+# the live plugin snapshot is tracked (the rule above is for build output)
+!live-plugin/wiseup/
+*.before-*
+.next.cjs

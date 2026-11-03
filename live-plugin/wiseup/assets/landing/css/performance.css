@@ -1,0 +1,42 @@
+/* WiseUp Performance Marketing landing page */
+html,body{margin:0;background:#000;color:#fff;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#D2EAA6;text-decoration:none}
+a:hover{color:#C2F760}
+h1,h2,h3,p,figure,blockquote,ul{margin:0}
+ul{padding:0;list-style:none}
+::selection{background:#C2F760;color:#000}
+html{scroll-padding-top:90px;text-rendering:optimizeLegibility}
+a:focus-visible,button:focus-visible{outline:2px solid #C2F760;outline-offset:3px;border-radius:999px}
+input,select,textarea{font:inherit}
+input::placeholder,textarea::placeholder{color:rgba(255,255,255,.4)}
+img{-webkit-user-drag:none}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:#000}::-webkit-scrollbar-thumb{background:#2a2d22;border-radius:10px;border:2px solid #000}::-webkit-scrollbar-thumb:hover{background:#C2F760}
+
+/* responsive switches that the design computed in JavaScript */
+:root{--wu-nav-links-d:flex;--wu-nav-btn-d:none;--wu-arrow-d:block}
+@media(max-width:999px){:root{--wu-arrow-d:none}}
+@media(max-width:719px){:root{--wu-nav-links-d:none;--wu-nav-btn-d:grid}}
+@media(min-width:720px){[data-menu]{display:none!important}}
+
+/* hover and focus states */
+.scp0:hover { background: rgb(194, 247, 96) !important; color: rgb(14, 18, 6) !important; }
+.scp1:hover { color: rgb(194, 247, 96) !important; }
+.scp2:hover { background: rgb(194, 247, 96) !important; color: rgb(0, 0, 0) !important; }
+.scp3:hover { color: rgb(14, 18, 6) !important; filter: brightness(1.08) !important; }
+.scp4:hover { border-color: rgb(194, 247, 96) !important; color: rgb(194, 247, 96) !important; }
+.scp5:hover { background: rgba(194, 247, 96, 0.05) !important; }
+.scp6:hover { color: rgb(255, 255, 255) !important; border-color: rgb(255, 255, 255) !important; }
+.scp7:hover { background: rgb(194, 247, 96) !important; color: rgb(14, 18, 6) !important; padding-left: 36px !important; }
+.scp8:focus { border-color: rgb(194, 247, 96) !important; }
+.scp9:hover { filter: brightness(1.08) !important; }
+
+[hidden]{display:none!important}
+.wu-faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.wu-faq-a[data-open]{grid-template-rows:1fr}
+body.admin-bar [data-nav]{top:32px!important}
+body.admin-bar [data-progress]{top:32px!important}
+@media(max-width:782px){body.admin-bar [data-nav],body.admin-bar [data-progress]{top:46px!important}}
+body.wu-landing{margin:0;background:#000}
+@media(max-width:719px){footer a,a[href^="mailto:"],a[href^="https://wa.me"]{display:inline-block;padding:9px 0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}

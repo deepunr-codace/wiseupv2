@@ -14,6 +14,102 @@ export function setupPodcast() {
   featuredStack();
   podcastScroll();
   hostCards3d();
+  featuredDialog();
+  sponsorDialog();
+}
+
+/* "Get featured" popup (FeaturedModal.astro). Every link to #get-featured opens the dialog; the × or a click on the
+   backdrop closes it. Escape is handled by the browser's <dialog>. */
+function featuredDialog() {
+  onPage(() => {
+    const dlg = document.querySelector<HTMLDialogElement>('[data-featured-modal]');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const openers = [...document.querySelectorAll<HTMLAnchorElement>('a[href="#get-featured"], a[href$="/podcast/#get-featured"]')];
+    const closers = [...dlg.querySelectorAll<HTMLElement>('[data-featured-close]')];
+    const open = (e: Event) => { e.preventDefault(); if (!dlg.open) dlg.showModal(); };
+    const close = () => dlg.close();
+    const onBackdrop = (e: MouseEvent) => { if (e.target === dlg) close(); };
+    openers.forEach((a) => a.addEventListener('click', open));
+    closers.forEach((b) => b.addEventListener('click', close));
+    dlg.addEventListener('click', onBackdrop);
+    return () => {
+      openers.forEach((a) => a.removeEventListener('click', open));
+      closers.forEach((b) => b.removeEventListener('click', close));
+      dlg.removeEventListener('click', onBackdrop);
+    };
+  });
+}
+
+/* "Sponsor the show" enquiry popup (SponsorModal.astro). The same behaviour as the Get featured popup, for its own
+   dialog and its own links (#sponsor-enquiry). */
+function sponsorDialog() {
+  onPage(() => {
+    const dlg = document.querySelector<HTMLDialogElement>('[data-sponsor-modal]');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    const openers = [...document.querySelectorAll<HTMLAnchorElement>('a[href="#sponsor-enquiry"], a[href$="/podcast/#sponsor-enquiry"]')];
+    const closers = [...dlg.querySelectorAll<HTMLElement>('[data-sponsor-close]')];
+    const open = (e: Event) => { e.preventDefault(); if (!dlg.open) dlg.showModal(); };
+    const close = () => dlg.close();
+    const onBackdrop = (e: MouseEvent) => { if (e.target === dlg) close(); };
+    openers.forEach((a) => a.addEventListener('click', open));
+    closers.forEach((b) => b.addEventListener('click', close));
+    dlg.addEventListener('click', onBackdrop);
+    // The step-by-step form: one question at a time. Next checks the current step before moving on; Enter does the
+    // same (except in the message box); the last step shows the send button. A successful send resets to step 1.
+    const wiz = dlg.querySelector<HTMLFormElement>('[data-sp-wizard]');
+    const stepEls = [...dlg.querySelectorAll<HTMLElement>('[data-sp-step]')];
+    const bar = dlg.querySelector<HTMLElement>('[data-sp-bar]');
+    const count = dlg.querySelector<HTMLElement>('[data-sp-count]');
+    const back = dlg.querySelector<HTMLButtonElement>('[data-sp-back]');
+    const next = dlg.querySelector<HTMLButtonElement>('[data-sp-next]');
+    const send = dlg.querySelector<HTMLButtonElement>('[data-form-submit]');
+    let at = 0;
+    const show = (i: number) => {
+      at = Math.max(0, Math.min(stepEls.length - 1, i));
+      stepEls.forEach((el, k) => { el.hidden = k !== at; });
+      const last = at === stepEls.length - 1;
+      if (count) count.textContent = `Step ${at + 1} of ${stepEls.length}`;
+      if (bar) bar.style.width = `${((at + 1) / stepEls.length) * 100}%`;
+      if (back) back.disabled = at === 0;
+      if (next) next.hidden = last;
+      if (send) send.hidden = !last;
+      stepEls[at].querySelector<HTMLElement>('input, select, textarea')?.focus({ preventScroll: true });
+    };
+    const stepValid = (i: number) => {
+      const fields = [...stepEls[i].querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea')];
+      for (const f of fields) if (!f.checkValidity()) { f.reportValidity(); return false; }
+      return true;
+    };
+    const nextStep = () => { if (stepValid(at)) show(at + 1); };
+    const onNext = () => nextStep();
+    const onBack = () => show(at - 1);
+    const onEnter = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (e.key !== 'Enter' || target.tagName === 'TEXTAREA' || at === stepEls.length - 1) return;
+      e.preventDefault();
+      // Enter goes to the next field in this step; from the step's last field it moves on to the next step.
+      const fields = [...stepEls[at].querySelectorAll<HTMLElement>('input, select, textarea')];
+      const idx = fields.indexOf(target);
+      if (idx >= 0 && idx < fields.length - 1) fields[idx + 1].focus();
+      else nextStep();
+    };
+    const onReset = () => setTimeout(() => show(0), 0);
+    next?.addEventListener('click', onNext);
+    back?.addEventListener('click', onBack);
+    wiz?.addEventListener('keydown', onEnter);
+    wiz?.addEventListener('reset', onReset);
+    show(0);
+
+    return () => {
+      openers.forEach((a) => a.removeEventListener('click', open));
+      closers.forEach((b) => b.removeEventListener('click', close));
+      dlg.removeEventListener('click', onBackdrop);
+      next?.removeEventListener('click', onNext);
+      back?.removeEventListener('click', onBack);
+      wiz?.removeEventListener('keydown', onEnter);
+      wiz?.removeEventListener('reset', onReset);
+    };
+  });
 }
 
 /* Thumbnails stay real <a href="youtube.com/watch?v=..."> links (work with JS off, middle-click,

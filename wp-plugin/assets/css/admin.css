@@ -1,0 +1,40 @@
+/* wp-admin → Wiseup */
+.wiseup-admin__title { display: flex; align-items: center; gap: 10px; }
+.wiseup-admin__mark { width: 26px; height: 26px; border-radius: 8px; background: #11150a radial-gradient(circle, #beda52 0 1.4px, transparent 1.8px) 0 0 / 6px 6px; }
+.wiseup-admin__by { font-size: 13px; font-weight: 400; color: #646970; }
+.wiseup-admin__lead { max-width: 760px; font-size: 14px; }
+.wiseup-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin: 16px 0; }
+.wiseup-card { padding: 16px 18px; background: #fff; border: 1px solid #dcdcde; border-radius: 8px; }
+.wiseup-card h2 { margin: 0 0 10px; font-size: 15px; }
+.wiseup-card ul { margin: 0 0 12px; }
+.wiseup-card li { margin-bottom: 8px; }
+.wiseup-status { display: inline-block; margin-left: 6px; padding: 0 6px; border-radius: 3px; background: #f0f0f1; font-size: 11px; color: #50575e; }
+.wiseup-status--publish { background: #edfaef; color: #00691e; }
+.wiseup-muted { color: #646970; }
+.wiseup-social { display: grid; gap: 6px; }
+.wiseup-social label { display: flex; align-items: center; gap: 10px; }
+.wiseup-social label span { width: 80px; }
+.wiseup-leads { margin-top: 12px; }
+.wiseup-leads th, .wiseup-leads td { padding: 10px 12px; vertical-align: top; }
+.wiseup-leads td { font-size: 13px; }
+.wiseup-lead--new { box-shadow: inset 3px 0 0 #beda52; }
+.wiseup-lead--new td:nth-child(2) strong::before { content: '● '; color: #beda52; }
+.wiseup-leads details summary { cursor: pointer; color: #2271b1; }
+.wiseup-leads details p { max-width: 42ch; white-space: pre-wrap; }
+.wiseup-lead__actions { white-space: nowrap; }
+.wiseup-admin__pager .page-numbers { display: inline-block; padding: 4px 9px; margin-right: 4px; border: 1px solid #dcdcde; border-radius: 3px; text-decoration: none; }
+.wiseup-admin__pager .page-numbers.current { background: #2271b1; border-color: #2271b1; color: #fff; }
+
+/* Leads dashboard: summary cards, source tabs, and the form label on each row. */
+.wiseup-leadcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 16px 0; max-width: 760px; }
+.wiseup-leadcards > div { padding: 14px 16px; background: #fff; border: 1px solid #dcdcde; border-radius: 8px; }
+.wiseup-leadcards strong { display: block; font-size: 26px; line-height: 1.1; color: #1d2327; }
+.wiseup-leadcards span { font-size: 12px; color: #646970; }
+.wiseup-leadtabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 4px; }
+.wiseup-leadtabs a { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1px solid #dcdcde; border-radius: 999px; background: #fff; color: #1d2327; text-decoration: none; font-size: 13px; }
+.wiseup-leadtabs a span { color: #646970; }
+.wiseup-leadtabs a em { font-style: normal; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: #beda52; color: #11150a; }
+.wiseup-leadtabs a.is-active { background: #1d2327; border-color: #1d2327; color: #fff; }
+.wiseup-leadtabs a.is-active span { color: #dcdcde; }
+.wiseup-lead__form { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #f0f0f1; font-size: 12px; }
+@media (max-width: 600px) { .wiseup-leadcards { grid-template-columns: 1fr; } }
