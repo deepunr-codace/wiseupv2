@@ -58,6 +58,10 @@ add_action( 'wp_head', function () {
 	if ( false !== $plugin_css ) {
 		echo "<style id=\"wiseup-plugin-css\">\n" . $plugin_css . "\n</style>\n"; // Static plugin stylesheet; inlining avoids a separate render-blocking request.
 	}
+	if ( 'home' === $slug ) {
+		// Phones only: one spacing scale for every homepage section (assets/css/home-mobile-layout.css).
+		echo '<link rel="stylesheet" media="(max-width: 767px)" href="' . esc_url( WISEUP_URL . 'assets/css/home-mobile-layout.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/home-mobile-layout.css' ) ) . "\">\n";
+	}
 	// Restores the visitor's saved light/dark choice before first paint; first-time visitors get the default theme.
 	echo str_replace( '__WISEUP_DEFAULT_THEME__', wp_json_encode( 'light' === wiseup_opt( 'default_theme' ) ? 'light' : 'dark' ), $m['head_script'] ) . "\n"; // phpcs:ignore -- static script from the build
 }, 5 );

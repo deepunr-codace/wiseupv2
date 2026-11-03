@@ -1,0 +1,114 @@
+/*
+ * Homepage spacing on phones: one scale for every gap, so each section breathes the same way. Loaded on the homepage
+ * by includes/render.php (with media="(max-width: 767px)"), with or without motion. Scoped to body.wiseup-page-home.
+ *
+ *   48  above and below every section (96 between two sections)
+ *   32  from a section's heading to its content, and between the blocks inside a section
+ *   24  inside every card, and from a paragraph to its buttons
+ *   16  from an eyebrow to its title, from a title to its intro line
+ *   12  between the cards of a list
+ *   24  corner radius of every card (18 for the small panels inside cards)
+ */
+@media (max-width: 767px) {
+	.wiseup-page-home {
+		--wu-sec: 48px;
+		--wu-block: 32px;
+		--wu-card: 24px;
+		--wu-pair: 16px;
+		--wu-list: 12px;
+		--wu-r: 24px;
+		--wu-r-sm: 18px;
+	}
+
+	/* ---------- sections ---------- */
+	/* The hero is a fixed-height box and the strip's arrow row sits on its bottom edge, so the space below it is a
+	   margin: 44 + the services' own 48 puts the arrows 96 above "What we do", like every other section boundary. */
+	.wiseup-page-home .hero { margin-bottom: 44px; }
+	.wiseup-page-home main > .sec,
+	.wiseup-page-home main > .sec.grow-sec,
+	.wiseup-page-home main > .sec.hgal,
+	.wiseup-page-home .sec#contact { padding-block: var(--wu-sec); }
+	.wiseup-page-home .logos { padding-block: 0; } /* a band between work and about: 48 above, 48 below */
+
+	/* ---------- section heads ---------- */
+	.wiseup-page-home .sh { gap: var(--wu-pair); margin-bottom: var(--wu-block); }
+	.wiseup-page-home .svc-head,
+	.wiseup-page-home .roots-head,
+	.wiseup-page-home .loop-head { gap: var(--wu-block); margin-bottom: var(--wu-block); }
+	.wiseup-page-home .svc-head .sh,
+	.wiseup-page-home .roots-head .sh,
+	.wiseup-page-home .loop-head .sh,
+	.wiseup-page-home .hgal__intro .sh,
+	.wiseup-page-home .contact__head .sh { margin-bottom: 0; }
+	.wiseup-page-home .roots-head > div { gap: var(--wu-card); }
+	.wiseup-page-home .loop-head { gap: var(--wu-card); }
+
+	/* ---------- services ---------- */
+	.wiseup-page-home .svc { gap: var(--wu-list); }
+	.wiseup-page-home .svc__item,
+	.wiseup-page-home .svc__btn { border-radius: var(--wu-r); }
+	.wiseup-page-home .svc__btn { padding: var(--wu-card); }
+
+	/* ---------- the statement under the flame ---------- */
+	.wiseup-page-home .seq__pin { padding-top: var(--wu-sec); }
+	.wiseup-page-home .seq__after { padding-top: var(--wu-block); padding-bottom: var(--wu-sec); }
+	.wiseup-page-home .seq__row { row-gap: var(--wu-card); }
+	.wiseup-page-home .stats { margin-top: var(--wu-block); }
+
+	/* ---------- work ---------- */
+	.wiseup-page-home #work .sh { margin-bottom: var(--wu-block); }
+	.wiseup-page-home .rows { margin-top: var(--wu-block); gap: var(--wu-list); }
+	.wiseup-page-home .work-more { margin-top: var(--wu-block); }
+
+	/* ---------- about ---------- */
+	.wiseup-page-home .about__g { border-radius: var(--wu-r); }
+	.wiseup-page-home .about { margin-top: var(--wu-block); gap: var(--wu-card); }
+	.wiseup-page-home .about__body { padding-top: 0; }
+	.wiseup-page-home .fit { margin-top: var(--wu-block); gap: var(--wu-list); }
+	.wiseup-page-home .fit__card { padding: var(--wu-card); border-radius: var(--wu-r); }
+
+	/* ---------- CodeAce ---------- */
+	.wiseup-page-home .roots { gap: var(--wu-list); }
+	.wiseup-page-home .root { padding: var(--wu-card); gap: var(--wu-card); border-radius: var(--wu-r); }
+
+	/* ---------- growing ---------- */
+	.wiseup-page-home .grow__title { margin-bottom: var(--wu-block); }
+	/* the growing section's own rules are !important, so these have to be too */
+	.wiseup-page-home .grow .grow__stats { row-gap: var(--wu-list) !important; }
+	.wiseup-page-home .grow .grow__stats li { padding: var(--wu-pair) !important; border-radius: var(--wu-r-sm); }
+	.wiseup-page-home .press { margin-top: var(--wu-block); }
+	.wiseup-page-home .reach { margin-top: var(--wu-block); }
+	.wiseup-page-home .reach__h { margin-bottom: var(--wu-pair); }
+
+	/* ---------- process ---------- */
+	.wiseup-page-home .hgal__track { gap: var(--wu-block); }
+	.wiseup-page-home .hgal__list { gap: var(--wu-list); }
+	.wiseup-page-home .hgal__list .proc__card { border-radius: var(--wu-r); }
+	.wiseup-page-home .hgal__list .proc__meta { padding: var(--wu-pair) var(--wu-pair) 20px; border-radius: var(--wu-r-sm); }
+
+	/* ---------- clients ---------- */
+	.wiseup-page-home .tier { padding: var(--wu-card); border-radius: var(--wu-r); }
+
+	/* ---------- FAQ ---------- */
+	.wiseup-page-home .faq { gap: var(--wu-list); }
+	.wiseup-page-home .faq__item,
+	.wiseup-page-home .faq__q { border-radius: var(--wu-r); }
+	.wiseup-page-home .faq__q { padding: var(--wu-card); }
+	.wiseup-page-home .faq__a { padding: 0 var(--wu-card) var(--wu-card); }
+
+	/* ---------- contact ---------- */
+	.wiseup-page-home .contact { gap: var(--wu-block); }
+	.wiseup-page-home .contact__head { gap: var(--wu-pair); }
+	.wiseup-page-home .contact__p { margin-bottom: 0; }
+	.wiseup-page-home .contact__grid { gap: var(--wu-block); }
+	.wiseup-page-home .contact__rows { gap: var(--wu-list); }
+	.wiseup-page-home .cta-row { padding: 20px var(--wu-card); border-radius: var(--wu-r); }
+	.wiseup-page-home .bform { gap: var(--wu-list); }
+	.wiseup-page-home .socials { padding-top: 0; }
+
+	/* ---------- footer ---------- */
+	.wiseup-page-home .ft { padding-top: var(--wu-sec); }
+	.wiseup-page-home .ft__top { row-gap: var(--wu-block); }
+	.wiseup-page-home .ft__follow { padding-top: var(--wu-block); }
+	.wiseup-page-home .ft__base { padding-top: var(--wu-block); padding-bottom: var(--wu-block); }
+}
