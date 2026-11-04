@@ -2581,6 +2581,7 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
 #wu-smm-results .rx-bar__track { position: relative; display: block; height: 10px; margin-top: 8px; border-radius: 99px; background: rgb(255 255 255 / .08); overflow: hidden; }
 #wu-smm-results .rx-bar__to { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: inherit; background: linear-gradient(90deg, rgb(255 255 255 / .28) 30%, var(--lime)); transition: width 1.8s cubic-bezier(.2, .8, .2, 1) .2s; }
 #wu-smm-results.rx-in .rx-bar__to { width: 100%; }
+#wu-smm-results .rx-card--wide { grid-column: 1 / -1; }
 #wu-smm-results .rx-note { margin: 16px 0 0; font-size: 13.5px; line-height: 1.5; color: rgb(255 255 255 / .62); }
 @media (max-width: 1100px) { #wu-smm-results .rx-grid { grid-template-columns: 1fr; } }
 @media (max-width: 640px) {
@@ -2648,6 +2649,17 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
                                         <span class="rx-stat"><b data-rx="2500" data-suf="+">2,500+</b><span>business walk-ins</span></span>
                                     </span>
                                     <p class="rx-note">Branding, creative, performance and influencer marketing took Bootland from a new concept to a fully occupied expo.</p>
+                                </a>
+                                <a class="rx-card rx-card--wide" href="https://wiseup.in/case-studies/erets/" target="_blank" rel="noopener">
+                                    <span class="rx-bg"><img src="<?php echo $cs( 'case-erets.jpg' ); ?>" alt="Erets Space brand by WiseUp" loading="lazy"></span>
+                                    <span class="rx-top"><span><span class="rx-cat">Space technology · London</span><h3 class="rx-name">Erets Space</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
+                                    <span class="rx-hero"><b data-rx="9" data-suf="+">9+</b><span>international media features within weeks of launch</span></span>
+                                    <span class="rx-stats rx-stats--4">
+                                        <span class="rx-stat"><b data-rx="6" data-suf="+">6+</b><span>global partners at launch</span></span>
+                                        <span class="rx-stat"><b data-rx="3">3</b><span>continents</span></span>
+                                        <span class="rx-stat"><b data-rx="12">12</b><span>weeks, discovery to live</span></span>
+                                        <span class="rx-stat"><b data-rx="3">3</b><span>mission verticals</span></span>
+                                    </span>
                                 </a>
                             </div>
                         </div>
