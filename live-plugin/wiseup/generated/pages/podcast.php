@@ -3668,7 +3668,7 @@ defined( 'ABSPATH' ) || exit;
 	</dialog>
 </main>
 <?php if ( wiseup_opt( 'lead_popup' ) ) : ?>
-<button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog">
+<button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog" aria-label="Get our plan">
 	<span class="lead-bot lead-bot--sm">
 		<svg viewBox="0 0 48 48" aria-hidden="true">
 			<path class="lb__body" d="M12 7h24a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H23l-8.5 6.5V38H12a9 9 0 0 1-9-9V16a9 9 0 0 1 9-9Z"/>

@@ -342,7 +342,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Sajeev Nair with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Sajeev Nair with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -361,7 +361,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Adipoli Onam with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Adipoli Onam with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -380,7 +380,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play AI branding with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play AI branding with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -400,7 +400,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Sathya CGI with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Sathya CGI with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -419,7 +419,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Bootland with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Bootland with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -438,7 +438,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play TR Shamsudheen with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play TR Shamsudheen with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -457,7 +457,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Kollam teaser with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Kollam teaser with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -477,7 +477,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Chayakkada with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Chayakkada with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -496,7 +496,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Soulfactors juice with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Soulfactors juice with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -515,7 +515,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Cellar with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Cellar with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -535,7 +535,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Sathya store with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Sathya store with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -554,7 +554,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Sajeev Nair with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Sajeev Nair with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -573,7 +573,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Adipoli Onam with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Adipoli Onam with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -592,7 +592,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play AI branding with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play AI branding with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -612,7 +612,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Sathya CGI with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Sathya CGI with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -631,7 +631,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Bootland with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Bootland with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -650,7 +650,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play TR Shamsudheen with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play TR Shamsudheen with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -669,7 +669,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Kollam teaser with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Kollam teaser with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -689,7 +689,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Chayakkada with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Chayakkada with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -708,7 +708,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Soulfactors juice with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Soulfactors juice with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -727,7 +727,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Cellar with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Cellar with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -747,7 +747,7 @@ defined( 'ABSPATH' ) || exit;
 						</video>
 						<span class="strip__load" aria-hidden="true">
 						</span>
-						<button class="strip__play" type="button" data-strip-play aria-label="Play Sathya store with sound">
+						<button class="strip__play" type="button" data-strip-play tabindex="-1" aria-label="Play Sathya store with sound">
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.4-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z">
 								</path>
@@ -1661,9 +1661,7 @@ defined( 'ABSPATH' ) || exit;
             <li>The Hindu: CodeAce opens second office at Cyberpark</li>
           </ul>
           <div class="press__wall" aria-hidden="true">
-            <div class="press__col press__col--1"><div class="press__run"><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure></div></div>
-            <div class="press__col press__col--2"><div class="press__run"><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure></div></div>
-            <div class="press__col press__col--3"><div class="press__run"><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure></div></div>
+            <div class="press__once"><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure></div>
           </div>
         </div>
         <div class="reach" aria-labelledby="reach-t">
@@ -2270,7 +2268,7 @@ defined( 'ABSPATH' ) || exit;
 	</section>
 </main>
 <?php if ( wiseup_opt( 'lead_popup' ) ) : ?>
-<button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog">
+<button class="lead-fab" type="button" data-lead-open data-lead-source="launcher" aria-haspopup="dialog" aria-label="Get our plan">
 	<span class="lead-bot lead-bot--sm">
 		<svg viewBox="0 0 48 48" aria-hidden="true">
 			<path class="lb__body" d="M12 7h24a9 9 0 0 1 9 9v13a9 9 0 0 1-9 9H23l-8.5 6.5V38H12a9 9 0 0 1-9-9V16a9 9 0 0 1 9-9Z"/>

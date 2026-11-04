@@ -2964,3 +2964,15 @@ img.ft__ca-mark { box-shadow: 0 0 0 1.5px rgb(255 255 255 / .18), 2px 2px 5px rg
 .press__wall, .reach__view { contain: layout paint; }
 .press__wall.is-off .press__run, .reach__view.is-off .reach__track { animation-play-state: paused; }
 .press__card img, .reach__track img { backface-visibility: hidden; }
+
+/* Press wall: each clipping once, no repeats (owner, 2026-11-04: "images are repeated in this section, dont repeat"). Still grid, 3x2 / 2x3. */
+.press__wall { height: auto !important; overflow: visible !important; display: block !important; -webkit-mask-image: none !important; mask-image: none !important; }
+.press__wall::before, .press__wall::after { content: none !important; }
+.press__once { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 1.6vw, 24px); align-items: start; }
+.press__once .press__card { margin: 0; transform: none; }
+.press__once .press__card:nth-child(3n+1) { transform: rotate(-1deg); }
+.press__once .press__card:nth-child(3n) { transform: rotate(1.1deg); }
+@media (max-width: 767px) {
+  .press__once { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .press__once .press__card { transform: none !important; }
+}
