@@ -34,6 +34,6 @@
 .wm-on .fit__card--yes.wm-lit { box-shadow: 0 22px 48px -26px rgb(190 218 82 / .55); }
 
 /* ---------- process: a deck of sticky cards, each one settling under the next ---------- */
-.wm-on .hgal__list > .proc__card { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px + var(--wm-i, 0) * 12px); transform-origin: 50% 0%; }
+@media (max-width: 899px) { .wm-on .hgal__list > .proc__card { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px + var(--wm-i, 0) * 12px); transform-origin: 50% 0%; } }
 .wm-dim { position: absolute; inset: 0; z-index: 5; border-radius: inherit; background: #000; opacity: var(--wm-dim, 0); pointer-events: none; }
 .wm-on .hgal__list .proc__shot { scale: var(--wm-zoom, 1) !important; }

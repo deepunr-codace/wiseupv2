@@ -159,9 +159,9 @@ add_action( 'wp_footer', function () {
 }, 20 );
 
 /**
- * Homepage, phones only: the extra scroll motion in assets/js/home-mobile.js (+ its CSS). It runs its own copy of GSAP
+ * Homepage, every screen size (owner, 2026-11-04; was phones only): the extra scroll motion in assets/js/home-mobile.js (+ its CSS). It runs its own copy of GSAP
  * from assets/js/vendor, loaded only once the site script has booted (html.is-booted), so the two copies never register
- * into each other. Skipped on wider screens and under reduced motion.
+ * into each other. Skipped under reduced motion.
  *
  * Everything it does follows the visitor's scrolling, so it is fetched on the first touch, scroll, wheel or key press
  * rather than during page load: the page's first paint and main-thread time stay the site script's alone.
@@ -171,7 +171,7 @@ function wiseup_home_mobile_motion() {
 	$js   = array();
 	foreach ( array( 'js/vendor/gsap.min.js', 'js/vendor/ScrollTrigger.min.js', 'js/home-mobile.js' ) as $path ) $js[] = $file( $path );
 	printf(
-		"<script type=\"module\">(function(){if(!matchMedia('(max-width: 767px)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var ev=['touchstart','pointerdown','scroll','wheel','keydown'],done=false;var h=document.documentElement,booted=function(f){if(h.classList.contains('is-booted'))return f();var o=new MutationObserver(function(){if(h.classList.contains('is-booted')){o.disconnect();f();}});o.observe(h,{attributes:true,attributeFilter:['class']});};var go=function(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,go,{passive:true})});booted(load);};var load=function(){var l=document.createElement('link');l.rel='stylesheet';l.href=%s;document.head.appendChild(l);var q=%s;(function next(){var u=q.shift();if(!u)return;var s=document.createElement('script');s.src=u;s.onload=next;document.body.appendChild(s);})();};ev.forEach(function(e){addEventListener(e,go,{passive:true})});})();</script>\n",
+		"<script type=\"module\">(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var ev=['touchstart','pointerdown','scroll','wheel','keydown'],done=false;var h=document.documentElement,booted=function(f){if(h.classList.contains('is-booted'))return f();var o=new MutationObserver(function(){if(h.classList.contains('is-booted')){o.disconnect();f();}});o.observe(h,{attributes:true,attributeFilter:['class']});};var go=function(){if(done)return;done=true;ev.forEach(function(e){removeEventListener(e,go,{passive:true})});booted(load);};var load=function(){var l=document.createElement('link');l.rel='stylesheet';l.href=%s;document.head.appendChild(l);var q=%s;(function next(){var u=q.shift();if(!u)return;var s=document.createElement('script');s.src=u;s.onload=next;document.body.appendChild(s);})();};ev.forEach(function(e){addEventListener(e,go,{passive:true})});})();</script>\n",
 		wp_json_encode( $file( 'css/home-mobile.css' ) ),
 		wp_json_encode( $js )
 	);

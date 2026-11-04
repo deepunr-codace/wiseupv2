@@ -1,5 +1,5 @@
 /*
- * Homepage scroll motion for phones, on top of the site's own motion (the Astro bundle: reveals, the hero strip, the
+ * Homepage scroll motion (all screen sizes since 2026-11-04; built for phones first), on top of the site's own motion (the Astro bundle: reveals, the hero strip, the
  * flame sequence, the drum, the morphs). Loaded by wiseup_home_mobile_motion() (includes/render.php) only below 768px
  * and without reduced motion, with its own GSAP from assets/js/vendor.
  *
@@ -117,7 +117,8 @@
 		});
 
 		// ---------- process: a sticky deck; each photo eases in, each card settles back under the next ----------
-		var cards = $$('.hgal__list > .proc__card');
+		// (phones and small tablets only: from 900px the process section is the site's own sideways-scrolling gallery)
+		var cards = matchMedia('(max-width: 899px)').matches ? $$('.hgal__list > .proc__card') : [];
 		cards.forEach(function (c, i) {
 			c.style.setProperty('--wm-i', i);
 			var dim = document.createElement('span');
@@ -185,7 +186,7 @@
 	// Start once the page (and the site script's first layout and pins) has settled.
 	var start = function () {
 		requestAnimationFrame(function () {
-			gsap.matchMedia().add('(max-width: 767px) and (prefers-reduced-motion: no-preference)', build);
+			gsap.matchMedia().add('(prefers-reduced-motion: no-preference)', build); // every screen size (owner, 2026-11-04)
 			ST.refresh();
 		});
 	};
