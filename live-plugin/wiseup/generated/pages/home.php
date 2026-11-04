@@ -1360,6 +1360,7 @@ defined( 'ABSPATH' ) || exit;
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space, Space technology: view case study">
 							<img alt="Erets Space brand by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
+						<span class="rows__stats" aria-hidden="true"><span class="rows__big"><b>9+</b><span>international media features within weeks of launch</span></span><span class="rows__mini"><span><b>6+</b>global partners at launch</span><span><b>3</b>continents</span><span><b>12</b>weeks, discovery to live</span></span></span>
 						</a>
 					</li>
 					<li class="rows__tile">

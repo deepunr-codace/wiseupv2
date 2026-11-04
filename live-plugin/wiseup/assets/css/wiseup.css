@@ -3006,3 +3006,6 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 .rows__row.is-drag { cursor: grabbing; }
 .rows__row.is-drag .rows__link { pointer-events: none; }
 .rows__row img { -webkit-user-drag: none; user-select: none; }
+
+/* Press clippings straight, no tilt (owner, 2026-11-04: "make it straight no tilt pls") */
+.press__wall, .press__once, .press__once .press__card { transform: none !important; rotate: none !important; }
