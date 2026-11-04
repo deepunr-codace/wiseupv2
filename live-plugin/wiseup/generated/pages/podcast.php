@@ -864,9 +864,9 @@ defined( 'ABSPATH' ) || exit;
 					</div>
 					<div class="pc-hero__proof" data-reveal="up" data-intro data-delay="0.4">
 						<div class="pc-faces">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/host-jijin.webp" alt="" width="36" height="36">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/host-chethana.webp" alt="" width="36" height="36">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/host-sreerag.webp" alt="" width="36" height="36">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/host-jijin.webp" alt="Jijin Mohan, host of the WiseUp Podcast" width="36" height="36">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/host-chethana.webp" alt="Chethana, host of the WiseUp Podcast" width="36" height="36">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/host-sreerag.webp" alt="Sreerag, host of the WiseUp Podcast" width="36" height="36">
 						</div>
 						<div class="pc-hero__stat">
 							<b>
@@ -2299,137 +2299,137 @@ defined( 'ABSPATH' ) || exit;
 					<ul class="rows__track" data-sets="3">
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="0" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp" data-cap="In the studio" aria-label="Open photo: In the studio">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: in the studio" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="1" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp" data-cap="On set" aria-label="Open photo: On set">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on set" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="2" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp" data-cap="Studio session" aria-label="Open photo: Studio session">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio session" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="3" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp" data-cap="Behind the microphone" aria-label="Open photo: Behind the microphone">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: behind the microphone" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="4" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp" data-cap="Studio day" aria-label="Open photo: Studio day">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio day" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="5" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp" data-cap="After the recording" aria-label="Open photo: After the recording">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: after the recording" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="6" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp" data-cap="On location" aria-label="Open photo: On location">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on location" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="7" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp" data-cap="Book launch conversation" aria-label="Open photo: Book launch conversation">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: book launch conversation" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="8" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp" data-cap="With our guest" aria-label="Open photo: With our guest">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: with our guest" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp" data-cap="In the studio" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: in the studio" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp" data-cap="On set" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on set" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp" data-cap="Studio session" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio session" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp" data-cap="Behind the microphone" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: behind the microphone" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp" data-cap="Studio day" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio day" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp" data-cap="After the recording" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: after the recording" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp" data-cap="On location" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on location" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp" data-cap="Book launch conversation" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: book launch conversation" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp" data-cap="With our guest" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: with our guest" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp" data-cap="In the studio" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: in the studio" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp" data-cap="On set" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on set" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp" data-cap="Studio session" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio session" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp" data-cap="Behind the microphone" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: behind the microphone" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp" data-cap="Studio day" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio day" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp" data-cap="After the recording" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: after the recording" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp" data-cap="On location" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on location" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp" data-cap="Book launch conversation" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: book launch conversation" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp" data-cap="With our guest" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: with our guest" loading="lazy" decoding="async">
 							</button>
 						</li>
 					</ul>
@@ -2438,137 +2438,137 @@ defined( 'ABSPATH' ) || exit;
 					<ul class="rows__track" data-sets="3">
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="8" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp" data-cap="With our guest" aria-label="Open photo: With our guest">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: with our guest" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="7" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp" data-cap="Book launch conversation" aria-label="Open photo: Book launch conversation">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: book launch conversation" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="6" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp" data-cap="On location" aria-label="Open photo: On location">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on location" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="5" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp" data-cap="After the recording" aria-label="Open photo: After the recording">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: after the recording" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="4" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp" data-cap="Studio day" aria-label="Open photo: Studio day">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio day" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="3" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp" data-cap="Behind the microphone" aria-label="Open photo: Behind the microphone">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: behind the microphone" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="2" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp" data-cap="Studio session" aria-label="Open photo: Studio session">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio session" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="1" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp" data-cap="On set" aria-label="Open photo: On set">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on set" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile">
 							<button class="rows__link pc-rowbtn" type="button" data-gal-open="0" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp" data-cap="In the studio" aria-label="Open photo: In the studio">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: in the studio" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp" data-cap="With our guest" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: with our guest" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp" data-cap="Book launch conversation" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: book launch conversation" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp" data-cap="On location" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on location" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp" data-cap="After the recording" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: after the recording" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp" data-cap="Studio day" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio day" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp" data-cap="Behind the microphone" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: behind the microphone" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp" data-cap="Studio session" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio session" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp" data-cap="On set" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on set" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp" data-cap="In the studio" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: in the studio" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp" data-cap="With our guest" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g9.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: with our guest" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp" data-cap="Book launch conversation" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g8.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: book launch conversation" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp" data-cap="On location" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g6.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on location" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp" data-cap="After the recording" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g3.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: after the recording" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp" data-cap="Studio day" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g4.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio day" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp" data-cap="Behind the microphone" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g7.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: behind the microphone" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp" data-cap="Studio session" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g2.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: studio session" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp" data-cap="On set" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g5.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: on set" loading="lazy" decoding="async">
 							</button>
 						</li>
 						<li class="rows__tile" aria-hidden="true">
 							<button class="rows__link pc-rowbtn" type="button" data-src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp" data-cap="In the studio" tabindex="-1">
-								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="" loading="lazy" decoding="async">
+								<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1-sm.webp 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/gallery/g1.webp 1600w" sizes="(max-width: 700px) 72vw, 35vw" alt="WiseUp Podcast: in the studio" loading="lazy" decoding="async">
 							</button>
 						</li>
 					</ul>
@@ -2631,7 +2631,7 @@ defined( 'ABSPATH' ) || exit;
 				<ul class="pc-tst" data-tst-track>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/afsal-1.mp4" aria-label="Play testimonial video 1 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/afsal-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/afsal-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/afsal-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/afsal-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/afsal-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/afsal-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/afsal-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/afsal-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Testimonial video: Afsal" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2645,7 +2645,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0.06">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/Bheegaran-Testimonial-1.mp4" aria-label="Play testimonial video 2 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/bheegaran-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/bheegaran-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/bheegaran-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/bheegaran-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/bheegaran-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/bheegaran-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/bheegaran-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/bheegaran-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Testimonial video: Bheegaran" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2659,7 +2659,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0.12">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/Chef-Testimonial-1.mp4" aria-label="Play testimonial video 3 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/Chef-vinod-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Testimonial video: Chef Vinod" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2673,7 +2673,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0.18">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/Brightside-Testimonial-1.mp4" aria-label="Play testimonial video 4 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/JONAH-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/JONAH-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/JONAH-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/JONAH-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/JONAH-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/JONAH-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/JONAH-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/JONAH-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Testimonial video: Jonah" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2687,7 +2687,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/Aswathy-Achu-Testimonial-1-1.mp4" aria-label="Play testimonial video 5 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/kasinath-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/kasinath-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/kasinath-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/kasinath-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/kasinath-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/kasinath-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/kasinath-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/kasinath-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Testimonial video: Kasinath" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2701,7 +2701,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0.06">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" aria-label="Play testimonial video 6 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Client testimonial video: Sajeev Nair" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2715,7 +2715,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0.12">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" aria-label="Play testimonial video 7 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Client testimonial video: TR Shamsudheen" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">
@@ -2729,7 +2729,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="pc-tst__card" data-reveal="up" data-delay="0.18">
 						<button class="pc-tst__media" type="button" data-tst-video="https://wiseup.in/wp-content/uploads/2026/07/compressed-video.mp4" aria-label="Play testimonial video 8 of 8">
-							<img src="https://wiseup.in/wp-content/uploads/2026/06/wac-1-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/wac-1-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/wac-1-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/wac-1-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="" width="576" height="1024" loading="lazy">
+							<img src="https://wiseup.in/wp-content/uploads/2026/06/wac-1-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/wac-1-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/wac-1-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/wac-1-768x1365.webp 768w" sizes="(min-width: 900px) 25vw, 70vw" alt="Testimonial video: WAC" width="576" height="1024" loading="lazy">
 							<span class="pc-tst__play" aria-hidden="true">
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">

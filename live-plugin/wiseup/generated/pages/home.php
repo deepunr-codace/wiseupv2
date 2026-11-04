@@ -125,7 +125,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="strip__plane">
 				<div class="strip__track" data-strip-track data-sets="3">
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" style="--ar:0.5625">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="" loading="eager" decoding="async" fetchpriority="high">
+						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async" fetchpriority="high">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -144,7 +144,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Adipoli-Onam2.mp4" style="--ar:1.3333">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/onam.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/onam.webp" alt="Adipoli Onam, an AI video by WiseUp" loading="eager" fetchpriority="high" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -163,7 +163,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Ai-branding-video.mp4" style="--ar:0.5625">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/ai-branding.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/ai-branding.webp" alt="AI branding video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -181,9 +181,9 @@ defined( 'ABSPATH' ) || exit;
 							AI branding
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.3333"><a href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House case study"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Smoke House</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.3333"><a href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House case study"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp" alt="Smoke House restaurant branding by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Smoke House</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/WhatsApp-Video-2026-07-28-at-5.34.53-PM-2.mp4" style="--ar:0.5625">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-1.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-1.webp" alt="Sathya CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -202,7 +202,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Boootland.mp4" style="--ar:0.5625">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/bootland.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/bootland.webp" alt="Bootland AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -221,7 +221,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" style="--ar:0.5625">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="" loading="eager" decoding="async">
+						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -240,7 +240,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Kollam-Teaser.mp4" style="--ar:1.3333">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/kollam.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/kollam.webp" alt="Kollam teaser, an AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -258,9 +258,9 @@ defined( 'ABSPATH' ) || exit;
 							Kollam teaser
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.0000"><a href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak case study"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Golden Karak</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.0000"><a href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak case study"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" alt="Golden Karak café brand by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Golden Karak</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Chayakkada-1-compressed.mp4" style="--ar:0.5625">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/chayakkada.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/chayakkada.webp" alt="Chayakkada concept video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -279,7 +279,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/ABC-juice-Soulfactors-Final-002-compressed.mp4" style="--ar:1.3333">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/abc-juice.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/abc-juice.webp" alt="Soulfactors juice CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -298,7 +298,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/CELLAR-AI-video-02.mp4" style="--ar:0.5625">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cellar.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cellar.webp" alt="Cellar AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -316,9 +316,9 @@ defined( 'ABSPATH' ) || exit;
 							Cellar
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.0000"><a href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space case study"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Erets Space</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.0000"><a href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space case study"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" alt="Erets Space brand by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Erets Space</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/WhatsApp-Video-2026-07-28-at-5.34.53-PM-3.mp4" style="--ar:0.5625">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-2.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-2.webp" alt="Sathya store CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -337,7 +337,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="" loading="eager" decoding="async">
+						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -356,7 +356,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Adipoli-Onam2.mp4" style="--ar:1.3333" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/onam.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/onam.webp" alt="Adipoli Onam, an AI video by WiseUp" loading="eager" fetchpriority="high" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -375,7 +375,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Ai-branding-video.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/ai-branding.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/ai-branding.webp" alt="AI branding video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -393,9 +393,9 @@ defined( 'ABSPATH' ) || exit;
 							AI branding
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.3333" aria-hidden="true"><a href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Smoke House</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.3333" aria-hidden="true"><a href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp" alt="Smoke House restaurant branding by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Smoke House</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/WhatsApp-Video-2026-07-28-at-5.34.53-PM-2.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-1.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-1.webp" alt="Sathya CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -414,7 +414,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Boootland.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/bootland.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/bootland.webp" alt="Bootland AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -433,7 +433,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="" loading="eager" decoding="async">
+						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -452,7 +452,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Kollam-Teaser.mp4" style="--ar:1.3333" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/kollam.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/kollam.webp" alt="Kollam teaser, an AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -470,9 +470,9 @@ defined( 'ABSPATH' ) || exit;
 							Kollam teaser
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Golden Karak</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" alt="Golden Karak café brand by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Golden Karak</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Chayakkada-1-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/chayakkada.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/chayakkada.webp" alt="Chayakkada concept video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -491,7 +491,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/ABC-juice-Soulfactors-Final-002-compressed.mp4" style="--ar:1.3333" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/abc-juice.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/abc-juice.webp" alt="Soulfactors juice CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -510,7 +510,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/CELLAR-AI-video-02.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cellar.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cellar.webp" alt="Cellar AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -528,9 +528,9 @@ defined( 'ABSPATH' ) || exit;
 							Cellar
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Erets Space</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" alt="Erets Space brand by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Erets Space</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/WhatsApp-Video-2026-07-28-at-5.34.53-PM-3.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-2.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-2.webp" alt="Sathya store CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -549,7 +549,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="" loading="eager" decoding="async">
+						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -568,7 +568,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Adipoli-Onam2.mp4" style="--ar:1.3333" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/onam.webp" alt="" loading="eager" fetchpriority="high" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/onam.webp" alt="Adipoli Onam, an AI video by WiseUp" loading="eager" fetchpriority="high" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -587,7 +587,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Ai-branding-video.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/ai-branding.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/ai-branding.webp" alt="AI branding video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -605,9 +605,9 @@ defined( 'ABSPATH' ) || exit;
 							AI branding
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.3333" aria-hidden="true"><a href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Smoke House</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.3333" aria-hidden="true"><a href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp" alt="Smoke House restaurant branding by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Smoke House</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/WhatsApp-Video-2026-07-28-at-5.34.53-PM-2.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-1.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-1.webp" alt="Sathya CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -626,7 +626,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Boootland.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/bootland.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/bootland.webp" alt="Bootland AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -645,7 +645,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="" loading="eager" decoding="async">
+						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -664,7 +664,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Kollam-Teaser.mp4" style="--ar:1.3333" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/kollam.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/kollam.webp" alt="Kollam teaser, an AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -682,9 +682,9 @@ defined( 'ABSPATH' ) || exit;
 							Kollam teaser
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Golden Karak</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" alt="Golden Karak café brand by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Golden Karak</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/Chayakkada-1-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/chayakkada.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/chayakkada.webp" alt="Chayakkada concept video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -703,7 +703,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/ABC-juice-Soulfactors-Final-002-compressed.mp4" style="--ar:1.3333" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/abc-juice.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/abc-juice.webp" alt="Soulfactors juice CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -722,7 +722,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/CELLAR-AI-video-02.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cellar.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cellar.webp" alt="Cellar AI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -740,9 +740,9 @@ defined( 'ABSPATH' ) || exit;
 							Cellar
 						</figcaption>
 					</figure>
-					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" alt="" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Erets Space</figcaption></figure>
+					<figure class="strip__card strip__card--proj" style="--ar:1.0000" aria-hidden="true"><a href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space case study" tabindex="-1"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" alt="Erets Space brand by WiseUp" loading="lazy" decoding="async"></a><figcaption class="strip__tag"><span>Case study</span>Erets Space</figcaption></figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/08/WhatsApp-Video-2026-07-28-at-5.34.53-PM-3.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-2.webp" alt="" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/cgi-2.webp" alt="Sathya store CGI video by WiseUp" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -1254,92 +1254,92 @@ defined( 'ABSPATH' ) || exit;
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/smokehouse/" aria-label="Smoke House, Restaurant branding: view case study">
                         
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" alt="Smoke House restaurant branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
 						</a>
 					</li>
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/golden-karak/" aria-label="Golden Karak, Café brand: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" alt="Golden Karak café brand by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
 						</a>
 					</li>
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/indusgo/" aria-label="Indus Go, Self-drive rentals: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" alt="Indus Go self-drive rentals branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
 						</a>
 					</li>
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" aria-label="Bootland, Event branding: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" alt="Bootland event branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
 						</a>
 					</li>
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/erets/" aria-label="Erets Space, Space technology: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" alt="Erets Space brand by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
 						</a>
 					</li>
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/" aria-label="Sathya Agencies, Brand launch campaign: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" alt="Sathya Agencies brand launch campaign by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/smokehouse/" tabindex="-1" aria-label="Smoke House, Restaurant branding: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" alt="Smoke House restaurant branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/golden-karak/" tabindex="-1" aria-label="Golden Karak, Café brand: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" alt="Golden Karak café brand by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/indusgo/" tabindex="-1" aria-label="Indus Go, Self-drive rentals: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" alt="Indus Go self-drive rentals branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" alt="Bootland event branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/erets/" tabindex="-1" aria-label="Erets Space, Space technology: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" alt="Erets Space brand by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/" tabindex="-1" aria-label="Sathya Agencies, Brand launch campaign: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" alt="Sathya Agencies brand launch campaign by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/smokehouse/" tabindex="-1" aria-label="Smoke House, Restaurant branding: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" alt="Smoke House restaurant branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/golden-karak/" tabindex="-1" aria-label="Golden Karak, Café brand: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" alt="Golden Karak café brand by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/indusgo/" tabindex="-1" aria-label="Indus Go, Self-drive rentals: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" alt="Indus Go self-drive rentals branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" alt="Bootland event branding by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/erets/" tabindex="-1" aria-label="Erets Space, Space technology: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" alt="Erets Space brand by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/" tabindex="-1" aria-label="Sathya Agencies, Brand launch campaign: view case study">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" alt sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" alt="Sathya Agencies brand launch campaign by WiseUp" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
 						</a>
 					</li>
 				</ul>

@@ -121,7 +121,7 @@ $wu_tagline = $wu_podcast
 	<?php endif; ?>
 		<div class="wrap ft__base">
 			<p>© <?php echo esc_html( gmdate( 'Y' ) . ' ' . wiseup_opt( 'copyright' ) ); ?></p>
-			<a class="ft__ca" href="https://codeace.com/" target="_blank" rel="noopener" aria-label="From the CodeAce family (opens codeace.com)"><img class="ft__ca-mark" src="<?php echo esc_url( WISEUP_ASSETS . '/brand/codeace-mark.webp' ); ?>" alt="" width="96" height="96" loading="lazy" decoding="async" /><span class="ft__ca-txt">From the <b>CodeAce</b> family</span><svg class="ft__ca-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+			<a class="ft__ca" href="https://codeace.com/" target="_blank" rel="noopener" aria-label="From the CodeAce family (opens codeace.com)"><img class="ft__ca-mark" src="<?php echo esc_url( WISEUP_ASSETS . '/brand/codeace-mark.webp' ); ?>" alt="CodeAce logo" width="96" height="96" loading="lazy" decoding="async" /><span class="ft__ca-txt">From the <b>CodeAce</b> family</span><svg class="ft__ca-go" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
 			<?php if ( $wu_credit ) : ?>
 				<p><?php esc_html_e( 'Crafted by', 'wiseup' ); ?> <?php if ( wiseup_opt( 'credit_url' ) ) : ?><a class="ft__credit" href="<?php echo esc_url( wiseup_opt( 'credit_url' ) ); ?>" target="_blank" rel="noopener"><?php echo esc_html( $wu_credit ); ?></a><?php else : ?><b class="ft__credit"><?php echo esc_html( $wu_credit ); ?></b><?php endif; ?></p>
 			<?php endif; ?>
