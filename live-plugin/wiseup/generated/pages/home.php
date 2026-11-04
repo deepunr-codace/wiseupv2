@@ -1856,7 +1856,7 @@ defined( 'ABSPATH' ) || exit;
 				<ol class="hgal__list">
 					<li class="card proc__card" data-spot>
 						<div class="proc__stage" aria-hidden="true">
-							<img class="proc__shot" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-1.webp?v=2" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-1-sm.webp?v=2 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-1.webp?v=2 1920w" sizes="(max-width: 899px) 92vw, 46vw" alt="WiseUp process, step 1: Listen first" width="1920" height="1246" loading="lazy" decoding="async">
+							<img class="proc__shot" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-1.webp?v=3" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-1-sm.webp?v=3 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-1.webp?v=3 1920w" sizes="(max-width: 899px) 92vw, 46vw" alt="WiseUp process, step 1: Listen first" width="1920" height="1246" loading="lazy" decoding="async">
 						</div>
 						<div class="proc__meta">
 							<h3 class="proc__h">
@@ -1869,7 +1869,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="card proc__card" data-spot>
 						<div class="proc__stage" aria-hidden="true">
-							<img class="proc__shot" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-2.webp?v=2" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-2-sm.webp?v=2 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-2.webp?v=2 1920w" sizes="(max-width: 899px) 92vw, 46vw" alt="WiseUp process, step 2: Plan before we price" width="1920" height="1246" loading="lazy" decoding="async">
+							<img class="proc__shot" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-2.webp?v=3" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-2-sm.webp?v=3 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-2.webp?v=3 1920w" sizes="(max-width: 899px) 92vw, 46vw" alt="WiseUp process, step 2: Plan before we price" width="1920" height="1246" loading="lazy" decoding="async">
 						</div>
 						<div class="proc__meta">
 							<h3 class="proc__h">
@@ -1882,7 +1882,7 @@ defined( 'ABSPATH' ) || exit;
 					</li>
 					<li class="card proc__card" data-spot>
 						<div class="proc__stage" aria-hidden="true">
-							<img class="proc__shot" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-3.webp?v=2" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-3-sm.webp?v=2 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-3.webp?v=2 1920w" sizes="(max-width: 899px) 92vw, 46vw" alt="WiseUp process, step 3: Execute with intent" width="1920" height="1246" loading="lazy" decoding="async">
+							<img class="proc__shot" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-3.webp?v=3" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-3-sm.webp?v=3 800w, <?php echo esc_url( WISEUP_ASSETS ); ?>/process/step-3.webp?v=3 1920w" sizes="(max-width: 899px) 92vw, 46vw" alt="WiseUp process, step 3: Execute with intent" width="1920" height="1246" loading="lazy" decoding="async">
 						</div>
 						<div class="proc__meta">
 							<h3 class="proc__h">
