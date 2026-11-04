@@ -126,8 +126,16 @@ html .lead[open] .lead__head, html .lead[open] .lf { animation-duration: .4s; }
 @media (max-width: 379px) {
   html .hd__actions .hd__menu { width: 44px; padding: 0; justify-content: center; }
 }
-/* Below 380px the podcast header's four buttons and its logo need 40px buttons with 6px between them to fit. */
+/* Below 380px the podcast header's four buttons scale with the screen so the row always ends on the header's 16px
+   inner edge: 32px of margin and padding on each side, 12px after the logo, three gaps between the buttons. Below
+   340px the logo steps down to 32px tall (84px wide) and the gaps to 4px, so it still fits a 300px screen. */
 @media (max-width: 379px) {
   html .hd__actions:has(.hd__sub) { gap: 6px; }
-  html .hd__actions:has(.hd__sub) :is(.hd__call, .hd__theme, .hd__sub, .hd__menu) { width: 40px; height: 40px; }
+  html .hd__actions:has(.hd__sub) :is(.hd__call, .hd__theme, .hd__sub, .hd__menu) { width: clamp(32px, calc((100vw - 192px) / 4), 40px); height: clamp(32px, calc((100vw - 192px) / 4), 40px); }
+}
+@media (max-width: 339px) {
+  html .hd__actions:not(:has(.hd__sub)) { gap: 4px; } /* the logo and three 44px buttons are 4px too wide at 320px with 6px gaps */
+  html .hd:has(.hd__sub) .hd__logo--podcast img { height: 32px; }
+  html .hd__actions:has(.hd__sub) { gap: 4px; }
+  html .hd__actions:has(.hd__sub) :is(.hd__call, .hd__theme, .hd__sub, .hd__menu) { width: clamp(32px, calc((100vw - 172px) / 4), 40px); height: clamp(32px, calc((100vw - 172px) / 4), 40px); }
 }
