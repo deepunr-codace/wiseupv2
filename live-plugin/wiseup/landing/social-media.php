@@ -2545,67 +2545,6 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
 
                     <!-- RESULTS -->
                     <section id="wu-smm-results" class="wu-section">
-<?php
-// Results dashboard (owner, 2026-11-04): every figure is as stated on the case-study page on wiseup.in.
-// Counts like "4 execution tracks" / "6 campaign formats" are the numbered sections on those pages.
-$cs = function ( $f ) use ( $smm_assets ) { return esc_url( $smm_assets . $f ); };
-$arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
-$ticker = [ ['2,060,559', 'views on one Golden Karak reel'], ['+160%', 'follower growth in 60 days'], ['9+', 'international media features for Erets'], ['3', 'continents of Erets partners'], ['10', 'Indus Go campaign videos a month'], ['30', 'days to a visible impact for Smoke House'], ['6', 'formats in the Sathya launch'], ['10,100+', 'interactions in one campaign'] ];
-?>
-<style>
-/* ---- Results dashboard ---- */
-#wu-smm-results { --lime: #C2F760; }
-#wu-smm-results .rx-ticker { position: relative; margin: clamp(24px, 3vw, 40px) 0 clamp(22px, 2.6vw, 34px); overflow: hidden; border-block: 1px solid rgb(255 255 255 / .1); -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
-#wu-smm-results .rx-ticker__run { display: flex; width: max-content; animation: rx-tick 48s linear infinite; }
-#wu-smm-results .rx-ticker__item { display: flex; align-items: baseline; gap: 10px; padding: 16px 34px; white-space: nowrap; }
-#wu-smm-results .rx-ticker__item b { font-size: clamp(22px, 2vw, 30px); font-weight: 700; letter-spacing: -.03em; color: var(--lime); }
-#wu-smm-results .rx-ticker__item span { font-size: 13.5px; color: rgb(255 255 255 / .62); }
-#wu-smm-results .rx-ticker__item::after { content: ""; width: 6px; height: 6px; margin-left: 24px; border-radius: 50%; background: rgb(255 255 255 / .2); align-self: center; }
-@keyframes rx-tick { to { transform: translateX(-50%); } }
-#wu-smm-results .rx-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; }
-#wu-smm-results .rx-card { position: relative; display: flex; flex-direction: column; overflow: hidden; border-radius: 26px; padding: clamp(20px, 2.2vw, 30px); color: #fff; text-decoration: none; isolation: isolate;
-  background: #0f1010; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); transition: box-shadow .35s, transform .45s cubic-bezier(.2, .8, .2, 1); }
-#wu-smm-results .rx-card:hover { box-shadow: inset 0 0 0 1.5px rgb(194 247 96 / .55); transform: translateY(-3px); }
-#wu-smm-results .rx-bg { position: absolute; inset: 0; z-index: -1; }
-#wu-smm-results .rx-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .32; transition: opacity .5s, transform .8s cubic-bezier(.2, .8, .2, 1); }
-#wu-smm-results .rx-card:hover .rx-bg img { opacity: .42; transform: scale(1.04); }
-#wu-smm-results .rx-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(10 10 10 / .35), rgb(10 10 10 / .82) 55%, #0b0b0b); }
-#wu-smm-results .rx-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-#wu-smm-results .rx-cat { display: block; font-size: 11px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--lime); }
-#wu-smm-results .rx-name { margin: 6px 0 0; font-size: clamp(20px, 1.6vw, 26px); font-weight: 600; letter-spacing: -.02em; color: #fff; }
-#wu-smm-results .rx-go { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 50%; color: var(--lime); box-shadow: inset 0 0 0 1px rgb(194 247 96 / .35); transition: background .3s, color .3s; }
-#wu-smm-results .rx-card:hover .rx-go { background: var(--lime); color: #0e1206; }
-#wu-smm-results .rx-hero { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 8px 14px; margin-top: auto; padding-top: 22px; }
-#wu-smm-results .rx-hero b { font-size: clamp(44px, 5.4vw, 84px); font-weight: 700; line-height: .9; letter-spacing: -.045em; color: var(--lime); font-variant-numeric: tabular-nums; }
-#wu-smm-results .rx-hero span { padding-bottom: 6px; max-width: 18ch; font-size: 14.5px; line-height: 1.35; color: rgb(255 255 255 / .78); }
-#wu-smm-results .rx-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 18px; }
-#wu-smm-results .rx-stat { padding: 12px 14px; border-radius: 16px; background: rgb(255 255 255 / .05); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-#wu-smm-results .rx-stat b { display: block; font-size: clamp(22px, 1.9vw, 30px); font-weight: 700; letter-spacing: -.03em; color: #fff; font-variant-numeric: tabular-nums; }
-#wu-smm-results .rx-stat span { display: block; margin-top: 2px; font-size: 12.5px; line-height: 1.3; color: rgb(255 255 255 / .62); }
-#wu-smm-results .rx-bar { display: block; margin-top: 18px; }
-#wu-smm-results .rx-bar__track { display: block; }
-#wu-smm-results .rx-bar__from, #wu-smm-results .rx-bar__to { display: block; }
-#wu-smm-results .rx--karak .rx-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-#wu-smm-results .rx--erets .rx-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-@media (max-width: 640px) { #wu-smm-results .rx--karak .rx-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-#wu-smm-results .rx-bar__lab { display: flex; justify-content: space-between; font-size: 12.5px; color: rgb(255 255 255 / .62); }
-#wu-smm-results .rx-bar__lab b { color: #fff; font-weight: 600; }
-#wu-smm-results .rx-bar__track { position: relative; height: 10px; margin-top: 8px; border-radius: 99px; background: rgb(255 255 255 / .08); overflow: hidden; }
-#wu-smm-results .rx-bar__from { position: absolute; inset: 0 auto 0 0; width: 30.3%; border-radius: inherit; background: rgb(255 255 255 / .28); }
-#wu-smm-results .rx-bar__to { position: absolute; inset: 0 auto 0 0; width: 0; border-radius: inherit; background: linear-gradient(90deg, rgb(255 255 255 / .28) 30%, var(--lime)); transition: width 1.8s cubic-bezier(.2, .8, .2, 1) .3s; }
-#wu-smm-results.rx-in .rx-bar__to { width: 100%; }
-#wu-smm-results .rx-list { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
-#wu-smm-results .rx-list li { padding: 5px 11px; border-radius: 99px; font-size: 12px; color: rgb(255 255 255 / .75); background: rgb(255 255 255 / .05); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1); }
-#wu-smm-results .rx-say { margin-top: auto; padding-top: 22px; font-size: clamp(22px, 2vw, 30px); font-weight: 600; line-height: 1.15; letter-spacing: -.02em; color: #fff; }
-#wu-smm-results .rx-say em { font-style: normal; color: var(--lime); }
-#wu-smm-results .rx-quote { margin-top: 10px; font-size: 13.5px; line-height: 1.5; font-style: italic; color: rgb(255 255 255 / .62); }
-#wu-smm-results .rx--karak { grid-column: span 7; grid-row: span 2; min-height: 520px; }
-#wu-smm-results .rx--erets { grid-column: span 5; grid-row: span 2; }
-#wu-smm-results .rx--smoke, #wu-smm-results .rx--indus, #wu-smm-results .rx--sathya, #wu-smm-results .rx--boot { grid-column: span 3; min-height: 330px; }
-@media (max-width: 1100px) { #wu-smm-results .rx--karak, #wu-smm-results .rx--erets { grid-column: span 12; grid-row: auto; min-height: 0; } #wu-smm-results .rx--smoke, #wu-smm-results .rx--indus, #wu-smm-results .rx--sathya, #wu-smm-results .rx--boot { grid-column: span 6; } }
-@media (max-width: 640px) { #wu-smm-results .rx--smoke, #wu-smm-results .rx--indus, #wu-smm-results .rx--sathya, #wu-smm-results .rx--boot { grid-column: span 12; min-height: 0; } #wu-smm-results .rx-ticker__item { padding: 12px 22px; } }
-@media (prefers-reduced-motion: reduce) { #wu-smm-results .rx-ticker__run { animation: none; } #wu-smm-results .rx-bar__to { transition: none; width: 100%; } }
-</style>
                         <div class="wu-inner">
                             <div class="wu-sec-head">
                                 <div class="wu-sec-head-left">
@@ -2613,76 +2552,54 @@ $ticker = [ ['2,060,559', 'views on one Golden Karak reel'], ['+160%', 'follower
 <h2 class="wu-h2" data-reveal><span class="wu-hl">Results That Speak</span> <span class="wu-hw">for Themselves</span></h2>
                                 </div>
                             </div>
-                            <div class="rx-ticker" aria-hidden="true"><div class="rx-ticker__run"><?php for ( $k = 0; $k < 2; $k++ ) foreach ( $ticker as $t ) echo '<span class="rx-ticker__item"><b>' . esc_html( $t[0] ) . '</b><span>' . esc_html( $t[1] ) . '</span></span>'; ?></div></div>
-                            <div class="rx-grid">
-                                <a class="rx-card rx--karak" href="https://wiseup.in/case-studies/golden-karak/" target="_blank" rel="noopener">
-                                    <span class="rx-bg"><img src="<?php echo $cs( 'case-karak.jpg' ); ?>" alt="Golden Karak café brand by WiseUp" loading="lazy"></span>
-                                    <span class="rx-top"><span><span class="rx-cat">Café brand · Bahrain &amp; GCC</span><h3 class="rx-name">Golden Karak</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
-                                    <span class="rx-hero"><b data-rx="2060559">2,060,559</b><span>views on a single Instagram Reel</span></span>
-                                    <span class="rx-bar"><span class="rx-bar__lab"><span>Followers: <b>300</b> before</span><span><b>991</b> after 60 days</span></span><span class="rx-bar__track"><span class="rx-bar__to"></span><span class="rx-bar__from"></span></span></span>
-                                    <span class="rx-stats">
-                                        <span class="rx-stat"><b data-rx="160" data-pre="+" data-suf="%">+160%</b><span>follower growth</span></span>
-                                        <span class="rx-stat"><b data-rx="681">681</b><span>new followers gained</span></span>
-                                        <span class="rx-stat"><b data-rx="75600" data-suf="+">75,600+</b><span>total views</span></span>
-                                        <span class="rx-stat"><b data-rx="10100" data-suf="+">10,100+</b><span>interactions</span></span>
-                                        <span class="rx-stat"><b data-rx="21">21</b><span>pieces of content</span></span>
-                                        <span class="rx-stat"><b data-rx="60">60</b><span>days</span></span>
-                                    </span>
+                            <div class="wu-results-grid">
+                                <a data-tilt data-reveal href="https://wiseup.in/case-studies/smokehouse/" target="_blank" rel="noopener" class="wu-result-featured">
+                                    <div class="wu-result-img"><img
+                                            src="<?php echo esc_url($smm_assets . 'case-smokehouse.jpg'); ?>"
+                                            alt="Smoke House — client work"></div>
+                                    <div class="wu-result-featured-body">
+                                        <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+                                            <h3>Smoke House</h3>
+                                        </div>
+                                        <span
+                                            style="flex:none;width:52px;height:52px;border-radius:50%;background:#C2F760;color:#0E1206;display:grid;place-items:center"><svg
+                                                width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round">
+                                                <path d="M7 17L17 7"></path>
+                                                <path d="M8.5 7H17v8.5"></path>
+                                            </svg></span>
+                                    </div>
                                 </a>
-                                <a class="rx-card rx--erets" href="https://wiseup.in/case-studies/erets/" target="_blank" rel="noopener">
-                                    <span class="rx-bg"><img src="<?php echo $cs( 'case-erets.jpg' ); ?>" alt="Erets Space brand by WiseUp" loading="lazy"></span>
-                                    <span class="rx-top"><span><span class="rx-cat">Space technology · London</span><h3 class="rx-name">Erets Space</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
-                                    <span class="rx-hero"><b data-rx="9" data-suf="+">9+</b><span>international media features within weeks of launch</span></span>
-                                    <span class="rx-stats">
-                                        <span class="rx-stat"><b data-rx="6" data-suf="+">6+</b><span>global partners at launch</span></span>
-                                        <span class="rx-stat"><b data-rx="3">3</b><span>continents</span></span>
-                                        <span class="rx-stat"><b data-rx="12">12</b><span>weeks, discovery to live</span></span>
-                                        <span class="rx-stat"><b data-rx="3">3</b><span>mission verticals</span></span>
-                                    </span>
-                                </a>
-                                <a class="rx-card rx--smoke" href="https://wiseup.in/case-studies/smokehouse/" target="_blank" rel="noopener">
-                                    <span class="rx-bg"><img src="<?php echo $cs( 'case-smokehouse.jpg' ); ?>" alt="Smoke House restaurant branding by WiseUp" loading="lazy"></span>
-                                    <span class="rx-top"><span><span class="rx-cat">Restaurant branding</span><h3 class="rx-name">Smoke House</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
-                                    <span class="rx-hero"><b data-rx="30">30</b><span>days to a visible impact</span></span>
-                                    <span class="rx-stats"><span class="rx-stat"><b data-rx="4">4</b><span>execution tracks</span></span><span class="rx-stat"><b data-rx="3">3</b><span>strategy pillars</span></span></span>
-                                </a>
-                                <a class="rx-card rx--indus" href="https://wiseup.in/case-studies/indusgo/" target="_blank" rel="noopener">
-                                    <span class="rx-bg"><img src="<?php echo $cs( 'case-indusgo.jpg' ); ?>" alt="Indus Go self-drive rentals campaign by WiseUp" loading="lazy"></span>
-                                    <span class="rx-top"><span><span class="rx-cat">Self-drive rentals</span><h3 class="rx-name">Indus Go</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
-                                    <span class="rx-hero"><b data-rx="10">10</b><span>campaign videos produced per month</span></span>
-                                    <span class="rx-stats"><span class="rx-stat"><b data-rx="3">3</b><span>shoot schedules</span></span></span>
-                                </a>
-                                <a class="rx-card rx--sathya" href="https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/" target="_blank" rel="noopener">
-                                    <span class="rx-bg"><img src="<?php echo esc_url( $smm_assets . '../work/case-sathya-540.webp' ); ?>" alt="Sathya Agencies brand launch campaign by WiseUp" loading="lazy"></span>
-                                    <span class="rx-top"><span><span class="rx-cat">Brand launch · Kerala</span><h3 class="rx-name">Sathya Agencies</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
-                                    <span class="rx-hero"><b data-rx="6">6</b><span>campaign formats in one launch</span></span>
-                                    <ul class="rx-list"><li>Hoardings</li><li>LED displays</li><li>Social</li><li>Reels</li><li>Street activations</li><li>Showrooms</li></ul>
-                                </a>
-                                <a class="rx-card rx--boot" href="https://wiseup.in/case-studies/bootland/" target="_blank" rel="noopener">
-                                    <span class="rx-bg"><img src="<?php echo $cs( 'case-bootland.jpg' ); ?>" alt="Bootland event branding by WiseUp" loading="lazy"></span>
-                                    <span class="rx-top"><span><span class="rx-cat">Event branding</span><h3 class="rx-name">Bootland</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
-                                    <p class="rx-say">Kerala&rsquo;s <em>largest</em> footwear exhibition</p>
-                                    <p class="rx-quote">&ldquo;More than an expo: a recognizable event brand.&rdquo;</p>
-                                </a>
+                                <div class="wu-result-list">
+                                    <?php
+                                    $results = [
+                                        ['case-bootland.jpg', 'Bootland', 'Event branding', 'https://wiseup.in/case-studies/bootland/'],
+                                        ['case-indusgo.jpg', 'Indus Go', 'Self-drive rentals', 'https://wiseup.in/case-studies/indusgo/'],
+                                        ['case-erets.jpg', 'Erets Space', 'Space technology', 'https://wiseup.in/case-studies/erets/'],
+                                        ['case-karak.jpg', 'Golden Karak', 'Café brand', 'https://wiseup.in/case-studies/golden-karak/'],
+                                        ['../work/case-sathya-540.webp', 'Sathya Agencies', 'Brand launch campaign', 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/'],
+                                    ];
+                                    foreach ($results as $i => $r): ?>
+                                        <a data-reveal data-delay="<?php echo $i * 80; ?>" href="<?php echo esc_url($r[3]); ?>" target="_blank" rel="noopener"
+                                            class="wu-result-row">
+                                            <span class="wu-result-thumb"><img
+                                                    src="<?php echo esc_url($smm_assets . $r[0]); ?>"
+                                                    alt="<?php echo esc_attr($r[1]); ?> — client work"></span>
+                                            <span style="display:flex;flex-direction:column;gap:8px;min-width:0">
+                                                <h3><?php echo esc_html($r[1]); ?></h3>
+                                            </span>
+                                            <span class="wu-circle-arrow-sm"><svg width="14" height="14"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                                    <path d="M7 17L17 7"></path>
+                                                    <path d="M8.5 7H17v8.5"></path>
+                                                </svg></span>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-<script>
-(function () {
-	var sec = document.getElementById('wu-smm-results'); if (!sec) return;
-	var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-	var fmt = function (n) { return Math.round(n).toLocaleString('en-US'); };
-	var run = function () {
-		sec.classList.add('rx-in'); if (still) return;
-		sec.querySelectorAll('[data-rx]').forEach(function (el) {
-			var end = +el.getAttribute('data-rx'), pre = el.getAttribute('data-pre') || '', suf = el.getAttribute('data-suf') || '', t0 = performance.now(), dur = 1800;
-			(function f(now) { var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4); el.textContent = pre + fmt(end * e) + suf; if (k < 1) requestAnimationFrame(f); })(t0);
-		});
-	};
-	if (!('IntersectionObserver' in window)) return run();
-	var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { run(); io.disconnect(); } }, { threshold: .2 });
-	io.observe(sec.querySelector('.rx-grid'));
-})();
-</script>
                     </section>
 
 
