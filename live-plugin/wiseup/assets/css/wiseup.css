@@ -2976,3 +2976,8 @@ img.ft__ca-mark { box-shadow: 0 0 0 1.5px rgb(255 255 255 / .18), 2px 2px 5px rg
   .press__once { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .press__once .press__card { transform: none !important; }
 }
+
+/* WP Rocket "Automatic Lazy Rendering" puts content-visibility:auto on sections (data-wpr-lazyrender). Those sections
+   then count as ~0px tall until scrolled near, so the pinned process gallery measured its start ~1000px too early and
+   showed over the growing band (2026-11-04). Render them normally. */
+html body [data-wpr-lazyrender] { content-visibility: visible !important; contain-intrinsic-size: none !important; }
