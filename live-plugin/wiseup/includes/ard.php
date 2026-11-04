@@ -103,5 +103,8 @@ add_action( 'parse_request', function () {
 
 // <link rel="ard"> on every front-end page
 add_action( 'wp_head', function () {
-	echo '<link rel="ard" type="application/json" href="' . esc_url( apply_filters( 'wiseup_ard_href', home_url( '/.well-known/ard.json' ) ) ) . "\">\n";
+	// The REST address, not /.well-known/: on wiseup.in everything under /.well-known/ is answered by Cloudflare with a
+	// 520 before WordPress runs (2026-11-04), and an advertised location that fails is a Lighthouse error. Lighthouse
+	// gives a linked manifest 2 seconds; the live REST route answers in ~0.5-0.7s.
+	echo '<link rel="ard" type="application/json" href="' . esc_url( apply_filters( 'wiseup_ard_href', rest_url( 'wiseup/v1/ard' ) ) ) . "\">\n";
 }, 2 );
