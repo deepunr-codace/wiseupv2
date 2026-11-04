@@ -24,6 +24,10 @@
 	/* The hero is a fixed-height box and the strip's arrow row sits on its bottom edge, so the space below it is a
 	   margin: 44 + the services' own 48 puts the arrows 96 above "What we do", like every other section boundary. */
 	.wiseup-page-home .hero { margin-bottom: 44px; }
+	/* The strip sat 150px under the tagline; 56px keeps it close to the wordmark. The hero (a fixed-height box) is 94px
+	   shorter to match, so the space below the strip stays the same. */
+	.wiseup-page-home .hero--lunar { height: calc(var(--nav) + 786px); }
+	.wiseup-page-home .hero--lunar .strip { margin-top: 56px; }
 	.wiseup-page-home main > .sec,
 	.wiseup-page-home main > .sec.grow-sec,
 	.wiseup-page-home main > .sec.hgal,
@@ -84,7 +88,13 @@
 	.wiseup-page-home .hgal__track { gap: var(--wu-block); }
 	.wiseup-page-home .hgal__list { gap: var(--wu-list); }
 	.wiseup-page-home .hgal__list .proc__card { border-radius: var(--wu-r); }
-	.wiseup-page-home .hgal__list .proc__meta { padding: var(--wu-pair) var(--wu-pair) 20px; border-radius: var(--wu-r-sm); }
+	/* The caption sat in a frosted box over the bottom third of the photo, hiding faces and hands; on phones the whole
+	   photo shows on top and the caption sits under it on the card itself. */
+	.wiseup-page-home .hgal__list .proc__card { display: flex; flex-direction: column; min-height: 0; overflow: hidden; background: var(--card, #111113); }
+	.wiseup-page-home .hgal__list .proc__stage { position: relative; inset: auto; flex: none; aspect-ratio: 4 / 3; height: auto; border-radius: var(--wu-r) var(--wu-r) 0 0; }
+	.wiseup-page-home .hgal__list .proc__stage::before { background: linear-gradient(180deg, rgb(0 0 0 / .3) 0%, transparent 26%); }
+	.wiseup-page-home .hgal__list .proc__shot { object-position: 50% 50%; }
+	.wiseup-page-home .hgal__list .proc__meta { position: relative; inset: auto; margin: 0; padding: 20px var(--wu-card) var(--wu-card); border-radius: 0; background: none; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: none; }
 
 	/* ---------- clients ---------- */
 	.wiseup-page-home .tier { padding: var(--wu-card); border-radius: var(--wu-r); }

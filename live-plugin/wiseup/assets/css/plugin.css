@@ -43,3 +43,31 @@ html .lead[open] .lead__head, html .lead[open] .lf { animation-duration: .4s; }
   align-self: flex-start; width: auto; min-height: 0; height: 48px; margin-top: 8px; padding: 0 20px 0 24px; gap: 10px;
   border-radius: 999px; font-size: 14.5px;
 }
+
+/* Footer on phones. The link lists keep two equal columns (lined up across both lists) with every link on one line: the
+   text a step smaller and scaled with the screen (13px on a 390px phone), so "Packaging Design & Events" and
+   "Campaigns & Media Buying" no longer wrap. The bottom row is one centred block: the CodeAce pill, then
+   "© 2026 WiseUp · Crafted by CodeAce" on one line, kept clear of the chat button. */
+@media (max-width: 767px) {
+  html .ft .ft__top .ft__col ul { grid-template-columns: 1fr 1fr; column-gap: 12px; }
+  html .ft .ft__top .ft__col .ft__link { white-space: nowrap; font-size: min(13px, 3.3vw); }
+  html .ft .ft__base.ft__base { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; column-gap: 10px; row-gap: 18px; padding: 32px 0 96px; text-align: center; }
+  html .ft .ft__base > .ft__ca { grid-column: 1 / -1; justify-self: center; order: -1; }
+  html .ft .ft__base > p { margin: 0; font-size: 13px; white-space: nowrap; justify-self: auto; }
+  html .ft .ft__base > p + p::before { content: '·'; margin-right: 10px; opacity: .6; }
+}
+
+/* Header on phones when it carries the podcast's YouTube button: four round buttons don't fit next to the logo, so
+   they are 44px with 8px between them and Menu shows its icon only (the word stays for screen readers). */
+@media (max-width: 767px) {
+  html .hd__actions:has(.hd__sub) { gap: 8px; }
+  html .hd__actions:has(.hd__sub) :is(.hd__call, .hd__theme, .hd__sub, .hd__menu) { width: 44px; height: 44px; min-width: 0; padding: 0; justify-content: center; flex: none; }
+  html .hd__actions:has(.hd__sub) .hd__menu > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+}
+/* Small phones without that button: the logo, two round buttons and Menu ran into the screen edge below ~410px, so
+   the buttons are 44px with 8px between them there too, and Menu keeps its label. */
+@media (max-width: 420px) {
+  html .hd__actions:not(:has(.hd__sub)) { gap: 8px; }
+  html .hd__actions:not(:has(.hd__sub)) :is(.hd__call, .hd__theme) { width: 44px; height: 44px; min-width: 0; padding: 0; flex: none; }
+  html .hd__actions:not(:has(.hd__sub)) .hd__menu { height: 44px; padding: 0 16px; flex: none; }
+}
