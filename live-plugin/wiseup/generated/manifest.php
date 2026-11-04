@@ -3,7 +3,7 @@
 defined( 'ABSPATH' ) || exit;
 
 return array(
-	'build'       => '974a0197bb-carousel-fix-9-perf-1',
+	'build'       => '974a0197bb-carousel-fix-10-perf-1',
 	'script'      => '_astro/Base.astro_astro_type_script_index_0_lang.B602rHP_.js',
 	'head_script' => <<<'WISEUP_JS'
 <script>(function(){const defaultTheme = __WISEUP_DEFAULT_THEME__;
