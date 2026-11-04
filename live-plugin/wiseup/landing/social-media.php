@@ -2545,6 +2545,36 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
 
                     <!-- RESULTS -->
                     <section id="wu-smm-results" class="wu-section">
+<style>
+/* Results section: each case study shows the results stated on its case-study page (2026-11-04) */
+#wu-smm-results .wu-res-cat { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #C2F760; opacity: .85; }
+#wu-smm-results .wu-res-big { display: flex; align-items: baseline; gap: 12px; margin: 6px 0 0; }
+#wu-smm-results .wu-res-big b { font-size: clamp(54px, 5vw, 76px); font-weight: 700; line-height: .9; letter-spacing: -.04em; color: #C2F760; }
+#wu-smm-results .wu-res-big span { max-width: 14ch; font-size: 15px; line-height: 1.3; color: rgb(255 255 255 / .82); }
+#wu-smm-results .wu-res-ticks { display: grid; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+#wu-smm-results .wu-res-ticks li { position: relative; padding-left: 22px; font-size: 14px; line-height: 1.45; color: rgb(255 255 255 / .78); }
+#wu-smm-results .wu-res-ticks li::before { content: ""; position: absolute; left: 0; top: .32em; width: 12px; height: 7px; border-left: 2px solid #C2F760; border-bottom: 2px solid #C2F760; transform: rotate(-45deg); }
+#wu-smm-results .wu-result-row { display: grid !important; grid-template-columns: clamp(96px, 9vw, 128px) minmax(0, 1fr) auto !important; grid-template-areas: "thumb body arrow" "thumb res arrow" !important; align-items: center !important; column-gap: clamp(14px, 1.6vw, 22px) !important; row-gap: 10px !important; }
+#wu-smm-results .wu-result-thumb { grid-area: thumb; width: 100% !important; height: auto !important; aspect-ratio: 1; align-self: center; }
+#wu-smm-results .wu-result-thumb img { width: 100% !important; height: 100% !important; object-fit: cover; }
+#wu-smm-results .wu-res-body { grid-area: body; align-self: end; }
+#wu-smm-results .wu-circle-arrow-sm { grid-area: arrow; }
+#wu-smm-results .wu-result-row .wu-res-stat, #wu-smm-results .wu-result-row .wu-res-quote { grid-area: res; align-self: start; width: auto; }
+#wu-smm-results .wu-result-row .wu-res-stat { display: flex; align-items: baseline; gap: 10px; justify-items: start; text-align: left; }
+#wu-smm-results .wu-result-row .wu-res-stat span { max-width: 26ch; }
+#wu-smm-results .wu-res-body { display: flex; flex-direction: column; gap: 6px; min-width: 0; flex: 1; }
+#wu-smm-results .wu-res-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+#wu-smm-results .wu-res-chips span { padding: 4px 10px; border-radius: 99px; font-size: 12px; line-height: 1.3; color: rgb(255 255 255 / .75); background: rgb(255 255 255 / .05); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1); }
+#wu-smm-results .wu-res-stat { flex: none; display: grid; justify-items: end; gap: 4px; width: clamp(130px, 13vw, 180px); text-align: right; }
+#wu-smm-results .wu-res-stat b { font-size: clamp(34px, 3.2vw, 46px); font-weight: 700; line-height: .95; letter-spacing: -.035em; color: #C2F760; }
+#wu-smm-results .wu-res-stat span { font-size: 12.5px; line-height: 1.35; color: rgb(255 255 255 / .62); }
+#wu-smm-results .wu-res-quote { flex: none; width: clamp(170px, 18vw, 240px); font-size: 13.5px; line-height: 1.45; font-style: italic; color: rgb(255 255 255 / .72); }
+@media (max-width: 760px) {
+  #wu-smm-results .wu-result-row { grid-template-columns: 76px minmax(0, 1fr) auto !important; grid-template-areas: "thumb body arrow" "res res res" !important; }
+  #wu-smm-results .wu-res-stat, #wu-smm-results .wu-res-quote { order: 5; width: 100%; justify-items: start; text-align: left; }
+  #wu-smm-results .wu-res-stat { display: flex; align-items: baseline; gap: 10px; }
+}
+</style>
                         <div class="wu-inner">
                             <div class="wu-sec-head">
                                 <div class="wu-sec-head-left">
@@ -2559,7 +2589,10 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                             alt="Smoke House — client work"></div>
                                     <div class="wu-result-featured-body">
                                         <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+                                            <span class="wu-res-cat">Restaurant branding · Bucho Meat</span>
                                             <h3>Smoke House</h3>
+                                            <p class="wu-res-big"><b>30</b><span>days to a visible impact</span></p>
+                                            <ul class="wu-res-ticks"><li>Significant increase in daily footfall</li><li>Strong growth in social media engagement</li><li>Improved online reviews and brand discovery</li></ul>
                                         </div>
                                         <span
                                             style="flex:none;width:52px;height:52px;border-radius:50%;background:#C2F760;color:#0E1206;display:grid;place-items:center"><svg
@@ -2573,12 +2606,13 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                 </a>
                                 <div class="wu-result-list">
                                     <?php
+                                    // results as stated on each case-study page on wiseup.in (owner, 2026-11-04): [img, name, category, url, main figure, its label, other results]; no figure = a quoted outcome
                                     $results = [
-                                        ['case-bootland.jpg', 'Bootland', 'Event branding', 'https://wiseup.in/case-studies/bootland/'],
-                                        ['case-indusgo.jpg', 'Indus Go', 'Self-drive rentals', 'https://wiseup.in/case-studies/indusgo/'],
-                                        ['case-erets.jpg', 'Erets Space', 'Space technology', 'https://wiseup.in/case-studies/erets/'],
-                                        ['case-karak.jpg', 'Golden Karak', 'Café brand', 'https://wiseup.in/case-studies/golden-karak/'],
-                                        ['../work/case-sathya-540.webp', 'Sathya Agencies', 'Brand launch campaign', 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/'],
+                                        ['case-karak.jpg', 'Golden Karak', 'Café brand', 'https://wiseup.in/case-studies/golden-karak/', '2M+', 'views on a single Instagram Reel', ['160% follower growth in two months', '75K+ total views']],
+                                        ['case-erets.jpg', 'Erets Space', 'Space technology', 'https://wiseup.in/case-studies/erets/', '9+', 'international media features within weeks of launch', ['6+ global partnerships at launch', '12 weeks from discovery to live']],
+                                        ['case-indusgo.jpg', 'Indus Go', 'Self-drive rentals', 'https://wiseup.in/case-studies/indusgo/', '10', 'campaign videos produced per month', ['3 shoot schedules', 'Consistent storytelling across all content']],
+                                        ['case-bootland.jpg', 'Bootland', 'Event branding', 'https://wiseup.in/case-studies/bootland/', '', 'More than an expo: a recognizable event brand with a strong cultural and commercial presence.', []],
+                                        ['../work/case-sathya-540.webp', 'Sathya Agencies', 'Brand launch campaign', 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/', '', 'A launch campaign built around a shared identity, not a collection of disconnected ads.', []],
                                     ];
                                     foreach ($results as $i => $r): ?>
                                         <a data-reveal data-delay="<?php echo $i * 80; ?>" href="<?php echo esc_url($r[3]); ?>" target="_blank" rel="noopener"
@@ -2586,9 +2620,16 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                             <span class="wu-result-thumb"><img
                                                     src="<?php echo esc_url($smm_assets . $r[0]); ?>"
                                                     alt="<?php echo esc_attr($r[1]); ?> — client work"></span>
-                                            <span style="display:flex;flex-direction:column;gap:8px;min-width:0">
+                                            <span class="wu-res-body">
+                                                <span class="wu-res-cat"><?php echo esc_html($r[2]); ?></span>
                                                 <h3><?php echo esc_html($r[1]); ?></h3>
+                                                <?php if ($r[6]) : ?><span class="wu-res-chips"><?php foreach ($r[6] as $c) : ?><span><?php echo esc_html($c); ?></span><?php endforeach; ?></span><?php endif; ?>
                                             </span>
+                                            <?php if ($r[4]) : ?>
+                                                <span class="wu-res-stat"><b><?php echo esc_html($r[4]); ?></b><span><?php echo esc_html($r[5]); ?></span></span>
+                                            <?php else : ?>
+                                                <span class="wu-res-quote">&ldquo;<?php echo esc_html($r[5]); ?>&rdquo;</span>
+                                            <?php endif; ?>
                                             <span class="wu-circle-arrow-sm"><svg width="14" height="14"
                                                     viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
