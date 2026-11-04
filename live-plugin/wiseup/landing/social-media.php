@@ -2588,6 +2588,23 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
   #wu-smm-results .rx-stats, #wu-smm-results .rx-stats--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (prefers-reduced-motion: reduce) { #wu-smm-results .rx-bar__to { transition: none; width: 100%; } }
+
+/* ---- Slider (owner, 2026-11-04: "make this section scroll slider") ---- */
+#wu-smm-results .rx-grid { display: flex; grid-template-columns: none; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 0; scrollbar-width: none; padding: 4px 0 6px; cursor: grab; }
+#wu-smm-results .rx-grid::-webkit-scrollbar { display: none; }
+#wu-smm-results .rx-grid.is-drag { cursor: grabbing; scroll-snap-type: none; }
+#wu-smm-results .rx-grid.is-drag .rx-card { pointer-events: none; }
+#wu-smm-results .rx-card, #wu-smm-results .rx-card--wide { flex: 0 0 min(640px, 86vw); grid-column: auto; scroll-snap-align: start; }
+#wu-smm-results .rx-card:hover { transform: none; }
+#wu-smm-results .rx-card img { -webkit-user-drag: none; user-select: none; }
+#wu-smm-results .rx-nav { display: flex; align-items: center; gap: 18px; margin-top: 22px; }
+#wu-smm-results .rx-prog { order: 3; flex: 1; height: 3px; border-radius: 3px; background: rgb(255 255 255 / .1); overflow: hidden; }
+#wu-smm-results .rx-prog i { display: block; height: 100%; width: 20%; border-radius: inherit; background: var(--lime); transform-origin: 0 50%; transition: transform .2s; }
+#wu-smm-results .rx-btn { display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; padding: 0; color: #fff; background: rgb(255 255 255 / .06); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14); cursor: pointer; transition: background .3s, color .3s, opacity .3s; }
+#wu-smm-results .rx-btn:hover:not(:disabled) { background: var(--lime); color: #0e1206; }
+#wu-smm-results .rx-btn:disabled { opacity: .35; cursor: default; }
+#wu-smm-results .rx-btn:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { #wu-smm-results .rx-grid { scroll-behavior: auto; } }
 </style>
                         <div class="wu-inner">
                             <div class="wu-sec-head">
@@ -2662,6 +2679,7 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
                                     </span>
                                 </a>
                             </div>
+                            <div class="rx-nav"><span class="rx-prog" aria-hidden="true"><i></i></span><button class="rx-btn rx-prev" type="button" aria-label="Previous case study"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rx-btn rx-next" type="button" aria-label="Next case study"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
                         </div>
 <script>
 (function () {
@@ -2675,6 +2693,28 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
 			(function f(now) { var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 4); el.textContent = pre + fmt(k < 1 ? end * e : end) + suf; if (k < 1) requestAnimationFrame(f); })(t0);
 		});
 	};
+
+	// slider: arrows, progress, mouse drag (touch uses native scrolling)
+	var g = sec.querySelector('.rx-grid'), prev = sec.querySelector('.rx-prev'), next = sec.querySelector('.rx-next'), bar = sec.querySelector('.rx-prog i');
+	if (g && prev && next) {
+		g.setAttribute('tabindex', '0'); g.setAttribute('aria-label', 'Case study results, scroll sideways');
+		var step = function () { var c = g.querySelector('.rx-card'); return c ? c.getBoundingClientRect().width + 16 : g.clientWidth * .8; };
+		var upd = function () { var max = g.scrollWidth - g.clientWidth; prev.disabled = g.scrollLeft < 4; next.disabled = g.scrollLeft > max - 4;
+			if (bar) { var vis = g.clientWidth / g.scrollWidth; bar.style.width = (vis * 100) + '%'; bar.style.transform = 'translateX(' + (max > 0 ? g.scrollLeft / max * (1 / vis - 1) * 100 : 0) + '%)'; } };
+		var go = function (d) { g.scrollBy({ left: d * step(), behavior: still ? 'auto' : 'smooth' }); };
+		prev.addEventListener('click', function () { go(-1); }); next.addEventListener('click', function () { go(1); });
+		g.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+		var down = false, moved = 0, x0 = 0, s0 = 0, id = null;
+		g.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse' || e.button) return; down = true; moved = 0; x0 = e.clientX; s0 = g.scrollLeft; id = e.pointerId; });
+		addEventListener('pointermove', function (e) { if (!down || e.pointerId !== id) return; var d = e.clientX - x0; moved = Math.max(moved, Math.abs(d));
+			if (moved > 5 && !g.classList.contains('is-drag')) { g.classList.add('is-drag'); try { g.setPointerCapture(id); } catch (_) {} }
+			if (moved > 5) g.scrollLeft = s0 - d; });
+		var end = function () { if (!down) return; down = false; if (g.classList.contains('is-drag')) { g.classList.remove('is-drag');
+			var w = step(), n = Math.round(g.scrollLeft / w); g.scrollTo({ left: n * w, behavior: still ? 'auto' : 'smooth' }); } };
+		addEventListener('pointerup', end); addEventListener('pointercancel', end);
+		g.addEventListener('click', function (e) { if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; } }, true);
+		g.addEventListener('dragstart', function (e) { e.preventDefault(); });
+	}
 	if (!('IntersectionObserver' in window)) return run();
 	var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { run(); io.disconnect(); } }, { threshold: .15 });
 	io.observe(sec.querySelector('.rx-grid'));
