@@ -2589,22 +2589,15 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
 }
 @media (prefers-reduced-motion: reduce) { #wu-smm-results .rx-bar__to { transition: none; width: 100%; } }
 
-/* ---- Slider (owner, 2026-11-04: "make this section scroll slider") ---- */
-#wu-smm-results .rx-grid { display: flex; grid-template-columns: none; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 0; scrollbar-width: none; padding: 4px 0 6px; cursor: grab; }
-#wu-smm-results .rx-grid::-webkit-scrollbar { display: none; }
-#wu-smm-results .rx-grid.is-drag { cursor: grabbing; scroll-snap-type: none; }
-#wu-smm-results .rx-grid.is-drag .rx-card { pointer-events: none; }
-#wu-smm-results .rx-card, #wu-smm-results .rx-card--wide { flex: 0 0 min(640px, 86vw); grid-column: auto; scroll-snap-align: start; }
+/* ---- Drifting row like the homepage work rows (owner, 2026-11-04): auto drift, page scroll moves it, drag to scroll ---- */
+#wu-smm-results { overflow-x: clip; }
+#wu-smm-results .rx-view { margin-inline: calc(50% - 50vw); overflow: hidden; cursor: grab; touch-action: pan-y; }
+#wu-smm-results .rx-view.is-drag { cursor: grabbing; }
+#wu-smm-results .rx-view.is-drag .rx-card { pointer-events: none; }
+#wu-smm-results .rx-grid { display: flex; width: max-content; gap: 16px; padding: 4px 0 6px; will-change: transform; }
+#wu-smm-results .rx-card, #wu-smm-results .rx-card--wide { flex: 0 0 min(640px, 86vw); grid-column: auto; }
 #wu-smm-results .rx-card:hover { transform: none; }
 #wu-smm-results .rx-card img { -webkit-user-drag: none; user-select: none; }
-#wu-smm-results .rx-nav { display: flex; align-items: center; gap: 18px; margin-top: 22px; }
-#wu-smm-results .rx-prog { order: 3; flex: 1; height: 3px; border-radius: 3px; background: rgb(255 255 255 / .1); overflow: hidden; }
-#wu-smm-results .rx-prog i { display: block; height: 100%; width: 20%; border-radius: inherit; background: var(--lime); transform-origin: 0 50%; transition: transform .2s; }
-#wu-smm-results .rx-btn { display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; padding: 0; color: #fff; background: rgb(255 255 255 / .06); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .14); cursor: pointer; transition: background .3s, color .3s, opacity .3s; }
-#wu-smm-results .rx-btn:hover:not(:disabled) { background: var(--lime); color: #0e1206; }
-#wu-smm-results .rx-btn:disabled { opacity: .35; cursor: default; }
-#wu-smm-results .rx-btn:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
-@media (prefers-reduced-motion: reduce) { #wu-smm-results .rx-grid { scroll-behavior: auto; } }
 </style>
                         <div class="wu-inner">
                             <div class="wu-sec-head">
@@ -2613,7 +2606,7 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
 <h2 class="wu-h2" data-reveal><span class="wu-hl">Results That Speak</span> <span class="wu-hw">for Themselves</span></h2>
                                 </div>
                             </div>
-                            <div class="rx-grid">
+                            <div class="rx-view"><div class="rx-grid">
                                 <a class="rx-card" href="https://wiseup.in/case-studies/golden-karak/" target="_blank" rel="noopener">
                                     <span class="rx-bg"><img src="<?php echo $cs( 'case-karak.jpg' ); ?>" alt="Golden Karak café brand by WiseUp" loading="lazy"></span>
                                     <span class="rx-top"><span><span class="rx-cat">Café brand · Bahrain &amp; GCC</span><h3 class="rx-name">Golden Karak</h3></span><span class="rx-go"><?php echo $arrow; ?></span></span>
@@ -2679,7 +2672,7 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
                                     </span>
                                 </a>
                             </div>
-                            <div class="rx-nav"><span class="rx-prog" aria-hidden="true"><i></i></span><button class="rx-btn rx-prev" type="button" aria-label="Previous case study"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button><button class="rx-btn rx-next" type="button" aria-label="Next case study"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button></div>
+                            </div>
                         </div>
 <script>
 (function () {
@@ -2694,30 +2687,43 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
 		});
 	};
 
-	// slider: arrows, progress, mouse drag (touch uses native scrolling)
-	var g = sec.querySelector('.rx-grid'), prev = sec.querySelector('.rx-prev'), next = sec.querySelector('.rx-next'), bar = sec.querySelector('.rx-prog i');
-	if (g && prev && next) {
-		g.setAttribute('tabindex', '0'); g.setAttribute('aria-label', 'Case study results, scroll sideways');
-		var step = function () { var c = g.querySelector('.rx-card'); return c ? c.getBoundingClientRect().width + 16 : g.clientWidth * .8; };
-		var upd = function () { var max = g.scrollWidth - g.clientWidth; prev.disabled = g.scrollLeft < 4; next.disabled = g.scrollLeft > max - 4;
-			if (bar) { var vis = g.clientWidth / g.scrollWidth; bar.style.width = (vis * 100) + '%'; bar.style.transform = 'translateX(' + (max > 0 ? g.scrollLeft / max * (1 / vis - 1) * 100 : 0) + '%)'; } };
-		var go = function (d) { g.scrollBy({ left: d * step(), behavior: still ? 'auto' : 'smooth' }); };
-		prev.addEventListener('click', function () { go(-1); }); next.addEventListener('click', function () { go(1); });
-		g.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
-		var down = false, moved = 0, x0 = 0, s0 = 0, id = null;
-		g.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse' || e.button) return; down = true; moved = 0; x0 = e.clientX; s0 = g.scrollLeft; id = e.pointerId; });
-		addEventListener('pointermove', function (e) { if (!down || e.pointerId !== id) return; var d = e.clientX - x0; moved = Math.max(moved, Math.abs(d));
-			if (moved > 5 && !g.classList.contains('is-drag')) { g.classList.add('is-drag'); try { g.setPointerCapture(id); } catch (_) {} }
-			if (moved > 5) g.scrollLeft = s0 - d; });
-		var end = function () { if (!down) return; down = false; if (g.classList.contains('is-drag')) { g.classList.remove('is-drag');
-			var w = step(), n = Math.round(g.scrollLeft / w); g.scrollTo({ left: n * w, behavior: still ? 'auto' : 'smooth' }); } };
+	// drifting row: copies for a seamless loop, auto drift + page scroll + drag (touch too)
+	var view = sec.querySelector('.rx-view'), g = sec.querySelector('.rx-grid');
+	if (view && g) {
+		var orig = Array.prototype.slice.call(g.children);
+		for (var k = 0; k < 2; k++) orig.forEach(function (c) { var d = c.cloneNode(true); d.setAttribute('aria-hidden', 'true'); d.setAttribute('tabindex', '-1'); g.appendChild(d); });
+		var setW = 0, measure = function () { setW = (g.scrollWidth + 16) / 3; }; measure(); addEventListener('resize', measure);
+		var auto = 0, drag = 0, cur = null, on = false, hover = 0, hk = 1, last = performance.now();
+		new IntersectionObserver(function (es) { on = es[0].isIntersecting; }, { rootMargin: '100px' }).observe(view);
+		view.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') hover = 1; });
+		view.addEventListener('pointerleave', function () { hover = 0; });
+		(function tick(now) {
+			var dt = Math.min(64, now - last); last = now;
+			if (on && setW) {
+				hk += ((hover ? .2 : 1) - hk) * .05;
+				if (!still) auto += 32 * hk * dt / 1000;
+				var target = auto + (still ? 0 : scrollY * .35) + drag;
+				cur = cur === null ? target : cur + (target - cur) * (1 - Math.pow(.86, dt / 16.67));
+				var x = -(((cur % setW) + setW) % setW);
+				g.style.transform = 'translate3d(' + x + 'px,0,0)';
+			}
+			requestAnimationFrame(tick);
+		})(last);
+		var down = false, moved = 0, x0 = 0, id = null, vel = 0, t0 = 0, raf = 0;
+		var glide = function () { vel *= .93; drag -= vel; raf = Math.abs(vel) > .2 ? requestAnimationFrame(glide) : 0; };
+		view.addEventListener('pointerdown', function (e) { if (e.button) return; cancelAnimationFrame(raf); down = true; moved = 0; vel = 0; x0 = e.clientX; id = e.pointerId; t0 = performance.now(); });
+		addEventListener('pointermove', function (e) { if (!down || e.pointerId !== id) return; var d = e.clientX - x0; x0 = e.clientX; moved += Math.abs(d);
+			if (moved > 5 && !view.classList.contains('is-drag')) { view.classList.add('is-drag'); try { view.setPointerCapture(id); } catch (_) {} }
+			if (moved > 5) { drag -= d; var n = performance.now(); vel = d * 16.67 / Math.max(8, n - t0); t0 = n; } }, { passive: true });
+		var end = function (e) { if (!down || e.pointerId !== id) return; down = false;
+			if (view.classList.contains('is-drag')) { setTimeout(function () { view.classList.remove('is-drag'); }, 0); if (e.type === 'pointerup' && Math.abs(vel) > .5) raf = requestAnimationFrame(glide); } };
 		addEventListener('pointerup', end); addEventListener('pointercancel', end);
-		g.addEventListener('click', function (e) { if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; } }, true);
-		g.addEventListener('dragstart', function (e) { e.preventDefault(); });
+		view.addEventListener('click', function (e) { if (moved > 5) { e.preventDefault(); e.stopPropagation(); moved = 0; } }, true);
+		view.addEventListener('dragstart', function (e) { e.preventDefault(); });
 	}
 	if (!('IntersectionObserver' in window)) return run();
 	var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { run(); io.disconnect(); } }, { threshold: .15 });
-	io.observe(sec.querySelector('.rx-grid'));
+	io.observe(sec.querySelector('.rx-view') || sec.querySelector('.rx-grid'));
 })();
 </script>
                     </section>
