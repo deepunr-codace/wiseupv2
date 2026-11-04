@@ -41,6 +41,7 @@ function wiseup_defaults() {
 		'footer_tagline'      => 'Your gateway to inspiration and growth. Where ideas ignite and dreams take flight!',
 		'footer_h_quick'      => 'Quick Links',
 		'footer_h_services'   => 'Services',
+		'chrome_pages'        => 'wiseup-tv, wiseup-studio', // theme pages that get the WiseUp header & footer (includes/chrome.php)
 		'contact_page'        => '/contact/',   // the header's phone button
 		'contact_phone'       => '+91 62824 34503',
 		'contact_phone_href'  => 'tel:+916282434503',
