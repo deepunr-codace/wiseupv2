@@ -21,12 +21,14 @@
 	}
 
 	/* ---------- sections ---------- */
-	/* The hero is a fixed-height box and the strip's arrow row sits on its bottom edge, so the space below it is a
-	   margin: 44 + the services' own 48 puts the arrows 96 above "What we do", like every other section boundary. */
-	.wiseup-page-home .hero { margin-bottom: 44px; }
-	/* The strip sat 150px under the tagline; 56px keeps it close to the wordmark. The hero (a fixed-height box) is 94px
-	   shorter to match, so the space below the strip stays the same. */
-	.wiseup-page-home .hero--lunar { height: calc(var(--nav) + 786px); }
+	/* Hero: the wordmark 48px under the header (116px from the top), like the first content of every page; the strip
+	   56px under the tagline. The hero sizes to its content: the strip's arrow row ends 28px above the strip's bottom
+	   edge, so with 20px under the strip and the services' own 48px, "What we do" is 96px under the arrows at any width. */
+	.wiseup-page-home .hero--lunar { height: auto; padding-top: 116px; padding-bottom: 20px; }
+	.wiseup-page-home .hero { margin-bottom: 0; }
+	/* Reduced motion: the strip stays tilted and its arrows stay hidden, so the cards are the hero's last thing on screen
+	   (67px above where the arrows would end); the services move up by that much to stay 96px under them. */
+	@media (prefers-reduced-motion: reduce) { .wiseup-page-home .hero { margin-bottom: -67px; } }
 	.wiseup-page-home .hero--lunar .strip { margin-top: 56px; }
 	.wiseup-page-home main > .sec,
 	.wiseup-page-home main > .sec.grow-sec,

@@ -80,4 +80,5 @@ $wu_target  = function ( $link ) { return $link['external'] ? ' target="_blank" 
 		<?php if ( ! $wu_podcast ) : ?><a class="b b--teal b--block" href="<?php echo esc_url( $wu_cta ); ?>" data-menu-link="true"><span class="b__label"><?php echo esc_html( $wu_cta_lbl ); ?></span><span class="b__ico"><?php echo wiseup_icon( 'arrow' ) . wiseup_icon( 'arrow' ); // phpcs:ignore -- static SVG ?></span></a><?php endif; ?>
 	</div>
 </header>
+<script>(function(){var m=document.getElementById('menu');if(!m||!window.MutationObserver)return;var r=document.documentElement,f=function(){r.classList.toggle('wu-menu-open',!m.hidden)};new MutationObserver(f).observe(m,{attributes:true,attributeFilter:['hidden']});})();</script>
 <script src="<?php echo esc_url( WISEUP_ASSETS . '/js/mega-rope.js?v=2' ); ?>" defer></script>

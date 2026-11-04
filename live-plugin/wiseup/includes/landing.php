@@ -82,12 +82,7 @@ function wiseup_landing_mirror_lead( $lead, $stage ) {
  * script in the wp_footer hook below cover the menu button and the header's button.
  */
 function wiseup_landing_open( $body_class = 'wu-landing' ) {
-	add_action( 'wp_head', function () {
-		echo '<link rel="stylesheet" href="' . esc_url( wiseup_versioned( 'css/wiseup.css' ) ) . "\">\n";
-		echo "<style>.wu-chrome .hd__theme{display:none}.wu-chrome.wiseup-in-theme{--head-h:0px}.wu-chrome .hd{z-index:2147483000}.wu-chrome *,.wu-chrome *::before,.wu-chrome *::after{box-sizing:border-box}.wu-chrome :is(ul,ol){list-style:none;margin:0;padding:0}.wu-chrome :is(p,h1,h2,h3){margin-top:0}.wu-chrome a{text-decoration:none}.wu-chrome button{font:inherit;color:inherit}.wu-chrome a{color:inherit}.wu-chrome .hd__menu,.wu-chrome .hd__menu:hover,.wu-chrome .hd__menu:focus,.wu-chrome .hd__menu:active{background:#0e0e10!important;color:#fff!important;border:0}</style>\n";
-		$plugin_css = file_get_contents( WISEUP_DIR . 'assets/css/plugin.css' );
-		if ( false !== $plugin_css ) echo '<style id="wiseup-plugin-css">' . $plugin_css . "</style>\n";
-	}, 6 );
+	wiseup_landing_chrome_styles();
 	?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -98,6 +93,25 @@ function wiseup_landing_open( $body_class = 'wu-landing' ) {
 <body <?php body_class( $body_class ); ?>>
 <?php
 	wp_body_open();
+	wiseup_landing_chrome_header();
+}
+
+/**
+ * The WiseUp header and footer's stylesheet and the few resets they need inside a landing page's own design. Call it
+ * before wp_head(). Used by wiseup_landing_open() and by the landing pages that print their own document (SEO,
+ * performance marketing).
+ */
+function wiseup_landing_chrome_styles() {
+	add_action( 'wp_head', function () {
+		echo '<link rel="stylesheet" href="' . esc_url( wiseup_versioned( 'css/wiseup.css' ) ) . "\">\n";
+		echo "<style>.wu-chrome .hd__theme{display:none}.wu-chrome.wiseup-in-theme{--head-h:0px}.wu-chrome .hd{z-index:2147483000}.wu-chrome *,.wu-chrome *::before,.wu-chrome *::after{box-sizing:border-box}.wu-chrome :is(ul,ol){list-style:none;margin:0;padding:0}.wu-chrome :is(p,h1,h2,h3){margin-top:0}.wu-chrome a{text-decoration:none}.wu-chrome button{font:inherit;color:inherit}.wu-chrome .hd__menu{font-size:14px;font-weight:500;line-height:normal}.wu-chrome a{color:inherit}.wu-chrome .hd__menu,.wu-chrome .hd__menu:hover,.wu-chrome .hd__menu:focus,.wu-chrome .hd__menu:active{background:#0e0e10!important;color:#fff!important;border:0}</style>\n";
+		$plugin_css = file_get_contents( WISEUP_DIR . 'assets/css/plugin.css' );
+		if ( false !== $plugin_css ) echo '<style id="wiseup-plugin-css">' . $plugin_css . "</style>\n";
+	}, 6 );
+}
+
+/** The WiseUp header, in its own wrapper so the site stylesheet (scoped to .wiseup-home) styles only it. */
+function wiseup_landing_chrome_header() {
 	echo '<div class="wiseup-home wiseup-in-theme wu-chrome">';
 	wiseup_part( 'header' );
 	echo '</div>';
@@ -105,10 +119,22 @@ function wiseup_landing_open( $body_class = 'wu-landing' ) {
 
 /** Prints the plugin's footer, the scripts for the header, and closes the document. */
 function wiseup_landing_close( $lead_source = '' ) {
+	wiseup_landing_chrome_footer( $lead_source, true );
+	?>
+</body>
+</html>
+<?php
+}
+
+/**
+ * The WiseUp footer and the scripts for the header (menu button, docking, the header button opening the lead popup).
+ * With $wp_footer the theme's wp_footer() runs between the two, as on a full WiseUp landing page.
+ */
+function wiseup_landing_chrome_footer( $lead_source = '', $wp_footer = false ) {
 	echo '<div class="wiseup-home wiseup-in-theme wu-chrome">';
 	wiseup_part( 'footer' );
 	echo '</div>';
-	wp_footer();
+	if ( $wp_footer ) wp_footer();
 	echo '<script src="' . esc_url( wiseup_versioned( 'js/footer-wordmark.js' ) ) . '"></script>' . "\n";
 	?>
 <script>
@@ -139,8 +165,6 @@ function wiseup_landing_close( $lead_source = '' ) {
 	if (src && document.querySelector('[data-lead-modal]')) document.querySelectorAll('.hd__cta, [data-menu] .b').forEach(function (a) { a.setAttribute('data-lead-open', ''); a.setAttribute('data-lead-source', src); });
 })();
 </script>
-</body>
-</html>
 <?php
 }
 
@@ -148,5 +172,7 @@ function wiseup_landing_close( $lead_source = '' ) {
 add_filter( 'wiseup_header_cta', function ( $cta ) {
 	$t = wiseup_landing_for( get_queried_object_id() );
 	if ( ! $t ) return $cta;
-	return 'services.php' === $t[0] ? '#wu-svc-cta' : '#wu-smm-cta';
+	if ( 'services.php' === $t[0] ) return '#wu-svc-cta';
+	if ( in_array( $t[0], array( 'seo.php', 'performance.php' ), true ) ) return '#contact';
+	return '#wu-smm-cta';
 } );

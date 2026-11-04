@@ -1,0 +1,167 @@
+/*
+ * One spacing scale on phones for every template: the WiseUp pages (home, about, contact, podcast), the landing pages
+ * (services, social media, SEO, performance) and the blog, their headers and footers. Inlined in the head of each
+ * (includes/render.php wiseup_rhythm_css()). The homepage's own section rules are in home-mobile-layout.css and use
+ * the same values; this file lines every other template up with them.
+ *
+ *   16   side gutter: every text block and card starts 16px from the screen edge (full-bleed media aside)
+ *  116   first content of a page: 48px under the header's bottom edge (the header pill ends at 68px)
+ *   48   above and below every section, so 96 between two sections' content; a band (a section with its own
+ *        background or a divider line) has its edge 48 from the content outside it and 48 from its own content
+ *   32   from a section head (eyebrow + title + intro) to its content, and between blocks inside a section
+ *   24   inside every card; from a paragraph to its buttons
+ *   16   eyebrow to title, title to its intro line, one paragraph to the next
+ *   12   between the cards of a list
+ *
+ * Measured with a script that reads the drawn edges (text, images, card backgrounds) of every section at 390px and
+ * 360px; the values above are what it should report.
+ */
+@media (max-width: 767px) {
+	:root {
+		--wu-gutter: 16px;
+		--wu-top: 116px;
+		--wu-sec: 48px;
+		--wu-block: 32px;
+		--wu-card: 24px;
+		--wu-pair: 16px;
+		--wu-list: 12px;
+	}
+
+	/* ---------- shared: gutter, section heads, footer ---------- */
+	html .wiseup-home, html .wu-chrome, html body.wu-landing { --gx: var(--wu-gutter); }
+	html .sh { gap: var(--wu-pair); }
+	html .eyebrow { vertical-align: top; } /* an inline-flex pill on a text line sat 2px below the top of its block */
+	html .ft { padding-top: var(--wu-sec); }
+	html .ft .ft__top { row-gap: var(--wu-block); grid-template-columns: minmax(0, 1fr); }
+	html .ft .ft__top > * { grid-column: 1 / -1; min-width: 0; } /* one link group per row, as in the main footer */
+	html .ft .ft__follow { padding-top: var(--wu-block); }
+	html .ft .ft__base.ft__base { padding-top: var(--wu-block); }
+	html .ft .ft__col > .ft__h { font-size: 16px; line-height: 26px; margin-bottom: 10px; } /* the podcast footer's were 18px, 8px above their links */
+
+	/* ---------- about ---------- */
+	html .ab { padding-top: var(--wu-top); padding-bottom: var(--wu-sec); }
+	html .ab__grid { margin-top: 0; gap: var(--wu-block); }
+	html .ab__side { gap: var(--wu-pair); }
+	html .ab__side .ab__cta { margin-top: var(--wu-pair); }
+	html .ab__main { gap: var(--wu-sec); }
+	html .ab__blk { padding-top: var(--wu-sec); }
+	html .ab__k { margin-bottom: var(--wu-pair); }
+	html .ab__h2 { margin-bottom: var(--wu-block); }
+	html .ab__cols { gap: var(--wu-pair); }
+	html .ab__p--wide { margin-top: var(--wu-pair); }
+	html .ab__link { margin-top: var(--wu-card); }
+	html .ab__stats { gap: var(--wu-block); }
+	html .ab__val { padding-block: var(--wu-card); }
+	html .ab__val:first-child { padding-top: 0; }
+	html .ab__fdrs { gap: var(--wu-list); }
+	html .ab__end { margin-top: var(--wu-block); }
+
+	/* ---------- contact ---------- */
+	html body.wiseup-page-contact main > .sec.page-head { padding-top: var(--wu-top); padding-bottom: var(--wu-sec); }
+	html .wiseup-page-contact .cx-hero__h { margin-top: var(--wu-pair); }
+	html .wiseup-page-contact .cx-hero__lede { margin-top: var(--wu-pair); }
+	html body.wiseup-page-contact main > .sec.cx-sec { padding-block: var(--wu-sec); }
+	html .wiseup-page-contact .cx-h2 { margin-bottom: var(--wu-block); }
+	html .wiseup-page-contact .cx-grid { gap: var(--wu-block); }
+	html .wiseup-page-contact .cta-rows { gap: var(--wu-list); }
+	html .wiseup-page-contact .socials { margin-top: var(--wu-block); }
+	html .wiseup-page-contact .bform { gap: var(--wu-list); }
+	html .wiseup-page-contact .bform > .cx-h2 { margin-bottom: calc(var(--wu-block) - var(--wu-list)); } /* the form's own 12px gap adds to it */
+
+	/* ---------- forms: the submit button is a compact pill 24px under the last field (as on the homepage) ---------- */
+	html .wiseup-home .bform [data-form-submit] {
+		align-self: flex-start; justify-self: start; width: auto; min-height: 0; height: 48px; padding: 0 20px 0 24px; gap: 10px;
+		margin-top: calc(var(--wu-card) - var(--wu-list)); border-radius: 999px; font-size: 14.5px;
+	}
+
+	/* ---------- services landing page ---------- */
+	html .wu-svc-page .sv-wrap { width: calc(100% - 2 * var(--wu-gutter)); }
+	html .wu-svc-page .sv-hero { padding-top: var(--wu-top); padding-bottom: var(--wu-sec); }
+	html .wu-svc-page .sv-hero h1 { margin-top: var(--wu-pair); }
+	html .wu-svc-page .sv-hero h1 + p { margin-top: var(--wu-pair); }
+	html .wu-svc-page .sv-list { padding-block: var(--wu-sec); }
+	html .wu-svc-page .sv-grid { gap: var(--wu-list); }
+	html .wu-svc-page .sv-card__body { padding: var(--wu-card); }
+	html .wu-svc-page .sv-cta { padding-block: var(--wu-sec); }
+	html .wu-svc-page .sv-cta__box { padding: var(--wu-card); }
+
+	/* ---------- social media landing page (its sections set their padding by id, hence !important) ---------- */
+	html .wu-smm-page #wu-smm .wu-section { padding-block: var(--wu-sec) !important; }
+	html .wu-smm-page #wu-smm .wu-section > .wu-inner { padding: 0 var(--wu-gutter) !important; }
+	html .wu-smm-page #wu-smm #wu-smm-hero { padding: var(--wu-top) var(--wu-gutter) var(--wu-sec) !important; }
+	html .wu-smm-page #wu-smm #wu-smm-hero .wu-hero-copy { padding-inline: 0; }
+	html .wu-smm-page #wu-smm #wu-smm-cta { padding-inline: var(--wu-gutter) !important; }
+	html .wu-smm-page #wu-smm .wu-cta-box { padding: var(--wu-sec) var(--wu-card) !important; }
+	html .wu-smm-page #wu-smm .wu-section > .wu-inner { row-gap: var(--wu-block) !important; }
+	html .wu-smm-page #wu-smm .wu-sec-head, html .wu-smm-page #wu-smm .wu-sec-head-left,
+	html .wu-smm-page #wu-smm .wu-proc-left, html .wu-smm-page #wu-smm .wu-visibility-copy,
+	html .wu-smm-page #wu-smm .wu-hero-copy { gap: var(--wu-pair) !important; }
+	html .wu-smm-page #wu-smm .wu-hero-pill { margin-bottom: 0 !important; }
+	html .wu-smm-page #wu-smm .wu-cf3 { margin-top: 0 !important; }
+	html .wu-smm-page #wu-smm #wu-smm-stats .wu-eb { margin-bottom: var(--wu-pair) !important; }
+	html .wu-smm-page #wu-smm .wu-stats { margin-top: var(--wu-block) !important; }
+	html .wu-smm-page #wu-smm #wu-smm-testimonials .wu-eb { margin-bottom: calc(var(--wu-pair) - var(--wu-block)) !important; }
+	html .wu-smm-page #wu-smm .wu-rv-bar { margin-top: calc(var(--wu-card) - var(--wu-block)) !important; }
+	html .wu-smm-page #wu-smm .wu-strategy-quote { padding: var(--wu-card) !important; gap: var(--wu-pair) !important; }
+	html .wu-smm-page #wu-smm :is(.wu-strategy-grid, .wu-why-grid, .wu-proc-track, .wu-plats) { gap: var(--wu-list) !important; }
+	html .wu-smm-page #wu-smm :is(.wu-strategy-card, .wu-why-card, .wu-proc-step, .wu-plat) { padding: var(--wu-card) !important; }
+	html .wu-smm-page #wu-smm .rx-grid { margin-top: -4px !important; } /* its 4px of shadow room above the cards */
+	html .wu-smm-page #wu-smm .rx-view { margin-bottom: -6px !important; } /* and 6px below */
+	html .wu-smm-page #wu-smm .rx-card { padding: var(--wu-card) !important; }
+
+	/* ---------- SEO and performance landing pages (spacing written inline on each element, hence !important) ---------- */
+	html body.wu-landing [data-root] > section { padding-block: var(--wu-sec) !important; padding-inline: var(--wu-gutter) !important; row-gap: var(--wu-block) !important; }
+	html body.wu-landing [data-root] > section#top { min-height: 0 !important; justify-content: flex-start !important; padding-top: var(--wu-top) !important; }
+	html body.wu-landing [data-root] > section > div[style*="max-width"] { padding-inline: 0 !important; }
+	/* bands with their own background (the tools strip, the packages card, the contact form card) sit on the gutter */
+	html body.wu-landing [data-root] > section:is(#packages, #tools, #contact) { margin: 0 var(--wu-gutter) !important; padding-inline: var(--wu-card) !important; }
+	html body.wu-landing [data-root] > section#contact { margin-block: 0 !important; padding: 0 0 var(--wu-sec) !important; } /* the form card, then 48 to the footer's edge */
+	/* the FAQ (and process) heads are sticky 120px from the top on wide screens; on phones that became a plain 120px
+	   offset, which slid the FAQ heading down over its questions */
+	html body.wu-landing [data-root] [style*="var(--wu-proc-pos)"] { position: static !important; top: auto !important; }
+	html body.wu-landing [data-root] div:has(> span:first-child + :is(h1, h2)) { gap: var(--wu-pair) !important; }
+	/* each section's first wrapper: 32 from the head to the content, 16 when what follows the head is its intro paragraph */
+	html body.wu-landing [data-root] > section > div { row-gap: var(--wu-block) !important; }
+	html body.wu-landing [data-root] > section > div:has(> div:first-child > :is(h1, h2)):has(> p:nth-child(2)) { row-gap: var(--wu-pair) !important; }
+	html body.wu-landing [data-root] > section#top > div > div:first-child { gap: var(--wu-pair) !important; }
+	html body.wu-landing [data-root] > section#top > div > div:nth-child(2) { padding: var(--wu-card) !important; gap: var(--wu-pair) !important; }
+	html body.wu-landing [data-root] > section#contact > div > div { row-gap: var(--wu-block) !important; }
+	/* industries rows: a 48px number and a text column of at least 240px didn't fit a 360px phone */
+	html body.wu-landing [data-root] #industries div[style*="grid-template-columns: 48px"] { grid-template-columns: 48px minmax(0, 1fr) !important; }
+
+	/* ---------- podcast ---------- */
+	html .pc-page > section.sec, html .pc-page > .sec { padding-block: var(--wu-sec); }
+	html body.wiseup-page-podcast .pc-page > .sec.pc-hero { padding-top: var(--wu-top); }
+	html .pc-hero__tagrow { margin-bottom: var(--wu-pair); }
+	html .pc-hero__ml { margin-bottom: var(--wu-card); }
+	html .pc-hero__row { margin-bottom: var(--wu-block); }
+	/* the featured section's side watermarks took a row of their own above the cards on phones, where they don't show */
+	html .pc-fstage > .pc-fwm { display: none; }
+	html .pc-page .pc-fstage { display: block; }
+	html .pc-page .pc-fcard__body { padding-inline: 12px; } /* with the card's own 12px: text 24px inside the card, as in every card */
+	html .pc-page .pc-brands__marquee { margin-bottom: -19px; } /* the last logo row's 18px of padding (and 1px of row height) under the logos */
+	html .pc-page .sh { margin-bottom: var(--wu-block); }
+	html .pc-page .loop-head { margin-bottom: 0; gap: var(--wu-pair); }
+	html .pc-page .loop-head .sh, html .pc-page .pc-sponsor__hero .sh, html .pc-page .pc-pitch .sh, html .pc-page .pc-faq__side .sh { margin-bottom: 0; }
+	html .pc-eps__aside { gap: var(--wu-card); }
+	/* the scrolling card rows keep their shadow room (4px above, 8-12px below) but it no longer counts in the gaps */
+	html .pc-page .pc-eps__grid, html .pc-page .pc-hosts { margin-top: calc(var(--wu-block) - 4px); margin-bottom: -12px; }
+	html .pc-page .pc-tst { margin-top: var(--wu-block); margin-bottom: -8px; }
+	html .pc-page .pc-gal-rows { margin-top: var(--wu-block); }
+	html .pc-topics { gap: var(--wu-list); }
+	html .pc-cb { gap: var(--wu-pair); padding-inline: var(--wu-card); padding-bottom: var(--wu-card); }
+	html .pc-cb__row { flex-wrap: wrap; row-gap: var(--wu-list); } /* the Subscribe button ran off the card's edge */
+	html .pc-sponsor__hero { gap: var(--wu-card); margin-bottom: 0; }
+	html .pc-sponsor__hero .sh + .pc-sponsor__lede, html .pc-sponsor__lede { margin-top: var(--wu-pair); margin-bottom: 0; }
+	html .pc-sponsor__ctas { gap: var(--wu-list); }
+	html .pc-sponsor__h3 { margin-top: var(--wu-block); margin-bottom: var(--wu-pair); }
+	html .pc-sponsor__formats { margin-bottom: 0; gap: var(--wu-list); }
+	html .pc-sponsor__format { padding: var(--wu-card); }
+	html .pc-faq__side { gap: var(--wu-block); }
+	html .pc-pitch { gap: var(--wu-block); }
+	html .pc-pitch__p { margin-top: var(--wu-pair); }
+	html .pc-pitch__rows { gap: var(--wu-list); }
+}
+
+/* Landing pages print their own document: no browser default margin around the page. */
+body.wu-landing { margin: 0; }

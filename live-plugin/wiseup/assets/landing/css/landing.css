@@ -32,7 +32,7 @@ img{-webkit-user-drag:none}
   .wu-wa-btn{flex:1 1 100%!important;justify-content:center!important}
 }
 @media(max-width:719px){
-  footer a,a[href^="mailto:"],a[href^="https://wa.me"]{display:inline-block;padding:9px 0}
+  [data-root] footer a,[data-root] a[href^="mailto:"],[data-root] a[href^="https://wa.me"]{display:inline-block;padding:9px 0}
 }
 
 /* responsive switches that the design computed in JavaScript */

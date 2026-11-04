@@ -233,3 +233,14 @@ function wiseup_social_mod( $network ) {
 	$mods = array( 'whatsapp' => 'wa', 'instagram' => 'ig', 'linkedin' => 'in', 'behance' => 'be', 'pinterest' => 'pin', 'youtube' => 'yt', 'email' => 'mail' );
 	return isset( $mods[ $network ] ) ? $mods[ $network ] : $network;
 }
+
+/**
+ * The phone spacing scale shared by every template (assets/css/rhythm.css), inlined late in the head so it comes after
+ * each template's own styles: the WiseUp pages, the landing pages (which print their own document) and the blog.
+ */
+add_action( 'wp_head', function () {
+	$is_blog = ( function_exists( 'wiseup_is_blog_list' ) && wiseup_is_blog_list() ) || is_singular( 'post' );
+	if ( ! wiseup_page_slug() && ! ( is_singular( 'page' ) && wiseup_landing_for( get_queried_object_id() ) ) && ! $is_blog ) return;
+	$css = file_get_contents( WISEUP_DIR . 'assets/css/rhythm.css' );
+	if ( false !== $css ) echo "<style id=\"wiseup-rhythm\">\n" . $css . "\n</style>\n"; // phpcs:ignore -- static plugin stylesheet
+}, 20 );

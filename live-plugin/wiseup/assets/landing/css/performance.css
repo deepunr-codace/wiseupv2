@@ -38,5 +38,5 @@ body.admin-bar [data-nav]{top:32px!important}
 body.admin-bar [data-progress]{top:32px!important}
 @media(max-width:782px){body.admin-bar [data-nav],body.admin-bar [data-progress]{top:46px!important}}
 body.wu-landing{margin:0;background:#000}
-@media(max-width:719px){footer a,a[href^="mailto:"],a[href^="https://wa.me"]{display:inline-block;padding:9px 0}}
+@media(max-width:719px){[data-root] footer a,[data-root] a[href^="mailto:"],[data-root] a[href^="https://wa.me"]{display:inline-block;padding:9px 0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}}
