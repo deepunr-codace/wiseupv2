@@ -110,3 +110,21 @@ add_action( 'save_post_page', function ( $id ) {
 	if ( ! empty( $_POST['wiseup_chrome'] ) ) update_post_meta( $id, '_wiseup_chrome', 1 );
 	else delete_post_meta( $id, '_wiseup_chrome' );
 } );
+
+// Alt text for images in these pages' own custom HTML that have none (owner, 2026-11-04): Wiso and the contact icons.
+$wiseup_chrome_alts = function ( $html ) {
+	if ( ! wiseup_chrome_on() ) return $html;
+	$alts = array( 'Icon-Character.gif' => 'Wiso, the WiseUp mascot', 'whatsapp.svg' => 'WhatsApp', 'instagram.svg' => 'Instagram', 'linkedin.svg' => 'LinkedIn', 'mail.svg' => 'Email' );
+	return preg_replace_callback( '/<img\b[^>]*>/i', function ( $m ) use ( $alts ) {
+		$tag = $m[0];
+		if ( preg_match( '/\balt\s*=\s*"[^"]+"/i', $tag ) ) return $tag;
+		foreach ( $alts as $file => $alt ) {
+			if ( false === stripos( $tag, $file ) ) continue;
+			$tag = preg_replace( '/\s+alt\s*=\s*""/i', '', $tag );
+			return preg_replace( '/^<img\b/i', '<img alt="' . esc_attr( $alt ) . '"', $tag );
+		}
+		return $tag;
+	}, $html );
+};
+add_filter( 'the_content', $wiseup_chrome_alts, 99 );
+add_filter( 'render_block', $wiseup_chrome_alts, 99 ); // blocks rendered outside the main content (e.g. Kadence image blocks)

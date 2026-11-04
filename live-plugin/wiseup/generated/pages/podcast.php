@@ -1843,28 +1843,28 @@ defined( 'ABSPATH' ) || exit;
 							</ul>
 							<ul aria-hidden="true">
 								<li>
-									<img src="https://wiseup.in/wp-content/uploads/2026/04/stories-1-1.png" alt="" loading="lazy" decoding="async">
+									<img src="https://wiseup.in/wp-content/uploads/2026/04/stories-1-1.png" alt="Stories" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="https://wiseup.in/wp-content/uploads/2026/04/brand-1-1-1.png" alt="" loading="lazy" decoding="async">
+									<img src="https://wiseup.in/wp-content/uploads/2026/04/brand-1-1-1.png" alt="Brand Swamy" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/jobin-jisimi.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/jobin-jisimi.webp" alt="Jobin &amp; Jisimi" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/popees.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/popees.webp" alt="Popees" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/eallisto.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/eallisto.webp" alt="Eallisto" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/myhart.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/myhart.webp" alt="MyHart" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/mend.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/mend.webp" alt="Mend" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/english-cafe.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/english-cafe.webp" alt="English Cafe" loading="lazy" decoding="async">
 								</li>
 							</ul>
 						</div>
@@ -1896,25 +1896,25 @@ defined( 'ABSPATH' ) || exit;
 							</ul>
 							<ul aria-hidden="true">
 								<li>
-									<img src="https://wiseup.in/wp-content/uploads/2026/04/true-elements-1-1.png" alt="" loading="lazy" decoding="async">
+									<img src="https://wiseup.in/wp-content/uploads/2026/04/true-elements-1-1.png" alt="True Elements" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/eduflair.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/eduflair.webp" alt="Eduflair" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Brand" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/buymeacoffee.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/buymeacoffee.webp" alt="Buy Me a Coffee" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/erets.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/erets.webp" alt="Erets" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/wac.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/wac.webp" alt="WAC" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/nandilath.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/nandilath.webp" alt="Nandilath G-Mart" loading="lazy" decoding="async">
 								</li>
 							</ul>
 						</div>
@@ -1946,25 +1946,25 @@ defined( 'ABSPATH' ) || exit;
 							</ul>
 							<ul aria-hidden="true">
 								<li>
-									<img src="https://wiseup.in/wp-content/uploads/2026/04/charge-1-3.png" alt="" loading="lazy" decoding="async">
+									<img src="https://wiseup.in/wp-content/uploads/2026/04/charge-1-3.png" alt="chargeMOD" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/abc-oman.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/abc-oman.webp" alt="ABC" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/medimix.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/medimix.webp" alt="Medimix" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/dentcare.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/dentcare.webp" alt="Dentcare" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/nellara.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/nellara.webp" alt="Nellara" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/litmus7.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/litmus7.webp" alt="Litmus7" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/kairali.webp" alt="" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/kairali.webp" alt="Kairali TMT" loading="lazy" decoding="async">
 								</li>
 							</ul>
 						</div>
@@ -2112,7 +2112,7 @@ defined( 'ABSPATH' ) || exit;
 				<div class="pc-cb" data-reveal="up">
 					<picture class="pc-cb__bg" aria-hidden="true">
 						<source media="(max-width: 699px)" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg-m.webp">
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg-sm.webp 900w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg.webp 2000w" sizes="(min-width: 700px) 95vw, 100vw" alt="" width="2000" height="667" loading="lazy">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg-sm.webp 900w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/community-bg.webp 2000w" sizes="(min-width: 700px) 95vw, 100vw" alt="WiseUp Podcast studio set" width="2000" height="667" loading="lazy">
 					</picture>
 					<div class="pc-cb__main">
 						<h2 class="pc-cb__h" id="comm-h">
@@ -2576,7 +2576,7 @@ defined( 'ABSPATH' ) || exit;
 			</div>
 			<dialog class="pc-lb" data-lightbox aria-label="Photo viewer">
 				<figure class="pc-lb__fig">
-					<img data-lb-img alt="">
+					<img data-lb-img alt="Photo from the WiseUp Podcast gallery">
 					<figcaption data-lb-cap>
 					</figcaption>
 				</figure>

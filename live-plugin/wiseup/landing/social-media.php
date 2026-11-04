@@ -2094,32 +2094,32 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
 					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="Wellah" loading="lazy" decoding="async"></li>
 				</ul>
 				<ul aria-hidden="true">
-					<li class="is-tile" style="--drop-delay: 0ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/amarapushpa.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 50ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bm-prime.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bucho.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cadd.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cellar-de-mahe.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/clair-veda.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 300ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/eduwizz.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 350ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/ellisto.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 400ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/erets.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 450ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/flora-fauna.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 500ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/formaa.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 550ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/gloveda.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 600ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/goldekarak.webp?v=2" class="logo--original" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 650ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/hayath.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 700ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/intervel.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 750ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lullaby.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 800ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lunar.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 850ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mgf.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 900ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mooss.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 950ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/onesto-marcado.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1000ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/philips.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1050ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/popees.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/sathya.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/superhuman.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/tiny-mafia.webp" alt="" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 0ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/amarapushpa.webp" alt="Amarapushpa" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 50ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bm-prime.webp" alt="BM Prime" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bucho.webp" alt="Bucho" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cadd.webp" alt="CADD" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cellar-de-mahe.webp" alt="Cellar de mahe" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/clair-veda.webp" alt="Clair veda" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 300ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/eduwizz.webp" alt="Eduwizz" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 350ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/ellisto.webp" alt="Ellisto" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 400ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/erets.webp" alt="Erets" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 450ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/flora-fauna.webp" alt="Flora fauna" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 500ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/formaa.webp" alt="Formaa" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 550ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/gloveda.webp" alt="Gloveda" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 600ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/goldekarak.webp?v=2" class="logo--original" alt="Goldekarak" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 650ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/hayath.webp" alt="Hayath" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 700ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/intervel.webp" alt="Intervel" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 750ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lullaby.webp" alt="Lullaby" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 800ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lunar.webp" alt="Lunar" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 850ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mgf.webp" alt="MGF" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 900ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mooss.webp" alt="mooss" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 950ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/onesto-marcado.webp" alt="Onesto Marcado" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1000ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/philips.webp" alt="Philips" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1050ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/popees.webp" alt="Popees" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/sathya.webp" alt="Sathya" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/superhuman.webp" alt="Superhuman" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/tiny-mafia.webp" alt="Tiny Mafia" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="Wellah" loading="lazy" decoding="async"></li>
 				</ul>
 			</div>
 		</div>
@@ -2307,7 +2307,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                         <div class="wu-phone"><span class="wu-phone-notch"></span><div class="wu-phone-screen">
                                         <div class="ph-scr ph-post">
                                             <div class="ph-top"><i class="ph-av"></i><span class="ph-sk" style="width:38%"></span></div>
-                                            <div class="ph-img"><img src="<?php echo esc_url($smm_assets . 'case-smokehouse.jpg'); ?>" alt="" loading="lazy"></div>
+                                            <div class="ph-img"><img src="<?php echo esc_url($smm_assets . 'case-smokehouse.jpg'); ?>" alt="Smoke House restaurant branding by WiseUp" loading="lazy"></div>
                                             <div class="ph-acts"><span class="ph-heart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg><span class="ph-grow"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
                                             <div class="ph-lines"><span class="ph-sk" style="width:82%"></span><span class="ph-sk" style="width:58%"></span></div>
                                         </div>
@@ -2324,7 +2324,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                         <span class="wu-cf3-glow"></span>
                                         <div class="wu-phone"><span class="wu-phone-notch"></span><div class="wu-phone-screen">
                                         <div class="ph-scr ph-reel">
-                                            <img src="https://wiseup.in/wp-content/uploads/2026/03/Group-3.png" alt="" loading="lazy">
+                                            <img src="https://wiseup.in/wp-content/uploads/2026/03/Group-3.png" alt="WiseUp growth reel" loading="lazy">
                                             <div class="ph-rail"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span></div>
                                             <div class="ph-cap"><span class="ph-sk" style="width:62%"></span><span class="ph-sk" style="width:40%"></span></div>
                                             <div class="ph-prog"><i></i></div>
@@ -2359,7 +2359,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                         <span class="wu-cf3-glow"></span>
                                         <div class="wu-phone"><span class="wu-phone-notch"></span><div class="wu-phone-screen">
                                         <div class="ph-scr ph-story">
-                                            <img src="https://wiseup.in/wp-content/uploads/2026/04/Scale-Campaigns-with-Data-copy.webp" alt="" loading="lazy">
+                                            <img src="https://wiseup.in/wp-content/uploads/2026/04/Scale-Campaigns-with-Data-copy.webp" alt="Social media story creative by WiseUp" loading="lazy">
                                             <div class="ph-seg"><i></i><i></i><i></i><i></i></div>
                                             <div class="ph-poll"><span style="--w:64%"><b></b></span><span style="--w:36%"><b></b></span></div>
                                             <div class="ph-dots"><i></i><i></i><i></i></div>
@@ -2377,7 +2377,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                         <span class="wu-cf3-glow"></span>
                                         <div class="wu-phone"><span class="wu-phone-notch"></span><div class="wu-phone-screen">
                                         <div class="ph-scr ph-camp">
-                                            <img src="<?php echo esc_url($smm_assets . 'case-erets.jpg'); ?>" alt="" loading="lazy">
+                                            <img src="<?php echo esc_url($smm_assets . 'case-erets.jpg'); ?>" alt="Erets Space brand by WiseUp" loading="lazy">
                                             <span class="ph-ring"></span><span class="ph-ring ph-ring--2"></span>
                                             <span class="ph-live"><i></i></span>
                                             <div class="ph-cta ph-cta--camp"><span class="ph-sk" style="width:52%"></span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></i></div>
