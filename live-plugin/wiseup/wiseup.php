@@ -28,6 +28,7 @@ require WISEUP_DIR . 'includes/enquiry.php';
 require WISEUP_DIR . 'includes/landing.php';
 require WISEUP_DIR . 'includes/blog.php';
 require WISEUP_DIR . 'includes/chrome.php';
+require WISEUP_DIR . 'includes/ard.php';
 if ( is_admin() ) require WISEUP_DIR . 'includes/admin.php';
 
 register_activation_hook( __FILE__, 'wiseup_leads_install' );
