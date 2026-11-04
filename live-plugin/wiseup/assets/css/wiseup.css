@@ -3009,3 +3009,8 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 
 /* Press clippings straight, no tilt (owner, 2026-11-04: "make it straight no tilt pls") */
 .press__wall, .press__once, .press__once .press__card { transform: none !important; rotate: none !important; }
+
+/* Press cards equal height (owner, 2026-11-04): every card in the grid as tall as the tallest */
+.press__once { align-items: stretch; grid-auto-rows: 1fr; }
+.press__once .press__card { display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+.press__once .press__card figcaption { flex: 1; align-content: start; }
