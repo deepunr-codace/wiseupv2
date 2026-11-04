@@ -161,7 +161,7 @@
 		if (ft) {
 			var parts = mark(mark($$('.ft__top > *, .ft__base', ft)), 'wm-f');
 			parts.forEach(function (p) {
-				vt(p, { '--wm-y': '28px', '--wm-o': 0 }, { '--wm-y': '0px', '--wm-o': 1, duration: 1.2, ease: EASE, scrollTrigger: { trigger: p, start: 'top 92%', once: true } });
+				vt(p, { '--wm-y': '28px', '--wm-o': 0 }, { '--wm-y': '0px', '--wm-o': 1, duration: 1.2, ease: EASE, scrollTrigger: { trigger: p, start: 'top bottom', once: true } }); // 'top bottom': the base line sits below 92% at the very end of the page, so it never revealed
 			});
 		}
 
