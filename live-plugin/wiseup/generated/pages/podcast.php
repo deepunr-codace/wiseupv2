@@ -1767,7 +1767,7 @@ defined( 'ABSPATH' ) || exit;
 						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/jobin-jisimi.webp" alt="Jobin &amp; Jisimi" loading="lazy" decoding="async">
 					</li>
 					<li>
-						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Brand" loading="lazy" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Therefore I'm" loading="lazy" decoding="async">
 					</li>
 					<li class="is-tile">
 						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/medimix.webp" alt="Medimix" loading="lazy" decoding="async">
@@ -1879,7 +1879,7 @@ defined( 'ABSPATH' ) || exit;
 									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/eduflair.webp" alt="Eduflair" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Brand" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Therefore I'm" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
 									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/buymeacoffee.webp" alt="Buy Me a Coffee" loading="lazy" decoding="async">
@@ -1902,7 +1902,7 @@ defined( 'ABSPATH' ) || exit;
 									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/eduflair.webp" alt="Eduflair" loading="lazy" decoding="async">
 								</li>
 								<li>
-									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Brand" loading="lazy" decoding="async">
+									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/brand-4.webp" alt="Therefore I'm" loading="lazy" decoding="async">
 								</li>
 								<li class="is-tile">
 									<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/brands/buymeacoffee.webp" alt="Buy Me a Coffee" loading="lazy" decoding="async">
