@@ -2559,3 +2559,10 @@ img.ft__ca-mark { box-shadow: 0 0 0 1.5px rgb(255 255 255 / .18), 2px 2px 5px rg
 .mega__plan, .mega__plan:hover, .mega__plan:focus-visible, a.mega__plan, button.mega__plan { color: #11150a !important; }
 .mega__h .mega__360 { color: #beda52; }
 .mega__feat .mega__plan { margin-top: auto; }
+
+/* ---- Performance (2026-11-04): the moving image blocks get their own GPU layer, repaint only inside themselves,
+   and pause their drift while off screen (.is-off is toggled by a small observer in the page). ---- */
+.press__run, .reach__track { will-change: transform; backface-visibility: hidden; }
+.press__wall, .reach__view { contain: layout paint; }
+.press__wall.is-off .press__run, .reach__view.is-off .reach__track { animation-play-state: paused; }
+.press__card img, .reach__track img { backface-visibility: hidden; }

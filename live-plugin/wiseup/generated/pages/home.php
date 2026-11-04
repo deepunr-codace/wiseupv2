@@ -1699,6 +1699,7 @@ defined( 'ABSPATH' ) || exit;
             </ul>
           </div>
         </div>
+        <script>(function(){if(!("IntersectionObserver" in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle("is-off",!e.isIntersecting)})},{rootMargin:"200px 0px"});document.querySelectorAll(".press__wall,.reach__view").forEach(function(el){io.observe(el)})})();</script>
         </div>
       
       <script>
