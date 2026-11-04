@@ -61,7 +61,7 @@ $wu_target  = function ( $link ) { return $link['external'] ? ' target="_blank" 
 
 			<?php if ( ! $wu_podcast ) : ?><a class="hd__cta" href="<?php echo esc_url( $wu_cta ); ?>"><span class="hd__cta-glow" aria-hidden="true"></span><span class="hd__cta-border" aria-hidden="true"></span><span class="hd__cta-shine" aria-hidden="true"></span><span class="hd__cta-inner"><span class="hd__cta-label"><?php echo esc_html( $wu_cta_lbl ); ?></span></span></a><?php endif; ?>
 
-		<button class="hd__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn><?php echo wiseup_icon( 'menu' ); // phpcs:ignore -- static SVG ?><span><?php esc_html_e( 'Menu', 'wiseup' ); ?></span></button>
+		<button class="hd__menu" type="button" aria-expanded="false" aria-controls="menu" data-menu-btn><svg class="ico hd__burger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M4 8h16"/><path d="M4 16h16"/></svg><span><?php esc_html_e( 'Menu', 'wiseup' ); ?></span></button>
 	</div>
 	<div class="menu" id="menu" hidden data-menu>
 		<?php foreach ( $wu_links as $l ) : ?>
