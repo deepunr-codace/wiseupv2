@@ -3054,7 +3054,7 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 /* Phone hero: less space between the subtitle and the card strip (owner, 2026-11-05: "remove spacing"). The strip was
    550px tall with 380px cards centred in it (85px empty above and below) plus a 56px margin. */
 @media (max-width: 767px) {
-  .wiseup-page-home .hero--lunar .strip, .hero--lunar .strip { margin-top: 24px !important; height: 440px; }
+  .wiseup-page-home .hero--lunar .strip, .hero--lunar .strip { margin-top: 44px !important; height: 440px; }
   .hero--lunar .strip__plane { height: 440px; align-items: flex-start; }
   .hero--lunar .strip-nav { bottom: 0 !important; }
 }
