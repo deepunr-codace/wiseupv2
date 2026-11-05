@@ -17,14 +17,22 @@ $wu_terms = is_wp_error( $wu_terms ) ? array() : $wu_terms;
 ?>
 <div class="wiseup-home wiseup-in-theme wu-cs">
 <main id="main">
-	<section class="cs-hero" aria-labelledby="cs-title">
+	<section class="cs-banner" aria-labelledby="cs-title">
+		<span class="cs-banner__lines" aria-hidden="true"></span>
+		<div class="cs-banner__in">
+			<h1 id="cs-title" class="cs-banner__title"><?php esc_html_e( 'Case Studies', 'wiseup' ); ?></h1>
+			<nav class="cs-crumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'wiseup' ); ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'wiseup' ); ?></a><span aria-hidden="true">//</span><span aria-current="page"><?php esc_html_e( 'Case Studies', 'wiseup' ); ?></span></nav>
+		</div>
+	</section>
+
+	<section class="cs-hero" aria-labelledby="cs-intro">
 		<div class="wrap">
 			<div class="sh">
-				<p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span><?php esc_html_e( 'Case studies', 'wiseup' ); ?></p>
-				<h1 id="cs-title" class="sh__h">
+				<p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span><?php esc_html_e( 'Selected work', 'wiseup' ); ?></p>
+				<h2 id="cs-intro" class="sh__h">
 					<span class="sh__a"><?php esc_html_e( 'Proof, not bluff.', 'wiseup' ); ?></span>
 					<span class="sh__b"><?php esc_html_e( 'Restaurants, cafés, expos and space tech, from Kozhikode to the global.', 'wiseup' ); ?></span>
-				</h1>
+				</h2>
 			</div>
 			<?php if ( count( $wu_terms ) > 1 ) : ?>
 			<div class="cs-filter" role="group" aria-label="<?php esc_attr_e( 'Filter case studies', 'wiseup' ); ?>">
@@ -52,33 +60,38 @@ $wu_terms = is_wp_error( $wu_terms ) ? array() : $wu_terms;
 					$label = $cats ? $cats[0]->name : '';
 					$sub   = implode( ' · ', array_filter( array( $meta['client'] && 0 !== strcasecmp( $meta['client'], get_the_title() ) ? $meta['client'] : '', $meta['location'] ) ) );
 					?>
-					<li class="cs-card" data-cats="<?php echo esc_attr( implode( ' ', wp_list_pluck( $cats, 'slug' ) ) ); ?>" style="--d:<?php echo (int) ( $i++ * 80 ); ?>ms">
-						<a class="cs-card__link" href="<?php the_permalink(); ?>">
-							<span class="cs-card__media">
-								<?php
-								if ( has_post_thumbnail() ) {
-									the_post_thumbnail( 'large', array(
-										'class'   => 'cs-card__img',
-										'sizes'   => '(max-width: 767px) 92vw, (max-width: 1099px) 46vw, 410px',
-										'alt'     => sprintf( /* translators: %s: case study title */ __( '%s case study by WiseUp', 'wiseup' ), get_the_title() ),
-										'loading' => $i <= 3 ? 'eager' : 'lazy',
-									) );
-								}
-								if ( isset( $wu_stats[ $slug ] ) ) :
-									$s = $wu_stats[ $slug ];
-									?>
-									<span class="rows__stats" aria-hidden="true"><span class="rows__big"><b><?php echo esc_html( $s[0] ); ?></b><span><?php echo esc_html( $s[1] ); ?></span></span><span class="rows__mini"><?php foreach ( $s[2] as $m ) : ?><span><b><?php echo esc_html( $m[0] ); ?></b><?php echo esc_html( $m[1] ); ?></span><?php endforeach; ?></span></span>
-								<?php endif; ?>
+					<li class="cs-card" data-cats="<?php echo esc_attr( implode( ' ', wp_list_pluck( $cats, 'slug' ) ) ); ?>" style="--d:<?php echo (int) ( $i * 80 ); ?>ms">
+						<a class="cs-card__link" href="<?php the_permalink(); ?>" data-spot>
+							<?php
+							if ( has_post_thumbnail() ) {
+								the_post_thumbnail( 'large', array(
+									'class'   => 'cs-card__img',
+									'sizes'   => '(max-width: 767px) 92vw, (max-width: 1099px) 92vw, 760px',
+									'alt'     => sprintf( /* translators: %s: case study title */ __( '%s case study by WiseUp', 'wiseup' ), get_the_title() ),
+									'loading' => $i < 2 ? 'eager' : 'lazy',
+								) );
+							}
+							$s = isset( $wu_stats[ $slug ] ) ? $wu_stats[ $slug ] : null;
+							?>
+							<span class="cs-card__shade" aria-hidden="true"></span>
+							<span class="cs-card__top">
+								<span class="cs-chip-g cs-card__no"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
+								<?php if ( $label ) : ?><span class="cs-chip-g"><?php echo esc_html( $label ); ?></span><?php endif; ?>
+								<span class="cs-card__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
 							</span>
-							<span class="cs-card__body">
-								<?php if ( $label ) : ?><span class="cs-card__cat"><?php echo esc_html( $label ); ?></span><?php endif; ?>
+							<span class="cs-card__bottom">
+								<?php if ( $s ) : ?><span class="cs-card__fig"><b><?php echo esc_html( $s[0] ); ?></b><span><?php echo esc_html( $s[1] ); ?></span></span><?php endif; ?>
 								<h2 class="cs-card__title"><?php the_title(); ?></h2>
 								<?php if ( $sub ) : ?><span class="cs-card__sub"><?php echo esc_html( $sub ); ?></span><?php endif; ?>
-								<?php if ( $meta['summary'] ) : ?><span class="cs-card__sum"><?php echo esc_html( $meta['summary'] ); ?></span><?php endif; ?>
-								<span class="cs-card__go"><?php esc_html_e( 'View case study', 'wiseup' ); ?> <?php echo $wu_arrow; // phpcs:ignore -- static SVG ?></span>
+								<span class="cs-card__more">
+									<?php if ( $meta['summary'] ) : ?><span class="cs-card__sum"><?php echo esc_html( $meta['summary'] ); ?></span><?php endif; ?>
+									<?php if ( $s && $s[2] ) : ?><span class="cs-card__mini"><?php foreach ( $s[2] as $m ) : ?><span><b><?php echo esc_html( $m[0] ); ?></b><?php echo esc_html( $m[1] ); ?></span><?php endforeach; ?></span><?php endif; ?>
+									<span class="cs-card__go"><?php esc_html_e( 'View case study', 'wiseup' ); ?> <?php echo $wu_arrow; // phpcs:ignore -- static SVG ?></span>
+								</span>
 							</span>
 						</a>
 					</li>
+					<?php $i++; ?>
 				<?php endwhile; ?>
 			</ul>
 			<p class="cs-empty" hidden><?php esc_html_e( 'No case studies in this category yet.', 'wiseup' ); ?></p>
@@ -114,6 +127,7 @@ $wu_terms = is_wp_error( $wu_terms ) ? array() : $wu_terms;
 			if (empty) empty.hidden = n > 0;
 		});
 	});
+	if (matchMedia('(hover: hover)').matches) grid.addEventListener('pointermove', function (e) { var a = e.target.closest('[data-spot]'); if (!a) return; var r = a.getBoundingClientRect(); a.style.setProperty('--mx', (e.clientX - r.left) + 'px'); a.style.setProperty('--my', (e.clientY - r.top) + 'px'); });
 	if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
 	grid.classList.add('cs-anim');
 	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
