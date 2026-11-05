@@ -23,7 +23,9 @@ function wiseup_asset( $path ) {
 
 /** Asset URL with a cache-busting version that changes on every build. */
 function wiseup_versioned( $path ) {
-	return add_query_arg( 'ver', wiseup_manifest()['build'], wiseup_asset( $path ) );
+	// build name + plugin version: every plugin release gives the CSS/JS new URLs, so browsers and Cloudflare cannot keep
+	// serving an old copy (owner, 2026-11-05: menu fix live but still overlapped in a cached browser).
+	return add_query_arg( 'ver', wiseup_manifest()['build'] . '-' . WISEUP_VERSION, wiseup_asset( $path ) );
 }
 
 /**
