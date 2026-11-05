@@ -3028,3 +3028,32 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 .press__once.wu-anim .press__card { --ey: 56px; opacity: 0; transition: --ey 1s cubic-bezier(.16, 1, .3, 1) var(--d, 0ms), opacity .8s ease var(--d, 0ms); }
 .press__once.wu-anim.is-in .press__card { --ey: 0px; opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .press__once .press__card { translate: none; opacity: 1; transition: none; } }
+
+/* Press cards, standard version (owner, 2026-11-05: "make it more standard spacing and effects"): no scroll parallax,
+   one even gap, staggered fade-up on view, a small lift + shadow on hover. */
+@property --hy { syntax: '<length>'; inherits: false; initial-value: 0px; }
+.press__once { gap: 24px; align-items: stretch; }
+.press__once .press__card, .press__once .press__card:nth-child(n) { --py: 0px; translate: 0 calc(var(--ey) + var(--hy)); }
+.press__once .press__card { transition: --ey .8s cubic-bezier(.16, 1, .3, 1) var(--d, 0ms), opacity .6s ease var(--d, 0ms), --hy .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease; }
+.press__once.wu-anim .press__card { --ey: 32px; }
+.press__once.wu-anim.is-in .press__card { --ey: 0px; }
+@media (hover: hover) {
+  .press__once .press__card:hover { --hy: -6px; box-shadow: 0 1px 2px rgb(0 0 0 / .2), 0 26px 44px -18px rgb(0 0 0 / .75); }
+  :root[data-theme='light'] .press__once .press__card:hover { box-shadow: 0 0 0 1px rgb(0 0 0 / .06), 0 26px 44px -22px rgb(0 0 0 / .4); }
+}
+@media (max-width: 767px) { .press__once { gap: 14px; } }
+@media (prefers-reduced-motion: reduce) { .press__once .press__card { translate: none !important; transition: none; } }
+
+/* Process section: no pin on desktop (owner, 2026-11-05: "too many spacing top and bottom", "scrolling feels lag or
+   stuck"). The pinned sideways gallery held the page for a screen of scrolling and sat 430px cards in a 100vh frame.
+   Now a normal section: heading, then the three cards in a row; data-hgal removed from the markup so the site script
+   does not pin it. */
+@media (min-width: 900px) {
+  .motion #process.hgal { padding-block: clamp(64px, 6.5vw, 104px); }
+  .motion #process .hgal__view { display: block; height: auto; }
+  .motion #process .hgal__track { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 3vw, 44px); width: min(100% - 2 * var(--gx), var(--maxw)); margin-inline: auto; padding-inline: 0; transform: none !important; }
+  .motion #process .hgal__intro { display: block; width: auto; padding: 0; }
+  .motion #process .hgal__hint { display: none; }
+  .motion #process .hgal__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .motion #process .proc__card { width: auto; min-height: clamp(380px, 30vw, 460px); }
+}
