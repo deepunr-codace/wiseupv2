@@ -14,6 +14,8 @@ function wiseup_landing_templates() {
 		'wiseup-seo'          => array( 'seo.php', __( 'WiseUp: SEO Company', 'wiseup' ), 'seo' ),
 		'wiseup-performance'  => array( 'performance.php', __( 'WiseUp: Performance Marketing', 'wiseup' ), 'performance' ),
 		'wiseup-services'     => array( 'services.php', __( 'WiseUp: Services', 'wiseup' ), 'services' ),
+		'wiseup-tv'           => array( 'wiseup-tv.php', __( 'WiseUp: TV', 'wiseup' ), 'wiseup-tv' ),
+		'wiseup-studio'       => array( 'wiseup-studio.php', __( 'WiseUp: Studio', 'wiseup' ), 'wiseup-studio' ),
 	);
 }
 
@@ -148,11 +150,12 @@ function wiseup_landing_chrome_footer( $lead_source = '', $wp_footer = false ) {
 	}
 	// same header behaviour as the homepage: dark pill behind it once scrolled, hides on scroll down, returns on scroll up
 	var head = document.querySelector('.hd');
+	var dockAlways = <?php echo apply_filters( 'wiseup_header_always_docked', false ) ? 'true' : 'false'; ?>; // a light page keeps the dark pill behind the white logo
 	if (head) {
 		var last = window.scrollY;
 		var onS = function () {
 			var y = window.scrollY;
-			head.classList.toggle('is-docked', y > 40);
+			head.classList.toggle('is-docked', dockAlways || y > 40);
 			if (y < 160 || y < last - 2) head.classList.remove('is-hidden');
 			else if (y > last + 2 && !head.querySelector(':focus-visible')) head.classList.add('is-hidden');
 			last = y;
@@ -176,3 +179,30 @@ add_filter( 'wiseup_header_cta', function ( $cta ) {
 	if ( in_array( $t[0], array( 'seo.php', 'performance.php' ), true ) ) return '#contact';
 	return '#wu-smm-cta';
 } );
+
+/**
+ * For landing pages whose design is fully self-contained (WiseUp TV, WiseUp Studio): drop every stylesheet the theme
+ * and other plugins queue (the admin bar's stay), WP's global styles and the Customizer CSS, and the theme's and
+ * Kadence's scripts, as the WiseUp templates do (includes/templates.php). Call before wiseup_landing_open().
+ */
+function wiseup_landing_isolate() {
+	$css = function () {
+		global $wp_styles;
+		if ( ! $wp_styles instanceof WP_Styles ) return;
+		foreach ( $wp_styles->queue as $h ) if ( ! in_array( $h, array( 'admin-bar', 'dashicons' ), true ) ) wp_dequeue_style( $h );
+	};
+	$js = function () {
+		global $wp_scripts;
+		if ( ! $wp_scripts instanceof WP_Scripts ) return;
+		foreach ( $wp_scripts->queue as $h ) {
+			$src = isset( $wp_scripts->registered[ $h ] ) ? (string) $wp_scripts->registered[ $h ]->src : '';
+			if ( false !== strpos( $src, '/wp-content/themes/' ) || preg_match( '#/wp-content/plugins/kadence[^/]*/#', $src ) ) wp_dequeue_script( $h );
+		}
+	};
+	foreach ( array( array( 'wp_enqueue_scripts', 100 ), array( 'wp_print_styles', 0 ), array( 'wp_footer', 0 ) ) as $hk ) add_action( $hk[0], $css, $hk[1] );
+	foreach ( array( array( 'wp_enqueue_scripts', 100 ), array( 'wp_print_scripts', 0 ), array( 'wp_print_footer_scripts', 0 ), array( 'wp_footer', 0 ) ) as $hk ) add_action( $hk[0], $js, $hk[1] );
+	remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
+	remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
+	remove_action( 'wp_footer', 'wp_enqueue_stored_styles', 1 );
+	remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
+}

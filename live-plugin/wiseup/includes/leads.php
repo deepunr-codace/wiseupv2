@@ -93,6 +93,8 @@ function wiseup_lead_sources() {
 		'performance'  => __( 'Performance page', 'wiseup' ),
 		'social-media' => __( 'Social media page', 'wiseup' ),
 		'services'     => __( 'Services page', 'wiseup' ),
+		'wiseup-tv'    => __( 'WiseUp TV page', 'wiseup' ),
+		'wiseup-studio' => __( 'WiseUp Studio page', 'wiseup' ),
 	);
 }
 
