@@ -128,7 +128,7 @@
       <div style="padding:clamp(20px,2.6vw,32px);display:flex;flex-direction:column;gap:20px">
         <div style="display:flex;align-items:center;gap:14px;padding-right:40px">
           <span style="position:relative;flex:none;width:52px;height:52px">
-            <img src="${ASSETS}img/icon-character.gif" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover;background:#000;border:2px solid #C2F760">
+            <img src="${ASSETS}img/icon-character.gif" alt="Wiso, the WiseUp mascot" style="width:100%;height:100%;border-radius:50%;object-fit:cover;background:#000;border:2px solid #C2F760">
           </span>
           <div style="min-width:0;display:flex;flex-direction:column;gap:3px">
             <span style="font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#C2F760">${esc(scanTitle)}</span>
@@ -266,7 +266,7 @@
               </svg>
               ${(radarLabels).map((rl) => `
                 <span style="position:absolute;left:${esc(rl.dx)}%;top:${esc(rl.dy)}%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:${esc(rl.color)}"></span>
-                <span style="position:absolute;left:${esc(rl.x)}%;top:${esc(rl.y)}%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;font-size:11.5px;line-height:1.25;color:rgba(255,255,255,.78);text-align:center;white-space:nowrap"><img src="${esc(rl.icon)}" alt="" style="width:16px;height:16px;border-radius:50%;background:#fff;padding:2px;object-fit:contain;margin-bottom:2px">${esc(rl.name)}<span style="font-size:10.5px;color:${esc(rl.color)}">${esc(rl.tag)}</span></span>
+                <span style="position:absolute;left:${esc(rl.x)}%;top:${esc(rl.y)}%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;font-size:11.5px;line-height:1.25;color:rgba(255,255,255,.78);text-align:center;white-space:nowrap"><img src="${esc(rl.icon)}" alt="${esc(rl.name)} logo" style="width:16px;height:16px;border-radius:50%;background:#fff;padding:2px;object-fit:contain;margin-bottom:2px">${esc(rl.name)}<span style="font-size:10.5px;color:${esc(rl.color)}">${esc(rl.tag)}</span></span>
               `).join('')}
             </div>
           </div>

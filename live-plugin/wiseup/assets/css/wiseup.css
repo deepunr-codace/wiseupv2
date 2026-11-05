@@ -3058,3 +3058,8 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
   .hero--lunar .strip__plane { height: 440px; align-items: flex-start; }
   .hero--lunar .strip-nav { bottom: 0 !important; }
 }
+
+/* Header menu fits its pill with the longer "WiseUp Studio" label (owner, 2026-11-05: "fix menu first"): the links
+   spilled up to 30px (1440+) / 51px (1200) past the pill into the call button. Tighter link padding, same type. */
+@media (min-width: 1440px) { .hd__nav { gap: 2px; } .hd__link { padding: 10px 11px; } }
+@media (min-width: 1200px) and (max-width: 1439px) { .hd__link { padding: 9px 8px; } }
