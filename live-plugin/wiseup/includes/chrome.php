@@ -16,7 +16,10 @@ function wiseup_chrome_on() {
 	static $on = null;
 	if ( null !== $on ) return $on;
 	$on = false;
-	if ( is_admin() || ! is_page() ) return $on;
+	if ( is_admin() ) return $on;
+	// single case studies (owner, 2026-11-05: "replace case study single, header and footer from our plugin")
+	if ( is_singular( 'case-studies' ) ) return ( $on = (bool) apply_filters( 'wiseup_chrome_case_studies', true ) );
+	if ( ! is_page() ) return $on;
 	$id = get_queried_object_id();
 	if ( ! $id ) return $on;
 	// the plugin's own templates and the landing pages print their own header and footer already
@@ -36,6 +39,10 @@ add_action( 'wp_head', function () {
 		. ".wu-chrome :is(p,h1,h2,h3){margin-top:0}.wu-chrome a{text-decoration:none;color:inherit}.wu-chrome button{font:inherit;color:inherit}"
 		. ".wu-chrome .hd__menu,.wu-chrome .hd__menu:hover,.wu-chrome .hd__menu:focus,.wu-chrome .hd__menu:active{background:#0e0e10!important;color:#fff!important;border:0}"
 		. ".wu-chrome-foot{position:relative;z-index:1}"
+		// case studies were laid out under Kadence's in-flow header; the WiseUp header floats, so keep its height clear
+		// wiseup.css's .wrap (centred content width) also matches Kadence's main.wrap and boxed the whole page to 1360px
+		. ".wu-has-chrome main.wrap.kt-clear{width:auto;max-width:none;margin-left:0;margin-right:0}"
+		. "body.single-case-studies.wu-has-chrome #wrapper{padding-top:104px}@media(max-width:899px){body.single-case-studies.wu-has-chrome #wrapper{padding-top:84px}}"
 		// the theme styles every <button>/<a>: keep the header's own type and colours
 		. ".wu-chrome .hd__link,.wu-chrome .hd__link--parent{font-size:14px;font-weight:500;line-height:1.71;color:#999;background:none;letter-spacing:normal;text-transform:none}"
 		. ".wu-chrome .hd__link:hover,.wu-chrome .hd__item:hover>.hd__link--parent,.wu-chrome .hd__item:focus-within>.hd__link--parent{color:#fff}"
@@ -44,6 +51,16 @@ add_action( 'wp_head', function () {
 		. "</style>\n";
 	$plugin_css = file_get_contents( WISEUP_DIR . 'assets/css/plugin.css' );
 	if ( false !== $plugin_css ) echo '<style id="wiseup-plugin-css">' . $plugin_css . "</style>\n"; // phpcs:ignore -- static plugin stylesheet
+}, 20 );
+
+// The theme's own header and footer are not printed where the WiseUp ones are used (Kadence prints them on these hooks;
+// the TV/Studio pages had them switched off per page, case studies do not).
+add_action( 'template_redirect', function () {
+	if ( ! wiseup_chrome_on() ) return;
+	remove_all_actions( 'kadence_header' );
+	remove_all_actions( 'kadence_footer' );
+	remove_all_actions( 'kadence_before_header' );
+	remove_all_actions( 'kadence_after_footer' );
 }, 20 );
 
 add_filter( 'body_class', function ( $c ) {
