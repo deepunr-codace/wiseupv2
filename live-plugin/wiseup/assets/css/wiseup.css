@@ -3063,3 +3063,10 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
    spilled up to 30px (1440+) / 51px (1200) past the pill into the call button. Tighter link padding, same type. */
 @media (min-width: 1440px) { .hd__nav { gap: 2px; } .hd__link { padding: 10px 11px; } }
 @media (min-width: 1200px) and (max-width: 1439px) { .hd__link { padding: 9px 8px; } }
+
+/* Process slider on desktop: each card has the photos' own shape (1920x1246) so the whole photo shows, not a square
+   crop (owner, 2026-11-05: "in desktop images not fully visible"). */
+@media (min-width: 900px) {
+  .motion #process .hgal__list .proc__card { --ph: min(62svh, 560px); height: var(--ph); min-height: 0; width: calc(var(--ph) * 1920 / 1246); }
+  .motion #process .hgal__list .proc__shot { object-position: 50% 50%; }
+}
