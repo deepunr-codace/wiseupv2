@@ -125,7 +125,7 @@ defined( 'ABSPATH' ) || exit;
 			<div class="strip__plane">
 				<div class="strip__track" data-strip-track data-sets="3">
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" style="--ar:0.5625">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async" fetchpriority="high">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-400.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-240.webp 240w, <?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-400.webp 400w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 214px, 270px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async" fetchpriority="high">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -221,7 +221,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" style="--ar:0.5625">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-400.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-240.webp 240w, <?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-400.webp 400w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 214px, 270px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -337,7 +337,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-400.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-240.webp 240w, <?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-400.webp 400w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 214px, 270px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -433,7 +433,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-400.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-240.webp 240w, <?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-400.webp 400w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 214px, 270px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -549,7 +549,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/Sajeev-Nair-Testimoni-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-400.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-240.webp 240w, <?php echo esc_url( WISEUP_ASSETS ); ?>/strip/sajeev-nair-400.webp 400w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/SAJEEV-NAIR-768x1365.webp 768w" sizes="(max-width: 767px) 214px, 270px" alt="Client testimonial video: Sajeev Nair" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -645,7 +645,7 @@ defined( 'ABSPATH' ) || exit;
 						</figcaption>
 					</figure>
 					<figure class="strip__card" data-vcard data-video="https://wiseup.in/wp-content/uploads/2026/07/TR-Shamsudheen-Testimonial-1-compressed.mp4" style="--ar:0.5625" aria-hidden="true">
-						<img src="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp" srcset="https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-169x300.webp 169w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 40vw, 320px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
+						<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-400.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-240.webp 240w, <?php echo esc_url( WISEUP_ASSETS ); ?>/strip/tr-shamsudheen-400.webp 400w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-576x1024.webp 576w, https://wiseup.in/wp-content/uploads/2026/06/tr-shamsudheen-768x1365.webp 768w" sizes="(max-width: 767px) 214px, 270px" alt="Client testimonial video: TR Shamsudheen" loading="eager" decoding="async">
 						<video class="strip__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
 						</video>
 						<span class="strip__load" aria-hidden="true">
@@ -1829,8 +1829,8 @@ defined( 'ABSPATH' ) || exit;
 	</section>
 
 	<section class="sec hgal" id="process" aria-labelledby="process-title">
-		<div class="hgal__view">
-			<div class="hgal__track">
+		<div class="hgal__view" data-hgal>
+			<div class="hgal__track" data-hgal-track>
 				<div class="hgal__intro">
 					<div class="sh">
 						<p class="eyebrow" data-reveal="fade">

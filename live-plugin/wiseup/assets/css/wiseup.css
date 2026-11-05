@@ -3044,16 +3044,17 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 @media (max-width: 767px) { .press__once { gap: 14px; } }
 @media (prefers-reduced-motion: reduce) { .press__once .press__card { translate: none !important; transition: none; } }
 
-/* Process section: no pin on desktop (owner, 2026-11-05: "too many spacing top and bottom", "scrolling feels lag or
-   stuck"). The pinned sideways gallery held the page for a screen of scrolling and sat 430px cards in a 100vh frame.
-   Now a normal section: heading, then the three cards in a row; data-hgal removed from the markup so the site script
-   does not pin it. */
+/* Process slider restored (owner, 2026-11-05: "its slider mode changed, pls restore"). In the pinned sideways mode the
+   cards now fill most of the screen height instead of sitting 430px tall in a 100vh frame. */
 @media (min-width: 900px) {
-  .motion #process.hgal { padding-block: clamp(64px, 6.5vw, 104px); }
-  .motion #process .hgal__view { display: block; height: auto; }
-  .motion #process .hgal__track { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 3vw, 44px); width: min(100% - 2 * var(--gx), var(--maxw)); margin-inline: auto; padding-inline: 0; transform: none !important; }
-  .motion #process .hgal__intro { display: block; width: auto; padding: 0; }
-  .motion #process .hgal__hint { display: none; }
-  .motion #process .hgal__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  .motion #process .proc__card { width: auto; min-height: clamp(380px, 30vw, 460px); }
+  .motion #process .hgal__list .proc__card { min-height: min(72svh, 620px); width: clamp(420px, 40vw, 640px); }
+  .motion #process .hgal__intro { justify-content: center; gap: 28px; }
+}
+
+/* Phone hero: less space between the subtitle and the card strip (owner, 2026-11-05: "remove spacing"). The strip was
+   550px tall with 380px cards centred in it (85px empty above and below) plus a 56px margin. */
+@media (max-width: 767px) {
+  .wiseup-page-home .hero--lunar .strip, .hero--lunar .strip { margin-top: 24px !important; height: 440px; }
+  .hero--lunar .strip__plane { height: 440px; align-items: flex-start; }
+  .hero--lunar .strip-nav { bottom: 0 !important; }
 }

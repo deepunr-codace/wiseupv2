@@ -109,6 +109,22 @@ add_action( 'template_redirect', function () {
 	add_action( 'wp_enqueue_scripts', $dequeue, 100 );
 	add_action( 'wp_print_styles', $dequeue, 0 );
 	add_action( 'wp_footer', $dequeue, 0 );
+	// Same for scripts the theme and Kadence (Blocks / Blocks Pro) queue (owner, 2026-11-05: "we are not using kadence in
+	// homepage"; PageSpeed listed kb-advanced-form-block, kt-modal-init, kb-header-block, kb-navigation-block,
+	// kb-off-canvas-trigger and the theme's navigation.min.js on the critical path). Other plugins' scripts (analytics,
+	// caching, consent) are left alone.
+	$dequeue_js = function () {
+		global $wp_scripts;
+		if ( ! $wp_scripts instanceof WP_Scripts ) return;
+		foreach ( $wp_scripts->queue as $handle ) {
+			$src = isset( $wp_scripts->registered[ $handle ] ) ? (string) $wp_scripts->registered[ $handle ]->src : '';
+			if ( false !== strpos( $src, '/wp-content/themes/' ) || preg_match( '#/wp-content/plugins/kadence[^/]*/#', $src ) ) wp_dequeue_script( $handle );
+		}
+	};
+	add_action( 'wp_enqueue_scripts', $dequeue_js, 100 );
+	add_action( 'wp_print_scripts', $dequeue_js, 0 );
+	add_action( 'wp_print_footer_scripts', $dequeue_js, 0 );
+	add_action( 'wp_footer', $dequeue_js, 0 );
 	remove_action( 'wp_enqueue_scripts', 'wp_enqueue_global_styles' );
 	remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 	remove_action( 'wp_footer', 'wp_enqueue_stored_styles', 1 );
