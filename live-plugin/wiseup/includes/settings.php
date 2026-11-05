@@ -113,7 +113,7 @@ function wiseup_default_links( $location ) {
 			// Owner's menu (2026-11-03). Contact is the phone-icon button beside the menu (parts/header.php).
 			array( 'WiseUp Podcast', 'https://wiseup.in/podcast/' ),
 			array( 'WiseUp TV', 'https://wiseup.in/wiseup-tv/' ),
-			array( 'Studio', 'https://wiseup.in/wiseup-studio/' ),
+			array( 'WiseUp Studio', 'https://wiseup.in/wiseup-studio/' ),
 			array( 'Services', home_url( '/services/' ) ), // https://wiseup.in/services/ on the live site
 			array( 'Portfolio', 'https://wiseup.in/studio/portfolio/' ),
 			array( 'Resources', '', array(

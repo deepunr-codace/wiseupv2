@@ -15,7 +15,7 @@ const nav = (label: string) => site.nav.flatMap((n) => [n, ...(n.children ?? [])
 // Owner, 2026-11-03: '#' for now, except Social Media Marketing, which has its own page.
 const serviceHref: Record<string, string> = { 'Social Media Marketing': 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/' };
 const serviceLinks = services.items.map((s) => ({ label: s.title, href: serviceHref[s.title] ?? '#' }));
-const quick = [{ label: 'WiseUp TV', href: nav('WiseUp TV') }, { label: 'WiseUp Studio', href: nav('Studio') }, { label: 'WiseUp Podcast', href: nav('WiseUp Podcast') }];
+const quick = [{ label: 'WiseUp TV', href: nav('WiseUp TV') }, { label: 'WiseUp Studio', href: nav('WiseUp Studio') }, { label: 'WiseUp Podcast', href: nav('WiseUp Podcast') }];
 const useful = [
   { label: 'Get featured', href: '/podcast/#guest' },
   { label: 'Portfolio', href: nav('Portfolio') },
@@ -63,7 +63,7 @@ const podcastResources = [
 ];
 const podcastElsewhere = [
   { label: 'WiseUp TV', href: nav('WiseUp TV') },
-  { label: 'WiseUp Studio', href: nav('Studio') },
+  { label: 'WiseUp Studio', href: nav('WiseUp Studio') },
   { label: 'WiseUp Branding', href: site.url },
   { label: 'CodeAce IT Solutions', href: 'https://codeace.com/' },
 ];

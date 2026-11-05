@@ -49,7 +49,7 @@ export const site = {
   nav: [
     { label: 'WiseUp Podcast', href: 'https://wiseup.in/podcast/' },
     { label: 'WiseUp TV', href: 'https://wiseup.in/wiseup-tv/' },
-    { label: 'Studio', href: 'https://wiseup.in/wiseup-studio/' },
+    { label: 'WiseUp Studio', href: 'https://wiseup.in/wiseup-studio/' },
     { label: 'Services', href: 'https://wiseup.in/services/' },
     { label: 'Portfolio', href: 'https://wiseup.in/studio/portfolio/' },
     { label: 'Resources', children: [
