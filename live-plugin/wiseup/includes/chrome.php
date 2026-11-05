@@ -42,6 +42,7 @@ add_action( 'wp_head', function () {
 		// case studies were laid out under Kadence's in-flow header; the WiseUp header floats, so keep its height clear
 		// wiseup.css's .wrap (centred content width) also matches Kadence's main.wrap and boxed the whole page to 1360px
 		. ".wu-has-chrome main.wrap.kt-clear{width:auto;max-width:none;margin-left:0;margin-right:0}"
+		. "body.single-case-studies.wu-has-chrome #wrapper{background:linear-gradient(#000 0 0) top/100% 104px no-repeat,#fff}@media(max-width:899px){body.single-case-studies.wu-has-chrome #wrapper{background-size:100% 84px}}"
 		. "body.single-case-studies.wu-has-chrome #wrapper{padding-top:104px}@media(max-width:899px){body.single-case-studies.wu-has-chrome #wrapper{padding-top:84px}}"
 		// the theme styles every <button>/<a>: keep the header's own type and colours
 		. ".wu-chrome .hd__link,.wu-chrome .hd__link--parent{font-size:14px;font-weight:500;line-height:1.71;color:#999;background:none;letter-spacing:normal;text-transform:none}"
@@ -92,11 +93,14 @@ add_action( 'wp_footer', function () {
 	}
 	// same header behaviour as the homepage: dark pill once scrolled, hides on scroll down, returns on scroll up
 	var head = document.querySelector('.wu-chrome .hd');
+	var csPage = document.body.classList.contains('single-case-studies');
 	if (head) {
 		var last = window.scrollY;
 		var onS = function () {
 			var y = window.scrollY;
-			head.classList.add('is-docked'); // always on the dark backing: these pages can be light, and the logo is white
+			// case studies start transparent over a black top band (owner, 2026-11-05) and dock on scroll like the homepage;
+			// other pages keep the dark backing from the top (they can be light, and the logo is white)
+			head.classList.toggle('is-docked', !csPage || y > 40);
 			if (y < 160 || y < last - 2) head.classList.remove('is-hidden');
 			else if (y > last + 2 && !head.querySelector(':focus-visible')) head.classList.add('is-hidden');
 			last = y;
