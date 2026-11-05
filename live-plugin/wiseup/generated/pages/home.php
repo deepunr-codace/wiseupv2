@@ -768,6 +768,17 @@ defined( 'ABSPATH' ) || exit;
 		<div class="hero__edge hero__edge--r" aria-hidden="true">
 		</div>
 	</section>
+	<script>/* hero strip: swipe on touch screens (owner, 2026-11-05: "swipe to scroll in mobile for hero slider"). Adds to the
+	   strip drift's shared offset window.wuP.v (a larger value moves the cards left); sideways swipes only, so vertical page
+	   scrolling over the cards still works; short glide after release; a swipe does not count as a tap on a card. */
+	(function(){var s=document.querySelector('.hero--lunar .strip');if(!s||!('ontouchstart' in window))return;
+	var P=window.wuP=window.wuP||{v:0},x0=0,y0=0,lx=0,lt=0,lock='',vel=0,raf=0,block=0;
+	function glide(){vel*=.93;P.v-=vel;raf=Math.abs(vel)>.3?requestAnimationFrame(glide):0}
+	s.addEventListener('touchstart',function(e){var t=e.touches[0];cancelAnimationFrame(raf);x0=lx=t.clientX;y0=t.clientY;lt=performance.now();lock='';vel=0},{passive:true});
+	s.addEventListener('touchmove',function(e){var t=e.touches[0];if(!lock){var ax=Math.abs(t.clientX-x0),ay=Math.abs(t.clientY-y0);if(ax<7&&ay<7)return;lock=ax>ay?'x':'y'}
+	if(lock!=='x')return;e.preventDefault();var d=t.clientX-lx,n=performance.now();P.v-=d;vel=d*16.67/Math.max(8,n-lt);lx=t.clientX;lt=n},{passive:false});
+	s.addEventListener('touchend',function(){if(lock==='x'){block=performance.now();if(Math.abs(vel)>.6)raf=requestAnimationFrame(glide)}lock=''},{passive:true});
+	s.addEventListener('click',function(e){if(performance.now()-block<350){e.preventDefault();e.stopPropagation()}},true);})();</script>
 	<section class="sec" id="services" aria-labelledby="services-title">
 		<svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true">
 			<path fill="#beda52" d="M45.1,-58.6C57.6,-47.8,66.1,-32.4,70.4,-15.5C74.6,1.5,74.7,20,66.9,33.8C59.1,47.6,43.5,56.7,27,62.5C10.5,68.3,-6.9,70.8,-23.6,66.4C-40.4,62,-56.5,50.8,-65.4,35C-74.3,19.2,-76,-1.2,-70.1,-18.3C-64.1,-35.4,-50.5,-49.2,-35.4,-59.4C-20.3,-69.6,-3.8,-76.3,11.8,-74.6C27.3,-72.9,32.6,-69.4,45.1,-58.6Z" transform="translate(100 100)">
