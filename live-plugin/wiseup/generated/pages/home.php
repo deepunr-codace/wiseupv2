@@ -1754,26 +1754,29 @@ defined( 'ABSPATH' ) || exit;
       <div class="grow" data-grow>
         <h2 class="grow__title" id="growing-title"><span class="grow__l1">We&rsquo;re growing,</span> <span class="grow__l2">day by day.</span></h2>
         <div class="grow__chart">
+          <div class="grow__bars" aria-hidden="true"><i style="--i:0;--h:7"></i><i style="--i:1;--h:8"></i><i style="--i:2;--h:7"></i><i style="--i:3;--h:11"></i><i style="--i:4;--h:9"></i><i style="--i:5;--h:13"></i><i style="--i:6;--h:14"></i><i style="--i:7;--h:17"></i><i style="--i:8;--h:17"></i><i style="--i:9;--h:22"></i><i style="--i:10;--h:20"></i><i style="--i:11;--h:26"></i><i style="--i:12;--h:27"></i><i style="--i:13;--h:33"></i><i style="--i:14;--h:32"></i><i style="--i:15;--h:40"></i><i style="--i:16;--h:37"></i><i style="--i:17;--h:45"></i><i style="--i:18;--h:46"></i><i style="--i:19;--h:53"></i><i style="--i:20;--h:51"></i><i style="--i:21;--h:61"></i><i style="--i:22;--h:58"></i><i style="--i:23;--h:67"></i><i style="--i:24;--h:69"></i><i style="--i:25;--h:77"></i><i style="--i:26;--h:75"></i><i style="--i:27;--h:87"></i><i style="--i:28;--h:83"></i><i style="--i:29;--h:94"></i></div>
+          <svg class="grow__svg" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="grow-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#beda52" stop-opacity=".26"/><stop offset="1" stop-color="#beda52" stop-opacity="0"/></linearGradient></defs>
+            <path class="grow__area" d="M0 292 C160 284 270 252 390 222 S610 168 730 128 S960 66 1200 14 L1200 300 L0 300Z" fill="url(#grow-fill)"/>
+            <path class="grow__line" d="M0 292 C160 284 270 252 390 222 S610 168 730 128 S960 66 1200 14" pathLength="1"/>
+          </svg>
           <ul class="grow__stats">
-            <li style="--i:0"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i><b><span data-count="8">8</span></b><span>Years of CodeAce engineering</span></li>
-            <li style="--i:2"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17.5 14.2c2.4.2 4 1.7 4.5 4.3"/></svg></i><b><span data-count="3">3</span>M<em>+</em></b><span>Audience reached</span></li>
-            <li style="--i:3"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3.5"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg></i><b><span data-count="91">91</span>K<em>+</em></b><span>YouTube subscribers</span></li>
-            <li style="--i:4"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></i><b><span data-count="66">66</span>K<em>+</em></b><span>Instagram followers</span></li>
+            <li style="--i:0"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></i><b><span data-count="8">8</span></b><span>Years of CodeAce engineering</span></li>
+            <li style="--i:2"><i class="gi"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" fill="none" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.2-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><circle cx="17.5" cy="9" r="2.6"/><path d="M17.5 14.2c2.4.2 4 1.7 4.5 4.3"/></svg></i><b><span data-count="3">3</span>M+</b><span>Audience reached</span></li>
+            <li style="--i:3"><i class="gi"><svg class="gi__brand" viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M9.545 15.568V8.432L15.818 12z"/><path fill="#f00" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></i><b><span data-count="91">91</span>K+</b><span>YouTube subscribers</span></li>
+            <li style="--i:4"><i class="gi"><svg class="gi__brand" viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="gi-ig" cx="0.3" cy="1.07" r="1.5"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285aeb"/></radialGradient></defs><path fill="url(#gi-ig)" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></i><b><span data-count="66">66</span>K+</b><span>Instagram followers</span></li>
           </ul>
-          <div class="press" aria-labelledby="press-t">
-          <h3 class="sr-only" id="press-t">CodeAce in the press</h3>
-          <ul class="sr-only">
-            <li>BusinessLine: CodeAce IT Solutions plans global expansion</li>
-            <li>The Hindu: Duo build digital marketing firm with million dollar annual turnover</li>
-            <li>Outlook: From a late-night search to a global powerhouse</li>
-            <li>Manorama Online: 115 employees, 80 overseas clients, offices abroad</li>
-            <li>BW Businessworld: The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</li>
-            <li>The Hindu: CodeAce opens second office at Cyberpark</li>
-          </ul>
-          <div class="press__wall" aria-hidden="true">
-            <div class="press__once"><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="The Hindu: CodeAce opens second office at Cyberpark" width="760" height="426" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>CodeAce opens second office at Cyberpark</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="BusinessLine: CodeAce IT Solutions plans global expansion" width="760" height="570" loading="lazy" decoding="async" /><figcaption><b>BusinessLine</b><span>CodeAce IT Solutions plans global expansion</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="Manorama Online: 115 employees, 80 overseas clients, offices abroad" width="760" height="453" loading="lazy" decoding="async" /><figcaption><b>Manorama Online</b><span>115 employees, 80 overseas clients, offices abroad</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="The Hindu: Duo build digital marketing firm with million dollar annual turnover" width="494" height="370" loading="lazy" decoding="async" /><figcaption><b>The Hindu</b><span>Duo build digital marketing firm with million dollar annual turnover</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="Outlook: From a late-night search to a global powerhouse" width="760" height="462" loading="lazy" decoding="async" /><figcaption><b>Outlook</b><span>From a late-night search to a global powerhouse</span></figcaption></figure><figure class="press__card"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="BW Businessworld: The CodeAce Chronicle, a Malayalee’s global powerhouse" width="760" height="465" loading="lazy" decoding="async" /><figcaption><b>BW Businessworld</b><span>The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</span></figcaption></figure></div>
-            <script>/* press cards: staggered entrance (owner, 2026-11-05: parallax removed for even spacing) */(function(){var g=document.querySelector(".press__once");if(!g||!("IntersectionObserver" in window))return;var still=matchMedia("(prefers-reduced-motion: reduce)").matches;var cards=g.querySelectorAll(".press__card");cards.forEach(function(c,i){c.style.setProperty("--d",(i*90)+"ms")});if(still){g.classList.add("is-in");return}g.classList.add("wu-anim");new IntersectionObserver(function(es,o){if(es[0].isIntersecting){g.classList.add("is-in");o.disconnect()}},{threshold:.15}).observe(g);})();</script>
-          </div>
+          <aside class="deck" data-deck aria-label="CodeAce in the press">
+        <ul class="deck__stack">
+          <li class="deck__c np" style="--p:0"><div class="np__mast"><span>CodeAce in the news</span><b>The Hindu</b><span>Press</span></div><p class="np__h">Duo build digital marketing firm with million dollar annual turnover</p><div class="np__body"><figure class="np__fig"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-feature.webp" alt="" width="494" height="370" loading="lazy" decoding="async" /></figure><span class="np__cols" aria-hidden="true"></span></div></li>
+          <li class="deck__c np" style="--p:1"><div class="np__mast"><span>CodeAce in the news</span><b>Outlook</b><span>Press</span></div><p class="np__h">From a late-night search to a global powerhouse</p><div class="np__body"><figure class="np__fig"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/outlook.webp" alt="" width="760" height="462" loading="lazy" decoding="async" /></figure><span class="np__cols" aria-hidden="true"></span></div></li>
+          <li class="deck__c np" style="--p:2"><div class="np__mast"><span>CodeAce in the news</span><b>BusinessLine</b><span>Press</span></div><p class="np__h">CodeAce IT Solutions plans global expansion</p><div class="np__body"><figure class="np__fig"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessline.webp" alt="" width="760" height="570" loading="lazy" decoding="async" /></figure><span class="np__cols" aria-hidden="true"></span></div></li>
+          <li class="deck__c np" style="--p:3"><div class="np__mast"><span>CodeAce in the news</span><b>Manorama Online</b><span>Press</span></div><p class="np__h">115 employees, 80 overseas clients, offices abroad</p><div class="np__body"><figure class="np__fig"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/manorama.webp" alt="" width="760" height="453" loading="lazy" decoding="async" /></figure><span class="np__cols" aria-hidden="true"></span></div></li>
+          <li class="deck__c np" style="--p:4"><div class="np__mast"><span>CodeAce in the news</span><b>BW Businessworld</b><span>Press</span></div><p class="np__h">The CodeAce Chronicle: a Malayalee&rsquo;s global powerhouse</p><div class="np__body"><figure class="np__fig"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/businessworld.webp" alt="" width="760" height="465" loading="lazy" decoding="async" /></figure><span class="np__cols" aria-hidden="true"></span></div></li>
+          <li class="deck__c np" style="--p:5"><div class="np__mast"><span>CodeAce in the news</span><b>The Hindu</b><span>Press</span></div><p class="np__h">CodeAce opens second office at Cyberpark</p><div class="np__body"><figure class="np__fig"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/press/hindu-office.webp" alt="" width="760" height="426" loading="lazy" decoding="async" /></figure><span class="np__cols" aria-hidden="true"></span></div></li>
+        </ul>
+        <p class="deck__label"><span class="deck__dot" aria-hidden="true"></span>As seen in <b>The Hindu</b>, <b>Outlook</b>, <b>BusinessLine</b>, <b>Manorama</b> &amp; <b>BW Businessworld</b></p>
+      </aside>
         </div>
         <div class="reach" aria-labelledby="reach-t">
           <h3 class="reach__h" id="reach-t"><span class="reach__dot" aria-hidden="true"></span>Global reach</h3>
@@ -1832,6 +1835,37 @@ defined( 'ABSPATH' ) || exit;
             s.classList.add('is-in'); count(); io.disconnect();
           }, { threshold: 0.25 });
           io.observe(s);
+        })();
+      </script>
+      <script>
+        /* press stack: a light "shuffle" (owner, 2026-11-06: the page turn felt laggy). The top paper glides out to the
+           side with a small tilt, then tucks in at the back while the rest ease forward. Only transform moves (no
+           filters), so it stays smooth. Pauses on hover and off screen; a click shuffles once; still under reduced motion. */
+        (function () {
+          var d = document.querySelector('[data-deck]');
+          if (!d) return;
+          var cs = [].slice.call(d.querySelectorAll('.deck__c')), n = cs.length, still = matchMedia('(prefers-reduced-motion: reduce)').matches, hold = false, busy = false, t;
+          var set = function () { cs.forEach(function (c) { c.style.setProperty('--p', c._p); c.style.zIndex = n - c._p; }); };
+          cs.forEach(function (c, i) { c._p = i; });
+          set();
+          if (still) return;
+          var step = function () {
+            if (hold || busy || document.hidden) return;
+            var top = cs.filter(function (c) { return c._p === 0; })[0];
+            if (!top) return;
+            busy = true;
+            top.classList.add('is-out');                                   // 1. glide out to the side
+            setTimeout(function () {
+              cs.forEach(function (c) { c._p = c === top ? n - 1 : c._p - 1; });
+              set();                                                        // 2. it goes to the back, the rest move up
+              top.classList.remove('is-out');                               // 3. and slides back in behind
+              setTimeout(function () { busy = false; }, 700);
+            }, 520);
+          };
+          d.addEventListener('pointerenter', function () { hold = true; });
+          d.addEventListener('pointerleave', function () { hold = false; });
+          d.addEventListener('click', function () { hold = false; step(); hold = true; });
+          if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { clearInterval(t); if (es[0].isIntersecting) t = setInterval(step, 3400); }).observe(d);
         })();
       </script>
   

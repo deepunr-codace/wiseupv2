@@ -211,7 +211,7 @@ defined( 'ABSPATH' ) || exit;
 					</h2>
 					<div class="ab__cols">
 						<p class="ab__p" data-reveal="up" data-delay="0">
-							CodeAce is a technology company with over seven years of experience engineering high-performance digital platforms. WiseUp is its strategic creative arm.
+							CodeAce is a technology company with over eight years of experience engineering high-performance digital platforms. WiseUp is its strategic creative arm.
 						</p>
 						<p class="ab__p" data-reveal="up" data-delay="0.08">
 							We bridge the gap between complex technical execution and brand storytelling. CodeAce provides the technology backbone; WiseUp focuses on brand building, marketing strategy and growth-led campaigns. Together that means data-driven marketing and technical innovation from one team.

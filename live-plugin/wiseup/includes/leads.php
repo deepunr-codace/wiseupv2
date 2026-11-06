@@ -96,6 +96,8 @@ function wiseup_lead_sources() {
 		'wiseup-tv'    => __( 'WiseUp TV page', 'wiseup' ),
 		'wiseup-studio' => __( 'WiseUp Studio page', 'wiseup' ),
 		'case-studies' => __( 'Case studies page', 'wiseup' ),
+		'blog'         => __( 'Blog article', 'wiseup' ),
+		'event-branding' => __( 'Event branding page', 'wiseup' ),
 	);
 }
 

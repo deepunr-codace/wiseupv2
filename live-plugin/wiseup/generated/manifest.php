@@ -37,7 +37,7 @@ WISEUP_HTML
 		),
 		'about' => array(
 			'title'       => 'About Us | WiseUp',
-			'description' => 'WiseUp is the strategic creative arm of CodeAce IT Solutions: brand building, marketing strategy and growth-led campaigns, backed by over seven years of engineering.',
+			'description' => 'WiseUp is the strategic creative arm of CodeAce IT Solutions: brand building, marketing strategy and growth-led campaigns, backed by over eight years of engineering.',
 			'cta'         => '/#contact',
 			'css'         => array( 'wiseup.css', 'about.css' ),
 			'extra_head'  => '',
