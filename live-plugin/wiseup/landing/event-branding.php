@@ -360,14 +360,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					<div class="ev-route__head"><h3>Cities We Work In</h3><span class="ev-route__dir" aria-hidden="true">North &rarr; South</span></div>
 					<p class="ev-route__lead">We plan and promote events across the state, including:</p>
 					<ol class="ev-route__list">
-						<?php foreach ( array( array( 'Kannur', false ), array( 'Kozhikode', true ), array( 'Malappuram', false ), array( 'Thrissur', false ), array( 'Kochi', false ), array( 'Thiruvananthapuram', false ) ) as $c ) : ?>
-						<li class="ev-stop<?php echo $c[1] ? ' is-home' : ''; ?>">
+						<?php foreach ( array( array( 'Kannur', false ), array( 'Kozhikode', true ), array( 'Malappuram', false ), array( 'Thrissur', false ), array( 'Kochi', false ), array( 'Thiruvananthapuram', false ) ) as $wu_ci => $c ) : ?>
+						<li class="ev-stop<?php echo $c[1] ? ' is-home' : ''; ?>" data-ev-city="<?php echo (int) $wu_ci; ?>">
 							<span class="ev-stop__dot" aria-hidden="true"></span>
 							<div><strong><?php echo esc_html( $c[0] ); ?></strong><?php if ( $c[1] ) : ?> <span class="ev-stop__pill">Our studio</span><?php endif; ?></div>
 						</li>
 						<?php endforeach; ?>
 						<li class="ev-stop ev-stop--more"><span class="ev-stop__dot" aria-hidden="true"></span><div><p>We also take on events in other districts when the date and the brief call for it.</p></div></li>
 					</ol>
+				</div>
+				<div class="ev-map" data-ev-map role="img" aria-label="Map of Kerala showing Kannur, Kozhikode (our studio), Malappuram, Thrissur, Kochi and Thiruvananthapuram">
+					<canvas class="ev-map__gl" aria-hidden="true"></canvas>
+					<canvas class="ev-map__ov" aria-hidden="true"></canvas>
+					<span class="ev-map__k" aria-hidden="true">Kerala</span>
+					<span class="ev-map__n" aria-hidden="true">N</span>
 				</div>
 				<div class="ev-kl__side">
 					<div class="ev-panel ev-kl__lead">
@@ -645,7 +651,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 <?php
 $wu_lead_source = 'event-branding';
 include WISEUP_DIR . 'landing/lead-popup.php';
-foreach ( array( 'vendor/gsap.min.js', 'vendor/ScrollTrigger.min.js', 'vendor/SplitText.min.js', 'vendor/lenis.min.js', 'event-branding.js' ) as $wu_js ) {
+foreach ( array( 'vendor/gsap.min.js', 'vendor/ScrollTrigger.min.js', 'vendor/SplitText.min.js', 'vendor/lenis.min.js', 'event-branding.js', 'ev-map.js' ) as $wu_js ) {
 	echo '<script src="' . esc_url( WISEUP_URL . 'assets/js/' . $wu_js . '?ver=' . filemtime( WISEUP_DIR . 'assets/js/' . $wu_js ) ) . '"></script>' . "\n";
 }
 wiseup_landing_close( 'event-branding' );

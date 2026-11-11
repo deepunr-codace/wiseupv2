@@ -703,3 +703,30 @@ html, body.wu-ev-page { background: #000; }
   .wu-ev .ev-final .ev-ct__go { width: 32px; height: 32px; }
 }
 .wu-ev .ev-final .ev-final__copy { align-content: center; }
+
+/* ===== v1.3.9: Kerala 3D dot map (assets/js/ev-map.js) ===== */
+.wu-ev .ev-kl { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "route map" "side map"; align-items: stretch; }
+.wu-ev .ev-kl > .ev-route { grid-area: route; }
+.wu-ev .ev-kl > .ev-kl__side { grid-area: side; }
+.wu-ev .ev-kl > .ev-map { grid-area: map; }
+.wu-ev .ev-map { position: relative; min-height: 640px; border-radius: 26px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(70% 55% at 45% 45%, rgb(194 247 96 / .09), transparent 70%), radial-gradient(120% 90% at 50% 120%, #0d1408, transparent 60%), #08090a;
+  box-shadow: inset 0 0 0 1px var(--line); }
+.wu-ev .ev-map::before { content: ''; position: absolute; inset: 0; z-index: -1; opacity: .5;
+  background-image: linear-gradient(rgb(255 255 255 / .035) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / .035) 1px, transparent 1px);
+  background-size: 44px 44px; -webkit-mask-image: radial-gradient(80% 70% at 50% 50%, #000, transparent 80%); mask-image: radial-gradient(80% 70% at 50% 50%, #000, transparent 80%); }
+.wu-ev .ev-map canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.wu-ev .ev-map__k { position: absolute; left: 24px; top: 22px; font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--lime); }
+.wu-ev .ev-map__n { position: absolute; right: 22px; top: 18px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-size: 11px; font-weight: 700; color: #fff; box-shadow: inset 0 0 0 1px var(--line); background: rgb(255 255 255 / .03); }
+.wu-ev .ev-map__n::before { content: ''; position: absolute; top: -5px; left: 50%; translate: -50% 0; border: 4px solid transparent; border-bottom: 6px solid var(--lime); border-top: 0; }
+/* the list beside it: compact, the lit city follows the map */
+.wu-ev .ev-route .ev-stop { padding: 9px 0; cursor: default; }
+.wu-ev .ev-route .ev-stop.is-home { margin: 4px -14px; padding: 12px 14px; }
+.wu-ev .ev-route .ev-stop[data-ev-city] strong { transition: color .3s; }
+.wu-ev .ev-route .ev-stop.is-on strong { color: var(--lime); }
+.wu-ev .ev-route .ev-stop.is-on .ev-stop__dot { background: var(--lime); box-shadow: 0 0 0 5px rgb(194 247 96 / .18), 0 0 14px var(--lime); }
+@media (max-width: 1023px) {
+  .wu-ev .ev-kl { grid-template-columns: minmax(0, 1fr); grid-template-areas: "route" "map" "side"; }
+  .wu-ev .ev-map { min-height: 560px; }
+}
+@media (max-width: 767px) { .wu-ev .ev-map { min-height: 500px; border-radius: 22px; } }

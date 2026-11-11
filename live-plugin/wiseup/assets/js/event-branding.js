@@ -95,7 +95,7 @@
 	var ticker = $('.ev-ticker'); if (ticker) block(ticker, { kind: 'fade' });
 
 	// ---------- cards: batch reveal, inner pop ----------
-	var cards = $$('.ev-card, .ev-step, .ev-why li, .ev-chk, .ev-cost, .ev-case, .ev-route, .ev-kl__side .ev-panel, .ev-corp .ev-panel, .ev-three .ev-panel');
+	var cards = $$('.ev-card, .ev-step, .ev-why li, .ev-chk, .ev-cost, .ev-case, .ev-route, .ev-map, .ev-kl__side .ev-panel, .ev-corp .ev-panel, .ev-three .ev-panel');
 	cards.forEach(function (c) {
 		gsap.set(c, { opacity: 0, y: 80 });
 		var ico = $('.ev-ico, .ev-chk__box, .ev-step__n', c);
