@@ -409,12 +409,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 						<?php if ( $c['tags'] ) : ?><p class="ev-case__type"><?php echo esc_html( $c['tags'] ); ?></p><?php endif; ?>
 						<h3><?php if ( $c['url'] ) : ?><a href="<?php echo esc_url( $c['url'] ); ?>"><?php echo esc_html( $c['name'] ); ?></a><?php else : echo esc_html( $c['name'] ); endif; ?></h3>
 						<p class="ev-case__sub"><?php echo esc_html( $c['sub'] ); ?></p>
-						<dl class="ev-case__dl">
-							<div><dt>Client type</dt><dd><?php echo esc_html( $c['type'] ); ?></dd></div>
-							<div><dt>The challenge</dt><dd><?php foreach ( $c['problem'] as $pp ) echo '<p>' . esc_html( $pp ) . '</p>'; ?></dd></div>
-							<div><dt><?php echo esc_html( $c['did_h'] ); ?></dt><dd><ul class="ev-case__did"><?php foreach ( $c['did'] as $d ) echo '<li>' . ( is_array( $d ) ? '<strong>' . esc_html( $d[0] ) . ':</strong> ' . esc_html( $d[1] ) : esc_html( $d ) ) . '</li>'; ?></ul></dd></div>
-							<div><dt>The result</dt><dd><p><?php echo esc_html( $c['result'] ); ?></p><?php if ( $c['stats'] ) : ?><ul class="ev-case__stats"><?php foreach ( $c['stats'] as $st ) : ?><li><strong><?php echo esc_html( $st[0] ); ?></strong><span><?php echo esc_html( $st[1] ); ?></span></li><?php endforeach; ?></ul><?php endif; ?><?php if ( $c['after'] ) : ?><p><?php echo esc_html( $c['after'] ); ?></p><?php endif; ?></dd></div>
-						</dl>
+						<p class="ev-case__client"><span>Client type</span><?php echo esc_html( $c['type'] ); ?></p>
+						<?php $wu_tid = 'evc-' . sanitize_title( $c['name'] ); ?>
+						<div class="ev-tabs" data-tabs>
+							<div class="ev-tabs__bar" role="tablist" aria-label="<?php echo esc_attr( $c['name'] ); ?>">
+								<?php foreach ( array( 'challenge' => 'The challenge', 'did' => $c['did_h'], 'result' => 'The result' ) as $k => $t ) : ?>
+								<button type="button" role="tab" id="<?php echo esc_attr( $wu_tid . '-t-' . $k ); ?>" aria-controls="<?php echo esc_attr( $wu_tid . '-' . $k ); ?>" aria-selected="<?php echo 'challenge' === $k ? 'true' : 'false'; ?>" tabindex="<?php echo 'challenge' === $k ? '0' : '-1'; ?>"><?php echo esc_html( $t ); ?></button>
+								<?php endforeach; ?>
+							</div>
+							<div class="ev-tabs__panes">
+								<div class="ev-tabs__pane is-on" role="tabpanel" id="<?php echo esc_attr( $wu_tid . '-challenge' ); ?>" aria-labelledby="<?php echo esc_attr( $wu_tid . '-t-challenge' ); ?>"><?php foreach ( $c['problem'] as $pp ) echo '<p>' . esc_html( $pp ) . '</p>'; ?></div>
+								<div class="ev-tabs__pane" role="tabpanel" id="<?php echo esc_attr( $wu_tid . '-did' ); ?>" aria-labelledby="<?php echo esc_attr( $wu_tid . '-t-did' ); ?>"><ul class="ev-case__did"><?php foreach ( $c['did'] as $d ) echo '<li>' . ( is_array( $d ) ? '<strong>' . esc_html( $d[0] ) . ':</strong> ' . esc_html( $d[1] ) : esc_html( $d ) ) . '</li>'; ?></ul></div>
+								<div class="ev-tabs__pane" role="tabpanel" id="<?php echo esc_attr( $wu_tid . '-result' ); ?>" aria-labelledby="<?php echo esc_attr( $wu_tid . '-t-result' ); ?>"><p><?php echo esc_html( $c['result'] ); ?></p><?php if ( $c['stats'] ) : ?><ul class="ev-case__stats"><?php foreach ( $c['stats'] as $st ) : ?><li><strong><?php echo esc_html( $st[0] ); ?></strong><span><?php echo esc_html( $st[1] ); ?></span></li><?php endforeach; ?></ul><?php endif; ?><?php if ( $c['after'] ) : ?><p><?php echo esc_html( $c['after'] ); ?></p><?php endif; ?></div>
+							</div>
+						</div>
 						<?php if ( $c['url'] ) : ?><a class="ev-more" href="<?php echo esc_url( $c['url'] ); ?>">View case study <?php echo $wu_ne; // phpcs:ignore ?></a><?php endif; ?>
 					</div>
 				</article>
@@ -546,7 +554,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					<div class="ev-contact">
 						<a class="ev-ct ev-ct--wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener">
 							<span class="ev-ct__i"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35Zm-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88Zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg></span>
-							<span class="ev-ct__t"><small>WhatsApp</small>+91 62824 34503</span>
+							<span class="ev-ct__t"><small>Chat on WhatsApp</small>+91 62824 34503</span>
 							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
 						</a>
 						<a class="ev-ct" href="tel:+916282434503">
@@ -565,10 +573,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 							<?php foreach ( array( 'Conference', 'Leadership summit', 'Product launch', 'Award night', 'Dealer and partner meet', 'AGM', 'Trade show', 'Exhibition', 'Inauguration', 'College fest', 'Cultural or festival event', 'Wedding or reception', 'Virtual or hybrid event', 'Other' ) as $o ) echo '<option>' . esc_html( $o ) . '</option>'; ?>
 						</select>
 					</label>
-					<label><span>Date</span><input name="date" type="date"></label>
+					<label><span>Event date</span><input name="date" type="date"></label>
 					<label class="ev-form__wide"><span>City</span><input name="city" autocomplete="address-level2"></label>
 					<input class="ev-hp" name="hp_website" tabindex="-1" autocomplete="off" aria-hidden="true">
-					<button class="b b--teal ev-form__send" type="submit"><span class="b__label">Send enquiry</span><span class="b__ico"><?php echo $wu_arrow . $wu_arrow; // phpcs:ignore ?></span></button>
+					<button class="b b--teal ev-form__send" type="submit"><span class="b__label">Get a Quote</span><span class="b__ico"><?php echo $wu_arrow . $wu_arrow; // phpcs:ignore ?></span></button>
 					<p class="ev-form__note" data-ev-note aria-live="polite"></p>
 				</form>
 			</div>
@@ -595,6 +603,16 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			.catch(function () { note.innerHTML = 'Couldn’t send that right now. <a href="' + wa + '" target="_blank" rel="noopener">Send it on WhatsApp instead</a>.'; })
 			.then(function () { btn.disabled = false; });
 	});
+	// portfolio cards: tabs (click, arrow keys); without JS every part shows
+		document.querySelectorAll('.wu-ev [data-tabs]').forEach(function (box) {
+			box.classList.add('is-js');
+			var tabs = [].slice.call(box.querySelectorAll('[role=tab]')), panes = [].slice.call(box.querySelectorAll('[role=tabpanel]'));
+			var go = function (i, focus) { tabs.forEach(function (t, k) { var on = k === i; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; panes[k].classList.toggle('is-on', on); }); if (focus) tabs[i].focus(); };
+			tabs.forEach(function (t, i) {
+				t.addEventListener('click', function () { go(i); });
+				t.addEventListener('keydown', function (e) { var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0; if (d) { e.preventDefault(); go((i + d + tabs.length) % tabs.length, true); } });
+			});
+		});
 	// reviews carousel
 	var qs = document.querySelector('[data-quotes]');
 	if (qs) {
