@@ -152,6 +152,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 
 	<!-- 1. Hero: value proposition, two CTAs (WhatsApp, Get a Quote), proof strip (events branded, cities served, client logos) -->
 	<section class="ev-hero">
+		<div class="ev-hero__bg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-gala.webp' ); ?>" alt="" width="1672" height="941" decoding="async" fetchpriority="high"></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
@@ -162,32 +163,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
 				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 			</div>
-			</div>
-			<div class="ev-stage" aria-hidden="true" data-stage>
-				<span class="ev-beam ev-beam--l"></span><span class="ev-beam ev-beam--r"></span>
-				<div class="ev-stage__screen">
-					<img class="ev-led__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/case-bootland.jpg' ); ?>" alt="" decoding="async" fetchpriority="high">
-					<span class="ev-led__grid"></span>
-					<span class="ev-led__sweep"></span>
-					<span class="ev-led__mark">W</span>
-					<span class="ev-led__k">Main stage</span>
-				</div>
-				<div class="ev-standee ev-standee--l"><i></i><b></b><b></b><b></b></div>
-				<div class="ev-standee ev-standee--r"><i></i><b></b><b></b><b></b></div>
-				<div class="ev-lectern"><span>W</span></div>
-				<div class="ev-stage__deck"></div>
-				<div class="ev-stage__floor"></div>
-				<div class="ev-pass">
-					<span class="ev-pass__cord"></span>
-					<div class="ev-pass__card">
-						<span class="ev-pass__clip"></span>
-						<span class="ev-pass__top">EVENT PASS</span>
-						<span class="ev-pass__mark">W</span>
-						<span class="ev-pass__name">Your event</span>
-						<span class="ev-pass__role">Branded by WiseUp</span>
-						<span class="ev-pass__bar"></span>
-					</div>
-				</div>
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
@@ -226,11 +201,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 3. Services -->
 	<section class="sec ev-sec" id="services">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Event Branding Services</span> <span class="sh__b">for Every Part of Your Event</span></h2>
 			</div>
 			<div class="ev-intro"><p>Think back to the last event you attended. You probably cannot recall every slide or speaker, but you remember how it felt to walk in: the arch, the signage, the stage lit in one colour story. That feeling was never an accident. Guests meet your event as a series of small encounters, from the invitation to the registration desk to the kit they carry home, and each one either strengthens the story or weakens it. Our event branding services cover all of them, so nothing feels like an afterthought.</p></div>
+			</div>
 			<ul class="ev-cards">
 				<?php foreach ( $wu_services as $s ) : ?>
 				<li class="ev-card">
@@ -247,6 +224,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 4. Corporate events -->
 	<section class="sec ev-sec" id="corporate">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Corporate' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Corporate Events Deserve</span> <span class="sh__b">More Than a Logo on a Backdrop</span></h2>
@@ -254,6 +232,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-intro">
 				<p>A corporate event carries real expectations. Leaders want the message to land, partners want to feel valued and attendees want an experience worth their time. Corporate event branding is how that intent becomes visible.</p>
 				<p>Our corporate event branding services begin with what the event is meant to achieve. A product launch needs momentum and focus. An AGM needs clarity and credibility. An award night needs a sense of occasion. We shape the visual identity around that purpose, then carry it through every branded surface.</p>
+			</div>
 			</div>
 			<div class="ev-corp">
 				<div class="ev-panel">
@@ -287,11 +266,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 5. Virtual and hybrid (doc order: before the process) -->
 	<section class="sec ev-sec" id="virtual">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Virtual and hybrid' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">In the Room and on the Screen:</span> <span class="sh__b">Virtual and Hybrid Event Branding</span></h2>
 			</div>
 			<div class="ev-intro"><p>A virtual event has no venue to walk through and no entrance arch to set the mood. Everything your audience knows about your brand arrives through a screen, where attention is far easier to lose. At WiseUp, we design virtual and hybrid events as experiences in their own right, not as scaled-down versions of an on-site plan.</p></div>
+			</div>
 			<div class="ev-three">
 				<div class="ev-panel">
 					<h3>Virtual Event Branding: Making a Platform Feel Like Your Event</h3>
@@ -315,11 +296,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 6. Process -->
 	<section class="sec ev-sec" id="process">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Process' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">From Creative Thinking</span> <span class="sh__b">to On-Site Branding</span></h2>
 			</div>
 			<div class="ev-intro"><p>Good event branding needs a clear plan from the first idea to the final setup. Here’s how we bring it all together.</p></div>
+			</div>
 			<ol class="ev-steps">
 				<?php foreach ( array(
 					array( 'Brief and Discovery', 'We discuss your event goals, audience, venue, timeline and branding requirements.' ),
@@ -348,11 +331,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 7. One team -->
 	<section class="sec ev-sec" id="why">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Why WiseUp' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">One Team Behind</span> <span class="sh__b">Every Event Detail</span></h2>
 			</div>
 			<div class="ev-intro"><p>Event branding involves more than creating designs. Every element needs to look right in print and work in the venue. At WiseUp, one team manages the process from the first concept to the final installation, keeping every detail connected.</p></div>
+			</div>
 			<ol class="ev-why">
 				<li><span class="ev-why__n">01</span><h3>Local Knowledge, On-Site Support</h3><p>Based in Kerala, we can visit venues, assess spaces and take measurements before the design work begins. This helps us plan branding that fits the actual event environment.</p></li>
 				<li><span class="ev-why__n">02</span><h3>Designs Ready for Production</h3><p>We prepare artwork with the correct dimensions, bleed and colour specifications, reducing avoidable printing errors and last-minute changes.</p></li>
@@ -396,11 +381,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 9. Portfolio -->
 	<section class="sec ev-sec" id="work">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Portfolio' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Making Every Event</span> <span class="sh__b">a Brand Experience</span></h2>
 			</div>
 			<div class="ev-intro"><p>A portfolio shows more than a list of services ever could. Each project below follows the same structure, so you can see how we think and what the result was.</p></div>
+			</div>
 			<div class="ev-cases ev-cases--two">
 				<?php foreach ( $wu_cases as $c ) : ?>
 				<article class="ev-case">
@@ -464,6 +451,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		<!-- 10. Pricing -->
 	<section class="sec ev-sec" id="pricing">
 		<div class="wrap">
+			<div class="ev-head ev-head--ticket">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Pricing' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Pricing That Fits</span> <span class="sh__b">Your Event Goals</span></h2>
@@ -471,6 +459,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-ticket">
 				<div class="ev-ticket__main"><span class="ev-ticket__k">Event branding and promotion</span><p class="ev-from"><span>Starting from</span> <strong>₹1 lakh</strong></p></div>
 				<div class="ev-ticket__stub"><span>Admit</span><strong>One plan</strong><span>before the price</span></div>
+			</div>
 			</div>
 			<div class="ev-price">
 				<p>A full house does not happen by itself. Someone has to know about your event, want to come, and then actually walk in. That is the work we do at WiseUp, and our event branding and promotion packages start from ₹1 lakh.</p>
@@ -484,11 +473,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 11. How to tell the difference -->
 	<section class="sec ev-sec" id="choose">
 		<div class="wrap">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Choosing an agency' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Not All Event Branding Agencies Work Alike:</span> <span class="sh__b">How to Tell the Difference</span></h2>
 			</div>
 			<div class="ev-intro"><p>Most agencies can show you an attractive mood board. Fewer can tell you who will be at the venue at 6 am on setup day. The checks that separate the two are practical, and they are far easier to make before you sign than after something goes wrong. Here is what we would look at in your position.</p></div>
+			</div>
 			<ol class="ev-choose">
 				<?php foreach ( array(
 					array( 'Portfolio relevance', 'Ask for work from events of a similar size and type. Look for photographs of real installations, not only digital mock-ups, because a design that looks good on screen can fall flat in a hall.' ),
@@ -527,7 +518,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 
 	<!-- 12. FAQ (with FAQPage schema) -->
 	<section class="sec ev-sec" id="faq" aria-labelledby="ev-faq-h">
-		<div class="wrap">
+		<div class="wrap ev-faqsplit">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
 				<h2 id="ev-faq-h" class="sh__h"><span class="sh__a">Frequently Asked</span> <span class="sh__b">Questions</span></h2>
@@ -638,13 +629,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	var steps = document.querySelector('.wu-ev .ev-steps'), raf = 0;
 	function fill() { raf = 0; if (!steps) return; var r = steps.getBoundingClientRect(); steps.style.setProperty('--p', Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / Math.max(1, r.height + innerHeight * .2))).toFixed(3)); }
 	addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(fill); }, { passive: true }); fill();
-	// cursor spotlight on cards; stage leans toward the pointer
+	// cursor spotlight on cards
 	if (matchMedia('(hover: hover)').matches) {
 		document.querySelectorAll('.wu-ev :is(.ev-card, .ev-why li)').forEach(function (c) {
 			c.addEventListener('pointermove', function (e) { var b = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - b.left) + 'px'); c.style.setProperty('--my', (e.clientY - b.top) + 'px'); });
 		});
-		var st = document.querySelector('[data-stage]');
-		if (st) st.parentNode.addEventListener('pointermove', function (e) { var b = st.getBoundingClientRect(); st.style.setProperty('--rx', ((e.clientX - b.left) / b.width - .5).toFixed(3)); st.style.setProperty('--ry', ((e.clientY - b.top) / b.height - .5).toFixed(3)); });
 	}
 	if (gs) return;
 	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });

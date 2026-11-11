@@ -85,7 +85,7 @@
 				intro.to(o, { v: end, duration: 1.4, ease: 'power2.out', onUpdate: function () { n.textContent = o.v.toFixed(dp); } }, 0.7 + i * 0.08);
 			});
 		}
-		var stage = $('.ev-stage', hero); if (stage) block(stage, { kind: 'scale', intro: true, at: 0.25 });
+		var bgImg = $('.ev-hero__bg img', hero); if (bgImg) intro.fromTo(bgImg, { scale: 1.12, opacity: 0 }, { scale: 1.04, opacity: 1, duration: 2.2, ease: EASE }, 0);
 		var logos = $('.ev-logos', hero); if (logos) block(logos, { kind: 'fade', intro: true, at: 0.9 });
 	}
 
@@ -118,9 +118,9 @@
 		gsap.fromTo(n, { yPercent: 40 }, { yPercent: -40, ease: 'none', scrollTrigger: { trigger: n.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
 	});
 	if (hero) {
-		var copy = $('.ev-hero__copy', hero), st = $('.ev-stage', hero);
+		var copy = $('.ev-hero__copy', hero), st = $('.ev-hero__bg', hero);
 		if (copy) gsap.to(copy, { y: -70, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
-		if (st) gsap.to(st, { y: -30, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+		if (st) gsap.to(st, { yPercent: 12, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
 		var glow = $('.ev-hero__glow', hero);
 		if (glow) {
 			var drift = gsap.to(glow, { xPercent: -8, yPercent: 6, scale: 1.12, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1 });

@@ -634,3 +634,72 @@ html, body.wu-ev-page { background: #000; }
 @keyframes ev-pane { from { opacity: 0; translate: 0 8px; } }
 @media (prefers-reduced-motion: reduce) { .wu-ev .ev-tabs.is-js .ev-tabs__pane.is-on { animation: none; } }
 @media (min-width: 1100px) { .wu-ev .ev-cases--two .ev-case__did { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; } }
+/* two project cards: same height (the row takes the taller card; the shorter one's body fills, the case-study link sits at the bottom) */
+.wu-ev .ev-cases.ev-cases--two { align-items: stretch; }
+.wu-ev .ev-cases--two .ev-case__body { flex: 1; display: flex; flex-direction: column; }
+.wu-ev .ev-cases--two .ev-case .ev-more { margin-top: auto; padding-top: 4px; }
+
+/* ===== v1.3.8: one alignment system, wider page, photo hero, form panel ===== */
+/* wider content on large screens; every section uses the same 5 / 7 split as "One Event, One Identity" */
+.wu-ev .wrap { width: min(100% - 2 * clamp(20px, 3.4vw, 56px), 1480px); }
+.wu-ev .ev-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 96px); }
+.wu-ev .ev-head { margin-bottom: clamp(32px, 4vw, 56px); }
+.wu-ev .ev-head > .sh { margin: 0; }
+.wu-ev .ev-head > .ev-intro { margin: 0; max-width: none; }
+@media (min-width: 1024px) {
+  .wu-ev .ev-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 96px); align-items: end; }
+  .wu-ev .ev-head > .ev-intro { padding-bottom: 6px; }
+  .wu-ev .ev-head > .ev-intro p { font-size: clamp(16px, 1.15vw, 18px); line-height: 1.65; }
+  .wu-ev .ev-head--ticket > .ev-ticket { margin: 0; }
+  .wu-ev .ev-head--ticket { align-items: center; }
+  /* FAQ: heading on the left (stays in view), questions on the right */
+  .wu-ev .ev-faqsplit { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 96px); align-items: start; }
+  .wu-ev .ev-faqsplit > .sh { position: sticky; top: 120px; margin: 0; }
+}
+@media (max-width: 1023px) { .wu-ev .ev-head > .ev-intro { margin-top: 18px; } .wu-ev .ev-head--ticket > .ev-ticket { margin-top: 24px; } }
+.wu-ev .ev-price { margin-top: clamp(28px, 3vw, 44px); }
+
+/* hero: the gala stage photo behind the copy */
+.wu-ev .ev-hero { min-height: min(100svh, 980px); display: flex; flex-direction: column; justify-content: flex-end; isolation: isolate; }
+.wu-ev .ev-hero__bg { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.wu-ev .ev-hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; transform: scale(1.04); }
+.wu-ev .ev-hero__bg::after { content: ''; position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgb(0 0 0 / .92) 0%, rgb(0 0 0 / .78) 32%, rgb(0 0 0 / .25) 62%, rgb(0 0 0 / .1) 100%),
+  linear-gradient(180deg, rgb(0 0 0 / .55) 0%, transparent 22%, transparent 55%, #000 100%); }
+.wu-ev .ev-hero__glow { display: none; }
+.wu-ev .ev-hero__grid { grid-template-columns: minmax(0, 1fr); }
+.wu-ev .ev-hero__copy { max-width: 760px; }
+.wu-ev .ev-hero__grid > .ev-proof { background: rgb(12 12 14 / .55); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.wu-motion .wu-ev .ev-hero__bg img { opacity: 0; }
+@media (max-width: 767px) {
+  .wu-ev .ev-hero { min-height: 0; }
+  .wu-ev .ev-hero__bg img { object-position: 70% 30%; }
+  .wu-ev .ev-hero__bg::after { background: linear-gradient(180deg, rgb(0 0 0 / .6) 0%, rgb(0 0 0 / .72) 40%, rgb(0 0 0 / .9) 75%, #000 100%); }
+}
+@media (prefers-reduced-motion: reduce) { .wu-ev .ev-hero__bg img { transform: none; } }
+
+/* enquiry: the form sits in its own panel that fills the column, fields centred in it */
+.wu-ev .ev-final { align-items: stretch; }
+.wu-ev .ev-final .ev-form { align-self: stretch; align-content: center; padding: clamp(22px, 2.6vw, 40px); border-radius: 24px; background: #18181b; box-shadow: inset 0 0 0 1px var(--line); gap: 16px 14px; }
+.wu-ev .ev-final .ev-form :is(input, select) { background: #0f0f11; }
+.wu-ev .ev-final .ev-form__send { margin-top: 10px; }
+@media (min-width: 1024px) { .wu-ev .ev-final .ev-form__send { justify-self: stretch; justify-content: center; } }
+/* one column line for every section: heading half | content half (same start line all the way down) */
+@media (min-width: 1024px) {
+  .wu-ev .ev-split, .wu-ev .ev-head, .wu-ev .ev-faqsplit, .wu-ev .ev-final { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(40px, 5vw, 96px); }
+}
+.wu-ev .sh__h { font-size: clamp(2rem, 1.1rem + 2.6vw, 3.7rem); line-height: 1.04; }
+.wu-ev .ev-hero__copy { max-width: 860px; }
+.wu-ev .ev-hero__h { max-width: none; }
+/* enquiry: contact tiles side by side so the two columns are close in height */
+@media (min-width: 1200px) { .wu-ev .ev-final .ev-contact { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.wu-ev .ev-final .ev-form { gap: 20px 14px; }
+.wu-ev .ev-final .ev-form :is(input, select) { min-height: 56px; }
+@media (min-width: 1200px) {
+  .wu-ev .ev-final .ev-ct { gap: 12px; padding: 12px 12px 12px 14px; }
+  .wu-ev .ev-final .ev-ct__t { font-size: 15.5px; white-space: nowrap; }
+  .wu-ev .ev-final .ev-ct__t small { font-size: 11px; }
+  .wu-ev .ev-final .ev-ct__i { width: 42px; height: 42px; }
+  .wu-ev .ev-final .ev-ct__go { width: 32px; height: 32px; }
+}
+.wu-ev .ev-final .ev-final__copy { align-content: center; }
