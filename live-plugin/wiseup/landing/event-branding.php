@@ -152,7 +152,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 
 	<!-- 1. Hero: value proposition, two CTAs (WhatsApp, Get a Quote), proof strip (events branded, cities served, client logos) -->
 	<section class="ev-hero">
-		<div class="ev-hero__bg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-gala.webp' ); ?>" alt="" width="1672" height="941" decoding="async" fetchpriority="high"></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
@@ -163,6 +162,32 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
 				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 			</div>
+			</div>
+			<div class="ev-stage" aria-hidden="true" data-stage>
+				<span class="ev-beam ev-beam--l"></span><span class="ev-beam ev-beam--r"></span>
+				<div class="ev-stage__screen">
+					<img class="ev-led__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-stage-gala.webp' ); ?>" alt="" decoding="async" fetchpriority="high">
+					<span class="ev-led__grid"></span>
+					<span class="ev-led__sweep"></span>
+					<span class="ev-led__mark">W</span>
+					<span class="ev-led__k">Main stage</span>
+				</div>
+				<div class="ev-standee ev-standee--l"><i></i><b></b><b></b><b></b></div>
+				<div class="ev-standee ev-standee--r"><i></i><b></b><b></b><b></b></div>
+				<div class="ev-lectern"><span>W</span></div>
+				<div class="ev-stage__deck"></div>
+				<div class="ev-stage__floor"></div>
+				<div class="ev-pass">
+					<span class="ev-pass__cord"></span>
+					<div class="ev-pass__card">
+						<span class="ev-pass__clip"></span>
+						<span class="ev-pass__top">EVENT PASS</span>
+						<span class="ev-pass__mark">W</span>
+						<span class="ev-pass__name">Your event</span>
+						<span class="ev-pass__role">Branded by WiseUp</span>
+						<span class="ev-pass__bar"></span>
+					</div>
+				</div>
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
@@ -185,9 +210,30 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 2. One event, one identity -->
 	<section class="sec ev-sec" id="what">
 		<div class="wrap ev-split">
+			<div class="ev-split__l">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Event branding' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">One Event, One Identity:</span> <span class="sh__b">What Event Branding Really Means</span></h2>
+			</div>
+			<div class="ev-fam" aria-hidden="true">
+				<div class="ev-fam__parent">
+					<small>Parent brand</small>
+					<div class="ev-fam__node"><span class="ev-fam__mark">W</span><b>Your brand</b><i style="--c:#c2f760"></i><i style="--c:#f4f4f5"></i><i style="--c:#3f3f46"></i></div>
+				</div>
+				<svg class="ev-fam__lines" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M50 0 C50 22 25 18 25 40"/><path d="M50 0 C50 22 75 18 75 40"/></svg>
+				<div class="ev-fam__kids">
+					<div class="ev-fam__kid ev-fam__kid--a">
+						<div class="ev-fam__art"><span class="ev-fam__mark">W</span><em></em><em></em><span class="ev-fam__cue"></span></div>
+						<small>Event identity</small><b>Leadership summit</b>
+						<div class="ev-fam__sw"><i style="--c:#1f2b47"></i><i style="--c:#d8b45f"></i><i style="--c:#c2f760"></i></div>
+					</div>
+					<div class="ev-fam__kid ev-fam__kid--b">
+						<div class="ev-fam__art"><span class="ev-fam__mark">W</span><em></em><em></em><span class="ev-fam__cue"></span></div>
+						<small>Event identity</small><b>Customer celebration</b>
+						<div class="ev-fam__sw"><i style="--c:#ff7a59"></i><i style="--c:#8b5cf6"></i><i style="--c:#c2f760"></i></div>
+					</div>
+				</div>
+			</div>
 			</div>
 			<div class="ev-prose">
 				<p class="ev-lead">Event branding is the practice of giving an event its own visual identity and tone, so that every part of it feels like it belongs together. The name, logo, colours, fonts, theme and signage all work as one identity, from the invitation people receive to the backdrop they photograph. At WiseUp, we see this as strategic work, not decoration. Done well, guests do not notice the branding as separate pieces. They simply feel that the event was thought through.</p>
@@ -635,11 +681,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	var steps = document.querySelector('.wu-ev .ev-steps'), raf = 0;
 	function fill() { raf = 0; if (!steps) return; var r = steps.getBoundingClientRect(); steps.style.setProperty('--p', Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / Math.max(1, r.height + innerHeight * .2))).toFixed(3)); }
 	addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(fill); }, { passive: true }); fill();
-	// cursor spotlight on cards
+	// cursor spotlight on cards; stage leans toward the pointer
 	if (matchMedia('(hover: hover)').matches) {
 		document.querySelectorAll('.wu-ev :is(.ev-card, .ev-why li)').forEach(function (c) {
 			c.addEventListener('pointermove', function (e) { var b = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - b.left) + 'px'); c.style.setProperty('--my', (e.clientY - b.top) + 'px'); });
 		});
+		var st = document.querySelector('[data-stage]');
+		if (st) st.parentNode.addEventListener('pointermove', function (e) { var b = st.getBoundingClientRect(); st.style.setProperty('--rx', ((e.clientX - b.left) / b.width - .5).toFixed(3)); st.style.setProperty('--ry', ((e.clientY - b.top) / b.height - .5).toFixed(3)); });
 	}
 	if (gs) return;
 	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
