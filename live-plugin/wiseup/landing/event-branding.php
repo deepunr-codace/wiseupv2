@@ -75,58 +75,68 @@ $wu_icons = array(
 	'screen' => '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M10 8.5l4 1.5-4 1.5z"/>',
 );
 
-// Section 3: the doc's nine cards, two lines each. 'link' = the card's sub-page (doc: "a link to a sub-page later");
-// fill it in when the sub-page exists and the card links there.
+// Services: the doc's nine cards. 'link' = the card's sub-page; fill it in when the sub-page exists.
 $wu_services = array(
-	array( 'title' => 'Corporate event branding', 'icon' => 'mic', 'text' => 'Corporate event branding services for conferences, summits, launches and award nights, carried in your company identity from the invite to the stage.', 'link' => '' ),
-	array( 'title' => 'Exhibition and stall branding', 'icon' => 'stall', 'text' => 'Stall graphics, fascia, back walls and counters designed to stand out across the exhibition hall.', 'link' => '' ),
-	array( 'title' => 'Stage, backdrop and LED branding', 'icon' => 'stage', 'text' => 'Main stage backdrops, stage wraps and LED screen content, sized to the real stage.', 'link' => '' ),
-	array( 'title' => 'Venue branding, signage, and wayfinding', 'icon' => 'sign', 'text' => 'Entrance, hall and directional signage that guides guests and carries the event identity through the venue.', 'link' => '' ),
-	array( 'title' => 'Standees, banners, and displays', 'icon' => 'banner', 'text' => 'Roll-up standees, banners and display units designed as one set and delivered print-ready.', 'link' => '' ),
-	array( 'title' => 'Event collateral: invitations, badges, kits, brochures', 'icon' => 'badge', 'text' => 'Invitations, badges, delegate kits and brochures that carry the same identity into every guest’s hands.', 'link' => '' ),
-	array( 'title' => 'Brand activation and experiential', 'icon' => 'spark', 'text' => 'Activations and experiential spaces that let guests interact with the brand, not just see it.', 'link' => '' ),
-	array( 'title' => 'Creative event branding', 'icon' => 'brush', 'text' => 'Creative event branding with themes, concepts and custom environments built for one event.', 'link' => '' ),
-	array( 'title' => 'Virtual and hybrid event branding', 'icon' => 'screen', 'text' => 'Branding for the online audience too: virtual stages, lobbies, overlays and templates.', 'link' => '#virtual' ),
+	array( 'title' => 'Corporate Event Branding', 'icon' => 'mic', 'text' => 'Conferences, launches, and summits branded with clarity and purpose. We design for the room, the audience, and the message you need to land.', 'link' => '' ),
+	array( 'title' => 'Exhibition and Stall Branding', 'icon' => 'stall', 'text' => 'Stalls that stand out on a crowded floor and still communicate in seconds. Layout, graphics and messaging are planned together, not added later.', 'link' => '' ),
+	array( 'title' => 'Stage, Backdrop and LED Branding', 'icon' => 'stage', 'text' => 'The visuals your audience looks at longest and your photographs capture most. We design for the stage, the screens and the camera.', 'link' => '' ),
+	array( 'title' => 'Venue Branding, Signage and Wayfinding', 'icon' => 'sign', 'text' => 'Good signage helps people before they ask for help. We brand the venue so guests find their way easily and feel the theme at every turn.', 'link' => '' ),
+	array( 'title' => 'Standees, Banners and Displays', 'icon' => 'banner', 'text' => 'Portable branding that works across entrances, lobbies and sessions. Sized, printed and placed with the venue layout in mind.', 'link' => '' ),
+	array( 'title' => 'Event Collateral', 'icon' => 'badge', 'text' => 'Invitations, badges, kits and brochures that carry the theme into guests’ hands. These are the pieces people keep after the event ends.', 'link' => '' ),
+	array( 'title' => 'Brand Activation and Experiential', 'icon' => 'spark', 'text' => 'Interactive zones and branded experiences that give guests something to do, not just something to see. Designed to invite participation and conversation.', 'link' => '' ),
+	array( 'title' => 'Creative Event Branding', 'icon' => 'brush', 'text' => 'Themes, concepts and custom environments for events that need a bold idea. From festival-style set designs to fully imagined spaces.', 'link' => '' ),
+	array( 'title' => 'Virtual and Hybrid Event Branding', 'icon' => 'screen', 'text' => 'Branding that works on a screen as well as in a room. Read more in the virtual and hybrid section below.', 'link' => '#virtual' ),
 );
 
+// Portfolio: the two projects the owner sent (2026-11-11), text as given.
 $wu_cases = array(
 	array(
-		'name'    => 'Bootland Expo',
-		'type'    => 'Trade exhibition',
+		'name'    => 'Eallisto',
+		'sub'     => 'Corporate Stall Branding & Partnership Signing Ceremonies',
+		'tags'    => '',
+		'type'    => 'Corporate / Renewable Energy & Energy Solutions',
+		'img'     => WISEUP_ASSETS . '/clients/client-logos-2026/ellisto.webp',
+		'logo'    => true,
+		'url'     => '',
+		'problem' => array( 'Eallisto regularly participates in industry events, exhibitions and corporate partnership initiatives. They needed a consistent brand presence at exhibitions and professionally organised partnership signing ceremonies that reflected their corporate identity and strengthened their brand image.' ),
+		'did_h'   => 'What we worked on',
+		'did'     => array( 'Exhibition stall branding and visual design.', 'Corporate event branding and collateral.', 'End-to-end planning and coordination of corporate partnership signing ceremonies.', 'Professional photography and videography.', 'Anchor sourcing and event hosting.', 'On-ground event management and coordination.', 'Documentation and coverage of key moments, including partnership signings and guest interactions.' ),
+		'result'  => 'A consistent and professional brand presence across exhibitions and corporate events, with end-to-end execution of partnership signing ceremonies and high-quality photo and video assets for Eallisto’s marketing, communication and future brand promotions.',
+		'stats'   => array(),
+		'after'   => '',
+	),
+	array(
+		'name'    => 'Bootland Expo 2026',
+		'sub'     => 'Building a Distinctive Brand Identity for a Large-Scale Footwear Expo',
+		'tags'    => 'Event branding · Brand strategy · Visual identity · Campaign design · Digital marketing · Event promotion',
+		'type'    => 'B2B Exhibition & Trade Event – Footwear and Retail Industry',
 		'img'     => WISEUP_URL . 'assets/landing/img/case-bootland.jpg',
+		'logo'    => false,
 		'url'     => home_url( '/case-studies/bootland/' ),
-		'problem' => 'Make Kerala’s largest footwear exhibition feel unforgettable in a market full of generic trade events.',
-		'did'     => 'Brand strategy, visual identity, mascot design, marketing assets and on-ground event branding.',
-		'stats'   => array( array( '21.6M+', 'impressions' ), array( '2,000+', 'B2B leads' ), array( '100%', 'stall occupancy' ) ),
-	),
-	array(
-		'name'    => 'Sathya Agencies',
-		'type'    => 'Retail brand launch',
-		'img'     => WISEUP_URL . 'assets/work/case-sathya-720.webp',
-		'url'     => 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/',
-		'problem' => 'Launch a retail brand across Kerala with one consistent look at every store launch.',
-		'did'     => 'The brand launch campaign: store launch branding and the video content around it.',
-		'stats'   => array( array( '6+', 'store launches' ), array( '100+', 'videos' ), array( '1M+', 'minimum reach per video' ) ),
-	),
-	array(
-		'name'    => 'Smoke House (Bucho Meat)',
-		'type'    => 'Restaurant brand activation, Calicut Beach',
-		'img'     => WISEUP_URL . 'assets/landing/img/case-smokehouse.jpg',
-		'url'     => home_url( '/case-studies/smokehouse/' ),
-		'problem' => 'A smokehouse restaurant near Calicut Beach with a strong product but low walk-in traffic and weak brand positioning.',
-		'did'     => 'A complete brand activation: menu redesign, outdoor branding for beach traffic, atmosphere curation, NFC brand cards, review prompts and influencer activation.',
-		'stats'   => array( array( '30 days', 'to a visible impact' ), array( 'Footfall', 'significant increase' ), array( 'Reviews', 'improved online ratings' ) ),
+		'problem' => array( 'Bootland aimed to establish itself as a major footwear exhibition, bringing together footwear brands, manufacturers, retailers, distributors and industry professionals.', 'The challenge was to create more than a conventional trade fair identity. The event needed a distinctive visual personality that could attract attention, build industry recognition and maintain a consistent presence across digital campaigns, promotional materials and the physical exhibition.' ),
+		'did_h'   => 'What we branded',
+		'did'     => array(
+			array( 'Brand Strategy & Identity', 'Developed the Bootland brand identity, including logo design, colour palette and visual language.' ),
+			array( 'Visual Communication', 'Established a bold yellow-and-blue colour system with strong typography to create visibility and recognition.' ),
+			array( 'Mascot Development', 'Created ‘Go Go’, a distinctive brand character designed to give the expo a recognisable personality and strengthen audience engagement.' ),
+			array( 'Campaign Creatives', 'Developed promotional creatives and digital communication for event awareness and audience acquisition.' ),
+			array( 'Exhibition Branding', 'Extended the visual identity across physical event spaces, exhibition stalls and promotional touchpoints.' ),
+			array( 'Digital & Event Marketing', 'Supported the event through digital promotions, social media campaigns and influencer-led communication.' ),
+		),
+		'result'  => 'Bootland Expo 2026 established a distinctive event identity supported by integrated digital and on-ground branding. The campaign and event execution delivered measurable reach and industry participation:',
+		'stats'   => array( array( '21.6M', 'impressions' ), array( '13.4M', 'reach' ), array( '2,000+', 'registrations and industry professionals' ), array( '45+', 'exhibitors' ), array( '~50', 'participating brands' ) ),
+		'after'   => 'The result was a cohesive exhibition brand experience, connecting brand identity, event promotion and physical execution under one consistent visual direction.',
 	),
 );
 
 $wu_faq = array(
-	array( 'What is event branding, and what does it include?', 'Event branding is the identity of an event: its name, logo, colours, fonts and theme, and the signage, stage and collateral that carry them as one. It includes stage and backdrop branding, venue signage and wayfinding, standees and banners, invitations, badges and kits, and the branding for virtual and hybrid audiences.' ),
-	array( 'How much does event branding cost in Kerala?', 'Event branding with WiseUp starts from ₹25,000. The final cost depends on the event scale, the number of branded touchpoints, materials and fabrication, installation and the timeline.' ),
-	array( 'How early should we brief an event branding agency?', 'Brief us at least 14 days before the event.' ),
-	array( 'Do you handle printing and installation, or only design?', 'Both. One team takes the event from concept and design to production and on-site installation.' ),
-	array( 'Can you brand virtual and hybrid events?', 'Yes. We design virtual stages and lobbies, branded webinar templates, social and email kits, and LED and livestream overlays, kept in line with the branding at the venue.' ),
-	array( 'Do you work outside Kochi or Kozhikode?', 'Yes. Our team is based in Kozhikode, visits venues across Kerala, and has served clients in 100+ cities.' ),
-	array( 'What’s the difference between corporate event branding and event management?', 'Event management runs the event: venue, logistics, schedule and guests. Corporate event branding is how the event looks and is remembered: its identity, stage, signage and collateral.' ),
+	array( 'What Is Event Branding, and What Does It Include?', 'Event branding gives an event its own identity through a consistent use of name, logo, colours, fonts, themes and signage. In practice, it can include stage backdrops, entrance arches, signage, banners, badges, invitations, presentation templates and social media kits. We agree the exact list with you at the start.' ),
+	array( 'How Much Does Event Branding Cost in Kerala?', 'The cost depends on the scale of your event, the number of branded touchpoints, the materials used, the installation involved and your timeline. A small seminar and a multi-day exhibition cannot be priced alike. Share a few details with us and we will send a clear quote showing what is included.' ),
+	array( 'How Early Should We Brief an Event Branding Agency?', 'The earlier, the better. For larger events, we recommend sharing the brief a month ahead, which leaves room for concept approval, design, production and installation. Smaller events can often move faster.' ),
+	array( 'Do You Handle Printing and Installation, or Only Design?', 'Both. We design, prepare print-ready files, coordinate production and install the branding at the venue. One team stays responsible from concept to installation.' ),
+	array( 'Can You Brand Virtual and Hybrid Events?', 'Yes. We design virtual stages, lobbies, webinar templates, motion graphics, lower-thirds and branded joining pages. For hybrid events, we keep the physical and digital identities aligned, so remote and in-person attendees experience the same event.' ),
+	array( 'Do You Work Outside Kochi or Kozhikode?', 'Yes. We work across Kerala, including Thiruvananthapuram, Thrissur, Kannur and Malappuram. For events outside our usual cities, we plan site visits and logistics early.' ),
+	array( 'What Is the Difference Between Corporate Event Branding and Event Management?', 'Event branding focuses on how the event looks and feels, including its identity, visuals and branded surfaces. Event management handles the wider logistics, such as scheduling, vendors, hospitality and guest handling. They work well together, and we are happy to coordinate with your event manager.' ),
 );
 
 add_action( 'wp_footer', function () use ( $wu_faq ) {
@@ -146,10 +156,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
 			<?php echo $wu_eyebrow( __( 'Event branding', 'wiseup' ) ); // phpcs:ignore ?>
-			<h1 class="ev-hero__h"><span class="sh__a">Event Branding Agency in Kerala:</span> <span class="sh__b">Corporate &amp; Creative Event Branding Services</span></h1>
-			<p class="ev-hero__p">An event branding company in Kerala that delivers end to end, from concept to on-ground. One team plans the identity, designs every touchpoint, coordinates production and installs it at the venue, for corporate events, conferences, exhibitions and hybrid events.</p>
+			<h1 class="ev-hero__h"><span class="sh__a">Event Branding Agency in Kerala</span> <span class="sh__b">for Events People Remember</span></h1>
+			<p class="ev-hero__p">People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop, and even the badge are already speaking for you. WiseUp is an event branding company in Kerala that designs, produces, and installs every one of them, so your event looks like one idea from start to finish. Wondering what that really involves? Let’s start with what event branding actually is.</p>
 			<div class="ev-btns">
-				<?php echo $wu_btn( 'WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
+				<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
 				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 			</div>
 			</div>
@@ -181,12 +191,12 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
-					array( 10, '+', 'Events branded' ),
-					array( 100, '+', 'Cities served' ),
-					array( 120, '+', 'Projects delivered' ),
-					array( 3, 'M+', 'Audience reached' ),
+					array( '10', '+', 'Events branded' ),
+					array( '120', '+', 'Projects delivered' ),
+					array( '13.4', 'M+', 'Campaign reach' ),
+					array( '50', '+', 'Brands at Bootland Expo' ),
 				) as $wu_st ) : ?>
-				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo (int) $wu_st[0]; ?>"><?php echo (int) $wu_st[0]; ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
+				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
 				<?php endforeach; ?>
 			</dl>
 		</div>
@@ -194,31 +204,33 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	</section>
 
 	<div class="ev-ticker" aria-hidden="true"><div class="ev-ticker__track">
-		<?php $wu_tk = ''; foreach ( array( 'Conferences', 'Product launches', 'Award nights', 'Exhibitions', 'Leadership summits', 'Dealer meets', 'Inaugurations', 'College fests', 'Trade shows', 'Weddings' ) as $t ) $wu_tk .= '<span>' . esc_html( $t ) . '</span><i></i>'; echo '<div>' . $wu_tk . '</div><div>' . $wu_tk . '</div>'; // phpcs:ignore ?>
+		<?php $wu_tk = ''; foreach ( array( 'Conferences', 'Product launches', 'Award nights', 'Exhibitions', 'Leadership summits', 'Dealer meets', 'Inaugurations', 'College fests', 'Trade shows', 'Cultural festivals' ) as $t ) $wu_tk .= '<span>' . esc_html( $t ) . '</span><i></i>'; echo '<div>' . $wu_tk . '</div><div>' . $wu_tk . '</div>'; // phpcs:ignore ?>
 	</div></div>
 
-	<!-- 2. What is event branding? -->
+	<!-- 2. One event, one identity -->
 	<section class="sec ev-sec" id="what">
 		<div class="wrap ev-split">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Event branding' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">What is</span> <span class="sh__b">event branding?</span></h2>
+				<h2 class="sh__h"><span class="sh__a">One Event, One Identity:</span> <span class="sh__b">What Event Branding Really Means</span></h2>
 			</div>
 			<div class="ev-prose">
-				<p class="ev-lead">Event branding is the identity of an event: its name, logo, colours, fonts and theme, and the signage that carries them. Event branding works when all of these act as one identity, so every touchpoint feels like the same event.</p>
-				<h3>Branding for an event: how it differs from a company’s own brand identity</h3>
-				<p>A company’s brand identity is built to last for years; branding for an event is built for one occasion. The event brand should echo the parent brand, in its colours, tone and logo, but still stand alone, with its own name and look.</p>
+				<p class="ev-lead">Event branding is the practice of giving an event its own visual identity and tone, so that every part of it feels like it belongs together. The name, logo, colours, fonts, theme and signage all work as one identity, from the invitation people receive to the backdrop they photograph. At WiseUp, we see this as strategic work, not decoration. Done well, guests do not notice the branding as separate pieces. They simply feel that the event was thought through.</p>
+				<h3>Same Family, Its Own Personality</h3>
+				<p>A company already has a brand identity, so why does an event need another one? Because an event is a moment with its own purpose, audience, and mood. A leadership summit and a customer celebration may belong to the same company, yet they should not look or sound identical.</p>
+				<p>Branding for an event should echo the parent brand enough to be recognised, and still stand on its own. At WiseUp, we borrow the right cues from your brand, then build a distinct theme around the occasion. That balance is what makes an event feel connected to your company without being a repeat of your brochure.</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- 3. Services: 9 cards, 2 lines each, link to a sub-page later -->
+	<!-- 3. Services -->
 	<section class="sec ev-sec" id="services">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Our event branding</span> <span class="sh__b">services in Kerala</span></h2>
+				<h2 class="sh__h"><span class="sh__a">Event Branding Services</span> <span class="sh__b">for Every Part of Your Event</span></h2>
 			</div>
+			<div class="ev-intro"><p>Think back to the last event you attended. You probably cannot recall every slide or speaker, but you remember how it felt to walk in: the arch, the signage, the stage lit in one colour story. That feeling was never an accident. Guests meet your event as a series of small encounters, from the invitation to the registration desk to the kit they carry home, and each one either strengthens the story or weakens it. Our event branding services cover all of them, so nothing feels like an afterthought.</p></div>
 			<ul class="ev-cards">
 				<?php foreach ( $wu_services as $s ) : ?>
 				<li class="ev-card">
@@ -232,53 +244,99 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		</div>
 	</section>
 
-	<!-- 4. Corporate event branding services: event types, sector strip, sample deliverables checklist -->
+	<!-- 4. Corporate events -->
 	<section class="sec ev-sec" id="corporate">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Corporate' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Corporate event</span> <span class="sh__b">branding services</span></h2>
+				<h2 class="sh__h"><span class="sh__a">Corporate Events Deserve</span> <span class="sh__b">More Than a Logo on a Backdrop</span></h2>
+			</div>
+			<div class="ev-intro">
+				<p>A corporate event carries real expectations. Leaders want the message to land, partners want to feel valued and attendees want an experience worth their time. Corporate event branding is how that intent becomes visible.</p>
+				<p>Our corporate event branding services begin with what the event is meant to achieve. A product launch needs momentum and focus. An AGM needs clarity and credibility. An award night needs a sense of occasion. We shape the visual identity around that purpose, then carry it through every branded surface.</p>
 			</div>
 			<div class="ev-corp">
 				<div class="ev-panel">
-					<h3>Event types</h3>
-					<?php echo $wu_chips( array( 'Conferences', 'Leadership summits', 'Product launches', 'Award nights', 'Dealer and partner meets', 'AGMs', 'Trade shows' ) ); // phpcs:ignore ?>
-					<h3>Sectors</h3>
-					<?php echo $wu_chips( array( 'Healthcare', 'Education', 'Government', 'Startups', 'Retail', 'Tourism', 'Hospitality' ), true ); // phpcs:ignore ?>
-					<p class="ev-note">Tourism and hospitality is a Kerala-specific strength.</p>
+					<h3>Events We Brand</h3>
+					<p>We work on conferences, leadership summits, product launches, award nights, dealer and partner meets, AGMs and trade shows. Each has its own audience and pace, so no two get the same treatment.</p>
+					<h3>Sectors We Understand</h3>
+					<p>Different industries ask for different tones, and we adjust accordingly.</p>
+					<ul class="ev-sectors">
+						<?php foreach ( array(
+							array( 'Healthcare', 'Calm, credible and clear, where trust matters most.' ),
+							array( 'Education', 'Welcoming and energetic, for audiences from students to academics.' ),
+							array( 'Government', 'Dignified and structured, suited to formal public occasions.' ),
+							array( 'Startups', 'Bold and flexible, designed to make a young brand look established.' ),
+							array( 'Retail', 'Visual and promotional, built to attract footfall and attention.' ),
+							array( 'Tourism and hospitality', 'A sector central to Kerala, where atmosphere is part of the product. We know how to brand events that need to feel as inviting as the destinations they promote.' ),
+						) as $sec ) : ?>
+						<li><strong><?php echo esc_html( $sec[0] ); ?></strong><span><?php echo esc_html( $sec[1] ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
 				</div>
 				<div class="ev-panel ev-panel--list">
-					<h3>Sample deliverables checklist for one event</h3>
-					<?php echo $wu_check( array( 'Main backdrop', 'Entrance arch', 'Registration desk', 'Signage set', 'Badges', 'Presentation template', 'Social kit' ) ); // phpcs:ignore ?>
+					<h3>What One Corporate Event Might Include</h3>
+					<p>Here is a sample deliverables list for a single event:</p>
+					<?php echo $wu_check( array( 'Main stage backdrop', 'Entrance arch', 'Registration desk branding', 'Signage set', 'Delegate badges', 'Presentation template', 'Social media kit' ) ); // phpcs:ignore ?>
+					<p class="ev-note">Your event may need more or fewer pieces. We agree the list with you at the start, so you know exactly what is covered.</p>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- 5. Our process: 6 steps in a visual timeline + typical timeline note -->
+	<!-- 5. Virtual and hybrid (doc order: before the process) -->
+	<section class="sec ev-sec" id="virtual">
+		<div class="wrap">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'Virtual and hybrid' ); // phpcs:ignore ?>
+				<h2 class="sh__h"><span class="sh__a">In the Room and on the Screen:</span> <span class="sh__b">Virtual and Hybrid Event Branding</span></h2>
+			</div>
+			<div class="ev-intro"><p>A virtual event has no venue to walk through and no entrance arch to set the mood. Everything your audience knows about your brand arrives through a screen, where attention is far easier to lose. At WiseUp, we design virtual and hybrid events as experiences in their own right, not as scaled-down versions of an on-site plan.</p></div>
+			<div class="ev-three">
+				<div class="ev-panel">
+					<h3>Virtual Event Branding: Making a Platform Feel Like Your Event</h3>
+					<p>On-site branding fills a physical space. Virtual branding has to build one. We map every point where an attendee meets your brand, from the invitation email to the closing screen, and give each a consistent look. That usually includes:</p>
+					<?php echo $wu_check( array( 'The platform lobby and the first screen attendees see', 'Branded joining pages and reminder emails', 'Virtual backgrounds for speakers', 'Presentation slides and motion graphics', 'Lower-thirds and speaker identification' ) ); // phpcs:ignore ?>
+					<p class="ev-note">Each of these appears for only a few seconds. Together, they decide whether the event feels organised or improvised.</p>
+				</div>
+				<div class="ev-panel">
+					<h3>Hybrid Event Branding: One Identity, Two Audiences</h3>
+					<p>The risk in a hybrid event is that remote attendees feel like an afterthought. We keep the physical and digital identities aligned, so a delegate in the hall and a delegate at a laptop experience the same event. We also brand the entry experience for remote attendees, so their first impression matches what guests get at the registration desk. Where it suits the event, we design kits that reach them in advance, which helps people at home feel part of the room before it begins.</p>
+				</div>
+				<div class="ev-panel ev-panel--list">
+					<h3>What a Virtual or Hybrid Package Includes</h3>
+					<?php echo $wu_check( array( 'Virtual stage and lobby design', 'Branded webinar template', 'Social media and email kit', 'LED and livestream overlay' ) ); // phpcs:ignore ?>
+					<p class="ev-note">Tell us the platform and the format, and we will recommend what your event actually needs.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 6. Process -->
 	<section class="sec ev-sec" id="process">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Process' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Our process</span></h2>
+				<h2 class="sh__h"><span class="sh__a">From Creative Thinking</span> <span class="sh__b">to On-Site Branding</span></h2>
 			</div>
+			<div class="ev-intro"><p>Good event branding needs a clear plan from the first idea to the final setup. Here’s how we bring it all together.</p></div>
 			<ol class="ev-steps">
 				<?php foreach ( array(
-					array( 'Brief and discovery', 'We learn the event, the audience, the venue, the date and the goals, and visit the venue to measure.' ),
-					array( 'Concept and creative direction', 'One clear idea for the event: a name, a theme and a visual direction, shown to you before any artwork.' ),
-					array( 'Design system and templates', 'Logo, colours, fonts and master layouts that every banner, badge, slide and post follows.' ),
-					array( 'Production-ready artwork and vendor coordination', 'Every file prepared with bleed, colour profile and exact dimensions, and the printers and fabricators coordinated.' ),
-					array( 'On-site installation', 'Our team at the venue for set-up, checking that every piece goes up where it should.' ),
-					array( 'Post-event assets', 'Photos, videos and social posts that keep the event working after the day.' ),
+					array( 'Brief and Discovery', 'We discuss your event goals, audience, venue, timeline and branding requirements.' ),
+					array( 'Creative Direction', 'We develop the event concept, visual style and creative direction for your approval.' ),
+					array( 'Design and Templates', 'We create the designs and templates needed to maintain a consistent look across all event materials.' ),
+					array( 'Production and Coordination', 'We prepare print-ready artwork and coordinate with printers and fabricators to get everything production-ready.' ),
+					array( 'On-Site Installation', 'We oversee the branding setup at the venue to ensure every element is placed and presented as planned.' ),
+					array( 'Post-Event Handover', 'We share the final design files and reusable digital assets for your future promotions and events.' ),
 				) as $i => $s ) : ?>
 				<li class="ev-step"><span class="ev-step__n"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[1] ); ?></p></li>
 				<?php endforeach; ?>
 			</ol>
 			<div class="ev-timeline">
-				<div class="ev-timeline__num"><strong>14</strong><span>days</span></div>
+				<div class="ev-timeline__num"><strong>1</strong><span>month</span></div>
 				<div class="ev-timeline__txt">
 					<p class="ev-timeline__k">Typical timeline</p>
-					<p>Send us the brief at least 14 days before the event. That leaves time for the concept, your approvals, printing and installation.</p>
+					<p>Send us the brief at least a month before the event. That leaves time for the concept, your approvals, printing and installation.</p>
 				</div>
 				<ol class="ev-timeline__track" aria-hidden="true">
 					<li><span>Brief</span></li><li><span>Concept</span></li><li><span>Approvals</span></li><li><span>Printing</span></li><li><span>Installation</span></li><li class="is-day"><span>Event day</span></li>
@@ -287,161 +345,77 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		</div>
 	</section>
 
-	<!-- 6. Virtual and hybrid event branding -->
-	<section class="sec ev-sec" id="virtual">
-		<div class="wrap">
-			<div class="sh">
-				<?php echo $wu_eyebrow( 'Virtual and hybrid' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Virtual and hybrid</span> <span class="sh__b">event branding</span></h2>
-			</div>
-			<div class="ev-three">
-				<div class="ev-panel">
-					<h3>How virtual branding differs from on-site</h3>
-					<p>On-site, the branding lives on the stage, the walls and the signage. In virtual and hybrid event branding it lives on screen:</p>
-					<?php echo $wu_chips( array( 'Platform lobby', 'Virtual backgrounds', 'Slides', 'Motion graphics', 'Lower-thirds', 'Branded joining pages' ), true ); // phpcs:ignore ?>
-				</div>
-				<div class="ev-panel">
-					<h3>Hybrid branding</h3>
-					<?php echo $wu_check( array( 'Physical and digital identities kept aligned', 'A branded entry experience for remote attendees', 'Kits sent to remote attendees' ) ); // phpcs:ignore ?>
-				</div>
-				<div class="ev-panel ev-panel--list">
-					<h3>Deliverables</h3>
-					<?php echo $wu_check( array( 'Virtual stage and lobby design', 'Branded webinar template', 'Social and email kit', 'LED and livestream overlay' ) ); // phpcs:ignore ?>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- 7. Why choose us: differentiators, each with evidence -->
+	<!-- 7. One team -->
 	<section class="sec ev-sec" id="why">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Why WiseUp' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Why choose us</span></h2>
+				<h2 class="sh__h"><span class="sh__a">One Team Behind</span> <span class="sh__b">Every Event Detail</span></h2>
 			</div>
+			<div class="ev-intro"><p>Event branding involves more than creating designs. Every element needs to look right in print and work in the venue. At WiseUp, one team manages the process from the first concept to the final installation, keeping every detail connected.</p></div>
 			<ol class="ev-why">
-				<li><span class="ev-why__n">01</span><h3>A Kerala-based team that can visit venues</h3><p>Our studio is at Govt. Cyberpark, Kozhikode, and our team visits venues across Kerala.</p></li>
-				<li><span class="ev-why__n">02</span><h3>A print-ready file standard</h3><p>Every file is checked for bleed, colour profile and dimensions before it goes to print.</p></li>
-				<li><span class="ev-why__n">03</span><h3>One team from concept to installation</h3><p>For Bootland Expo, one team did the brand strategy, visual identity, mascot, marketing assets and on-ground branding.</p></li>
-				<li><span class="ev-why__n">04</span><h3>Pricing transparency</h3><p>Event branding starts from ₹25,000, and we list what affects the cost. <a class="ev-inline" href="#pricing">See pricing</a></p></li>
-				<li><span class="ev-why__n">05</span><h3>Experience with local event types</h3><p>10+ events branded and clients in 100+ cities. <a class="ev-inline" href="#kerala">See events we brand across Kerala</a></p></li>
+				<li><span class="ev-why__n">01</span><h3>Local Knowledge, On-Site Support</h3><p>Based in Kerala, we can visit venues, assess spaces and take measurements before the design work begins. This helps us plan branding that fits the actual event environment.</p></li>
+				<li><span class="ev-why__n">02</span><h3>Designs Ready for Production</h3><p>We prepare artwork with the correct dimensions, bleed and colour specifications, reducing avoidable printing errors and last-minute changes.</p></li>
+				<li><span class="ev-why__n">03</span><h3>One Team from Design to Installation</h3><p>The same team that develops your event branding oversees its execution. This keeps the original creative direction consistent through production and installation.</p></li>
+				<li><span class="ev-why__n">04</span><h3>Clear and Practical Pricing</h3><p>We explain the factors that shape your event branding costs, so you know what is included and can plan your budget with confidence.</p></li>
+				<li><span class="ev-why__n">05</span><h3>Experience Across Local Event Formats</h3><p>From inaugurations and college fests to trade fairs and cultural festivals, we consider the purpose, audience and setting of each event when planning its branding.</p></li>
 			</ol>
 		</div>
 	</section>
 
-	<!-- 8. Events we brand across Kerala: cities and districts, Kerala-specific event types, venue familiarity -->
+	<!-- 8. Across Kerala -->
 	<section class="sec ev-sec" id="kerala">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Kerala' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Events we brand</span> <span class="sh__b">across Kerala</span></h2>
+				<h2 class="sh__h"><span class="sh__a">Every City Has Its Own Stage:</span> <span class="sh__b">Event Branding Across Kerala</span></h2>
 			</div>
 			<div class="ev-kl">
 				<div class="ev-route">
-					<div class="ev-route__head"><h3>Cities and districts</h3><span class="ev-route__dir" aria-hidden="true">North &rarr; South</span></div>
+					<div class="ev-route__head"><h3>Cities We Work In</h3><span class="ev-route__dir" aria-hidden="true">North &rarr; South</span></div>
+					<p class="ev-route__lead">We plan and promote events across the state, including:</p>
 					<ol class="ev-route__list">
-						<?php foreach ( array(
-							array( 'Kannur', 'Inaugurations, dealer meets and community events in north Kerala.', false ),
-							array( 'Kozhikode', 'Our studio is here, at Govt. Cyberpark, minutes from the city’s venues.', true ),
-							array( 'Malappuram', 'Store launches, education events and Gulf-linked business meets.', false ),
-							array( 'Thrissur', 'Festival, cultural and retail events in the cultural capital.', false ),
-							array( 'Kochi', 'Conferences, product launches and trade expos in Kerala’s business hub.', false ),
-							array( 'Thiruvananthapuram', 'Government events, summits and institutional programmes in the capital.', false ),
-						) as $c ) : ?>
-						<li class="ev-stop<?php echo $c[2] ? ' is-home' : ''; ?>">
+						<?php foreach ( array( array( 'Kannur', false ), array( 'Kozhikode', true ), array( 'Malappuram', false ), array( 'Thrissur', false ), array( 'Kochi', false ), array( 'Thiruvananthapuram', false ) ) as $c ) : ?>
+						<li class="ev-stop<?php echo $c[1] ? ' is-home' : ''; ?>">
 							<span class="ev-stop__dot" aria-hidden="true"></span>
-							<div><strong><?php echo esc_html( $c[0] ); ?></strong><?php if ( $c[2] ) : ?> <span class="ev-stop__pill">Our studio</span><?php endif; ?><p><?php echo esc_html( $c[1] ); ?></p></div>
+							<div><strong><?php echo esc_html( $c[0] ); ?></strong><?php if ( $c[1] ) : ?> <span class="ev-stop__pill">Our studio</span><?php endif; ?></div>
 						</li>
 						<?php endforeach; ?>
-						<li class="ev-stop ev-stop--more"><span class="ev-stop__dot" aria-hidden="true"></span><div><strong>And others</strong><p>Our team travels to venues across every district of Kerala.</p></div></li>
+						<li class="ev-stop ev-stop--more"><span class="ev-stop__dot" aria-hidden="true"></span><div><p>We also take on events in other districts when the date and the brief call for it.</p></div></li>
 					</ol>
 				</div>
 				<div class="ev-kl__side">
-					<div class="ev-panel">
-						<h3>Kerala-specific event types</h3>
-						<p>Kerala events have their own rhythm: inaugurations timed to auspicious dates, college fests with student crowds, trade fairs and Gulf-linked business expos that bring visitors from abroad, festival events and weddings.</p>
-						<ul class="ev-types">
-							<?php foreach ( array(
-								array( 'Inaugurations', '<path d="M4 20h16M6 20V9l6-5 6 5v11"/><path d="M3 9h18" stroke-dasharray="2 2"/>' ),
-								array( 'College fests', '<path d="M3 9.5 12 5l9 4.5-9 4.5z"/><path d="M7 11.5V16c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5v-4.5M21 9.5v5"/>' ),
-								array( 'Trade fairs', '<path d="M3 9h18l-1.5-5h-15z"/><path d="M4.5 9v11h15V9M9 20v-6h6v6"/>' ),
-								array( 'Gulf-linked business expos', '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18Z"/>' ),
-								array( 'Cultural and festival events', '<path d="M12 3c2 3 5 4 5 8a5 5 0 0 1-10 0c0-4 3-5 5-8Z"/><path d="M12 21v-5"/>' ),
-								array( 'Wedding and reception branding', '<path d="M12 20s-7-4.3-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.7-7 10-7 10Z"/>' ),
-							) as $t ) : ?>
-							<li><span class="ev-types__i"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $t[1]; // phpcs:ignore -- fixed markup ?></svg></span><?php echo esc_html( $t[0] ); ?></li>
-							<?php endforeach; ?>
-						</ul>
-					</div>
-					<div class="ev-panel ev-venue">
-						<h3>Venue and vendor familiarity</h3>
-						<ul class="ev-venue__list" aria-label="Venue types">
-							<?php foreach ( array( 'Convention centres', 'Exhibition grounds', 'Hotel ballrooms', 'College auditoriums', 'Open-air grounds' ) as $v ) echo '<li>' . esc_html( $v ) . '</li>'; ?>
-						</ul>
-						<p>Each venue has its own sizes, rules and set-up windows. We measure the venue, work to its timings, and coordinate with the printers and fabricators who deliver to it.</p>
+					<div class="ev-panel ev-kl__lead">
+						<p class="ev-lead">Events in Kerala are as varied as the state itself. A trade fair in Kochi, a college fest in Kozhikode and a cultural festival in Thrissur all call for different thinking. As an event branding agency in Kerala, we bring local understanding to each.</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- 9. Pricing and what affects cost -->
-	<section class="sec ev-sec" id="pricing">
-		<div class="wrap">
-			<div class="sh">
-				<?php echo $wu_eyebrow( 'Pricing' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Pricing and what</span> <span class="sh__b">affects cost</span></h2>
-			</div>
-			<div class="ev-ticket">
-				<div class="ev-ticket__main"><span class="ev-ticket__k">Event branding</span><p class="ev-from"><span>Starting from</span> <strong>₹25,000</strong></p></div>
-				<div class="ev-ticket__stub"><span>Admit</span><strong>One plan</strong><span>before the price</span></div>
-			</div>
-			<p class="ev-from__note">Every event is different, so we send a plan with the cost broken down before you commit. These are the things that move the price:</p>
-			<ul class="ev-costs">
-				<?php foreach ( array(
-					array( 'Event scale', 'The number of guests, halls and days the branding has to cover.', 'One hall, one day', 'many halls, many days', 30, '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M14.5 14.2c2.6-.4 5 1.2 5.6 4.8"/>' ),
-					array( 'Number of branded touchpoints', 'A backdrop and a few standees, or a fully branded venue.', 'A few pieces', 'a full venue', 45, '<rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>' ),
-					array( 'Materials and fabrication', 'Flex and vinyl cost less than fabricated arches, built stalls or LED content.', 'Flex and vinyl', 'fabrication and LED', 60, '<path d="M12 3 3 8l9 5 9-5z"/><path d="m3 13 9 5 9-5"/>' ),
-					array( 'Installation', 'Set-up crew, transport, venue timings and removal after the event.', 'Simple set-up', 'crew, transport and removal', 50, '<path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L4 17l3 3 5.2-5.2a4 4 0 0 0 5.3-5.3l-2.6 2.6-2.6-.6-.6-2.6z"/>' ),
-					array( 'Timeline', 'A comfortable lead time costs less than a rush job with overnight printing.', 'Comfortable lead time', 'a rush job', 70, '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/>' ),
-				) as $i => $c ) : ?>
-				<li class="ev-cost" style="--lvl: <?php echo (int) $c[4]; ?>%">
-					<div class="ev-cost__top">
-						<span class="ev-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $c[5]; // phpcs:ignore -- fixed markup ?></svg></span>
-						<span class="ev-cost__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
-					</div>
-					<h3><?php echo esc_html( $c[0] ); ?></h3>
-					<p><?php echo esc_html( $c[1] ); ?></p>
-					<div class="ev-meter">
-						<div class="ev-meter__row" aria-hidden="true"><span>₹</span><div class="ev-meter__bar"><span></span></div><span>₹₹₹</span></div>
-						<p class="ev-meter__up">Costs more with: <strong><?php echo esc_html( $c[3] ); ?></strong></p>
-					</div>
-				</li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-	</section>
-
-	<!-- 10. Portfolio and case studies: client type, challenge, what we branded, result; photos; testimonials and client logos -->
+	<!-- 9. Portfolio -->
 	<section class="sec ev-sec" id="work">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Portfolio' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Portfolio and</span> <span class="sh__b">case studies</span></h2>
+				<h2 class="sh__h"><span class="sh__a">Making Every Event</span> <span class="sh__b">a Brand Experience</span></h2>
 			</div>
-			<div class="ev-cases">
+			<div class="ev-intro"><p>A portfolio shows more than a list of services ever could. Each project below follows the same structure, so you can see how we think and what the result was.</p></div>
+			<div class="ev-cases ev-cases--two">
 				<?php foreach ( $wu_cases as $c ) : ?>
 				<article class="ev-case">
-					<a class="ev-case__img" href="<?php echo esc_url( $c['url'] ); ?>" tabindex="-1" aria-hidden="true"><img src="<?php echo esc_url( $c['img'] ); ?>" alt="" loading="lazy" decoding="async"></a>
+					<?php if ( $c['url'] ) : ?><a class="ev-case__img" href="<?php echo esc_url( $c['url'] ); ?>" tabindex="-1" aria-hidden="true"><?php else : ?><div class="ev-case__img<?php echo $c['logo'] ? ' ev-case__img--logo' : ''; ?>" aria-hidden="true"><?php endif; ?><img src="<?php echo esc_url( $c['img'] ); ?>" alt="" loading="lazy" decoding="async"><?php echo $c['url'] ? '</a>' : '</div>'; ?>
 					<div class="ev-case__body">
-						<h3><a href="<?php echo esc_url( $c['url'] ); ?>"><?php echo esc_html( $c['name'] ); ?></a></h3>
+						<?php if ( $c['tags'] ) : ?><p class="ev-case__type"><?php echo esc_html( $c['tags'] ); ?></p><?php endif; ?>
+						<h3><?php if ( $c['url'] ) : ?><a href="<?php echo esc_url( $c['url'] ); ?>"><?php echo esc_html( $c['name'] ); ?></a><?php else : echo esc_html( $c['name'] ); endif; ?></h3>
+						<p class="ev-case__sub"><?php echo esc_html( $c['sub'] ); ?></p>
 						<dl class="ev-case__dl">
 							<div><dt>Client type</dt><dd><?php echo esc_html( $c['type'] ); ?></dd></div>
-							<div><dt>Challenge</dt><dd><?php echo esc_html( $c['problem'] ); ?></dd></div>
-							<div><dt>What we branded</dt><dd><?php echo esc_html( $c['did'] ); ?></dd></div>
-							<div><dt>Result</dt><dd><ul class="ev-case__stats"><?php foreach ( $c['stats'] as $st ) : ?><li><strong><?php echo esc_html( $st[0] ); ?></strong><span><?php echo esc_html( $st[1] ); ?></span></li><?php endforeach; ?></ul></dd></div>
+							<div><dt>The challenge</dt><dd><?php foreach ( $c['problem'] as $pp ) echo '<p>' . esc_html( $pp ) . '</p>'; ?></dd></div>
+							<div><dt><?php echo esc_html( $c['did_h'] ); ?></dt><dd><ul class="ev-case__did"><?php foreach ( $c['did'] as $d ) echo '<li>' . ( is_array( $d ) ? '<strong>' . esc_html( $d[0] ) . ':</strong> ' . esc_html( $d[1] ) : esc_html( $d ) ) . '</li>'; ?></ul></dd></div>
+							<div><dt>The result</dt><dd><p><?php echo esc_html( $c['result'] ); ?></p><?php if ( $c['stats'] ) : ?><ul class="ev-case__stats"><?php foreach ( $c['stats'] as $st ) : ?><li><strong><?php echo esc_html( $st[0] ); ?></strong><span><?php echo esc_html( $st[1] ); ?></span></li><?php endforeach; ?></ul><?php endif; ?><?php if ( $c['after'] ) : ?><p><?php echo esc_html( $c['after'] ); ?></p><?php endif; ?></dd></div>
 						</dl>
-						<a class="ev-more" href="<?php echo esc_url( $c['url'] ); ?>">View case study <?php echo $wu_ne; // phpcs:ignore ?></a>
+						<?php if ( $c['url'] ) : ?><a class="ev-more" href="<?php echo esc_url( $c['url'] ); ?>">View case study <?php echo $wu_ne; // phpcs:ignore ?></a><?php endif; ?>
 					</div>
 				</article>
 				<?php endforeach; ?>
@@ -479,21 +453,41 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		</div>
 	</section>
 
-	<!-- 11. How to choose an event branding agency: checklist + questions to ask any agency, including us -->
+		<!-- 10. Pricing -->
+	<section class="sec ev-sec" id="pricing">
+		<div class="wrap">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'Pricing' ); // phpcs:ignore ?>
+				<h2 class="sh__h"><span class="sh__a">Pricing That Fits</span> <span class="sh__b">Your Event Goals</span></h2>
+			</div>
+			<div class="ev-ticket">
+				<div class="ev-ticket__main"><span class="ev-ticket__k">Event branding and promotion</span><p class="ev-from"><span>Starting from</span> <strong>₹1 lakh</strong></p></div>
+				<div class="ev-ticket__stub"><span>Admit</span><strong>One plan</strong><span>before the price</span></div>
+			</div>
+			<div class="ev-price">
+				<p>A full house does not happen by itself. Someone has to know about your event, want to come, and then actually walk in. That is the work we do at WiseUp, and our event branding and promotion packages start from ₹1 lakh.</p>
+				<p>Our focus is on bringing people to your event and to your stall. We plan how your event reaches the right audience, build the buzz before the doors open, and drive walk-ins while it is running. For exhibitors, that includes bringing visitors to your stall, so your investment in the space turns into real conversations.</p>
+				<p>Printing, fabrication, and set construction are handled by specialist vendors, and we coordinate with them so your branding stays consistent. What you pay us for is the thinking and the reach: getting your event in front of as many of the right people as possible.</p>
+				<p>Every event is different, so your final quote depends on what you want to achieve. Share your event date and goals, and we will send a clear quote showing what is included.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- 11. How to tell the difference -->
 	<section class="sec ev-sec" id="choose">
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Choosing an agency' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">How to choose an</span> <span class="sh__b">event branding agency</span></h2>
+				<h2 class="sh__h"><span class="sh__a">Not All Event Branding Agencies Work Alike:</span> <span class="sh__b">How to Tell the Difference</span></h2>
 			</div>
-			<p class="ev-choose__intro">Use this checklist with any agency you talk to, including us. Each point comes with the question to ask.</p>
+			<div class="ev-intro"><p>Most agencies can show you an attractive mood board. Fewer can tell you who will be at the venue at 6 am on setup day. The checks that separate the two are practical, and they are far easier to make before you sign than after something goes wrong. Here is what we would look at in your position.</p></div>
 			<ol class="ev-choose">
 				<?php foreach ( array(
-					array( 'Portfolio relevance', 'Ask for events like yours, at a similar scale, with photos of the real installations.', 'Can we see events you have branded that are like ours?' ),
-					array( 'Production capability', 'Check whether they print, fabricate and install, or only send design files.', 'Do you handle printing and installation yourselves?' ),
-					array( 'Turnaround', 'Ask how many days before the event they need the brief.', 'How many days before the event do you need the brief?' ),
-					array( 'Support on event day', 'Ask who from their team will be at the venue during set-up and on the day.', 'Will your team be at the venue on event day?' ),
-					array( 'Clarity on what is included', 'Make sure the quote lists design, print, transport, installation and removal.', 'What exactly is included in the price?' ),
+					array( 'Portfolio relevance', 'Ask for work from events of a similar size and type. Look for photographs of real installations, not only digital mock-ups, because a design that looks good on screen can fall flat in a hall.' ),
+					array( 'Production capability', 'Find out who prints, fabricates and installs. If the agency only designs, ask who is accountable when a banner arrives in the wrong size.' ),
+					array( 'Turnaround', 'Ask for a schedule that works backwards from your event date, with approval points along the way. A trustworthy agency will tell you what cannot be done in the time you have.' ),
+					array( 'Support on event day', 'Confirm that someone from the team will be at the venue during installation and while the event runs.' ),
+					array( 'Clarity on what is included', 'A good quote lists every item with its size, material, quantity and number of revision rounds. Vague quotes tend to grow.' ),
 				) as $i => $c ) : ?>
 				<li class="ev-chk">
 					<div class="ev-chk__top">
@@ -502,10 +496,24 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					</div>
 					<h3><?php echo esc_html( $c[0] ); ?></h3>
 					<p><?php echo esc_html( $c[1] ); ?></p>
-					<p class="ev-chk__ask"><span>Ask</span><?php echo esc_html( $c[2] ); ?></p>
 				</li>
 				<?php endforeach; ?>
 			</ol>
+			<div class="ev-panel ev-ask">
+				<h3>Questions to Ask Any Agency, Including Us</h3>
+				<ol class="ev-ask__list">
+					<?php foreach ( array(
+						'Can I see photographs of installations from events similar to mine?',
+						'Who handles production, printing and installation, and who is accountable for each?',
+						'What file standards do you follow before anything goes to print?',
+						'How many revision rounds are included, and what happens after that?',
+						'Will someone from your team be at the venue during setup and on event day?',
+						'What is your timeline for an event on my date, and what do you need from me to keep to it?',
+						'What does the quote include, and what could cost extra?',
+					) as $q ) echo '<li>' . esc_html( $q ) . '</li>'; ?>
+				</ol>
+				<p class="ev-note">At WiseUp, we are glad to be asked every one of these. Clear answers early in the conversation are usually a good sign of how the project will run.</p>
+			</div>
 		</div>
 	</section>
 
@@ -514,7 +522,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		<div class="wrap">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
-				<h2 id="ev-faq-h" class="sh__h"><span class="sh__a">FAQ</span></h2>
+				<h2 id="ev-faq-h" class="sh__h"><span class="sh__a">Frequently Asked</span> <span class="sh__b">Questions</span></h2>
 			</div>
 			<div class="faq">
 				<?php foreach ( $wu_faq as $q ) : ?>
@@ -533,7 +541,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-final">
 				<div class="ev-final__copy">
 					<?php echo $wu_eyebrow( 'Enquire' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><span class="sh__a">Tell us about</span> <span class="sh__b">your event</span></h2>
+					<h2 class="sh__h"><span class="sh__a">Got an Event Date?</span> <span class="sh__b">Let’s Give It a Look.</span></h2>
+					<p class="ev-final__p">Tell us what you are planning, and we will tell you how we would brand it. A short conversation is often enough to know where to begin.</p>
 					<div class="ev-contact">
 						<a class="ev-ct ev-ct--wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener">
 							<span class="ev-ct__i"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35Zm-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88Zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg></span>
@@ -604,8 +613,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	document.documentElement.classList.add('ev-anim');
 	// proof numbers count up when the hero loads
 	if (!gs) document.querySelectorAll('.wu-ev [data-count]').forEach(function (el) {
-		var to = +el.getAttribute('data-count'), t0 = performance.now();
-		(function step(t) { var k = Math.min(1, (t - t0) / 1400); el.textContent = Math.round(to * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(step); })(t0);
+		var raw = el.getAttribute('data-count'), to = +raw, dp = (raw.split('.')[1] || '').length, t0 = performance.now();
+		(function step(t) { var k = Math.min(1, (t - t0) / 1400); el.textContent = (to * (1 - Math.pow(1 - k, 3))).toFixed(dp); if (k < 1) requestAnimationFrame(step); })(t0);
 	});
 	// process line fills with scroll
 	var steps = document.querySelector('.wu-ev .ev-steps'), raf = 0;
@@ -621,7 +630,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	}
 	if (gs) return;
 	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
-	document.querySelectorAll('.wu-ev :is(.ev-card, .ev-step, .ev-why li, .ev-case, .ev-panel, .ev-chk, .ev-quotes, .ev-cost)').forEach(function (el, i) {
+	document.querySelectorAll('.wu-ev :is(.ev-card, .ev-step, .ev-why li, .ev-case, .ev-panel, .ev-chk, .ev-quotes, .ev-ask)').forEach(function (el, i) {
 		if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('ev-rise'); el.style.setProperty('--d', (i % 3) * 70 + 'ms'); io.observe(el); }
 	});
 })();

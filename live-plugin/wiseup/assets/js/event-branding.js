@@ -80,9 +80,9 @@
 			intro.to(stats, { opacity: 1, y: 0, duration: 1, stagger: 0.08, ease: EASE, clearProps: 'transform' }, 0.65);
 			// numbers count up as they rise
 			$$('[data-count]', hero).forEach(function (n, i) {
-				var o = { v: 0 }, end = parseInt(n.getAttribute('data-count'), 10) || 0;
+				var raw = n.getAttribute('data-count') || '0', o = { v: 0 }, end = parseFloat(raw) || 0, dp = (raw.split('.')[1] || '').length;
 				n.textContent = '0';
-				intro.to(o, { v: end, duration: 1.4, ease: 'power2.out', onUpdate: function () { n.textContent = Math.round(o.v); } }, 0.7 + i * 0.08);
+				intro.to(o, { v: end, duration: 1.4, ease: 'power2.out', onUpdate: function () { n.textContent = o.v.toFixed(dp); } }, 0.7 + i * 0.08);
 			});
 		}
 		var stage = $('.ev-stage', hero); if (stage) block(stage, { kind: 'scale', intro: true, at: 0.25 });

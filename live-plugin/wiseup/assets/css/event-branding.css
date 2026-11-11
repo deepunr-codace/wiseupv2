@@ -552,3 +552,51 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-timeline__num { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
 .wu-ev .ev-timeline__num strong { line-height: 1; }
 .wu-ev .ev-timeline__num span { margin-top: 0; line-height: 1; padding-left: .22em; }
+
+/* ===== new copy from "Event Branding Agency in Kerala for Events People Remember" (2026-11-11) ===== */
+.wu-ev .ev-intro { display: grid; gap: 14px; max-width: 72ch; margin: -16px 0 clamp(24px, 3vw, 40px); }
+.wu-ev .ev-intro p { font-size: clamp(16px, 1.3vw, 19px); line-height: 1.6; color: var(--soft); }
+.wu-ev .ev-prose p + p { margin-top: -4px; }
+/* sectors: name + tone, one per row */
+.wu-ev .ev-sectors { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.wu-ev .ev-sectors li { display: grid; grid-template-columns: minmax(130px, 11rem) minmax(0, 1fr); gap: 4px 18px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.55; }
+.wu-ev .ev-sectors strong { font-weight: 500; color: #fff; }
+.wu-ev .ev-sectors strong::before { content: ''; display: inline-block; width: 7px; height: 7px; margin: 0 10px 2px 0; border-radius: 50%; background: var(--lime); }
+.wu-ev .ev-sectors span { color: var(--soft); }
+@media (max-width: 767px) { .wu-ev .ev-sectors li { grid-template-columns: minmax(0, 1fr); } }
+/* Kerala: route + lead panel */
+.wu-ev .ev-route__lead { margin: -8px 0 12px; font-size: 15px; color: var(--soft); }
+.wu-ev .ev-stop--more p { margin-top: 0; font-size: 15px; color: var(--soft); }
+.wu-ev .ev-kl__lead { min-height: 100%; align-content: center; background: radial-gradient(120% 80% at 100% 100%, rgb(194 247 96 / .1), transparent 60%), var(--card); }
+.wu-ev .ev-kl__lead .ev-lead { font-size: clamp(20px, 1.9vw, 28px); line-height: 1.45; color: #fff; }
+.wu-ev .ev-kl { align-items: stretch; }
+.wu-ev .ev-kl__side { align-content: stretch; }
+/* portfolio: two projects */
+.wu-ev .ev-cases.ev-cases--two { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+@media (max-width: 1023px) { .wu-ev .ev-cases.ev-cases--two { grid-template-columns: minmax(0, 1fr); } }
+.wu-ev .ev-case__img--logo { display: grid; place-items: center; background: radial-gradient(90% 90% at 50% 40%, #26262a, #141416); }
+.wu-ev .ev-case__img--logo img { width: 52%; height: auto; max-height: 55%; object-fit: contain; filter: grayscale(1) invert(1); opacity: .92; }
+.wu-ev .ev-case__type { margin: 0; font-size: 11.5px; line-height: 1.6; letter-spacing: .1em; }
+.wu-ev .ev-case__sub { margin-top: -8px; font-size: 16px; line-height: 1.45; color: var(--soft); }
+.wu-ev .ev-case__dl dd p + p { margin-top: 10px; }
+.wu-ev .ev-case__dl dd > p + .ev-case__stats, .wu-ev .ev-case__stats + p { margin-top: 12px; }
+.wu-ev .ev-case__did { display: grid; gap: 8px; margin: 6px 0 0; padding: 0; list-style: none; }
+.wu-ev .ev-case__did li { position: relative; padding-left: 18px; }
+.wu-ev .ev-case__did li::before { content: ''; position: absolute; left: 0; top: .62em; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); }
+.wu-ev .ev-case__did strong { font-weight: 500; color: #fff; }
+.wu-ev .ev-cases--two .ev-case__stats { grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); }
+/* pricing copy under the ticket */
+.wu-ev .ev-price { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px clamp(24px, 4vw, 64px); margin-top: clamp(24px, 3vw, 40px); }
+.wu-ev .ev-price p { font-size: 16.5px; line-height: 1.7; color: var(--soft); }
+.wu-ev .ev-price p:first-child { grid-column: 1 / -1; max-width: 70ch; font-size: clamp(19px, 1.6vw, 23px); line-height: 1.5; color: #fff; }
+@media (max-width: 767px) { .wu-ev .ev-price { grid-template-columns: minmax(0, 1fr); } }
+/* questions to ask */
+.wu-ev .ev-ask { margin-top: 14px; background: linear-gradient(160deg, rgb(194 247 96 / .08), var(--card) 55%); box-shadow: inset 0 0 0 1px rgb(194 247 96 / .14); }
+.wu-ev .ev-ask h3 { font-size: clamp(20px, 1.7vw, 24px); }
+.wu-ev .ev-ask__list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(20px, 3vw, 48px); margin: 0; padding: 0; list-style: none; counter-reset: ask; }
+.wu-ev .ev-ask__list li { counter-increment: ask; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); font-size: 15.5px; line-height: 1.55; color: #fff; }
+.wu-ev .ev-ask__list li::before { content: counter(ask, decimal-leading-zero); display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-size: 12px; font-weight: 600; color: var(--lime-ink); background: var(--lime); }
+@media (max-width: 767px) { .wu-ev .ev-ask__list { grid-template-columns: minmax(0, 1fr); } }
+.wu-ev .ev-final__p { max-width: 44ch; }
+.wu-ev .ev-case__img--logo img { filter: grayscale(1) invert(1) brightness(1.9); opacity: 1; }
+.wu-ev .ev-cases--two .ev-case__stats { grid-template-columns: repeat(auto-fit, minmax(92px, 1fr)); }
