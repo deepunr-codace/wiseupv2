@@ -210,30 +210,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 2. One event, one identity -->
 	<section class="sec ev-sec" id="what">
 		<div class="wrap ev-split">
-			<div class="ev-split__l">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Event branding' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">One Event, One Identity:</span> <span class="sh__b">What Event Branding Really Means</span></h2>
-			</div>
-			<div class="ev-fam" aria-hidden="true">
-				<div class="ev-fam__parent">
-					<small>Parent brand</small>
-					<div class="ev-fam__node"><span class="ev-fam__mark">W</span><b>Your brand</b><i style="--c:#c2f760"></i><i style="--c:#f4f4f5"></i><i style="--c:#3f3f46"></i></div>
-				</div>
-				<svg class="ev-fam__lines" viewBox="0 0 100 40" preserveAspectRatio="none"><path d="M50 0 C50 22 25 18 25 40"/><path d="M50 0 C50 22 75 18 75 40"/></svg>
-				<div class="ev-fam__kids">
-					<div class="ev-fam__kid ev-fam__kid--a">
-						<div class="ev-fam__art"><span class="ev-fam__mark">W</span><em></em><em></em><span class="ev-fam__cue"></span></div>
-						<small>Event identity</small><b>Leadership summit</b>
-						<div class="ev-fam__sw"><i style="--c:#1f2b47"></i><i style="--c:#d8b45f"></i><i style="--c:#c2f760"></i></div>
-					</div>
-					<div class="ev-fam__kid ev-fam__kid--b">
-						<div class="ev-fam__art"><span class="ev-fam__mark">W</span><em></em><em></em><span class="ev-fam__cue"></span></div>
-						<small>Event identity</small><b>Customer celebration</b>
-						<div class="ev-fam__sw"><i style="--c:#ff7a59"></i><i style="--c:#8b5cf6"></i><i style="--c:#c2f760"></i></div>
-					</div>
-				</div>
-			</div>
 			</div>
 			<div class="ev-prose">
 				<p class="ev-lead">Event branding is the practice of giving an event its own visual identity and tone, so that every part of it feels like it belongs together. The name, logo, colours, fonts, theme and signage all work as one identity, from the invitation people receive to the backdrop they photograph. At WiseUp, we see this as strategic work, not decoration. Done well, guests do not notice the branding as separate pieces. They simply feel that the event was thought through.</p>

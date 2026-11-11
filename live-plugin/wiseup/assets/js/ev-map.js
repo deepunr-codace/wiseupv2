@@ -1,9 +1,7 @@
 /*
  * Event Branding page: the Kerala map beside "Cities We Work In".
- * A tilted 3D dot map of Kerala drawn with WebGL (2D canvas fallback): dots rise toward the Western Ghats, a light ring
- * ripples out of the Kozhikode studio and a radar sweep circles it, the Arabian Sea rolls in as wave dots onto a glowing
- * coastline, arcs of light run from the studio to each city, every city has a beacon under a stage spotlight cone and
- * the lit city throws up sparkles.
+ * A tilted 3D dot map of Kerala drawn with WebGL (2D canvas fallback): dots rise toward the Western Ghats, a soft light
+ * ring ripples out of the Kozhikode studio, a thin coastline, a light arc from the studio to the active city, beacons.
  * The active city cycles north to south; hovering a city in the list (or on the map) lights it up. The camera leans
  * toward the pointer. Paused off screen; one still frame under reduced motion.
  */
@@ -49,13 +47,7 @@
 	for (var lat = 8.1; lat <= 12.95; lat += STEP) {
 		var row = Math.round((lat - 8.1) / STEP), coast = lonAt(COAST, Math.min(12.78, Math.max(8.29, lat)));
 		for (var lon = 73.2 + (row % 2) * STEP / 2; lon <= 77.75; lon += STEP) {
-			if (lon < coast - 0.01) { // the Arabian Sea: wave dots, thinning out away from the coast
-				var off = coast - lon;
-				if (off > 1.9 || Math.random() < .3 + off * .25) continue;
-				var ls = local([lon, lat]);
-				pts.push(ls[0], ls[1], 2, off, Math.random());
-				continue;
-			}
+			if (lon < coast - 0.01) continue; // sea
 			var inK = inside(lon, lat);
 			var east = lonAt(EAST, Math.min(12.78, Math.max(8.33, lat)));
 			var e = inK ? Math.pow(Math.max(0, Math.min(1, (lon - coast) / Math.max(0.15, east - coast))), 1.6) : 0.12;
@@ -69,8 +61,8 @@
 	var home = CITIES[1].l;
 
 	// ---- camera ----
-	var Y0 = -0.08, T0 = 0.92;
-	var cam = { yaw: Y0, tilt: T0, D: 7 }, aim = { yaw: Y0, tilt: T0 };
+	var Y0 = -0.06, T0 = 0.82;
+	var cam = { yaw: Y0, tilt: T0, D: 8.5 }, aim = { yaw: Y0, tilt: T0 };
 	var W = 0, H = 0, dpr = 1, S = 1, OX = 0, OY = 0;
 	function proj(x, y, z) {
 		var cy = Math.cos(cam.yaw), sy = Math.sin(cam.yaw), ct = Math.cos(cam.tilt), st = Math.sin(cam.tilt);
@@ -80,7 +72,7 @@
 	}
 	function fit() {
 		var r = box.getBoundingClientRect();
-		dpr = Math.min(2, window.devicePixelRatio || 1);
+		dpr = Math.min(1.75, window.devicePixelRatio || 1);
 		W = Math.max(1, Math.round(r.width * dpr)); H = Math.max(1, Math.round(r.height * dpr));
 		[glc, ovc].forEach(function (c) { c.width = W; c.height = H; });
 		var save = { yaw: cam.yaw, tilt: cam.tilt }; cam.yaw = Y0; cam.tilt = T0; S = 1; OX = 0; OY = 0;
@@ -101,25 +93,25 @@
 			'varying float va; varying vec3 vc;',
 			'void main(){',
 			' float land = step(.5, k) * step(k, 1.5), sea = step(1.5, k);',
-			' float dh = distance(p, home); float ring = mod(t * .55, 3.2);',
-			' float w = exp(-pow((dh - ring) * 7., 2.)) * (1. - ring / 3.2) * land;',
+			' float dh = distance(p, home); float ring = mod(t * .32, 3.2);',
+			' float w = exp(-pow((dh - ring) * 7., 2.)) * (1. - ring / 3.2) * land * .55;',
 			' float da = distance(p, act); float ra = at * 1.4;',
 			' float wa = exp(-pow((da - ra) * 9., 2.)) * max(0., 1. - at / 1.6) * land;',
 			' float glow = exp(-da * da * 60.) * land;',
 			' vec2 v = p - home; float ang = atan(v.y, v.x); float sw = mod(t * .9, 6.2832);',
-			' float dif = mod(sw - ang + 6.2832, 6.2832); float radar = exp(-dif * 3.) * exp(-dh * .55) * land;',
+			' float dif = mod(sw - ang + 6.2832, 6.2832); float radar = 0.;',
 			' float wave = sin(p.x * 9. + p.y * 2.5 + t * 1.8 + e * 2.), crest = smoothstep(.55, 1., wave) * sea;',
-			' float z = (e * .32 + .015 + w * .1 + wa * .08 + radar * .05 + .012 * sin(t * 1.4 + r * 6.283)) * land + (.02 * wave - .02) * sea;',
+			' float z = (e * .32 + .015 + w * .1 + wa * .08 + radar * .05 + .006 * sin(t * .9 + r * 6.283)) * land + (.02 * wave - .02) * sea;',
 			' float cy = cos(yaw), sy = sin(yaw), ct = cos(tilt), st = sin(tilt);',
 			' float x1 = p.x * cy - p.y * sy, y1 = p.x * sy + p.y * cy;',
 			' float y2 = y1 * ct + z * st, d = y1 * st - z * ct, s = D / (D + d);',
 			' vec2 q = vec2(x1 * s * S + off.x, -y2 * s * S + off.y);',
 			' gl_Position = vec4(q.x / res.x * 2. - 1., 1. - q.y / res.y * 2., 0., 1.);',
-			' gl_PointSize = (land > .5 ? 3.3 + e * 1.6 : sea > .5 ? 2.6 + crest * 2.2 : 2.) * dpr * s;',
+			' gl_PointSize = (land > .5 ? 3. + e * 1.5 : sea > .5 ? 2.6 + crest * 2.2 : 2.) * dpr * s;',
 			' vec3 lo = vec3(.22, .66, .52), hi = vec3(.8, .99, .4);',
 			' vc = land > .5 ? mix(lo, hi, e * .85 + .15) : sea > .5 ? mix(vec3(.12, .42, .46), vec3(.6, .95, .85), crest) : vec3(.55, .58, .6);',
 			' vc = mix(vc, vec3(.92, 1., .72), clamp(w * 1.2 + wa + glow * .6 + radar * .8, 0., 1.));',
-			' va = land > .5 ? (.56 + e * .32 + .12 * sin(t * 1.1 + r * 9.) + w * .9 + wa + glow * .5 + radar * .7)',
+			' va = land > .5 ? (.56 + e * .32 + .05 * sin(t * .8 + r * 9.) + w * .9 + wa + glow * .5 + radar * .7)',
 			'    : sea > .5 ? (.24 + crest * .6) * exp(-e * .9) : .12;',
 			'}'].join('\n');
 		var fs = 'precision mediump float; varying float va; varying vec3 vc; void main(){ float d = length(gl_PointCoord - .5); float a = smoothstep(.5, .32, d) * va; if (a < .01) discard; gl_FragColor = vec4(vc, a); }';
@@ -157,8 +149,7 @@
 	function frame(now) {
 		T = still ? 2.2 : Math.max(0, (now - t0) / 1000);
 		var dt = Math.min(.05, (now - (last || now)) / 1000); last = now;
-		var drift = still || hold ? 0 : Math.sin(T * .18) * .07;
-		cam.yaw += (aim.yaw + drift - cam.yaw) * Math.min(1, dt * 4 || 1);
+		cam.yaw += (aim.yaw - cam.yaw) * Math.min(1, dt * 4 || 1);
 		cam.tilt += (aim.tilt - cam.tilt) * Math.min(1, dt * 4 || 1);
 		if (!still && !hold && T - actAt > 2.6) setActive((active + 1) % CITIES.length);
 		var age = T - actAt, A = CITIES[active];
@@ -172,15 +163,10 @@
 		ctx.clearRect(0, 0, W, H);
 		if (!gl) draw2dDots();
 		ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-		// glowing coastline (the backwaters edge) with a light running down it
+		// thin coastline
 		var cp = COAST.map(function (ll) { var l = local(ll); return proj(l[0], l[1], .02); });
 		ctx.beginPath(); cp.forEach(function (q, i) { if (i) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]); });
-		ctx.strokeStyle = 'rgba(150,240,210,.10)'; ctx.lineWidth = 7 * dpr; ctx.stroke();
-		ctx.strokeStyle = 'rgba(170,250,215,.45)'; ctx.lineWidth = 1.2 * dpr; ctx.stroke();
-		var cu = still ? .3 : (T * .07) % 1, ci = cu * (cp.length - 1), c0 = cp[Math.floor(ci)], c1 = cp[Math.min(cp.length - 1, Math.floor(ci) + 1)], cf = ci % 1;
-		var cx = c0[0] + (c1[0] - c0[0]) * cf, cyy = c0[1] + (c1[1] - c0[1]) * cf, cg = ctx.createRadialGradient(cx, cyy, 0, cx, cyy, 16 * dpr);
-		cg.addColorStop(0, 'rgba(220,255,240,.9)'); cg.addColorStop(1, 'rgba(150,240,210,0)');
-		ctx.fillStyle = cg; ctx.beginPath(); ctx.arc(cx, cyy, 16 * dpr, 0, 6.283); ctx.fill();
+		ctx.strokeStyle = 'rgba(194,247,96,.22)'; ctx.lineWidth = 1 * dpr; ctx.stroke();
 		// arcs of light from the studio
 		CITIES.forEach(function (c, i) {
 			if (c.home) return;
@@ -188,8 +174,9 @@
 			var dx = c.l[0] - home[0], dy = c.l[1] - home[1], len = Math.sqrt(dx * dx + dy * dy), h = .12 + len * .3;
 			for (var s = 0; s <= 28; s++) { var u = s / 28; pth.push(proj(home[0] + dx * u, home[1] + dy * u, .05 + Math.sin(Math.PI * u) * h)); }
 			ctx.beginPath(); pth.forEach(function (q, s) { if (s) ctx.lineTo(q[0], q[1]); else ctx.moveTo(q[0], q[1]); });
-			ctx.strokeStyle = on ? 'rgba(194,247,96,.75)' : 'rgba(194,247,96,.22)'; ctx.lineWidth = (on ? 1.8 : 1) * dpr; ctx.stroke();
-			var u = still ? .6 : ((T * .35 + i * .19) % 1), q = pth[Math.round(u * 28)];
+			ctx.strokeStyle = on ? 'rgba(194,247,96,.7)' : 'rgba(194,247,96,.1)'; ctx.lineWidth = (on ? 1.6 : 1) * dpr; ctx.stroke();
+			if (!on) return;
+			var u = still ? .6 : Math.min(1, (T - actAt) * .7), q = pth[Math.round(u * 28)];
 			var g = ctx.createRadialGradient(q[0], q[1], 0, q[0], q[1], 9 * dpr);
 			g.addColorStop(0, 'rgba(235,255,190,' + (on ? .95 : .55) + ')'); g.addColorStop(1, 'rgba(194,247,96,0)');
 			ctx.fillStyle = g; ctx.beginPath(); ctx.arc(q[0], q[1], 9 * dpr, 0, 6.283); ctx.fill();
@@ -198,18 +185,9 @@
 		CITIES.slice().sort(function (a, b) { return b.l[1] - a.l[1]; }).forEach(function (c) {
 			var on = c.i === active, top = c.home ? .3 : (on ? .26 : .15);
 			var g0 = proj(c.l[0], c.l[1], .03), g1 = proj(c.l[0], c.l[1], top);
-			// stage spotlight: a cone of light from above onto the city (every city has its own stage)
-			var big = on || c.home, ap = proj(c.l[0] + .06, c.l[1] + .1, big ? 1.05 : .7), cr = (on ? .2 : c.home ? .15 : .09) * S * g0[2];
-			var cn = ctx.createLinearGradient(ap[0], ap[1], g0[0], g0[1]);
-			cn.addColorStop(0, 'rgba(230,255,190,0)'); cn.addColorStop(1, 'rgba(210,255,140,' + (on ? .32 : c.home ? .2 : .08) + ')');
-			ctx.fillStyle = cn; ctx.beginPath(); ctx.moveTo(ap[0] - 2 * dpr, ap[1]); ctx.lineTo(g0[0] - cr, g0[1]);
-			ctx.ellipse(g0[0], g0[1], cr, cr * Math.cos(cam.tilt), 0, Math.PI, 0, true); ctx.lineTo(ap[0] + 2 * dpr, ap[1]); ctx.closePath(); ctx.fill();
-			var pool = ctx.createRadialGradient(g0[0], g0[1], 0, g0[0], g0[1], cr);
-			pool.addColorStop(0, 'rgba(220,255,160,' + (on ? .35 : .15) + ')'); pool.addColorStop(1, 'rgba(194,247,96,0)');
-			ctx.save(); ctx.translate(g0[0], g0[1]); ctx.scale(1, Math.cos(cam.tilt)); ctx.fillStyle = pool; ctx.beginPath(); ctx.arc(0, 0, cr, 0, 6.283); ctx.fill(); ctx.restore();
 			// ground ring
-			for (var k = 0; k < 2; k++) {
-				var ph = still ? .4 : ((T * .6 + k * .5 + c.i * .13) % 1), rr = (.05 + ph * .2) * S * g0[2];
+			for (var k = 0; k < (on || c.home ? 1 : 0); k++) {
+				var ph = still ? .4 : ((T * .4 + c.i * .13) % 1), rr = (.05 + ph * .2) * S * g0[2];
 				ctx.beginPath(); ctx.ellipse(g0[0], g0[1], rr, rr * Math.cos(cam.tilt), 0, 0, 6.283);
 				ctx.strokeStyle = 'rgba(194,247,96,' + ((1 - ph) * (on || c.home ? .7 : .3)) + ')'; ctx.lineWidth = 1.2 * dpr; ctx.stroke();
 			}
@@ -238,20 +216,7 @@
 			} else ctx.fillStyle = 'rgba(255,255,255,.62)';
 			ctx.textBaseline = 'middle'; ctx.fillText(txt, px + 10 * dpr, py + .5 * dpr);
 		});
-		// sparkles rising out of the lit city, like confetti over a stage
-		if (!still) {
-			for (var n = 0; n < 2; n++) if (Math.random() < .7) sparks.push({ x: A.l[0] + (Math.random() - .5) * .14, y: A.l[1] + (Math.random() - .5) * .14, z: .04, vz: .18 + Math.random() * .3, vx: (Math.random() - .5) * .06, vy: (Math.random() - .5) * .06, life: 1, c: Math.random() < .25 ? '255,255,255' : Math.random() < .5 ? '216,180,95' : '194,247,96' });
-			for (var m = sparks.length - 1; m >= 0; m--) {
-				var sp = sparks[m]; sp.life -= dt * .7; sp.z += sp.vz * dt; sp.x += sp.vx * dt; sp.y += sp.vy * dt; sp.vz *= .985;
-				if (sp.life <= 0) { sparks.splice(m, 1); continue; }
-				var q = proj(sp.x, sp.y, sp.z), rs = (1 + sp.life * 1.6) * dpr * q[2];
-				ctx.fillStyle = 'rgba(' + sp.c + ',' + (sp.life * .9).toFixed(3) + ')';
-				ctx.fillRect(q[0] - rs / 2, q[1] - rs / 2, rs, rs);
-			}
-			if (sparks.length > 160) sparks.splice(0, sparks.length - 160);
-		}
 	}
-	var sparks = [];
 
 	// ---- loop, visibility, input ----
 	var raf = 0, vis = false;
