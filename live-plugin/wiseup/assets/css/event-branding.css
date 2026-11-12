@@ -980,21 +980,7 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-price--col p { line-height: 1.75; color: #a8a8b0; }
 .wu-ev .ev-price--col p:first-child { font-size: clamp(17px, 1.3vw, 19px); line-height: 1.6; color: #e8e8ec; }
 
-/* FAQ: a hairline list instead of filled boxes; no lime flood on hover */
-.wu-ev .faq { gap: 0; }
-.wu-ev .faq__item, .wu-ev .faq__item[open] { border-radius: 0; background: transparent; box-shadow: inset 0 -1px 0 var(--line); }
-.wu-ev .faq__item:first-child { box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
-.wu-ev .faq__q { padding: 26px 0; border-radius: 0; }
-.wu-ev .faq__a { padding: 0 0 28px; line-height: 1.75; color: #a8a8b0; }
-@media (hover: hover) {
-  .wu-ev .faq__item:hover { background: transparent; box-shadow: inset 0 -1px 0 var(--line); translate: none; }
-  .wu-ev .faq__item:first-child:hover { box-shadow: inset 0 1px 0 var(--line), inset 0 -1px 0 var(--line); }
-  .wu-ev .faq__item:hover .faq__q h3 { color: var(--lime); }
-  .wu-ev .faq__item:hover .faq__dot { background: var(--lime); }
-  .wu-ev .faq__item:hover .faq__a { color: #a8a8b0; }
-}
-.wu-ev .faq__item[open] .faq__q h3 { color: var(--lime); }
-.wu-ev .faq__item[open] .faq__dot { background: var(--lime); }
+/* FAQ: homepage style (owner: "faq pls our homepage style"), the hairline-list override was removed */
 
 /* enquiry: one outlined frame, the form sits on it without a second filled box */
 .wu-ev .ev-final { padding: clamp(32px, 5vw, 72px); }
@@ -1228,3 +1214,4 @@ html, body.wu-ev-page { background: #000; }
   .wu-ev .ev-cases--two .ev-case h3 { font-size: clamp(26px, 2.2vw, 34px); }
   .wu-ev .ev-cases--two .ev-case__sub { font-size: 16px; }
 }
+.wu-ev .faq { --card: #0e0e10; --card-2: #17171a; --edge: rgb(255 255 255 / .06); }
