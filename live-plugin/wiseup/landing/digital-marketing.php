@@ -324,33 +324,43 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>Two businesses in the same industry can have completely different customers, competition, budgets and growth ambitions. So why should they follow the same marketing plan?</p><p>We start by understanding what your business needs before recommending services or platforms. The strategy is shaped around your position in the market, the people you want to reach, and the results you want to work towards.</p></div>
 			</div>
-			<?php
-			$wu_list = array();
-			foreach ( $wu_approach as $wu_i => $s ) $wu_list[] = array( $s[1], $s[2], '<span class="dm-stack__ico">' . $wu_svg( $wu_icons[ $s[0] ], 26 ) . '</span>', '', sprintf( '%02d', $wu_i + 1 ) );
-			echo $wu_stack( $wu_list, 'approach' ); // phpcs:ignore
-			?>
+			<div class="dm-spy" data-spy>
+				<div class="dm-spy__stage" aria-hidden="true">
+					<?php foreach ( $wu_approach as $wu_i => $s ) : ?>
+					<div class="dm-spy__fig<?php echo 0 === $wu_i ? ' is-on' : ''; ?>"><span class="dm-spy__top"><span class="dm-spy__ico"><?php echo $wu_svg( $wu_icons[ $s[0] ], 34 ); // phpcs:ignore ?></span><span class="dm-spy__of"><?php echo esc_html( sprintf( '%02d / %02d', $wu_i + 1, count( $wu_approach ) ) ); ?></span></span><span class="dm-spy__num"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span></div>
+					<?php endforeach; ?>
+				</div>
+				<ol class="dm-spy__list">
+					<?php foreach ( $wu_approach as $wu_i => $s ) : ?>
+					<li class="dm-spy__row"><span class="dm-spy__mi" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[0] ], 22 ); // phpcs:ignore ?></span><h3><span class="dm-spy__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[1] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
 		</div>
 	</section>
 
 	<!-- 5. Channels -->
 	<section class="sec ev-sec" id="channels">
-		<div class="wrap">
-			<div class="ev-head">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'Channels' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'The Right Strategy Starts', 'With the Right Channels' ); // phpcs:ignore ?></h2>
+		<div class="wrap dm-hs" data-hs>
+			<div class="dm-hs__frame">
+				<div class="ev-head dm-hs__head">
+					<div class="sh">
+						<?php echo $wu_eyebrow( 'Channels' ); // phpcs:ignore ?>
+						<h2 class="sh__h"><?php echo $wu_h( 'The Right Strategy Starts', 'With the Right Channels' ); // phpcs:ignore ?></h2>
+					</div>
+					<div class="ev-intro"><p class="dm-intro-lead">Your audience is everywhere. Your marketing doesn’t need to be.</p><p>Each platform serves a different purpose. Some help people find your business when they are actively searching. Others introduce your brand, build relationships or create demand. We choose channels based on where your audience spends time and what you want them to do.</p></div>
 				</div>
-				<div class="ev-intro"><p class="dm-intro-lead">Your audience is everywhere. Your marketing doesn’t need to be.</p><p>Each platform serves a different purpose. Some help people find your business when they are actively searching. Others introduce your brand, build relationships or create demand. We choose channels based on where your audience spends time and what you want them to do.</p></div>
+				<div class="dm-hs__side">
+					<div class="dm-hs__view">
+						<ol class="dm-hs__track">
+							<?php foreach ( $wu_channels as $wu_i => $s ) : ?>
+							<li class="dm-hs__card"><span class="dm-hs__top"><span class="dm-hs__marks"><?php foreach ( $s[1] as $m ) echo $wu_mark( $m ); // phpcs:ignore ?></span><span class="dm-hs__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span></span><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></li>
+							<?php endforeach; ?>
+						</ol>
+					</div>
+					<span class="dm-hs__prog" aria-hidden="true"><i></i></span>
+				</div>
 			</div>
-			<?php
-			$wu_list = array();
-			foreach ( $wu_channels as $wu_i => $s ) {
-				$mk = '';
-				foreach ( $s[1] as $m ) $mk .= $wu_mark( $m );
-				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__marks">' . $mk . '</span>', '', sprintf( '%02d', $wu_i + 1 ) );
-			}
-			echo $wu_stack( $wu_list, 'channels' ); // phpcs:ignore
-			?>
 		</div>
 	</section>
 
@@ -364,11 +374,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>A startup building its first audience does not have the same priorities as an established business entering a new market. Your marketing should reflect where your business stands today and where it wants to go next.</p></div>
 			</div>
-			<?php
-			$wu_list = array();
-			foreach ( $wu_stages as $wu_i => $s ) $wu_list[] = array( $s[0], $s[1], '<span class="dm-stack__meter" style="--s:' . ( $wu_i + 1 ) . '" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="dm-stack__k" aria-hidden="true">Stage ' . sprintf( '%02d', $wu_i + 1 ) . '</span>', '', sprintf( '%02d', $wu_i + 1 ) );
-			echo $wu_stack( $wu_list, 'stages' ); // phpcs:ignore
-			?>
+			<ol class="dm-climb" data-climb>
+				<?php foreach ( $wu_stages as $wu_i => $s ) : ?>
+				<li class="dm-climb__step" style="--s:<?php echo (int) $wu_i + 1; ?>"><div class="dm-climb__card"><span class="dm-climb__top" aria-hidden="true"><span class="dm-climb__k">Stage <?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><span class="dm-climb__meter"><?php echo str_repeat( '<i></i>', 4 ); // phpcs:ignore ?></span></span><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[1] ); ?></p></div></li>
+				<?php endforeach; ?>
+			</ol>
 		</div>
 	</section>
 
@@ -428,11 +438,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>A strong campaign needs more than a good idea. It needs a clear plan, thoughtful execution, and regular evaluation. Our process connects each stage so that the work stays aligned with your business objectives.</p></div>
 			</div>
-			<?php
-			$wu_list = array();
-			foreach ( $wu_process as $wu_i => $s ) $wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__ico">' . $wu_svg( $wu_icons[ $s[1] ], 26 ) . '</span>', '', sprintf( '%02d.', $wu_i + 1 ) );
-			echo $wu_stack( $wu_list, 'process' ); // phpcs:ignore
-			?>
+			<div class="dm-tl" data-tl>
+				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
+				<ol class="dm-tl__list">
+					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
+					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><span class="dm-tl__big" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
 		</div>
 	</section>
 
@@ -678,6 +691,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		var cs = [].slice.call(g.children);
 		cs.forEach(function (c) { var on = function () { cs.forEach(function (x) { x.classList.toggle('is-on', x === c); }); }; c.addEventListener('pointerenter', on); c.addEventListener('focus', on); c.addEventListener('click', on); });
 	});
+	// approach: the row crossing the middle of the screen is lit, the sticky figure follows it
+	if ('IntersectionObserver' in window) document.querySelectorAll('.wu-dm [data-spy]').forEach(function (sp) {
+		var rows = [].slice.call(sp.querySelectorAll('.dm-spy__row')), figs = [].slice.call(sp.querySelectorAll('.dm-spy__fig'));
+		var on = function (k) { rows.forEach(function (r, i) { r.classList.toggle('is-on', i === k); }); figs.forEach(function (f, i) { f.classList.toggle('is-on', i === k); }); };
+		sp.classList.add('is-spy'); on(0);
+		var so = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) on(rows.indexOf(e.target)); }); }, { rootMargin: '-48% 0px -48% 0px' });
+		rows.forEach(function (r) { so.observe(r); });
+	});
 	if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
 	var gs = document.documentElement.classList.contains('wu-motion');
 	document.documentElement.classList.add('ev-anim');
@@ -692,9 +713,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		var st = document.querySelector('.wu-dm [data-stage]');
 		if (st) st.parentNode.addEventListener('pointermove', function (e) { var b = st.getBoundingClientRect(); st.style.setProperty('--rx', ((e.clientX - b.left) / b.width - .5).toFixed(3)); st.style.setProperty('--ry', ((e.clientY - b.top) / b.height - .5).toFixed(3)); });
 	}
-	// stacking cards: the covered card shrinks back and dims as the next one slides over it; each card's content rises in
-	var stackFx = function () {
+	var fx = function () {
 		if (!window.gsap || !window.ScrollTrigger) return;
+		// services: stacking cards; the covered card shrinks back and dims as the next one slides over it
 		document.querySelectorAll('.wu-dm [data-stack]').forEach(function (list) {
 			var cs = [].slice.call(list.children);
 			cs.forEach(function (c, i) {
@@ -704,9 +725,51 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });
 			});
 		});
+		// channels: on large screens the section holds still and the cards slide sideways (a swipe row otherwise)
+		var hsMq = matchMedia('(min-width: 1100px) and (min-height: 700px)');
+		document.querySelectorAll('.wu-dm [data-hs]').forEach(function (hs) {
+			var view = hs.querySelector('.dm-hs__view'), track = hs.querySelector('.dm-hs__track'), bar = hs.querySelector('.dm-hs__prog i'), tw = null, lastW = innerWidth;
+			var dist = function () { return Math.max(0, track.scrollWidth - view.clientWidth); };
+			var set = function () {
+				if (tw) { tw.scrollTrigger.kill(); tw.kill(); tw = null; gsap.set([track, bar], { clearProps: 'transform' }); }
+				hs.style.height = '';
+				hs.classList.toggle('is-hs', hsMq.matches);
+				if (hsMq.matches) {
+					hs.style.height = (hs.querySelector('.dm-hs__frame').offsetHeight + dist()) + 'px';
+					tw = gsap.timeline({ scrollTrigger: { trigger: hs, start: 'top top', end: 'bottom bottom', scrub: 0.6 } });
+					tw.to(track, { x: function () { return -dist(); }, ease: 'none' }, 0).fromTo(bar, { scaleX: 0 }, { scaleX: 1, ease: 'none' }, 0);
+				}
+				ScrollTrigger.refresh();
+			};
+			set();
+			var rt; addEventListener('resize', function () { if (innerWidth === lastW && !hsMq.matches) return; lastW = innerWidth; clearTimeout(rt); rt = setTimeout(set, 200); });
+		});
+		// stages: the cards climb into a staircase, each drawing its top line
+		document.querySelectorAll('.wu-dm [data-climb]').forEach(function (cl) {
+			var steps = [].slice.call(cl.children);
+			if (matchMedia('(min-width: 1100px)').matches) {
+				cl.classList.add('is-live');
+				var ct = gsap.timeline({ scrollTrigger: { trigger: cl, start: 'top 90%', end: 'bottom 72%', scrub: 0.7 } });
+				steps.forEach(function (s, i) {
+					var c = s.querySelector('.dm-climb__card');
+					ct.fromTo(c, { y: 150, opacity: 0.1 }, { y: 0, opacity: 1, ease: 'power2.out', duration: 1 }, i * 0.45)
+						.fromTo(c, { '--ln': 0 }, { '--ln': 1, ease: 'none', duration: 0.6 }, i * 0.45 + 0.55);
+				});
+			} else steps.forEach(function (s) { gsap.from(s, { y: 40, opacity: 0, duration: 1, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: s, start: 'top 88%', once: true } }); });
+		});
+		// process: the line fills with the scroll, each step's dot lights as the line reaches it, its card slides in
+		document.querySelectorAll('.wu-dm [data-tl]').forEach(function (tl) {
+			var wide = matchMedia('(min-width: 900px)').matches;
+			tl.classList.add('is-live');
+			gsap.fromTo(tl.querySelector('.dm-tl__line i'), { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: tl, start: 'top 60%', end: 'bottom 60%', scrub: true } });
+			[].slice.call(tl.querySelectorAll('.dm-tl__step')).forEach(function (s, i) {
+				ScrollTrigger.create({ trigger: s.querySelector('.dm-tl__node'), start: 'center 60%', onEnter: function () { s.classList.add('is-on'); }, onLeaveBack: function () { s.classList.remove('is-on'); } });
+				gsap.from(s.querySelector('.dm-tl__card'), { x: wide ? (i % 2 ? 70 : -70) : 40, opacity: 0, duration: 1.1, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: s, start: 'top 82%', once: true } });
+			});
+		});
 	};
-	if (gs) addEventListener('DOMContentLoaded', function () { if (window.__wuEvMotion) stackFx(); });
-	else addEventListener('load', stackFx);
+	if (gs) addEventListener('DOMContentLoaded', function () { if (window.__wuEvMotion) fx(); });
+	else addEventListener('load', fx);
 	// this page's own blocks: staggered rise (GSAP when the engine runs, otherwise a class toggle)
 	var mineSel = '.dm-flow li, .dm-ind li, .dm-kl .ev-panel, .dm-tools > li, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
 	var mine = [].slice.call(document.querySelectorAll('.wu-dm :is(' + mineSel + ')'));
