@@ -1340,6 +1340,12 @@ html, body.wu-ev-page { background: #000; }
   background: radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / .85), transparent 72%); }
 .wu-ev .ev-stage.ev-photo img.ev-photo__refl { position: absolute; z-index: 1; left: 0; top: 96.5%; transform: scaleY(-1); opacity: .32; filter: blur(1.5px);
   -webkit-mask-image: linear-gradient(to bottom, transparent 72%, #000 100%); mask-image: linear-gradient(to bottom, transparent 72%, #000 100%); pointer-events: none; }
+/* scroll motion (owner: "add on scroll smooth movements to image and ur shadows"): event-branding.js scrubs --lift 0 → 1
+   across the hero; the image rises and leans back, the shadow narrows, the reflection sinks, the glow dims */
+.wu-ev .ev-stage.ev-photo > img:first-child { transform: perspective(1400px) translateY(calc(var(--lift, 0) * -46px)) rotateX(calc(var(--lift, 0) * 7deg)) scale(calc(1 + var(--lift, 0) * .03)); transform-origin: 50% 90%; will-change: transform; }
+.wu-ev .ev-stage.ev-photo::before { opacity: calc(1 - var(--lift, 0) * .45); transform: scale(calc(1 + var(--lift, 0) * .12)); }
+.wu-ev .ev-stage.ev-photo::after { opacity: calc(1 - var(--lift, 0) * .6); transform: scaleX(calc(1 - var(--lift, 0) * .22)) scaleY(calc(1 + var(--lift, 0) * .5)); filter: blur(calc(var(--lift, 0) * 6px)); }
+.wu-ev .ev-stage.ev-photo img.ev-photo__refl { transform: translateY(calc(var(--lift, 0) * 30px)) scaleY(-1); opacity: calc(.32 - var(--lift, 0) * .2); filter: blur(calc(1.5px + var(--lift, 0) * 3px)); }
 
 /* ===== v1.3.42 (owner, 2026-11-13) ===== */
 /* "reduce spacing between sections" (was clamp(80px, 9vw, 150px)) */

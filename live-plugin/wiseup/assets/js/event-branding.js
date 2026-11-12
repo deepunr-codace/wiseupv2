@@ -120,7 +120,11 @@
 	if (hero) {
 		var copy = $('.ev-hero__copy', hero), st = $('.ev-stage', hero);
 		if (copy) gsap.to(copy, { y: -70, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
-		if (st) gsap.to(st, { y: -30, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+		if (st) gsap.to(st, { y: -30, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 1.2 } });
+		// the stage photo rises gently off its glossy floor as the page scrolls: the image lifts and leans back a touch,
+		// its contact shadow narrows and fades, the reflection sinks and fades, the floor glow dims (CSS reads --lift)
+		var ph = $('.ev-photo', hero);
+		if (ph) gsap.fromTo(ph, { '--lift': 0 }, { '--lift': 1, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 1.2 } });
 		var glow = $('.ev-hero__glow', hero);
 		if (glow) {
 			var drift = gsap.to(glow, { xPercent: -8, yPercent: 6, scale: 1.12, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1 });
