@@ -162,6 +162,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 1. Hero: value proposition, two CTAs (WhatsApp, Get a Quote), proof strip (events branded, cities served, client logos) -->
 	<section class="ev-hero">
 		<div class="ev-hero__glow" aria-hidden="true"></div>
+		<div class="ev-world" data-ev-world data-src="<?php echo esc_url( WISEUP_URL . 'assets/js/ev-world.js?ver=' . filemtime( WISEUP_DIR . 'assets/js/ev-world.js' ) ); ?>" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
 			<?php echo $wu_eyebrow( __( 'Event branding', 'wiseup' ) ); // phpcs:ignore ?>
@@ -172,10 +173,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 			</div>
 			</div>
-			<div class="ev-stage ev-booth" data-stage>
-				<figure class="ev-booth__frame">
-					<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1600.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1600.webp' ); ?> 1600w" sizes="(max-width: 1023px) 92vw, 46vw" alt="Event stage with two armchairs on a round platform, lit by lime neon light lines" width="1600" height="901" decoding="async" fetchpriority="high">
-				</figure>
+			<div class="ev-stage ev-spot" data-stage data-ev-spot aria-hidden="true">
+				<picture class="ev-spot__still ev-spot__still--before"><source media="(max-width: 1023px)" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-world-before-m.webp' ); ?>" width="1000" height="733"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-world-before-d.webp' ); ?>" alt="" width="1488" height="1396" decoding="async"></picture>
+				<picture class="ev-spot__still ev-spot__still--after"><source media="(max-width: 1023px)" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-world-after-m.webp' ); ?>" width="1000" height="733"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-world-after-d.webp' ); ?>" alt="" width="1488" height="1396" decoding="async" loading="lazy"></picture>
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
@@ -651,6 +651,24 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	var steps = document.querySelector('.wu-ev .ev-steps'), raf = 0;
 	function fill() { raf = 0; if (!steps) return; var r = steps.getBoundingClientRect(); steps.style.setProperty('--p', Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / Math.max(1, r.height + innerHeight * .2))).toFixed(3)); }
 	addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(fill); }, { passive: true }); fill();
+	// hero 3D world (Wiso sets the stage): nothing of it loads with the page. three.js and the scene are fetched on the
+	// visitor's first interaction (move, touch, scroll, key), so page load and PageSpeed are not affected. Reduced motion,
+	// data saver and low-memory devices never load it and keep the still image.
+	(function () {
+		var h = document.querySelector('.wu-ev [data-ev-world]');
+		if (!h) return;
+		var hero = h.parentNode, nav = navigator, c = nav.connection || {};
+		var still = function () { hero.classList.add('ev-world--still'); };
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches || c.saveData || /2g/.test(c.effectiveType || '') || (nav.deviceMemory && nav.deviceMemory <= 2) || (nav.hardwareConcurrency && nav.hardwareConcurrency <= 2)) { still(); return; }
+		var evs = ['pointermove', 'pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'], done = false;
+		var go = function () {
+			if (done) return; done = true;
+			evs.forEach(function (e) { removeEventListener(e, go); });
+			var sc = document.createElement('script'); sc.type = 'module'; sc.src = h.getAttribute('data-src'); sc.onerror = still;
+			document.body.appendChild(sc);
+		};
+		evs.forEach(function (e) { addEventListener(e, go, { passive: true }); });
+	})();
 	// "one team" cards: the hovered / focused card opens, the rest fold
 	document.querySelectorAll('.wu-ev [data-ev-exp]').forEach(function (g) {
 		var cs = [].slice.call(g.children);

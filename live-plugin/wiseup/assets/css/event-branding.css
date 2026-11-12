@@ -1321,3 +1321,27 @@ html, body.wu-ev-page { background: #000; }
 @media (max-width: 1023px) { .wu-ev .ev-booth__frame { aspect-ratio: 1671 / 941; } }
 /* hero background grid removed (owner: "remove hero bg grids") */
 .wu-ev .ev-hero::before { content: none; }
+
+/* ===== Hero: "Wiso sets the stage", one real-time 3D world behind the whole hero (assets/js/ev-world.js, three.js).
+   The stage is built in code (no photos); .ev-spot only keeps the right-hand column's space, the world aims its stage
+   at it. Owner: "a wiseup animated character coming down from the logo through a rope ... jumps to the hero heading
+   then to the event ... makes everything arranged like magic", "dont use my event image, it should build by you",
+   "use more feelgood character". ===== */
+.wu-ev .ev-world { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.wu-ev .ev-world canvas { display: block; width: 100%; height: 100%; opacity: 0; }
+.wu-ev .ev-hero.ev-world--on .ev-world canvas { opacity: 1; }
+/* the hero background is plain black (owner: "dont change background color of the hero. it should be black") */
+.wu-ev .ev-hero .ev-hero__glow { display: none; }
+.wu-ev .ev-hero > .ev-logos { position: relative; z-index: 1; }
+.wu-ev .ev-stage.ev-spot { position: relative; aspect-ratio: 5 / 4.4; perspective: none; pointer-events: auto; }
+@media (max-width: 1023px) { .wu-ev .ev-stage.ev-spot { aspect-ratio: 16 / 11; max-width: 640px; width: 100%; } }
+/* stills rendered from the same scene: "before" (dark, unarranged stage) shows until the 3D world starts on the visitor's
+   first interaction and then fades away over the identical first frame; "after" (finished stage with Wiso) is what
+   reduced-motion, data-saver and low-memory visitors keep (the 3D never loads for them) */
+.wu-ev .ev-spot__still { position: absolute; left: -11%; top: -17%; width: 122%; height: 130%; display: block; pointer-events: none; transition: opacity .9s ease; }
+.wu-ev .ev-spot__still img { display: block; width: 100%; height: 100%; max-width: none; }
+.wu-ev .ev-spot__still--after { display: none; }
+.wu-ev .ev-hero.ev-world--still .ev-spot__still--before { display: none; }
+.wu-ev .ev-hero.ev-world--still .ev-spot__still--after { display: block; }
+.wu-ev .ev-hero.ev-world--on .ev-spot__still { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .wu-ev .ev-spot__still--before { display: none; } .wu-ev .ev-spot__still--after { display: block; } }
