@@ -237,7 +237,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 3. Services -->
 	<section class="sec ev-sec" id="services">
 		<div class="wrap">
-			<div class="ev-head ev-head--center">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Event Branding Services</span> <span class="sh__b">for Every Part of Your Event</span></h2>
@@ -368,7 +368,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 7. One team -->
 	<section class="sec ev-sec" id="why">
 		<div class="wrap">
-			<div class="ev-head ev-head--center">
+			<div class="ev-head">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Why WiseUp' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">One Team Behind</span> <span class="sh__b">Every Event Detail</span></h2>

@@ -1018,3 +1018,29 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-exp__card p { transition: opacity .15s ease, transform .15s ease, max-height .35s cubic-bezier(.22, 1, .36, 1), margin-top .35s cubic-bezier(.22, 1, .36, 1); }
 .wu-ev .ev-exp__card.is-on p { transition: max-height .5s cubic-bezier(.22, 1, .36, 1), margin-top .5s cubic-bezier(.22, 1, .36, 1), opacity .35s ease .18s, transform .45s cubic-bezier(.22, 1, .36, 1) .18s; }
 @media (prefers-reduced-motion: reduce) { .wu-ev .ev-exp__card, .wu-ev .ev-exp__card::before, .wu-ev .ev-exp__card p { transition: none; } }
+
+/* portfolio cards: more compact (owner: "looks so big") */
+.wu-ev .ev-cases--two .ev-case__img { aspect-ratio: 16 / 6; max-height: 230px; }
+.wu-ev .ev-cases--two .ev-case__body { gap: 10px; padding: 22px 18px 18px; }
+.wu-ev .ev-cases--two .ev-case h3 { font-size: clamp(20px, 1.55vw, 24px); }
+.wu-ev .ev-cases--two .ev-case__sub { margin-top: -4px; font-size: 14.5px; line-height: 1.5; }
+.wu-ev .ev-cases--two .ev-case__type { font-size: 10.5px; letter-spacing: .09em; }
+.wu-ev .ev-cases--two .ev-case__client { font-size: 13px; }
+.wu-ev .ev-cases--two .ev-case__client span { font-size: 10px; }
+.wu-ev .ev-cases--two .ev-tabs { gap: 12px; margin-top: 6px; }
+.wu-ev .ev-cases--two .ev-tabs__bar button { min-height: 34px; font-size: 12.5px; }
+.wu-ev .ev-cases--two .ev-tabs__panes, .wu-ev .ev-cases--two .ev-tabs__pane p, .wu-ev .ev-cases--two .ev-case__did li { font-size: 14px; line-height: 1.65; }
+.wu-ev .ev-cases--two .ev-case__stats strong { font-size: clamp(16px, 1.2vw, 19px); }
+.wu-ev .ev-cases--two .ev-case__stats span { font-size: 11.5px; }
+.wu-ev .ev-cases--two .ev-case .ev-more { font-size: 14px; }
+
+/* hero heading: three balanced lines, the grey half running on from the white one, paragraph as wide as the heading
+   (owner: "make it properly aligned. feel good alignment needed. heading can be 3 line. adjust the font size") */
+.wu-ev .ev-hero .eyebrow { margin: 0; }
+.wu-ev .ev-hero__h { max-width: 11.4em; margin-top: 26px; font-size: clamp(2.3rem, 1rem + 2.75vw, 3.75rem); line-height: 1.07; letter-spacing: -.04em; text-wrap: balance; }
+.wu-ev .ev-hero__h .sh__a, .wu-ev .ev-hero__h .sh__b { display: inline; }
+.wu-ev .ev-hero__p { max-width: 36em; margin-top: 28px; }
+.wu-ev .ev-hero .ev-btns { margin-top: 36px; }
+@media (max-width: 767px) { .wu-ev .ev-hero__h { max-width: none; font-size: clamp(2rem, 1.2rem + 3.6vw, 2.6rem); } }
+/* every section head left-aligned: Services and One Team now use the same heading-left / intro-right head as the rest (owner) */
+@media (min-width: 1024px) and (max-width: 1279px) { .wu-ev .ev-hero__p { max-width: 32em; } }
