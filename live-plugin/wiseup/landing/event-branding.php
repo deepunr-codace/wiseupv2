@@ -492,25 +492,25 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 
 		<!-- 10. Pricing -->
 	<section class="sec ev-sec" id="pricing">
-		<div class="wrap ev-disc">
+		<div class="wrap ev-disc ev-disc--v2">
 			<div class="ev-disc__l">
 				<div class="sh">
 					<?php echo $wu_eyebrow( 'Pricing' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><span class="sh__a">Pricing That Fits</span> <span class="sh__b">Your Event Goals</span></h2>
 				</div>
-				<div class="ev-price ev-price--col">
-				<p>A full house does not happen by itself. Someone has to know about your event, want to come, and then actually walk in. That is the work we do at WiseUp, and our event branding and promotion packages start from ₹1 lakh.</p>
-				<p>Our focus is on bringing people to your event and to your stall. We plan how your event reaches the right audience, build the buzz before the doors open, and drive walk-ins while it is running. For exhibitors, that includes bringing visitors to your stall, so your investment in the space turns into real conversations.</p>
-				<p>Printing, fabrication, and set construction are handled by specialist vendors, and we coordinate with them so your branding stays consistent. What you pay us for is the thinking and the reach: getting your event in front of as many of the right people as possible.</p>
-				<p>Every event is different, so your final quote depends on what you want to achieve. Share your event date and goals, and we will send a clear quote showing what is included.</p>
+				<div class="ev-price ev-price--col"><p>A full house does not happen by itself. Someone has to know about your event, want to come, and then actually walk in. That is the work we do at WiseUp, and our event branding and promotion packages start from ₹1 lakh.</p></div>
+				<div class="ev-disc__card">
+					<span class="ev-disc__pill">Event branding and promotion</span>
+					<p class="ev-disc__from"><span>Starting from</span><strong>₹1 lakh</strong></p>
+					<p class="ev-disc__note">One plan before the price</p>
+					<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 				</div>
 			</div>
-			<div class="ev-disc__card">
-				<span class="ev-disc__pill">Event branding and promotion</span>
-				<p class="ev-disc__from"><span>Starting from</span><strong>₹1 lakh</strong></p>
-				<p class="ev-disc__note">One plan before the price</p>
-				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
-			</div>
+			<ol class="ev-disc__pts">
+				<li><span class="ev-disc__pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h2l5 4V6l-5 4H4a1 1 0 0 0-1 1z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><p>Our focus is on bringing people to your event and to your stall. We plan how your event reaches the right audience, build the buzz before the doors open, and drive walk-ins while it is running. For exhibitors, that includes bringing visitors to your stall, so your investment in the space turns into real conversations.</p></li>
+				<li><span class="ev-disc__pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/></svg></span><p>Printing, fabrication, and set construction are handled by specialist vendors, and we coordinate with them so your branding stays consistent. What you pay us for is the thinking and the reach: getting your event in front of as many of the right people as possible.</p></li>
+				<li><span class="ev-disc__pi"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h6M10 17h6"/></svg></span><p>Every event is different, so your final quote depends on what you want to achieve. Share your event date and goals, and we will send a clear quote showing what is included.</p></li>
+			</ol>
 		</div>
 	</section>
 

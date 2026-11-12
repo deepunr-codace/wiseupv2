@@ -95,16 +95,16 @@
 	var ticker = $('.ev-ticker'); if (ticker) block(ticker, { kind: 'fade' });
 
 	// ---------- cards: batch reveal, inner pop ----------
-	var cards = $$('.ev-card, .ev-step, .ev-exp__card, .ev-why li, .ev-chk, .ev-cost, .ev-case, .ev-route, .ev-map, .ev-kl__side .ev-panel, .ev-corp .ev-panel, .ev-three .ev-panel');
+	var cards = $$('.ev-disc__pts li, .ev-card, .ev-step, .ev-exp__card, .ev-why li, .ev-chk, .ev-cost, .ev-case, .ev-route, .ev-map, .ev-kl__side .ev-panel, .ev-corp .ev-panel, .ev-three .ev-panel');
 	cards.forEach(function (c) {
 		gsap.set(c, { opacity: 0, y: 80 });
-		var ico = $('.ev-ico, .ev-chk__box, .ev-step__n, .ev-tstep__i, .ev-exp__i', c);
+		var ico = $('.ev-disc__pi, .ev-ico, .ev-chk__box, .ev-step__n, .ev-tstep__i, .ev-exp__i', c);
 		if (ico) gsap.set(ico, { scale: 0.4, rotate: -25, opacity: 0 });
 	});
 	function playCard(c, i) {
 		var tl = gsap.timeline({ delay: i * 0.1 });
 		tl.to(c, { opacity: 1, y: 0, duration: 1.2, ease: EASE, clearProps: 'transform', onStart: function () { c.classList.add('is-in'); } });
-		var ico = $('.ev-ico, .ev-chk__box, .ev-step__n, .ev-tstep__i, .ev-exp__i', c);
+		var ico = $('.ev-disc__pi, .ev-ico, .ev-chk__box, .ev-step__n, .ev-tstep__i, .ev-exp__i', c);
 		if (ico) tl.to(ico, { scale: 1, rotate: 0, opacity: 1, duration: 0.9, ease: 'back.out(2)', clearProps: 'transform' }, 0.2);
 		var stops = $$('.ev-stop', c);
 		if (stops.length) tl.from(stops, { x: -24, opacity: 0, duration: 0.8, stagger: 0.07, ease: SOFT, clearProps: 'transform' }, 0.2);
