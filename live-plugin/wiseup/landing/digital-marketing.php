@@ -167,14 +167,13 @@ $wu_why = array(
 	array( 'chart', 'Performance That Can Be Evaluated', 'We consider measurable indicators such as website traffic, enquiries, conversions, and advertising performance. These insights help assess progress and guide the next decisions.' ),
 );
 
-// Results: the homepage's hover figures (wiseup_cs_stats()), each linked to its case study.
-$wu_stats   = function_exists( 'wiseup_cs_stats' ) ? wiseup_cs_stats() : array();
+// Results: owner's four brands, image or logo and name only, no details (owner 2026-11-12). [ name, kind, image, link ]
+// kind: photo = cover image, logo = colour logo on a white tile, none = no artwork yet (KPG Roofings: no logo on file).
 $wu_results = array(
-	array( 'golden-karak', 'Golden Karak', 'Café brand · social media', WISEUP_URL . 'assets/landing/img/case-karak.jpg' ),
-	array( 'bootland', 'Bootland Expo 2026', 'Footwear expo · event marketing', WISEUP_URL . 'assets/landing/img/case-bootland.jpg' ),
-	array( 'sathya-agencies-brand-launch-campaign-kerala', 'Sathya Agencies', 'Brand launch campaign', WISEUP_URL . 'assets/work/case-sathya-720.webp' ),
-	array( 'erets', 'Erets Space', 'Space technology · launch', WISEUP_URL . 'assets/landing/img/case-erets.jpg' ),
-	array( 'indusgo', 'IndusGo', 'Self-drive rentals · video', WISEUP_URL . 'assets/landing/img/case-indusgo.jpg' ),
+	array( 'Onesto & Mercado', 'logo', WISEUP_ASSETS . '/clients/client-logos-2026/onesto-marcado.png', home_url( '/case-studies/onesto/' ) ),
+	array( 'IndusGo', 'photo', WISEUP_URL . 'assets/landing/img/case-indusgo.jpg', home_url( '/case-studies/indusgo/' ) ),
+	array( 'Sathya', 'photo', WISEUP_URL . 'assets/work/case-sathya-720.webp', home_url( '/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ) ),
+	array( 'KPG Roofings', 'none', '', '' ),
 );
 
 $wu_package = array(
@@ -475,22 +474,21 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro dm-intro-btn"><?php echo $wu_btn( 'View Our Case Studies', 'teal', 'href="' . esc_url( home_url( '/case-studies/' ) ) . '"' ); // phpcs:ignore ?></div>
 			</div>
-			<ul class="dm-res">
-				<?php foreach ( $wu_results as $wu_i => $r ) :
-					if ( empty( $wu_stats[ $r[0] ] ) ) continue;
-					$st  = $wu_stats[ $r[0] ];
-					$url = home_url( '/case-studies/' . $r[0] . '/' ); ?>
-				<li class="dm-res__card<?php echo 0 === $wu_i ? ' is-big' : ''; ?>">
-					<a class="dm-res__link" href="<?php echo esc_url( $url ); ?>">
-						<span class="dm-res__img"><img src="<?php echo esc_url( $r[3] ); ?>" alt="<?php echo esc_attr( $r[1] . ' case study by WiseUp' ); ?>" loading="lazy" decoding="async"></span>
-						<span class="dm-res__body">
-							<span class="dm-res__type"><?php echo esc_html( $r[2] ); ?></span>
-							<strong class="dm-res__name"><?php echo esc_html( $r[1] ); ?></strong>
-							<span class="dm-res__fig"><b><?php echo esc_html( $st[0] ); ?></b><span><?php echo esc_html( $st[1] ); ?></span></span>
-							<?php if ( ! empty( $st[2] ) ) : ?><span class="dm-res__mini"><?php foreach ( $st[2] as $mi ) echo '<span><b>' . esc_html( $mi[0] ) . '</b>' . esc_html( $mi[1] ) . '</span>'; ?></span><?php endif; ?>
-							<span class="dm-res__go">View case study <?php echo $wu_ne; // phpcs:ignore ?></span>
+			<ul class="dm-brands">
+				<?php foreach ( $wu_results as $r ) :
+					$tag  = $r[3] ? 'a' : 'div';
+					$href = $r[3] ? ' href="' . esc_url( $r[3] ) . '"' : ''; ?>
+				<li class="dm-brand dm-brand--<?php echo esc_attr( $r[1] ); ?>">
+					<<?php echo $tag . $href; // phpcs:ignore ?> class="dm-brand__in">
+						<span class="dm-brand__art">
+							<?php if ( 'none' === $r[1] ) : ?>
+							<span class="dm-brand__ph" aria-hidden="true"><?php echo $wu_svg( '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-5h5v5"/>', 44, 1.4 ); // phpcs:ignore ?></span>
+							<?php else : ?>
+							<img src="<?php echo esc_url( $r[2] ); ?>" alt="<?php echo esc_attr( $r[0] ); ?>" loading="lazy" decoding="async">
+							<?php endif; ?>
 						</span>
-					</a>
+						<strong class="dm-brand__name"><?php echo esc_html( $r[0] ); ?></strong>
+					</<?php echo $tag; // phpcs:ignore ?>>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -576,7 +574,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 
 	<!-- 15. FAQ (with FAQPage schema) -->
 	<section class="sec ev-sec" id="faq" aria-labelledby="dm-faq-h">
-		<div class="wrap ev-faqsplit">
+		<div class="wrap dm-faq">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
 				<h2 id="dm-faq-h" class="sh__h"><?php echo $wu_h( 'Frequently Asked', 'Questions' ); // phpcs:ignore ?></h2>
@@ -688,7 +686,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		if (st) st.parentNode.addEventListener('pointermove', function (e) { var b = st.getBoundingClientRect(); st.style.setProperty('--rx', ((e.clientX - b.left) / b.width - .5).toFixed(3)); st.style.setProperty('--ry', ((e.clientY - b.top) / b.height - .5).toFixed(3)); });
 	}
 	// this page's own blocks: staggered rise (GSAP when the engine runs, otherwise a class toggle)
-	var mineSel = '.dm-flow li, .dm-rows li, .dm-ch li, .dm-stages li, .dm-ind li, .dm-kl .ev-panel, .dm-tools > li, .dm-res__card, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
+	var mineSel = '.dm-flow li, .dm-rows li, .dm-ch li, .dm-stages li, .dm-ind li, .dm-kl .ev-panel, .dm-tools > li, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
 	var mine = [].slice.call(document.querySelectorAll('.wu-dm :is(' + mineSel + ')'));
 	if (gs) {
 		// the GSAP scripts load after this one: run once they have
