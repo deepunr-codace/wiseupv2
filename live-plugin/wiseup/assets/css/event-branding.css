@@ -1282,3 +1282,24 @@ html, body.wu-ev-page { background: #000; }
   .wu-ev .ev-disc__pts li { grid-template-columns: 40px minmax(0, 1fr); gap: 16px; }
   .wu-ev .ev-disc__pi { width: 40px; height: 40px; }
 }
+
+/* ===== One-team cards, smoother hover (owner: "hover transition of the text and cards make smooth"):
+   the title and text keep fixed widths (set by the page script), so nothing re-wraps while a card widens;
+   the text opens to its exact height on the same curve as the width; colour and fill move with it ===== */
+@media (min-width: 1024px) {
+  .wu-ev .ev-exp__card { transition: flex-grow .7s cubic-bezier(.45, 0, .2, 1), box-shadow .5s ease; will-change: flex-grow; }
+  .wu-ev .ev-exp__card::before { transition: opacity .7s cubic-bezier(.45, 0, .2, 1); }
+  .wu-ev .ev-exp__card h3, .wu-ev .ev-exp__card.is-on h3 { width: var(--exp-fold, auto); max-width: none; transition: color .6s cubic-bezier(.45, 0, .2, 1); }
+  .wu-ev .ev-exp__i, .wu-ev .ev-exp__n { transition: color .6s cubic-bezier(.45, 0, .2, 1), background .6s cubic-bezier(.45, 0, .2, 1); }
+  .wu-ev .ev-exp__card p { width: var(--exp-open, auto); flex: none; max-height: 0; transform: translateY(10px);
+    transition: max-height .7s cubic-bezier(.45, 0, .2, 1), margin-top .7s cubic-bezier(.45, 0, .2, 1), opacity .25s ease, transform .4s ease; }
+  .wu-ev .ev-exp__card.is-on p { max-height: var(--exp-ph, 12em); transform: none;
+    transition: max-height .7s cubic-bezier(.45, 0, .2, 1), margin-top .7s cubic-bezier(.45, 0, .2, 1), opacity .5s ease .3s, transform .6s cubic-bezier(.22, 1, .36, 1) .3s; }
+}
+@media (prefers-reduced-motion: reduce) { .wu-ev .ev-exp__card, .wu-ev .ev-exp__card::before, .wu-ev .ev-exp__card p, .wu-ev .ev-exp__card h3 { transition: none; } }
+
+/* ===== Services heading on two lines (owner: "make it 2 lines"): one line per half, sized to the column ===== */
+.wu-ev #services .sh { container-type: inline-size; }
+.wu-ev #services .sh__h { font-size: min(clamp(1.85rem, 1.1rem + 2.1vw, 3.05rem), 7.9cqi); max-width: none; text-wrap: nowrap; }
+.wu-ev #services .sh__h .sh__a, .wu-ev #services .sh__h .sh__b { display: block; white-space: nowrap; }
+@media (min-width: 1100px) { .wu-ev #services > .wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 4.5vw, 88px); } }

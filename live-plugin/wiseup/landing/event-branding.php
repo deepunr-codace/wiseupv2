@@ -684,6 +684,21 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			c.addEventListener('pointerleave', function () { clearTimeout(t); });
 			c.addEventListener('focus', on); c.addEventListener('click', on);
 		});
+		// text keeps the widths it has in the open / folded card, so it never re-wraps while a card widens or narrows
+		var size = function () {
+			if (!matchMedia('(min-width: 1024px)').matches || !cs.length) return;
+			// measured from the settled cards (the open one is the widest, the folded ones the narrowest)
+			var c0 = getComputedStyle(cs[0]), pad = parseFloat(c0.paddingLeft) + parseFloat(c0.paddingRight);
+			var ws = cs.map(function (x) { return x.getBoundingClientRect().width; });
+			g.style.setProperty('--exp-open', Math.floor(Math.max.apply(null, ws) - pad) + 'px');
+			g.style.setProperty('--exp-fold', Math.floor(Math.min.apply(null, ws) - pad) + 'px');
+			cs.forEach(function (x) { var q = x.querySelector('p'); if (q) x.style.setProperty('--exp-ph', q.scrollHeight + 'px'); });
+		};
+		size();
+		// re-measure only when the row's width changes, once the cards have settled
+		var lw = g.clientWidth, rt;
+		addEventListener('resize', function () { if (g.clientWidth === lw) return; lw = g.clientWidth; clearTimeout(rt); rt = setTimeout(size, 900); });
+		if (document.fonts) document.fonts.ready.then(size);
 	});
 	// cursor spotlight on cards; stage leans toward the pointer
 	if (matchMedia('(hover: hover)').matches) {
