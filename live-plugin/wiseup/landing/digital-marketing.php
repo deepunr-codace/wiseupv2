@@ -56,6 +56,22 @@ $wu_mark   = function ( $key ) use ( $wu_brands ) {
 	}
 	return '<span class="dm-mark" aria-hidden="true"><img src="' . esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $key ) . '" alt="" width="20" height="20" loading="lazy" decoding="async"></span>';
 };
+// Stacking cards: one wide card per item; on scroll each card slides up over the one before (sticky), the covered
+// card shrinks back and dims (assets/css/digital-marketing.css .dm-stack, script at the end of this file).
+// Item: [ title, text, visual html, extra html after the text, number label ].
+$wu_stack = function ( $items, $mod ) {
+	$n = count( $items );
+	$o = '<ol class="dm-stack dm-stack--' . esc_attr( $mod ) . '" data-stack>';
+	foreach ( array_values( $items ) as $k => $it ) {
+		$o .= '<li class="dm-stack__card" style="--i:' . (int) $k . '"><div class="dm-stack__in">'
+			. '<div class="dm-stack__l"><span class="dm-stack__vis">' . $it[2] . '</span>'
+			. '<h3><span class="dm-stack__n">' . esc_html( $it[4] ) . '</span> ' . esc_html( $it[0] ) . '</h3></div>'
+			. '<div class="dm-stack__r"><span class="dm-stack__count" aria-hidden="true">' . esc_html( sprintf( '%02d / %02d', $k + 1, $n ) ) . '</span>'
+			. '<p>' . esc_html( $it[1] ) . '</p>' . $it[3] . '</div>'
+			. '</div></li>';
+	}
+	return $o . '</ol>';
+};
 // Two-tone heading: first part white, second part grey, split where the sentence breaks.
 $wu_h = function ( $a, $b ) { return '<span class="sh__a">' . esc_html( $a ) . '</span> <span class="sh__b">' . esc_html( $b ) . '</span>'; };
 
@@ -279,7 +295,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 	</section>
 
 	<!-- 3. Services -->
-	<section class="sec ev-sec" id="services">
+	<section class="sec ev-sec" id="dm-services">
 		<div class="wrap">
 			<div class="ev-head ev-head--center">
 				<div class="sh">
@@ -288,17 +304,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>Your brand does not operate through separate channels, and your marketing should not either. We bring together the services your business needs, whether that means strengthening one area or building a connected strategy across multiple platforms.</p></div>
 			</div>
-			<ul class="ev-cards dm-svc">
-				<?php foreach ( $wu_services as $wu_i => $s ) : ?>
-				<li class="ev-card">
-					<span class="ev-ico"><?php echo $wu_svg( $wu_icons[ $s[1] ] ); // phpcs:ignore -- fixed markup ?></span>
-					<span class="dm-svc__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span>
-					<h3><?php echo esc_html( $s[0] ); ?></h3>
-					<p><?php echo esc_html( $s[2] ); ?></p>
-					<?php if ( $s[3] ) : ?><a class="ev-more" href="<?php echo esc_url( $s[3] ); ?>">View Our Social Media Marketing Services <?php echo $wu_ne; // phpcs:ignore ?></a><?php endif; ?>
-				</li>
-				<?php endforeach; ?>
-			</ul>
+			<?php
+			$wu_list = array();
+			foreach ( $wu_services as $wu_i => $s ) {
+				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__ico">' . $wu_svg( $wu_icons[ $s[1] ], 26 ) . '</span>', $s[3] ? '<a class="ev-more dm-stack__more" href="' . esc_url( $s[3] ) . '">View Our Social Media Marketing Services ' . $wu_ne . '</a>' : '', sprintf( '%02d', $wu_i + 1 ) );
+			}
+			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
+			?>
 		</div>
 	</section>
 
@@ -312,11 +324,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>Two businesses in the same industry can have completely different customers, competition, budgets and growth ambitions. So why should they follow the same marketing plan?</p><p>We start by understanding what your business needs before recommending services or platforms. The strategy is shaped around your position in the market, the people you want to reach, and the results you want to work towards.</p></div>
 			</div>
-			<ol class="dm-rows">
-				<?php foreach ( $wu_approach as $wu_i => $a ) : ?>
-				<li><span class="dm-rows__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><span class="dm-rows__i"><?php echo $wu_svg( $wu_icons[ $a[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $a[1] ); ?></h3><p><?php echo esc_html( $a[2] ); ?></p></li>
-				<?php endforeach; ?>
-			</ol>
+			<?php
+			$wu_list = array();
+			foreach ( $wu_approach as $wu_i => $s ) $wu_list[] = array( $s[1], $s[2], '<span class="dm-stack__ico">' . $wu_svg( $wu_icons[ $s[0] ], 26 ) . '</span>', '', sprintf( '%02d', $wu_i + 1 ) );
+			echo $wu_stack( $wu_list, 'approach' ); // phpcs:ignore
+			?>
 		</div>
 	</section>
 
@@ -330,15 +342,15 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p class="dm-intro-lead">Your audience is everywhere. Your marketing doesn’t need to be.</p><p>Each platform serves a different purpose. Some help people find your business when they are actively searching. Others introduce your brand, build relationships or create demand. We choose channels based on where your audience spends time and what you want them to do.</p></div>
 			</div>
-			<ul class="dm-ch">
-				<?php foreach ( $wu_channels as $c ) : ?>
-				<li>
-					<span class="dm-ch__marks"><?php foreach ( $c[1] as $mk ) echo $wu_mark( $mk ); // phpcs:ignore ?></span>
-					<h3><?php echo esc_html( $c[0] ); ?></h3>
-					<p><?php echo esc_html( $c[2] ); ?></p>
-				</li>
-				<?php endforeach; ?>
-			</ul>
+			<?php
+			$wu_list = array();
+			foreach ( $wu_channels as $wu_i => $s ) {
+				$mk = '';
+				foreach ( $s[1] as $m ) $mk .= $wu_mark( $m );
+				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__marks">' . $mk . '</span>', '', sprintf( '%02d', $wu_i + 1 ) );
+			}
+			echo $wu_stack( $wu_list, 'channels' ); // phpcs:ignore
+			?>
 		</div>
 	</section>
 
@@ -352,16 +364,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>A startup building its first audience does not have the same priorities as an established business entering a new market. Your marketing should reflect where your business stands today and where it wants to go next.</p></div>
 			</div>
-			<ol class="dm-stages">
-				<?php foreach ( $wu_stages as $wu_i => $s ) : ?>
-				<li style="--s:<?php echo (int) $wu_i + 1; ?>">
-					<span class="dm-stages__meter" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-					<span class="dm-stages__k" aria-hidden="true">Stage <?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span>
-					<h3><?php echo esc_html( $s[0] ); ?></h3>
-					<p><?php echo esc_html( $s[1] ); ?></p>
-				</li>
-				<?php endforeach; ?>
-			</ol>
+			<?php
+			$wu_list = array();
+			foreach ( $wu_stages as $wu_i => $s ) $wu_list[] = array( $s[0], $s[1], '<span class="dm-stack__meter" style="--s:' . ( $wu_i + 1 ) . '" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="dm-stack__k" aria-hidden="true">Stage ' . sprintf( '%02d', $wu_i + 1 ) . '</span>', '', sprintf( '%02d', $wu_i + 1 ) );
+			echo $wu_stack( $wu_list, 'stages' ); // phpcs:ignore
+			?>
 		</div>
 	</section>
 
@@ -412,7 +419,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 	</section>
 
 	<!-- 9. Process -->
-	<section class="sec ev-sec" id="process">
+	<section class="sec ev-sec" id="dm-process">
 		<div class="wrap">
 			<div class="ev-head">
 				<div class="sh">
@@ -421,11 +428,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>A strong campaign needs more than a good idea. It needs a clear plan, thoughtful execution, and regular evaluation. Our process connects each stage so that the work stays aligned with your business objectives.</p></div>
 			</div>
-			<ol class="ev-tsteps dm-steps">
-				<?php foreach ( $wu_process as $wu_i => $s ) : ?>
-				<li class="ev-step ev-tstep"><span class="ev-tstep__i"><?php echo $wu_svg( $wu_icons[ $s[1] ], 34, 1.5 ); // phpcs:ignore ?></span><h3><span class="ev-tstep__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?>.</span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></li>
-				<?php endforeach; ?>
-			</ol>
+			<?php
+			$wu_list = array();
+			foreach ( $wu_process as $wu_i => $s ) $wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__ico">' . $wu_svg( $wu_icons[ $s[1] ], 26 ) . '</span>', '', sprintf( '%02d.', $wu_i + 1 ) );
+			echo $wu_stack( $wu_list, 'process' ); // phpcs:ignore
+			?>
 		</div>
 	</section>
 
@@ -685,8 +692,23 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		var st = document.querySelector('.wu-dm [data-stage]');
 		if (st) st.parentNode.addEventListener('pointermove', function (e) { var b = st.getBoundingClientRect(); st.style.setProperty('--rx', ((e.clientX - b.left) / b.width - .5).toFixed(3)); st.style.setProperty('--ry', ((e.clientY - b.top) / b.height - .5).toFixed(3)); });
 	}
+	// stacking cards: the covered card shrinks back and dims as the next one slides over it; each card's content rises in
+	var stackFx = function () {
+		if (!window.gsap || !window.ScrollTrigger) return;
+		document.querySelectorAll('.wu-dm [data-stack]').forEach(function (list) {
+			var cs = [].slice.call(list.children);
+			cs.forEach(function (c, i) {
+				gsap.from(c.querySelectorAll('.dm-stack__l > *, .dm-stack__r > *'), { y: 34, opacity: 0, duration: 0.9, stagger: 0.07, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: c, start: 'top 82%', once: true } });
+				var next = cs[i + 1];
+				if (!next) return;
+				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });
+			});
+		});
+	};
+	if (gs) addEventListener('DOMContentLoaded', function () { if (window.__wuEvMotion) stackFx(); });
+	else addEventListener('load', stackFx);
 	// this page's own blocks: staggered rise (GSAP when the engine runs, otherwise a class toggle)
-	var mineSel = '.dm-flow li, .dm-rows li, .dm-ch li, .dm-stages li, .dm-ind li, .dm-kl .ev-panel, .dm-tools > li, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
+	var mineSel = '.dm-flow li, .dm-ind li, .dm-kl .ev-panel, .dm-tools > li, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
 	var mine = [].slice.call(document.querySelectorAll('.wu-dm :is(' + mineSel + ')'));
 	if (gs) {
 		// the GSAP scripts load after this one: run once they have
