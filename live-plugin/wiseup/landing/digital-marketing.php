@@ -289,7 +289,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<p>At WiseUp, we connect brand awareness, audience engagement, relevant website traffic, and lead generation into a more focused marketing approach. Every campaign, creative, and digital touchpoint should have a purpose, whether that is building recognition, generating enquiries, improving conversions or strengthening customer relationships.</p>
 			</div>
 			<div class="dm-rise" data-rise>
-				<svg class="dm-rise__svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dm-rise-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2f760" stop-opacity=".2"/><stop offset="1" stop-color="#c2f760" stop-opacity="0"/></linearGradient></defs><path class="dm-rise__area" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0 L1000,300 L0,300 Z" fill="url(#dm-rise-g)"/><path class="dm-rise__line" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0" pathLength="1"/></svg>
+				<svg class="dm-rise__svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dm-rise-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2f760" stop-opacity=".22"/><stop offset=".7" stop-color="#c2f760" stop-opacity=".04"/><stop offset="1" stop-color="#c2f760" stop-opacity="0"/></linearGradient><linearGradient id="dm-rise-stroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c2f760" stop-opacity=".25"/><stop offset=".55" stop-color="#c2f760" stop-opacity=".8"/><stop offset="1" stop-color="#d8ff8a"/></linearGradient><linearGradient id="dm-rise-fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff"/><stop offset=".86" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient><mask id="dm-rise-mask" maskUnits="userSpaceOnUse" x="0" y="-20" width="1000" height="340"><rect x="0" y="-20" width="1000" height="340" fill="url(#dm-rise-fade)"/></mask></defs><g mask="url(#dm-rise-mask)"><path class="dm-rise__area" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0 L1000,300 L0,300 Z" fill="url(#dm-rise-fill)"/><line class="dm-rise__drop" x1="90" y1="261" x2="90" y2="300"/><line class="dm-rise__drop" x1="370" y1="219" x2="370" y2="300"/><line class="dm-rise__drop" x1="630" y1="141" x2="630" y2="300"/><line class="dm-rise__drop" x1="880" y1="39" x2="880" y2="300"/><path class="dm-rise__glow" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0"/><path class="dm-rise__line" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0"/></g></svg>
 				<ol class="dm-rise__pts">
 					<?php foreach ( array( array( 'Visibility', 9, 87 ), array( 'Engagement', 37, 73 ), array( 'Conversion', 63, 47 ), array( 'Growth', 88, 13 ) ) as $wu_i => $fl ) : ?>
 					<li class="dm-rise__pt" style="--x:<?php echo (int) $fl[1]; ?>%;--y:<?php echo (int) $fl[2]; ?>%;--k:<?php echo (int) $wu_i; ?>"><strong><?php echo esc_html( $fl[0] ); ?></strong></li>
@@ -776,15 +776,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				if (!next) return;
 				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });
 			});
-		});
-		// flow: the growth curve draws with the scroll; each word appears as the line reaches it
-		document.querySelectorAll('.wu-dm [data-rise]').forEach(function (r) {
-			if (!matchMedia('(min-width: 700px)').matches) return;
-			r.classList.add('is-live');
-			var rt = gsap.timeline({ scrollTrigger: { trigger: r, start: 'top 88%', end: 'bottom 50%', scrub: 0.8 } });
-			rt.fromTo(r.querySelector('.dm-rise__line'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', duration: 1 }, 0)
-				.fromTo(r.querySelector('.dm-rise__area'), { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.7 }, 0.3);
-			[].slice.call(r.querySelectorAll('.dm-rise__pt')).forEach(function (pt, i) { rt.fromTo(pt, { opacity: 0, y: 26 }, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.2 }, [0.05, 0.33, 0.58, 0.8][i]); });
 		});
 		// tools: each folder's icons pop in one after another
 		gsap.utils.toArray('.wu-dm .dm-apps__grid').forEach(function (g) {

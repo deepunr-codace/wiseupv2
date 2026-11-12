@@ -355,7 +355,6 @@
 /* flow: a growth curve; Visibility, Engagement, Conversion, Growth sit on it, each word larger as the line climbs */
 .wu-dm .dm-rise { position: relative; height: clamp(300px, 30vw, 430px); margin-top: clamp(16px, 3vw, 40px); }
 .wu-dm .dm-rise__svg { position: absolute; left: 0; right: 0; bottom: 0; top: 22%; width: 100%; height: 78%; overflow: visible; }
-.wu-dm .dm-rise__line { fill: none; stroke: var(--lime); stroke-width: 2.5; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; }
 .wu-dm .dm-rise__pts { position: absolute; left: 0; right: 0; bottom: 0; top: 22%; margin: 0; padding: 0; list-style: none; }
 .wu-dm .dm-rise__pt { position: absolute; left: var(--x); top: var(--y); }
 .wu-dm .dm-rise__pt::before { content: ''; position: absolute; left: -7px; top: -7px; width: 14px; height: 14px; border-radius: 50%; background: #000; box-shadow: inset 0 0 0 3px var(--lime); }
@@ -418,3 +417,11 @@
   .wu-dm .dm-apps__f:nth-child(n) .dm-apps__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .wu-dm .dm-apps__grid .dm-mark { width: 50px; height: 50px; }
 }
+
+/* growth curve, static (owner: "make it beautiful, dont add scroll effect"): gradient line with a soft glow, dashed
+   drops from each point to the base, the right end and the fill fade out instead of stopping at the edge */
+.wu-dm .dm-rise__line { fill: none; stroke: url(#dm-rise-stroke); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.wu-dm .dm-rise__glow { fill: none; stroke: rgb(194 247 96 / .1); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.wu-dm .dm-rise__drop { stroke: rgb(194 247 96 / .22); stroke-width: 1; stroke-dasharray: 3 5; vector-effect: non-scaling-stroke; }
+.wu-dm .dm-rise__pt::before { background: #000; box-shadow: inset 0 0 0 3px var(--lime), 0 0 0 6px rgb(194 247 96 / .08); }
+.wu-dm .dm-rise__pt:last-child::before { width: 18px; height: 18px; left: -9px; top: -9px; background: var(--lime); box-shadow: 0 0 0 7px rgb(194 247 96 / .16), 0 0 0 16px rgb(194 247 96 / .06), 0 0 36px rgb(194 247 96 / .55); }
