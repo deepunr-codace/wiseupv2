@@ -304,3 +304,6 @@
   .wu-dm .dm-tl__big { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .wu-dm :is(.dm-spy__fig, .dm-spy__row, .dm-tl__node, .dm-tl__big) { transition: none; } }
+
+/* hero: no background grid on this page (owner, 2026-11-12); the shared Event Branding hero still has it */
+.wu-dm .ev-hero::before { content: none; }
