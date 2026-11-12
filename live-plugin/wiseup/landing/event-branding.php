@@ -104,9 +104,9 @@ $wu_cases = array(
 		'sub'     => 'Corporate Stall Branding & Partnership Signing Ceremonies',
 		'tags'    => '',
 		'type'    => 'Corporate / Renewable Energy & Energy Solutions',
-		'img'     => WISEUP_ASSETS . '/clients/client-logos-2026/ellisto.webp',
-		'logo'    => true,
-		'url'     => '',
+		'img'     => WISEUP_URL . 'assets/landing/img/case-eallisto.webp',
+		'logo'    => false,
+		'url'     => home_url( '/case-studies/eallisto-corporate-event-branding/' ),
 		'problem' => array( 'Eallisto regularly participates in industry events, exhibitions and corporate partnership initiatives. They needed a consistent brand presence at exhibitions and professionally organised partnership signing ceremonies that reflected their corporate identity and strengthened their brand image.' ),
 		'did_h'   => 'What we worked on',
 		'did'     => array( 'Exhibition stall branding and visual design.', 'Corporate event branding and collateral.', 'End-to-end planning and coordination of corporate partnership signing ceremonies.', 'Professional photography and videography.', 'Anchor sourcing and event hosting.', 'On-ground event management and coordination.', 'Documentation and coverage of key moments, including partnership signings and guest interactions.' ),
@@ -182,7 +182,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					<div class="ev-sc__banner">
 						<svg class="ev-sc__wm" viewBox="0 0 960.532 317.019"><use href="#ev-wm"/></svg>
 						<p class="ev-sc__rh">Events people remember</p>
-						<span class="ev-sc__rl">Kozhikode, Kerala</span>
+						<span class="ev-sc__spot"><svg class="ev-sc__ring" viewBox="0 0 100 100"><path id="ev-ring" d="M50 50m-42 0a42 42 0 1 1 84 0a42 42 0 1 1-84 0" fill="none"/><text><textPath href="#ev-ring" textLength="262" lengthAdjust="spacing">Kozhikode, Kerala · Kozhikode, Kerala ·</textPath></text></svg></span>
 					</div>
 					<span class="ev-sc__foot"></span>
 				</div>
@@ -260,7 +260,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 4. Corporate events -->
 	<section class="sec ev-sec" id="corporate">
 		<div class="wrap">
-			<div class="ev-head">
+			<div class="ev-head ev-head--stack">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Corporate' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Corporate Events Deserve</span> <span class="sh__b">More Than a Logo on a Backdrop</span></h2>
@@ -432,8 +432,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-intro"><p>A portfolio shows more than a list of services ever could. Each project below follows the same structure, so you can see how we think and what the result was.</p></div>
 			</div>
 			<div class="ev-cases ev-cases--two">
-				<?php foreach ( $wu_cases as $c ) : ?>
-				<article class="ev-case">
+				<?php $wu_cn = 0; foreach ( $wu_cases as $c ) : ?>
+				<article class="ev-case" data-n="<?php echo esc_attr( sprintf( '%02d', ++$wu_cn ) ); ?>">
 					<?php if ( $c['url'] ) : ?><a class="ev-case__img" href="<?php echo esc_url( $c['url'] ); ?>" tabindex="-1" aria-hidden="true"><?php else : ?><div class="ev-case__img<?php echo $c['logo'] ? ' ev-case__img--logo' : ''; ?>" aria-hidden="true"><?php endif; ?><img src="<?php echo esc_url( $c['img'] ); ?>" alt="" loading="lazy" decoding="async"><?php echo $c['url'] ? '</a>' : '</div>'; ?>
 					<div class="ev-case__body">
 						<?php if ( $c['tags'] ) : ?><p class="ev-case__type"><?php echo esc_html( $c['tags'] ); ?></p><?php endif; ?>
