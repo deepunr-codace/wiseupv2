@@ -1303,3 +1303,16 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev #services .sh__h { font-size: min(clamp(1.85rem, 1.1rem + 2.1vw, 3.05rem), 7.9cqi); max-width: none; text-wrap: nowrap; }
 .wu-ev #services .sh__h .sh__a, .wu-ev #services .sh__h .sh__b { display: block; white-space: nowrap; }
 @media (min-width: 1100px) { .wu-ev #services > .wrap { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(40px, 4.5vw, 88px); } }
+
+/* ===== Hero right side: the branded exhibition booth photo (owner: "make this as hero right side"), replaces the drawn stage scene;
+   a framed print that leans slightly toward the pointer (same --rx / --ry the page script already sets) ===== */
+.wu-ev .ev-stage.ev-booth { aspect-ratio: auto; perspective: 1400px; }
+.wu-ev .ev-booth__frame { position: relative; margin: 0; aspect-ratio: 5 / 4.2; overflow: hidden; border-radius: 28px; background: #0b0b0d;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1), 0 40px 80px -40px rgb(0 0 0 / .9);
+  transform: rotateY(calc(var(--rx) * 5deg)) rotateX(calc(var(--ry) * -4deg)); transform-style: preserve-3d; transition: transform .6s cubic-bezier(.22, 1, .36, 1); }
+.wu-ev .ev-booth__frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48% 50%; }
+.wu-ev .ev-booth__frame::after { content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(120deg, rgb(255 255 255 / .08), transparent 38%), linear-gradient(to top, rgb(0 0 0 / .25), transparent 30%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); }
+@media (max-width: 1023px) { .wu-ev .ev-booth__frame { aspect-ratio: 1618 / 972; border-radius: 22px; } }
+@media (prefers-reduced-motion: reduce) { .wu-ev .ev-booth__frame { transform: none; transition: none; } }
