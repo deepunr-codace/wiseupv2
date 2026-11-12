@@ -17,6 +17,8 @@ function wiseup_landing_templates() {
 		'wiseup-tv'           => array( 'wiseup-tv.php', __( 'WiseUp: TV', 'wiseup' ), 'wiseup-tv' ),
 		'wiseup-studio'       => array( 'wiseup-studio.php', __( 'WiseUp: Studio', 'wiseup' ), 'wiseup-studio' ),
 		'wiseup-event-branding' => array( 'event-branding.php', __( 'WiseUp: Event Branding', 'wiseup' ), 'event-branding' ),
+		'wiseup-digital-marketing'    => array( 'digital-marketing.php', __( 'WiseUp: Digital Marketing (Kerala)', 'wiseup' ), 'digital-marketing' ),
+		'wiseup-digital-marketing-au' => array( 'digital-marketing.php', __( 'WiseUp: Digital Marketing (Australia)', 'wiseup' ), 'digital-marketing-au' ),
 	);
 }
 

@@ -98,6 +98,8 @@ function wiseup_lead_sources() {
 		'case-studies' => __( 'Case studies page', 'wiseup' ),
 		'blog'         => __( 'Blog article', 'wiseup' ),
 		'event-branding' => __( 'Event branding page', 'wiseup' ),
+		'digital-marketing'    => __( 'Digital marketing page (Kerala)', 'wiseup' ),
+		'digital-marketing-au' => __( 'Digital marketing page (Australia)', 'wiseup' ),
 	);
 }
 
