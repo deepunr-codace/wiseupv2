@@ -1330,6 +1330,16 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-stage.ev-photo { position: relative; align-self: center; perspective: none; }
 .wu-ev .ev-stage.ev-photo img { display: block; width: 100%; max-width: none; height: auto; }
 @media (max-width: 1023px) { .wu-ev .ev-stage.ev-photo { max-width: 640px; width: 100%; } }
+/* grounding (owner: "looks like staying on the air"): a soft lime floor glow and contact shadow under the platform, and a
+   faint mirror reflection of the stage on a glossy floor (the same image file, flipped, so nothing extra downloads) */
+.wu-ev .ev-stage.ev-photo { isolation: isolate; aspect-ratio: auto; height: auto; }
+.wu-ev .ev-stage.ev-photo > img:first-child { position: relative; z-index: 2; }
+.wu-ev .ev-stage.ev-photo::before { content: ''; position: absolute; z-index: 0; left: -6%; right: -6%; top: 80%; height: 34%; pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 42%, rgb(190 218 82 / .2), rgb(190 218 82 / .06) 55%, transparent 75%); }
+.wu-ev .ev-stage.ev-photo::after { content: ''; position: absolute; z-index: 1; left: 6%; right: 6%; top: 92%; height: 9%; pointer-events: none;
+  background: radial-gradient(50% 50% at 50% 50%, rgb(0 0 0 / .85), transparent 72%); }
+.wu-ev .ev-stage.ev-photo img.ev-photo__refl { position: absolute; z-index: 1; left: 0; top: 96.5%; transform: scaleY(-1); opacity: .32; filter: blur(1.5px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 72%, #000 100%); mask-image: linear-gradient(to bottom, transparent 72%, #000 100%); pointer-events: none; }
 
 /* ===== v1.3.42 (owner, 2026-11-13) ===== */
 /* "reduce spacing between sections" (was clamp(80px, 9vw, 150px)) */

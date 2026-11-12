@@ -174,6 +174,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<div class="ev-stage ev-photo" data-stage>
 				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) min(100vw, 640px), 50vw" width="1200" height="800" alt="Event stage on a round platform: two grey armchairs, a side table with white lilies, a slatted wall and an arch lit in green" fetchpriority="high" decoding="async">
+				<img class="ev-photo__refl" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) min(100vw, 640px), 50vw" width="1200" height="800" alt="" aria-hidden="true" decoding="async">
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
