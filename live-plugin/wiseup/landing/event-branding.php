@@ -157,35 +157,37 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-hero__copy">
 			<?php echo $wu_eyebrow( __( 'Event branding', 'wiseup' ) ); // phpcs:ignore ?>
 			<h1 class="ev-hero__h"><span class="sh__a">Event Branding Agency in Kerala</span> <span class="sh__b">for Events People Remember</span></h1>
-			<p class="ev-hero__p">People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop, and even the badge are already speaking for you. WiseUp is an event branding company in Kerala that designs, produces, and installs every one of them, so your event looks like one idea from start to finish. Wondering what that really involves? Let’s start with what event branding actually is.</p>
+			<p class="ev-hero__p">People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop, and even the badge are already speaking for you. WiseUp is an event branding company in Kerala that designs, produces, and installs every one of them, so your event looks like one idea from start to finish.</p>
 			<div class="ev-btns">
 				<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
 				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 			</div>
 			</div>
-			<div class="ev-stage" aria-hidden="true" data-stage>
-				<span class="ev-beam ev-beam--l"></span><span class="ev-beam ev-beam--r"></span>
-				<div class="ev-stage__screen">
-					<img class="ev-led__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-stage-gala.webp' ); ?>" alt="" decoding="async" fetchpriority="high">
-					<span class="ev-led__grid"></span>
-					<span class="ev-led__sweep"></span>
-					<span class="ev-led__mark">W</span>
-					<span class="ev-led__k">Main stage</span>
+			<div class="ev-stage ev-sc" aria-hidden="true" data-stage>
+				<svg class="ev-sc__defs" width="0" height="0" aria-hidden="true"><symbol id="ev-wm" viewBox="0 0 960.532 317.019"><path d="M135.035 74.685L173.697 219.947L165.169 219.6L204.116 74.685L235.955 74.685L184.216 247.682L156.924 247.682L113.429 101.38L121.958 101.38L77.894 247.682L50.602 247.682L0 74.685L31.555 74.685L69.365 219.6L61.121 219.947L100.921 74.685L135.035 74.685"/><path d="M243.236 247.682L243.236 74.685L274.784 74.685L274.784 247.682L243.236 247.682"/><path d="M289.692 191.519L289.692 191.519L318.814 191.519Q320.2 205.733 330.948 214.747Q341.695 223.761 361.109 223.761L361.109 223.761Q372.897 223.761 379.831 220.814Q386.764 217.867 389.884 212.667Q393.005 207.466 393.005 200.879L393.005 200.879Q393.005 192.905 388.844 188.398Q384.684 183.892 377.404 180.945Q370.123 177.998 360.069 175.571L360.069 175.571Q348.975 171.758 337.881 167.771Q326.787 163.784 317.253 157.717Q307.72 151.65 301.999 142.809Q296.279 133.969 296.279 121.488L296.279 121.488Q296.279 110.394 300.959 101.207Q305.639 92.019 314.133 85.259Q322.627 78.499 334.068 74.685Q345.508 70.872 359.029 70.872L359.029 70.872Q378.444 70.872 391.445 77.979Q404.445 85.086 411.206 97.913Q417.966 110.741 418.313 127.382L418.313 127.382L390.924 127.382Q388.498 112.474 380.871 105.714Q373.243 98.953 358.683 98.953L358.683 98.953Q343.775 98.953 335.975 105.02Q328.174 111.087 328.174 121.141L328.174 121.141Q328.174 128.422 333.721 133.275Q339.268 138.129 348.455 141.769Q357.643 145.409 369.083 149.223L369.083 149.223Q379.831 153.036 389.711 157.197Q399.592 161.357 407.392 166.731Q415.193 172.104 419.873 180.425Q424.553 188.745 424.553 201.226L424.553 201.226Q424.553 216.133 417.273 227.574Q409.992 239.015 395.951 245.082Q381.911 251.149 361.803 251.149L361.803 251.149Q343.775 251.149 330.948 246.815Q318.12 242.482 309.626 235.375Q301.133 228.268 296.626 220.12Q292.119 211.973 290.559 204.346Q288.998 196.719 289.692 191.519"/><path d="M565.655 191.519L565.655 191.519L595.47 191.519Q592.696 208.853 582.643 222.201Q572.589 235.548 556.121 243.348Q539.653 251.149 517.465 251.149L517.465 251.149Q491.464 251.149 470.663 239.882Q449.861 228.614 438.074 208.333Q426.287 188.052 426.287 161.357L426.287 161.357Q426.287 135.009 437.727 114.554Q449.168 94.1 469.622 82.486Q490.077 70.872 515.732 70.872L515.732 70.872Q543.12 70.872 561.668 82.139Q580.216 93.406 589.23 115.074Q598.243 136.742 596.51 168.637L596.51 168.637L457.835 168.637Q459.569 184.932 467.196 197.239Q474.823 209.546 487.65 216.48Q500.478 223.414 517.465 223.414L517.465 223.414Q535.84 223.414 548.494 214.573Q561.148 205.733 565.655 191.519M516.079 98.953L516.079 98.953Q493.891 98.953 479.156 111.087Q464.422 123.221 459.569 143.329L459.569 143.329L564.615 143.329Q563.228 121.835 549.534 110.394Q535.84 98.953 516.079 98.953"/><path d="M766.04 74.685L766.04 247.682L734.838 247.682L734.838 74.685L766.04 74.685M736.572 166.557L736.572 166.557L736.918 176.611Q736.572 180.771 734.665 189.612Q732.758 198.452 728.771 209.026Q724.784 219.6 717.504 229.308Q710.223 239.015 699.129 245.082Q688.035 251.149 671.741 251.149L671.741 251.149Q660.994 251.149 649.727 248.202Q638.459 245.255 628.925 238.148Q619.391 231.041 613.671 218.56Q607.951 206.08 607.951 187.358L607.951 187.358L607.951 74.685L639.499 74.685L639.499 180.425Q639.499 196.026 644.526 205.039Q649.553 214.053 658.567 217.867Q667.581 221.68 679.022 221.68L679.022 221.68Q697.049 221.68 709.183 212.84Q721.317 203.999 728.078 191.172Q734.838 178.345 736.572 166.557"/><path d="M881.487 251.149L881.487 251.149Q861.726 251.149 848.725 242.482Q835.724 233.815 828.27 219.947Q820.817 206.08 817.523 190.652Q814.23 175.224 814.23 161.357L814.23 161.357Q814.23 142.636 817.35 126.341Q820.47 110.047 827.75 97.566Q835.031 85.086 848.205 77.979Q861.379 70.872 881.487 70.872L881.487 70.872Q903.328 70.872 921.183 82.659Q939.037 94.446 949.784 114.901Q960.532 135.355 960.532 161.357L960.532 161.357Q960.532 187.705 949.611 207.986Q938.69 228.268 920.663 239.708Q902.635 251.149 881.487 251.149M872.82 223.067L872.82 223.067Q889.461 223.067 902.115 215.267Q914.769 207.466 921.703 193.425Q928.636 179.385 928.636 161.357L928.636 161.357Q928.636 134.315 914.076 116.808Q899.515 99.3 872.82 99.3L872.82 99.3Q856.872 99.3 844.391 107.1Q831.911 114.901 824.977 128.768Q818.043 142.636 818.043 161.357L818.043 161.357Q818.043 178.691 824.11 192.559Q830.177 206.426 842.485 214.747Q854.792 223.067 872.82 223.067M786.495 317.019L786.495 74.685L816.656 74.685L818.043 112.821L818.043 317.019L786.495 317.019"/><circle cx="259.01" cy="21.295" r="21.295" fill="#c2f760"/></symbol></svg>
+				<figure class="ev-sc__photo">
+					<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-stage-gala.webp' ); ?>" alt="" width="1671" height="941" decoding="async" fetchpriority="high">
+					<figcaption class="ev-sc__lower"><svg class="ev-sc__wm" viewBox="0 0 960.532 317.019"><use href="#ev-wm"/></svg><span>Main stage</span></figcaption>
+				</figure>
+				<div class="ev-sc__rollup">
+					<div class="ev-sc__banner">
+						<svg class="ev-sc__wm" viewBox="0 0 960.532 317.019"><use href="#ev-wm"/></svg>
+						<p class="ev-sc__rh">Events people remember</p>
+						<span class="ev-sc__rl">Kozhikode, Kerala</span>
+					</div>
+					<span class="ev-sc__foot"></span>
 				</div>
-				<div class="ev-standee ev-standee--l"><i></i><b></b><b></b><b></b></div>
-				<div class="ev-standee ev-standee--r"><i></i><b></b><b></b><b></b></div>
-				<div class="ev-lectern"><span>W</span></div>
-				<div class="ev-stage__deck"></div>
-				<div class="ev-stage__floor"></div>
-				<div class="ev-pass">
-					<span class="ev-pass__cord"></span>
-					<div class="ev-pass__card">
-						<span class="ev-pass__clip"></span>
-						<span class="ev-pass__top">EVENT PASS</span>
-						<span class="ev-pass__mark">W</span>
-						<span class="ev-pass__name">Your event</span>
-						<span class="ev-pass__role">Branded by WiseUp</span>
-						<span class="ev-pass__bar"></span>
+				<div class="ev-sc__pass">
+					<span class="ev-sc__strap"></span>
+					<span class="ev-sc__clip"></span>
+					<div class="ev-sc__card">
+						<div class="ev-sc__chead"><svg class="ev-sc__wm" viewBox="0 0 960.532 317.019"><use href="#ev-wm"/></svg></div>
+						<div class="ev-sc__cbody">
+							<span class="ev-sc__role">Guest</span>
+							<strong class="ev-sc__name">Your name</strong>
+							<span class="ev-sc__ev">Your event, 2026</span>
+							<svg class="ev-sc__qr" viewBox="-1 -1 23 23" shape-rendering="crispEdges"><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM8 0h1v1h-1zM11 0h1v1h-1zM14 0h1v1h-1zM15 0h1v1h-1zM16 0h1v1h-1zM17 0h1v1h-1zM18 0h1v1h-1zM19 0h1v1h-1zM20 0h1v1h-1zM0 1h1v1h-1zM6 1h1v1h-1zM9 1h1v1h-1zM14 1h1v1h-1zM20 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM6 2h1v1h-1zM8 2h1v1h-1zM9 2h1v1h-1zM10 2h1v1h-1zM14 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM20 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM6 3h1v1h-1zM8 3h1v1h-1zM14 3h1v1h-1zM16 3h1v1h-1zM17 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM14 4h1v1h-1zM16 4h1v1h-1zM17 4h1v1h-1zM18 4h1v1h-1zM20 4h1v1h-1zM0 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM11 5h1v1h-1zM14 5h1v1h-1zM20 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM12 6h1v1h-1zM14 6h1v1h-1zM15 6h1v1h-1zM16 6h1v1h-1zM17 6h1v1h-1zM18 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM12 7h1v1h-1zM0 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM9 8h1v1h-1zM11 8h1v1h-1zM13 8h1v1h-1zM16 8h1v1h-1zM17 8h1v1h-1zM19 8h1v1h-1zM0 9h1v1h-1zM1 9h1v1h-1zM4 9h1v1h-1zM5 9h1v1h-1zM7 9h1v1h-1zM10 9h1v1h-1zM11 9h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM15 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM20 9h1v1h-1zM1 10h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM4 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM17 10h1v1h-1zM19 10h1v1h-1zM20 10h1v1h-1zM0 11h1v1h-1zM1 11h1v1h-1zM3 11h1v1h-1zM5 11h1v1h-1zM7 11h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM16 11h1v1h-1zM17 11h1v1h-1zM20 11h1v1h-1zM3 12h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM8 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM12 13h1v1h-1zM13 13h1v1h-1zM14 13h1v1h-1zM15 13h1v1h-1zM16 13h1v1h-1zM18 13h1v1h-1zM19 13h1v1h-1zM0 14h1v1h-1zM1 14h1v1h-1zM2 14h1v1h-1zM3 14h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM12 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM18 14h1v1h-1zM0 15h1v1h-1zM6 15h1v1h-1zM9 15h1v1h-1zM11 15h1v1h-1zM19 15h1v1h-1zM0 16h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM4 16h1v1h-1zM6 16h1v1h-1zM10 16h1v1h-1zM15 16h1v1h-1zM18 16h1v1h-1zM0 17h1v1h-1zM2 17h1v1h-1zM3 17h1v1h-1zM4 17h1v1h-1zM6 17h1v1h-1zM10 17h1v1h-1zM13 17h1v1h-1zM15 17h1v1h-1zM17 17h1v1h-1zM20 17h1v1h-1zM0 18h1v1h-1zM2 18h1v1h-1zM3 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM12 18h1v1h-1zM13 18h1v1h-1zM14 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM20 18h1v1h-1zM0 19h1v1h-1zM6 19h1v1h-1zM9 19h1v1h-1zM11 19h1v1h-1zM12 19h1v1h-1zM16 19h1v1h-1zM18 19h1v1h-1zM19 19h1v1h-1zM0 20h1v1h-1zM1 20h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM14 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM20 20h1v1h-1z"/></svg>
+						</div>
 					</div>
 				</div>
 			</div>
