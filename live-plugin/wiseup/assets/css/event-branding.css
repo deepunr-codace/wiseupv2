@@ -1359,3 +1359,32 @@ html, body.wu-ev-page { background: #000; }
 /* "make black bg": the 1 month circle is black with a lime ring and lime number (no lime fill, no glow) */
 .wu-ev .ev-timeline__num { color: var(--lime); background: #000; box-shadow: inset 0 0 0 2px var(--lime), 0 0 0 10px rgb(194 247 96 / .08); }
 .wu-ev .ev-timeline__num span { color: #fff; }
+
+/* ===== v1.3.45: one type scale and one heading gap for the whole page (owner, 2026-11-13: "make uniform font size and
+   spacing"). Before this the page had five body sizes (14.5 to 17px), seven card-title sizes (19 to 32px), five lead
+   sizes and head-to-content gaps of 56 or 79px. Four sizes now: body, lead, card title, small label. ===== */
+.wu-ev {
+  --ev-body: clamp(15px, .9rem + .2vw, 16px);
+  --ev-lead: clamp(17px, 1rem + .45vw, 20px);
+  --ev-h3: clamp(18px, 1rem + .3vw, 20px);
+  --ev-small: 14px;
+  --ev-head-gap: clamp(36px, 3.6vw, 56px);
+}
+/* body text */
+.wu-ev :is(.ev-hero__p, .ev-intro p, .ev-prose > p:not(.ev-lead), .ev-card p, .ev-step p, .ev-chk p, .ev-exp__card p, .ev-panel p:not(.ev-lead),
+  .ev-note, .ev-disc__pts li > p, .ev-route__lead, .ev-tabs__pane p, .ev-quote__text p, .faq__a, .ev-final__p, .ev-final__copy p,
+  .ev-check li, .ev-ask__list li, .ev-case__sub, .ev-kl p:not(.ev-lead)) {
+  font-size: var(--ev-body) !important; line-height: 1.7 !important;
+}
+/* lead paragraphs: the opening line of a section */
+.wu-ev :is(.ev-lead, .ev-head--stack .ev-intro p:first-of-type, .ev-price > p, .ev-timeline__txt p) {
+  font-size: var(--ev-lead) !important; line-height: 1.6 !important;
+}
+/* card and panel titles */
+.wu-ev .ev-sec h3, .wu-ev .ev-sec .faq__q h3 { font-size: var(--ev-h3) !important; line-height: 1.3 !important; }
+/* small labels */
+.wu-ev :is(.ev-case__type, .ev-case__client, .ev-disc__note) { font-size: var(--ev-small) !important; line-height: 1.5 !important; }
+/* one gap between a section's heading block and its content */
+.wu-ev .ev-head, .wu-ev #kerala .wrap > .sh { margin-bottom: var(--ev-head-gap) !important; }
+/* eyebrow to heading: 24px everywhere (the closing call to action had 18px) */
+.wu-ev .ev-final__copy { gap: 24px; }
