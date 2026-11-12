@@ -861,3 +861,26 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-hero > .wrap { position: relative; z-index: 1; }
 /* phones: the old step rule made a 44px column for the number; the new cards stay one column */
 .wu-ev .ev-tstep { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+
+/* ===== v1.3.14: "Sectors We Understand" as icon tiles, names only (owner: "dont need explanations. just logo and industries name in a creative style") ===== */
+.wu-ev .ev-sectors { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 4px; counter-reset: sec; }
+.wu-ev .ev-sectors li { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 22px; min-height: 132px; padding: 16px 16px 15px; overflow: hidden; border: 0; border-radius: 18px;
+  background: radial-gradient(120% 90% at 100% 0%, rgb(194 247 96 / .07), transparent 55%), #16171a; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .07);
+  counter-increment: sec; transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .35s, background .35s; }
+.wu-ev .ev-sectors li::after { content: counter(sec, decimal-leading-zero); position: absolute; right: 14px; top: 13px; font-size: 11px; font-weight: 600; letter-spacing: .16em; color: rgb(255 255 255 / .28); }
+.wu-ev .ev-sectors__i { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; color: var(--lime); background: rgb(194 247 96 / .1); box-shadow: inset 0 0 0 1px rgb(194 247 96 / .22); transition: color .35s, background .35s, transform .5s cubic-bezier(.16, 1, .3, 1); }
+.wu-ev .ev-sectors strong { font-size: 16px; font-weight: 500; line-height: 1.25; letter-spacing: -.01em; color: #fff; }
+.wu-ev .ev-sectors strong::before { content: none; }
+@media (hover: hover) {
+  .wu-ev .ev-sectors li:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px rgb(194 247 96 / .45); }
+  .wu-ev .ev-sectors li:hover .ev-sectors__i { color: #11150a; background: var(--lime); transform: rotate(-8deg) scale(1.06); }
+}
+@media (max-width: 1199px) and (min-width: 1024px), (max-width: 520px) { .wu-ev .ev-sectors { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .wu-ev .ev-sectors li { grid-template-columns: none; min-height: 118px; } }
+@media (prefers-reduced-motion: reduce) { .wu-ev .ev-sectors li, .wu-ev .ev-sectors__i { transition: none; } }
+
+/* process cards: black icon circles; every title gets a two-line slot so the descriptions line up, plain left-aligned wrapping (owner: "fix text alignment, keep same length", "icons should be on black bg") */
+.wu-ev .ev-tstep__i { color: var(--lime); background: #000; box-shadow: inset 0 0 0 1.5px rgb(194 247 96 / .55), 0 0 0 8px #000; }
+.wu-ev .ev-tstep h3 { min-height: 2.4em; text-wrap: wrap; }
+.wu-ev .ev-tstep p { text-wrap: wrap; }
+@media (max-width: 767px) { .wu-ev .ev-tstep h3 { min-height: 0; } }

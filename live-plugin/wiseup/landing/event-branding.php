@@ -278,14 +278,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					<p>Different industries ask for different tones, and we adjust accordingly.</p>
 					<ul class="ev-sectors">
 						<?php foreach ( array(
-							array( 'Healthcare', 'Calm, credible and clear, where trust matters most.' ),
-							array( 'Education', 'Welcoming and energetic, for audiences from students to academics.' ),
-							array( 'Government', 'Dignified and structured, suited to formal public occasions.' ),
-							array( 'Startups', 'Bold and flexible, designed to make a young brand look established.' ),
-							array( 'Retail', 'Visual and promotional, built to attract footfall and attention.' ),
-							array( 'Tourism and hospitality', 'A sector central to Kerala, where atmosphere is part of the product. We know how to brand events that need to feel as inviting as the destinations they promote.' ),
+							array( 'Healthcare', '<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/><path d="M7.5 12.5h2.6l1.4-2.4 2 4.2 1.4-1.8h1.6"/>' ),
+							array( 'Education', '<path d="M2.5 9 12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v5c1.6 1.6 3.4 2.3 5.5 2.3s3.9-.7 5.5-2.3v-5M21.5 9v5"/>' ),
+							array( 'Government', '<path d="M3 9.5 12 4l9 5.5z"/><path d="M5 9.5v8M9.7 9.5v8M14.3 9.5v8M19 9.5v8M3 20h18M4 17.5h16"/>' ),
+							array( 'Startups', '<path d="M14.5 4.5c3-1 5-1 5-1s0 2-1 5l-5.5 5.5-4-4z"/><path d="M9 10 6 9.5 3.5 12l4 1M14 15l.5 3-2.5 2.5-1-4M8 16c-1.5.3-2.8 1.6-3.5 4 2.4-.7 3.7-2 4-3.5"/><circle cx="15.5" cy="8.5" r="1.3"/>' ),
+							array( 'Retail', '<path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/>' ),
+							array( 'Tourism and hospitality', '<path d="M12 21v-9.5"/><path d="M12 11.5C10 8 6.5 7.5 4 9c2.2-3.3 6-3.6 8 2.5zM12 11.5c2-3.5 5.5-4 8-2.5-2.2-3.3-6-3.6-8 2.5zM12 11.5c-.5-3.4-2.8-5.6-5.5-6 3-1.4 5.6.4 5.5 6zM12 11.5c.5-3.4 2.8-5.6 5.5-6-3-1.4-5.6.4-5.5 6z"/><path d="M5 21c2.3-1.3 4.6-1.3 7 0s4.7 1.3 7 0"/>' ),
 						) as $sec ) : ?>
-						<li><strong><?php echo esc_html( $sec[0] ); ?></strong><span><?php echo esc_html( $sec[1] ); ?></span></li>
+						<li><span class="ev-sectors__i"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $sec[1]; // phpcs:ignore -- fixed markup ?></svg></span><strong><?php echo esc_html( $sec[0] ); ?></strong></li>
 						<?php endforeach; ?>
 					</ul>
 				</div>
