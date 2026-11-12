@@ -1297,6 +1297,56 @@ defined( 'ABSPATH' ) || exit;
 						<span class="rows__stats" aria-hidden="true"><span class="rows__big"><b>1M+</b><span>minimum reach on every video</span></span><span class="rows__mini"><span><b>100+</b>videos in total</span><span><b>6+</b>store launches</span><span><b>5+</b>video formats</span></span></span>
 						</a>
 					</li>
+					<li class="rows__tile">
+						<a class="rows__link" href="https://wiseup.in/case-studies/eallisto-corporate-event-branding/" aria-label="Eallisto, Corporate event branding: view case study">
+							<img alt="Eallisto corporate event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
+						</a>
+					</li>
+					<li class="rows__tile">
+						<a class="rows__link" href="https://wiseup.in/case-studies/popees-brand-campaigns-creative-marketing/" aria-label="Popees, Brand campaigns: view case study">
+							<img alt="Popees brand campaigns by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
+							<img alt="Bootland event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/smokehouse/" tabindex="-1" aria-label="Smoke House, Restaurant branding: view case study">
+							<img alt="Smoke House restaurant branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/erets/" tabindex="-1" aria-label="Erets Space, Space technology: view case study">
+							<img alt="Erets Space brand by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/indusgo/" tabindex="-1" aria-label="Indus Go, Self-drive rentals: view case study">
+							<img alt="Indus Go self-drive rentals branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/golden-karak/" tabindex="-1" aria-label="Golden Karak, Café brand: view case study">
+							<img alt="Golden Karak café brand by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/" tabindex="-1" aria-label="Sathya Agencies, Brand launch campaign: view case study">
+							<img alt="Sathya Agencies brand launch campaign by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/eallisto-corporate-event-branding/" tabindex="-1" aria-label="Eallisto, Corporate event branding: view case study">
+							<img alt="Eallisto corporate event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
+						</a>
+					</li>
+					<li class="rows__tile" aria-hidden="true">
+						<a class="rows__link" href="https://wiseup.in/case-studies/popees-brand-campaigns-creative-marketing/" tabindex="-1" aria-label="Popees, Brand campaigns: view case study">
+							<img alt="Popees brand campaigns by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
+						</a>
+					</li>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
 							<img alt="Bootland event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
@@ -1328,33 +1378,13 @@ defined( 'ABSPATH' ) || exit;
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
-						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
-							<img alt="Bootland event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
+						<a class="rows__link" href="https://wiseup.in/case-studies/eallisto-corporate-event-branding/" tabindex="-1" aria-label="Eallisto, Corporate event branding: view case study">
+							<img alt="Eallisto corporate event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-eallisto-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
 						</a>
 					</li>
 					<li class="rows__tile" aria-hidden="true">
-						<a class="rows__link" href="https://wiseup.in/case-studies/smokehouse/" tabindex="-1" aria-label="Smoke House, Restaurant branding: view case study">
-							<img alt="Smoke House restaurant branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z17N7En.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_ZBDU46.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_1Y9X65.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-smokehouse.DrBo1I8U_Z2162GT.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
-						</a>
-					</li>
-					<li class="rows__tile" aria-hidden="true">
-						<a class="rows__link" href="https://wiseup.in/case-studies/erets/" tabindex="-1" aria-label="Erets Space, Space technology: view case study">
-							<img alt="Erets Space brand by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_1uGhkq.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_Z1p52fi.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-erets.BgWFNgUl_25O9dK.webp 604w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="600">
-						</a>
-					</li>
-					<li class="rows__tile" aria-hidden="true">
-						<a class="rows__link" href="https://wiseup.in/case-studies/indusgo/" tabindex="-1" aria-label="Indus Go, Self-drive rentals: view case study">
-							<img alt="Indus Go self-drive rentals branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Zh7Hkk.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_1fyogF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-indusgo.CVZUd7bj_Z2vsmB2.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="602">
-						</a>
-					</li>
-					<li class="rows__tile" aria-hidden="true">
-						<a class="rows__link" href="https://wiseup.in/case-studies/golden-karak/" tabindex="-1" aria-label="Golden Karak, Café brand: view case study">
-							<img alt="Golden Karak café brand by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_N9Iq3.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_ZECgDF.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-karak.BTEWPsMa_Z2eUdYy.webp 604w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="604" height="602">
-						</a>
-					</li>
-					<li class="rows__tile" aria-hidden="true">
-						<a class="rows__link" href="https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/" tabindex="-1" aria-label="Sathya Agencies, Brand launch campaign: view case study">
-							<img alt="Sathya Agencies brand launch campaign by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-720.webp 720w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-sathya-1242.webp 1242w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="1242" height="620">
+						<a class="rows__link" href="https://wiseup.in/case-studies/popees-brand-campaigns-creative-marketing/" tabindex="-1" aria-label="Popees, Brand campaigns: view case study">
+							<img alt="Popees brand campaigns by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-popees-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
 						</a>
 					</li>
 				</ul>
