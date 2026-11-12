@@ -174,7 +174,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<div class="ev-stage ev-booth" data-stage>
 				<figure class="ev-booth__frame">
-					<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-booth-1600.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-booth-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-booth-1600.webp' ); ?> 1600w" sizes="(max-width: 1023px) 92vw, 46vw" alt="Exhibition booth with black walls and lime graphics reading All about Branding, with two branded counters" width="1600" height="961" decoding="async" fetchpriority="high">
+					<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1600.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1600.webp' ); ?> 1600w" sizes="(max-width: 1023px) 92vw, 46vw" alt="Event stage with two armchairs on a round platform, lit by lime neon light lines" width="1600" height="901" decoding="async" fetchpriority="high">
 				</figure>
 			</div>
 			<dl class="ev-proof">

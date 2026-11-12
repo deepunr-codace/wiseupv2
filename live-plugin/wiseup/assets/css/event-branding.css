@@ -1316,3 +1316,8 @@ html, body.wu-ev-page { background: #000; }
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); }
 @media (max-width: 1023px) { .wu-ev .ev-booth__frame { aspect-ratio: 1618 / 972; border-radius: 22px; } }
 @media (prefers-reduced-motion: reduce) { .wu-ev .ev-booth__frame { transform: none; transition: none; } }
+/* hero photo is now the neon-lime event stage (owner: "use this"): keep the chairs and the lit arch in the desktop crop */
+.wu-ev .ev-booth__frame img { object-position: 70% 50%; }
+@media (max-width: 1023px) { .wu-ev .ev-booth__frame { aspect-ratio: 1671 / 941; } }
+/* hero background grid removed (owner: "remove hero bg grids") */
+.wu-ev .ev-hero::before { content: none; }
