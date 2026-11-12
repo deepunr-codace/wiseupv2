@@ -1322,26 +1322,24 @@ html, body.wu-ev-page { background: #000; }
 /* hero background grid removed (owner: "remove hero bg grids") */
 .wu-ev .ev-hero::before { content: none; }
 
-/* ===== Hero: "Wiso sets the stage", one real-time 3D world behind the whole hero (assets/js/ev-world.js, three.js).
-   The stage is built in code (no photos); .ev-spot only keeps the right-hand column's space, the world aims its stage
-   at it. Owner: "a wiseup animated character coming down from the logo through a rope ... jumps to the hero heading
-   then to the event ... makes everything arranged like magic", "dont use my event image, it should build by you",
-   "use more feelgood character". ===== */
-.wu-ev .ev-world { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-.wu-ev .ev-world canvas { display: block; width: 100%; height: 100%; opacity: 0; }
-.wu-ev .ev-hero.ev-world--on .ev-world canvas { opacity: 1; }
+/* ===== Hero right side: the owner's green-lit stage image (transparent background, sits on the black hero).
+   Owner: "use this image in hero right. remove all 3d items u build and its related codes". ===== */
 /* the hero background is plain black (owner: "dont change background color of the hero. it should be black") */
 .wu-ev .ev-hero .ev-hero__glow { display: none; }
 .wu-ev .ev-hero > .ev-logos { position: relative; z-index: 1; }
-.wu-ev .ev-stage.ev-spot { position: relative; aspect-ratio: 5 / 4.4; perspective: none; pointer-events: auto; }
-@media (max-width: 1023px) { .wu-ev .ev-stage.ev-spot { aspect-ratio: 16 / 11; max-width: 640px; width: 100%; } }
-/* stills rendered from the same scene: "before" (dark, unarranged stage) shows until the 3D world starts on the visitor's
-   first interaction and then fades away over the identical first frame; "after" (finished stage with Wiso) is what
-   reduced-motion, data-saver and low-memory visitors keep (the 3D never loads for them) */
-.wu-ev .ev-spot__still { position: absolute; left: -11%; top: -17%; width: 122%; height: 130%; display: block; pointer-events: none; transition: opacity .9s ease; }
-.wu-ev .ev-spot__still img { display: block; width: 100%; height: 100%; max-width: none; }
-.wu-ev .ev-spot__still--after { display: none; }
-.wu-ev .ev-hero.ev-world--still .ev-spot__still--before { display: none; }
-.wu-ev .ev-hero.ev-world--still .ev-spot__still--after { display: block; }
-.wu-ev .ev-hero.ev-world--on .ev-spot__still { opacity: 0; }
-@media (prefers-reduced-motion: reduce) { .wu-ev .ev-spot__still--before { display: none; } .wu-ev .ev-spot__still--after { display: block; } }
+.wu-ev .ev-stage.ev-photo { position: relative; align-self: center; perspective: none; }
+.wu-ev .ev-stage.ev-photo img { display: block; width: 100%; max-width: none; height: auto; }
+@media (max-width: 1023px) { .wu-ev .ev-stage.ev-photo { max-width: 640px; width: 100%; } }
+
+/* ===== v1.3.42 (owner, 2026-11-13) ===== */
+/* "reduce spacing between sections" (was clamp(80px, 9vw, 150px)) */
+.wu-ev .sec.ev-sec { padding-block: clamp(52px, 5.6vw, 96px); }
+/* "align properly": in "One Event, One Identity" the heading (eyebrow + h2) and the definition beside it start on one top line */
+@media (min-width: 1024px) {
+  .wu-ev #what .ev-split { align-items: start; }
+  .wu-ev #what .ev-split > .sh { align-self: start; margin-bottom: 0; }
+  .wu-ev #what .ev-prose > .ev-lead { align-self: start; padding: 0; margin: 0; }
+}
+/* "make black bg": the 1 month circle is black with a lime ring and lime number (no lime fill, no glow) */
+.wu-ev .ev-timeline__num { color: var(--lime); background: #000; box-shadow: inset 0 0 0 2px var(--lime), 0 0 0 10px rgb(194 247 96 / .08); }
+.wu-ev .ev-timeline__num span { color: #fff; }
