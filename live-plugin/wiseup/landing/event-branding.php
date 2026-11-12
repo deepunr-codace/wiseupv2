@@ -681,7 +681,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			var on = function () { cs.forEach(function (x) { x.classList.toggle('is-on', x === c); }); };
 			// a short hover intent, so sweeping the mouse across the row does not flick every card open
 			var t;
-			c.addEventListener('pointerenter', function () { clearTimeout(t); t = setTimeout(on, 110); });
+			c.addEventListener('pointerenter', function () { clearTimeout(t); t = setTimeout(on, 40); });
 			c.addEventListener('pointerleave', function () { clearTimeout(t); });
 			c.addEventListener('focus', on); c.addEventListener('click', on);
 		});
