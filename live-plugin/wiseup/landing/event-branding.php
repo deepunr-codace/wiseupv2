@@ -73,6 +73,15 @@ $wu_icons = array(
 	'spark'  => '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>',
 	'brush'  => '<path d="M14.5 4.5 19.5 9.5 11 18l-5-5z"/><path d="M6 13c-2 0-3 1.5-3 3.5S2 20 2 20s4 .5 5.5-1 1.5-3.5.5-5"/>',
 	'screen' => '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M10 8.5l4 1.5-4 1.5z"/>',
+	'chat'   => '<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+	'bulb'   => '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+	'layers' => '<path d="M12 3 3 8l9 5 9-5z"/><path d="M3 13l9 5 9-5"/>',
+	'print'  => '<path d="M7 8V3h10v5"/><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M7 14h10v7H7z"/>',
+	'tool'   => '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
+	'box'    => '<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/>',
+	'pin'    => '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+	'team'   => '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.5-3.2 3-5 6-5s5.5 1.8 6 5M15 15.5c2.6 0 4.6 1.4 5 4.5"/>',
+	'tag'    => '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.5"/>',
 );
 
 // Services: the doc's nine cards. 'link' = the card's sub-page; fill it in when the sub-page exists.
@@ -228,7 +237,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 3. Services -->
 	<section class="sec ev-sec" id="services">
 		<div class="wrap">
-			<div class="ev-head">
+			<div class="ev-head ev-head--center">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Event Branding Services</span> <span class="sh__b">for Every Part of Your Event</span></h2>
@@ -328,9 +337,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				<?php echo $wu_eyebrow( 'Process' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">From Creative Thinking</span> <span class="sh__b">to On-Site Branding</span></h2>
 			</div>
-			<div class="ev-intro"><p>Good event branding needs a clear plan from the first idea to the final setup. Here’s how we bring it all together.</p></div>
+			<div class="ev-intro"><p>Good event branding needs a clear plan from the first idea to the final setup. Here’s how we bring it all together.</p><div class="ev-intro__btn"><?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?></div></div>
 			</div>
-			<ol class="ev-steps">
+			<ol class="ev-tsteps">
 				<?php foreach ( array(
 					array( 'Brief and Discovery', 'We discuss your event goals, audience, venue, timeline and branding requirements.' ),
 					array( 'Creative Direction', 'We develop the event concept, visual style and creative direction for your approval.' ),
@@ -339,7 +348,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					array( 'On-Site Installation', 'We oversee the branding setup at the venue to ensure every element is placed and presented as planned.' ),
 					array( 'Post-Event Handover', 'We share the final design files and reusable digital assets for your future promotions and events.' ),
 				) as $i => $s ) : ?>
-				<li class="ev-step"><span class="ev-step__n"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[1] ); ?></p></li>
+				<?php $wu_si = array( 'chat', 'bulb', 'layers', 'print', 'tool', 'box' ); ?>
+				<li class="ev-step ev-tstep"><span class="ev-tstep__i"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons[ $wu_si[ $i ] ]; // phpcs:ignore -- fixed markup ?></svg></span><span class="ev-tstep__n"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[1] ); ?></p></li>
 				<?php endforeach; ?>
 			</ol>
 			<div class="ev-timeline">
@@ -358,20 +368,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 7. One team -->
 	<section class="sec ev-sec" id="why">
 		<div class="wrap">
-			<div class="ev-head">
+			<div class="ev-head ev-head--center">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Why WiseUp' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">One Team Behind</span> <span class="sh__b">Every Event Detail</span></h2>
 			</div>
 			<div class="ev-intro"><p>Event branding involves more than creating designs. Every element needs to look right in print and work in the venue. At WiseUp, one team manages the process from the first concept to the final installation, keeping every detail connected.</p></div>
 			</div>
-			<ol class="ev-why">
-				<li><span class="ev-why__n">01</span><h3>Local Knowledge, On-Site Support</h3><p>Based in Kerala, we can visit venues, assess spaces and take measurements before the design work begins. This helps us plan branding that fits the actual event environment.</p></li>
-				<li><span class="ev-why__n">02</span><h3>Designs Ready for Production</h3><p>We prepare artwork with the correct dimensions, bleed and colour specifications, reducing avoidable printing errors and last-minute changes.</p></li>
-				<li><span class="ev-why__n">03</span><h3>One Team from Design to Installation</h3><p>The same team that develops your event branding oversees its execution. This keeps the original creative direction consistent through production and installation.</p></li>
-				<li><span class="ev-why__n">04</span><h3>Clear and Practical Pricing</h3><p>We explain the factors that shape your event branding costs, so you know what is included and can plan your budget with confidence.</p></li>
-				<li><span class="ev-why__n">05</span><h3>Experience Across Local Event Formats</h3><p>From inaugurations and college fests to trade fairs and cultural festivals, we consider the purpose, audience and setting of each event when planning its branding.</p></li>
-			</ol>
+			<ul class="ev-exp" data-ev-exp>
+				<li class="ev-exp__card is-on" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['pin']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">01</span><h3>Local Knowledge, On-Site Support</h3><p>Based in Kerala, we can visit venues, assess spaces and take measurements before the design work begins. This helps us plan branding that fits the actual event environment.</p></li>
+				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['print']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">02</span><h3>Designs Ready for Production</h3><p>We prepare artwork with the correct dimensions, bleed and colour specifications, reducing avoidable printing errors and last-minute changes.</p></li>
+				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['team']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">03</span><h3>One Team from Design to Installation</h3><p>The same team that develops your event branding oversees its execution. This keeps the original creative direction consistent through production and installation.</p></li>
+				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['tag']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">04</span><h3>Clear and Practical Pricing</h3><p>We explain the factors that shape your event branding costs, so you know what is included and can plan your budget with confidence.</p></li>
+				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['spark']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">05</span><h3>Experience Across Local Event Formats</h3><p>From inaugurations and college fests to trade fairs and cultural festivals, we consider the purpose, audience and setting of each event when planning its branding.</p></li>
+			</ul>
 		</div>
 	</section>
 
@@ -483,22 +493,24 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 
 		<!-- 10. Pricing -->
 	<section class="sec ev-sec" id="pricing">
-		<div class="wrap">
-			<div class="ev-head ev-head--ticket">
-			<div class="sh">
-				<?php echo $wu_eyebrow( 'Pricing' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><span class="sh__a">Pricing That Fits</span> <span class="sh__b">Your Event Goals</span></h2>
-			</div>
-			<div class="ev-ticket">
-				<div class="ev-ticket__main"><span class="ev-ticket__k">Event branding and promotion</span><p class="ev-from"><span>Starting from</span> <strong>₹1 lakh</strong></p></div>
-				<div class="ev-ticket__stub"><span>Admit</span><strong>One plan</strong><span>before the price</span></div>
-			</div>
-			</div>
-			<div class="ev-price">
+		<div class="wrap ev-disc">
+			<div class="ev-disc__l">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Pricing' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><span class="sh__a">Pricing That Fits</span> <span class="sh__b">Your Event Goals</span></h2>
+				</div>
+				<div class="ev-price ev-price--col">
 				<p>A full house does not happen by itself. Someone has to know about your event, want to come, and then actually walk in. That is the work we do at WiseUp, and our event branding and promotion packages start from ₹1 lakh.</p>
 				<p>Our focus is on bringing people to your event and to your stall. We plan how your event reaches the right audience, build the buzz before the doors open, and drive walk-ins while it is running. For exhibitors, that includes bringing visitors to your stall, so your investment in the space turns into real conversations.</p>
 				<p>Printing, fabrication, and set construction are handled by specialist vendors, and we coordinate with them so your branding stays consistent. What you pay us for is the thinking and the reach: getting your event in front of as many of the right people as possible.</p>
 				<p>Every event is different, so your final quote depends on what you want to achieve. Share your event date and goals, and we will send a clear quote showing what is included.</p>
+				</div>
+			</div>
+			<div class="ev-disc__card">
+				<span class="ev-disc__pill">Event branding and promotion</span>
+				<p class="ev-disc__from"><span>Starting from</span><strong>₹1 lakh</strong></p>
+				<p class="ev-disc__note">One plan before the price</p>
+				<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
 			</div>
 		</div>
 	</section>
@@ -662,6 +674,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	var steps = document.querySelector('.wu-ev .ev-steps'), raf = 0;
 	function fill() { raf = 0; if (!steps) return; var r = steps.getBoundingClientRect(); steps.style.setProperty('--p', Math.max(0, Math.min(1, (innerHeight * .75 - r.top) / Math.max(1, r.height + innerHeight * .2))).toFixed(3)); }
 	addEventListener('scroll', function () { if (!raf) raf = requestAnimationFrame(fill); }, { passive: true }); fill();
+	// "one team" cards: the hovered / focused card opens, the rest fold
+	document.querySelectorAll('.wu-ev [data-ev-exp]').forEach(function (g) {
+		var cs = [].slice.call(g.children);
+		cs.forEach(function (c) {
+			var on = function () { cs.forEach(function (x) { x.classList.toggle('is-on', x === c); }); };
+			c.addEventListener('pointerenter', on); c.addEventListener('focus', on); c.addEventListener('click', on);
+		});
+	});
 	// cursor spotlight on cards; stage leans toward the pointer
 	if (matchMedia('(hover: hover)').matches) {
 		document.querySelectorAll('.wu-ev :is(.ev-card, .ev-why li)').forEach(function (c) {
