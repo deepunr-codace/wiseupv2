@@ -134,6 +134,40 @@
 		ST.addEventListener('scrollEnd', function () { skewTo(0); });
 	}
 
+	// ---------- scroll techniques that break long content into steps (owner: "add more on scroll techniques") ----------
+	// 1. portfolio case files stack: each card pins, the next slides over it; the covered card settles back and dims
+	var cases = $$('.ev-cases--two .ev-case');
+	if (matchMedia('(min-width: 1024px)').matches && cases.length > 1) {
+		cases.forEach(function (c, i) {
+			var next = cases[i + 1];
+			if (!next) return;
+			gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.55, ease: 'none', immediateRender: false,
+				scrollTrigger: { trigger: next, start: 'top bottom', end: 'top 120px', scrub: true } });
+		});
+	}
+	if (Split) {
+		// 2. long lead paragraphs light up word by word as they pass through the screen
+		$$('#what .ev-lead, .ev-head--stack > .ev-intro p:first-child, .ev-kl__lead .ev-lead, .ev-price--col p:first-child').forEach(function (el) {
+			el.classList.add('ev-scrub');
+			Split.create(el, { type: 'words', autoSplit: true, onSplit: function (self) {
+				return gsap.fromTo(self.words, { opacity: 0.18 }, { opacity: 1, ease: 'none', stagger: 0.1,
+					scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 48%', scrub: true } });
+			} });
+		});
+		// 3. section intros rise in line by line
+		$$('.ev-head > .ev-intro p').forEach(function (el) {
+			if (el.classList.contains('ev-scrub')) return;
+			Split.create(el, { type: 'lines', mask: 'lines', autoSplit: true, linesClass: 'split-line', onSplit: function (self) {
+				return gsap.from(self.lines, { yPercent: 105, duration: 1, stagger: 0.06, ease: EASE, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+			} });
+		});
+	}
+	// 4. virtual and hybrid panels open with a top-down wipe
+	$$('#virtual .ev-panel').forEach(function (pnl) {
+		gsap.fromTo(pnl, { clipPath: 'inset(0 0 100% 0 round 24px)' }, { clipPath: 'inset(0 0 0% 0 round 24px)', duration: 1.3, ease: 'expo.inOut', clearProps: 'clipPath',
+			scrollTrigger: { trigger: pnl, start: 'top 85%', once: true } });
+	});
+
 	// ---------- magnetic buttons (mouse only) ----------
 	if (finePointer) {
 		$$('.b, .ev-qnav').forEach(function (b) {

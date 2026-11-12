@@ -1215,3 +1215,42 @@ html, body.wu-ev-page { background: #000; }
   .wu-ev .ev-cases--two .ev-case__sub { font-size: 16px; }
 }
 .wu-ev .faq { --card: #0e0e10; --card-2: #17171a; --edge: rgb(255 255 255 / .06); }
+
+/* "One Event, One Identity" top row (owner: "very large empty space on right side"): heading left, the definition right,
+   their bottoms level; the "Same Family" panel spans the full width below. The prose wrapper dissolves into the
+   section grid so all of it shares one six-column grid. */
+@media (min-width: 1024px) {
+  .wu-ev #what .ev-split { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: clamp(28px, 3.4vw, 56px); row-gap: clamp(48px, 5vw, 80px); align-items: end; }
+  .wu-ev #what .ev-split > .sh { grid-column: 1 / span 3; grid-row: 1; align-self: end; }
+  .wu-ev #what .ev-prose { display: contents; }
+  .wu-ev #what .ev-prose::before { grid-column: 1 / -1; grid-row: 2; align-self: stretch; }
+  .wu-ev #what .ev-prose > .ev-lead { grid-column: 4 / -1; grid-row: 1; align-self: end; max-width: none; padding: 0 0 4px; font-size: clamp(17px, 1.35vw, 21px); line-height: 1.6; }
+  .wu-ev #what .ev-prose > h3 { grid-column: 1 / span 2; grid-row: 2; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2) { grid-column: 3 / span 2; grid-row: 2; }
+  .wu-ev #what .ev-prose > p:nth-of-type(3) { grid-column: 5 / span 2; grid-row: 2; }
+}
+
+/* fixes: the old two-column split rule had no screen-size condition, so phones got two narrow columns */
+@media (max-width: 1023px) { .wu-ev .ev-split, .wu-ev #what .ev-split { grid-template-columns: minmax(0, 1fr); } }
+/* "Same Family" panel: drawn by the section grid itself (a dissolved wrapper's ::before does not render) */
+@media (min-width: 1024px) {
+  .wu-ev #what .ev-split { position: relative; isolation: isolate; }
+  .wu-ev #what .ev-prose::before { content: none; }
+  .wu-ev #what .ev-split::after { content: ''; grid-column: 1 / -1; grid-row: 2; align-self: stretch; z-index: -1; border-radius: 24px; background: var(--card); box-shadow: inset 0 0 0 1px var(--edge); }
+  .wu-ev #what .ev-prose > h3, .wu-ev #what .ev-prose > p:nth-of-type(2), .wu-ev #what .ev-prose > p:nth-of-type(3) { align-self: start; }
+}
+
+/* portfolio: case files stack as you scroll (each pins below the header, the next slides over it) */
+.wu-ev .ev-cases--two .ev-case::after { content: ''; position: absolute; inset: 0; z-index: 3; border-radius: inherit; background: #000; opacity: var(--dim, 0); pointer-events: none; }
+@media (min-width: 1024px) {
+  .wu-ev .ev-cases--two .ev-case { position: sticky; top: 110px; transform-origin: 50% 0; box-shadow: inset 0 0 0 1px var(--edge), 0 -24px 60px -20px rgb(0 0 0 / .8); }
+  .wu-ev .ev-cases.ev-cases--two { gap: 40px; }
+}
+.wu-ev .ev-scrub { text-wrap: pretty; }
+@media (min-width: 1024px) {
+  .wu-ev .ev-cases--two .ev-case:nth-child(2) { top: 138px; }
+  .wu-ev .ev-cases--two .ev-case:nth-child(3) { top: 166px; }
+  .wu-ev .ev-cases--two .ev-case:nth-child(4) { top: 194px; }
+}
+/* room after the last case file so it can pin too (sticky needs space left in its container) */
+@media (min-width: 1024px) { .wu-ev .ev-cases.ev-cases--two::after { content: ''; height: 140px; } }
