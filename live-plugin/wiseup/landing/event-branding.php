@@ -376,7 +376,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-intro"><p>Event branding involves more than creating designs. Every element needs to look right in print and work in the venue. At WiseUp, one team manages the process from the first concept to the final installation, keeping every detail connected.</p></div>
 			</div>
 			<ul class="ev-exp" data-ev-exp>
-				<li class="ev-exp__card is-on" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['pin']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">01</span><h3>Local Knowledge, On-Site Support</h3><p>Based in Kerala, we can visit venues, assess spaces and take measurements before the design work begins. This helps us plan branding that fits the actual event environment.</p></li>
+				<li class="ev-exp__card is-on" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['pin']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">01</span><h3>Local Knowledge, On‑Site Support</h3><p>Based in Kerala, we can visit venues, assess spaces and take measurements before the design work begins. This helps us plan branding that fits the actual event environment.</p></li>
 				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['print']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">02</span><h3>Designs Ready for Production</h3><p>We prepare artwork with the correct dimensions, bleed and colour specifications, reducing avoidable printing errors and last-minute changes.</p></li>
 				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['team']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">03</span><h3>One Team from Design to Installation</h3><p>The same team that develops your event branding oversees its execution. This keeps the original creative direction consistent through production and installation.</p></li>
 				<li class="ev-exp__card" tabindex="0"><span class="ev-exp__i"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons['tag']; // phpcs:ignore ?></svg></span><span class="ev-exp__n">04</span><h3>Clear and Practical Pricing</h3><p>We explain the factors that shape your event branding costs, so you know what is included and can plan your budget with confidence.</p></li>
@@ -397,7 +397,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					<div class="ev-route__head"><h3>Cities We Work In</h3><span class="ev-route__dir" aria-hidden="true">North &rarr; South</span></div>
 					<p class="ev-route__lead">We plan and promote events across the state, including:</p>
 					<ol class="ev-route__list">
-						<?php foreach ( array( array( 'Kannur', false ), array( 'Kozhikode', true ), array( 'Malappuram', false ), array( 'Thrissur', false ), array( 'Kochi', false ), array( 'Thiruvananthapuram', false ) ) as $wu_ci => $c ) : ?>
+						<?php foreach ( array( array( 'Kannur', false ), array( 'Kozhikode', true ), array( 'Malappuram', false ), array( 'Thrissur', false ), array( 'Kochi', false ), array( 'Alappuzha', false ), array( 'Kollam', false ), array( 'Thiruvananthapuram', false ) ) as $wu_ci => $c ) : ?>
 						<li class="ev-stop<?php echo $c[1] ? ' is-home' : ''; ?>" data-ev-city="<?php echo (int) $wu_ci; ?>">
 							<span class="ev-stop__dot" aria-hidden="true"></span>
 							<div><strong><?php echo esc_html( $c[0] ); ?></strong><?php if ( $c[1] ) : ?> <span class="ev-stop__pill">Our studio</span><?php endif; ?></div>
@@ -406,7 +406,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 						<li class="ev-stop ev-stop--more"><span class="ev-stop__dot" aria-hidden="true"></span><div><p>We also take on events in other districts when the date and the brief call for it.</p></div></li>
 					</ol>
 				</div>
-				<div class="ev-map" data-ev-map role="img" aria-label="Map of Kerala showing Kannur, Kozhikode (our studio), Malappuram, Thrissur, Kochi and Thiruvananthapuram">
+				<div class="ev-map" data-ev-map role="img" aria-label="Map of Kerala showing Kannur, Kozhikode (our studio), Malappuram, Thrissur, Kochi, Alappuzha, Kollam and Thiruvananthapuram">
 					<canvas class="ev-map__gl" aria-hidden="true"></canvas>
 					<canvas class="ev-map__ov" aria-hidden="true"></canvas>
 					<span class="ev-map__k" aria-hidden="true">Kerala</span>
@@ -679,7 +679,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		var cs = [].slice.call(g.children);
 		cs.forEach(function (c) {
 			var on = function () { cs.forEach(function (x) { x.classList.toggle('is-on', x === c); }); };
-			c.addEventListener('pointerenter', on); c.addEventListener('focus', on); c.addEventListener('click', on);
+			// a short hover intent, so sweeping the mouse across the row does not flick every card open
+			var t;
+			c.addEventListener('pointerenter', function () { clearTimeout(t); t = setTimeout(on, 110); });
+			c.addEventListener('pointerleave', function () { clearTimeout(t); });
+			c.addEventListener('focus', on); c.addEventListener('click', on);
 		});
 	});
 	// cursor spotlight on cards; stage leans toward the pointer

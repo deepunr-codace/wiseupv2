@@ -22,6 +22,8 @@
 		{ n: 'Malappuram', p: [76.07, 11.05] },
 		{ n: 'Thrissur', p: [76.21, 10.52], w: 1 },
 		{ n: 'Kochi', p: [76.29, 9.95], w: 1 },
+		{ n: 'Alappuzha', p: [76.34, 9.49], w: 1 },
+		{ n: 'Kollam', p: [76.6, 8.89], w: 1 },
 		{ n: 'Thiruvananthapuram', p: [76.95, 8.52], w: 1 },
 	];
 	var C0 = 76.05, C1 = 10.55, KX = 0.983;

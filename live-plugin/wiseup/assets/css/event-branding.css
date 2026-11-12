@@ -884,3 +884,28 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-tstep h3 { min-height: 2.4em; text-wrap: wrap; }
 .wu-ev .ev-tstep p { text-wrap: wrap; }
 @media (max-width: 767px) { .wu-ev .ev-tstep h3 { min-height: 0; } }
+
+/* one team cards: lower, and a smooth open (owner: "reduce height. make transitions smooth").
+   The lime fill is a layer that fades (a gradient cannot transition), the title keeps one size (no jump),
+   the text fades in only once the card has mostly widened and fades out at once on close. */
+.wu-ev .ev-exp { min-height: clamp(250px, 19vw, 290px); }
+.wu-ev .ev-exp__card { isolation: isolate; background: var(--card); transition: flex-grow .85s cubic-bezier(.65, 0, .35, 1), box-shadow .5s ease; }
+.wu-ev .ev-exp__card::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; opacity: 0; background: linear-gradient(150deg, #c2f760 0%, #9fcf3e 60%, #6e9a22 100%); transition: opacity .7s cubic-bezier(.65, 0, .35, 1); }
+.wu-ev .ev-exp__card.is-on { background: var(--card); }
+.wu-ev .ev-exp__card.is-on::before { opacity: 1; }
+.wu-ev .ev-exp__card h3, .wu-ev .ev-exp__card.is-on h3 { font-size: clamp(17px, 1.35vw, 21px); transition: color .6s ease; }
+.wu-ev .ev-exp__i, .wu-ev .ev-exp__n { transition: color .6s ease, background .6s ease; }
+.wu-ev .ev-exp__card p { transform: translateY(8px); transition: opacity .2s ease, transform .2s ease, max-height .45s cubic-bezier(.65, 0, .35, 1), margin-top .45s cubic-bezier(.65, 0, .35, 1); }
+.wu-ev .ev-exp__card.is-on p { transform: none; transition: max-height .7s cubic-bezier(.65, 0, .35, 1), margin-top .7s cubic-bezier(.65, 0, .35, 1), opacity .45s ease .42s, transform .55s cubic-bezier(.16, 1, .3, 1) .42s; }
+@media (max-width: 1023px) {
+  .wu-ev .ev-exp { min-height: 0; }
+  .wu-ev .ev-exp__card::before, .wu-ev .ev-exp__card.is-on::before { opacity: 0; }
+  .wu-ev .ev-exp__card p, .wu-ev .ev-exp__card.is-on p { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .wu-ev .ev-exp__card, .wu-ev .ev-exp__card::before, .wu-ev .ev-exp__card p, .wu-ev .ev-exp__card h3 { transition: none; } }
+
+/* Cities list: the last "other districts" line stands out (owner: "make this point highlighted") */
+.wu-ev .ev-route .ev-stop.ev-stop--more { align-items: center; margin-top: 10px; padding: 14px 16px 14px 0; border-radius: 16px; background: linear-gradient(90deg, transparent 0 10px, rgb(194 247 96 / .1) 10px); box-shadow: inset 0 0 0 1px rgb(194 247 96 / .22); }
+.wu-ev .ev-stop--more .ev-stop__dot { display: grid; place-items: center; margin-top: 0; background: var(--lime); box-shadow: 0 0 0 5px rgb(194 247 96 / .18), 0 0 14px rgb(194 247 96 / .7); }
+.wu-ev .ev-stop--more .ev-stop__dot::after { content: '+'; font-size: 15px; font-weight: 700; line-height: 1; color: #11150a; }
+.wu-ev .ev-route .ev-stop--more p { font-size: 15.5px; font-weight: 500; line-height: 1.5; color: #fff; }
