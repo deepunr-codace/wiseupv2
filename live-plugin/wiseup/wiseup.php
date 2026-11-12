@@ -3,7 +3,7 @@
  * Plugin Name:       Wiseup
  * Plugin URI:        https://wiseup.in
  * Description:       WiseUp's own page templates (Home, About, Contact, Podcast) with their own header, footer, settings and enquiry form, independent of the active theme's styles.
- * Version:           1.3.33
+ * Version:           1.3.35
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Axilume
@@ -15,7 +15,7 @@
  */
 defined( 'ABSPATH' ) || exit;
 
-define( 'WISEUP_VERSION', '1.3.33' );
+define( 'WISEUP_VERSION', '1.3.35' );
 define( 'WISEUP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WISEUP_URL', plugin_dir_url( __FILE__ ) );
 define( 'WISEUP_ASSETS', WISEUP_URL . 'assets' );
@@ -30,6 +30,7 @@ require WISEUP_DIR . 'includes/blog.php';
 require WISEUP_DIR . 'includes/chrome.php';
 require WISEUP_DIR . 'includes/ard.php';
 require WISEUP_DIR . 'includes/case-studies.php';
+require WISEUP_DIR . 'includes/portfolio.php';
 if ( is_admin() ) require WISEUP_DIR . 'includes/admin.php';
 
 register_activation_hook( __FILE__, 'wiseup_leads_install' );
