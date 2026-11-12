@@ -288,11 +288,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<p>Your audience needs to find your brand, understand what makes it relevant, and have a reason to choose you. That journey does not happen through a single advertisement or social media post. It takes consistent communication across the right channels, supported by a clear strategy.</p>
 				<p>At WiseUp, we connect brand awareness, audience engagement, relevant website traffic, and lead generation into a more focused marketing approach. Every campaign, creative, and digital touchpoint should have a purpose, whether that is building recognition, generating enquiries, improving conversions or strengthening customer relationships.</p>
 			</div>
-			<ol class="dm-flow">
-				<?php foreach ( array( array( 'Visibility', 'eye' ), array( 'Engagement', 'chat' ), array( 'Conversion', 'target' ), array( 'Growth', 'chart' ) ) as $wu_i => $fl ) : ?>
-				<li><span class="dm-flow__i"><?php echo $wu_svg( $wu_icons[ $fl[1] ], 24 ); // phpcs:ignore ?></span><span class="dm-flow__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><strong><?php echo esc_html( $fl[0] ); ?></strong><?php if ( $wu_i < 3 ) : ?><span class="dm-flow__arr" aria-hidden="true">→</span><?php endif; ?></li>
-				<?php endforeach; ?>
-			</ol>
+			<div class="dm-rise" data-rise>
+				<svg class="dm-rise__svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="dm-rise-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2f760" stop-opacity=".2"/><stop offset="1" stop-color="#c2f760" stop-opacity="0"/></linearGradient></defs><path class="dm-rise__area" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0 L1000,300 L0,300 Z" fill="url(#dm-rise-g)"/><path class="dm-rise__line" d="M0.0,279.0 C15.0,276.0 28.3,271.0 90.0,261.0 C151.7,251.0 280.0,239.0 370.0,219.0 C460.0,199.0 545.0,171.0 630.0,141.0 C715.0,111.0 818.3,62.0 880.0,39.0 C941.7,16.0 980.0,9.0 1000.0,3.0" pathLength="1"/></svg>
+				<ol class="dm-rise__pts">
+					<?php foreach ( array( array( 'Visibility', 9, 87 ), array( 'Engagement', 37, 73 ), array( 'Conversion', 63, 47 ), array( 'Growth', 88, 13 ) ) as $wu_i => $fl ) : ?>
+					<li class="dm-rise__pt" style="--x:<?php echo (int) $fl[1]; ?>%;--y:<?php echo (int) $fl[2]; ?>%;--k:<?php echo (int) $wu_i; ?>"><strong><?php echo esc_html( $fl[0] ); ?></strong></li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
 		</div>
 	</section>
 
@@ -479,12 +482,12 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<?php echo $wu_eyebrow( 'Tools' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><?php echo $wu_h( 'The Tools and Technology', 'Behind Smarter Campaigns' ); // phpcs:ignore ?></h2>
 			</div>
-			<ul class="dm-tools">
+			<ul class="dm-apps">
 				<?php foreach ( $wu_tools as $g ) : ?>
-				<li>
-					<h3><?php echo esc_html( $g[0] ); ?></h3>
-					<ul class="dm-tools__list">
-						<?php foreach ( $g[1] as $tl ) echo '<li>' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore ?>
+				<li class="dm-apps__f" style="--n:<?php echo count( $g[1] ); ?>">
+					<div class="dm-apps__hd"><h3><?php echo esc_html( $g[0] ); ?></h3><span aria-hidden="true"><?php echo (int) count( $g[1] ); ?> tools</span></div>
+					<ul class="dm-apps__grid">
+						<?php foreach ( $g[1] as $wu_j => $tl ) echo '<li style="--j:' . (int) $wu_j . '">' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore ?>
 					</ul>
 				</li>
 				<?php endforeach; ?>
@@ -501,7 +504,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			</div>
 			<ul class="ev-exp" data-ev-exp>
 				<?php foreach ( $wu_why as $wu_i => $w ) : ?>
-				<li class="ev-exp__card<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" tabindex="0"><span class="ev-exp__i"><?php echo $wu_svg( $wu_icons[ $w[0] ], 26 ); // phpcs:ignore ?></span><span class="ev-exp__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
+				<li class="ev-exp__card<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" tabindex="0"><span class="ev-exp__i"><?php echo $wu_svg( $wu_icons[ $w[0] ], 26 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -774,6 +777,19 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });
 			});
 		});
+		// flow: the growth curve draws with the scroll; each word appears as the line reaches it
+		document.querySelectorAll('.wu-dm [data-rise]').forEach(function (r) {
+			if (!matchMedia('(min-width: 700px)').matches) return;
+			r.classList.add('is-live');
+			var rt = gsap.timeline({ scrollTrigger: { trigger: r, start: 'top 88%', end: 'bottom 50%', scrub: 0.8 } });
+			rt.fromTo(r.querySelector('.dm-rise__line'), { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', duration: 1 }, 0)
+				.fromTo(r.querySelector('.dm-rise__area'), { opacity: 0 }, { opacity: 1, ease: 'none', duration: 0.7 }, 0.3);
+			[].slice.call(r.querySelectorAll('.dm-rise__pt')).forEach(function (pt, i) { rt.fromTo(pt, { opacity: 0, y: 26 }, { opacity: 1, y: 0, ease: 'power2.out', duration: 0.2 }, [0.05, 0.33, 0.58, 0.8][i]); });
+		});
+		// tools: each folder's icons pop in one after another
+		gsap.utils.toArray('.wu-dm .dm-apps__grid').forEach(function (g) {
+			gsap.from(g.querySelectorAll('.dm-mark'), { scale: 0.5, opacity: 0, duration: 0.7, stagger: 0.05, ease: 'back.out(2)', clearProps: 'transform,opacity', scrollTrigger: { trigger: g, start: 'top 88%', once: true } });
+		});
 		// stages: the cards climb into a staircase, each drawing its top line
 		document.querySelectorAll('.wu-dm [data-climb]').forEach(function (cl) {
 			var steps = [].slice.call(cl.children);
@@ -801,7 +817,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 	if (gs) addEventListener('DOMContentLoaded', function () { if (window.__wuEvMotion) fx(); });
 	else addEventListener('load', fx);
 	// this page's own blocks: staggered rise (GSAP when the engine runs, otherwise a class toggle)
-	var mineSel = '.dm-flow li, .dm-ind li, .dm-kl .ev-panel, .dm-tools > li, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
+	var mineSel = '.dm-ind li, .dm-kl .ev-panel, .dm-apps__f, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
 	var mine = [].slice.call(document.querySelectorAll('.wu-dm :is(' + mineSel + ')'));
 	if (gs) {
 		// the GSAP scripts load after this one: run once they have
