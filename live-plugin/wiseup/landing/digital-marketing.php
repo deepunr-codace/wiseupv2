@@ -59,13 +59,22 @@ $wu_mark   = function ( $key ) use ( $wu_brands ) {
 // Stacking cards: one wide card per item; on scroll each card slides up over the one before (sticky), the covered
 // card shrinks back and dims (assets/css/digital-marketing.css .dm-stack, script at the end of this file).
 // Item: [ title, text, visual html, extra html after the text, number label ].
-$wu_stack = function ( $items, $mod ) {
+// Card title in two tones, like the section headings: white lead words, grey rest from the first " (" or " & ".
+$wu_stack_title = function ( $s ) {
+	foreach ( array( ' (', ' & ' ) as $cut ) {
+		$p = strpos( $s, $cut );
+		if ( false !== $p ) return esc_html( substr( $s, 0, $p ) ) . ' <span>' . esc_html( substr( $s, $p + 1 ) ) . '</span>';
+	}
+	return esc_html( $s );
+};
+$wu_stack = function ( $items, $mod ) use ( $wu_stack_title ) {
 	$n = count( $items );
 	$o = '<ol class="dm-stack dm-stack--' . esc_attr( $mod ) . '" data-stack>';
 	foreach ( array_values( $items ) as $k => $it ) {
 		$o .= '<li class="dm-stack__card" style="--i:' . (int) $k . '"><div class="dm-stack__in">'
+			. '<span class="dm-stack__wm" aria-hidden="true">' . $it[2] . '</span>'
 			. '<div class="dm-stack__l"><span class="dm-stack__vis">' . $it[2] . '</span>'
-			. '<h3>' . esc_html( $it[0] ) . '</h3></div>'
+			. '<h3>' . $wu_stack_title( $it[0] ) . '</h3></div>'
 			. '<div class="dm-stack__r">'
 			. '<p>' . esc_html( $it[1] ) . '</p>' . $it[3] . '</div>'
 			. '</div></li>';
