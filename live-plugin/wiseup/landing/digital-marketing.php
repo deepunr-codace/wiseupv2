@@ -246,18 +246,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					<?php echo $wu_btn( 'View Our Work', 'night', 'href="#results"' ); // phpcs:ignore ?>
 				</div>
 			</div>
-			<figure class="ev-stage dm-team" data-stage>
-				<div class="dm-team__ph">
-					<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-team-1000.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-team-640.webp' ); ?> 640w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-team-1000.webp' ); ?> 1000w" sizes="(max-width: 1023px) 92vw, 46vw" width="1000" height="800" fetchpriority="high" decoding="async" alt="The WiseUp and CodeAce team together on stage at a company event">
+			<div class="ev-stage dm-scene" data-stage aria-hidden="true">
+				<div class="dm-scene__glow"></div>
+				<div class="dm-phone">
+					<div class="dm-phone__scr">
+						<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/case-karak.jpg' ); ?>" alt="" width="640" height="480" fetchpriority="high" decoding="async">
+						<div class="dm-phone__shade"></div>
+						<div class="dm-phone__top"><b>Reels</b><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="3"/><circle cx="12" cy="12.5" r="3.2"/><path d="M8 6l1.2-2h5.6L16 6"/></svg></div>
+						<div class="dm-phone__side"><span><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M12 21s-7.5-4.6-9.6-9.2C1 8.5 3 5 6.4 5c2 0 3.5 1.1 4.2 2.4h.8C12.1 6.1 13.6 5 15.6 5 19 5 21 8.5 19.6 11.8 17.5 16.4 12 21 12 21z"/></svg></span><span><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg></span><span><svg viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M21 3L3 10.5l6.5 2.5L12 20z"/><path d="M9.5 13L21 3"/></svg></span></div>
+						<div class="dm-phone__meta"><div class="dm-phone__who"><i>GK</i><b>Golden Karak</b><u>Follow</u></div><p>Karak chai, the way Kozhikode likes it</p><small><svg viewBox="0 0 24 24" width="13" height="13" fill="#fff"><path d="M8 5v14l11-7z"/></svg>2,060,559 views</small></div>
+					</div>
 				</div>
-				<figcaption class="dm-team__cap">The team behind your campaigns · Kozhikode</figcaption>
-				<a class="dm-team__stat" href="<?php echo esc_url( home_url( '/case-studies/golden-karak/' ) ); ?>"><b>2M+</b><span>views on one Instagram Reel for Golden Karak</span></a>
-				<blockquote class="dm-team__note">
-					<span class="dm-team__stars" aria-label="5 out of 5 stars">★★★★★</span>
-					<p>“We have seen a noticeable increase in engagement and sales.”</p>
-					<footer>Mohamed Afsal K, Onesto and Mercado · Google review</footer>
-				</blockquote>
-			</figure>
+				<div class="dm-chip dm-chip--grow"><span>Followers in 60 days</span><b>300 <i>&rarr;</i> 991</b><svg viewBox="0 0 120 32" preserveAspectRatio="none"><path d="M0 28 C20 27 30 24 50 20 S86 10 120 3" fill="none" stroke="#7a9a17" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+				<div class="dm-chip dm-chip--wa"><span class="dm-chip__ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm5.2 13.9c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.7-4.1-.1-.2-1.1-1.5-1.1-2.8s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.3.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.8-1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.3z"/></svg></span><div><b>New enquiry</b><p>Saw your reel, do you do delivery in Kozhikode?</p></div></div>
+			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
 					array( '120', '+', 'Projects delivered' ),

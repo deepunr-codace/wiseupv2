@@ -469,3 +469,50 @@
   .wu-dm .ev-stage.dm-team { display: flex; flex-direction: column; padding-bottom: 0; }
   .wu-dm .dm-team__note { order: 2; } .wu-dm .dm-team__cap { order: 3; padding-left: 10px; text-align: left; }
 }
+
+/* v1.3.57: hero right = real client campaign work (replaces the team photo) */
+.wu-dm .dm-team__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.wu-dm .dm-team__c { position: relative; display: block; overflow: hidden; border-radius: 18px; aspect-ratio: 1 / 1; background: #111; box-shadow: 0 0 0 1px rgb(255 255 255 / .08); text-decoration: none; }
+.wu-dm .dm-team__c:nth-child(even) { transform: translateY(22px); }
+.wu-dm .dm-team__c img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.wu-dm .dm-team__c::after { content: ''; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgb(0 0 0 / .78)); }
+.wu-dm .dm-team__c span { position: absolute; z-index: 1; left: 12px; right: 12px; bottom: 10px; display: grid; font-size: 12px; line-height: 1.3; color: rgb(255 255 255 / .78); }
+.wu-dm .dm-team__c b { font-size: 14px; font-weight: 600; color: #fff; }
+.wu-dm .ev-stage.dm-team { padding-bottom: 56px; }
+.wu-dm .dm-team__cap { padding-left: 0; text-align: right; }
+@media (max-width: 640px) { .wu-dm .dm-team__c:nth-child(even) { transform: none; } .wu-dm .dm-team__cap { text-align: left; padding-left: 10px; } }
+
+/* v1.3.57: hero right = a drawn phone scene (real Golden Karak reel and its real figures), replaces the team photo */
+.wu-dm .ev-stage.dm-scene { position: relative; display: grid; place-items: center; aspect-ratio: auto; min-height: clamp(440px, 40vw, 560px); }
+.wu-dm .dm-scene__glow { position: absolute; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgb(194 247 96 / .16), transparent); filter: blur(10px); }
+.wu-dm .dm-phone { position: relative; width: clamp(220px, 19vw, 262px); aspect-ratio: 9 / 18.4; padding: 9px; border-radius: 38px; background: linear-gradient(160deg, #2b2b2e, #101012 55%); box-shadow: 0 0 0 1px rgb(255 255 255 / .14), 0 40px 70px -30px rgb(0 0 0 / .9), inset 0 0 0 2px #050505; transform: rotate(3deg); }
+.wu-dm .dm-phone::before { content: ''; position: absolute; z-index: 3; top: 16px; left: 50%; width: 62px; height: 17px; border-radius: 99px; background: #000; transform: translateX(-50%); }
+.wu-dm .dm-phone__scr { position: relative; height: 100%; overflow: hidden; border-radius: 30px; background: #000; color: #fff; }
+.wu-dm .dm-phone__scr > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+.wu-dm .dm-phone__shade { position: absolute; inset: 0; background: linear-gradient(rgb(0 0 0 / .4), transparent 22%, transparent 52%, rgb(0 0 0 / .82)); }
+.wu-dm .dm-phone__top { position: absolute; top: 40px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; font-size: 17px; }
+.wu-dm .dm-phone__top b { font-weight: 700; }
+.wu-dm .dm-phone__side { position: absolute; right: 12px; bottom: 96px; display: grid; gap: 18px; justify-items: center; }
+.wu-dm .dm-phone__meta { position: absolute; left: 14px; right: 52px; bottom: 16px; display: grid; gap: 8px; font-size: 12.5px; line-height: 1.35; }
+.wu-dm .dm-phone__meta p { margin: 0; color: #fff; }
+.wu-dm .dm-phone__who { display: flex; align-items: center; gap: 8px; }
+.wu-dm .dm-phone__who i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-style: normal; font-size: 10px; font-weight: 700; color: #11150a; background: var(--lime); }
+.wu-dm .dm-phone__who b { font-size: 13px; font-weight: 600; }
+.wu-dm .dm-phone__who u { padding: 3px 9px; border-radius: 7px; text-decoration: none; font-size: 11.5px; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .7); }
+.wu-dm .dm-phone__meta small { display: flex; align-items: center; gap: 5px; font-size: 12px; color: rgb(255 255 255 / .85); }
+.wu-dm .dm-chip { position: absolute; border-radius: 14px; box-shadow: 0 18px 36px -16px rgb(0 0 0 / .85); }
+.wu-dm .dm-chip--grow { left: 0; top: 14%; width: 11.5rem; padding: 12px 14px 8px; background: #f4f1e8; color: #1a1a17; transform: rotate(-3deg); }
+.wu-dm .dm-chip--grow span { display: block; font-size: 12px; color: #5f5d55; }
+.wu-dm .dm-chip--grow b { display: block; margin-top: 2px; font-size: 24px; font-weight: 700; letter-spacing: -.02em; }
+.wu-dm .dm-chip--grow i { font-style: normal; color: #7a9a17; }
+.wu-dm .dm-chip--grow svg { display: block; width: 100%; height: 26px; margin-top: 4px; overflow: visible; }
+.wu-dm .dm-chip--wa { right: 0; bottom: 12%; display: flex; gap: 10px; align-items: flex-start; max-width: 16.5rem; padding: 11px 14px 11px 11px; background: #fff; color: #1a1a17; transform: rotate(2deg); }
+.wu-dm .dm-chip__ic { display: grid; flex: none; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: #25d366; }
+.wu-dm .dm-chip--wa b { display: block; font-size: 12px; color: #128c4a; }
+.wu-dm .dm-chip--wa p { margin: 2px 0 0; font-size: 13.5px; line-height: 1.35; color: #1a1a17; }
+@media (max-width: 1023px) { .wu-dm .ev-stage.dm-scene { max-width: 560px; margin-inline: auto; } .wu-dm .dm-phone { width: 240px; } }
+@media (max-width: 480px) { .wu-dm .ev-stage.dm-scene { min-height: 470px; } .wu-dm .dm-chip--grow { width: 9.8rem; left: -4px; } .wu-dm .dm-chip--wa { right: -4px; max-width: 14rem; } }
+
+.wu-dm .dm-phone { margin-bottom: 64px; }
+.wu-dm .dm-chip--wa { bottom: 0; right: 4%; }
+@media (max-width: 480px) { .wu-dm .dm-chip--wa { right: -4px; } .wu-dm .ev-stage.dm-scene { min-height: 500px; } }
