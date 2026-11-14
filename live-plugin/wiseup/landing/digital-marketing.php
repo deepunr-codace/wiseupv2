@@ -238,9 +238,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
-				<?php echo $wu_eyebrow( 'Digital marketing' ); // phpcs:ignore ?>
-				<h1 class="ev-hero__h"><span class="sh__a">Digital Marketing Agency in Kerala</span></h1>
-				<p class="dm-hero__sub">Your Next Stage of Growth Starts With the Right Digital Strategy</p>
+				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Digital Marketing Agency in Kerala</h1>
+				<h2 class="ev-hero__h"><span class="sh__a">Your Growth Starts With the Right Strategy</span></h2>
 				<p class="ev-hero__p">Your marketing should do more than keep your business visible. It should bring the right people closer to your brand. As a digital marketing agency in Kerala, WiseUp combines strategy, creativity and technology to build campaigns around your business goals. From SEO and paid advertising to social media, content and branding, we bring the right elements together to turn audience interest into meaningful business opportunities.</p>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Let’s Talk About Your Growth', 'teal', $wu_lead ); // phpcs:ignore ?>

@@ -444,3 +444,6 @@
   .wu-dm .dm-stack__r { padding-left: 16px; }
   .wu-dm .dm-stack__wm { width: 160px; }
 }
+
+/* v1.3.55: the hero pill is the page H1; it keeps the shared pill style, only reset heading spacing */
+.wu-dm .ev-hero h1.dm-hero__pill { margin: 0; max-width: none; }
