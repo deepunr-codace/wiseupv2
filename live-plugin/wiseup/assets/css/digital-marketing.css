@@ -447,3 +447,25 @@
 
 /* v1.3.55: the hero pill is the page H1; it keeps the shared pill style, only reset heading spacing */
 .wu-dm .ev-hero h1.dm-hero__pill { margin: 0; max-width: none; }
+
+/* v1.3.56: hero right = the real team photo with two real proof notes (replaces the drawn "growth plan" card) */
+.wu-dm .ev-stage.dm-team { position: relative; margin: 0; aspect-ratio: auto; padding: 0 0 34px 0; }
+.wu-dm .dm-team__ph { overflow: hidden; border-radius: 24px; box-shadow: 0 0 0 1px rgb(255 255 255 / .08); }
+.wu-dm .dm-team__ph img { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; }
+.wu-dm .dm-team__cap { margin-top: 12px; padding-left: 20rem; text-align: right; font-size: 13px; color: var(--mute); }
+.wu-dm .dm-team__stat { position: absolute; top: 18px; right: -14px; display: grid; gap: 2px; max-width: 13rem; padding: 12px 16px; border-radius: 14px; background: var(--lime); color: #11150a; text-decoration: none; transform: rotate(2deg); box-shadow: 0 14px 30px -14px rgb(0 0 0 / .7); transition: transform .3s ease; }
+.wu-dm .dm-team__stat:hover { transform: rotate(0deg) translateY(-2px); }
+.wu-dm .dm-team__stat b { font-size: 28px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
+.wu-dm .dm-team__stat span { font-size: 12.5px; line-height: 1.35; }
+.wu-dm .dm-team__note { position: absolute; left: -18px; bottom: 0; max-width: 19rem; margin: 0; padding: 14px 16px; border-radius: 14px; background: #f4f1e8; color: #1a1a17; transform: rotate(-1.5deg); box-shadow: 0 16px 34px -16px rgb(0 0 0 / .8); }
+.wu-dm .dm-team__stars { display: block; font-size: 13px; letter-spacing: 2px; color: #e5a100; }
+.wu-dm .dm-team__note p { margin: 6px 0 8px; font-size: 14.5px; line-height: 1.45; color: #1a1a17; }
+.wu-dm .dm-team__note footer { font-size: 12px; line-height: 1.35; color: #5f5d55; }
+@media (max-width: 1023px) { .wu-dm .ev-stage.dm-team { max-width: 560px; } }
+@media (max-width: 640px) {
+  .wu-dm .dm-team__stat { right: 8px; top: 10px; padding: 10px 12px; max-width: 11rem; }
+  .wu-dm .dm-team__stat b { font-size: 22px; }
+  .wu-dm .dm-team__note { position: relative; left: auto; bottom: auto; max-width: none; margin-top: -26px; margin-inline: 10px; }
+  .wu-dm .ev-stage.dm-team { display: flex; flex-direction: column; padding-bottom: 0; }
+  .wu-dm .dm-team__note { order: 2; } .wu-dm .dm-team__cap { order: 3; padding-left: 10px; text-align: left; }
+}

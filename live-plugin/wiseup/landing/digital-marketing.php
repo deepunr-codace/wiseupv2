@@ -246,26 +246,18 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					<?php echo $wu_btn( 'View Our Work', 'night', 'href="#results"' ); // phpcs:ignore ?>
 				</div>
 			</div>
-			<div class="ev-stage dm-plan" aria-hidden="true" data-stage>
-				<div class="dm-plan__card">
-					<div class="dm-plan__top"><span class="dm-plan__dot"></span><span>Growth plan</span><em>Draft 01</em></div>
-					<p class="dm-plan__for">Prepared for <strong>your business</strong></p>
-					<ul class="dm-plan__rows">
-						<?php foreach ( array(
-							array( 'search', 'Search', 'SEO + local search', '.84' ),
-							array( 'target', 'Paid ads', 'Google + Meta', '.66' ),
-							array( 'chat', 'Social', 'Content + reels', '.92' ),
-							array( 'code', 'Website', 'Landing pages', '.54' ),
-						) as $wu_i => $r ) : ?>
-						<li style="--w:<?php echo esc_attr( $r[3] ); ?>;--i:<?php echo (int) $wu_i; ?>"><span class="dm-plan__ic"><?php echo $wu_svg( $wu_icons[ $r[0] ], 18, 1.7 ); // phpcs:ignore ?></span><span class="dm-plan__lab"><?php echo esc_html( $r[1] ); ?><small><?php echo esc_html( $r[2] ); ?></small></span><span class="dm-plan__bar"><i></i></span></li>
-						<?php endforeach; ?>
-					</ul>
-					<div class="dm-plan__chart">
-						<span class="dm-plan__k">Enquiries</span>
-						<svg viewBox="0 0 320 96" preserveAspectRatio="none"><defs><linearGradient id="dm-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c2f760" stop-opacity=".32"/><stop offset="1" stop-color="#c2f760" stop-opacity="0"/></linearGradient></defs><path class="dm-plan__area" d="M0 84 C40 82 60 76 90 70 S140 66 170 52 S230 40 260 26 S300 12 320 8 V96 H0z"/><path class="dm-plan__line" pathLength="1" d="M0 84 C40 82 60 76 90 70 S140 66 170 52 S230 40 260 26 S300 12 320 8"/></svg>
-					</div>
+			<figure class="ev-stage dm-team" data-stage>
+				<div class="dm-team__ph">
+					<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-team-1000.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-team-640.webp' ); ?> 640w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-team-1000.webp' ); ?> 1000w" sizes="(max-width: 1023px) 92vw, 46vw" width="1000" height="800" fetchpriority="high" decoding="async" alt="The WiseUp and CodeAce team together on stage at a company event">
 				</div>
-			</div>
+				<figcaption class="dm-team__cap">The team behind your campaigns · Kozhikode</figcaption>
+				<a class="dm-team__stat" href="<?php echo esc_url( home_url( '/case-studies/golden-karak/' ) ); ?>"><b>2M+</b><span>views on one Instagram Reel for Golden Karak</span></a>
+				<blockquote class="dm-team__note">
+					<span class="dm-team__stars" aria-label="5 out of 5 stars">★★★★★</span>
+					<p>“We have seen a noticeable increase in engagement and sales.”</p>
+					<footer>Mohamed Afsal K, Onesto and Mercado · Google review</footer>
+				</blockquote>
+			</figure>
 			<dl class="ev-proof">
 				<?php foreach ( array(
 					array( '120', '+', 'Projects delivered' ),
