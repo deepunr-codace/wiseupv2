@@ -705,7 +705,7 @@ add_action(
   <div style="max-width: 1240px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 48px;">
     <div style="display: flex; flex-direction: column; gap: 24px;">
       <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>Why WiseUp</span>
-      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; text-wrap: balance; letter-spacing: -0.05em; line-height: 0.98;">Why Choose <span style="color: rgb(210, 234, 166);">WiseUp Branding?</span></h2>
+      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; text-wrap: balance; letter-spacing: -0.05em; line-height: 0.98;">Why Choose <span style="color: rgb(210, 234, 166);">WiseUp?</span></h2>
       <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); max-width: 760px; text-wrap: pretty;">At WiseUp, we focus on getting your business noticed by the right audience. We bring together strategy, creativity and technical expertise to improve your online visibility and support your business growth. Here's what makes us a reliable partner.</p>
     </div>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px;">

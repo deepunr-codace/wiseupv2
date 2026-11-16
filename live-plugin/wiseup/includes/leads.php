@@ -99,6 +99,8 @@ function wiseup_lead_sources() {
 		'blog'         => __( 'Blog article', 'wiseup' ),
 		'event-branding' => __( 'Event branding page', 'wiseup' ),
 		'digital-marketing' => __( 'Digital marketing page', 'wiseup' ),
+		'performance-marketing' => __( 'Performance marketing (new) page', 'wiseup' ),
+		'portfolio'    => __( 'Portfolio page', 'wiseup' ),
 	);
 }
 

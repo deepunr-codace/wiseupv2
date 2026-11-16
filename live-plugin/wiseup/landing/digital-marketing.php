@@ -83,7 +83,6 @@ $wu_stack = function ( $items, $mod ) use ( $wu_stack_title ) {
 	$o = '<ol class="dm-stack dm-stack--' . esc_attr( $mod ) . '" data-stack>';
 	foreach ( array_values( $items ) as $k => $it ) {
 		$o .= '<li class="dm-stack__card" style="--i:' . (int) $k . '"><div class="dm-stack__in">'
-			. '<span class="dm-stack__wm" aria-hidden="true">' . $it[2] . '</span>'
 			. '<div class="dm-stack__l"><span class="dm-stack__vis">' . $it[2] . '</span>'
 			. '<h3>' . $wu_stack_title( $it[0] ) . '</h3></div>'
 			. '<div class="dm-stack__r">'
@@ -357,11 +356,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 						<div class="dm-plan__hd"><span class="dm-plan__t">Your marketing plan</span><span class="dm-plan__st"><b class="dm-plan__tpl">Template</b><b class="dm-plan__own">Built for you</b></span></div>
 						<?php
 						$wu_plan = array(
-							array( 'Audience', '<span class="dm-pv dm-pv--aud"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>' ),
-							array( 'Market', '<span class="dm-pv dm-pv--mkt"><i style="--w:.92"></i><i style="--w:.62"></i><i style="--w:.44"></i></span>' ),
-							array( 'Marketing mix', '<span class="dm-pv dm-pv--mix">' . $wu_mark( 'google' ) . $wu_mark( 'instagram' ) . $wu_mark( 'linkedin' ) . $wu_mark( 'youtube' ) . $wu_mark( 'pinterest' ) . '</span>' ),
-							array( 'Creative', '<span class="dm-pv dm-pv--cre"><i></i><i></i><i></i><em>Aa</em></span>' ),
-							array( 'Insights', '<span class="dm-pv dm-pv--ins"><svg viewBox="0 0 120 36" width="120" height="36"><polyline points="2,32 22,27 40,29 58,19 76,21 94,11 118,4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></svg></span>' ),
+							array( 'Audience', '<span class="dm-pv dm-pv--aud2">' . implode( '', array_map( function ( $c ) { return '<i class="c' . $c . '"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.5-3.9 3.4-6 7.2-6s6.7 2.1 7.2 6z"/></svg></i>'; }, array( 1, 2, 3, 4 ) ) ) . '<em>+</em></span>' ),
+							array( 'Market', '<span class="dm-pv dm-pv--map"><svg viewBox="0 0 120 40" width="120" height="40" aria-hidden="true"><g fill="currentColor" opacity=".28">' . str_repeat( '<circle r="1.6" cx="0" cy="0"/>', 0 ) . '</g><g class="dots"></g><circle class="ring" cx="34" cy="22" r="5"/><circle class="pin" cx="34" cy="22" r="3"/><circle class="pin" cx="72" cy="12" r="2.4"/><circle class="pin" cx="96" cy="28" r="2.4"/><path class="arc" d="M34 22 C48 4 62 4 72 12 S88 30 96 28" fill="none" stroke-dasharray="2 3"/></svg></span>' ),
+							array( 'Marketing mix', '<span class="dm-pv dm-pv--mix">' . $wu_mark( 'google' ) . $wu_mark( 'meta' ) . $wu_mark( 'instagram' ) . $wu_mark( 'linkedin' ) . $wu_mark( 'youtube' ) . '</span>' ),
+							array( 'Creative', '<span class="dm-pv dm-pv--mix">' . $wu_mark( 'adobephotoshop' ) . $wu_mark( 'adobeillustrator' ) . $wu_mark( 'figma' ) . $wu_mark( 'canva' ) . '</span>' ),
+							array( 'Insights', '<span class="dm-pv dm-pv--ins2">' . $wu_mark( 'googleanalytics' ) . '<svg viewBox="0 0 120 36" width="96" height="30" aria-hidden="true"><polyline points="2,32 22,27 40,29 58,19 76,21 94,11 118,4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="118" cy="4" r="3.4" fill="currentColor"/></svg></span>' ),
 						);
 						foreach ( $wu_plan as $pl ) :
 							?>
