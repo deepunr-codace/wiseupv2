@@ -441,26 +441,26 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 	<!-- 8. Kerala's business landscape -->
 	<section class="sec ev-sec" id="kerala">
 		<div class="wrap">
-			<div class="sh">
-				<?php echo $wu_eyebrow( 'Kerala' ); // phpcs:ignore ?>
-				<h2 class="sh__h"><?php echo $wu_h( 'Digital Marketing That Understands', 'Kerala’s Business Landscape' ); // phpcs:ignore ?></h2>
-			</div>
-			<div class="dm-kl">
-				<div class="dm-kl__copy">
-					<div class="ev-panel dm-kl__lead">
-						<p class="ev-lead">Marketing works best when it reflects the people it is trying to reach. Kerala has diverse audiences, regional preferences and local buying behaviours that influence how businesses communicate. Language, location and customer expectations all matter.</p>
-						<p>WiseUp considers these factors when planning campaigns for businesses targeting audiences in Kerala, as well as those looking to reach customers beyond the state. Whether your communication needs Malayalam, English or a combination of both, the approach should suit the audience and the brand.</p>
-					</div>
-					<div class="dm-kl__two">
-						<div class="ev-panel"><span class="dm-kl__i"><?php echo $wu_svg( $wu_icons['pin'], 24 ); // phpcs:ignore ?></span><h3>Digital Marketing Company in Calicut, Kerala</h3><p>Based in Calicut, WiseUp works with businesses that want to strengthen their local presence and build a wider digital reach. We consider local search behaviour, audience interests and market competition when shaping campaigns for businesses in and around the city.</p></div>
-						<div class="ev-panel"><span class="dm-kl__i"><?php echo $wu_svg( $wu_icons['globe'], 24 ); // phpcs:ignore ?></span><h3>Supporting Businesses Across Kerala and Beyond</h3><p>A business does not have to limit its reach to its immediate location. We work towards marketing objectives that may involve audiences across Kerala and, where relevant, wider national and international markets.</p></div>
-					</div>
+			<div class="ev-head dm-klh">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Kerala' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Digital Marketing That Understands', 'Kerala’s Business Landscape' ); // phpcs:ignore ?></h2>
 				</div>
+				<div class="dm-klh__lead">
+					<p class="ev-lead">Marketing works best when it reflects the people it is trying to reach. Kerala has diverse audiences, regional preferences and local buying behaviours that influence how businesses communicate. Language, location and customer expectations all matter.</p>
+						<p>WiseUp considers these factors when planning campaigns for businesses targeting audiences in Kerala, as well as those looking to reach customers beyond the state. Whether your communication needs Malayalam, English or a combination of both, the approach should suit the audience and the brand.</p>
+				</div>
+			</div>
+			<div class="dm-kl dm-kl--v2">
 				<div class="ev-map" data-ev-map role="img" aria-label="Map of Kerala with our studio in Kozhikode (Calicut)">
 					<canvas class="ev-map__gl" aria-hidden="true"></canvas>
 					<canvas class="ev-map__ov" aria-hidden="true"></canvas>
 					<span class="ev-map__k" aria-hidden="true">Kerala</span>
 					<span class="ev-map__n" aria-hidden="true">N</span>
+				</div>
+				<div class="dm-kl__two">
+					<div class="ev-panel"><span class="dm-kl__i"><?php echo $wu_svg( $wu_icons['pin'], 24 ); // phpcs:ignore ?></span><h3>Digital Marketing Company in Calicut, Kerala</h3><p>Based in Calicut, WiseUp works with businesses that want to strengthen their local presence and build a wider digital reach. We consider local search behaviour, audience interests and market competition when shaping campaigns for businesses in and around the city.</p></div>
+						<div class="ev-panel"><span class="dm-kl__i"><?php echo $wu_svg( $wu_icons['globe'], 24 ); // phpcs:ignore ?></span><h3>Supporting Businesses Across Kerala and Beyond</h3><p>A business does not have to limit its reach to its immediate location. We work towards marketing objectives that may involve audiences across Kerala and, where relevant, wider national and international markets.</p></div>
 				</div>
 			</div>
 		</div>
@@ -494,15 +494,15 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<?php echo $wu_eyebrow( 'Tools' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><?php echo $wu_h( 'The Tools and Technology', 'Behind Smarter Campaigns' ); // phpcs:ignore ?></h2>
 			</div>
-			<ul class="dm-apps">
-				<?php foreach ( $wu_tools as $g ) : ?>
-				<li class="dm-apps__f" style="--n:<?php echo count( $g[1] ); ?>">
-					<div class="dm-apps__hd"><h3><?php echo esc_html( $g[0] ); ?></h3><span aria-hidden="true"><?php echo (int) count( $g[1] ); ?> tools</span></div>
-					<ul class="dm-apps__grid">
-						<?php foreach ( $g[1] as $wu_j => $tl ) echo '<li style="--j:' . (int) $wu_j . '">' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore ?>
-					</ul>
-				</li>
-				<?php endforeach; ?>
+			<ul class="dm-tools">
+				<?php
+				$wu_seen = array();
+				foreach ( $wu_tools as $g ) foreach ( $g[1] as $tl ) {
+					if ( isset( $wu_seen[ $tl[0] ] ) ) continue; // the same tool listed under two groups shows once
+					$wu_seen[ $tl[0] ] = true;
+					echo '<li>' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore
+				}
+				?>
 			</ul>
 		</div>
 	</section>
@@ -795,7 +795,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			});
 		});
 		// tools: each folder's icons pop in one after another
-		gsap.utils.toArray('.wu-dm .dm-apps__grid').forEach(function (g) {
+		gsap.utils.toArray('.wu-dm .dm-tools').forEach(function (g) {
 			gsap.from(g.querySelectorAll('.dm-mark'), { scale: 0.5, opacity: 0, duration: 0.7, stagger: 0.05, ease: 'back.out(2)', clearProps: 'transform,opacity', scrollTrigger: { trigger: g, start: 'top 88%', once: true } });
 		});
 		// stages: the cards climb into a staircase, each drawing its top line
