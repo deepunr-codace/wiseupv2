@@ -174,7 +174,15 @@ wiseup_landing_open( 'wu-landing wu-studio-page' );
     </div>
 
     <!-- WHAT WE SHOOT -->
-    <section class="shoot">
+<?php wiseup_ai_overview( array(
+	'q' => 'What is WiseUp Studio?',
+	'a' => '<b>WiseUp Studio</b> is a video and photo production studio that shoots <b>every frame your brand needs</b>: explainer videos, social reels, brand documentaries, podcasts and interviews, event coverage and UGC and unboxing, in 4K cinema quality.',
+	'points' => array(
+		array( 'What you can shoot', 'Explainer videos, social reels, brand documentaries, podcasts and interviews, event coverage, UGC and unboxing.' ),
+		array( 'Track record', '120+ projects delivered and an audience of 3M+ reached.' ),
+	),
+	'links' => array( array( 'What we shoot', '#wu-need' ) ),
+) ); ?>    <section class="shoot">
         <div class="shoot-card">
             <div class="cornerglow"></div>
             <div class="inner">

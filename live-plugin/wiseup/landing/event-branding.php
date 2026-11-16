@@ -194,7 +194,17 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		<?php $wu_tk = ''; foreach ( array( 'Conferences', 'Product launches', 'Award nights', 'Exhibitions', 'Leadership summits', 'Dealer meets', 'Inaugurations', 'College fests', 'Trade shows', 'Cultural festivals' ) as $t ) $wu_tk .= '<span>' . esc_html( $t ) . '</span><i></i>'; echo '<div>' . $wu_tk . '</div><div>' . $wu_tk . '</div>'; // phpcs:ignore ?>
 	</div></div>
 
-<?php wiseup_ai_overview( 'What is event branding?', 'People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop and even the badge are already speaking for you. WiseUp is an event branding company in Kerala that designs, produces and installs every one of them, so your event looks like one idea from start to finish.', array( 'Invitation', 'Entrance', 'Backdrop', 'Badge' ), 'Starting from <b>₹1 lakh</b>' ); ?>	<!-- 2. One event, one identity -->
+<?php wiseup_ai_overview( array(
+	'q' => 'What is event branding?',
+	'a' => 'People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop and even the badge are already speaking for you. <b>WiseUp</b> is an event branding company in Kerala that <b>designs, produces and installs</b> every one of them, so your event looks like one idea from start to finish.',
+	'points' => array(
+		array( 'One identity', 'Every touchpoint of the event follows one visual idea.' ),
+		array( 'Corporate and virtual', 'Branding for corporate events as well as virtual and hybrid formats.' ),
+		array( 'Across Kerala', 'Events branded in cities across Kerala, with the studio in Kozhikode.' ),
+	),
+	'links' => array( array( 'What it is', '#what' ), array( 'Services', '#services' ), array( 'Process', '#process' ), array( 'Kerala', '#kerala' ), array( 'Pricing', '#pricing' ), array( 'FAQ', '#faq' ) ),
+	'fact' => 'Starting from <b>₹1 lakh</b>',
+) ); ?>	<!-- 2. One event, one identity -->
 	<section class="sec ev-sec" id="what">
 		<div class="wrap ev-split">
 			<div class="sh">

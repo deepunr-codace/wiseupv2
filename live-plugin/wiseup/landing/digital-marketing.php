@@ -278,7 +278,17 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		<?php $wu_tk = ''; foreach ( array( 'SEO', 'Google Ads', 'Meta Ads', 'Social Media', 'Content', 'Branding', 'Websites', 'Digital PR', 'AI Automation', 'CRM' ) as $t ) $wu_tk .= '<span>' . esc_html( $t ) . '</span><i></i>'; echo '<div>' . $wu_tk . '</div><div>' . $wu_tk . '</div>'; // phpcs:ignore ?>
 	</div></div>
 
-<?php wiseup_ai_overview( 'What does a digital marketing agency in Kerala do?', 'WiseUp is a digital marketing agency in Kerala that combines strategy, creativity and technology to build campaigns around your business goals. From SEO and paid advertising to social media, content and branding, we bring the right elements together to turn audience interest into meaningful business opportunities.', array( 'SEO', 'Paid advertising', 'Social media', 'Content', 'Branding' ), 'Packages start at <b>₹60,000</b>' ); ?>	<!-- 2. Good marketing moves business forward -->
+<?php wiseup_ai_overview( array(
+	'q' => 'What does a digital marketing agency in Kerala do?',
+	'a' => '<b>WiseUp</b> is a digital marketing agency in Kerala that combines <b>strategy, creativity and technology</b> to build campaigns around your business goals. From <b>SEO and paid advertising to social media, content and branding</b>, we bring the right elements together to turn audience interest into meaningful business opportunities.',
+	'points' => array(
+		array( 'Services', 'SEO, performance marketing and PPC, social media marketing, content and creative production, branding, website development, PR and AI business automation.' ),
+		array( 'How we work', 'We start with your goals and audience, then plan the channels, creative and tracking around them.' ),
+		array( 'Where', 'Based in Calicut, working with businesses across Kerala and beyond.' ),
+	),
+	'links' => array( array( 'Services', '#dm-services' ), array( 'Channels', '#channels' ), array( 'Kerala', '#kerala' ), array( 'Process', '#dm-process' ), array( 'Pricing', '#pricing' ), array( 'FAQ', '#faq' ) ),
+	'fact' => 'Packages start at <b>₹60,000</b>',
+) ); ?>	<!-- 2. Good marketing moves business forward -->
 	<section class="sec ev-sec" id="approach">
 		<div class="wrap dm-split">
 			<div class="sh">

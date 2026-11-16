@@ -214,50 +214,128 @@ function wiseup_landing_isolate() {
 }
 
 /**
- * Quick-overview box for service pages (answer-first summary, like a search "AI overview"): a question,
- * a short answer, key points and an optional fact line. Text comes from each page's own copy.
+ * "AI Overview" box: an answer-first summary of the page in the style of a search AI overview. The answer is always
+ * visible; "Show more" (a <details>, so it works without JavaScript) opens the key points and jump links.
+ * Text is written from each page's own copy.
  *
- * @param string   $question Heading, written as the question the page answers.
- * @param string   $answer   Two or three sentences.
- * @param string[] $points   Short key points (chips).
- * @param string   $fact     Optional one-line fact, e.g. "Packages start at ₹60,000".
+ * $o: q (question), a (answer, <b> allowed), points (array of [label, text]), links (array of [label, #anchor]),
+ *     fact (optional line, <b> allowed).
  */
-function wiseup_ai_overview( $question, $answer, $points = array(), $fact = '' ) {
+function wiseup_ai_overview( $o ) {
 	static $css = false;
+	$allowed = array( 'b' => array(), 'strong' => array() );
 	if ( ! $css ) {
 		$css = true;
 		echo '<style>
-.wu-aio{max-width:1240px;margin:0 auto;padding:clamp(28px,4vw,56px) clamp(16px,3vw,24px) 0;font-family:Inter,system-ui,sans-serif}
-.wu-aio__in{position:relative;display:grid;gap:18px;padding:clamp(22px,3vw,36px);border-radius:28px;color:#fff;background:linear-gradient(160deg,#121214,#0a0a0b);isolation:isolate;overflow:hidden}
-.wu-aio__in::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1.5px;background:linear-gradient(120deg,#beda52,#4285f4 35%,#9b72f2 60%,#beda52);background-size:200% 200%;animation:wu-aio-b 8s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
-.wu-aio__in::after{content:"";position:absolute;z-index:-1;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(closest-side,rgba(155,114,242,.16),transparent)}
-.wu-aio__tag{display:inline-flex;align-items:center;gap:8px;width:max-content;font-size:13px;font-weight:600;letter-spacing:.02em;color:#d8ec8a}
-.wu-aio__tag svg{width:18px;height:18px}
-.wu-aio__q{margin:0;font-size:clamp(22px,2.4vw,32px);font-weight:500;line-height:1.2;letter-spacing:-.025em;color:#fff}
-.wu-aio__a{margin:0;max-width:78ch;font-size:clamp(16px,1.25vw,18px);line-height:1.7;color:#d4d4da}
-.wu-aio__pts{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0;padding:0;list-style:none}
-.wu-aio__pts li{padding:8px 14px;border-radius:99px;font-size:14px;color:#e8e8ec;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
-.wu-aio__ft{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:4px}
+.wu-aio{max-width:1240px;margin:0 auto;padding:clamp(24px,3.4vw,48px) clamp(16px,3vw,24px) 0;font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.5;text-align:left}
+.wu-aio *{box-sizing:border-box}
+.wu-aio__in{position:relative;padding:clamp(20px,2.6vw,30px);border-radius:26px;color:#fff;background:linear-gradient(165deg,#15151a,#0b0b0e);isolation:isolate;overflow:hidden}
+.wu-aio__in::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1.5px;background:linear-gradient(110deg,#4285f4,#9b72f2 30%,#d96570 55%,#beda52 80%,#4285f4);background-size:220% 100%;animation:wu-aio-b 9s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.wu-aio__in::after{content:"";position:absolute;z-index:-1;left:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(closest-side,rgba(66,133,244,.16),transparent)}
+.wu-aio__hd{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.wu-aio__tag{display:inline-flex;align-items:center;gap:9px;font-size:17px;font-weight:500;letter-spacing:-.01em;color:#fff}
+.wu-aio__tag svg{width:22px;height:22px;flex:none}
+.wu-aio__tag b{font-weight:500;background:linear-gradient(90deg,#8ab4f8,#c58af9 55%,#f28b82);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.wu-aio__sub{font-size:12.5px;color:#8c8c95}
+.wu-aio__q{margin:0 0 8px;font-size:clamp(20px,2vw,26px);font-weight:500;line-height:1.25;letter-spacing:-.02em;color:#fff}
+.wu-aio__a{margin:0;max-width:82ch;font-size:clamp(15.5px,1.2vw,17.5px);line-height:1.7;color:#d6d6dc}
+.wu-aio__a b,.wu-aio__fact b{color:#fff;font-weight:600}
+.wu-aio__more{margin-top:14px}
+.wu-aio__more>summary{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;border-radius:99px;font-size:14px;font-weight:500;color:#c9d6ff;background:rgba(138,180,248,.1);box-shadow:inset 0 0 0 1px rgba(138,180,248,.25);cursor:pointer;list-style:none;transition:background .25s}
+.wu-aio__more>summary::-webkit-details-marker{display:none}
+.wu-aio__more>summary:hover{background:rgba(138,180,248,.18)}
+.wu-aio__more>summary svg{width:14px;height:14px;transition:transform .3s}
+.wu-aio__more[open]>summary svg{transform:rotate(180deg)}
+.wu-aio__more>summary .s-less{display:none}
+.wu-aio__more[open]>summary .s-more{display:none}
+.wu-aio__more[open]>summary .s-less{display:inline}
+.wu-aio__pts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px;margin:18px 0 0;padding:0;list-style:none}
+.wu-aio__pts li{padding:14px 16px;border-radius:16px;font-size:14.5px;line-height:1.55;color:#c4c4cb;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.wu-aio__pts li b{display:block;margin-bottom:4px;font-size:15px;font-weight:600;color:#fff}
+.wu-aio__links{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:16px;font-size:13px;color:#8c8c95}
+.wu-aio__links a{padding:6px 13px;border-radius:99px;font-size:13.5px;color:#d8ec8a;text-decoration:none;box-shadow:inset 0 0 0 1px rgba(190,218,82,.35);transition:background .25s,color .25s}
+.wu-aio__links a:hover{background:#beda52;color:#11150a}
+.wu-aio__ft{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin-top:18px}
 .wu-aio__fact{font-size:14px;color:#a4a4ac}
-.wu-aio__fact b{color:#fff;font-weight:600}
-.wu-aio__cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border:0;border-radius:99px;font:inherit;font-size:14.5px;font-weight:600;color:#11150a;background:#beda52;cursor:pointer;transition:background .25s}
+.wu-aio__cta{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 20px;border:0;border-radius:99px;font:inherit;font-size:14.5px;font-weight:600;color:#11150a;background:#beda52;cursor:pointer;transition:background .25s}
 .wu-aio__cta:hover{background:#d8ec8a}
-@keyframes wu-aio-b{to{background-position:200% 0}}
-@media (prefers-reduced-motion:reduce){.wu-aio__in::before{animation:none}}
+@keyframes wu-aio-b{to{background-position:220% 0}}
+@media (prefers-reduced-motion:reduce){.wu-aio__in::before{animation:none}.wu-aio__more>summary svg{transition:none}}
+@media (max-width:560px){.wu-aio__sub{display:none}}
 </style>' . "\n";
 	}
 	$spark = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="wu-aio-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285f4"/><stop offset=".55" stop-color="#9b72f2"/><stop offset="1" stop-color="#d96570"/></linearGradient></defs><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z" fill="url(#wu-aio-g)"/></svg>';
-	echo '<section class="wu-aio" aria-label="' . esc_attr( $question ) . '"><div class="wu-aio__in">';
-	echo '<span class="wu-aio__tag">' . $spark . 'Quick overview</span>'; // phpcs:ignore
-	echo '<h2 class="wu-aio__q">' . esc_html( $question ) . '</h2>';
-	echo '<p class="wu-aio__a">' . esc_html( $answer ) . '</p>';
+	$chev  = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+	echo '<section class="wu-aio" aria-label="AI Overview"><div class="wu-aio__in">';
+	echo '<div class="wu-aio__hd"><span class="wu-aio__tag">' . $spark . '<b>AI Overview</b></span><span class="wu-aio__sub">A short summary of this page</span></div>'; // phpcs:ignore
+	echo '<h2 class="wu-aio__q">' . esc_html( $o['q'] ) . '</h2>';
+	echo '<p class="wu-aio__a">' . wp_kses( $o['a'], $allowed ) . '</p>';
+	$points = isset( $o['points'] ) ? $o['points'] : array();
+	$links  = isset( $o['links'] ) ? $o['links'] : array();
+	echo '<details class="wu-aio__more"><summary><span class="s-more">Show more</span><span class="s-less">Show less</span>' . $chev . '</summary>'; // phpcs:ignore
 	if ( $points ) {
 		echo '<ul class="wu-aio__pts">';
-		foreach ( $points as $pt ) echo '<li>' . esc_html( $pt ) . '</li>';
+		foreach ( $points as $pt ) echo '<li><b>' . esc_html( $pt[0] ) . '</b>' . esc_html( $pt[1] ) . '</li>';
 		echo '</ul>';
 	}
+	if ( $links ) {
+		echo '<div class="wu-aio__links"><span>Jump to</span>';
+		foreach ( $links as $ln ) echo '<a href="' . esc_attr( $ln[1] ) . '">' . esc_html( $ln[0] ) . '</a>';
+		echo '</div>';
+	}
 	echo '<div class="wu-aio__ft">';
-	if ( $fact ) echo '<span class="wu-aio__fact">' . wp_kses( $fact, array( 'b' => array() ) ) . '</span>';
+	if ( ! empty( $o['fact'] ) ) echo '<span class="wu-aio__fact">' . wp_kses( $o['fact'], $allowed ) . '</span>';
 	echo '<button type="button" class="wu-aio__cta" data-lead-open>Get our plan <span aria-hidden="true">&rarr;</span></button>';
-	echo '</div></div></section>' . "\n";
+	echo '</div></details></div></section>' . "\n";
+}
+
+/** Overview boxes for the generated pages (home, about, contact, podcast), inserted by wiseup_page_html(). */
+function wiseup_page_overview( $slug ) {
+	$o = array(
+		'home'    => array(
+			'q'      => 'What is WiseUp?',
+			'a'      => '<b>WiseUp</b> is the branding and digital marketing agency of <b>CodeAce</b>, based in <b>Kozhikode (Calicut), Kerala</b>. We help founders, marketing heads and established businesses with brand strategy, web, SEO, performance and social media marketing, video and campaigns, and you see the plan before you see a price.',
+			'points' => array(
+				array( 'What we do', 'Brand strategy and identity, packaging design and events, web development, SEO, performance marketing, digital marketing, social media marketing, video and photography, and campaigns and media buying.' ),
+				array( 'Who it is for', 'Founders, marketing heads and established businesses in Kerala, across India and the Gulf.' ),
+				array( 'Track record', 'Eight years of engineering behind it (CodeAce), 120+ projects delivered and an audience of 3M+ reached.' ),
+				array( 'How to start', 'Ask for a plan: you see the plan before you see a price.' ),
+			),
+			'links'  => array( array( 'Services', '#services' ), array( 'Our work', '#work' ), array( 'Process', '#process' ), array( 'FAQ', '#faq' ), array( 'Contact', '#contact' ) ),
+		),
+		'about'   => array(
+			'q'      => 'Who is WiseUp?',
+			'a'      => '<b>WiseUp</b> is a dedicated team focused on delivering innovative solutions that help businesses thrive in the digital world. We build lasting relationships with our clients, combining <b>creative expertise and technology</b> to create impactful services. WiseUp is the creative wing of <b>CodeAce</b>, a web engineering company with over eight years of experience.',
+			'points' => array(
+				array( 'Who we are', 'A team of creative and technical professionals in Kozhikode, Kerala.' ),
+				array( 'Our expertise', 'Branding, digital marketing and web engineering working as one team.' ),
+				array( 'Our values', 'Quality, creativity and long-term client relationships.' ),
+			),
+			'links'  => array( array( 'Who we are', '#who' ), array( 'Our expertise', '#expertise' ), array( 'Our values', '#values' ), array( 'Our team', '#team' ) ),
+		),
+		'contact' => array(
+			'q'      => 'How can I contact WiseUp?',
+			'a'      => 'The quickest way is <b>WhatsApp or a call on +91 62824 34503</b>. You can also email <b>brandingwithwiseup@gmail.com</b> or use the form on this page, which opens a WhatsApp message with your details. Our studio is at the Government Cyberpark, Nellikode, Kozhikode.',
+			'points' => array(
+				array( 'WhatsApp / call', '+91 62824 34503' ),
+				array( 'Email', 'brandingwithwiseup@gmail.com' ),
+				array( 'Visit', 'Sahya Building, Govt. Cyberpark, Nellikode, Kozhikode, Kerala 673016' ),
+			),
+			'links'  => array( array( 'Contact form', '#form' ) ),
+		),
+		'podcast' => array(
+			'q'      => 'What is the WiseUp Podcast?',
+			'a'      => 'The <b>WiseUp Podcast</b> is a Malayalam business and entrepreneur interview show on YouTube, hosted by <b>Jijin Mohan, Chethana and Sreerag</b>. It has <b>91K+ YouTube subscribers</b> and <b>100+ episodes</b> of real stories from founders and brands.',
+			'points' => array(
+				array( 'Watch', 'Featured and latest episodes, grouped by topic.' ),
+				array( 'Get featured', 'Founders and brands can apply to be a guest on the show.' ),
+				array( 'Sponsor the show', 'Sponsored episodes, Shorts and Reels, Instagram carousels and brand story episodes.' ),
+			),
+			'links'  => array( array( 'Featured', '#featured' ), array( 'Episodes', '#episodes' ), array( 'Hosts', '#hosts' ), array( 'Sponsor', '#sponsor' ), array( 'FAQ', '#faq' ) ),
+		),
+	);
+	if ( ! isset( $o[ $slug ] ) ) return '';
+	ob_start();
+	wiseup_ai_overview( $o[ $slug ] );
+	return ob_get_clean();
 }

@@ -59,6 +59,12 @@ function wiseup_page_html( $slug, $html ) {
 			return preg_replace( '#(<img\b[^>]*?) (src|srcset)="#', '$1 data-wu-$2="', preg_replace( '#(<img\b[^>]*?) (src|srcset)="#', '$1 data-wu-$2="', $card ) );
 		}, $html );
 	}
+	// AI Overview box after the hero of each generated page.
+	$marks = array( 'home' => '<section class="sec" id="services"', 'contact' => '<section class="sec cx-sec" id="form"', 'podcast' => '<section class="sec" id="featured"', 'about' => '<section class="ab__blk" id="who"' );
+	if ( isset( $marks[ $slug ] ) && function_exists( 'wiseup_page_overview' ) ) {
+		$pos = strpos( $html, $marks[ $slug ] );
+		if ( false !== $pos ) $html = substr( $html, 0, $pos ) . wiseup_page_overview( $slug ) . substr( $html, $pos );
+	}
 	return $html;
 }
 

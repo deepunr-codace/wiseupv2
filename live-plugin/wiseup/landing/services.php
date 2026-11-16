@@ -72,7 +72,16 @@ wiseup_landing_open( 'wu-landing wu-svc-page' );
 		</div>
 	</section>
 
-	<section class="sv-list" aria-label="<?php esc_attr_e( 'All services', 'wiseup' ); ?>">
+<?php wiseup_ai_overview( array(
+	'q' => 'What services does WiseUp offer?',
+	'a' => '<b>WiseUp</b> offers nine services under one roof: <b>brand strategy and identity, packaging design and events, web development, SEO, performance marketing, digital marketing, social media marketing, video and photography, and campaigns and media buying</b>. Pick one service or combine several into one plan.',
+	'points' => array(
+		array( 'Brand and design', 'Brand strategy and identity, packaging design and events.' ),
+		array( 'Growth', 'SEO, performance marketing, digital marketing and social media marketing.' ),
+		array( 'Production and reach', 'Video and photography, web development, campaigns and media buying.' ),
+	),
+	'links' => array( array( 'All services', '#wu-svc-list' ), array( 'Get our plan', '#wu-svc-cta' ) ),
+) ); ?>	<section class="sv-list" id="wu-svc-list" aria-label="<?php esc_attr_e( 'All services', 'wiseup' ); ?>">
 		<div class="sv-wrap">
 			<ol class="sv-grid">
 				<?php foreach ( $wu_services as $i => $s ) :

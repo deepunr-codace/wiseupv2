@@ -2050,7 +2050,16 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                     </section>
 
                     <!-- INTRO -->
-                    <?php wiseup_ai_overview( 'What does a social media marketing agency in Kerala do?', 'WiseUp understands how social media algorithms work, what each platform rewards, and how to turn that into lasting visibility. Our approach to social media marketing in Kerala goes beyond following trends; we focus on what works for your brand.', array( 'Instagram and Facebook', 'LinkedIn', 'YouTube', 'X' ) ); ?><section id="wu-smm-intro" class="wu-section">
+                    <?php wiseup_ai_overview( array(
+	'q' => 'What does a social media marketing agency in Kerala do?',
+	'a' => '<b>WiseUp</b> understands how social media algorithms work, what each platform rewards, and how to turn that into <b>lasting visibility</b>. Our approach to social media marketing in Kerala goes beyond following trends; we focus on what works for your brand.',
+	'points' => array(
+		array( 'Platforms', 'Instagram and Facebook, LinkedIn, YouTube and X.' ),
+		array( 'Content', 'Creatives, reels and short-form video, captions, stories, carousels and campaign creatives.' ),
+		array( 'Strategy', 'Platform-specific plans that match your audience and goals.' ),
+	),
+	'links' => array( array( 'Services', '#wu-smm-services' ), array( 'Platforms', '#wu-smm-platforms' ), array( 'Content', '#wu-smm-content' ), array( 'Process', '#wu-smm-process' ), array( 'Results', '#wu-smm-results' ), array( 'FAQ', '#wu-smm-faq' ) ),
+) ); ?><section id="wu-smm-intro" class="wu-section">
                         <div class="wu-inner">
                             <div class="wu-intro">
                                 <p class="wu-intro-text" data-reveal>WiseUp is a social media marketing agency in Kerala that brings strategy, creative work, and platform expertise together to help businesses build a stronger online presence. We work alongside you at every stage of your social media journey, from understanding your audience to creating campaigns that support measurable business goals.</p>
