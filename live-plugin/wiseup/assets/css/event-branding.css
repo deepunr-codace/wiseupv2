@@ -1388,3 +1388,9 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-head, .wu-ev #kerala .wrap > .sh { margin-bottom: var(--ev-head-gap) !important; }
 /* eyebrow to heading: 24px everywhere (the closing call to action had 18px) */
 .wu-ev .ev-final__copy { gap: 24px; }
+
+/* v1.3.71: no outlined type: big numbers are solid and soft */
+.wu-ev .ev-why__n, .wu-ev .ev-cost__n, .wu-ev .ev-chk__n { color: rgb(255 255 255 / .22) !important; -webkit-text-stroke: 0 !important; }
+.wu-ev .ev-cases--two .ev-case::before { -webkit-text-stroke: 0 !important; color: rgb(255 255 255 / .22) !important; }
+.wu-ev .ev-ticker span { -webkit-text-stroke: 0 !important; color: rgb(255 255 255 / .4); }
+.wu-ev .ev-ticker span:nth-of-type(3n+1) { color: #fff; }

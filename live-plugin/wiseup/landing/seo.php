@@ -295,6 +295,50 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			}
 			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
 			?>
+<script>
+(function () {
+	var NS = 'http://www.w3.org/2000/svg';
+	document.querySelectorAll('.wu-dm ol.dm-stack[data-stack]').forEach(function (ol) {
+		var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		var cards = [].slice.call(ol.children).filter(function (c) { return c.classList.contains('dm-stack__card'); });
+		if (!rm) ol.classList.add('is-js');
+		var mk = function (n, c) { var e = document.createElementNS(NS, n); if (c) e.setAttribute('class', c); return e; };
+		var svg = mk('svg', 'dm-stack__path'); svg.setAttribute('aria-hidden', 'true');
+		var groove = mk('path', 'dm-groove'), edge = mk('path', 'dm-groove-edge'), fill = mk('path', 'dm-groove-fill'), orb = mk('circle', 'dm-groove-orb');
+		orb.setAttribute('r', '9');
+		[groove, edge, fill, orb].forEach(function (e) { svg.appendChild(e); });
+		ol.insertBefore(svg, ol.firstChild);
+		var len = 0, pts = [], lit = -1;
+		var layout = function () {
+			var vis = [].slice.call(ol.querySelectorAll('.dm-stack__vis')), o = ol.getBoundingClientRect();
+			if (vis.length < 2 || innerWidth <= 860) { svg.style.display = 'none'; cards.forEach(function (c) { c.classList.add('is-lit'); }); return; }
+			svg.style.display = '';
+			pts = vis.map(function (v) { var r = v.getBoundingClientRect(); return [r.left - o.left + r.width / 2, r.top - o.top + r.height / 2]; });
+			var d = 'M' + pts[0][0] + ' ' + (pts[0][1] - 70) + ' L' + pts[0].join(' ');
+			for (var i = 1; i < pts.length; i++) { var a = pts[i - 1], b = pts[i], m = (a[1] + b[1]) / 2; d += ' C' + a[0] + ' ' + m + ' ' + b[0] + ' ' + m + ' ' + b.join(' '); }
+			[groove, edge, fill].forEach(function (p) { p.setAttribute('d', d); });
+			len = fill.getTotalLength(); fill.style.strokeDasharray = len; move();
+		};
+		var move = function () {
+			if (!len) return;
+			var o = ol.getBoundingClientRect(), p = (innerHeight * 0.62 - o.top) / (o.height || 1);
+			p = Math.max(0, Math.min(1, p)); if (rm) p = 1;
+			fill.style.strokeDashoffset = len * (1 - p);
+			var pt = fill.getPointAtLength(p * len); orb.setAttribute('cx', pt.x); orb.setAttribute('cy', pt.y);
+			orb.style.opacity = p > 0.005 && p < 0.995 ? 1 : 0;
+			var y = p * o.height;
+			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
+		};
+		if ('IntersectionObserver' in window && !rm) {
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+			cards.forEach(function (c) { io.observe(c); });
+		} else cards.forEach(function (c) { c.classList.add('is-in'); });
+		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
+		if (window.ResizeObserver) new ResizeObserver(layout).observe(ol);
+		setTimeout(layout, 1200);
+	});
+})();
+</script>
 		</div>
 	</section>
 
@@ -308,11 +352,22 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				</div>
 				<div class="ev-intro"><p class="dm-intro-lead">Built to work with your website.</p><p>SEO requirements change depending on how a website is built. WiseUp adapts its SEO approach to your platform, website structure, business model and the way your customers search.</p></div>
 			</div>
-			<ul class="pm-grid pm-grid--tools">
-				<?php foreach ( $wu_platforms as $p ) : ?>
-				<li><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?><h3><?php echo esc_html( $p[0] ); ?></h3><p><?php echo esc_html( $p[2] ); ?></p><?php if ( $p[3] ) echo '<div class="seo-tags"><span>' . esc_html( $p[3] ) . '</span></div>'; ?></li>
-				<?php endforeach; ?>
-			</ul>
+			<div class="seo-plat" data-plat>
+				<div class="seo-plat__row" role="tablist" aria-label="Website platforms">
+					<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
+					<button type="button" class="seo-plat__tab<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" role="tab" id="seo-plat-t<?php echo (int) $wu_k; ?>" aria-controls="seo-plat-p<?php echo (int) $wu_k; ?>" aria-selected="<?php echo 0 === $wu_k ? 'true' : 'false'; ?>"><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?><span><?php echo esc_html( $p[0] ); ?></span></button>
+					<?php endforeach; ?>
+				</div>
+				<div class="seo-plat__stage">
+					<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
+					<div class="seo-plat__pane<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" role="tabpanel" id="seo-plat-p<?php echo (int) $wu_k; ?>" aria-labelledby="seo-plat-t<?php echo (int) $wu_k; ?>">
+						<span class="seo-plat__big" aria-hidden="true"><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?></span>
+						<div><h3><?php echo esc_html( $p[0] ); ?></h3><p><?php echo esc_html( $p[2] ); ?></p><?php if ( $p[3] ) echo '<span class="seo-plat__tag">' . esc_html( $p[3] ) . '</span>'; ?></div>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+			<script>(function(){var r=document.querySelector('[data-plat]');if(!r)return;var t=[].slice.call(r.querySelectorAll('.seo-plat__tab')),p=[].slice.call(r.querySelectorAll('.seo-plat__pane'));var go=function(i){t.forEach(function(b,k){b.classList.toggle('is-on',k===i);b.setAttribute('aria-selected',k===i?'true':'false');});p.forEach(function(x,k){x.classList.toggle('is-on',k===i);});};t.forEach(function(b,i){b.addEventListener('click',function(){go(i);});b.addEventListener('mouseenter',function(){if(matchMedia('(hover: hover)').matches)go(i);});b.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-9;if(n>-9){n=(n+t.length)%t.length;go(n);t[n].focus();e.preventDefault();}});});})();</script>
 		</div>
 	</section>
 

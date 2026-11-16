@@ -273,6 +273,50 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 			}
 			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
 			?>
+<script>
+(function () {
+	var NS = 'http://www.w3.org/2000/svg';
+	document.querySelectorAll('.wu-dm ol.dm-stack[data-stack]').forEach(function (ol) {
+		var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		var cards = [].slice.call(ol.children).filter(function (c) { return c.classList.contains('dm-stack__card'); });
+		if (!rm) ol.classList.add('is-js');
+		var mk = function (n, c) { var e = document.createElementNS(NS, n); if (c) e.setAttribute('class', c); return e; };
+		var svg = mk('svg', 'dm-stack__path'); svg.setAttribute('aria-hidden', 'true');
+		var groove = mk('path', 'dm-groove'), edge = mk('path', 'dm-groove-edge'), fill = mk('path', 'dm-groove-fill'), orb = mk('circle', 'dm-groove-orb');
+		orb.setAttribute('r', '9');
+		[groove, edge, fill, orb].forEach(function (e) { svg.appendChild(e); });
+		ol.insertBefore(svg, ol.firstChild);
+		var len = 0, pts = [], lit = -1;
+		var layout = function () {
+			var vis = [].slice.call(ol.querySelectorAll('.dm-stack__vis')), o = ol.getBoundingClientRect();
+			if (vis.length < 2 || innerWidth <= 860) { svg.style.display = 'none'; cards.forEach(function (c) { c.classList.add('is-lit'); }); return; }
+			svg.style.display = '';
+			pts = vis.map(function (v) { var r = v.getBoundingClientRect(); return [r.left - o.left + r.width / 2, r.top - o.top + r.height / 2]; });
+			var d = 'M' + pts[0][0] + ' ' + (pts[0][1] - 70) + ' L' + pts[0].join(' ');
+			for (var i = 1; i < pts.length; i++) { var a = pts[i - 1], b = pts[i], m = (a[1] + b[1]) / 2; d += ' C' + a[0] + ' ' + m + ' ' + b[0] + ' ' + m + ' ' + b.join(' '); }
+			[groove, edge, fill].forEach(function (p) { p.setAttribute('d', d); });
+			len = fill.getTotalLength(); fill.style.strokeDasharray = len; move();
+		};
+		var move = function () {
+			if (!len) return;
+			var o = ol.getBoundingClientRect(), p = (innerHeight * 0.62 - o.top) / (o.height || 1);
+			p = Math.max(0, Math.min(1, p)); if (rm) p = 1;
+			fill.style.strokeDashoffset = len * (1 - p);
+			var pt = fill.getPointAtLength(p * len); orb.setAttribute('cx', pt.x); orb.setAttribute('cy', pt.y);
+			orb.style.opacity = p > 0.005 && p < 0.995 ? 1 : 0;
+			var y = p * o.height;
+			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
+		};
+		if ('IntersectionObserver' in window && !rm) {
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+			cards.forEach(function (c) { io.observe(c); });
+		} else cards.forEach(function (c) { c.classList.add('is-in'); });
+		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
+		if (window.ResizeObserver) new ResizeObserver(layout).observe(ol);
+		setTimeout(layout, 1200);
+	});
+})();
+</script>
 		</div>
 	</section>
 

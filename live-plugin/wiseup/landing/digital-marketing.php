@@ -175,6 +175,18 @@ $wu_industries = array(
 	array( 'Manufacturing & Printing', 'factory' ), array( 'Startups & SaaS Businesses', 'rocket' ), array( 'Local & Home Services', 'tool' ),
 );
 
+$wu_ind_icons = array(
+	'health' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm6 11h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z"/></svg>',
+	'home' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 11v10h5v-6h4v6h5V11L8 6z"/><path d="M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3H10zm9 6h-2V7h2v2z"/></svg>',
+	'cap' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>',
+	'scale' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m5.25 8.069 2.83-2.827 14.134 14.15-2.83 2.827zm4.236-4.242L12.314.998l5.657 5.656-2.828 2.83zM.999 12.315l2.828-2.829 5.657 5.657-2.828 2.828zM1 21h12v2H1z"/></svg>',
+	'bed' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>',
+	'bag' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg>',
+	'factory' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m19.93 8.21-3.6 1.68L14 7.7V6.3l2.33-2.19 3.6 1.68c.38.18.82.01 1-.36.18-.38.01-.82-.36-1L16.65 2.6a.993.993 0 0 0-1.13.2l-1.74 1.6A.975.975 0 0 0 13 4c-.55 0-1 .45-1 1v1H8.82C8.34 4.65 6.98 3.73 5.4 4.07c-1.16.25-2.15 1.25-2.36 2.43-.22 1.32.46 2.47 1.48 3.08L7.08 18H4v3h13v-3h-3.62L8.41 8.77c.17-.24.31-.49.41-.77H12v1c0 .55.45 1 1 1 .32 0 .6-.16.78-.4l1.74 1.6c.3.3.75.38 1.13.2l3.92-1.83c.38-.18.54-.62.36-1a.753.753 0 0 0-1-.36zM6 8c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"/></svg>',
+	'rocket' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.68 1.81-.55l1.33.26zM11.17 17s3.74-1.55 5.89-3.7c5.4-5.4 4.5-9.62 4.21-10.57-.95-.3-5.17-1.19-10.57 4.21C8.55 9.09 7 12.83 7 12.83L11.17 17zm6.48-2.19c-2.29 2.04-5.58 3.44-5.89 3.57L13.31 22l4.05-4.05c.47-.47.68-1.15.55-1.81l-.26-1.33zM9 18c0 .83-.34 1.58-.88 2.12C6.94 21.3 2 22 2 22s.7-4.94 1.88-6.12A2.996 2.996 0 0 1 9 18zm4-9c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/></svg>',
+	'tool' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m21.67 18.17-5.3-5.3h-.99l-2.54 2.54v.99l5.3 5.3c.39.39 1.02.39 1.41 0l2.12-2.12a.996.996 0 0 0 0-1.41z"/><path d="m17.34 10.19 1.41-1.41 2.12 2.12a3 3 0 0 0 0-4.24l-3.54-3.54-1.41 1.41V1.71l-.7-.71-3.54 3.54.71.71h2.83l-1.41 1.41 1.06 1.06-2.89 2.89-4.13-4.13V5.06L4.83 2.04 2 4.87 5.03 7.9h1.41l4.13 4.13-.85.85H7.6l-5.3 5.3a.996.996 0 0 0 0 1.41l2.12 2.12c.39.39 1.02.39 1.41 0l5.3-5.3v-2.12l5.15-5.15 1.06 1.05z"/></svg>',
+);
+
 // What each process step hands over (shown opposite the step on wide screens).
 $wu_outcome = array( 'Audit and opportunities', 'Marketing roadmap', 'Content, designs and campaigns', 'Live campaigns and channels', 'Refined strategy' );
 $wu_process = array(
@@ -183,6 +195,14 @@ $wu_process = array(
 	array( 'Create', 'pen', 'Our team develops the content, designs, campaigns, websites and digital assets needed to bring the strategy to life. Each element is created with its intended audience and platform in mind.' ),
 	array( 'Launch & Execute', 'play', 'We put the plan into action by launching campaigns, publishing content and activating the selected channels. We keep execution aligned with the agreed direction and priorities.' ),
 	array( 'Measure & Optimise', 'chart', 'We review performance data, audience response and campaign outcomes to identify opportunities for improvement. The strategy can then be refined based on what the results tell us.' ),
+);
+
+$wu_tl_icons = array(
+	'search' => '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.3 16.9c.4-.7.7-1.5.7-2.4 0-2.5-2-4.5-4.5-4.5S11 12 11 14.5s2 4.5 4.5 4.5c.9 0 1.7-.3 2.4-.7l3.2 3.2 1.4-1.4-3.2-3.2zm-3.8.1c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5 2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5zM12 20v2C6.48 22 2 17.52 2 12S6.48 2 12 2c4.84 0 8.87 3.44 9.8 8h-2.07A8 8 0 0 0 15 4.59V5c0 1.1-.9 2-2 2h-2v2c0 .55-.45 1-1 1H8v2h2v3H9l-4.79-4.79C4.08 10.79 4 11.38 4 12c0 4.41 3.59 8 8 8z"/></svg>',
+	'map' => '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m20.5 3-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/></svg>',
+	'pen' => '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>',
+	'play' => '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.68 1.81-.55l1.33.26zM11.17 17s3.74-1.55 5.89-3.7c5.4-5.4 4.5-9.62 4.21-10.57-.95-.3-5.17-1.19-10.57 4.21C8.55 9.09 7 12.83 7 12.83L11.17 17zm6.48-2.19c-2.29 2.04-5.58 3.44-5.89 3.57L13.31 22l4.05-4.05c.47-.47.68-1.15.55-1.81l-.26-1.33zM9 18c0 .83-.34 1.58-.88 2.12C6.94 21.3 2 22 2 22s.7-4.94 1.88-6.12A2.996 2.996 0 0 1 9 18zm4-9c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/></svg>',
+	'chart' => '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 9h4v11H4zm12 4h4v7h-4zm-6-9h4v16h-4z"/></svg>',
 );
 
 // Tools: [ group, [ [ name, brand mark ], ... ] ], names as in the doc.
@@ -249,7 +269,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Digital Marketing Agency in Kerala</h1>
-				<h2 class="ev-hero__h"><span class="sh__a">Your Growth Starts With the Right Strategy</span></h2>
+				<h2 class="ev-hero__h"><span class="sh__a">Your Growth Starts</span> <span class="sh__b">With the Right Strategy</span></h2>
 				<p class="ev-hero__p">Your marketing should do more than keep your business visible. It should bring the right people closer to your brand. As a digital marketing agency in Kerala, WiseUp combines strategy, creativity and technology to build campaigns around your business goals. From SEO and paid advertising to social media, content and branding, we bring the right elements together to turn audience interest into meaningful business opportunities.</p>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Let’s Talk About Your Growth', 'teal', $wu_lead ); // phpcs:ignore ?>
@@ -257,7 +277,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 			</div>
 			<div class="ev-stage dm-shot" data-stage>
-				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) 92vw, 46vw" width="1116" height="920" fetchpriority="high" decoding="async" alt="A laptop showing a rising growth chart, surrounded by glowing marketing icons: a megaphone, a target, an audience and reach bars">
+				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-glossy-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-glossy-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-glossy-1200.webp' ); ?> 1200w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-glossy-1600.webp' ); ?> 1600w" sizes="(max-width: 1023px) 92vw, 54vw" width="1852" height="849" fetchpriority="high" decoding="async" alt="Glossy marketing icons (megaphone, search, growth chart, target, audience and analytics) hanging from a branch on ropes">
+			
+				<script>(function(){var st=document.querySelector('.dm-shot');if(!st||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var img=st.querySelector('img'),t=0;var run=function(){t=0;var r=st.getBoundingClientRect(),h=innerHeight,p=Math.max(0,Math.min(1,(h*.5-r.top-r.height/2)/(h*.9)*-1+0));p=Math.max(0,Math.min(1,-r.top/(h*.8)));img.style.setProperty('--sy',(p*-70).toFixed(1)+'px');img.style.setProperty('--sr',(p*4).toFixed(2)+'deg');img.style.setProperty('--ss',(1+p*.08).toFixed(3));img.style.opacity=(1-p*.55).toFixed(3);};addEventListener('scroll',function(){if(!t)t=requestAnimationFrame(run);},{passive:true});run();})();</script>
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
@@ -337,6 +359,50 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			}
 			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
 			?>
+<script>
+(function () {
+	var NS = 'http://www.w3.org/2000/svg';
+	document.querySelectorAll('.wu-dm ol.dm-stack[data-stack]').forEach(function (ol) {
+		var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		var cards = [].slice.call(ol.children).filter(function (c) { return c.classList.contains('dm-stack__card'); });
+		if (!rm) ol.classList.add('is-js');
+		var mk = function (n, c) { var e = document.createElementNS(NS, n); if (c) e.setAttribute('class', c); return e; };
+		var svg = mk('svg', 'dm-stack__path'); svg.setAttribute('aria-hidden', 'true');
+		var groove = mk('path', 'dm-groove'), edge = mk('path', 'dm-groove-edge'), fill = mk('path', 'dm-groove-fill'), orb = mk('circle', 'dm-groove-orb');
+		orb.setAttribute('r', '9');
+		[groove, edge, fill, orb].forEach(function (e) { svg.appendChild(e); });
+		ol.insertBefore(svg, ol.firstChild);
+		var len = 0, pts = [], lit = -1;
+		var layout = function () {
+			var vis = [].slice.call(ol.querySelectorAll('.dm-stack__vis')), o = ol.getBoundingClientRect();
+			if (vis.length < 2 || innerWidth <= 860) { svg.style.display = 'none'; cards.forEach(function (c) { c.classList.add('is-lit'); }); return; }
+			svg.style.display = '';
+			pts = vis.map(function (v) { var r = v.getBoundingClientRect(); return [r.left - o.left + r.width / 2, r.top - o.top + r.height / 2]; });
+			var d = 'M' + pts[0][0] + ' ' + (pts[0][1] - 70) + ' L' + pts[0].join(' ');
+			for (var i = 1; i < pts.length; i++) { var a = pts[i - 1], b = pts[i], m = (a[1] + b[1]) / 2; d += ' C' + a[0] + ' ' + m + ' ' + b[0] + ' ' + m + ' ' + b.join(' '); }
+			[groove, edge, fill].forEach(function (p) { p.setAttribute('d', d); });
+			len = fill.getTotalLength(); fill.style.strokeDasharray = len; move();
+		};
+		var move = function () {
+			if (!len) return;
+			var o = ol.getBoundingClientRect(), p = (innerHeight * 0.62 - o.top) / (o.height || 1);
+			p = Math.max(0, Math.min(1, p)); if (rm) p = 1;
+			fill.style.strokeDashoffset = len * (1 - p);
+			var pt = fill.getPointAtLength(p * len); orb.setAttribute('cx', pt.x); orb.setAttribute('cy', pt.y);
+			orb.style.opacity = p > 0.005 && p < 0.995 ? 1 : 0;
+			var y = p * o.height;
+			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
+		};
+		if ('IntersectionObserver' in window && !rm) {
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+			cards.forEach(function (c) { io.observe(c); });
+		} else cards.forEach(function (c) { c.classList.add('is-in'); });
+		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
+		if (window.ResizeObserver) new ResizeObserver(layout).observe(ol);
+		setTimeout(layout, 1200);
+	});
+})();
+</script>
 		</div>
 	</section>
 
@@ -439,22 +505,12 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>We work with businesses across different sectors, adapting our marketing approach to their audiences, markets and business objectives.</p></div>
 			</div>
-			<ul class="dm-ind dm-ind--sr">
+			<ul class="dm-ind dm-mag" data-mag>
 				<?php foreach ( $wu_industries as $wu_i => $ind ) : ?>
-				<li><span class="dm-ind__i"><?php echo $wu_svg( $wu_icons[ $ind[1] ], 22 ); // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
+				<li><span class="dm-ind__i"><?php echo $wu_ind_icons[ $ind[1] ]; // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
 				<?php endforeach; ?>
 			</ul>
-			<div class="dm-ind2" aria-hidden="true">
-				<?php foreach ( array( array_slice( $wu_industries, 0, 5 ), array_slice( $wu_industries, 5 ) ) as $wu_r => $wu_row ) : ?>
-				<div class="dm-ind2__row<?php echo $wu_r ? ' is-rev' : ''; ?>">
-					<div class="dm-ind2__track">
-						<?php for ( $wu_c = 0; $wu_c < 2; $wu_c++ ) : foreach ( $wu_row as $wu_k => $ind ) : ?>
-						<span class="dm-ind2__w<?php echo ( $wu_k + $wu_r ) % 2 ? ' is-o' : ''; ?>"><?php echo esc_html( $ind[0] ); ?></span><i class="dm-ind2__s"></i>
-						<?php endforeach; endfor; ?>
-					</div>
-				</div>
-				<?php endforeach; ?>
-			</div>
+			<script>(function(){var u=document.querySelector('[data-mag]');if(!u)return;var li=[].slice.call(u.children);if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){li.forEach(function(l){l.classList.add('is-on');});return;}u.classList.add('is-js');var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-on',e.isIntersecting);});},{rootMargin:'-42% 0px -42% 0px'});li.forEach(function(l){io.observe(l);});})();</script>
 		</div>
 	</section>
 
@@ -503,7 +559,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
 				<ol class="dm-tl__list">
 					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
-					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><span class="dm-tl__out" aria-hidden="true"><small>Outcome</small><?php echo esc_html( $wu_outcome[ $wu_i ] ); ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
+					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_tl_icons[ $s[1] ]; // phpcs:ignore ?></span><span class="dm-tl__out" aria-hidden="true"><small>Outcome</small><?php echo esc_html( $wu_outcome[ $wu_i ] ); ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
 					<?php endforeach; ?>
 				</ol>
 			</div>
@@ -517,7 +573,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<?php echo $wu_eyebrow( 'Tools' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><?php echo $wu_h( 'The Tools and Technology', 'Behind Smarter Campaigns' ); // phpcs:ignore ?></h2>
 			</div>
-			<ul class="dm-tools">
+			<ul class="dm-tools dm-tools--sr">
 				<?php
 				$wu_seen = array();
 				foreach ( $wu_tools as $g ) foreach ( $g[1] as $tl ) {
@@ -527,6 +583,40 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				}
 				?>
 			</ul>
+			<?php
+			// The tools in the order a campaign uses them: research, create, run, measure (groups are the doc's own).
+			$wu_stage_map = array(
+				array( 'Research', array( 'SEO & Keyword Research', 'Content & Research' ) ),
+				array( 'Create', array( 'Design & Creative Production' ) ),
+				array( 'Run', array( 'Paid Advertising', 'Social Media Management', 'Email marketing and automation' ) ),
+				array( 'Measure', array( 'Analytics & Reporting' ) ),
+			);
+			$wu_by_group = array();
+			foreach ( $wu_tools as $g ) $wu_by_group[ $g[0] ] = $g[1];
+			$wu_seen2 = array();
+			?>
+			<ol class="dm-flow2" data-flow aria-hidden="true">
+				<?php foreach ( $wu_stage_map as $wu_k => $st ) : ?>
+				<li class="dm-flow2__st" style="--k:<?php echo (int) $wu_k; ?>">
+					<div class="dm-flow2__hd"><span class="dm-flow2__n"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span><span class="dm-flow2__dot"></span></div>
+					<h3 class="dm-flow2__t"><?php echo esc_html( $st[0] ); ?></h3>
+					<p class="dm-flow2__g"><?php echo esc_html( implode( ' · ', $st[1] ) ); ?></p>
+					<ul class="dm-flow2__tools">
+						<?php
+						foreach ( $st[1] as $gn ) {
+							if ( empty( $wu_by_group[ $gn ] ) ) continue;
+							foreach ( $wu_by_group[ $gn ] as $tl ) {
+								if ( isset( $wu_seen2[ $tl[0] ] ) ) continue;
+								$wu_seen2[ $tl[0] ] = true;
+								echo '<li' . ( preg_match( '/tiktok|buffer|later|mailchimp|chatgpt/i', $tl[0] ) ? ' class="is-dark"' : '' ) . '>' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore
+							}
+						}
+						?>
+					</ul>
+				</li>
+				<?php endforeach; ?>
+			</ol>
+			<script>(function(){var f=document.querySelector('[data-flow]');if(!f)return;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){f.classList.add('is-in');return;}f.classList.add('is-js');var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){f.classList.add('is-in');io.disconnect();}},{threshold:.15});io.observe(f);})();</script>
 		</div>
 	</section>
 

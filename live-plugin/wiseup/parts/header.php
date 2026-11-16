@@ -81,4 +81,4 @@ $wu_target  = function ( $link ) { return $link['external'] ? ' target="_blank" 
 	</div>
 </header>
 <script>(function(){var m=document.getElementById('menu');if(!m||!window.MutationObserver)return;var r=document.documentElement,f=function(){r.classList.toggle('wu-menu-open',!m.hidden)};new MutationObserver(f).observe(m,{attributes:true,attributeFilter:['hidden']});})();</script>
-<script src="<?php echo esc_url( WISEUP_ASSETS . '/js/mega-rope.js?v=6' ); ?>" defer></script>
+<script src="<?php echo esc_url( WISEUP_ASSETS . '/js/mega-rope.js?v=9' ); ?>" defer></script>

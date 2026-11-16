@@ -337,3 +337,7 @@ svg.vz { fill: none; stroke-linecap: round; stroke-linejoin: round; overflow: vi
   .sv-card:nth-child(2), .sv-card:nth-child(6) { grid-column: span 5; }
   .sv-card:nth-child(11) { grid-column: span 12; }
 }
+
+/* v1.3.71: solid card numbers (no outlined type) */
+.sv-card__n { color: rgba(255, 255, 255, .16); -webkit-text-stroke: 0; }
+.sv-card:hover .sv-card__n { color: rgba(190, 218, 82, .75); -webkit-text-stroke: 0; }

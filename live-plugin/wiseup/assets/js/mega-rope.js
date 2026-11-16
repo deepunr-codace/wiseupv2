@@ -11,27 +11,13 @@
   var NS = 'http://www.w3.org/2000/svg';
   var svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'mega__ropes'); svg.setAttribute('aria-hidden', 'true');
-  var mk = function (n, c, par) { var e = document.createElementNS(NS, n); if (c) e.setAttribute('class', c); (par || svg).appendChild(e); return e; };
-  var defs = mk('defs');
-  defs.innerHTML = '<radialGradient id="mg-brass" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#f4e2a6"/><stop offset=".35" stop-color="#c9a24e"/><stop offset=".75" stop-color="#7d5f22"/><stop offset="1" stop-color="#4a3513"/></radialGradient>' +
-    '<radialGradient id="mg-hole" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#0b0804"/><stop offset=".7" stop-color="#1c140a"/><stop offset="1" stop-color="#3a2a12"/></radialGradient>';
   var ropes = [0, 1].map(function () {
-    var g = mk('g');
-    return {
-      ring: mk('circle', 'mega__eye', g), hole: mk('circle', 'mega__hole', g),
-      core: mk('path', 'mega__rope', g), sA: mk('path', 'mega__strand mega__strand--a', g), sB: mk('path', 'mega__strand mega__strand--b', g),
-      sA2: mk('path', 'mega__strand mega__strand--a', g), hi: mk('path', 'mega__rope-hi', g), lip: mk('path', 'mega__lip', g)
-    };
+    var g = document.createElementNS(NS, 'g');
+    var base = document.createElementNS(NS, 'path'), twist = document.createElementNS(NS, 'path'), ring = document.createElementNS(NS, 'circle');
+    base.setAttribute('class', 'mega__rope'); twist.setAttribute('class', 'mega__rope-twist'); ring.setAttribute('class', 'mega__ring'); ring.setAttribute('r', '5');
+    g.appendChild(base); g.appendChild(twist); g.appendChild(ring); svg.appendChild(g);
+    return { base: base, twist: twist, ring: ring };
   });
-  // points along a quadratic, offset sideways by a sine so two strands twist round each other
-  var strand = function (P, ph, amp, per, only) {
-    var d = '', pen = false, n = P.length;
-    for (var i = 0; i < n; i++) {
-      var q = P[i], s = Math.sin(q.l / per * 6.2832 + ph), vis = only === undefined ? true : (only ? s > 0 : s <= 0);
-      if (vis) { d += (pen ? 'L' : 'M') + (q.x + q.nx * s * amp).toFixed(1) + ' ' + (q.y + q.ny * s * amp).toFixed(1); pen = true; } else pen = false;
-    }
-    return d;
-  };
   wrap.insertBefore(svg, wrap.firstChild);
 
   var y = 0, vy = 0, a = 0, va = 0, raf = 0, last = 0, open = false;
@@ -45,21 +31,10 @@
     ropes.forEach(function (r, i) {
       var s = i ? 1 : -1, ax = cx + s * 10, ay = top;
       var bx = cx + s * spread * Math.cos(rad), by = pt + y + 3 + s * spread * Math.sin(rad);  // ring on the panel top, after drop + swing
-      var mx = (ax + bx) / 2 - a * 0.8, my = (ay + by) / 2 + 16;                                  // slight sag, trailing the swing
-      var N = 64, P = [], len = 0, px = ax, py = ay;
-      for (var k = 0; k <= N; k++) {
-        var t = k / N, u = 1 - t, x = u * u * ax + 2 * u * t * mx + t * t * bx, yy = u * u * ay + 2 * u * t * my + t * t * by;
-        var tx = 2 * u * (mx - ax) + 2 * t * (bx - mx), ty = 2 * u * (my - ay) + 2 * t * (by - my), tl = Math.hypot(tx, ty) || 1;
-        if (k) len += Math.hypot(x - px, yy - py); px = x; py = yy;
-        P.push({ x: x, y: yy, nx: -ty / tl, ny: tx / tl, l: len });
-      }
-      var d = strand(P, 0, 0, 1);
-      r.core.setAttribute('d', d); r.hi.setAttribute('d', strand(P, 0, 0, 1));
-      r.sA.setAttribute('d', strand(P, 0, 1.5, 13)); r.sB.setAttribute('d', strand(P, 3.1416, 1.5, 13));
-      r.sA2.setAttribute('d', strand(P, 0, 1.5, 13, true));
-      var ex = bx.toFixed(1), ey = (by + 2).toFixed(1);
-      r.ring.setAttribute('cx', ex); r.ring.setAttribute('cy', ey); r.hole.setAttribute('cx', ex); r.hole.setAttribute('cy', ey);
-      r.lip.setAttribute('d', 'M' + (bx - 6.6).toFixed(1) + ' ' + (by + 2.4).toFixed(1) + ' A6.6 6.6 0 0 0 ' + (bx + 6.6).toFixed(1) + ' ' + (by + 2.4).toFixed(1));
+      var mx = (ax + bx) / 2 - a * 0.8, my = (ay + by) / 2 + 7;                                  // slight sag, trailing the swing
+      var d = 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + bx.toFixed(1) + ' ' + by.toFixed(1);
+      r.base.setAttribute('d', d); r.twist.setAttribute('d', d);
+      r.ring.setAttribute('cx', bx.toFixed(1)); r.ring.setAttribute('cy', (by + 2).toFixed(1));
     });
     panel.style.transformOrigin = (cx - pl).toFixed(1) + 'px 0';
   };

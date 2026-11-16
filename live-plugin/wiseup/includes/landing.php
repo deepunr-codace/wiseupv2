@@ -215,12 +215,11 @@ function wiseup_landing_isolate() {
 }
 
 /**
- * "AI Overview": a sticky widget docked at the bottom-left of a page. A small pill ("AI Overview") opens a panel with the
- * page's question, a direct answer, key points, jump links and a plan button. It is a <details>, so it works without
- * JavaScript and its text is always in the HTML. Written from each page's own copy; marked up with speakable data.
+ * "AI Overview": a slim side tab docked to the right edge of the screen (outside the page layout). It appears after a little
+ * scrolling; on hover, focus or tap it slides out a small panel with the page's question, a direct answer, key points and a
+ * plan button. The text is always in the HTML. Written from each page's own copy; marked up with speakable data.
  *
- * $o: q (question), a (answer, <b> allowed), points (array of [label, text]), links (array of [label, #anchor]),
- *     fact (optional line, <b> allowed).
+ * $o: q (question), a (answer, <b> allowed), points (array of [label, text]), links (unused here), fact (optional line).
  */
 function wiseup_ai_overview( $o ) {
 	static $css = false;
@@ -228,79 +227,62 @@ function wiseup_ai_overview( $o ) {
 	if ( ! $css ) {
 		$css = true;
 		echo '<style>
-.wu-aio{position:fixed;left:clamp(12px,2vw,24px);bottom:clamp(12px,2vw,24px);z-index:80;font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.5;text-align:left;color:#fff}
-.wu-aio *{box-sizing:border-box}
-.wu-aio.is-js{opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .5s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
-.wu-aio.is-js.is-in{opacity:1;transform:none;pointer-events:auto}
-.wu-aio__pill{position:relative;display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px 0 14px;border-radius:999px;font-size:14px;font-weight:500;color:#fff;background:#111113;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 14px 34px -14px rgba(0,0,0,.9);cursor:pointer;list-style:none;transition:box-shadow .3s,background .3s}
-.wu-aio__pill::-webkit-details-marker{display:none}
-.wu-aio__pill:hover{background:#17171a;box-shadow:inset 0 0 0 1px rgba(190,218,82,.6),0 14px 34px -14px rgba(0,0,0,.9)}
-.wu-aio__pill:focus-visible{outline:2px solid #beda52;outline-offset:3px}
-.wu-aio__sp{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:rgba(190,218,82,.12);box-shadow:inset 0 0 0 1px rgba(190,218,82,.35)}
-.wu-aio__sp svg{width:15px;height:15px;animation:wu-aio-pulse 3s ease-in-out infinite}
-.wu-aio__dot{position:relative;width:7px;height:7px;border-radius:50%;background:#beda52}
-.wu-aio__dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid #beda52;animation:wu-aio-ping 2.4s ease-out infinite}
-.wu-aio[open] .wu-aio__dot{display:none}
-.wu-aio__x{display:none;font-size:16px;line-height:1;color:#a4a4ac}
-.wu-aio[open] .wu-aio__x{display:inline}
-.wu-aio__panel{position:absolute;left:0;bottom:calc(100% + 12px);width:min(400px,calc(100vw - 24px));max-height:min(72vh,640px);overflow:auto;padding:20px 20px 18px;border-radius:26px;background:radial-gradient(120% 80% at 100% 0%,rgba(190,218,82,.10),transparent 60%),#111113;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1),0 30px 70px -24px rgba(0,0,0,.95);animation:wu-aio-in .45s cubic-bezier(.2,.8,.2,1);scrollbar-width:thin}
-.wu-aio__lab{display:inline-flex;align-items:center;gap:8px;padding:5px 11px 5px 9px;border-radius:99px;font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#11150a;background:#beda52}
-.wu-aio__lab svg{width:12px;height:12px}
-.wu-aio__q{margin:14px 0 8px;font-size:20px;font-weight:500;line-height:1.25;letter-spacing:-.02em;color:#fff}
-.wu-aio__a{margin:0;font-size:14.5px;line-height:1.7;color:#c9c9d0}
-.wu-aio__a b,.wu-aio__fact b,.wu-aio__pts b{color:#fff;font-weight:600}
-.wu-aio.is-js .wu-aio__a .w{opacity:0}
-.wu-aio.is-run .wu-aio__a .w{animation:wu-aio-w .4s ease both;animation-delay:calc(var(--i)*18ms)}
-.wu-aio__pts{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:8px}
-.wu-aio__pts li{position:relative;padding:11px 13px 11px 34px;border-radius:14px;font-size:13.5px;line-height:1.55;color:#b4b4bc;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07)}
-.wu-aio__pts li::before{content:"";position:absolute;left:13px;top:17px;width:8px;height:8px;border-radius:50%;box-shadow:inset 0 0 0 2px #beda52}
-.wu-aio__pts b{display:block;margin-bottom:1px;font-size:14px}
-.wu-aio__srcs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px}
-.wu-aio__srcs span{font-size:12px;color:#8c8c95}
-.wu-aio__srcs a{padding:5px 12px;border-radius:99px;font-size:12.5px;color:#d8ec8a;text-decoration:none;box-shadow:inset 0 0 0 1px rgba(190,218,82,.4);transition:background .25s,color .25s}
-.wu-aio__srcs a:hover{background:#beda52;color:#11150a}
-.wu-aio__ft{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:16px}
-.wu-aio__fact{font-size:13px;color:#a4a4ac}
-.wu-aio__cta{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 18px;border:0;border-radius:99px;font:inherit;font-size:14px;font-weight:600;color:#11150a;background:#beda52;cursor:pointer;transition:background .25s}
-.wu-aio__cta:hover{background:#d8ec8a}
-@keyframes wu-aio-in{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
-@keyframes wu-aio-pulse{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.18) rotate(16deg)}}
-@keyframes wu-aio-ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.9);opacity:0}}
-@keyframes wu-aio-w{from{opacity:0;filter:blur(3px)}to{opacity:1;filter:none}}
-@media (max-width:640px){.wu-aio{left:10px;bottom:10px}.wu-aio__pill{min-height:42px;padding:0 14px 0 10px;font-size:13.5px}.wu-aio__panel{width:calc(100vw - 20px);max-height:68vh}}
-@media (prefers-reduced-motion:reduce){.wu-aio.is-js{transition:none}.wu-aio__sp svg,.wu-aio__dot::after,.wu-aio__panel{animation:none}.wu-aio.is-js .wu-aio__a .w{opacity:1}}
+.wu-aio3{position:fixed;right:0;top:50%;z-index:80;display:flex;align-items:center;transform:translate(100%,-50%);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .4s;font-family:Inter,system-ui,sans-serif;color:#fff;text-align:left}
+.wu-aio3.is-in{transform:translate(0,-50%);opacity:1}
+.wu-aio3:not(.is-js){transform:translate(0,-50%);opacity:1}
+.wu-aio3 *{box-sizing:border-box}
+.wu-aio3__tab{display:flex;flex-direction:column;align-items:center;gap:10px;width:38px;padding:14px 0;border:0;border-radius:16px 0 0 16px;background:#111113;color:#fff;font:inherit;cursor:pointer;box-shadow:-6px 8px 24px -10px rgba(0,0,0,.8);transition:background .25s}
+.wu-aio3__tab:hover,.wu-aio3.is-open .wu-aio3__tab{background:#1a1a1e}
+.wu-aio3__tab:focus-visible{outline:2px solid #beda52;outline-offset:-2px}
+.wu-aio3__tab svg{width:15px;height:15px;animation:wu-aio3-p 3s ease-in-out infinite}
+.wu-aio3__tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.wu-aio3__tab i{width:6px;height:6px;border-radius:50%;background:#beda52;box-shadow:0 0 0 0 rgba(190,218,82,.6);animation:wu-aio3-d 2.4s ease-out infinite}
+.wu-aio3__panel{position:absolute;right:100%;top:50%;width:340px;max-height:min(78vh,560px);overflow:auto;background:#111113;border-radius:20px 0 0 20px;box-shadow:-10px 12px 40px -14px rgba(0,0,0,.9);clip-path:inset(0 0 0 100% round 20px 0 0 20px);opacity:0;pointer-events:none;transform:translateY(-50%) translateX(14px);transition:clip-path .65s cubic-bezier(.2,.9,.2,1),opacity .3s,transform .65s cubic-bezier(.2,.9,.2,1)}
+.wu-aio3.is-open .wu-aio3__panel{clip-path:inset(0 0 0 0 round 20px 0 0 20px);opacity:1;pointer-events:auto;transform:translateY(-50%)}
+@media (hover:hover){.wu-aio3:hover .wu-aio3__panel{clip-path:inset(0 0 0 0 round 20px 0 0 20px);opacity:1;pointer-events:auto;transform:translateY(-50%)}.wu-aio3:hover .wu-aio3__tab svg{animation:wu-aio3-s .8s cubic-bezier(.3,1.4,.5,1) forwards}}
+.wu-aio3__in{width:340px;padding:18px 18px 16px}
+.wu-aio3__q{margin:0 0 8px;font-size:17px;font-weight:500;line-height:1.25;letter-spacing:-.02em;color:#fff}
+.wu-aio3__a{margin:0 0 12px;font-size:13.5px;line-height:1.65;color:#bdbdc5}
+.wu-aio3__a b,.wu-aio3__pts b{color:#fff;font-weight:600}
+.wu-aio3__pts{margin:0 0 14px;padding:0;list-style:none;display:grid;gap:8px}
+.wu-aio3__pts li{position:relative;padding-left:16px;font-size:12.5px;line-height:1.5;color:#a4a4ac}
+.wu-aio3__pts li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:#beda52}
+.wu-aio3__cta{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 16px;border:0;border-radius:99px;font:inherit;font-size:13px;font-weight:600;color:#11150a;background:#beda52;cursor:pointer}
+.wu-aio3__cta:hover{background:#d8ec8a}
+.wu-aio3__in>*{opacity:0;transform:translateX(18px);transition:opacity .4s,transform .5s cubic-bezier(.2,.9,.2,1)}
+.wu-aio3.is-open .wu-aio3__in>*{opacity:1;transform:none;transition-delay:calc(.12s + var(--k,0) * .07s)}
+@media (hover:hover){.wu-aio3:hover .wu-aio3__in>*{opacity:1;transform:none;transition-delay:calc(.12s + var(--k,0) * .07s)}}
+.wu-aio3__in>:nth-child(2){--k:1}.wu-aio3__in>:nth-child(3){--k:2}.wu-aio3__in>:nth-child(4){--k:3}
+.wu-aio3.is-open .wu-aio3__tab svg{animation:wu-aio3-s .8s cubic-bezier(.3,1.4,.5,1) forwards}
+.wu-aio3__tab{transition:background .25s,padding .35s cubic-bezier(.2,.9,.2,1),width .35s cubic-bezier(.2,.9,.2,1)}
+.wu-aio3:hover .wu-aio3__tab,.wu-aio3.is-open .wu-aio3__tab{width:42px;background:#1b1b20}
+@keyframes wu-aio3-s{from{transform:rotate(0) scale(1)}60%{transform:rotate(200deg) scale(1.45)}to{transform:rotate(180deg) scale(1.15)}}
+@keyframes wu-aio3-p{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(14deg)}}
+@keyframes wu-aio3-d{0%{box-shadow:0 0 0 0 rgba(190,218,82,.6)}100%{box-shadow:0 0 0 9px rgba(190,218,82,0)}}
+@media (max-width:640px){.wu-aio3__panel{width:min(310px,calc(100vw - 52px))}.wu-aio3__in{width:100%}}
+@media (prefers-reduced-motion:reduce){.wu-aio3,.wu-aio3__panel{transition:none}.wu-aio3__tab svg,.wu-aio3__tab i{animation:none}}
 </style>' . "\n";
-		echo '<script>(function(){var q=function(){var bs=document.querySelectorAll(".wu-aio");if(!bs.length)return;var rm=matchMedia("(prefers-reduced-motion: reduce)").matches;bs.forEach(function(b){if(b.dataset.done)return;b.dataset.done=1;var a=b.querySelector(".wu-aio__a"),n=0;if(!rm){(function walk(el){[].slice.call(el.childNodes).forEach(function(c){if(c.nodeType===3){var f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(function(t){if(!t)return;if(/^\s+$/.test(t)){f.appendChild(document.createTextNode(t));}else{var s=document.createElement("span");s.className="w";s.style.setProperty("--i",n++);s.textContent=t;f.appendChild(s);}});c.parentNode.replaceChild(f,c);}else if(c.nodeType===1){walk(c);}});})(a);}b.classList.add("is-js");var show=function(){b.classList.add("is-in");};var t=setTimeout(show,2200);addEventListener("scroll",function(){if(scrollY>240){clearTimeout(t);show();}},{passive:true,once:true});b.addEventListener("toggle",function(){if(b.open&&!rm)b.classList.add("is-run");});document.addEventListener("click",function(e){if(b.open&&!b.contains(e.target))b.open=false;});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&b.open){b.open=false;b.querySelector("summary").focus();}});b.querySelectorAll(".wu-aio__srcs a,.wu-aio__cta").forEach(function(el){el.addEventListener("click",function(){b.open=false;});});});};if(document.readyState!=="loading")q();else document.addEventListener("DOMContentLoaded",q);})();</script>' . "\n";
+		echo '<script>(function(){var q=function(){document.querySelectorAll(".wu-aio3").forEach(function(b){if(b.dataset.done)return;b.dataset.done=1;b.classList.add("is-js");var show=function(){b.classList.add("is-in");};var t=setTimeout(show,2500);addEventListener("scroll",function(){if(scrollY>240){clearTimeout(t);show();}},{passive:true,once:true});var tab=b.querySelector(".wu-aio3__tab");tab.addEventListener("click",function(){var o=b.classList.toggle("is-open");tab.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(e){if(!b.contains(e.target)){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});document.addEventListener("keydown",function(e){if(e.key==="Escape"){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});b.querySelectorAll(".wu-aio3__cta").forEach(function(c){c.addEventListener("click",function(){b.classList.remove("is-open");});});});};if(document.readyState!=="loading")q();else document.addEventListener("DOMContentLoaded",q);})();</script>' . "\n";
 	}
-	$spark = '<svg viewBox="0 0 24 24" fill="#beda52" aria-hidden="true"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z"/></svg>';
-	$sparkd = '<svg viewBox="0 0 24 24" fill="#11150a" aria-hidden="true"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z"/></svg>';
+	$spark  = '<svg viewBox="0 0 24 24" fill="#beda52" aria-hidden="true"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z"/></svg>';
 	$points = isset( $o['points'] ) ? $o['points'] : array();
-	$links  = isset( $o['links'] ) ? $o['links'] : array();
-	echo '<details class="wu-aio" aria-label="AI Overview">';
-	echo '<summary class="wu-aio__pill"><span class="wu-aio__sp">' . $spark . '</span>AI Overview<span class="wu-aio__dot" aria-hidden="true"></span><span class="wu-aio__x" aria-hidden="true">&times;</span></summary>'; // phpcs:ignore
-	echo '<div class="wu-aio__panel"><span class="wu-aio__lab">' . $sparkd . 'AI Overview</span>'; // phpcs:ignore
-	echo '<h2 class="wu-aio__q">' . esc_html( $o['q'] ) . '</h2>';
-	echo '<p class="wu-aio__a">' . wp_kses( $o['a'], $allowed ) . '</p>';
+	echo '<aside class="wu-aio3" aria-label="AI Overview">';
+	echo '<div class="wu-aio3__panel" id="wu-aio3-panel"><div class="wu-aio3__in"><h2 class="wu-aio3__q">' . esc_html( $o['q'] ) . '</h2>';
+	echo '<p class="wu-aio3__a">' . wp_kses( $o['a'], $allowed ) . '</p>';
 	if ( $points ) {
-		echo '<ul class="wu-aio__pts">';
-		foreach ( $points as $pt ) echo '<li><b>' . esc_html( $pt[0] ) . '</b>' . esc_html( $pt[1] ) . '</li>';
+		echo '<ul class="wu-aio3__pts">';
+		foreach ( $points as $pt ) echo '<li><b>' . esc_html( $pt[0] ) . '.</b> ' . esc_html( $pt[1] ) . '</li>';
 		echo '</ul>';
 	}
-	if ( $links ) {
-		echo '<div class="wu-aio__srcs"><span>On this page</span>';
-		foreach ( $links as $ln ) echo '<a href="' . esc_attr( $ln[1] ) . '">' . esc_html( $ln[0] ) . '</a>';
-		echo '</div>';
-	}
-	echo '<div class="wu-aio__ft">';
-	if ( ! empty( $o['fact'] ) ) echo '<span class="wu-aio__fact">' . wp_kses( $o['fact'], $allowed ) . '</span>';
-	echo '<button type="button" class="wu-aio__cta" data-lead-open>Get our plan <span aria-hidden="true">&rarr;</span></button>';
-	echo '</div></div></details>' . "\n";
+	echo '<button type="button" class="wu-aio3__cta" data-lead-open>Get our plan <span aria-hidden="true">&rarr;</span></button></div></div>';
+	echo '<button type="button" class="wu-aio3__tab" aria-expanded="false" aria-controls="wu-aio3-panel">' . $spark . '<span>AI Overview</span><i aria-hidden="true"></i></button>'; // phpcs:ignore
+	echo '</aside>' . "\n";
 	echo '<script type="application/ld+json">' . wp_json_encode( array(
 		'@context'    => 'https://schema.org',
 		'@type'       => 'WebPage',
 		'name'        => wp_strip_all_tags( $o['q'] ),
 		'description' => wp_strip_all_tags( $o['a'] ),
-		'speakable'   => array( '@type' => 'SpeakableSpecification', 'cssSelector' => array( '.wu-aio__q', '.wu-aio__a' ) ),
+		'speakable'   => array( '@type' => 'SpeakableSpecification', 'cssSelector' => array( '.wu-aio3__q', '.wu-aio3__a' ) ),
 	) ) . "</script>\n";
 }
 

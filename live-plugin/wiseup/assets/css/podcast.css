@@ -814,3 +814,7 @@
 .pc-cb__faces .pc-ib { width: clamp(40px, 3.6vw, 52px); height: clamp(40px, 3.6vw, 52px); margin-left: -12px; box-shadow: 0 0 0 2px #fff, inset 0 0 0 1px rgb(190 218 82 / .35); }
 .pc-cb__faces .pc-ib:first-child { margin-left: 0; }
 @media (max-width: 600px) { .pc-cb__faces .pc-ib { width: 38px; height: 38px; margin-left: -10px; } }
+
+/* v1.3.71: marquee words are solid and soft, not outlined */
+.pc-eps__marquee span { -webkit-text-stroke: 0 !important; color: rgb(255 255 255 / .14) !important; }
+:root[data-theme='light'] .pc-eps__marquee span { color: rgb(17 21 10 / .12) !important; }
