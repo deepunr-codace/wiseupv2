@@ -51,6 +51,9 @@ $wu_svg     = function ( $paths, $size = 22, $sw = 1.6 ) {
 // Brand mark tile: a Simple Icons slug (inline SVG in its brand colour) or an image file in assets/landing/img/icons/.
 $wu_brands = include WISEUP_DIR . 'landing/digital-marketing-icons.php';
 $wu_mark   = function ( $key ) use ( $wu_brands ) {
+	// Google products: the official full-colour logos (Simple Icons only has flat one-colour versions)
+	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'i-google-search-console.svg', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
+	if ( isset( $wu_google[ $key ] ) ) $key = $wu_google[ $key ];
 	if ( isset( $wu_brands[ $key ] ) ) {
 		$fill = $wu_brands[ $key ][0];
 		$defs = '';
@@ -602,7 +605,12 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			<div class="dm-pkg">
 				<div class="dm-pkg__table">
 					<h3>What Your Package Can Cover</h3>
-					<table>
+					<ul class="dm-pkg__chips">
+						<?php $wu_pk_ic = array( 'mix', 'pen', 'search', 'target', 'chat', 'chart' ); foreach ( $wu_package as $wu_k => $row ) : ?>
+						<li><span class="dm-pkg__ic"><?php echo $wu_svg( $wu_icons[ $wu_pk_ic[ $wu_k ] ?? 'spark' ], 22 ); // phpcs:ignore ?></span><span><?php echo esc_html( $row[0] ); ?></span></li>
+						<?php endforeach; ?>
+					</ul>
+					<table class="dm-pkg__sr">
 						<thead><tr><th scope="col">Area</th><th scope="col">Potential Deliverables</th></tr></thead>
 						<tbody>
 							<?php foreach ( $wu_package as $row ) : ?>

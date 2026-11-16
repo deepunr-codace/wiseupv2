@@ -632,3 +632,37 @@
   .wu-dm .dm-stack__in { padding: 14px 14px 22px !important; } .wu-dm .ev-sec .dm-stack h3, .wu-dm .dm-stack__r p, .wu-dm .dm-stack__more { margin-inline: 8px; }
 }
 @media (prefers-reduced-motion: reduce) { .wu-dm .dm-stack__brands .dm-mark { animation: none; } }
+
+/* v1.3.60: tool logos are not grouped/overlapped: each one separate, name visible under it */
+.wu-dm .dm-apps__f:nth-child(n) { align-items: flex-start; }
+.wu-dm .dm-apps__f:nth-child(n) .dm-apps__grid { flex-wrap: wrap; justify-content: flex-end; gap: 18px 14px; flex: 1 1 auto; }
+.wu-dm .dm-apps__grid li, .wu-dm .dm-apps__f:hover .dm-apps__grid li { margin-left: 0 !important; display: grid; justify-items: center; align-content: start; gap: 8px; width: 84px; text-align: center; }
+.wu-dm .dm-apps__grid .dm-mark { border-radius: 20px; box-shadow: 0 12px 24px -14px rgb(0 0 0 / .9), inset 0 0 0 1px rgb(0 0 0 / .06); }
+.wu-dm .dm-apps__grid li > span:not(.dm-mark) { position: static; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; width: auto; max-width: 100%; padding: 0; border-radius: 0; font-size: 12px; line-height: 1.3; color: #c4c4cb; background: none; white-space: normal; opacity: 1; transform: none; pointer-events: auto; overflow: hidden; }
+.wu-dm .dm-apps__grid li:hover > span:not(.dm-mark) { transform: none; color: #d8ec8a; }
+@media (max-width: 760px) {
+  .wu-dm .dm-apps__f:nth-child(n) .dm-apps__grid { justify-content: flex-start; }
+  .wu-dm .dm-apps__grid li, .wu-dm .dm-apps__f:hover .dm-apps__grid li { width: 68px; }
+  .wu-dm .dm-apps__grid li > span:not(.dm-mark) { display: -webkit-box; font-size: 11px; }
+  .wu-dm .dm-apps__grid .dm-mark { width: 52px; height: 52px; border-radius: 16px; box-shadow: none; }
+}
+
+/* v1.3.60: package coverage as icon tiles, no descriptions (the table stays in the page, visually hidden) */
+.wu-dm .dm-pkg__sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.wu-dm .dm-pkg__chips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 22px 0 6px; padding: 0; list-style: none; }
+.wu-dm .dm-pkg__chips li { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 18px; font-size: clamp(16px, 1.25vw, 19px); font-weight: 500; letter-spacing: -.015em; color: #fff; background: linear-gradient(145deg, #17171a, #0e0e10); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .3s; }
+.wu-dm .dm-pkg__chips li:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px rgb(190 218 82 / .55); }
+.wu-dm .dm-pkg__ic { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; color: #beda52; background: rgb(190 218 82 / .1); box-shadow: inset 0 0 0 1px rgb(190 218 82 / .28); }
+@media (max-width: 520px) { .wu-dm .dm-pkg__chips { grid-template-columns: minmax(0, 1fr); } }
+
+/* v1.3.60: industries as large pill chips (no boxed tiles) */
+.wu-dm .dm-ind { display: flex; flex-wrap: wrap; gap: 12px 12px; }
+.wu-dm .dm-ind li { flex-direction: row; align-items: center; gap: 14px; min-height: 0; padding: 10px 26px 10px 10px; border-radius: 999px; background: #0d0d0f; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1); }
+.wu-dm .dm-ind li:nth-child(3n + 2) { margin-left: clamp(0px, 3vw, 44px); }
+.wu-dm .dm-ind li:nth-child(3n) { margin-left: clamp(0px, 1.2vw, 18px); }
+.wu-dm .dm-ind__i { width: 46px; height: 46px; flex: none; }
+.wu-dm .dm-ind strong { margin: 0; font-size: clamp(17px, 1.6vw, 24px); font-weight: 450; letter-spacing: -.02em; white-space: nowrap; }
+.wu-dm .dm-ind li:hover { background: #beda52; box-shadow: none; }
+.wu-dm .dm-ind li:hover strong { color: #11150a; }
+.wu-dm .dm-ind li:hover .dm-ind__i { color: #beda52; background: #11150a; box-shadow: none; }
+@media (max-width: 767px) { .wu-dm .dm-ind li { min-height: 0; padding: 8px 18px 8px 8px; margin-left: 0 !important; } .wu-dm .dm-ind strong { font-size: 15.5px; white-space: normal; } .wu-dm .dm-ind__i { width: 38px; height: 38px; } }
