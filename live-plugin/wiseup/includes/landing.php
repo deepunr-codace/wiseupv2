@@ -18,6 +18,7 @@ function wiseup_landing_templates() {
 		'wiseup-studio'       => array( 'wiseup-studio.php', __( 'WiseUp: Studio', 'wiseup' ), 'wiseup-studio' ),
 		'wiseup-event-branding' => array( 'event-branding.php', __( 'WiseUp: Event Branding', 'wiseup' ), 'event-branding' ),
 		'wiseup-digital-marketing' => array( 'digital-marketing.php', __( 'WiseUp: Digital Marketing', 'wiseup' ), 'digital-marketing' ),
+		'wiseup-portfolio'    => array( 'portfolio.php', __( 'WiseUp: Portfolio', 'wiseup' ), 'portfolio' ),
 	);
 }
 
@@ -30,6 +31,9 @@ add_filter( 'theme_page_templates', function ( $templates ) {
 function wiseup_landing_for( $post_id ) {
 	$map = wiseup_landing_templates();
 	$key = $post_id ? get_page_template_slug( $post_id ) : '';
+	// The portfolio template moved from the theme into the plugin (2026-11-12): a page still set to the theme's
+	// "Studio Portfolio" template gets the plugin's copy, so nothing breaks before its Template is switched.
+	if ( 'template-studio-portfolio.php' === $key ) $key = 'wiseup-portfolio';
 	return isset( $map[ $key ] ) ? $map[ $key ] : null;
 }
 
@@ -176,7 +180,7 @@ function wiseup_landing_chrome_footer( $lead_source = '', $wp_footer = false ) {
 // On the landing pages the header button goes to the page's own closing section (and opens the lead popup).
 add_filter( 'wiseup_header_cta', function ( $cta ) {
 	$t = wiseup_landing_for( get_queried_object_id() );
-	if ( ! $t ) return $cta;
+	if ( ! $t || 'portfolio.php' === $t[0] ) return $cta;
 	if ( 'services.php' === $t[0] ) return '#wu-svc-cta';
 	if ( in_array( $t[0], array( 'seo.php', 'performance.php' ), true ) ) return '#contact';
 	return '#wu-smm-cta';
@@ -207,4 +211,53 @@ function wiseup_landing_isolate() {
 	remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 	remove_action( 'wp_footer', 'wp_enqueue_stored_styles', 1 );
 	remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
+}
+
+/**
+ * Quick-overview box for service pages (answer-first summary, like a search "AI overview"): a question,
+ * a short answer, key points and an optional fact line. Text comes from each page's own copy.
+ *
+ * @param string   $question Heading, written as the question the page answers.
+ * @param string   $answer   Two or three sentences.
+ * @param string[] $points   Short key points (chips).
+ * @param string   $fact     Optional one-line fact, e.g. "Packages start at ₹60,000".
+ */
+function wiseup_ai_overview( $question, $answer, $points = array(), $fact = '' ) {
+	static $css = false;
+	if ( ! $css ) {
+		$css = true;
+		echo '<style>
+.wu-aio{max-width:1240px;margin:0 auto;padding:clamp(28px,4vw,56px) clamp(16px,3vw,24px) 0;font-family:Inter,system-ui,sans-serif}
+.wu-aio__in{position:relative;display:grid;gap:18px;padding:clamp(22px,3vw,36px);border-radius:28px;color:#fff;background:linear-gradient(160deg,#121214,#0a0a0b);isolation:isolate;overflow:hidden}
+.wu-aio__in::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1.5px;background:linear-gradient(120deg,#beda52,#4285f4 35%,#9b72f2 60%,#beda52);background-size:200% 200%;animation:wu-aio-b 8s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.wu-aio__in::after{content:"";position:absolute;z-index:-1;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(closest-side,rgba(155,114,242,.16),transparent)}
+.wu-aio__tag{display:inline-flex;align-items:center;gap:8px;width:max-content;font-size:13px;font-weight:600;letter-spacing:.02em;color:#d8ec8a}
+.wu-aio__tag svg{width:18px;height:18px}
+.wu-aio__q{margin:0;font-size:clamp(22px,2.4vw,32px);font-weight:500;line-height:1.2;letter-spacing:-.025em;color:#fff}
+.wu-aio__a{margin:0;max-width:78ch;font-size:clamp(16px,1.25vw,18px);line-height:1.7;color:#d4d4da}
+.wu-aio__pts{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 0;padding:0;list-style:none}
+.wu-aio__pts li{padding:8px 14px;border-radius:99px;font-size:14px;color:#e8e8ec;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)}
+.wu-aio__ft{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:4px}
+.wu-aio__fact{font-size:14px;color:#a4a4ac}
+.wu-aio__fact b{color:#fff;font-weight:600}
+.wu-aio__cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border:0;border-radius:99px;font:inherit;font-size:14.5px;font-weight:600;color:#11150a;background:#beda52;cursor:pointer;transition:background .25s}
+.wu-aio__cta:hover{background:#d8ec8a}
+@keyframes wu-aio-b{to{background-position:200% 0}}
+@media (prefers-reduced-motion:reduce){.wu-aio__in::before{animation:none}}
+</style>' . "\n";
+	}
+	$spark = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><defs><linearGradient id="wu-aio-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4285f4"/><stop offset=".55" stop-color="#9b72f2"/><stop offset="1" stop-color="#d96570"/></linearGradient></defs><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z" fill="url(#wu-aio-g)"/></svg>';
+	echo '<section class="wu-aio" aria-label="' . esc_attr( $question ) . '"><div class="wu-aio__in">';
+	echo '<span class="wu-aio__tag">' . $spark . 'Quick overview</span>'; // phpcs:ignore
+	echo '<h2 class="wu-aio__q">' . esc_html( $question ) . '</h2>';
+	echo '<p class="wu-aio__a">' . esc_html( $answer ) . '</p>';
+	if ( $points ) {
+		echo '<ul class="wu-aio__pts">';
+		foreach ( $points as $pt ) echo '<li>' . esc_html( $pt ) . '</li>';
+		echo '</ul>';
+	}
+	echo '<div class="wu-aio__ft">';
+	if ( $fact ) echo '<span class="wu-aio__fact">' . wp_kses( $fact, array( 'b' => array() ) ) . '</span>';
+	echo '<button type="button" class="wu-aio__cta" data-lead-open>Get our plan <span aria-hidden="true">&rarr;</span></button>';
+	echo '</div></div></section>' . "\n";
 }
