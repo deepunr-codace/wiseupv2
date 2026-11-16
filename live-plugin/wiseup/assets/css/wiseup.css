@@ -3038,3 +3038,14 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 .mega__sub a:hover, .mega__sub a:focus-visible, .mega__third a:hover, .mega__third a:focus-visible { color: #d8ec8a; }
 .mega__sub a:focus-visible, .mega__head:focus-visible { outline: 2px solid #beda52; outline-offset: 2px; border-radius: 6px; }
 @media (max-width: 1360px) { .mega__cols { column-count: 2; } .hd__mega { width: min(1000px, calc(100vw - 32px)); } }
+
+/* v1.3.62: mega menu compact: group names only, a group opens its sub-items on hover / keyboard focus */
+.hd__mega { width: min(900px, calc(100vw - 32px)) !important; }
+.mega { grid-template-columns: minmax(0, 1fr) 230px !important; }
+.mega__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-count: auto; gap: 10px; align-items: start; }
+.mega__grp { margin: 0; padding: 8px 6px; }
+.mega__sub { max-height: 0; margin-top: 0; overflow: hidden; opacity: 0; padding-bottom: 0; transition: max-height .45s cubic-bezier(.2, .8, .2, 1), opacity .3s, margin .3s; }
+.mega__grp:hover .mega__sub, .mega__grp:focus-within .mega__sub { max-height: 460px; margin-top: 6px; opacity: 1; padding-bottom: 6px; }
+.mega__grp:hover { box-shadow: inset 0 0 0 1px rgb(190 218 82 / .35), 4px 5px 12px rgb(0 0 0 / .55); }
+@media (max-width: 1360px) { .mega__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } .hd__mega { width: min(860px, calc(100vw - 32px)) !important; } }
+@media (prefers-reduced-motion: reduce) { .mega__sub { transition: none; } }
