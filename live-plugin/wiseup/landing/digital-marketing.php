@@ -295,9 +295,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		<div class="logos ev-logos" role="region" aria-label="Client logos"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul><?php echo $wu_li; // phpcs:ignore ?></ul><ul aria-hidden="true"><?php echo str_replace( '" alt="', '" alt="" data-alt="', $wu_li ); // phpcs:ignore ?></ul></div></div></div></div>
 	</section>
 
-	<div class="ev-ticker" aria-hidden="true"><div class="ev-ticker__track">
-		<?php $wu_tk = ''; foreach ( array( 'SEO', 'Google Ads', 'Meta Ads', 'Social Media', 'Content', 'Branding', 'Websites', 'Digital PR', 'AI Automation', 'CRM' ) as $t ) $wu_tk .= '<span>' . esc_html( $t ) . '</span><i></i>'; echo '<div>' . $wu_tk . '</div><div>' . $wu_tk . '</div>'; // phpcs:ignore ?>
-	</div></div>
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a digital marketing agency in Kerala do?',
@@ -414,7 +411,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					<?php echo $wu_eyebrow( 'Our approach' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Marketing Built Around Your Business,', 'Not a Ready-Made Template' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>Two businesses in the same industry can have completely different customers, competition, budgets and growth ambitions. So why should they follow the same marketing plan?</p><p>We start by understanding what your business needs before recommending services or platforms. The strategy is shaped around your position in the market, the people you want to reach, and the results you want to work towards.</p></div>
+				<div class="ev-intro"><p class="dm-soft">Two businesses in the same industry can have completely different customers, competition, budgets and growth ambitions. So why should they follow the same marketing plan?</p><p>We start by understanding what your business needs before recommending services or platforms. The strategy is shaped around your position in the market, the people you want to reach, and the results you want to work towards.</p></div>
 			</div>
 			<div class="dm-spy" data-spy>
 				<div class="dm-spy__stage" aria-hidden="true">
@@ -595,8 +592,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			foreach ( $wu_tools as $g ) $wu_by_group[ $g[0] ] = $g[1];
 			$wu_seen2 = array();
 			?>
-			<div class="dm-orbit" data-orbit aria-hidden="true"><span class="dm-orbit__core"></span></div>
-			<script>(function(){var o=document.querySelector('[data-orbit]');if(!o)return;var it=[].slice.call(document.querySelectorAll('.dm-tools--sr li')).map(function(li){return{m:li.querySelector('.dm-mark'),n:(li.querySelector('span:not(.dm-mark)')||{}).textContent||''};}).filter(function(x){return x.m;});var dark=/tiktok|buffer|later|mailchimp|chatgpt/i,rings=[7,11,15],i=0;rings.forEach(function(c,r){var ring=document.createElement('div');ring.className='dm-orbit__ring dm-orbit__ring--'+(r+1);var n=Math.min(c,it.length-i);for(var k=0;k<n;k++,i++){var a=k/n*360+(r*17),el=document.createElement('span');el.className='dm-orbit__i'+(dark.test(it[i].n)?' is-dark':'');var rad=a*Math.PI/180;el.style.left=(50+50*Math.cos(rad))+'%';el.style.top=(50+50*Math.sin(rad))+'%';el.innerHTML='<span class="dm-orbit__b">'+it[i].m.outerHTML+'<em>'+it[i].n.replace(/</g,'&lt;')+'</em></span>';ring.appendChild(el);}o.appendChild(ring);});})();</script>
+			<div class="dm-orbit" data-orbit aria-hidden="true"><span class="dm-orbit__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="" width="120" height="120" loading="lazy" decoding="async"></span></div>
+			<script>(function(){var o=document.querySelector('[data-orbit]');if(!o)return;var it=[].slice.call(document.querySelectorAll('.dm-tools--sr li')).map(function(li){return{m:li.querySelector('.dm-mark'),n:(li.querySelector('span:not(.dm-mark)')||{}).textContent||''};}).filter(function(x){return x.m;});var seen={};it=it.filter(function(x){var k=x.m.innerHTML;if(seen[k])return false;seen[k]=1;return true;});var dark=/tiktok|buffer|later|mailchimp|chatgpt/i,rings=[7,11,15],i=0;rings.forEach(function(c,r){var ring=document.createElement('div');ring.className='dm-orbit__ring dm-orbit__ring--'+(r+1);var n=Math.min(c,it.length-i);for(var k=0;k<n;k++,i++){var a=k/n*360+(r*17),el=document.createElement('span');el.className='dm-orbit__i'+(dark.test(it[i].n)?' is-dark':'');var rad=a*Math.PI/180;el.style.left=(50+50*Math.cos(rad))+'%';el.style.top=(50+50*Math.sin(rad))+'%';el.innerHTML='<span class="dm-orbit__b">'+it[i].m.outerHTML+'<em>'+it[i].n.replace(/</g,'&lt;')+'</em></span>';ring.appendChild(el);}o.appendChild(ring);});})();</script>
 			<ol class="dm-flow2" data-flow aria-hidden="true">
 				<?php foreach ( $wu_stage_map as $wu_k => $st ) : ?>
 				<li class="dm-flow2__st" style="--k:<?php echo (int) $wu_k; ?>">

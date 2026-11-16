@@ -282,6 +282,23 @@ function wiseup_ai_overview( $o ) {
 .wu-aio3 .wu-aio3__pts li::before{top:.45em}
 .wu-aio3 .wu-aio3__pts b{display:inline;font-size:12.5px;margin:0}
 .wu-aio3 .wu-aio3__cta{min-height:40px}
+.wu-aio3 .wu-aio3__panel,.wu-aio3 .wu-aio3__tab{background:#121214!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+.wu-aio3 .wu-aio3__panel{right:calc(100% - 1px);border-radius:26px 0 26px 26px;box-shadow:-24px 28px 60px -26px rgba(0,0,0,.95)!important;clip-path:circle(0 at 100% 50%)!important;opacity:1!important;transform:translateY(-50%)!important;transition:clip-path .85s cubic-bezier(.22,1,.36,1)!important}
+.wu-aio3.is-open .wu-aio3__panel{clip-path:circle(160% at 100% 50%)!important}
+@media (hover:hover){.wu-aio3:hover .wu-aio3__panel{clip-path:circle(160% at 100% 50%)!important}}
+.wu-aio3 .wu-aio3__tab{transition:border-radius .5s ease,width .5s cubic-bezier(.22,1,.36,1),box-shadow .5s!important}
+.wu-aio3.is-open .wu-aio3__tab{border-radius:0 0 0 0}
+@media (hover:hover){.wu-aio3:hover .wu-aio3__tab{border-radius:0}}
+.wu-aio3 .wu-aio3__cta{position:relative;overflow:hidden;width:100%;justify-content:space-between;min-height:52px!important;padding:0 8px 0 22px!important;border-radius:16px!important;font-size:15px!important}
+.wu-aio3 .wu-aio3__cta span{display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:#11150a;color:#beda52;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.wu-aio3 .wu-aio3__cta:hover span{transform:translateX(3px) rotate(-12deg)}
+.wu-aio3 .wu-aio3__cta::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);translate:-120% 0;transition:translate 1.1s ease}
+.wu-aio3.is-open .wu-aio3__cta::after{translate:120% 0;transition-delay:.6s}
+@media (hover:hover){.wu-aio3:hover .wu-aio3__cta::after{translate:120% 0;transition-delay:.6s}}
+.wu-aio3 .wu-aio3__in>*{transition:opacity .5s ease,transform .7s cubic-bezier(.22,1,.36,1)!important}
+.wu-aio3.is-open .wu-aio3__in>*{transition-delay:calc(.25s + var(--k,0)*.08s)!important}
+@media (hover:hover){.wu-aio3:hover .wu-aio3__in>*{transition-delay:calc(.25s + var(--k,0)*.08s)!important}}
+@media (prefers-reduced-motion:reduce){.wu-aio3 .wu-aio3__panel{transition:none!important}}
 @keyframes wu-aio3-p{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(14deg)}}
 @keyframes wu-aio3-d{0%{box-shadow:0 0 0 0 rgba(190,218,82,.6)}100%{box-shadow:0 0 0 9px rgba(190,218,82,0)}}
 @media (max-width:640px){.wu-aio3__panel{width:min(310px,calc(100vw - 52px))}.wu-aio3__in{width:100%}}

@@ -183,6 +183,14 @@ $wu_industries = array(
 	array( 'E-commerce and Retail', 'bag' ), array( 'Real Estate', 'home' ), array( 'Healthcare and Wellness', 'health' ),
 	array( 'Education and Training', 'cap' ), array( 'B2B and Professional Services', 'scale' ), array( 'Travel and Hospitality', 'bed' ),
 );
+$wu_ind_icons = array(
+	'bag' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg>',
+	'home' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 11v10h5v-6h4v6h5V11L8 6z"/><path d="M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3H10zm9 6h-2V7h2v2z"/></svg>',
+	'health' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm6 11h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z"/></svg>',
+	'cap' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>',
+	'scale' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m5.25 8.069 2.83-2.827 14.134 14.15-2.83 2.827zm4.236-4.242L12.314.998l5.657 5.656-2.828 2.83zM.999 12.315l2.828-2.829 5.657 5.657-2.828 2.828zM1 21h12v2H1z"/></svg>',
+	'bed' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>',
+);
 
 // Why WiseUp: [ icon, title, text ].
 $wu_why = array(
@@ -405,11 +413,12 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				</div>
 				<div class="ev-intro"><p>Advertising goals vary across industries. While some businesses focus on immediate purchases, others need qualified enquiries, appointment requests or longer-term customer relationships. We plan campaigns around the buying behaviour and conversion goals relevant to each business.</p></div>
 			</div>
-			<ul class="dm-ind">
+			<ul class="dm-ind dm-mag" data-mag>
 				<?php foreach ( $wu_industries as $ind ) : ?>
-				<li><span class="dm-ind__i"><?php echo $wu_svg( $wu_icons[ $ind[1] ], 22 ); // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
+				<li><span class="dm-ind__i"><?php echo $wu_ind_icons[ $ind[1] ]; // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
 				<?php endforeach; ?>
 			</ul>
+			<script>(function(){var u=document.querySelector('[data-mag]');if(!u)return;var li=[].slice.call(u.children);if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){li.forEach(function(l){l.classList.add('is-on');});return;}u.classList.add('is-js');var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-on',e.isIntersecting);});},{rootMargin:'-42% 0px -42% 0px'});li.forEach(function(l){io.observe(l);});})();</script>
 		</div>
 	</section>
 
@@ -438,6 +447,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $w[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
 				<?php endforeach; ?>
 			</ul>
+			<script>(function(){var u=document.querySelector('.wu-pm .pm-grid--why');if(!u)return;u.classList.add('is-rows');var li=[].slice.call(u.children);var on=function(x){li.forEach(function(l){l.classList.toggle('is-on',l===x);});};on(li[0]);li.forEach(function(l){l.addEventListener('mouseenter',function(){on(l);});l.addEventListener('click',function(){on(l);});});if('IntersectionObserver' in window&&!matchMedia('(hover: hover)').matches){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)on(e.target);});},{rootMargin:'-45% 0px -45% 0px'});li.forEach(function(l){io.observe(l);});}})();</script>
 		</div>
 	</section>
 

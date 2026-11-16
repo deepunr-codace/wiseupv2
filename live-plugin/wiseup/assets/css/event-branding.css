@@ -1394,3 +1394,150 @@ html, body.wu-ev-page { background: #000; }
 .wu-ev .ev-cases--two .ev-case::before { -webkit-text-stroke: 0 !important; color: rgb(255 255 255 / .22) !important; }
 .wu-ev .ev-ticker span { -webkit-text-stroke: 0 !important; color: rgb(255 255 255 / .4); }
 .wu-ev .ev-ticker span:nth-of-type(3n+1) { color: #fff; }
+
+/* v1.3.75 (Event Branding: how to choose): a calm checklist: five checks as one list of titles; the open one (hover / tap) shows its tick filled and its text below it; the questions to ask become an open two-column list, no boxes */
+.wu-ev .ev-choose.is-tabs { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 0 !important; max-width: 900px; margin-inline: 0; }
+.wu-ev .ev-choose.is-tabs .ev-chk { display: grid !important; grid-template-columns: 40px minmax(0, 1fr); column-gap: 18px; padding: 20px 0 !important; border: 0 !important; border-top: 1px solid rgb(255 255 255 / .08) !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; grid-column: auto !important; min-height: 0 !important; }
+.wu-ev .ev-choose.is-tabs .ev-chk:last-child { border-bottom: 1px solid rgb(255 255 255 / .08) !important; }
+.wu-ev .ev-choose.is-tabs .ev-chk::before, .wu-ev .ev-choose.is-tabs .ev-chk::after { display: none !important; }
+.wu-ev .ev-choose.is-tabs .ev-chk__top { grid-row: 1; grid-column: 1; display: block; margin: 0 !important; }
+.wu-ev .ev-choose.is-tabs .ev-chk__n { display: none !important; }
+.wu-ev .ev-choose.is-tabs .ev-chk__box { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: transparent; background: none; box-shadow: inset 0 0 0 1.5px rgb(190 218 82 / .4) !important; transition: background .6s ease, color .6s ease; }
+.wu-ev .ev-choose.is-tabs .ev-chk.is-on .ev-chk__box { color: #11150a; background: #beda52; box-shadow: none !important; }
+.wu-ev .ev-choose.is-tabs .ev-chk h3 { grid-row: 1; grid-column: 2; align-self: center; margin: 0 !important; font-size: clamp(20px, 1.9vw, 28px) !important; font-weight: 500; letter-spacing: -.025em; color: rgb(255 255 255 / .45); cursor: pointer; transition: color .6s ease; }
+.wu-ev .ev-choose.is-tabs .ev-chk.is-on h3 { color: #fff; }
+.wu-ev .ev-choose.is-tabs .ev-chk h3:focus-visible { outline: 2px solid #beda52; outline-offset: 4px; }
+.wu-ev .ev-choose.is-tabs .ev-chk p { grid-row: 2; grid-column: 2; max-height: 0; overflow: hidden; margin: 0 !important; opacity: 0; max-width: 62ch; font-size: 16px; line-height: 1.7; color: rgb(255 255 255 / .7); transition: max-height .8s cubic-bezier(.65, 0, .35, 1), opacity .5s ease, margin .6s ease; }
+.wu-ev .ev-choose.is-tabs .ev-chk.is-on p { max-height: 10em; opacity: 1; margin-top: 12px !important; transition-delay: 0s, .15s, 0s; }
+.wu-ev .ev-ask { padding: 0 !important; margin-top: clamp(48px, 6vw, 88px) !important; background: none !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; }
+.wu-ev .ev-ask::before, .wu-ev .ev-ask::after { display: none !important; }
+.wu-ev .ev-ask h3 { font-size: clamp(22px, 2vw, 30px) !important; margin-bottom: 22px !important; }
+.wu-ev .ev-ask__list { gap: 0 clamp(28px, 4vw, 64px) !important; }
+.wu-ev .ev-ask__list li { padding: 14px 0 !important; border: 0 !important; font-size: 16px; color: rgb(255 255 255 / .8); }
+.wu-ev .ev-ask__list li::before { box-shadow: none !important; background: rgb(190 218 82 / .12) !important; color: #beda52 !important; }
+html body .wu-ev .ev-choose.is-tabs .ev-chk .ev-chk__box { visibility: visible !important; opacity: 1 !important; display: grid !important; width: 32px !important; height: 32px !important; border-radius: 50% !important; color: transparent !important; background: transparent !important; box-shadow: inset 0 0 0 1.5px rgb(190 218 82 / .45) !important; }
+html body .wu-ev .ev-choose.is-tabs .ev-chk.is-on .ev-chk__box { color: #11150a !important; background: #beda52 !important; box-shadow: none !important; }
+html body .wu-ev .ev-choose.is-tabs .ev-chk .ev-chk__box svg { width: 16px; height: 16px; }
+html body .wu-ev .ev-choose.is-tabs .ev-chk__top { display: block !important; align-self: center; }
+
+/* v1.3.75 (Event Branding "Same Family"): no box. The heading sits large on the left with the three linked rings drawn big beside it; the two paragraphs read as one calm column on the right with the first line brighter */
+@media (min-width: 1024px) {
+  .wu-ev #what .ev-split::after { background: radial-gradient(60% 120% at 0% 50%, rgb(190 218 82 / .08), transparent 70%) !important; box-shadow: none !important; border-radius: 0 !important; }
+  .wu-ev #what .ev-prose > h3 { grid-column: 1 / span 3 !important; position: relative; align-self: center !important; padding: 120px 0 0 !important; margin: 0 !important; font-size: clamp(30px, 3vw, 46px) !important; font-weight: 500; line-height: 1.1; letter-spacing: -.035em; color: #fff; }
+  .wu-ev #what .ev-prose > h3::before { content: ''; position: absolute; left: 0; top: 0; width: 200px; height: 90px; background:
+      radial-gradient(circle at 45px 45px, transparent 40px, #beda52 41px, #beda52 43px, transparent 44px),
+      radial-gradient(circle at 100px 45px, transparent 40px, rgb(255 255 255 / .55) 41px, rgb(255 255 255 / .55) 43px, transparent 44px),
+      radial-gradient(circle at 155px 45px, transparent 40px, rgb(255 255 255 / .25) 41px, rgb(255 255 255 / .25) 43px, transparent 44px); }
+  .wu-ev #what .ev-prose > h3 svg, .wu-ev #what .ev-prose > h3 .ev-rings, .wu-ev #what .ev-prose > h3 > span[aria-hidden] { display: none !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2), .wu-ev #what .ev-prose > p:nth-of-type(3) { grid-column: 4 / -1 !important; margin: 0 !important; font-size: 16.5px; line-height: 1.75; color: rgb(255 255 255 / .62); max-width: 58ch; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2) { grid-row: 2 !important; align-self: start !important; color: rgb(255 255 255 / .9); font-size: clamp(17px, 1.4vw, 20px); padding-top: 8px; }
+  .wu-ev #what .ev-prose > p:nth-of-type(3) { grid-row: 3 !important; }
+  .wu-ev #what .ev-split { row-gap: clamp(20px, 2vw, 28px) !important; }
+  .wu-ev #what .ev-split::after { grid-row: 2 / span 2 !important; }
+  .wu-ev #what .ev-prose > h3 { grid-row: 2 / span 2 !important; }
+}
+
+/* v1.3.75 (Event Branding services): no boxes. An open list: each service is a row with a real Material icon in a lime disc, title, and text; thin dividers; the icon fills and the title turns lime on hover */
+.wu-ev #services .ev-cards { gap: 0 clamp(28px, 4vw, 64px) !important; }
+.wu-ev #services .ev-card, .wu-ev #services .ev-card:nth-child(n) { display: grid !important; grid-template-columns: 56px minmax(0, 1fr); column-gap: 20px; row-gap: 8px; align-content: start; padding: 26px 0 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; border: 0 !important; border-top: 1px solid rgb(255 255 255 / .08) !important; }
+.wu-ev #services .ev-card::before, .wu-ev #services .ev-card::after { display: none !important; }
+.wu-ev #services .ev-card .ev-ico { grid-row: 1 / span 3; width: 56px !important; height: 56px !important; border-radius: 50% !important; color: #beda52 !important; background: rgb(190 218 82 / .1) !important; box-shadow: none !important; transition: background .6s ease, color .6s ease; }
+.wu-ev #services .ev-card .ev-ico svg { width: 26px; height: 26px; }
+.wu-ev #services .ev-card h3 { grid-column: 2; margin: 4px 0 0 !important; font-size: clamp(18px, 1.5vw, 22px) !important; transition: color .6s ease; }
+.wu-ev #services .ev-card p, .wu-ev #services .ev-card > a { grid-column: 2; }
+.wu-ev #services .ev-card:hover .ev-ico { background: #beda52 !important; color: #11150a !important; }
+.wu-ev #services .ev-card:hover h3 { color: #d8ec8a; }
+
+/* Virtual and hybrid: open columns, no panels; lists as plain tick rows */
+.wu-ev #virtual .ev-panel { padding: 0 !important; background: none !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; }
+.wu-ev #virtual .ev-panel::before, .wu-ev #virtual .ev-panel::after { display: none !important; }
+.wu-ev #virtual .ev-three { gap: clamp(40px, 5vw, 72px) clamp(32px, 5vw, 80px) !important; }
+.wu-ev #virtual .ev-panel h3 { font-size: clamp(20px, 1.8vw, 26px) !important; }
+.wu-ev #virtual .ev-panel li { border-color: rgb(255 255 255 / .07) !important; }
+.wu-ev #virtual .ev-panel .ev-vh__i, .wu-ev #virtual .ev-panel > span:first-child { background: none !important; box-shadow: none !important; color: #beda52 !important; }
+.wu-ev #virtual .ev-panel { clip-path: none !important; overflow: visible !important; }
+
+/* v1.3.75b (Same Family): one clean row: rings + heading across the top, the two paragraphs side by side beneath, no background block */
+@media (min-width: 1024px) {
+  .wu-ev #what .ev-split::after { display: none !important; }
+  .wu-ev #what .ev-prose > h3 { grid-column: 1 / -1 !important; grid-row: 2 !important; display: flex; align-items: center; gap: 28px; padding: clamp(28px, 3vw, 44px) 0 0 !important; border-top: 1px solid rgb(255 255 255 / .08); font-size: clamp(26px, 2.4vw, 36px) !important; }
+  .wu-ev #what .ev-prose > h3::before { position: static !important; flex: none; width: 128px !important; height: 56px !important; background:
+      radial-gradient(circle at 28px 28px, transparent 24px, #beda52 25px, #beda52 27px, transparent 28px),
+      radial-gradient(circle at 64px 28px, transparent 24px, rgb(255 255 255 / .55) 25px, rgb(255 255 255 / .55) 27px, transparent 28px),
+      radial-gradient(circle at 100px 28px, transparent 24px, rgb(255 255 255 / .25) 25px, rgb(255 255 255 / .25) 27px, transparent 28px) !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2) { grid-column: 1 / span 3 !important; grid-row: 3 !important; padding: 0 !important; font-size: clamp(16.5px, 1.25vw, 18.5px) !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(3) { grid-column: 4 / -1 !important; grid-row: 3 !important; font-size: clamp(16.5px, 1.25vw, 18.5px) !important; color: rgb(255 255 255 / .62); }
+}
+@media (min-width: 1024px) { .wu-ev #what .ev-prose > p:nth-of-type(2), .wu-ev #what .ev-prose > p:nth-of-type(3) { align-self: start !important; margin-top: 0 !important; padding-top: 0 !important; } }
+
+/* v1.3.75b (Event Branding services): a full-width index: heading on top; each service is one row (icon, big title, text); the active row (hover / tap / mid-screen on touch) lights up: icon fills lime, title turns white, text appears; others stay quiet */
+@media (min-width: 1024px) { .wu-ev #services > .wrap { display: block !important; } .wu-ev #services .ev-head { position: static !important; display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 88px); align-items: end; margin-bottom: clamp(32px, 4vw, 56px) !important; } .wu-ev #services .ev-head > .ev-intro { margin-top: 0 !important; } }
+.wu-ev #services .ev-cards.is-idx { display: block !important; }
+.wu-ev #services .ev-cards.is-idx .ev-card:nth-child(n) { display: grid !important; grid-template-columns: 64px minmax(0, 1.1fr) minmax(0, 1fr); column-gap: clamp(18px, 3vw, 48px); align-items: center; padding: 22px 0 !important; cursor: pointer; }
+.wu-ev #services .ev-cards.is-idx .ev-card .ev-ico { grid-row: 1 !important; width: 56px !important; height: 56px !important; }
+.wu-ev #services .ev-cards.is-idx .ev-card h3 { grid-column: 2 !important; margin: 0 !important; font-size: clamp(22px, 2.4vw, 36px) !important; font-weight: 500; letter-spacing: -.03em; line-height: 1.1; color: rgb(255 255 255 / .35); transition: color .6s ease; }
+.wu-ev #services .ev-cards.is-idx .ev-card p { grid-column: 3 !important; grid-row: 1; margin: 0 !important; font-size: 15.5px; line-height: 1.65; opacity: 0; translate: 14px 0; transition: opacity .6s ease, translate .7s cubic-bezier(.2, .9, .2, 1); }
+.wu-ev #services .ev-cards.is-idx .ev-card > a { grid-column: 3; }
+.wu-ev #services .ev-cards.is-idx .ev-card.is-on h3 { color: #fff; }
+.wu-ev #services .ev-cards.is-idx .ev-card.is-on .ev-ico { background: #beda52 !important; color: #11150a !important; }
+.wu-ev #services .ev-cards.is-idx .ev-card.is-on p { opacity: 1; translate: 0 0; }
+.wu-ev #services .ev-cards.is-idx .ev-card:hover h3 { color: #fff; }
+@media (max-width: 860px) {
+  .wu-ev #services .ev-cards.is-idx .ev-card:nth-child(n) { grid-template-columns: 52px minmax(0, 1fr); row-gap: 8px; }
+  .wu-ev #services .ev-cards.is-idx .ev-card p { grid-column: 2 !important; grid-row: 2; opacity: .55; translate: none; }
+  .wu-ev #services .ev-cards.is-idx .ev-card.is-on p { opacity: 1; }
+}
+
+/* v1.3.75c (Same Family) as a Venn diagram: the parent brand (left circle) and the event (right circle) overlap; each paragraph sits inside its own circle, the heading floats over the lime overlap; the circles slide together as the section scrolls in */
+@media (min-width: 1100px) {
+  .wu-ev #what .ev-prose > h3 { grid-column: 1 / -1 !important; grid-row: 2 !important; justify-content: center; text-align: center; border-top: 0 !important; padding: 0 !important; margin: clamp(20px, 3vw, 40px) 0 0 !important; font-size: clamp(26px, 2.4vw, 36px) !important; }
+  .wu-ev #what .ev-prose > h3::before { display: none !important; }
+  .wu-ev #what .ev-split::after { display: block !important; content: '' !important; grid-column: 1 / -1 !important; grid-row: 3 !important; justify-self: center; align-self: center; width: min(100%, 1060px); aspect-ratio: 2.05 / 1; z-index: -1; border-radius: 0 !important; box-shadow: none !important;
+    background:
+      radial-gradient(circle at 28% 50%, transparent 47.6%, rgb(255 255 255 / .22) 47.8%, rgb(255 255 255 / .22) 48.2%, transparent 48.4%),
+      radial-gradient(circle at 72% 50%, transparent 47.6%, rgb(190 218 82 / .7) 47.8%, rgb(190 218 82 / .7) 48.2%, transparent 48.4%),
+      radial-gradient(ellipse 16% 42% at 50% 50%, rgb(190 218 82 / .16), transparent 70%) !important;
+    background-size: 100% 205%, 100% 205%, 100% 100% !important; background-position: 0 50%, 0 50%, 0 0 !important; background-repeat: no-repeat !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2), .wu-ev #what .ev-prose > p:nth-of-type(3) { grid-row: 3 !important; align-self: center !important; max-width: 30ch !important; font-size: clamp(16px, 1.15vw, 17.5px) !important; line-height: 1.7; padding: clamp(80px, 8vw, 130px) 0 !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2) { grid-column: 1 / span 3 !important; justify-self: center; margin-right: clamp(40px, 5vw, 90px) !important; color: rgb(255 255 255 / .8) !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(3) { grid-column: 4 / -1 !important; justify-self: center; margin-left: clamp(40px, 5vw, 90px) !important; color: rgb(255 255 255 / .8) !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2)::before, .wu-ev #what .ev-prose > p:nth-of-type(3)::before { display: block; margin-bottom: 14px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
+  @supports (animation-timeline: view()) {
+    .wu-ev #what .ev-prose > p:nth-of-type(2) { animation: ev-venn-l linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+    .wu-ev #what .ev-prose > p:nth-of-type(3) { animation: ev-venn-r linear both; animation-timeline: view(); animation-range: entry 10% cover 40%; }
+    @keyframes ev-venn-l { from { translate: -60px 0; opacity: .3; } to { translate: 0 0; opacity: 1; } }
+    @keyframes ev-venn-r { from { translate: 60px 0; opacity: .3; } to { translate: 0 0; opacity: 1; } }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .wu-ev #what .ev-prose > p { animation: none !important; } }
+
+/* v1.3.75c (Event Branding services) board: nine services as a grid of big icons with their names (no boxes); pick one (hover / tap / focus) and its text appears in one wide line below */
+.wu-ev #services .ev-cards.is-board { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0 !important; }
+.wu-ev #services .ev-cards.is-board .ev-card:nth-child(n) { display: flex !important; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: clamp(26px, 3vw, 40px) 16px !important; border: 0 !important; border-radius: 22px !important; text-align: center; cursor: pointer; outline: none; transition: background .6s ease; }
+.wu-ev #services .ev-cards.is-board .ev-card .ev-ico { width: 72px !important; height: 72px !important; }
+.wu-ev #services .ev-cards.is-board .ev-card .ev-ico svg { width: 32px; height: 32px; }
+.wu-ev #services .ev-cards.is-board .ev-card h3 { font-size: clamp(17px, 1.4vw, 21px) !important; color: rgb(255 255 255 / .55) !important; max-width: 16em; }
+.wu-ev #services .ev-cards.is-board .ev-card p, .wu-ev #services .ev-cards.is-board .ev-card > a { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); opacity: 1 !important; }
+.wu-ev #services .ev-cards.is-board .ev-card.is-on { background: rgb(190 218 82 / .06) !important; }
+.wu-ev #services .ev-cards.is-board .ev-card.is-on h3 { color: #fff !important; }
+.wu-ev #services .ev-cards.is-board .ev-card.is-on .ev-ico { background: #beda52 !important; color: #11150a !important; }
+.wu-ev #services .ev-cards.is-board .ev-card:focus-visible { box-shadow: inset 0 0 0 2px #beda52 !important; }
+.wu-ev .ev-svc-detail { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.4fr) auto; gap: 12px clamp(24px, 4vw, 64px); align-items: center; margin-top: clamp(20px, 2.4vw, 32px); padding: clamp(22px, 2.4vw, 32px) 0 0; border-top: 2px solid #beda52; }
+.wu-ev .ev-svc-detail h4 { margin: 0; font-size: clamp(22px, 2vw, 30px); font-weight: 500; letter-spacing: -.03em; color: #fff; }
+.wu-ev .ev-svc-detail p { margin: 0; font-size: 16.5px; line-height: 1.7; color: rgb(255 255 255 / .75); }
+.wu-ev .ev-svc-detail.is-in > * { animation: ev-det .55s cubic-bezier(.2, .9, .2, 1) both; }
+.wu-ev .ev-svc-detail.is-in > p { animation-delay: .08s; }
+@keyframes ev-det { from { opacity: 0; translate: 0 10px; } to { opacity: 1; translate: 0 0; } }
+@media (max-width: 860px) { .wu-ev #services .ev-cards.is-board { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; } .wu-ev #services .ev-cards.is-board .ev-card:nth-child(n) { padding: 18px 6px !important; gap: 10px; } .wu-ev #services .ev-cards.is-board .ev-card .ev-ico { width: 52px !important; height: 52px !important; } .wu-ev #services .ev-cards.is-board .ev-card h3 { font-size: 13px !important; } .wu-ev .ev-svc-detail { grid-template-columns: minmax(0, 1fr); } }
+
+/* Same Family Venn, simpler: each paragraph sits inside its own circle; the two circles overlap in the middle */
+@media (min-width: 1100px) {
+  .wu-ev #what .ev-split::after { display: none !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2), .wu-ev #what .ev-prose > p:nth-of-type(3) { box-sizing: border-box; width: clamp(420px, 36vw, 520px) !important; max-width: none !important; aspect-ratio: 1; display: grid; place-items: center; text-align: center; padding: 0 clamp(64px, 6vw, 92px) !important; border-radius: 50%; font-size: clamp(15px, 1.1vw, 17px) !important; animation: none !important; translate: none !important; opacity: 1 !important; }
+  .wu-ev #what .ev-prose > p:nth-of-type(2) { justify-self: end !important; margin: 0 -60px 0 0 !important; box-shadow: inset 0 0 0 2px rgb(255 255 255 / .2); background: radial-gradient(circle at 70% 50%, rgb(255 255 255 / .03), transparent 70%); }
+  .wu-ev #what .ev-prose > p:nth-of-type(3) { justify-self: start !important; margin: 0 0 0 -60px !important; box-shadow: inset 0 0 0 2px rgb(190 218 82 / .75); background: radial-gradient(circle at 30% 50%, rgb(190 218 82 / .08), transparent 70%); }
+}
+
+/* lead forms on every landing page: the select is full width like the other fields, with its own chevron inside the right padding */
+.wu-ev .ev-form select { width: 100% !important; box-sizing: border-box; -webkit-appearance: none; appearance: none; padding-right: 44px !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23a6a6ae' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important; background-repeat: no-repeat !important; background-position: right 18px center !important; background-size: 12px 8px !important; }
+.wu-ev .ev-form :is(input, select, textarea) { width: 100% !important; box-sizing: border-box; }

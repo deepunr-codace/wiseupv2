@@ -148,14 +148,14 @@ $wu_services = array(
 
 // Platforms: [ name, mark, text, tag ].
 $wu_platforms = array(
-	array( 'WordPress', 'wordpress.svg', 'Optimise WordPress websites for technical performance, content structure, indexing, on-page SEO and search visibility.', '' ),
-	array( 'WooCommerce', 'woocommerce.svg', 'WooCommerce SEO covering product and category optimisation, product search visibility, internal linking, technical issues, structured data and transactional search intent.', 'Dedicated e-commerce SEO' ),
-	array( 'Shopify', 'shopify.svg', 'Shopify SEO covering collection and product pages, site structure, technical SEO, content optimisation and organic visibility for Shopify stores.', 'Dedicated e-commerce SEO' ),
-	array( 'React.js', 'react.svg', 'Rendering, crawlable routes and metadata for JavaScript-heavy React applications.', '' ),
-	array( 'Next.js', 'nextdotjs.svg', 'SSR and static generation, metadata, sitemaps and Core Web Vitals for Next.js sites.', '' ),
-	array( 'Django', 'django.svg', 'Clean URL patterns, template-level metadata, sitemaps and performance for Django builds.', '' ),
-	array( 'Nest.js', 'nestjs.svg', 'Headless and API-driven setups made crawlable, with rendering and structured data handled correctly.', '' ),
-	array( 'Node.js', 'nodedotjs.svg', 'Rendering strategy, routing, redirects and page speed for custom Node.js websites.', '' ),
+	array( 'WordPress', 'l-wordpress-icon.svg', 'Optimise WordPress websites for technical performance, content structure, indexing, on-page SEO and search visibility.', '' ),
+	array( 'WooCommerce', 'l-woocommerce-icon.svg', 'WooCommerce SEO covering product and category optimisation, product search visibility, internal linking, technical issues, structured data and transactional search intent.', 'Dedicated e-commerce SEO' ),
+	array( 'Shopify', 'l-shopify.svg', 'Shopify SEO covering collection and product pages, site structure, technical SEO, content optimisation and organic visibility for Shopify stores.', 'Dedicated e-commerce SEO' ),
+	array( 'React.js', 'l-react.svg', 'Rendering, crawlable routes and metadata for JavaScript-heavy React applications.', '' ),
+	array( 'Next.js', 'l-nextjs-icon.svg', 'SSR and static generation, metadata, sitemaps and Core Web Vitals for Next.js sites.', '' ),
+	array( 'Django', 'l-django-icon.svg', 'Clean URL patterns, template-level metadata, sitemaps and performance for Django builds.', '' ),
+	array( 'Nest.js', 'l-nestjs.svg', 'Headless and API-driven setups made crawlable, with rendering and structured data handled correctly.', '' ),
+	array( 'Node.js', 'l-nodejs-icon.svg', 'Rendering strategy, routing, redirects and page speed for custom Node.js websites.', '' ),
 );
 
 // Projects: [ name, image, tags, link ].
@@ -276,7 +276,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				<?php foreach ( $wu_visibility as $v ) echo '<li>' . ( $v[1] ? $wu_mark( $v[1] ) : '<span class="dm-mark">' . $wu_svg( $wu_icons['spark'], 20 ) . '</span>' ) . '<span>' . esc_html( $v[0] ) . '</span></li>'; // phpcs:ignore ?>
 			</ul>
 			<script>(function(){var u=document.querySelector('.wu-seo .seo-chans');if(!u||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var w=document.createElement('div');w.className='seo-chans-run';u.parentNode.insertBefore(w,u);w.appendChild(u);var c=u.cloneNode(true);c.setAttribute('aria-hidden','true');w.appendChild(c);w.classList.add('is-on');})();</script>
-			<div class="seo-vorb" aria-hidden="true"><span class="seo-vorb__core"></span><span class="seo-vorb__ring"></span><span class="seo-vorb__ring seo-vorb__ring--2"></span></div>
+			<div class="seo-vorb" aria-hidden="true"><span class="seo-vorb__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="" width="120" height="120" loading="lazy" decoding="async"></span><span class="seo-vorb__ring"></span><span class="seo-vorb__ring seo-vorb__ring--2"></span></div>
 			<script>(function(){var o=document.querySelector('.seo-vorb');var src=[].slice.call(document.querySelectorAll('.wu-seo #visibility .seo-chans:not([aria-hidden]) li'));if(!o||!src.length)return;var n=src.length;src.forEach(function(li,k){var a=k/n*2*Math.PI-Math.PI/2,el=document.createElement('span');el.className='seo-vorb__i';el.style.left=(50+42*Math.cos(a))+'%';el.style.top=(50+42*Math.sin(a))+'%';el.style.setProperty('--d',(k*-.6)+'s');var m=li.querySelector('.dm-mark');var t=(li.querySelector('span:not(.dm-mark)')||{}).textContent||'';el.innerHTML='<span class="seo-vorb__b">'+(m?m.outerHTML:'')+'<em>'+t.replace(/</g,'&lt;')+'</em></span>';o.appendChild(el);});})();</script>
 			<ul class="pm-grid pm-grid--two">
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['target'], 24 ); // phpcs:ignore ?></span><h3>How WiseUp Helps</h3><p>We build SEO strategies around your business, not pre-defined packages of optimisation activities. Our team assesses your business objectives, target audience, competitors, search demand and website performance to identify where the strongest opportunities lie. Every recommendation is connected to a clear objective: improve organic visibility, attract relevant traffic, increase enquiries and support measurable business growth.</p></li>

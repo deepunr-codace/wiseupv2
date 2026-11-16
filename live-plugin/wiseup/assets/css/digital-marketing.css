@@ -1598,22 +1598,22 @@
 .wu-seo #tools .dm-tools li:hover > span:not(.dm-mark) { opacity: 1; translate: -50% 0; }
 
 /* v1.3.74 (SEO Why WiseUp): big interactive rows: six large titles in a column; the active row (hover / tap, or mid-screen on touch) brightens, its lime icon disc fills and its text slides open beside the title; others stay quiet */
-.wu-seo ul.pm-grid--why.is-rows { display: block !important; margin-top: clamp(28px, 4vw, 56px); }
-.wu-seo ul.pm-grid--why.is-rows > li { display: grid !important; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(18px, 3vw, 48px); align-items: start; padding: clamp(20px, 2.2vw, 30px) 0 !important; border-top: 1px solid rgb(255 255 255 / .08) !important; cursor: pointer; }
-.wu-seo ul.pm-grid--why.is-rows > li:last-child { border-bottom: 1px solid rgb(255 255 255 / .08) !important; }
-.wu-seo ul.pm-grid--why.is-rows .pm-ic { grid-column: 1; grid-row: 1; width: 52px !important; height: 52px !important; margin: 0 !important; border-radius: 50%; display: grid; place-items: center; color: #beda52; background: rgb(190 218 82 / .08) !important; transition: background .7s ease, color .7s ease; }
-.wu-seo ul.pm-grid--why.is-rows .pm-ic svg { width: 24px; height: 24px; }
-.wu-seo ul.pm-grid--why.is-rows h3 { grid-column: 2 !important; grid-row: 1; margin: 6px 0 0 !important; font-size: clamp(22px, 2.4vw, 36px) !important; font-weight: 500; letter-spacing: -.03em; line-height: 1.15; color: rgb(255 255 255 / .38); transition: color .7s ease; }
-.wu-seo ul.pm-grid--why.is-rows p { grid-column: 3 !important; grid-row: 1; margin: 8px 0 0; max-width: 46ch; font-size: 16px; line-height: 1.7; color: rgb(255 255 255 / .7); opacity: 0; translate: 16px 0; transition: opacity .7s ease, translate .8s cubic-bezier(.2, .9, .2, 1); }
-.wu-seo ul.pm-grid--why.is-rows > li.is-on h3 { color: #fff; }
-.wu-seo ul.pm-grid--why.is-rows > li.is-on .pm-ic { background: #beda52 !important; color: #11150a; }
-.wu-seo ul.pm-grid--why.is-rows > li.is-on p { opacity: 1; translate: 0 0; }
+.wu-pm ul.pm-grid--why.is-rows { display: block !important; margin-top: clamp(28px, 4vw, 56px); }
+.wu-pm ul.pm-grid--why.is-rows > li { display: grid !important; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(18px, 3vw, 48px); align-items: start; padding: clamp(20px, 2.2vw, 30px) 0 !important; border-top: 1px solid rgb(255 255 255 / .08) !important; cursor: pointer; }
+.wu-pm ul.pm-grid--why.is-rows > li:last-child { border-bottom: 1px solid rgb(255 255 255 / .08) !important; }
+.wu-pm ul.pm-grid--why.is-rows .pm-ic { grid-column: 1; grid-row: 1; width: 52px !important; height: 52px !important; margin: 0 !important; border-radius: 50%; display: grid; place-items: center; color: #beda52; background: rgb(190 218 82 / .08) !important; transition: background .7s ease, color .7s ease; }
+.wu-pm ul.pm-grid--why.is-rows .pm-ic svg { width: 24px; height: 24px; }
+.wu-pm ul.pm-grid--why.is-rows h3 { grid-column: 2 !important; grid-row: 1; margin: 6px 0 0 !important; font-size: clamp(22px, 2.4vw, 36px) !important; font-weight: 500; letter-spacing: -.03em; line-height: 1.15; color: rgb(255 255 255 / .38); transition: color .7s ease; }
+.wu-pm ul.pm-grid--why.is-rows p { grid-column: 3 !important; grid-row: 1; margin: 8px 0 0; max-width: 46ch; font-size: 16px; line-height: 1.7; color: rgb(255 255 255 / .7); opacity: 0; translate: 16px 0; transition: opacity .7s ease, translate .8s cubic-bezier(.2, .9, .2, 1); }
+.wu-pm ul.pm-grid--why.is-rows > li.is-on h3 { color: #fff; }
+.wu-pm ul.pm-grid--why.is-rows > li.is-on .pm-ic { background: #beda52 !important; color: #11150a; }
+.wu-pm ul.pm-grid--why.is-rows > li.is-on p { opacity: 1; translate: 0 0; }
 @media (max-width: 860px) {
-  .wu-seo ul.pm-grid--why.is-rows > li { grid-template-columns: 48px minmax(0, 1fr); row-gap: 10px; }
-  .wu-seo ul.pm-grid--why.is-rows p { grid-column: 2 !important; grid-row: 2; opacity: .55; translate: none; }
-  .wu-seo ul.pm-grid--why.is-rows > li.is-on p { opacity: 1; }
+  .wu-pm ul.pm-grid--why.is-rows > li { grid-template-columns: 48px minmax(0, 1fr); row-gap: 10px; }
+  .wu-pm ul.pm-grid--why.is-rows p { grid-column: 2 !important; grid-row: 2; opacity: .55; translate: none; }
+  .wu-pm ul.pm-grid--why.is-rows > li.is-on p { opacity: 1; }
 }
-@media (prefers-reduced-motion: reduce) { .wu-seo ul.pm-grid--why.is-rows * { transition: none !important; } }
+@media (prefers-reduced-motion: reduce) { .wu-pm ul.pm-grid--why.is-rows * { transition: none !important; } }
 
 /* v1.3.74 (SEO Be Found): the search surfaces become an orbit of their real logos around a pulsing lime core (names on hover), beside the two points; the drifting chip row is retired */
 .wu-seo #visibility .seo-chans-run, .wu-seo #visibility > .wrap > .seo-chans { display: none !important; }
@@ -1668,29 +1668,29 @@
 
 /* v1.3.74 (SEO Why WiseUp): the expanding-card row from the Digital Marketing "Why" section: six tall cards side by side; the active one (hover / tap) widens, fills lime and shows its text; the others fold to icon + title */
 @media (min-width: 1024px) {
-  .wu-seo ul.pm-grid--why.is-rows { display: flex !important; gap: 12px; height: clamp(380px, 30vw, 440px); margin-top: clamp(28px, 4vw, 56px); }
-  .wu-seo ul.pm-grid--why.is-rows > li { position: relative; display: flex !important; flex-direction: column; justify-content: flex-end; gap: 14px; flex: 1 1 0; min-width: 0; padding: 26px !important; border: 0 !important; border-radius: 26px; overflow: hidden; background: #111113 !important; transition: flex .9s cubic-bezier(.65, 0, .35, 1); }
-  .wu-seo ul.pm-grid--why.is-rows > li::before { content: '' !important; display: block !important; position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: linear-gradient(150deg, #d8ec8a, #beda52 55%, #8fa838); opacity: 0; transition: opacity .9s cubic-bezier(.65, 0, .35, 1); }
-  .wu-seo ul.pm-grid--why.is-rows > li > * { position: relative; z-index: 1; }
-  .wu-seo ul.pm-grid--why.is-rows > li.is-on { flex: 2.8 1 0; }
-  .wu-seo ul.pm-grid--why.is-rows > li.is-on::before { opacity: 1; }
-  .wu-seo ul.pm-grid--why.is-rows .pm-ic { position: absolute !important; top: 26px; left: 26px; width: 52px !important; height: 52px !important; border-radius: 16px; background: rgb(190 218 82 / .12) !important; color: #beda52; }
-  .wu-seo ul.pm-grid--why.is-rows > li.is-on .pm-ic { background: #11150a !important; color: #beda52; }
-  .wu-seo ul.pm-grid--why.is-rows h3 { margin: 0 !important; font-size: clamp(17px, 1.35vw, 20px) !important; line-height: 1.25; color: #fff !important; transition: color .7s; }
-  .wu-seo ul.pm-grid--why.is-rows p { max-height: 0; overflow: hidden; margin: 0 !important; opacity: 0; translate: 0 10px; font-size: 15.5px; line-height: 1.65; color: #11150a; transition: opacity .4s, max-height .9s cubic-bezier(.65, 0, .35, 1), translate .6s; }
-  .wu-seo ul.pm-grid--why.is-rows > li.is-on h3 { color: #11150a !important; font-size: clamp(22px, 1.9vw, 28px) !important; }
-  .wu-seo ul.pm-grid--why.is-rows > li.is-on p { max-height: 12em; opacity: 1; translate: 0 0; transition-delay: .35s; }
+  .wu-pm ul.pm-grid--why.is-rows { display: flex !important; gap: 12px; height: clamp(380px, 30vw, 440px); margin-top: clamp(28px, 4vw, 56px); }
+  .wu-pm ul.pm-grid--why.is-rows > li { position: relative; display: flex !important; flex-direction: column; justify-content: flex-end; gap: 14px; flex: 1 1 0; min-width: 0; padding: 26px !important; border: 0 !important; border-radius: 26px; overflow: hidden; background: #111113 !important; transition: flex .9s cubic-bezier(.65, 0, .35, 1); }
+  .wu-pm ul.pm-grid--why.is-rows > li::before { content: '' !important; display: block !important; position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: linear-gradient(150deg, #d8ec8a, #beda52 55%, #8fa838); opacity: 0; transition: opacity .9s cubic-bezier(.65, 0, .35, 1); }
+  .wu-pm ul.pm-grid--why.is-rows > li > * { position: relative; z-index: 1; }
+  .wu-pm ul.pm-grid--why.is-rows > li.is-on { flex: 2.8 1 0; }
+  .wu-pm ul.pm-grid--why.is-rows > li.is-on::before { opacity: 1; }
+  .wu-pm ul.pm-grid--why.is-rows .pm-ic { position: absolute !important; top: 26px; left: 26px; width: 52px !important; height: 52px !important; border-radius: 16px; background: rgb(190 218 82 / .12) !important; color: #beda52; }
+  .wu-pm ul.pm-grid--why.is-rows > li.is-on .pm-ic { background: #11150a !important; color: #beda52; }
+  .wu-pm ul.pm-grid--why.is-rows h3 { margin: 0 !important; font-size: clamp(17px, 1.35vw, 20px) !important; line-height: 1.25; color: #fff !important; transition: color .7s; }
+  .wu-pm ul.pm-grid--why.is-rows p { max-height: 0; overflow: hidden; margin: 0 !important; opacity: 0; translate: 0 10px; font-size: 15.5px; line-height: 1.65; color: #11150a; transition: opacity .4s, max-height .9s cubic-bezier(.65, 0, .35, 1), translate .6s; }
+  .wu-pm ul.pm-grid--why.is-rows > li.is-on h3 { color: #11150a !important; font-size: clamp(22px, 1.9vw, 28px) !important; }
+  .wu-pm ul.pm-grid--why.is-rows > li.is-on p { max-height: 12em; opacity: 1; translate: 0 0; transition-delay: .35s; }
 }
 @media (max-width: 1023px) {
-  .wu-seo ul.pm-grid--why.is-rows > li { grid-template-columns: 48px minmax(0, 1fr) !important; border-radius: 22px; padding: 22px !important; margin-bottom: 12px; background: #111113 !important; border: 0 !important; }
-  .wu-seo ul.pm-grid--why.is-rows p { opacity: 1 !important; translate: none !important; grid-column: 2 !important; }
-  .wu-seo ul.pm-grid--why.is-rows h3 { color: #fff !important; }
+  .wu-pm ul.pm-grid--why.is-rows > li { grid-template-columns: 48px minmax(0, 1fr) !important; border-radius: 22px; padding: 22px !important; margin-bottom: 12px; background: #111113 !important; border: 0 !important; }
+  .wu-pm ul.pm-grid--why.is-rows p { opacity: 1 !important; translate: none !important; grid-column: 2 !important; }
+  .wu-pm ul.pm-grid--why.is-rows h3 { color: #fff !important; }
 }
 @media (min-width: 1024px) {
-  .wu-seo ul.pm-grid--why.is-rows { justify-content: stretch; }
-  .wu-seo ul.pm-grid--why.is-rows > li { border-radius: 26px !important; margin: 0 !important; width: auto !important; max-width: none !important; transform: none !important; scale: none !important; translate: none !important; }
-  .wu-seo ul.pm-grid--why.is-rows > li:last-child { border-bottom: 0 !important; }
-  .wu-seo ul.pm-grid--why.is-rows h3 { font-size: 17px !important; }
+  .wu-pm ul.pm-grid--why.is-rows { justify-content: stretch; }
+  .wu-pm ul.pm-grid--why.is-rows > li { border-radius: 26px !important; margin: 0 !important; width: auto !important; max-width: none !important; transform: none !important; scale: none !important; translate: none !important; }
+  .wu-pm ul.pm-grid--why.is-rows > li:last-child { border-bottom: 0 !important; }
+  .wu-pm ul.pm-grid--why.is-rows h3 { font-size: 17px !important; }
 }
 
 /* v1.3.74c (SEO Be Found points): a segmented switch: the two titles sit side by side as one pill control; the chosen point's text (and tags) shows below in one calm panel */
@@ -1712,5 +1712,109 @@
 .wu-seo #visibility .pm-grid--two.is-tabs > li:nth-child(2) { }
 .wu-seo #visibility .pm-grid--two.is-tabs > li:nth-child(2) p { margin-bottom: 64px !important; }
 /* Why WiseUp row: even gaps */
-@media (min-width: 1024px) { .wu-seo ul.pm-grid--why.is-rows { gap: 12px !important; } }
-@media (min-width: 1024px) { .wu-seo ul.pm-grid--why.is-rows { height: clamp(300px, 22vw, 330px); } .wu-seo ul.pm-grid--why.is-rows > li { padding: 22px !important; } .wu-seo ul.pm-grid--why.is-rows .pm-ic { top: 22px; left: 22px; width: 44px !important; height: 44px !important; } }
+@media (min-width: 1024px) { .wu-pm ul.pm-grid--why.is-rows { gap: 12px !important; } }
+@media (min-width: 1024px) { .wu-pm ul.pm-grid--why.is-rows { height: clamp(300px, 22vw, 330px); } .wu-pm ul.pm-grid--why.is-rows > li { padding: 22px !important; } .wu-pm ul.pm-grid--why.is-rows .pm-ic { top: 22px; left: 22px; width: 44px !important; height: 44px !important; } }
+
+/* tools orbit: Wiso sits in the centre (no lime dot) */
+.wu-dm .dm-orbit__core { width: 130px; height: 130px; margin: -65px; border-radius: 50%; background: radial-gradient(circle, rgb(190 218 82 / .18), transparent 70%); box-shadow: none; display: grid; place-items: center; }
+.wu-dm .dm-orbit__core img { width: 110px; height: 110px; object-fit: contain; }
+@media (max-width: 640px) { .wu-dm .dm-orbit__core { width: 84px; height: 84px; margin: -42px; } .wu-dm .dm-orbit__core img { width: 72px; height: 72px; } }
+.wu-dm .dm-orbit__core img { border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px rgb(190 218 82 / .5), 0 0 40px rgb(190 218 82 / .25); }
+/* SEO Be Found orbit: Wiso in the centre */
+.wu-seo .seo-vorb__core { width: 120px; height: 120px; margin: -60px; display: grid; place-items: center; background: radial-gradient(circle, rgb(190 218 82 / .2), transparent 70%); box-shadow: none; animation: none; }
+.wu-seo .seo-vorb__core img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px rgb(190 218 82 / .5), 0 0 40px rgb(190 218 82 / .25); }
+
+/* v1.3.75 (SEO projects): simple strip: five tall photo cards in one row, gently staggered; name and tags sit under each photo (not on it); photos are muted and come to full colour + lift on hover */
+.wu-seo .seo-proj { display: grid !important; grid-template-columns: repeat(5, minmax(0, 1fr)) !important; grid-auto-rows: auto !important; gap: clamp(14px, 1.6vw, 22px) !important; align-items: start; }
+.wu-seo .seo-proj > li, .wu-seo .seo-proj > li.is-lead { grid-column: auto !important; grid-row: auto !important; }
+.wu-seo .seo-proj > li:nth-child(even) { margin-top: clamp(28px, 3vw, 48px); }
+.wu-seo .seo-proj__in { display: flex !important; flex-direction: column; gap: 14px; height: auto !important; min-height: 0 !important; padding: 0 !important; border-radius: 0 !important; background: none !important; overflow: visible !important; text-decoration: none; }
+.wu-seo .seo-proj__in::before, .wu-seo .seo-proj__in::after { display: none !important; }
+.wu-seo .seo-proj__in img { position: static !important; display: block; width: 100%; aspect-ratio: 3 / 4; height: auto !important; object-fit: cover; border-radius: 22px; filter: grayscale(.7) brightness(.85); transition: filter .7s ease, transform .8s cubic-bezier(.2, .9, .2, 1); }
+.wu-seo .seo-proj > li:hover .seo-proj__in img { filter: none; transform: translateY(-6px); }
+.wu-seo .seo-proj__t { position: static !important; display: grid; gap: 8px; padding: 0 !important; background: none !important; }
+.wu-seo .seo-proj__t em { font-size: 11px; letter-spacing: .14em; }
+.wu-seo .seo-proj__t b { font-size: clamp(17px, 1.4vw, 20px) !important; font-weight: 500; color: #fff; }
+.wu-seo .seo-proj__t .seo-tags { gap: 6px; }
+.wu-seo .seo-proj__t .seo-tags span { padding: 0 !important; border: 0 !important; background: none !important; font-size: 12.5px; color: rgb(190 218 82 / .85); }
+.wu-seo .seo-proj__t .seo-tags span + span::before { content: '·'; margin-right: 6px; color: rgb(255 255 255 / .3); }
+@media (max-width: 1023px) { .wu-seo .seo-proj { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .wu-seo .seo-proj > li:nth-child(even) { margin-top: 32px; } }
+.wu-seo .seo-proj > li, .wu-seo .seo-proj__in { box-shadow: none !important; border: 0 !important; background: none !important; } .wu-seo .seo-proj__t .seo-tags span { box-shadow: none !important; border-radius: 0 !important; }
+
+/* v1.3.75 mobile pass (DM + SEO) */
+@media (max-width: 640px) {
+  /* journey: smaller logo holders, less empty space */
+  .wu-dm ol.dm-stack[data-stack] { gap: 44px !important; }
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__vis { width: 104px !important; }
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__brands .dm-mark { width: 38px; height: 38px; margin: -4px !important; }
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__brands .dm-mark :is(svg, img) { width: 20px; height: 20px; }
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__card .dm-stack__l > h3 { font-size: 24px !important; }
+  /* tools orbit: a calm wrapped grid around Wiso instead of overlapping rings */
+  .wu-dm .dm-orbit { aspect-ratio: auto; width: 100%; display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding-top: 110px; }
+  .wu-dm .dm-orbit__core { top: 0; left: 50%; margin: 0 0 0 -42px; }
+  .wu-dm .dm-orbit__ring { position: static; width: auto !important; margin: 0 !important; border: 0; display: contents; animation: none; }
+  .wu-dm .dm-orbit__i { position: static !important; width: 36px; height: 36px; }
+  .wu-dm .dm-orbit__b { position: static; left: auto; top: auto; animation: none !important; }
+  /* SEO hero card and Be Found orbit fit the screen */
+  .wu-seo .seo-vorb { width: min(100%, 320px); }
+  .wu-seo .seo-vorb__b, .wu-seo .seo-vorb__b .dm-mark { width: 46px; height: 46px; }
+  .wu-seo .seo-vorb__b { left: -23px; top: -23px; }
+  .wu-seo .seo-vorb__core { width: 84px; height: 84px; margin: -42px; }
+  .wu-seo .seo-vorb__core img { width: 72px; height: 72px; }
+  /* segmented switch wraps */
+  .wu-seo #visibility .pm-grid--two.is-tabs h3 { padding: 10px 16px !important; font-size: 15px !important; }
+  /* SEO projects: 2 columns, no stagger */
+  .wu-seo .seo-proj > li:nth-child(even) { margin-top: 0; }
+}
+
+/* intro lead lines stand out; key sentences carry a soft lime highlight */
+.wu-dm .ev-intro .dm-intro-lead { font-size: clamp(20px, 1.7vw, 26px) !important; font-weight: 500; line-height: 1.35 !important; letter-spacing: -.02em; color: #fff !important; }
+.wu-dm mark.dm-hl { color: #fff; background: linear-gradient(transparent 62%, rgb(190 218 82 / .35) 62%); padding: 0 .1em; }
+html body .wu-dm .ev-sec .ev-intro p.dm-intro-lead { font-size: clamp(20px, 1.7vw, 26px) !important; line-height: 1.35 !important; margin-bottom: 18px; }
+
+/* intro lead lines read as a pull quote: big lime quote mark, lime rule on the left, italic-free large type */
+html body .wu-dm .ev-sec .ev-intro p.dm-intro-lead { position: relative; padding: 4px 0 4px 26px; border-left: 3px solid #beda52; }
+html body .wu-dm .ev-sec .ev-intro p.dm-intro-lead::before { content: '\201C'; position: absolute; left: 18px; top: -.62em; font-family: Georgia, 'Times New Roman', serif; font-size: 3.4em; line-height: 1; color: #beda52; opacity: .9; }
+html body .wu-dm .ev-sec .ev-intro p.dm-intro-lead { padding-top: .9em; }
+/* a slightly highlighted opening line: brighter and a touch larger than the paragraph after it */
+html body .wu-dm .ev-sec .ev-intro p.dm-soft { font-size: clamp(17px, 1.35vw, 20px) !important; line-height: 1.55 !important; font-weight: 500; color: rgb(255 255 255 / .92) !important; }
+
+/* v1.3.75 (SEO projects) refined: full-colour photos, one even row (no stagger), all names on one line; the "Featured project" label sits on the first photo as a lime pill; photos zoom gently on hover */
+.wu-seo .seo-proj > li:nth-child(n) { margin-top: 0 !important; position: relative; }
+.wu-seo .seo-proj__in { position: relative; }
+.wu-seo .seo-proj__in img { filter: none !important; aspect-ratio: 4 / 5; border-radius: 20px; box-shadow: 0 24px 44px -26px rgb(0 0 0 / .9); transition: transform .8s cubic-bezier(.2, .9, .2, 1), box-shadow .6s !important; }
+.wu-seo .seo-proj > li:hover .seo-proj__in img { transform: translateY(-6px) scale(1.02); box-shadow: 0 30px 50px -24px rgb(0 0 0 / .95), 0 0 0 2px rgb(190 218 82 / .6); }
+.wu-seo .seo-proj__t em { position: absolute; left: 14px; top: 14px; z-index: 2; padding: 5px 10px; border-radius: 99px; font-style: normal; font-size: 10.5px; font-weight: 600; letter-spacing: .12em; color: #11150a !important; background: #beda52; }
+.wu-seo .seo-proj__t { padding-top: 4px !important; }
+.wu-seo .seo-proj__t b { font-size: clamp(18px, 1.45vw, 21px) !important; }
+/* the quote treatment is only for the Digital Marketing channels line; other intro lead lines stay plain (no quote mark, no left border) */
+html body .wu-dm .ev-sec .ev-intro p.dm-intro-lead { padding: 0 !important; border-left: 0 !important; }
+html body .wu-dm .ev-sec .ev-intro p.dm-intro-lead::before { content: none !important; }
+html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead { padding: .9em 0 4px 26px !important; border-left: 3px solid #beda52 !important; }
+html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead::before { content: '\201C' !important; }
+
+/* v1.3.75 (SEO projects): name and tags sit inside each photo, on a soft dark fade at the bottom; the Featured pill stays top-left */
+.wu-seo .seo-proj__in { position: relative; overflow: hidden !important; border-radius: 20px !important; }
+.wu-seo .seo-proj__in img { border-radius: 0 !important; box-shadow: none !important; }
+.wu-seo .seo-proj__in::after { content: '' !important; display: block !important; position: absolute; inset: 40% 0 0 0; background: linear-gradient(180deg, transparent, rgb(0 0 0 / .85)); pointer-events: none; z-index: 1; }
+.wu-seo .seo-proj__t { position: absolute !important; left: 18px; right: 18px; bottom: 16px; z-index: 2; gap: 4px !important; }
+.wu-seo .seo-proj__t b { font-size: clamp(17px, 1.35vw, 20px) !important; }
+.wu-seo .seo-proj__t .seo-tags span { color: #d8ec8a !important; }
+.wu-seo .seo-proj__t em { position: absolute !important; left: 0 !important; top: auto !important; bottom: calc(100% + 8px); }
+.wu-seo .seo-proj > li:hover .seo-proj__in img { transform: scale(1.05) !important; }
+.wu-seo .seo-proj > li:hover .seo-proj__in { box-shadow: 0 0 0 2px rgb(190 218 82 / .6); }
+
+/* v1.3.75 (Performance page in the shared design): tools and results as open layouts, no boxes */
+.wu-pm:not(.wu-seo) ul.pm-grid--tools { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 36px clamp(28px, 4vw, 64px) !important; }
+.wu-pm:not(.wu-seo) ul.pm-grid--tools > li, .wu-pm:not(.wu-seo) ul.pm-grid--two > li { padding: 0 !important; border: 0 !important; border-radius: 0 !important; background: none !important; box-shadow: none !important; }
+.wu-pm:not(.wu-seo) ul.pm-grid--tools > li::before, .wu-pm:not(.wu-seo) ul.pm-grid--two > li::before, .wu-pm:not(.wu-seo) ul.pm-grid--tools > li::after, .wu-pm:not(.wu-seo) ul.pm-grid--two > li::after { display: none !important; }
+.wu-pm:not(.wu-seo) ul.pm-grid--tools .dm-mark { width: 52px; height: 52px; border-radius: 15px; margin-bottom: 16px; box-shadow: none; }
+.wu-pm:not(.wu-seo) ul.pm-grid--tools .dm-mark :is(svg, img) { width: 28px; height: 28px; }
+.wu-pm:not(.wu-seo) ul.pm-grid--tools h3, .wu-pm:not(.wu-seo) ul.pm-grid--two h3 { font-size: clamp(19px, 1.5vw, 22px) !important; margin: 0 0 8px !important; }
+.wu-pm:not(.wu-seo) ul.pm-grid--tools p, .wu-pm:not(.wu-seo) ul.pm-grid--two p { font-size: 15.5px; line-height: 1.7; color: rgb(255 255 255 / .62); }
+.wu-pm:not(.wu-seo) ul.pm-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 40px clamp(32px, 5vw, 88px) !important; }
+.wu-pm:not(.wu-seo) ul.pm-grid--two > li { display: grid !important; grid-template-columns: 52px minmax(0, 1fr); column-gap: 18px; }
+.wu-pm:not(.wu-seo) ul.pm-grid--two .pm-ic { grid-row: 1 / span 2; width: 52px; height: 52px; border-radius: 50%; background: #beda52 !important; color: #11150a !important; box-shadow: none !important; }
+.wu-pm:not(.wu-seo) ul.pm-grid--two h3, .wu-pm:not(.wu-seo) ul.pm-grid--two p { grid-column: 2; }
+@media (max-width: 860px) { .wu-pm:not(.wu-seo) ul.pm-grid--tools { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .wu-pm:not(.wu-seo) ul.pm-grid--two { grid-template-columns: minmax(0, 1fr) !important; } }
+@media (min-width: 1024px) { .wu-pm ul.pm-grid--why.is-rows > li.is-on { flex: 4 1 0; } }

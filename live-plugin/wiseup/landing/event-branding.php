@@ -33,6 +33,7 @@ add_action( 'wp_head', function () {
 }, 1 );
 add_action( 'wp_head', function () {
 	echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/event-branding.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/event-branding.css' ) ) . "\">\n";
+	echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/digital-marketing.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/digital-marketing.css' ) ) . "\">\n";
 }, 8 );
 
 $wu_wa    = 'https://wa.me/916282434503?text=' . rawurlencode( 'Hi WiseUp, I would like to talk about branding for an event.' );
@@ -97,6 +98,18 @@ $wu_services = array(
 	array( 'title' => 'Virtual and Hybrid Event Branding', 'icon' => 'screen', 'text' => 'Branding that works on a screen as well as in a room. Read more in the virtual and hybrid section below.', 'link' => '#virtual' ),
 );
 
+$wu_ev_mi = array(
+	'mic' => '<path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>',
+	'stall' => '<path d="m21.9 8.89-1.05-4.37c-.22-.9-1-1.52-1.91-1.52H5.05c-.9 0-1.69.63-1.9 1.52L2.1 8.89c-.24 1.02-.02 2.06.62 2.88.08.11.19.19.28.29V19c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6.94c.09-.09.2-.18.28-.28.64-.82.87-1.87.62-2.89zm-2.99-3.9 1.05 4.37c.1.42.01.84-.25 1.17-.14.18-.44.47-.94.47-.61 0-1.14-.49-1.21-1.14L16.98 5l1.93-.01zM13 5h1.96l.54 4.52c.05.39-.07.78-.33 1.07-.22.26-.54.41-.95.41-.67 0-1.22-.59-1.22-1.31V5zM8.49 9.52 9.04 5H11v4.69c0 .72-.55 1.31-1.29 1.31-.34 0-.65-.15-.89-.41a1.42 1.42 0 0 1-.33-1.07zm-4.45-.16L5.05 5h1.97l-.58 4.86c-.08.65-.6 1.14-1.21 1.14-.49 0-.8-.29-.93-.47-.27-.32-.36-.75-.26-1.17zM5 19v-6.03c.08.01.15.03.23.03.87 0 1.66-.36 2.24-.95.6.6 1.4.95 2.31.95.87 0 1.65-.36 2.23-.93.59.57 1.39.93 2.29.93.84 0 1.64-.35 2.24-.95.58.59 1.37.95 2.24.95.08 0 .15-.02.23-.03V19H5z"/>',
+	'stage' => '<path d="M18 3v2h-2V3H8v2H6V3H4v18h2v-2h2v2h8v-2h2v2h2V3h-2zM8 17H6v-2h2v2zm0-4H6v-2h2v2zm0-4H6V7h2v2zm10 8h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2V7h2v2z"/>',
+	'sign' => '<path d="M13 10h5l3-3-3-3h-5V2h-2v2H4v6h7v2H6l-3 3 3 3h5v4h2v-4h7v-6h-7z"/>',
+	'banner' => '<path d="M14.4 6 14 4H5v17h2v-7h5.6l.4 2h7V6z"/>',
+	'badge' => '<path d="M20 7h-5V4c0-1.1-.9-2-2-2h-2c-1.1 0-2 .9-2 2v3H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM9 12c.83 0 1.5.67 1.5 1.5S9.83 15 9 15s-1.5-.67-1.5-1.5S8.17 12 9 12zm3 6H6v-.75c0-1 2-1.5 3-1.5s3 .5 3 1.5V18zm1-9h-2V4h2v5zm5 7.5h-4V15h4v1.5zm0-3h-4V12h4v1.5z"/>',
+	'spark' => '<path d="m2 22 14-5-9-9zm12.53-9.47 5.59-5.59a1.25 1.25 0 0 1 1.77 0l.59.59 1.06-1.06-.59-.59a2.758 2.758 0 0 0-3.89 0l-5.59 5.59 1.06 1.06zm-4.47-5.65-.59.59 1.06 1.06.59-.59a2.758 2.758 0 0 0 0-3.89l-.59-.59-1.06 1.07.59.59c.48.48.48 1.28 0 1.76zm7 5-1.59 1.59 1.06 1.06 1.59-1.59a1.25 1.25 0 0 1 1.77 0l1.61 1.61 1.06-1.06-1.61-1.61a2.758 2.758 0 0 0-3.89 0zm-2-6-3.59 3.59 1.06 1.06 3.59-3.59a2.758 2.758 0 0 0 0-3.89l-1.59-1.59-1.06 1.06 1.59 1.59c.48.49.48 1.29 0 1.77z"/>',
+	'brush' => '<path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10a2.5 2.5 0 0 0 2.5-2.5c0-.61-.23-1.2-.64-1.67a.528.528 0 0 1-.13-.33c0-.28.22-.5.5-.5H16c3.31 0 6-2.69 6-6 0-4.96-4.49-9-10-9zm5.5 11c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-3-4c-.83 0-1.5-.67-1.5-1.5S13.67 6 14.5 6s1.5.67 1.5 1.5S15.33 9 14.5 9zM5 11.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S7.33 13 6.5 13 5 12.33 5 11.5zm6-4c0 .83-.67 1.5-1.5 1.5S8 8.33 8 7.5 8.67 6 9.5 6s1.5.67 1.5 1.5z"/>',
+	'screen' => '<path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12zM4 14v2h2c0-1.11-.89-2-2-2zm0-3v1.43c1.97 0 3.57 1.6 3.57 3.57H9c0-2.76-2.24-5-5-5zm0-3v1.45c3.61 0 6.55 2.93 6.55 6.55H12c0-4.42-3.59-8-8-8z"/>',
+);
+
 // Portfolio: the two projects the owner sent (2026-11-11), text as given.
 $wu_cases = array(
 	array(
@@ -156,7 +169,7 @@ add_action( 'wp_footer', function () use ( $wu_faq ) {
 
 wiseup_landing_open( 'wu-landing wu-ev-page' );
 ?>
-<div class="wiseup-home wiseup-in-theme wu-ev">
+<div class="wiseup-home wiseup-in-theme wu-ev wu-dm wu-evb">
 <main id="main">
 
 	<!-- 1. Hero: value proposition, two CTAs (WhatsApp, Get a Quote), proof strip (events branded, cities served, client logos) -->
@@ -233,7 +246,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<ul class="ev-cards">
 				<?php foreach ( $wu_services as $s ) : ?>
 				<li class="ev-card">
-					<span class="ev-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><?php echo $wu_icons[ $s['icon'] ]; // phpcs:ignore -- fixed markup ?></svg></span>
+					<span class="ev-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><?php echo $wu_ev_mi[ $s['icon'] ]; // phpcs:ignore -- fixed Material paths ?></svg></span>
 					<h3><?php echo esc_html( $s['title'] ); ?></h3>
 					<p><?php echo esc_html( $s['text'] ); ?></p>
 					<?php if ( $s['link'] ) : ?><a class="ev-more" href="<?php echo esc_attr( $s['link'] ); ?>">Learn more <?php echo $wu_ne; // phpcs:ignore ?></a><?php endif; ?>
@@ -242,6 +255,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</ul>
 		</div>
 	</section>
+	<script>(function(){var w=document.querySelector('.wu-ev #services .ev-cards');if(!w)return;w.classList.add('is-board');var c=[].slice.call(w.children);var d=document.createElement('div');d.className='ev-svc-detail';d.setAttribute('aria-live','polite');w.parentNode.insertBefore(d,w.nextSibling);var on=function(x){c.forEach(function(k){k.classList.toggle('is-on',k===x);});var h=x.querySelector('h3'),t=x.querySelector('p'),a=x.querySelector('a');d.classList.remove('is-in');void d.offsetWidth;d.innerHTML='<h4>'+h.textContent+'</h4><p>'+(t?t.innerHTML:'')+'</p>'+(a?a.outerHTML:'');d.classList.add('is-in');};c.forEach(function(k){k.setAttribute('tabindex','0');k.addEventListener('mouseenter',function(){on(k);});k.addEventListener('click',function(){on(k);});k.addEventListener('focus',function(){on(k);});});on(c[0]);})();</script>
 
 	<!-- 4. Corporate events -->
 	<section class="sec ev-sec" id="corporate">
@@ -529,6 +543,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				</li>
 				<?php endforeach; ?>
 			</ol>
+			<script>(function(){var o=document.querySelector('.wu-ev .ev-choose');if(!o)return;o.classList.add('is-tabs');var li=[].slice.call(o.children);var on=function(x){li.forEach(function(l){var a=l===x;l.classList.toggle('is-on',a);l.querySelector('h3').setAttribute('aria-expanded',a?'true':'false');});};li.forEach(function(l){var h=l.querySelector('h3');h.setAttribute('tabindex','0');h.setAttribute('role','button');h.addEventListener('click',function(){on(l);});h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();on(l);}});l.addEventListener('mouseenter',function(){if(matchMedia('(hover: hover) and (min-width: 1024px)').matches)on(l);});});on(li[0]);})();</script>
 			<div class="ev-panel ev-ask">
 				<h3>Questions to Ask Any Agency, Including Us</h3>
 				<ol class="ev-ask__list">
