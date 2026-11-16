@@ -52,7 +52,15 @@ $wu_svg     = function ( $paths, $size = 22, $sw = 1.6 ) {
 $wu_brands = include WISEUP_DIR . 'landing/digital-marketing-icons.php';
 $wu_mark   = function ( $key ) use ( $wu_brands ) {
 	if ( isset( $wu_brands[ $key ] ) ) {
-		return '<span class="dm-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="' . esc_attr( $wu_brands[ $key ][0] ) . '"><path d="' . esc_attr( $wu_brands[ $key ][1] ) . '"/></svg></span>';
+		$fill = $wu_brands[ $key ][0];
+		$defs = '';
+		if ( 'instagram' === $key ) { // the real Instagram gradient, defined inside its own svg
+			static $ig_n = 0;
+			$ig_n++;
+			$fill = 'url(#dm-ig' . $ig_n . ')';
+			$defs = '<defs><radialGradient id="dm-ig' . $ig_n . '" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs>';
+		}
+		return '<span class="dm-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="' . esc_attr( $fill ) . '">' . $defs . '<path d="' . esc_attr( $wu_brands[ $key ][1] ) . '"/></svg></span>';
 	}
 	return '<span class="dm-mark" aria-hidden="true"><img src="' . esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $key ) . '" alt="" width="20" height="20" loading="lazy" decoding="async"></span>';
 };
@@ -200,7 +208,7 @@ $wu_results = array(
 	array( 'Onesto & Mercado', 'logo', WISEUP_ASSETS . '/clients/client-logos-2026/onesto-marcado.png', home_url( '/case-studies/onesto/' ) ),
 	array( 'IndusGo', 'photo', WISEUP_URL . 'assets/landing/img/case-indusgo.jpg', home_url( '/case-studies/indusgo/' ) ),
 	array( 'Sathya', 'photo', WISEUP_URL . 'assets/work/case-sathya-720.webp', home_url( '/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ) ),
-	array( 'KPG Roofings', 'none', '', '' ),
+	array( 'KPG Roofings', 'photo', WISEUP_URL . 'assets/landing/img/case-kpg.webp', '' ),
 );
 
 $wu_package = array(
@@ -301,9 +309,19 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<div class="ev-intro"><p>Your brand does not operate through separate channels, and your marketing should not either. We bring together the services your business needs, whether that means strengthening one area or building a connected strategy across multiple platforms.</p></div>
 			</div>
 			<?php
+			$wu_svc_brands = array(
+				array( 'google', 'googlesearchconsole', 'semrush' ),
+				array( 'googleads', 'meta' ),
+				array( 'instagram', 'facebook', 'linkedin', 'youtube' ),
+				array( 'canva', 'adobepremierepro', 'adobeaftereffects' ),
+				array( 'adobeillustrator', 'figma', 'adobephotoshop' ),
+				array( 'wordpress.svg', 'shopify.svg', 'react.svg' ),
+				array( 'linkedin', 'youtube', 'google' ),
+				array( 'hubspot', 'zoho', 'claude.svg' ),
+			);
 			$wu_list = array();
 			foreach ( $wu_services as $wu_i => $s ) {
-				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__ico">' . $wu_svg( $wu_icons[ $s[1] ], 26 ) . '</span>', $s[3] ? '<a class="ev-more dm-stack__more" href="' . esc_url( $s[3] ) . '">View Our Social Media Marketing Services ' . $wu_ne . '</a>' : '', sprintf( '%02d', $wu_i + 1 ) );
+				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__brands">' . implode( '', array_map( $wu_mark, $wu_svc_brands[ $wu_i ] ) ) . '</span>', $s[3] ? '<a class="ev-more dm-stack__more" href="' . esc_url( $s[3] ) . '">View Our Social Media Marketing Services ' . $wu_ne . '</a>' : '', sprintf( '%02d', $wu_i + 1 ) );
 			}
 			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
 			?>
@@ -368,7 +386,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					<svg class="dm-orb__lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line x1="50" y1="50" x2="50.0" y2="12.0"/><line x1="50" y1="50" x2="76.6" y2="41.3"/><line x1="50" y1="50" x2="72.3" y2="80.7"/><line x1="50" y1="50" x2="33.5" y2="72.7"/><line x1="50" y1="50" x2="13.9" y2="38.3"/></svg>
 					<span class="dm-orb__core" aria-hidden="true"><i></i>Your<br>audience</span>
 					<?php foreach ( $wu_channels as $wu_i => $s ) : ?>
-					<button type="button" class="dm-orb__node<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" style="--x:<?php echo esc_attr( $wu_orb_pos[ $wu_i ][0] ); ?>%;--y:<?php echo esc_attr( $wu_orb_pos[ $wu_i ][1] ); ?>%" aria-controls="dm-ch-<?php echo (int) $wu_i; ?>" aria-pressed="<?php echo 0 === $wu_i ? 'true' : 'false'; ?>" aria-label="<?php echo esc_attr( $s[0] ); ?>"><?php echo $wu_mark( $s[1][0] ); // phpcs:ignore ?><span aria-hidden="true"><?php echo esc_html( $wu_orb_short[ $wu_i ] ); ?></span></button>
+					<button type="button" class="dm-orb__node<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" style="--x:<?php echo esc_attr( $wu_orb_pos[ $wu_i ][0] ); ?>%;--y:<?php echo esc_attr( $wu_orb_pos[ $wu_i ][1] ); ?>%" aria-controls="dm-ch-<?php echo (int) $wu_i; ?>" aria-pressed="<?php echo 0 === $wu_i ? 'true' : 'false'; ?>" aria-label="<?php echo esc_attr( $s[0] ); ?>"><?php echo $wu_mark( 1 === $wu_i ? 'meta' : $s[1][0] ); // phpcs:ignore ?><span aria-hidden="true"><?php echo esc_html( $wu_orb_short[ $wu_i ] ); ?></span></button>
 					<?php endforeach; ?>
 				</div>
 				<div class="dm-orb__panels">
@@ -816,6 +834,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 	});
 })();
 </script>
+<script>(function(){if(!matchMedia('(hover: hover)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;document.querySelectorAll('.dm-stack__in').forEach(function(c){c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();c.style.setProperty('--sx',(e.clientX-b.left)+'px');c.style.setProperty('--sy',(e.clientY-b.top)+'px');});});})();</script>
 <?php
 $wu_lead_source = $wu_src;
 include WISEUP_DIR . 'landing/lead-popup.php';
