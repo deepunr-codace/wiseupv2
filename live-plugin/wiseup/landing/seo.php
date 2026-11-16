@@ -155,12 +155,12 @@ add_action(
 
   <div style="position: relative; width: 100%; max-width: 1240px; margin: 0px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: clamp(48px, 6vw, 80px); align-items: center;">
     <div style="display: flex; flex-direction: column; gap: 24px;">
-      <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); font-size: 13.5px; letter-spacing: 0.02em; box-shadow: rgba(255, 255, 255, 0.06) 0px 1px 0px inset;">
+      <h1 data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); font-size: 13.5px; font-weight: 500; margin: 0; letter-spacing: 0.02em; box-shadow: rgba(255, 255, 255, 0.06) 0px 1px 0px inset;">
         <span style="width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle, rgb(233, 249, 138) 0%, rgb(157, 186, 53) 70%); box-shadow: rgb(194, 247, 96) 0px 0px 12px;"></span>
-        SEO · AI Search · Kerala
-      </span>
-      <h1 style="font-size: clamp(40px, 4.8vw, 68px); letter-spacing: -0.045em; word-spacing: 0.02em; font-weight: 400; text-wrap: balance; line-height: 1.02;"><span data-word="" style="display: inline-block;">SEO</span> <span data-word="" style="display: inline-block;">Company</span> <span data-word="" style="display: inline-block;">in</span> <span data-word="" data-shine="" style="display: inline-block; background: linear-gradient(100deg, rgb(210, 234, 166) 0%, rgb(210, 234, 166) 40%, rgb(246, 255, 217) 50%, rgb(210, 234, 166) 60%, rgb(210, 234, 166) 100%) 0% 0% / 250% 100% text; color: transparent; padding-right: 0.04em;">Kerala</span></h1>
-      <p data-reveal="" data-delay="200" style="font-size: clamp(20px, 2vw, 26px); line-height: 1.3; font-weight: 300; text-wrap: balance;">Search is changing. Make sure your brand is still being found.</p>
+        SEO Company in Kerala
+      </h1>
+
+      <h2 data-reveal="" data-delay="200" style="font-size: clamp(36px, 4.6vw, 64px); letter-spacing: -0.045em; font-weight: 400; text-wrap: balance; line-height: 1.04; margin: 0;">Search is changing. Make sure your brand is <span style="color: rgb(210, 234, 166);">still being found.</span></h2>
       <p data-reveal="" data-delay="300" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.8); max-width: 600px; text-wrap: pretty;">A website that doesn't appear when customers search for your services is missing valuable opportunities. WiseUp is an SEO company in Kerala that brings technical optimisation, strategic content, keyword intelligence and competitor analysis together to strengthen your online presence. We build search strategies that position your brand across traditional search engines and AI-powered platforms, helping potential customers find and consider your business.</p>
     </div>
 
