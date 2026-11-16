@@ -51,7 +51,7 @@ $wu_svg     = function ( $paths, $size = 22, $sw = 1.6 ) {
 $wu_brands = include WISEUP_DIR . 'landing/digital-marketing-icons.php';
 $wu_mark   = function ( $key ) use ( $wu_brands ) {
 	// Google products: the official full-colour logos (Simple Icons only has flat one-colour versions)
-	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'i-google-search-console.svg', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
+	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'google-search-console.png', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
 	if ( isset( $wu_google[ $key ] ) ) $key = $wu_google[ $key ];
 	if ( isset( $wu_brands[ $key ] ) ) {
 		$fill = $wu_brands[ $key ][0];
@@ -308,7 +308,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
 		};
 		if ('IntersectionObserver' in window && !rm) {
-			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
 			cards.forEach(function (c) { io.observe(c); });
 		} else cards.forEach(function (c) { c.classList.add('is-in'); });
 		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
@@ -594,7 +594,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		document.querySelectorAll('.wu-dm [data-stack]').forEach(function (list) {
 			var cs = [].slice.call(list.children);
 			cs.forEach(function (c, i) {
-				gsap.from(c.querySelectorAll('.dm-stack__l > *, .dm-stack__r > *'), { y: 34, opacity: 0, duration: 0.9, stagger: 0.07, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: c, start: 'top 82%', once: true } });
 				var next = cs[i + 1];
 				if (!next) return;
 				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });

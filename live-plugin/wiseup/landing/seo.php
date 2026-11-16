@@ -50,7 +50,7 @@ $wu_svg     = function ( $paths, $size = 22, $sw = 1.6 ) {
 $wu_brands = include WISEUP_DIR . 'landing/digital-marketing-icons.php';
 $wu_mark   = function ( $key ) use ( $wu_brands ) {
 	// Google products: the official full-colour logos (Simple Icons only has flat one-colour versions)
-	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'i-google-search-console.svg', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
+	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'google-search-console.png', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
 	if ( isset( $wu_google[ $key ] ) ) $key = $wu_google[ $key ];
 	if ( isset( $wu_brands[ $key ] ) ) {
 		$fill = $wu_brands[ $key ][0];
@@ -188,6 +188,16 @@ $wu_industries = array(
 	array( 'E-commerce & Retail', 'bag' ), array( 'SaaS & Technology', 'code' ), array( 'Professional Services', 'scale' ), array( 'Education & Training', 'cap' ),
 	array( 'Healthcare & Wellness', 'health' ), array( 'Real Estate & Construction', 'home' ), array( 'Hospitality & Travel', 'bed' ), array( 'Finance & Business Services', 'chart' ),
 );
+$wu_ind_icons = array(
+	'bag' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z"/></svg>',
+	'code' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.4 16.6 4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0 4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>',
+	'scale' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m5.25 8.069 2.83-2.827 14.134 14.15-2.83 2.827zm4.236-4.242L12.314.998l5.657 5.656-2.828 2.83zM.999 12.315l2.828-2.829 5.657 5.657-2.828 2.828zM1 21h12v2H1z"/></svg>',
+	'cap' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>',
+	'health' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm6 11h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z"/></svg>',
+	'home' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1 11v10h5v-6h4v6h5V11L8 6z"/><path d="M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3H10zm9 6h-2V7h2v2z"/></svg>',
+	'bed' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>',
+	'chart' => '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 8c-1.45 0-2.26 1.44-1.93 2.51l-3.55 3.56c-.3-.09-.74-.09-1.04 0l-2.55-2.55C12.27 10.45 11.46 9 10 9c-1.45 0-2.27 1.44-1.93 2.52l-4.56 4.55C2.44 15.74 1 16.55 1 18c0 1.1.9 2 2 2 1.45 0 2.26-1.44 1.93-2.51l4.55-4.56c.3.09.74.09 1.04 0l2.55 2.55C12.73 16.55 13.54 18 15 18c1.45 0 2.27-1.44 1.93-2.52l3.56-3.55c1.07.33 2.51-.48 2.51-1.93 0-1.1-.9-2-2-2z"/><path d="m15 9 .94-2.07L18 6l-2.06-.93L15 3l-.92 2.07L12 6l2.08.93zM3.5 11 4 9l2-.5L4 8l-.5-2L3 8l-2 .5L3 9z"/></svg>',
+);
 
 // Why WiseUp: [ icon, title, text ].
 $wu_why = array(
@@ -270,6 +280,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			<ul class="seo-chans">
 				<?php foreach ( $wu_visibility as $v ) echo '<li>' . ( $v[1] ? $wu_mark( $v[1] ) : '<span class="dm-mark">' . $wu_svg( $wu_icons['spark'], 20 ) . '</span>' ) . '<span>' . esc_html( $v[0] ) . '</span></li>'; // phpcs:ignore ?>
 			</ul>
+			<script>(function(){var u=document.querySelector('.wu-seo .seo-chans');if(!u||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var w=document.createElement('div');w.className='seo-chans-run';u.parentNode.insertBefore(w,u);w.appendChild(u);var c=u.cloneNode(true);c.setAttribute('aria-hidden','true');w.appendChild(c);w.classList.add('is-on');})();</script>
 			<ul class="pm-grid pm-grid--two">
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['target'], 24 ); // phpcs:ignore ?></span><h3>How WiseUp Helps</h3><p>We build SEO strategies around your business, not pre-defined packages of optimisation activities. Our team assesses your business objectives, target audience, competitors, search demand and website performance to identify where the strongest opportunities lie. Every recommendation is connected to a clear objective: improve organic visibility, attract relevant traffic, increase enquiries and support measurable business growth.</p></li>
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['rocket'], 24 ); // phpcs:ignore ?></span><h3>Scale With Search</h3><p>As your business expands, we extend your SEO strategy to match. From new services and product categories to additional locations, markets and search opportunities, we identify the areas where your brand can build a stronger presence. Our approach also adapts to evolving search behaviour, including AI-generated answers and conversational search, keeping your visibility strategy aligned with your business growth.</p><div class="seo-tags"><?php foreach ( array( 'New keywords', 'Locations', 'Services', 'Products', 'Markets', 'AI search' ) as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></div></li>
@@ -330,7 +341,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
 		};
 		if ('IntersectionObserver' in window && !rm) {
-			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
 			cards.forEach(function (c) { io.observe(c); });
 		} else cards.forEach(function (c) { c.classList.add('is-in'); });
 		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
@@ -341,6 +352,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 </script>
 		</div>
 	</section>
+	<script>
+window.addEventListener('load', function () {
+	var sec = document.querySelector('.wu-seo #services'), ol = sec && sec.querySelector('ol.dm-stack');
+	if (!ol || !window.gsap || !window.ScrollTrigger || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+	var mm = gsap.matchMedia();
+	mm.add('(min-width: 1024px)', function () {
+		sec.classList.add('is-hz');
+		var dist = function () { return Math.max(0, ol.scrollWidth - ol.parentElement.clientWidth); };
+		gsap.to(ol, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: 0.8, invalidateOnRefresh: true, onUpdate: function (st) { sec.style.setProperty('--hz', st.progress.toFixed(3)); } } });
+		return function () { sec.classList.remove('is-hz'); gsap.set(ol, { clearProps: 'transform' }); };
+	});
+});
+</script>
+	
 
 	<!-- 4. Platforms -->
 	<section class="sec ev-sec" id="platforms">
@@ -406,14 +431,26 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				<?php echo $wu_eyebrow( 'How we work' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><?php echo $wu_h( 'How We Work to Build', 'Better SEO Results' ); // phpcs:ignore ?></h2>
 			</div>
-			<div class="dm-tl" data-tl>
-				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
-				<ol class="dm-tl__list">
+			<div class="seo-grow" data-grow>
+				<svg class="seo-grow__g" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+					<defs><linearGradient id="seo-grow-f" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#beda52" stop-opacity=".28"/><stop offset="1" stop-color="#beda52" stop-opacity="0"/></linearGradient></defs>
+					<path class="seo-grow__area" d="M0 290 C 180 285, 300 262, 400 240 S 650 175, 800 140 S 1050 40, 1200 12 L 1200 300 L 0 300 Z"/>
+					<path class="seo-grow__line" d="M0 290 C 180 285, 300 262, 400 240 S 650 175, 800 140 S 1050 40, 1200 12" pathLength="1"/>
+					<line x1="400" y1="0" x2="400" y2="300"/><line x1="800" y1="0" x2="800" y2="300"/>
+					
+				</svg>
+				<span class="seo-grow__dot" style="left:33.33%;top:calc(var(--gh) * .8)" aria-hidden="true"></span><span class="seo-grow__dot" style="left:66.67%;top:calc(var(--gh) * .4667)" aria-hidden="true"></span><span class="seo-grow__dot is-end" style="left:100%;top:calc(var(--gh) * .04)" aria-hidden="true"></span>
+				<ol class="seo-grow__stages">
 					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
-					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><span class="dm-tl__out" aria-hidden="true"><small>Timeline</small><?php echo esc_html( $s[2] ); ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><div class="seo-tags"><?php foreach ( $s[3] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></div></div></li>
+					<li style="--k:<?php echo (int) $wu_i; ?>">
+						<span class="seo-grow__m"><?php echo esc_html( $s[2] ); ?></span>
+						<h3><?php echo esc_html( $s[0] ); ?></h3>
+						<ul><?php foreach ( $s[3] as $t ) echo '<li>' . esc_html( $t ) . '</li>'; ?></ul>
+					</li>
 					<?php endforeach; ?>
 				</ol>
 			</div>
+			<script>(function(){var g=document.querySelector('[data-grow]');if(!g)return;if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){g.classList.add('is-in');return;}g.classList.add('is-js');var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){g.classList.add('is-in');io.disconnect();}},{threshold:.25});io.observe(g);})();</script>
 		</div>
 	</section>
 
@@ -451,9 +488,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				</div>
 				<div class="ev-intro"><p>We develop search strategies for businesses across:</p></div>
 			</div>
-			<ul class="dm-ind">
+			<ul class="dm-ind seo-ind">
 				<?php foreach ( $wu_industries as $ind ) : ?>
-				<li><span class="dm-ind__i"><?php echo $wu_svg( $wu_icons[ $ind[1] ], 22 ); // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
+				<li><span class="dm-ind__i"><?php echo $wu_ind_icons[ $ind[1] ]; // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
@@ -630,7 +667,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 		document.querySelectorAll('.wu-dm [data-stack]').forEach(function (list) {
 			var cs = [].slice.call(list.children);
 			cs.forEach(function (c, i) {
-				gsap.from(c.querySelectorAll('.dm-stack__l > *, .dm-stack__r > *'), { y: 34, opacity: 0, duration: 0.9, stagger: 0.07, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: c, start: 'top 82%', once: true } });
 				var next = cs[i + 1];
 				if (!next) return;
 				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });

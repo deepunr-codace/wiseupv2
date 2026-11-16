@@ -52,7 +52,7 @@ $wu_svg     = function ( $paths, $size = 22, $sw = 1.6 ) {
 $wu_brands = include WISEUP_DIR . 'landing/digital-marketing-icons.php';
 $wu_mark   = function ( $key ) use ( $wu_brands ) {
 	// Google products: the official full-colour logos (Simple Icons only has flat one-colour versions)
-	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'i-google-search-console.svg', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
+	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'google-search-console.png', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
 	if ( isset( $wu_google[ $key ] ) ) $key = $wu_google[ $key ];
 	if ( isset( $wu_brands[ $key ] ) ) {
 		$fill = $wu_brands[ $key ][0];
@@ -394,7 +394,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
 		};
 		if ('IntersectionObserver' in window && !rm) {
-			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
 			cards.forEach(function (c) { io.observe(c); });
 		} else cards.forEach(function (c) { c.classList.add('is-in'); });
 		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
@@ -537,8 +537,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<div class="dm-kl__right">
 				<p class="dm-kl__roll" aria-hidden="true"><span class="dm-kl__pre">Reaching</span><span class="dm-kl__win"><span class="dm-kl__col"><b>Calicut</b><b>Kerala</b><b>India</b><b>the Gulf</b><b>Calicut</b></span></span></p>
 				<div class="dm-kl__two">
-					<div class="ev-panel dm-kl__it"><span class="dm-kl__r dm-kl__r--1" aria-hidden="true"><i></i></span><h3>Digital Marketing Company in Calicut, Kerala</h3><p>Based in Calicut, WiseUp works with businesses that want to strengthen their local presence and build a wider digital reach. We consider local search behaviour, audience interests and market competition when shaping campaigns for businesses in and around the city.</p></div>
-						<div class="ev-panel dm-kl__it"><span class="dm-kl__r dm-kl__r--3" aria-hidden="true"><i></i></span><h3>Supporting Businesses Across Kerala and Beyond</h3><p>A business does not have to limit its reach to its immediate location. We work towards marketing objectives that may involve audiences across Kerala and, where relevant, wider national and international markets.</p></div>
+					<div class="ev-panel dm-kl__it"><span class="dm-kl__r dm-kl__r--1" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg></span><h3>Digital Marketing Company in Calicut, Kerala</h3><p>Based in Calicut, WiseUp works with businesses that want to strengthen their local presence and build a wider digital reach. We consider local search behaviour, audience interests and market competition when shaping campaigns for businesses in and around the city.</p></div>
+						<div class="ev-panel dm-kl__it"><span class="dm-kl__r dm-kl__r--3" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></span><h3>Supporting Businesses Across Kerala and Beyond</h3><p>A business does not have to limit its reach to its immediate location. We work towards marketing objectives that may involve audiences across Kerala and, where relevant, wider national and international markets.</p></div>
 				</div>
 				</div>
 			</div>
@@ -595,6 +595,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			foreach ( $wu_tools as $g ) $wu_by_group[ $g[0] ] = $g[1];
 			$wu_seen2 = array();
 			?>
+			<div class="dm-orbit" data-orbit aria-hidden="true"><span class="dm-orbit__core"></span></div>
+			<script>(function(){var o=document.querySelector('[data-orbit]');if(!o)return;var it=[].slice.call(document.querySelectorAll('.dm-tools--sr li')).map(function(li){return{m:li.querySelector('.dm-mark'),n:(li.querySelector('span:not(.dm-mark)')||{}).textContent||''};}).filter(function(x){return x.m;});var dark=/tiktok|buffer|later|mailchimp|chatgpt/i,rings=[7,11,15],i=0;rings.forEach(function(c,r){var ring=document.createElement('div');ring.className='dm-orbit__ring dm-orbit__ring--'+(r+1);var n=Math.min(c,it.length-i);for(var k=0;k<n;k++,i++){var a=k/n*360+(r*17),el=document.createElement('span');el.className='dm-orbit__i'+(dark.test(it[i].n)?' is-dark':'');var rad=a*Math.PI/180;el.style.left=(50+50*Math.cos(rad))+'%';el.style.top=(50+50*Math.sin(rad))+'%';el.innerHTML='<span class="dm-orbit__b">'+it[i].m.outerHTML+'<em>'+it[i].n.replace(/</g,'&lt;')+'</em></span>';ring.appendChild(el);}o.appendChild(ring);});})();</script>
 			<ol class="dm-flow2" data-flow aria-hidden="true">
 				<?php foreach ( $wu_stage_map as $wu_k => $st ) : ?>
 				<li class="dm-flow2__st" style="--k:<?php echo (int) $wu_k; ?>">
@@ -720,9 +722,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					<h3>What Your Package Can Cover</h3>
 					<ul class="dm-pkg__chips">
 						<?php $wu_pk_ic = array( 'mix', 'pen', 'search', 'target', 'chat', 'chart' ); foreach ( $wu_package as $wu_k => $row ) : ?>
-						<li><span class="dm-pkg__ic"><?php echo $wu_svg( $wu_icons[ $wu_pk_ic[ $wu_k ] ?? 'spark' ], 22 ); // phpcs:ignore ?></span><span><?php echo esc_html( $row[0] ); ?></span></li>
+						<li><span class="dm-pkg__ic"><?php echo $wu_svg( $wu_icons[ $wu_pk_ic[ $wu_k ] ?? 'spark' ], 22 ); // phpcs:ignore ?></span><span><?php echo esc_html( $row[0] ); ?></span><small class="dm-pkg__d"><?php echo esc_html( $row[1] ); ?></small><button type="button" class="dm-pkg__sw" role="switch" aria-checked="true" aria-label="<?php echo esc_attr( $row[0] ); ?>"><i></i></button></li>
 						<?php endforeach; ?>
 					</ul>
+					<script>(function(){var u=document.querySelector('.dm-pkg__chips');if(!u||!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){u.classList.add('is-lit');io.disconnect();}},{threshold:.5});io.observe(u);})();</script>
+					<script>document.querySelectorAll('.dm-pkg__sw').forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-checked')!=='true';b.setAttribute('aria-checked',on?'true':'false');b.closest('li').classList.toggle('is-off',!on);});});</script>
 					<table class="dm-pkg__sr">
 						<thead><tr><th scope="col">Area</th><th scope="col">Potential Deliverables</th></tr></thead>
 						<tbody>
@@ -901,7 +905,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		document.querySelectorAll('.wu-dm [data-stack]').forEach(function (list) {
 			var cs = [].slice.call(list.children);
 			cs.forEach(function (c, i) {
-				gsap.from(c.querySelectorAll('.dm-stack__l > *, .dm-stack__r > *'), { y: 34, opacity: 0, duration: 0.9, stagger: 0.07, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: c, start: 'top 82%', once: true } });
 				var next = cs[i + 1];
 				if (!next) return;
 				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });
