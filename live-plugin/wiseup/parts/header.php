@@ -24,7 +24,7 @@ $wu_target  = function ( $link ) { return $link['external'] ? ' target="_blank" 
 	<?php if ( $wu_podcast ) : ?>
 		<a class="hd__logo hd__logo--podcast" href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php esc_attr_e( 'WiseUp home', 'wiseup' ); ?>"><img src="<?php echo esc_url( wiseup_logo_url( true ) ); ?>" alt="<?php esc_attr_e( 'WiseUp Podcast', 'wiseup' ); ?>" width="404" height="174" decoding="async"></a>
 	<?php else : ?>
-		<a class="hd__logo<?php echo 'about' === $wu_slug ? ' hd__logo--dark' : ''; ?>" href="<?php echo $wu_home ? '#top' : esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo $wu_home ? esc_attr__( 'WiseUp, back to top', 'wiseup' ) : esc_attr__( 'WiseUp home', 'wiseup' ); ?>"><img src="<?php echo esc_url( wiseup_logo_url( false ) ); ?>" alt="WiseUp" width="315" height="114" decoding="async"></a>
+		<a class="hd__logo<?php echo 'about' === $wu_slug ? ' hd__logo--dark' : ''; ?>" href="<?php echo $wu_home ? '#top' : esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo $wu_home ? esc_attr__( 'WiseUp, back to top', 'wiseup' ) : esc_attr__( 'WiseUp home', 'wiseup' ); ?>"><img src="<?php echo esc_url( wiseup_logo_url( false ) ); ?>" alt="WiseUp Branding logo" width="315" height="114" decoding="async"></a>
 	<?php endif; ?>
 
 	<nav class="hd__nav" aria-label="<?php esc_attr_e( 'WiseUp sites', 'wiseup' ); ?>">

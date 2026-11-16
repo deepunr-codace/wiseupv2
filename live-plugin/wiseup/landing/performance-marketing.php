@@ -94,9 +94,9 @@ $wu_stack = function ( $items, $mod ) use ( $wu_stack_title ) {
 $wu_h = function ( $a, $b ) { return '<span class="sh__a">' . esc_html( $a ) . '</span> <span class="sh__b">' . esc_html( $b ) . '</span>'; };
 
 // Client logos: the homepage strip's logo set (same files and alt text as the Event Branding page).
-$wu_logos = array( 'amarapushpa' => 'Amarapushpa', 'bm-prime' => 'BM Prime', 'bucho' => 'Bucho', 'cadd' => 'CADD', 'cellar-de-mahe' => 'Cellar de mahe', 'clair-veda' => 'Clair veda', 'eduwizz' => 'Eduwizz', 'ellisto' => 'Ellisto', 'erets' => 'Erets', 'flora-fauna' => 'Flora fauna', 'formaa' => 'Formaa', 'gloveda' => 'Gloveda', 'goldekarak' => 'Golden Karak', 'hayath' => 'Hayath', 'intervel' => 'Intervel', 'lullaby' => 'Lullaby', 'lunar' => 'Lunar', 'mgf' => 'MGF', 'mooss' => 'mooss', 'onesto-marcado' => 'Onesto Marcado', 'philips' => 'Philips', 'popees' => 'Popees', 'sathya' => 'Sathya', 'superhuman' => 'Superhuman', 'tiny-mafia' => 'Tiny Mafia', 'wellah' => 'Wellah' );
+$wu_logos = array( 'amarapushpa' => 'Amarapushpa', 'bm-prime' => 'BM Prime', 'bucho' => 'Bucho', 'cadd' => 'CADD Centre', 'cellar-de-mahe' => 'Cellar de Mahe', 'clair-veda' => 'Clair Veda', 'eduwizz' => 'Eduwizz', 'ellisto' => 'Eallisto', 'erets' => 'Erets', 'flora-fauna' => 'Flora Fauna', 'formaa' => 'Formaa', 'gloveda' => 'Gloveda', 'goldekarak' => 'Golden Karak', 'hayath' => 'Hayath Medicare', 'intervel' => 'Intervel', 'lullaby' => 'Lullaby', 'lunar' => 'Lunar', 'mgf' => 'MGF Events', 'mooss' => 'Mooss', 'onesto-marcado' => 'Onesto & Mercado', 'philips' => 'Philips', 'popees' => 'Popees', 'sathya' => 'Sathya', 'superhuman' => 'Superhuman', 'tiny-mafia' => 'Tiny Mafia', 'wellah' => 'Wellah' );
 $wu_li    = '';
-foreach ( $wu_logos as $f => $alt ) $wu_li .= '<li class="is-tile"><img src="' . esc_url( WISEUP_ASSETS . '/clients/client-logos-2026/' . $f . '.webp' ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async"></li>';
+foreach ( $wu_logos as $f => $alt ) $wu_li .= '<li class="is-tile"><img src="' . esc_url( WISEUP_ASSETS . '/clients/client-logos-2026/' . $f . '.webp' ) . '" alt="' . esc_attr( $alt . ' logo, performance marketing client of WiseUp' ) . '" loading="lazy" decoding="async"></li>';
 
 $wu_icons = array(
 	'search'  => '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M8.5 11h5M11 8.5v5"/>',
@@ -237,7 +237,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				</div>
 			</div>
 			<div class="ev-stage dm-shot" data-stage>
-				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) 92vw, 46vw" width="1116" height="920" fetchpriority="high" decoding="async" alt="A laptop showing a rising growth chart, surrounded by glowing marketing icons">
+				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) 92vw, 46vw" width="1116" height="920" fetchpriority="high" decoding="async" alt="WiseUp performance marketing agency in Kerala: laptop with a rising ad results chart and marketing icons">
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(

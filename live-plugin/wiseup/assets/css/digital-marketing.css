@@ -1818,3 +1818,14 @@ html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead::before { conte
 .wu-pm:not(.wu-seo) ul.pm-grid--two h3, .wu-pm:not(.wu-seo) ul.pm-grid--two p { grid-column: 2; }
 @media (max-width: 860px) { .wu-pm:not(.wu-seo) ul.pm-grid--tools { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } .wu-pm:not(.wu-seo) ul.pm-grid--two { grid-template-columns: minmax(0, 1fr) !important; } }
 @media (min-width: 1024px) { .wu-pm ul.pm-grid--why.is-rows > li.is-on { flex: 4 1 0; } }
+
+/* v1.3.76 (Event Branding services on the DM journey): one Material icon per service in a dark tile with a lime glyph, lime tile once the line reaches it; phones: icon, title, then text */
+.wu-evb ol.dm-stack[data-stack] .dm-stack__brands .dm-mark.ev-mi { width: 64px; height: 64px; border-radius: 20px; color: #beda52; background: #18181b; transition: background .6s ease, color .6s ease; }
+.wu-evb ol.dm-stack[data-stack] .dm-stack__brands .dm-mark.ev-mi svg { width: 30px; height: 30px; }
+.wu-evb ol.dm-stack[data-stack] .dm-stack__card.is-lit .dm-mark.ev-mi { color: #11150a; background: #beda52; }
+@media (max-width: 860px) {
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__vis { order: 1 !important; }
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__l > h3 { order: 2 !important; }
+  .wu-dm ol.dm-stack[data-stack] .dm-stack__r > * { order: 3 !important; }
+}
+@media (max-width: 640px) { .wu-evb ol.dm-stack[data-stack] .dm-stack__brands .dm-mark.ev-mi { width: 46px; height: 46px; border-radius: 15px; } .wu-evb ol.dm-stack[data-stack] .dm-stack__brands .dm-mark.ev-mi svg { width: 24px; height: 24px; } }

@@ -3101,3 +3101,8 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 
 /* sub-item flyouts stay hidden in the mega menu */
 .mega .mega__sub, .mega .mega__third { display: none !important; }
+
+/* mega menu hangs closer to the header (shorter ropes) */
+.hd__mega { padding-top: 30px !important; }
+/* hover bridge: an invisible strip over the gap between the Services button and the panel, so moving the pointer down never closes the menu */
+.hd__mega::before { content: ''; position: absolute; left: 0; right: 0; bottom: calc(100% - 2px); height: 48px; }

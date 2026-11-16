@@ -57,10 +57,10 @@ $wu_chips = function ( $items, $soft = false ) {
 };
 
 // Client logos: the homepage strip's logo set (same files and alt text).
-$wu_logos = array( 'amarapushpa' => 'Amarapushpa', 'bm-prime' => 'BM Prime', 'bucho' => 'Bucho', 'cadd' => 'CADD', 'cellar-de-mahe' => 'Cellar de mahe', 'clair-veda' => 'Clair veda', 'eduwizz' => 'Eduwizz', 'ellisto' => 'Ellisto', 'erets' => 'Erets', 'flora-fauna' => 'Flora fauna', 'formaa' => 'Formaa', 'gloveda' => 'Gloveda', 'goldekarak' => 'Golden Karak', 'hayath' => 'Hayath', 'intervel' => 'Intervel', 'lullaby' => 'Lullaby', 'lunar' => 'Lunar', 'mgf' => 'MGF', 'mooss' => 'mooss', 'onesto-marcado' => 'Onesto Marcado', 'philips' => 'Philips', 'popees' => 'Popees', 'sathya' => 'Sathya', 'superhuman' => 'Superhuman', 'tiny-mafia' => 'Tiny Mafia', 'wellah' => 'Wellah' );
+$wu_logos = array( 'amarapushpa' => 'Amarapushpa', 'bm-prime' => 'BM Prime', 'bucho' => 'Bucho', 'cadd' => 'CADD Centre', 'cellar-de-mahe' => 'Cellar de Mahe', 'clair-veda' => 'Clair Veda', 'eduwizz' => 'Eduwizz', 'ellisto' => 'Eallisto', 'erets' => 'Erets', 'flora-fauna' => 'Flora Fauna', 'formaa' => 'Formaa', 'gloveda' => 'Gloveda', 'goldekarak' => 'Golden Karak', 'hayath' => 'Hayath Medicare', 'intervel' => 'Intervel', 'lullaby' => 'Lullaby', 'lunar' => 'Lunar', 'mgf' => 'MGF Events', 'mooss' => 'Mooss', 'onesto-marcado' => 'Onesto & Mercado', 'philips' => 'Philips', 'popees' => 'Popees', 'sathya' => 'Sathya', 'superhuman' => 'Superhuman', 'tiny-mafia' => 'Tiny Mafia', 'wellah' => 'Wellah' );
 $wu_logo_strip = function ( $label ) use ( $wu_logos ) {
 	$li = '';
-	foreach ( $wu_logos as $f => $alt ) $li .= '<li class="is-tile"><img src="' . esc_url( WISEUP_ASSETS . '/clients/client-logos-2026/' . $f . '.webp' ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async"></li>';
+	foreach ( $wu_logos as $f => $alt ) $li .= '<li class="is-tile"><img src="' . esc_url( WISEUP_ASSETS . '/clients/client-logos-2026/' . $f . '.webp' ) . '" alt="' . esc_attr( $alt . ' logo, event branding client of WiseUp' ) . '" loading="lazy" decoding="async"></li>';
 	return '<div class="logos ev-logos" role="region" aria-label="' . esc_attr( $label ) . '"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul>' . $li . '</ul><ul aria-hidden="true">' . str_replace( '" alt="', '" alt="" data-alt="', $li ) . '</ul></div></div></div></div>';
 };
 
@@ -186,7 +186,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			</div>
 			<div class="ev-stage ev-photo" data-stage>
-				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) min(100vw, 640px), 50vw" width="1200" height="800" alt="Event stage on a round platform: two grey armchairs, a side table with white lilies, a slatted wall and an arch lit in green" fetchpriority="high" decoding="async">
+				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) min(100vw, 640px), 50vw" width="1200" height="800" alt="Event stage branding by WiseUp, event branding agency in Kerala: branded stage with armchairs and a green-lit arch" fetchpriority="high" decoding="async">
 				<img class="ev-photo__refl" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hero-stage-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) min(100vw, 640px), 50vw" width="1200" height="800" alt="" aria-hidden="true" decoding="async">
 			</div>
 			<dl class="ev-proof">
@@ -215,7 +215,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		array( 'Corporate and virtual', 'Branding for corporate events as well as virtual and hybrid formats.' ),
 		array( 'Across Kerala', 'Events branded in cities across Kerala, with the studio in Kozhikode.' ),
 	),
-	'links' => array( array( 'What it is', '#what' ), array( 'Services', '#services' ), array( 'Process', '#process' ), array( 'Kerala', '#kerala' ), array( 'Pricing', '#pricing' ), array( 'FAQ', '#faq' ) ),
+	'links' => array( array( 'What it is', '#what' ), array( 'Services', '#ev-services' ), array( 'Process', '#process' ), array( 'Kerala', '#kerala' ), array( 'Pricing', '#pricing' ), array( 'FAQ', '#faq' ) ),
 	'fact' => 'Starting from <b>₹1 lakh</b>',
 ) ); ?>	<!-- 2. One event, one identity -->
 	<section class="sec ev-sec" id="what">
@@ -234,7 +234,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	</section>
 
 	<!-- 3. Services -->
-	<section class="sec ev-sec" id="services">
+	<section class="sec ev-sec" id="ev-services">
 		<div class="wrap">
 			<div class="ev-head">
 			<div class="sh">
@@ -243,21 +243,72 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<div class="ev-intro"><p>Think back to the last event you attended. You probably cannot recall every slide or speaker, but you remember how it felt to walk in: the arch, the signage, the stage lit in one colour story. That feeling was never an accident. Guests meet your event as a series of small encounters, from the invitation to the registration desk to the kit they carry home, and each one either strengthens the story or weakens it. Our event branding services cover all of them, so nothing feels like an afterthought.</p></div>
 			</div>
-			<ul class="ev-cards">
-				<?php foreach ( $wu_services as $s ) : ?>
-				<li class="ev-card">
-					<span class="ev-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><?php echo $wu_ev_mi[ $s['icon'] ]; // phpcs:ignore -- fixed Material paths ?></svg></span>
-					<h3><?php echo esc_html( $s['title'] ); ?></h3>
-					<p><?php echo esc_html( $s['text'] ); ?></p>
-					<?php if ( $s['link'] ) : ?><a class="ev-more" href="<?php echo esc_attr( $s['link'] ); ?>">Learn more <?php echo $wu_ne; // phpcs:ignore ?></a><?php endif; ?>
-				</li>
+			<?php
+			// Same journey as the Digital Marketing services: a line runs down the page and lights each service as it passes.
+			$wu_ev_t = function ( $t ) {
+				foreach ( array( ', ', ' and ' ) as $cut ) {
+					$p = strpos( $t, $cut );
+					if ( false !== $p ) return esc_html( substr( $t, 0, $p + ( ', ' === $cut ? 1 : 0 ) ) ) . ' <span>' . esc_html( ltrim( substr( $t, $p + 1 ) ) ) . '</span>';
+				}
+				return esc_html( $t );
+			};
+			?>
+			<ol class="dm-stack dm-stack--services" data-stack>
+				<?php foreach ( array_values( $wu_services ) as $k => $s ) : ?>
+				<li class="dm-stack__card" style="--i:<?php echo (int) $k; ?>"><div class="dm-stack__in">
+					<div class="dm-stack__l"><span class="dm-stack__vis"><span class="dm-stack__brands"><span class="dm-mark ev-mi" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><?php echo $wu_ev_mi[ $s['icon'] ]; // phpcs:ignore -- fixed Material paths ?></svg></span></span></span>
+					<h3><?php echo $wu_ev_t( $s['title'] ); // phpcs:ignore -- escaped above ?></h3></div>
+					<div class="dm-stack__r"><p><?php echo esc_html( $s['text'] ); ?></p><?php if ( $s['link'] ) : ?><a class="ev-more dm-stack__more" href="<?php echo esc_attr( $s['link'] ); ?>">Learn more <?php echo $wu_ne; // phpcs:ignore ?></a><?php endif; ?></div>
+				</div></li>
 				<?php endforeach; ?>
-			</ul>
+			</ol>
+<script>
+(function () {
+	var NS = 'http://www.w3.org/2000/svg';
+	document.querySelectorAll('.wu-dm ol.dm-stack[data-stack]').forEach(function (ol) {
+		var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		var cards = [].slice.call(ol.children).filter(function (c) { return c.classList.contains('dm-stack__card'); });
+		if (!rm) ol.classList.add('is-js');
+		var mk = function (n, c) { var e = document.createElementNS(NS, n); if (c) e.setAttribute('class', c); return e; };
+		var svg = mk('svg', 'dm-stack__path'); svg.setAttribute('aria-hidden', 'true');
+		var groove = mk('path', 'dm-groove'), edge = mk('path', 'dm-groove-edge'), fill = mk('path', 'dm-groove-fill'), orb = mk('circle', 'dm-groove-orb');
+		orb.setAttribute('r', '9');
+		[groove, edge, fill, orb].forEach(function (e) { svg.appendChild(e); });
+		ol.insertBefore(svg, ol.firstChild);
+		var len = 0, pts = [], lit = -1;
+		var layout = function () {
+			var vis = [].slice.call(ol.querySelectorAll('.dm-stack__vis')), o = ol.getBoundingClientRect();
+			if (vis.length < 2 || innerWidth <= 860) { svg.style.display = 'none'; cards.forEach(function (c) { c.classList.add('is-lit'); }); return; }
+			svg.style.display = '';
+			pts = vis.map(function (v) { var r = v.getBoundingClientRect(); return [r.left - o.left + r.width / 2, r.top - o.top + r.height / 2]; });
+			var d = 'M' + pts[0][0] + ' ' + (pts[0][1] - 70) + ' L' + pts[0].join(' ');
+			for (var i = 1; i < pts.length; i++) { var a = pts[i - 1], b = pts[i], m = (a[1] + b[1]) / 2; d += ' C' + a[0] + ' ' + m + ' ' + b[0] + ' ' + m + ' ' + b.join(' '); }
+			[groove, edge, fill].forEach(function (p) { p.setAttribute('d', d); });
+			len = fill.getTotalLength(); fill.style.strokeDasharray = len; move();
+		};
+		var move = function () {
+			if (!len) return;
+			var o = ol.getBoundingClientRect(), p = (innerHeight * 0.62 - o.top) / (o.height || 1);
+			p = Math.max(0, Math.min(1, p)); if (rm) p = 1;
+			fill.style.strokeDashoffset = len * (1 - p);
+			var pt = fill.getPointAtLength(p * len); orb.setAttribute('cx', pt.x); orb.setAttribute('cy', pt.y);
+			orb.style.opacity = p > 0.005 && p < 0.995 ? 1 : 0;
+			var y = p * o.height;
+			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
+		};
+		if ('IntersectionObserver' in window && !rm) {
+			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
+			cards.forEach(function (c) { io.observe(c); });
+		} else cards.forEach(function (c) { c.classList.add('is-in'); });
+		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
+		if (window.ResizeObserver) new ResizeObserver(layout).observe(ol);
+		setTimeout(layout, 1200);
+	});
+})();
+</script>
 		</div>
 	</section>
-	<script>(function(){var w=document.querySelector('.wu-ev #services .ev-cards');if(!w)return;w.classList.add('is-board');var c=[].slice.call(w.children);var d=document.createElement('div');d.className='ev-svc-detail';d.setAttribute('aria-live','polite');w.parentNode.insertBefore(d,w.nextSibling);var on=function(x){c.forEach(function(k){k.classList.toggle('is-on',k===x);});var h=x.querySelector('h3'),t=x.querySelector('p'),a=x.querySelector('a');d.classList.remove('is-in');void d.offsetWidth;d.innerHTML='<h4>'+h.textContent+'</h4><p>'+(t?t.innerHTML:'')+'</p>'+(a?a.outerHTML:'');d.classList.add('is-in');};c.forEach(function(k){k.setAttribute('tabindex','0');k.addEventListener('mouseenter',function(){on(k);});k.addEventListener('click',function(){on(k);});k.addEventListener('focus',function(){on(k);});});on(c[0]);})();</script>
-
-	<!-- 4. Corporate events -->
+		<!-- 4. Corporate events -->
 	<section class="sec ev-sec" id="corporate">
 		<div class="wrap">
 			<div class="ev-head ev-head--stack">

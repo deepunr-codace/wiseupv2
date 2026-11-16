@@ -2032,19 +2032,19 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                         <div class="wu-hero-fan">
                             <div style="flex:0 1 200px;margin-top:70px"><img
                                     src="<?php echo esc_url($smm_assets . 'case-bootland.jpg'); ?>"
-                                    alt="Bootland event branding" style="transform:rotate(-8deg)"></div>
+                                    alt="Bootland Expo social media campaign by WiseUp" style="transform:rotate(-8deg)"></div>
                             <div style="flex:0 1 220px;margin-top:20px"><img
                                     src="<?php echo esc_url($smm_assets . 'case-indusgo.jpg'); ?>"
-                                    alt="IndusGo campaign" style="transform:rotate(-3deg)"></div>
+                                    alt="IndusGo social media campaign by WiseUp" style="transform:rotate(-3deg)"></div>
                             <div style="flex:0 1 250px"><img
                                     src="https://wiseup.in/wp-content/uploads/2026/03/Group-3.png"
-                                    alt="WiseUp growth reel" style="background:#0b0f0a"></div>
+                                    alt="WiseUp social media growth reel" style="background:#0b0f0a"></div>
                             <div style="flex:0 1 220px;margin-top:20px"><img
                                     src="<?php echo esc_url($smm_assets . 'case-karak.jpg'); ?>"
-                                    alt="Golden Karak social" style="transform:rotate(3deg)"></div>
+                                    alt="Golden Karak social media marketing by WiseUp" style="transform:rotate(3deg)"></div>
                             <div style="flex:0 1 200px;margin-top:70px"><img
                                     src="<?php echo esc_url($smm_assets . 'case-erets.jpg'); ?>"
-                                    alt="Erets Space launch" style="transform:rotate(8deg)"></div>
+                                    alt="Erets Space social media launch by WiseUp" style="transform:rotate(8deg)"></div>
                         </div>
 
                     </section>
@@ -2075,60 +2075,60 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
 		<div class="logos__row">
 			<div class="logos__track">
 				<ul>
-					<li class="is-tile" style="--drop-delay: 0ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/amarapushpa.webp" alt="Amarapushpa" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 50ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bm-prime.webp" alt="BM Prime" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bucho.webp" alt="Bucho" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cadd.webp" alt="CADD" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cellar-de-mahe.webp" alt="Cellar de mahe" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/clair-veda.webp" alt="Clair veda" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 300ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/eduwizz.webp" alt="Eduwizz" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 350ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/ellisto.webp" alt="Ellisto" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 400ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/erets.webp" alt="Erets" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 450ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/flora-fauna.webp" alt="Flora fauna" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 500ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/formaa.webp" alt="Formaa" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 550ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/gloveda.webp" alt="Gloveda" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 0ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/amarapushpa.webp" alt="Amarapushpa logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 50ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bm-prime.webp" alt="BM Prime logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bucho.webp" alt="Bucho logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cadd.webp" alt="CADD Centre logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cellar-de-mahe.webp" alt="Cellar de Mahe logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/clair-veda.webp" alt="Clair Veda logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 300ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/eduwizz.webp" alt="Eduwizz logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 350ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/ellisto.webp" alt="Eallisto logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 400ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/erets.webp" alt="Erets logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 450ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/flora-fauna.webp" alt="Flora Fauna logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 500ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/formaa.webp" alt="Formaa logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 550ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/gloveda.webp" alt="Gloveda logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
 					<li class="is-tile" style="--drop-delay: 600ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/goldekarak.webp?v=2" class="logo--original" alt="Goldekarak" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 650ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/hayath.webp" alt="Hayath" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 700ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/intervel.webp" alt="Intervel" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 750ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lullaby.webp" alt="Lullaby" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 800ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lunar.webp" alt="Lunar" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 850ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mgf.webp" alt="MGF" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 900ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mooss.webp" alt="mooss" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 950ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/onesto-marcado.webp" alt="Onesto Marcado" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1000ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/philips.webp" alt="Philips" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1050ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/popees.webp" alt="Popees" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/sathya.webp" alt="Sathya" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/superhuman.webp" alt="Superhuman" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/tiny-mafia.webp" alt="Tiny Mafia" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="Wellah" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 650ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/hayath.webp" alt="Hayath Medicare logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 700ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/intervel.webp" alt="Intervel logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 750ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lullaby.webp" alt="Lullaby logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 800ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lunar.webp" alt="Lunar logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 850ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mgf.webp" alt="MGF Events logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 900ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mooss.webp" alt="Mooss logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 950ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/onesto-marcado.webp" alt="Onesto & Mercado logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1000ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/philips.webp" alt="Philips logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1050ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/popees.webp" alt="Popees logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/sathya.webp" alt="Sathya logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/superhuman.webp" alt="Superhuman logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/tiny-mafia.webp" alt="Tiny Mafia logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="Wellah logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
 				</ul>
 				<ul aria-hidden="true">
-					<li class="is-tile" style="--drop-delay: 0ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/amarapushpa.webp" alt="Amarapushpa" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 50ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bm-prime.webp" alt="BM Prime" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bucho.webp" alt="Bucho" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cadd.webp" alt="CADD" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cellar-de-mahe.webp" alt="Cellar de mahe" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/clair-veda.webp" alt="Clair veda" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 300ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/eduwizz.webp" alt="Eduwizz" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 350ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/ellisto.webp" alt="Ellisto" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 400ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/erets.webp" alt="Erets" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 450ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/flora-fauna.webp" alt="Flora fauna" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 500ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/formaa.webp" alt="Formaa" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 550ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/gloveda.webp" alt="Gloveda" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 0ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/amarapushpa.webp" alt="Amarapushpa logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 50ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bm-prime.webp" alt="BM Prime logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/bucho.webp" alt="Bucho logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cadd.webp" alt="CADD Centre logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/cellar-de-mahe.webp" alt="Cellar de Mahe logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/clair-veda.webp" alt="Clair Veda logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 300ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/eduwizz.webp" alt="Eduwizz logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 350ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/ellisto.webp" alt="Eallisto logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 400ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/erets.webp" alt="Erets logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 450ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/flora-fauna.webp" alt="Flora Fauna logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 500ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/formaa.webp" alt="Formaa logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 550ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/gloveda.webp" alt="Gloveda logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
 					<li class="is-tile" style="--drop-delay: 600ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/goldekarak.webp?v=2" class="logo--original" alt="Goldekarak" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 650ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/hayath.webp" alt="Hayath" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 700ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/intervel.webp" alt="Intervel" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 750ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lullaby.webp" alt="Lullaby" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 800ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lunar.webp" alt="Lunar" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 850ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mgf.webp" alt="MGF" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 900ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mooss.webp" alt="mooss" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 950ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/onesto-marcado.webp" alt="Onesto Marcado" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1000ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/philips.webp" alt="Philips" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1050ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/popees.webp" alt="Popees" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/sathya.webp" alt="Sathya" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/superhuman.webp" alt="Superhuman" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/tiny-mafia.webp" alt="Tiny Mafia" loading="lazy" decoding="async"></li>
-					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="Wellah" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 650ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/hayath.webp" alt="Hayath Medicare logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 700ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/intervel.webp" alt="Intervel logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 750ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lullaby.webp" alt="Lullaby logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 800ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/lunar.webp" alt="Lunar logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 850ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mgf.webp" alt="MGF Events logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 900ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/mooss.webp" alt="Mooss logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 950ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/onesto-marcado.webp" alt="Onesto & Mercado logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1000ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/philips.webp" alt="Philips logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1050ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/popees.webp" alt="Popees logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1100ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/sathya.webp" alt="Sathya logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1150ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/superhuman.webp" alt="Superhuman logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1200ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/tiny-mafia.webp" alt="Tiny Mafia logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
+					<li class="is-tile" style="--drop-delay: 1250ms"><img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/clients/client-logos-2026/wellah.webp" alt="Wellah logo, social media marketing client of WiseUp" loading="lazy" decoding="async"></li>
 				</ul>
 			</div>
 		</div>
@@ -2149,7 +2149,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                             <div class="wu-visibility-img" data-reveal>
                                 <img data-parallax-img="0.12"
                                     src="https://wiseup.in/wp-content/uploads/2026/10/DSC00377-copy.webp"
-                                    alt="The WiseUp team">
+                                    alt="WiseUp social media marketing team in Kozhikode, Kerala">
                             </div>
                         </div>
                     </section>
@@ -2211,7 +2211,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                     <div class="wu-svc-panel<?php echo $i === 0 ? ' is-active' : ''; ?>"
                                         data-svc-panel="<?php echo $i; ?>">
                                         <img class="wu-svc-img" src="<?php echo esc_url($s['img']); ?>"
-                                            alt="<?php echo esc_attr($s['title']); ?>">
+                                            alt="<?php echo esc_attr($s['title'] . ' by WiseUp, social media marketing agency in Kerala'); ?>">
                                         <div class="wu-svc-shade"></div>
                                         <div class="wu-svc-top">
                                             <span class="wu-svc-arrow"><svg width="16" height="16"
@@ -2333,7 +2333,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                                         <span class="wu-cf3-glow"></span>
                                         <div class="wu-phone"><span class="wu-phone-notch"></span><div class="wu-phone-screen">
                                         <div class="ph-scr ph-reel">
-                                            <img src="https://wiseup.in/wp-content/uploads/2026/03/Group-3.png" alt="WiseUp growth reel" loading="lazy">
+                                            <img src="https://wiseup.in/wp-content/uploads/2026/03/Group-3.png" alt="WiseUp social media growth reel" loading="lazy">
                                             <div class="ph-rail"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.6-.8L3 21l1.9-5.2A8.4 8.4 0 1 1 21 11.5z"/></svg></span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></span></div>
                                             <div class="ph-cap"><span class="ph-sk" style="width:62%"></span><span class="ph-sk" style="width:40%"></span></div>
                                             <div class="ph-prog"><i></i></div>
@@ -2862,7 +2862,7 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
                                 style="width:700px;height:700px;right:-250px;bottom:-350px;background:radial-gradient(circle,#56602A 0%,rgba(86,96,42,0) 65%);filter:blur(30px)"
                                 data-blob></div>
                             <img class="wu-mascot" src="<?php echo esc_url($smm_assets . 'wiso.gif'); ?>"
-                                alt="Wiso">
+                                alt="Wiso, the WiseUp mascot">
                             <span class="wu-eb"><span class="wu-eb__dot" aria-hidden="true"></span>Get started</span>
 <h2 data-reveal><span class="wu-hl">Ready to Make Your Brand</span> <span class="wu-hw">Stand Out?</span></h2>
                             <div class="wu-cta-row" data-reveal>
