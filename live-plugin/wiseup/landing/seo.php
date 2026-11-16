@@ -129,7 +129,7 @@ $wu_icons = array(
 );
 
 // ---------- content ----------
-$wu_visibility = array( array( 'Google Search', 'google' ), array( 'AI Overviews', 'googlegemini.svg' ), array( 'Bing', 'fav-bing.com.png' ), array( 'ChatGPT', 'fav-chatgpt.com.png' ), array( 'Google Maps', 'googlemaps.svg' ), array( 'Gemini', 'googlegemini.svg' ), array( 'Copilot', '' ), array( 'Perplexity', 'perplexity.svg' ) );
+$wu_visibility = array( array( 'Google Search', 'google' ), array( 'AI Overviews', 'google' ), array( 'Bing', 'bing-logo.svg' ), array( 'ChatGPT', 'fav-chatgpt.com.png' ), array( 'Google Maps', 'googlemaps.svg' ), array( 'Gemini', 'gemini-logo.svg' ), array( 'Copilot', 'copilot.png' ), array( 'Perplexity', 'perplexity.svg' ) );
 
 // Services: [ title, icon, text, tags, brand marks ].
 $wu_services = array(
@@ -217,11 +217,6 @@ $wu_faq = array(
 );
 $wu_services_select = array( 'Free SEO Assessment', 'SEO Package Quote', 'AI SEO & Search Visibility', 'Local SEO', 'WooCommerce / Shopify SEO', 'Something else' );
 
-add_action( 'wp_footer', function () use ( $wu_faq ) {
-	$items = array();
-	foreach ( $wu_faq as $q ) $items[] = array( '@type' => 'Question', 'name' => $q[0], 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $q[1] ) );
-	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . "</script>\n";
-}, 20 );
 
 wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' );
 ?>
@@ -281,10 +276,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				<?php foreach ( $wu_visibility as $v ) echo '<li>' . ( $v[1] ? $wu_mark( $v[1] ) : '<span class="dm-mark">' . $wu_svg( $wu_icons['spark'], 20 ) . '</span>' ) . '<span>' . esc_html( $v[0] ) . '</span></li>'; // phpcs:ignore ?>
 			</ul>
 			<script>(function(){var u=document.querySelector('.wu-seo .seo-chans');if(!u||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var w=document.createElement('div');w.className='seo-chans-run';u.parentNode.insertBefore(w,u);w.appendChild(u);var c=u.cloneNode(true);c.setAttribute('aria-hidden','true');w.appendChild(c);w.classList.add('is-on');})();</script>
+			<div class="seo-vorb" aria-hidden="true"><span class="seo-vorb__core"></span><span class="seo-vorb__ring"></span><span class="seo-vorb__ring seo-vorb__ring--2"></span></div>
+			<script>(function(){var o=document.querySelector('.seo-vorb');var src=[].slice.call(document.querySelectorAll('.wu-seo #visibility .seo-chans:not([aria-hidden]) li'));if(!o||!src.length)return;var n=src.length;src.forEach(function(li,k){var a=k/n*2*Math.PI-Math.PI/2,el=document.createElement('span');el.className='seo-vorb__i';el.style.left=(50+42*Math.cos(a))+'%';el.style.top=(50+42*Math.sin(a))+'%';el.style.setProperty('--d',(k*-.6)+'s');var m=li.querySelector('.dm-mark');var t=(li.querySelector('span:not(.dm-mark)')||{}).textContent||'';el.innerHTML='<span class="seo-vorb__b">'+(m?m.outerHTML:'')+'<em>'+t.replace(/</g,'&lt;')+'</em></span>';o.appendChild(el);});})();</script>
 			<ul class="pm-grid pm-grid--two">
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['target'], 24 ); // phpcs:ignore ?></span><h3>How WiseUp Helps</h3><p>We build SEO strategies around your business, not pre-defined packages of optimisation activities. Our team assesses your business objectives, target audience, competitors, search demand and website performance to identify where the strongest opportunities lie. Every recommendation is connected to a clear objective: improve organic visibility, attract relevant traffic, increase enquiries and support measurable business growth.</p></li>
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['rocket'], 24 ); // phpcs:ignore ?></span><h3>Scale With Search</h3><p>As your business expands, we extend your SEO strategy to match. From new services and product categories to additional locations, markets and search opportunities, we identify the areas where your brand can build a stronger presence. Our approach also adapts to evolving search behaviour, including AI-generated answers and conversational search, keeping your visibility strategy aligned with your business growth.</p><div class="seo-tags"><?php foreach ( array( 'New keywords', 'Locations', 'Services', 'Products', 'Markets', 'AI search' ) as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></div></li>
 			</ul>
+			<script>(function(){var u=document.querySelector('.wu-seo #visibility .pm-grid--two');if(!u)return;u.classList.add('is-tabs');var li=[].slice.call(u.children);var on=function(x){li.forEach(function(l){l.classList.toggle('is-on',l===x);var h=l.querySelector('h3');h.setAttribute('aria-selected',l===x?'true':'false');});};li.forEach(function(l){var h=l.querySelector('h3');h.setAttribute('role','tab');h.setAttribute('tabindex','0');h.addEventListener('click',function(){on(l);});h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();on(l);}});});u.setAttribute('role','tablist');on(li[0]);})();</script>
+			<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var ps=[].slice.call(document.querySelectorAll('.wu-seo #visibility .pm-grid--two p'));var ws=[];ps.forEach(function(p){var t=p.textContent;p.setAttribute('aria-label',t);p.innerHTML=t.split(/(\s+)/).map(function(w){return /^\s+$/.test(w)?w:'<span class="seo-w" aria-hidden="true">'+w.replace(/</g,'&lt;')+'</span>';}).join('');ws=ws.concat([].slice.call(p.querySelectorAll('.seo-w')));});var raf=0,run=function(){raf=0;var h=innerHeight*.72;ws.forEach(function(w){var r=w.getBoundingClientRect();w.classList.toggle('is-lit',r.top<h);});document.querySelectorAll('.wu-seo #visibility .pm-grid--two > li').forEach(function(li){var r=li.getBoundingClientRect();li.classList.toggle('is-hl',r.top<innerHeight*.8);});};addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(run);},{passive:true});run();})();</script>
 		</div>
 	</section>
 
@@ -352,19 +351,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 </script>
 		</div>
 	</section>
-	<script>
-window.addEventListener('load', function () {
-	var sec = document.querySelector('.wu-seo #services'), ol = sec && sec.querySelector('ol.dm-stack');
-	if (!ol || !window.gsap || !window.ScrollTrigger || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-	var mm = gsap.matchMedia();
-	mm.add('(min-width: 1024px)', function () {
-		sec.classList.add('is-hz');
-		var dist = function () { return Math.max(0, ol.scrollWidth - ol.parentElement.clientWidth); };
-		gsap.to(ol, { x: function () { return -dist(); }, ease: 'none', scrollTrigger: { trigger: sec, start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: 0.8, invalidateOnRefresh: true, onUpdate: function (st) { sec.style.setProperty('--hz', st.progress.toFixed(3)); } } });
-		return function () { sec.classList.remove('is-hz'); gsap.set(ol, { clearProps: 'transform' }); };
-	});
-});
-</script>
+	
 	
 
 	<!-- 4. Platforms -->
@@ -511,26 +498,10 @@ window.addEventListener('load', function () {
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $w[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
 				<?php endforeach; ?>
 			</ul>
+			<script>(function(){var u=document.querySelector('.wu-seo .pm-grid--why');if(!u)return;u.classList.add('is-rows');var li=[].slice.call(u.children);var on=function(x){li.forEach(function(l){l.classList.toggle('is-on',l===x);});};on(li[0]);li.forEach(function(l){l.addEventListener('mouseenter',function(){on(l);});l.addEventListener('click',function(){on(l);});});if('IntersectionObserver' in window&&!matchMedia('(hover: hover)').matches){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)on(e.target);});},{rootMargin:'-45% 0px -45% 0px'});li.forEach(function(l){io.observe(l);});}})();</script>
 		</div>
 	</section>
 
-	<!-- 11. FAQ (with FAQPage schema) -->
-	<section class="sec ev-sec" id="faq" aria-labelledby="dm-faq-h">
-		<div class="wrap dm-faq">
-			<div class="sh">
-				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
-				<h2 id="dm-faq-h" class="sh__h"><?php echo $wu_h( 'What Businesses Ask', 'Our SEO Experts' ); // phpcs:ignore ?></h2>
-			</div>
-			<div class="faq">
-				<?php foreach ( $wu_faq as $q ) : ?>
-				<details class="faq__item" name="faq">
-					<summary class="faq__q"><h3><?php echo esc_html( $q[0] ); ?></h3><span class="faq__dot" aria-hidden="true"></span></summary>
-					<p class="faq__a"><?php echo esc_html( $q[1] ); ?></p>
-				</details>
-				<?php endforeach; ?>
-			</div>
-		</div>
-	</section>
 
 	<!-- 12. Final CTA: free SEO assessment -->
 			<section class="sec ev-sec" id="enquire">

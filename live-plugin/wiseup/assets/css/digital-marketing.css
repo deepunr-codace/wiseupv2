@@ -1513,28 +1513,7 @@
 .wu-seo .seo-grow.is-in .seo-grow__g { clip-path: inset(-20px -20px -20px 0); }
 .wu-seo .seo-grow.is-js .seo-grow__area { opacity: 1; }
 
-/* v1.3.73 (SEO services): a horizontal track instead of the vertical journey: the section pins and the services slide sideways as you scroll (desktop); phones swipe. Each service: logo bubble, title, text, open columns with no boxes */
-.wu-seo #services .dm-stack__path { display: none !important; }
-.wu-seo #services ol.dm-stack[data-stack] { display: flex !important; flex-wrap: nowrap; gap: clamp(36px, 4vw, 72px) !important; width: max-content; padding: 0 0 6px; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__card { flex: none; width: clamp(300px, 30vw, 420px); }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__in, .wu-seo #services ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__in { display: flex !important; flex-direction: column; align-items: flex-start; gap: 16px; padding: 0 !important; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__l, .wu-seo #services ol.dm-stack[data-stack] .dm-stack__r { display: contents; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__vis, .wu-seo #services ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__vis { order: 0; justify-self: auto; align-self: flex-start; width: 132px !important; margin: 0 0 6px; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__brands .dm-mark { width: 40px; height: 40px; margin: -5px !important; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__brands .dm-mark :is(svg, img) { width: 22px; height: 22px; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__card .dm-stack__l > h3, .wu-seo #services ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__l > h3 { order: 1; text-align: left !important; font-size: clamp(24px, 2.2vw, 32px) !important; translate: none !important; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__card .dm-stack__r p, .wu-seo #services ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__r p { order: 2; text-align: left !important; margin: 0 !important; max-width: none; font-size: 15.5px; translate: none !important; }
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__card .dm-stack__r > :not(p) { order: 3; }
-.wu-seo #services.is-hz { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
 
-.wu-seo #services.is-hz > .wrap::after { content: ''; display: block; height: 3px; margin-top: clamp(28px, 3vw, 44px); border-radius: 3px; background: linear-gradient(90deg, #beda52 calc(var(--hz, 0) * 100%), rgb(255 255 255 / .1) 0); }
-@media (max-width: 1023px) {
-  .wu-seo #services ol.dm-stack[data-stack] { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin-inline: calc(var(--gx, 20px) * -1); padding-inline: var(--gx, 20px); }
-  .wu-seo #services ol.dm-stack[data-stack]::-webkit-scrollbar { display: none; }
-  .wu-seo #services ol.dm-stack[data-stack] .dm-stack__card { width: min(80vw, 380px); scroll-snap-align: start; }
-}
-.wu-seo #services ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__l > h3, .wu-seo #services ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__r p { margin-left: 0 !important; margin-right: 0 !important; align-self: stretch; width: 100%; }
-.wu-seo #services.is-hz .ev-head { margin-bottom: clamp(24px, 2.6vw, 40px) !important; }
 /* package areas show their deliverables (the doc's own text) under each name */
 .wu-dm .dm-pkg__chips { align-items: start; }
 .wu-dm .dm-pkg__chips .dm-pkg__d { display: block; margin-top: -6px; font-size: 13px; line-height: 1.55; font-weight: 400; color: rgb(255 255 255 / .55); }
@@ -1573,3 +1552,165 @@
 }
 @media (max-width: 640px) { .wu-dm .dm-pkg__side .ev-panel h3, .wu-dm .dm-pkg__side .ev-panel p { max-width: 92%; } }
 @media (prefers-reduced-motion: reduce) { .wu-dm .dm-pkg__side .ev-panel h3, .wu-dm .dm-pkg__side .ev-panel p { animation: none; } }
+
+
+
+/* v1.3.74 (SEO Be Found points): two calm rows, each: lime icon disc + big title on the left, text (and tags) on the right; a soft lime glow behind the icon, no rules */
+.wu-seo #visibility .pm-grid--two { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: clamp(40px, 5vw, 72px) !important; }
+.wu-seo #visibility .pm-grid--two > li, .wu-seo #visibility .pm-grid--two > li + li, .wu-seo #visibility .pm-grid--two > li:first-child { display: grid !important; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); grid-template-rows: auto 1fr; column-gap: clamp(32px, 6vw, 110px); row-gap: 14px; align-items: start; padding: 0 !important; border: 0 !important; }
+.wu-seo #visibility .pm-grid--two .pm-ic { grid-column: 1; grid-row: 1; display: grid; place-items: center; width: 64px; height: 64px; margin: 0; border-radius: 50%; color: #11150a; background: #beda52 !important; box-shadow: 0 0 40px 6px rgb(190 218 82 / .25) !important; }
+.wu-seo #visibility .pm-grid--two .pm-ic svg { width: 28px; height: 28px; }
+.wu-seo #visibility .pm-grid--two h3 { grid-column: 1; grid-row: 2; margin: 0 !important; font-size: clamp(30px, 3vw, 44px) !important; line-height: 1.08; }
+.wu-seo #visibility .pm-grid--two p, .wu-seo #visibility .pm-grid--two .seo-tags { grid-column: 2; }
+.wu-seo #visibility .pm-grid--two p { grid-row: 1 / span 2; margin: 0; font-size: clamp(16px, 1.25vw, 18.5px); line-height: 1.75; color: rgb(255 255 255 / .72); }
+.wu-seo #visibility .pm-grid--two .seo-tags { grid-row: 3; margin-top: 4px; }
+.wu-seo #visibility .seo-tags span { padding: 6px 14px !important; border-radius: 99px; background: rgb(190 218 82 / .1) !important; color: #d8ec8a; }
+@media (max-width: 860px) { .wu-seo #visibility .pm-grid--two > li:nth-child(n) { grid-template-columns: minmax(0, 1fr); } .wu-seo #visibility .pm-grid--two :is(p, .seo-tags, h3, .pm-ic) { grid-column: 1; grid-row: auto; } }
+
+/* v1.3.74b (SEO Be Found points): light and airy: two columns, small lime icon beside a medium title, calm smaller text, plain tags; no discs, no glow */
+.wu-seo #visibility .pm-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: clamp(48px, 7vw, 120px) !important; margin-top: clamp(48px, 5vw, 80px); }
+.wu-seo #visibility .pm-grid--two > li:nth-child(n) { grid-template-columns: 30px minmax(0, 1fr) !important; grid-template-rows: auto auto auto !important; column-gap: 14px !important; row-gap: 14px !important; align-items: center; }
+.wu-seo #visibility .pm-grid--two .pm-ic { grid-column: 1 !important; grid-row: 1 !important; width: 30px !important; height: 30px !important; background: none !important; box-shadow: none !important; color: #beda52 !important; border-radius: 0; }
+.wu-seo #visibility .pm-grid--two .pm-ic svg { width: 24px; height: 24px; }
+.wu-seo #visibility .pm-grid--two h3 { grid-column: 2 !important; grid-row: 1 !important; font-size: clamp(20px, 1.6vw, 24px) !important; font-weight: 500; line-height: 1.25; }
+.wu-seo #visibility .pm-grid--two p { grid-column: 1 / -1 !important; grid-row: 2 !important; max-width: 52ch; font-size: 15.5px !important; line-height: 1.75 !important; color: rgb(255 255 255 / .58) !important; }
+.wu-seo #visibility .pm-grid--two .seo-tags { grid-column: 1 / -1 !important; grid-row: 3 !important; gap: 4px 16px; margin: 0; }
+.wu-seo #visibility .seo-tags span { padding: 0 !important; background: none !important; font-size: 13px; color: rgb(190 218 82 / .8); }
+@media (max-width: 860px) { .wu-seo #visibility .pm-grid--two { grid-template-columns: minmax(0, 1fr) !important; } }
+
+/* journey: extra chips sit under their own paragraph */
+.wu-dm ol.dm-stack[data-stack] .dm-stack__card .dm-stack__r > :not(p) { grid-column: 1 !important; grid-row: 3 !important; justify-self: end; margin-top: 4px !important; }
+.wu-dm ol.dm-stack[data-stack] .dm-stack__card:nth-child(even) .dm-stack__r > :not(p) { grid-column: 2 !important; justify-self: start; }
+@media (max-width: 860px) { .wu-dm ol.dm-stack[data-stack] .dm-stack__card:nth-child(n) .dm-stack__r > :not(p) { grid-column: 1 !important; grid-row: auto !important; justify-self: start; order: 4; } }
+
+/* v1.3.74 (SEO services journey, a variation of the DM one): logo holders are tilted rounded squares (app-tile shape) that straighten and get a lime ring when the trail reaches them; the trail is a dotted lime line; second part of each title in lime instead of grey */
+.wu-seo ol.dm-stack[data-stack] .dm-stack__vis { border-radius: 30% !important; rotate: -8deg; transition: rotate .7s cubic-bezier(.34, 1.4, .64, 1), border-radius .7s, box-shadow .5s, scale .5s, opacity .3s !important; }
+.wu-seo ol.dm-stack[data-stack] .dm-stack__card:nth-child(even) .dm-stack__vis { rotate: 8deg; }
+.wu-seo ol.dm-stack[data-stack] .dm-stack__card.is-lit:nth-child(n) .dm-stack__vis { rotate: 0deg; border-radius: 30% !important; }
+.wu-seo .dm-stack__path .dm-groove { stroke-width: 10; }
+.wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 .sh__b, .wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 > span + span { color: #beda52 !important; -webkit-text-fill-color: #beda52 !important; background: none !important; }
+.wu-seo .dm-stack__path .dm-groove-fill { stroke-width: 3; }
+.wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 > span { color: #beda52 !important; -webkit-text-fill-color: #beda52 !important; background: none !important; }
+
+/* SEO tools: icons only; the name appears in a small lime label on hover */
+.wu-seo #tools .dm-tools li { position: relative; }
+.wu-seo #tools .dm-tools li > span:not(.dm-mark) { position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: 3; padding: 3px 10px; border-radius: 99px; font-size: 12px; white-space: nowrap; color: #11150a; background: #beda52; translate: -50% 4px; opacity: 0; pointer-events: none; transition: opacity .25s, translate .3s; }
+.wu-seo #tools .dm-tools li:hover > span:not(.dm-mark) { opacity: 1; translate: -50% 0; }
+
+/* v1.3.74 (SEO Why WiseUp): big interactive rows: six large titles in a column; the active row (hover / tap, or mid-screen on touch) brightens, its lime icon disc fills and its text slides open beside the title; others stay quiet */
+.wu-seo ul.pm-grid--why.is-rows { display: block !important; margin-top: clamp(28px, 4vw, 56px); }
+.wu-seo ul.pm-grid--why.is-rows > li { display: grid !important; grid-template-columns: 56px minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(18px, 3vw, 48px); align-items: start; padding: clamp(20px, 2.2vw, 30px) 0 !important; border-top: 1px solid rgb(255 255 255 / .08) !important; cursor: pointer; }
+.wu-seo ul.pm-grid--why.is-rows > li:last-child { border-bottom: 1px solid rgb(255 255 255 / .08) !important; }
+.wu-seo ul.pm-grid--why.is-rows .pm-ic { grid-column: 1; grid-row: 1; width: 52px !important; height: 52px !important; margin: 0 !important; border-radius: 50%; display: grid; place-items: center; color: #beda52; background: rgb(190 218 82 / .08) !important; transition: background .7s ease, color .7s ease; }
+.wu-seo ul.pm-grid--why.is-rows .pm-ic svg { width: 24px; height: 24px; }
+.wu-seo ul.pm-grid--why.is-rows h3 { grid-column: 2 !important; grid-row: 1; margin: 6px 0 0 !important; font-size: clamp(22px, 2.4vw, 36px) !important; font-weight: 500; letter-spacing: -.03em; line-height: 1.15; color: rgb(255 255 255 / .38); transition: color .7s ease; }
+.wu-seo ul.pm-grid--why.is-rows p { grid-column: 3 !important; grid-row: 1; margin: 8px 0 0; max-width: 46ch; font-size: 16px; line-height: 1.7; color: rgb(255 255 255 / .7); opacity: 0; translate: 16px 0; transition: opacity .7s ease, translate .8s cubic-bezier(.2, .9, .2, 1); }
+.wu-seo ul.pm-grid--why.is-rows > li.is-on h3 { color: #fff; }
+.wu-seo ul.pm-grid--why.is-rows > li.is-on .pm-ic { background: #beda52 !important; color: #11150a; }
+.wu-seo ul.pm-grid--why.is-rows > li.is-on p { opacity: 1; translate: 0 0; }
+@media (max-width: 860px) {
+  .wu-seo ul.pm-grid--why.is-rows > li { grid-template-columns: 48px minmax(0, 1fr); row-gap: 10px; }
+  .wu-seo ul.pm-grid--why.is-rows p { grid-column: 2 !important; grid-row: 2; opacity: .55; translate: none; }
+  .wu-seo ul.pm-grid--why.is-rows > li.is-on p { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .wu-seo ul.pm-grid--why.is-rows * { transition: none !important; } }
+
+/* v1.3.74 (SEO Be Found): the search surfaces become an orbit of their real logos around a pulsing lime core (names on hover), beside the two points; the drifting chip row is retired */
+.wu-seo #visibility .seo-chans-run, .wu-seo #visibility > .wrap > .seo-chans { display: none !important; }
+.wu-seo .seo-vorb { position: relative; width: min(100%, 460px); aspect-ratio: 1; margin: clamp(24px, 3vw, 40px) auto 0; }
+.wu-seo .seo-vorb__core { position: absolute; left: 50%; top: 50%; width: 92px; height: 92px; margin: -46px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #e6f4a8, #beda52 55%, #8fa838); box-shadow: 0 0 60px 10px rgb(190 218 82 / .28); animation: seo-pulse 3.2s ease-in-out infinite; }
+.wu-seo .seo-vorb__ring { position: absolute; inset: 8%; border-radius: 50%; border: 1px dashed rgb(190 218 82 / .25); animation: seo-spin 60s linear infinite; }
+.wu-seo .seo-vorb__ring--2 { inset: 28%; border-style: solid; border-color: rgb(255 255 255 / .06); animation-direction: reverse; }
+.wu-seo .seo-vorb__i { position: absolute; width: 0; height: 0; }
+.wu-seo .seo-vorb__b { position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; animation: seo-bob 4.5s ease-in-out infinite; animation-delay: var(--d, 0s); }
+.wu-seo .seo-vorb__b .dm-mark { width: 60px; height: 60px; border-radius: 18px; box-shadow: 0 14px 26px -12px rgb(0 0 0 / .9); transition: scale .4s cubic-bezier(.34, 1.56, .64, 1); }
+.wu-seo .seo-vorb__b .dm-mark :is(svg, img) { width: 30px; height: 30px; }
+.wu-seo .seo-vorb__b:hover .dm-mark { scale: 1.15; }
+.wu-seo .seo-vorb__b em { position: absolute; left: 50%; top: calc(100% + 8px); padding: 3px 10px; border-radius: 99px; font-style: normal; font-size: 12px; white-space: nowrap; color: #11150a; background: #beda52; translate: -50% -4px; opacity: 0; pointer-events: none; transition: opacity .25s, translate .3s; }
+.wu-seo .seo-vorb__b:hover em { opacity: 1; translate: -50% 0; }
+@keyframes seo-pulse { 0%, 100% { scale: 1; } 50% { scale: 1.08; } }
+@keyframes seo-spin { to { rotate: 360deg; } }
+@keyframes seo-bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -8px; } }
+@media (min-width: 1024px) {
+  .wu-seo #visibility > .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(40px, 6vw, 110px); align-items: center; }
+  .wu-seo #visibility > .wrap > .ev-head { grid-column: 1 / -1; }
+  .wu-seo #visibility .seo-vorb { grid-column: 1; margin: 0; }
+  .wu-seo #visibility .pm-grid--two { grid-column: 2; grid-template-columns: minmax(0, 1fr) !important; gap: clamp(36px, 4vw, 56px) !important; margin-top: 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) { .wu-seo .seo-vorb * { animation: none !important; } }
+
+/* v1.3.74 (SEO Be Found points): reading spotlight: the two points' text lights up word by word as you scroll past; titles larger with a lime disc icon; a thin lime line links the two points */
+.wu-seo #visibility .pm-grid--two { position: relative; }
+.wu-seo #visibility .pm-grid--two .seo-w { color: rgb(255 255 255 / .2); transition: color .5s ease; }
+.wu-seo #visibility .pm-grid--two .seo-w.is-lit { color: rgb(255 255 255 / .85); }
+.wu-seo #visibility .pm-grid--two > li:nth-child(n) { grid-template-columns: 44px minmax(0, 1fr) !important; column-gap: 18px !important; }
+.wu-seo #visibility .pm-grid--two .pm-ic { width: 44px !important; height: 44px !important; border-radius: 50% !important; background: #beda52 !important; color: #11150a !important; }
+.wu-seo #visibility .pm-grid--two .pm-ic svg { width: 22px; height: 22px; }
+.wu-seo #visibility .pm-grid--two h3 { font-size: clamp(24px, 2.2vw, 32px) !important; letter-spacing: -.03em; }
+.wu-seo #visibility .pm-grid--two p { grid-column: 2 !important; font-size: clamp(16px, 1.3vw, 19px) !important; line-height: 1.6 !important; color: inherit !important; }
+.wu-seo #visibility .pm-grid--two .seo-tags { grid-column: 2 !important; }
+.wu-seo #visibility .pm-grid--two > li { position: relative; }
+.wu-seo #visibility .pm-grid--two > li:first-child::after { content: '' !important; display: block !important; position: absolute; left: 21px; top: 56px; bottom: calc(-1 * clamp(36px, 4vw, 56px)); width: 2px; background: linear-gradient(#beda52, rgb(190 218 82 / .1)); }
+
+/* v1.3.74b (SEO Be Found points): highlighter style: each title gets a lime marker stroke that sweeps across it as you scroll in; icon sits inside a tilted lime sticker; no connecting line; tags as hashtag chips that pop in */
+.wu-seo #visibility .pm-grid--two > li:first-child::after { display: none !important; }
+.wu-seo #visibility .pm-grid--two .pm-ic { border-radius: 14px !important; rotate: -8deg; transition: rotate .7s cubic-bezier(.34, 1.56, .64, 1); }
+.wu-seo #visibility .pm-grid--two > li.is-hl .pm-ic { rotate: 0deg; }
+.wu-seo #visibility .pm-grid--two h3 { justify-self: start; padding: 0 .18em; background: linear-gradient(transparent 58%, rgb(190 218 82 / .45) 58%, rgb(190 218 82 / .45) 92%, transparent 92%) no-repeat 0 0 / 0% 100%; transition: background-size 1.1s cubic-bezier(.65, 0, .35, 1) .15s; }
+.wu-seo #visibility .pm-grid--two > li.is-hl h3 { background-size: 100% 100%; }
+.wu-seo #visibility .seo-tags span { padding: 5px 12px !important; border-radius: 99px; background: rgb(190 218 82 / .1) !important; color: #d8ec8a; opacity: 0; scale: .7; transition: opacity .4s, scale .5s cubic-bezier(.34, 1.56, .64, 1); }
+.wu-seo #visibility .seo-tags span::before { content: '#'; opacity: .6; }
+.wu-seo #visibility .pm-grid--two > li.is-hl .seo-tags span { opacity: 1; scale: 1; }
+.wu-seo #visibility .seo-tags span:nth-child(2) { transition-delay: .08s; } .wu-seo #visibility .seo-tags span:nth-child(3) { transition-delay: .16s; } .wu-seo #visibility .seo-tags span:nth-child(4) { transition-delay: .24s; } .wu-seo #visibility .seo-tags span:nth-child(5) { transition-delay: .32s; } .wu-seo #visibility .seo-tags span:nth-child(6) { transition-delay: .4s; }
+.wu-seo #visibility .pm-grid--two { gap: clamp(48px, 5vw, 72px) !important; }
+@media (prefers-reduced-motion: reduce) { .wu-seo #visibility .pm-grid--two h3 { background-size: 100% 100%; } .wu-seo #visibility .seo-tags span { opacity: 1; scale: 1; } }
+.wu-seo #visibility .seo-tags span::before { content: none !important; }
+
+/* v1.3.74 (SEO Why WiseUp): the expanding-card row from the Digital Marketing "Why" section: six tall cards side by side; the active one (hover / tap) widens, fills lime and shows its text; the others fold to icon + title */
+@media (min-width: 1024px) {
+  .wu-seo ul.pm-grid--why.is-rows { display: flex !important; gap: 12px; height: clamp(380px, 30vw, 440px); margin-top: clamp(28px, 4vw, 56px); }
+  .wu-seo ul.pm-grid--why.is-rows > li { position: relative; display: flex !important; flex-direction: column; justify-content: flex-end; gap: 14px; flex: 1 1 0; min-width: 0; padding: 26px !important; border: 0 !important; border-radius: 26px; overflow: hidden; background: #111113 !important; transition: flex .9s cubic-bezier(.65, 0, .35, 1); }
+  .wu-seo ul.pm-grid--why.is-rows > li::before { content: '' !important; display: block !important; position: absolute; inset: 0; z-index: 0; border-radius: inherit; background: linear-gradient(150deg, #d8ec8a, #beda52 55%, #8fa838); opacity: 0; transition: opacity .9s cubic-bezier(.65, 0, .35, 1); }
+  .wu-seo ul.pm-grid--why.is-rows > li > * { position: relative; z-index: 1; }
+  .wu-seo ul.pm-grid--why.is-rows > li.is-on { flex: 2.8 1 0; }
+  .wu-seo ul.pm-grid--why.is-rows > li.is-on::before { opacity: 1; }
+  .wu-seo ul.pm-grid--why.is-rows .pm-ic { position: absolute !important; top: 26px; left: 26px; width: 52px !important; height: 52px !important; border-radius: 16px; background: rgb(190 218 82 / .12) !important; color: #beda52; }
+  .wu-seo ul.pm-grid--why.is-rows > li.is-on .pm-ic { background: #11150a !important; color: #beda52; }
+  .wu-seo ul.pm-grid--why.is-rows h3 { margin: 0 !important; font-size: clamp(17px, 1.35vw, 20px) !important; line-height: 1.25; color: #fff !important; transition: color .7s; }
+  .wu-seo ul.pm-grid--why.is-rows p { max-height: 0; overflow: hidden; margin: 0 !important; opacity: 0; translate: 0 10px; font-size: 15.5px; line-height: 1.65; color: #11150a; transition: opacity .4s, max-height .9s cubic-bezier(.65, 0, .35, 1), translate .6s; }
+  .wu-seo ul.pm-grid--why.is-rows > li.is-on h3 { color: #11150a !important; font-size: clamp(22px, 1.9vw, 28px) !important; }
+  .wu-seo ul.pm-grid--why.is-rows > li.is-on p { max-height: 12em; opacity: 1; translate: 0 0; transition-delay: .35s; }
+}
+@media (max-width: 1023px) {
+  .wu-seo ul.pm-grid--why.is-rows > li { grid-template-columns: 48px minmax(0, 1fr) !important; border-radius: 22px; padding: 22px !important; margin-bottom: 12px; background: #111113 !important; border: 0 !important; }
+  .wu-seo ul.pm-grid--why.is-rows p { opacity: 1 !important; translate: none !important; grid-column: 2 !important; }
+  .wu-seo ul.pm-grid--why.is-rows h3 { color: #fff !important; }
+}
+@media (min-width: 1024px) {
+  .wu-seo ul.pm-grid--why.is-rows { justify-content: stretch; }
+  .wu-seo ul.pm-grid--why.is-rows > li { border-radius: 26px !important; margin: 0 !important; width: auto !important; max-width: none !important; transform: none !important; scale: none !important; translate: none !important; }
+  .wu-seo ul.pm-grid--why.is-rows > li:last-child { border-bottom: 0 !important; }
+  .wu-seo ul.pm-grid--why.is-rows h3 { font-size: 17px !important; }
+}
+
+/* v1.3.74c (SEO Be Found points): a segmented switch: the two titles sit side by side as one pill control; the chosen point's text (and tags) shows below in one calm panel */
+.wu-seo #visibility .pm-grid--two.is-tabs { display: grid !important; grid-template-columns: auto auto 1fr !important; grid-template-rows: auto auto !important; gap: 0 !important; align-items: start; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li { display: contents !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs .pm-ic { display: none !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs h3 { grid-row: 1 !important; grid-column: auto !important; margin: 0 4px 0 0 !important; padding: 12px 22px !important; border-radius: 99px; font-size: clamp(16px, 1.25vw, 18px) !important; font-weight: 500; letter-spacing: -.01em; color: rgb(255 255 255 / .6) !important; background: rgb(255 255 255 / .05) !important; cursor: pointer; transition: background .6s ease, color .6s ease; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li:first-child h3 { grid-column: 1 !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li:nth-child(2) h3 { grid-column: 2 !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li.is-on h3 { color: #11150a !important; background: #beda52 !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs h3:focus-visible { outline: 2px solid #beda52; outline-offset: 3px; }
+.wu-seo #visibility .pm-grid--two.is-tabs p, .wu-seo #visibility .pm-grid--two.is-tabs .seo-tags { grid-row: 2 !important; grid-column: 1 / -1 !important; align-self: start; }
+.wu-seo #visibility .pm-grid--two.is-tabs p { margin: 30px 0 0 !important; font-size: clamp(17px, 1.35vw, 20px) !important; line-height: 1.7 !important; color: rgb(255 255 255 / .82) !important; max-width: 56ch; opacity: 0; translate: 0 12px; transition: opacity .6s ease, translate .7s cubic-bezier(.2, .9, .2, 1); pointer-events: none; }
+.wu-seo #visibility .pm-grid--two.is-tabs .seo-tags { margin-top: 30px !important; translate: 0 calc(var(--tagoff, 0px)); opacity: 0; transition: opacity .6s ease; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li.is-on p { opacity: 1; translate: 0 0; pointer-events: auto; }
+.wu-seo #visibility .pm-grid--two.is-tabs .seo-w { color: inherit !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li.is-on .seo-tags { opacity: 1; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li:nth-child(2) .seo-tags { align-self: end; margin-top: 0 !important; }
+.wu-seo #visibility .pm-grid--two.is-tabs > li:nth-child(2) { }
+.wu-seo #visibility .pm-grid--two.is-tabs > li:nth-child(2) p { margin-bottom: 64px !important; }
+/* Why WiseUp row: even gaps */
+@media (min-width: 1024px) { .wu-seo ul.pm-grid--why.is-rows { gap: 12px !important; } }
+@media (min-width: 1024px) { .wu-seo ul.pm-grid--why.is-rows { height: clamp(300px, 22vw, 330px); } .wu-seo ul.pm-grid--why.is-rows > li { padding: 22px !important; } .wu-seo ul.pm-grid--why.is-rows .pm-ic { top: 22px; left: 22px; width: 44px !important; height: 44px !important; } }
