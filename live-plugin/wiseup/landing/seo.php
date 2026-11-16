@@ -1,221 +1,251 @@
 <?php
+
 /**
- * Template Name: WiseUp SEO Landing Page
- * Template Post Type: page
- *
- * Full-width landing page: SEO Company in Kerala (WiseUp Branding).
- *
- * Install: copy this file into your active theme folder (or child theme) and upload the
- * "wiseup-landing-assets" folder next to it. Then create a Page and choose
- * Page Attributes > Template > "WiseUp SEO Landing Page". See README.txt.
- *
- * @package WiseUp
+ * SEO Company in Kerala ("WiseUp: SEO Company" in the page Template dropdown). Rebuilt in the shared service-page design
+ * system (Event Branding / Digital Marketing / Performance pages: assets/css/event-branding.css + digital-marketing.css,
+ * .wu-ev .wu-dm .wu-pm); same sections, order and copy as before (the owner's seo agency in kerala.docx).
  */
+defined( 'ABSPATH' ) || exit;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/* ------------------------------------------------------------------
- * 1. Find the assets folder (theme, parent theme, or uploads)
- * ------------------------------------------------------------------ */
-if ( ! function_exists( 'wiseup_landing_assets' ) ) {
-	function wiseup_landing_assets() {
-		$dir        = 'wiseup-landing-assets';
-		$uploads    = wp_upload_dir();
-		$candidates = array(
-			array( get_stylesheet_directory(), get_stylesheet_directory_uri() ),
-			array( get_template_directory(), get_template_directory_uri() ),
-			array( $uploads['basedir'], $uploads['baseurl'] ),
-		);
-		foreach ( $candidates as $c ) {
-			if ( is_dir( trailingslashit( $c[0] ) . $dir ) ) {
-				return array( trailingslashit( $c[1] ) . $dir . '/', trailingslashit( $c[0] ) . $dir . '/' );
-			}
-		}
-		return array( trailingslashit( get_stylesheet_directory_uri() ) . $dir . '/', '' );
-	}
-}
-list( $wu_assets, $wu_assets_dir ) = wiseup_landing_assets();
-$wu_ver = ( $wu_assets_dir && file_exists( $wu_assets_dir . 'js/landing.js' ) ) ? (string) max( filemtime( $wu_assets_dir . 'js/landing.js' ), (int) @filemtime( $wu_assets_dir . 'css/landing.css' ) ) : '1.0.0'; // changes with the script or the stylesheet
-
-/* ------------------------------------------------------------------
- * 2. Scripts and styles (the lead plugin is optional)
- * ------------------------------------------------------------------ */
-$wu_has_plugin = (bool) has_action( 'wp_ajax_nopriv_wiseup_lead' );
-
-add_action(
-	'wp_enqueue_scripts',
-	function () use ( $wu_assets, $wu_ver, $wu_has_plugin ) {
-		wp_enqueue_style( 'wiseup-landing', $wu_assets . 'css/landing.css', array(), $wu_ver );
-		wp_enqueue_script( 'wiseup-landing', $wu_assets . 'js/landing.js', array(), $wu_ver, true );
-		wp_add_inline_script(
-			'wiseup-landing',
-			'window.WU_CFG=' . wp_json_encode(
-				array(
-					'ajaxUrl'      => $wu_has_plugin ? admin_url( 'admin-ajax.php' ) : '',
-					'assets'       => $wu_assets,
-					'leadEndpoint' => apply_filters( 'wiseup_landing_lead_endpoint', '' ),
-					'smoothScroll' => (bool) apply_filters( 'wiseup_landing_smooth_scroll', true ),
-				)
-			) . ';',
-			'before'
-		);
-	},
-	20
-);
-
-/* A landing page should not inherit theme styling. Turn off with:
- * add_filter( 'wiseup_landing_isolate_styles', '__return_false' ); */
-if ( apply_filters( 'wiseup_landing_isolate_styles', true ) ) {
-	add_action(
-		'wp_enqueue_scripts',
-		function () {
-			global $wp_styles;
-			if ( ! $wp_styles ) {
-				return;
-			}
-			foreach ( (array) $wp_styles->queue as $handle ) {
-				$src = isset( $wp_styles->registered[ $handle ] ) ? (string) $wp_styles->registered[ $handle ]->src : '';
-				if ( 'wiseup-landing' !== $handle && ( false !== strpos( $src, '/themes/' ) ) ) {
-					wp_dequeue_style( $handle );
-				}
-			}
-			foreach ( array( 'global-styles', 'wp-block-library', 'wp-block-library-theme', 'classic-theme-styles', 'wc-blocks-style' ) as $h ) {
-				wp_dequeue_style( $h );
-			}
-		},
-		100
-	);
-}
-
-/* ------------------------------------------------------------------
- * 3. SEO tags (skipped when Yoast, Rank Math, AIOSEO or SEOPress is active)
- * ------------------------------------------------------------------ */
-$wu_title = apply_filters( 'wiseup_landing_title', "SEO Company in Kerala | WiseUp Branding" );
-$wu_desc  = apply_filters( 'wiseup_landing_description', "WiseUp is an SEO company in Kerala building visibility across Google, Bing and AI-powered search with technical SEO, content, AI SEO and data-led strategy." );
+$wu_src   = 'seo';
+$wu_title = apply_filters( 'wiseup_landing_title', 'SEO Company in Kerala | WiseUp Branding' );
+$wu_desc  = apply_filters( 'wiseup_landing_description', 'WiseUp is an SEO company in Kerala building visibility across Google, Bing and AI-powered search with technical SEO, content, AI SEO and data-led strategy.' );
 $wu_seo   = defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' );
 if ( ! $wu_seo ) {
-	add_filter(
-		'pre_get_document_title',
-		function () use ( $wu_title ) {
-			return $wu_title;
-		}
-	);
-	add_action(
-		'wp_head',
-		function () use ( $wu_title, $wu_desc ) {
-			$url = get_permalink();
-			echo '<meta name="description" content="' . esc_attr( $wu_desc ) . '">' . "\n";
-			echo '<link rel="canonical" href="' . esc_url( $url ) . '">' . "\n";
-			echo '<meta property="og:type" content="website">' . "\n";
-			echo '<meta property="og:title" content="' . esc_attr( $wu_title ) . '">' . "\n";
-			echo '<meta property="og:description" content="' . esc_attr( $wu_desc ) . '">' . "\n";
-			echo '<meta property="og:url" content="' . esc_url( $url ) . '">' . "\n";
-			echo '<meta name="twitter:card" content="summary_large_image">' . "\n";
-		},
-		1
-	);
+	add_filter( 'pre_get_document_title', function () use ( $wu_title ) { return $wu_title; } );
+	add_action( 'wp_head', function () use ( $wu_title, $wu_desc ) {
+		$url = get_permalink();
+		echo '<meta name="description" content="' . esc_attr( $wu_desc ) . '">' . "\n";
+		echo '<link rel="canonical" href="' . esc_url( $url ) . '">' . "\n";
+		echo '<meta property="og:type" content="website">' . "\n";
+		echo '<meta property="og:title" content="' . esc_attr( $wu_title ) . '">' . "\n";
+		echo '<meta property="og:description" content="' . esc_attr( $wu_desc ) . '">' . "\n";
+		echo '<meta property="og:url" content="' . esc_url( $url ) . '">' . "\n";
+	}, 2 );
 }
-add_action(
-	'wp_head',
-	function () {
-		$faq = array( array( '@type' => 'Question', 'name' => 'How long do SEO efforts typically take to show significant, measurable results for an established website?', 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => 'Most established websites see measurable gains: better rankings, impressions and organic traffic, within three to six months. Highly competitive keywords or new markets can take six to twelve. Technical fixes often show impact sooner, and results compound the longer a consistent strategy runs.' ) ), array( '@type' => 'Question', 'name' => 'What deliverables and reports will we receive every month?', 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => 'A monthly SEO report covering keyword rankings, organic traffic, conversions, Search Console and GA4 insights, AI search visibility, the work completed and the plan for next month, plus access to a live dashboard whenever you need it.' ) ), array( '@type' => 'Question', 'name' => 'Should SEO be part of a broader digital marketing strategy?', 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => 'Yes. SEO builds long-term organic visibility, while paid ads, social media and content marketing drive faster reach. Planned together, each channel strengthens the others, and your overall cost per lead comes down.' ) ), array( '@type' => 'Question', 'name' => 'What Is WooCommerce SEO and How Does It Benefit E-commerce Businesses?', 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => 'WooCommerce SEO optimises WordPress-based online stores: product and category pages, site structure, structured data, internal linking and technical performance, so your products appear for high-intent, ready-to-buy searches. The result is more organic shoppers and sales without relying entirely on paid ads.' ) ) );
-		$ld  = array(
-			'@context'   => 'https://schema.org',
-			'@type'      => 'FAQPage',
-			'mainEntity' => $faq,
-		);
-		echo '<script type="application/ld+json">' . wp_json_encode( $ld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . '</script>' . "\n";
-	},
-	5
+wiseup_landing_isolate();
+// Motion engine flag before first paint (same as the Event Branding page; removed after 3s if the scripts never start).
+add_action( 'wp_head', function () {
+	echo "<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('wu-motion');setTimeout(function(){if(!window.__wuEvMotion)d.classList.remove('wu-motion');},3000);})();</script>\n";
+}, 1 );
+add_action( 'wp_head', function () {
+	foreach ( array( 'event-branding.css', 'digital-marketing.css' ) as $css ) {
+		echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/' . $css . '?ver=' . filemtime( WISEUP_DIR . 'assets/css/' . $css ) ) . "\">\n";
+	}
+}, 8 );
+
+$wu_wa    = 'https://wa.me/916282434503?text=' . rawurlencode( 'Hi WiseUp, I would like a free SEO assessment for my website.' );
+$wu_arrow = '<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/></svg>';
+$wu_ne    = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+$wu_btn   = function ( $label, $look = 'teal', $attrs = '' ) use ( $wu_arrow ) {
+	$tag = false !== strpos( $attrs, 'href=' ) ? 'a' : 'button';
+	return '<' . $tag . ( 'button' === $tag ? ' type="button"' : '' ) . ' class="b b--' . $look . '" ' . $attrs . '><span class="b__label">' . esc_html( $label ) . '</span><span class="b__ico">' . $wu_arrow . $wu_arrow . '</span></' . $tag . '>';
+};
+$wu_lead    = 'data-lead-open data-lead-source="' . esc_attr( $wu_src ) . '"';
+$wu_eyebrow = function ( $t ) { return '<p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>' . esc_html( $t ) . '</p>'; };
+$wu_svg     = function ( $paths, $size = 22, $sw = 1.6 ) {
+	return '<svg width="' . (int) $size . '" height="' . (int) $size . '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="' . esc_attr( $sw ) . '" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $paths . '</svg>';
+};
+// Brand mark tile: a Simple Icons slug (inline SVG in its brand colour) or an image file in assets/landing/img/icons/.
+$wu_brands = include WISEUP_DIR . 'landing/digital-marketing-icons.php';
+$wu_mark   = function ( $key ) use ( $wu_brands ) {
+	// Google products: the official full-colour logos (Simple Icons only has flat one-colour versions)
+	$wu_google = array( 'google' => 'i-google-icon.svg', 'googleads' => 'i-google-ads.svg', 'googlesearchconsole' => 'i-google-search-console.svg', 'googleanalytics' => 'i-google-analytics.svg', 'googletagmanager' => 'i-google-tag-manager.svg' );
+	if ( isset( $wu_google[ $key ] ) ) $key = $wu_google[ $key ];
+	if ( isset( $wu_brands[ $key ] ) ) {
+		$fill = $wu_brands[ $key ][0];
+		$defs = '';
+		if ( 'instagram' === $key ) { // the real Instagram gradient, defined inside its own svg
+			static $ig_n = 0;
+			$ig_n++;
+			$fill = 'url(#dm-ig' . $ig_n . ')';
+			$defs = '<defs><radialGradient id="dm-ig' . $ig_n . '" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285AEB"/></radialGradient></defs>';
+		}
+		return '<span class="dm-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="' . esc_attr( $fill ) . '">' . $defs . '<path d="' . esc_attr( $wu_brands[ $key ][1] ) . '"/></svg></span>';
+	}
+	return '<span class="dm-mark" aria-hidden="true"><img src="' . esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $key ) . '" alt="" width="20" height="20" loading="lazy" decoding="async"></span>';
+};
+// Stacking cards: one wide card per item; on scroll each card slides up over the one before (sticky), the covered
+// card shrinks back and dims (assets/css/digital-marketing.css .dm-stack, script at the end of this file).
+// Item: [ title, text, visual html, extra html after the text, number label ].
+// Card title in two tones, like the section headings: white lead words, grey rest from the first " (" or " & ".
+$wu_stack_title = function ( $s ) {
+	foreach ( array( ' (', ' & ' ) as $cut ) {
+		$p = strpos( $s, $cut );
+		if ( false !== $p ) return esc_html( substr( $s, 0, $p ) ) . ' <span>' . esc_html( substr( $s, $p + 1 ) ) . '</span>';
+	}
+	return esc_html( $s );
+};
+$wu_stack = function ( $items, $mod ) use ( $wu_stack_title ) {
+	$n = count( $items );
+	$o = '<ol class="dm-stack dm-stack--' . esc_attr( $mod ) . '" data-stack>';
+	foreach ( array_values( $items ) as $k => $it ) {
+		$o .= '<li class="dm-stack__card" style="--i:' . (int) $k . '"><div class="dm-stack__in">'
+			. '<div class="dm-stack__l"><span class="dm-stack__vis">' . $it[2] . '</span>'
+			. '<h3>' . $wu_stack_title( $it[0] ) . '</h3></div>'
+			. '<div class="dm-stack__r">'
+			. '<p>' . esc_html( $it[1] ) . '</p>' . $it[3] . '</div>'
+			. '</div></li>';
+	}
+	return $o . '</ol>';
+};
+// Two-tone heading: first part white, second part grey, split where the sentence breaks.
+$wu_h = function ( $a, $b ) { return '<span class="sh__a">' . esc_html( $a ) . '</span> <span class="sh__b">' . esc_html( $b ) . '</span>'; };
+
+// Client logos: the homepage strip's logo set (same files and alt text as the Event Branding page).
+$wu_logos = array( 'amarapushpa' => 'Amarapushpa', 'bm-prime' => 'BM Prime', 'bucho' => 'Bucho', 'cadd' => 'CADD', 'cellar-de-mahe' => 'Cellar de mahe', 'clair-veda' => 'Clair veda', 'eduwizz' => 'Eduwizz', 'ellisto' => 'Ellisto', 'erets' => 'Erets', 'flora-fauna' => 'Flora fauna', 'formaa' => 'Formaa', 'gloveda' => 'Gloveda', 'goldekarak' => 'Golden Karak', 'hayath' => 'Hayath', 'intervel' => 'Intervel', 'lullaby' => 'Lullaby', 'lunar' => 'Lunar', 'mgf' => 'MGF', 'mooss' => 'mooss', 'onesto-marcado' => 'Onesto Marcado', 'philips' => 'Philips', 'popees' => 'Popees', 'sathya' => 'Sathya', 'superhuman' => 'Superhuman', 'tiny-mafia' => 'Tiny Mafia', 'wellah' => 'Wellah' );
+$wu_li    = '';
+foreach ( $wu_logos as $f => $alt ) $wu_li .= '<li class="is-tile"><img src="' . esc_url( WISEUP_ASSETS . '/clients/client-logos-2026/' . $f . '.webp' ) . '" alt="' . esc_attr( $alt ) . '" loading="lazy" decoding="async"></li>';
+
+$wu_icons = array(
+	'search'  => '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M8.5 11h5M11 8.5v5"/>',
+	'target'  => '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1"/>',
+	'chat'    => '<path d="M4 5h16v10H9l-5 4z"/><path d="M8 9h8M8 12h5"/>',
+	'pen'     => '<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4M14 20h6"/>',
+	'brush'   => '<path d="M14.5 4.5 19.5 9.5 11 18l-5-5z"/><path d="M6 13c-2 0-3 1.5-3 3.5S2 20 2 20s4 .5 5.5-1 1.5-3.5.5-5"/>',
+	'code'    => '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M9.5 12 7.5 14l2 2M14.5 12l2 2-2 2"/>',
+	'mega'    => '<path d="M4 10v4h3l7 4V6l-7 4z"/><path d="M17.5 9.5a3.5 3.5 0 0 1 0 5M7 14l1.5 5h2.5l-1-4.5"/>',
+	'bot'     => '<rect x="4.5" y="8" width="15" height="11" rx="3"/><path d="M12 4.5V8M9.5 13h.01M14.5 13h.01M9.5 16h5M2.5 12.5v2M21.5 12.5v2"/><circle cx="12" cy="4" r="1"/>',
+	'ear'     => '<path d="M7 9.5a5 5 0 0 1 10 0c0 3-2.5 3.5-3 6s-1.5 4-3.5 4-3-1.5-3-3"/><path d="M10 9.5a2 2 0 0 1 4 0"/>',
+	'scope'   => '<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2M8 12.5l2-2 1.5 1.5L14 9"/>',
+	'mix'     => '<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/><path d="M4 12h6M14 12h6"/><circle cx="12" cy="12" r="2"/>',
+	'spark'   => '<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M18.4 5.6l-2.8 2.8M8.4 15.6l-2.8 2.8"/>',
+	'chart'   => '<path d="M4 20V4M4 20h16"/><path d="m7.5 15 4-4.5 3 3L20 7"/>',
+	'health'  => '<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/><path d="M9.5 12h5M12 9.5v5"/>',
+	'home'    => '<path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5M10 20v-5.5h4V20"/>',
+	'cap'     => '<path d="m2.5 9.5 9.5-5 9.5 5-9.5 5z"/><path d="M6.5 11.6V16c1.5 1.6 3.4 2.4 5.5 2.4s4-.8 5.5-2.4v-4.4M21.5 9.5v5"/>',
+	'scale'   => '<path d="M12 4v16M8 20h8M5 7h14"/><path d="m5 7-2.5 6a3 3 0 0 0 5 0zM19 7l-2.5 6a3 3 0 0 0 5 0z"/>',
+	'bed'     => '<path d="M3 18V7M3 14h18v4M21 14v-2.5A2.5 2.5 0 0 0 18.5 9H11v5"/><circle cx="7" cy="11" r="1.8"/>',
+	'bag'     => '<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/>',
+	'factory' => '<path d="M3 20V10l5 3V10l5 3V6h4l1 14z"/><path d="M3 20h18M7 17h2M12 17h2"/>',
+	'rocket'  => '<path d="M12 3c3 2 4.5 5 4.5 9L12 16.5 7.5 12C7.5 8 9 5 12 3z"/><circle cx="12" cy="9.5" r="1.6"/><path d="M7.5 12 5 14.5l2.5 1M16.5 12l2.5 2.5-2.5 1M10.5 17.5 12 21l1.5-3.5"/>',
+	'tool'    => '<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>',
+	'pin'     => '<path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/>',
+	'globe'   => '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/>',
+	'map'     => '<path d="M3 6.5 9 4l6 2.5 6-2.5v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/>',
+	'play'    => '<circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z"/>',
+	'link'    => '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
+	'eye'     => '<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>',
 );
-?><!DOCTYPE html>
-<html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,300..800;1,300..600&display=swap" rel="stylesheet">
-<noscript><style>.wu-faq-a{grid-template-rows:1fr!important}</style></noscript>
-<?php wiseup_landing_chrome_styles(); // the shared WiseUp header and footer ?>
-<?php wp_head(); ?>
-</head>
-<body <?php body_class( 'wu-landing' ); ?>>
-<?php wp_body_open(); ?>
-<?php wiseup_landing_chrome_header(); ?>
-<div data-root="" style="font-family: Epilogue, system-ui, sans-serif; background: rgb(0, 0, 0); color: rgb(255, 255, 255); overflow-x: clip;"><div data-progress="" style="position: fixed; left: 0px; top: 0px; height: 2px; width: 100%; transform-origin: 0px 50%; transform: scaleX(0); background: linear-gradient(90deg, rgb(110, 138, 34), rgb(194, 247, 96), rgb(241, 249, 184)); box-shadow: rgba(194, 247, 96, 0.7) 0px 0px 12px; z-index: 100; pointer-events: none;"></div><a data-totop="" href="#top" aria-label="Back to top" class="scp0" style="position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 52px; height: 52px; border-radius: 50%; background: rgba(14, 18, 6, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(194, 247, 96, 0.35); color: rgb(194, 247, 96); display: grid; place-items: center; opacity: 0; transform: translateY(16px); pointer-events: none; transition: opacity 0.4s, transform 0.4s, background 0.3s, color 0.3s;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></a><section id="top" data-screen-label="Hero" style="position: relative; min-height: 100vh; padding: clamp(112px, 14vw, 140px) clamp(16px, 4vw, 40px) clamp(96px, 10vw, 120px); display: flex; flex-direction: column; justify-content: center; gap: clamp(40px, 5vw, 64px); background: rgb(28, 29, 25); overflow: hidden;">
-  <div data-blob="1" style="position: absolute; width: 60vw; height: 60vw; left: -10vw; top: -15vw; border-radius: 50%; background: radial-gradient(circle, rgb(123, 129, 70) 0%, rgba(123, 129, 70, 0) 65%); filter: blur(40px); pointer-events: none;"></div>
-  <div data-blob="2" style="position: absolute; width: 55vw; height: 55vw; right: -15vw; top: 10vw; border-radius: 50%; background: radial-gradient(circle, rgb(138, 138, 132) 0%, rgba(138, 138, 132, 0) 65%); filter: blur(50px); pointer-events: none;"></div>
-  <div data-blob="3" style="position: absolute; width: 50vw; height: 50vw; left: 20vw; bottom: -25vw; border-radius: 50%; background: radial-gradient(circle, rgb(86, 96, 42) 0%, rgba(86, 96, 42, 0) 65%); filter: blur(50px); pointer-events: none;"></div>
-  <div style="position: absolute; inset: 0px; background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.024) 0px, rgba(255, 255, 255, 0.024) 1px, transparent 1px, transparent 4px); pointer-events: none;"></div>
-  <div style="position: absolute; left: 0px; right: 0px; bottom: 0px; height: 40%; background: linear-gradient(rgba(0, 0, 0, 0), rgb(0, 0, 0)); pointer-events: none;"></div>
-  <a href="#visibility" aria-label="Scroll down" class="scp1" style="position: absolute; left: 50%; bottom: 28px; translate: -50%; z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255, 255, 255, 0.55);"><span style="width: 24px; height: 38px; border-radius: 999px; border: 1.5px solid; display: flex; justify-content: center; padding-top: 7px;"><span data-cue="" style="width: 3px; height: 8px; border-radius: 3px; background: rgb(194, 247, 96);"></span></span>Scroll</a>
 
-  <div style="position: relative; width: 100%; max-width: 1240px; margin: 0px auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); gap: clamp(48px, 6vw, 80px); align-items: center;">
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <h1 data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.55); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); font-size: 13.5px; font-weight: 500; margin: 0; letter-spacing: 0.02em; box-shadow: rgba(255, 255, 255, 0.06) 0px 1px 0px inset;">
-        <span style="width: 16px; height: 16px; border-radius: 50%; background: radial-gradient(circle, rgb(233, 249, 138) 0%, rgb(157, 186, 53) 70%); box-shadow: rgb(194, 247, 96) 0px 0px 12px;"></span>
-        SEO Company in Kerala
-      </h1>
+// ---------- content ----------
+$wu_visibility = array( array( 'Google Search', 'google' ), array( 'AI Overviews', 'googlegemini.svg' ), array( 'Bing', 'fav-bing.com.png' ), array( 'ChatGPT', 'fav-chatgpt.com.png' ), array( 'Google Maps', 'googlemaps.svg' ), array( 'Gemini', 'googlegemini.svg' ), array( 'Copilot', '' ), array( 'Perplexity', 'perplexity.svg' ) );
 
-      <h2 data-reveal="" data-delay="200" style="font-size: clamp(36px, 4.6vw, 64px); letter-spacing: -0.045em; font-weight: 400; text-wrap: balance; line-height: 1.04; margin: 0;">Search is changing. Make sure your brand is <span style="color: rgb(210, 234, 166);">still being found.</span></h2>
-      <p data-reveal="" data-delay="300" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.8); max-width: 600px; text-wrap: pretty;">A website that doesn't appear when customers search for your services is missing valuable opportunities. WiseUp is an SEO company in Kerala that brings technical optimisation, strategic content, keyword intelligence and competitor analysis together to strengthen your online presence. We build search strategies that position your brand across traditional search engines and AI-powered platforms, helping potential customers find and consider your business.</p>
-    </div>
+// Services: [ title, icon, text, tags, brand marks ].
+$wu_services = array(
+	array( 'SEO Strategy & Keyword Research', 'search', 'Our SEO strategy begins with understanding your market, competitors and customer search behaviour. We identify relevant keywords across informational, commercial and transactional intent, assessing their search demand, competition and business relevance. From keyword mapping and content gaps to search opportunity analysis, we develop a practical roadmap that gives every page a clear purpose and direction.', array(), array( 'semrush', 'fav-ahrefs.com.png', 'fav-trends.google.com.png' ) ),
+	array( 'On-Page SEO', 'pen', 'We optimise the elements that influence page relevance, search visibility and user experience. Our on-page SEO includes title tags, meta descriptions, heading structures, URLs, keyword placement, content optimisation, image attributes, internal linking and structured data. We also review page organisation and content quality to ensure your website communicates its relevance clearly to both visitors and search engines.', array(), array( 'google', 'googlesearchconsole' ) ),
+	array( 'AI SEO & Search Visibility', 'spark', 'WiseUp incorporates Answer Engine Optimisation (AEO), Generative Engine Optimisation (GEO) and LLM-focused strategies into its broader SEO approach. We work on answer-focused content, entity clarity, topical authority, structured data, source accessibility and consistent brand information to improve how your business can be discovered across AI-powered search experiences. Our approach covers platforms such as ChatGPT, Gemini, Claude and Perplexity, alongside conventional search engines.', array( 'AEO', 'GEO', 'LLM visibility', 'AI Overviews', 'Entity optimisation' ), array( 'fav-chatgpt.com.png', 'googlegemini.svg', 'claude.svg', 'perplexity.svg' ) ),
+	array( 'AI Overview Optimisation (AIO)', 'bot', 'Google AI Overviews are changing how information appears in search results. Our AIO services focus on improving your website’s eligibility to appear as a cited source in AI-generated summaries. We work on content relevance, clear information structures, topical coverage, entity consistency and supporting page signals. This helps search engines identify useful information on your website and consider it for relevant AI-generated responses.', array(), array( 'google', 'googlegemini.svg' ) ),
+	array( 'Technical SEO', 'tool', 'Our technical SEO services address website issues that affect crawling, indexing, rendering, and performance. We conduct technical audits and work on site architecture, XML sitemaps, robots.txt, canonical tags, redirects, broken links, Core Web Vitals, mobile usability, structured data, and page speed. From identifying crawl errors to resolving indexing barriers, we strengthen the technical elements required for sustainable organic search performance.', array(), array( 'fav-screamingfrog.co.uk.png', 'googlesearchconsole', 'googletagmanager' ) ),
+	array( 'Content SEO', 'brush', 'Our content SEO strategy connects keyword opportunities with your audience’s needs and your business offerings. We develop and optimise service pages, landing pages, product content, blogs and supporting resources to improve topical relevance and organic visibility. Content gap analysis, search intent mapping, topic clusters, internal linking and content updates ensure your website has a clear, connected content strategy.', array(), array( 'semrush', 'grammarly', 'fav-answerthepublic.com.png' ) ),
+	array( 'Off-Page SEO & Link Building', 'link', 'We strengthen your website’s external authority through strategic link acquisition, backlink analysis, competitor link research, digital PR opportunities and relevant brand mentions. Our off-page SEO services prioritise credible sources, industry relevance and natural link profiles. We also monitor existing backlinks to identify potentially harmful patterns and opportunities to improve your website’s authority.', array(), array( 'fav-ahrefs.com.png', 'semrush', 'ddg-moz.com.ico' ) ),
+	array( 'Local SEO', 'pin', 'We improve your local search presence through Google Business Profile management and targeted keywords that connect your business with nearby customers. Our local SEO services cover business profile management, local citations, business information consistency, location landing pages, review visibility, and locally relevant content. Whether you’re targeting Calicut, other cities across Kerala, or multiple service locations, we align your local search presence with your business reach.', array(), array( 'googlemaps.svg', 'google' ) ),
+	array( 'International SEO', 'globe', 'We build international SEO strategies for businesses targeting customers across countries and languages. Our work covers international keyword research, website localisation, country-specific content, URL structures, hreflang implementation and regional targeting. We also review technical configurations to ensure search engines can identify the right content for audiences in different markets.', array(), array( 'google', 'fav-bing.com.png' ) ),
+	array( 'Mobile SEO', 'eye', 'We optimise mobile website performance across responsive layouts, navigation, page speed, content presentation, usability and Core Web Vitals. Our mobile SEO work also addresses technical accessibility and rendering issues that affect how search engines access mobile pages. The result is a website experience designed to support both mobile visitors and organic search performance.', array(), array( 'google', 'fav-clarity.microsoft.com.png' ) ),
+	array( 'SaaS SEO', 'code', 'Our SaaS SEO services focus on reaching users at every stage of the software buying journey. We optimise product pages, feature pages, integration pages, use-case landing pages and comparison content around high-intent search opportunities. Our strategy also covers competitor positioning, technical SEO, topical content clusters and conversion-focused optimisation to strengthen organic acquisition and attract users who are actively evaluating software solutions.', array(), array( 'hubspot', 'react.svg', 'nextdotjs.svg' ) ),
+);
 
-    
-    <div data-reveal="" data-delay="300" data-tilt="" style="position: relative; border-radius: 24px; padding: clamp(20px, 2.4vw, 28px); background: rgba(10, 12, 6, 0.6); backdrop-filter: blur(18px); box-shadow: rgba(194, 247, 96, 0.28) 0px 0px 0px 1px inset, rgba(241, 249, 184, 0.25) 0px 1px 0px inset, rgba(0, 0, 0, 0.9) 0px 40px 100px -40px, rgba(194, 247, 96, 0.5) 0px 30px 90px -50px; display: flex; flex-direction: column; gap: 18px;">
-      <div style="display: flex; gap: 6px; flex-wrap: wrap;">
-        <span data-eng-chip="0" style="display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px 5px 5px; border-radius: 999px; font-size: 12.5px; transition: background 0.4s, color 0.4s; background: rgb(194, 247, 96); color: rgb(14, 18, 6);"><img src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-chatgpt.com.png" alt="ChatGPT logo" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); padding: 3px; object-fit: contain;">ChatGPT</span>
-        <span data-eng-chip="1" style="display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px 5px 5px; border-radius: 999px; font-size: 12.5px; transition: background 0.4s, color 0.4s; background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.7);"><img src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlegemini.svg" alt="Google Gemini logo" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); padding: 3px; object-fit: contain;">Gemini</span>
-        <span data-eng-chip="2" style="display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px 5px 5px; border-radius: 999px; font-size: 12.5px; transition: background 0.4s, color 0.4s; background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.7);"><img src="<?php echo esc_url( $wu_assets ); ?>img/icons/perplexity.svg" alt="Perplexity logo" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); padding: 3px; object-fit: contain;">Perplexity</span>
-        <span data-eng-chip="3" style="display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px 5px 5px; border-radius: 999px; font-size: 12.5px; transition: background 0.4s, color 0.4s; background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.7);"><img src="<?php echo esc_url( $wu_assets ); ?>img/icons/google.svg" alt="Google logo" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); padding: 3px; object-fit: contain;">AI Overviews</span>
-        <span data-eng-chip="4" style="display: inline-flex; align-items: center; gap: 7px; padding: 5px 12px 5px 5px; border-radius: 999px; font-size: 12.5px; transition: background 0.4s, color 0.4s; background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.7);"><img src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-bing.com.png" alt="Bing logo" style="width: 20px; height: 20px; border-radius: 50%; background: rgb(255, 255, 255); padding: 3px; object-fit: contain;">Bing</span>
-      </div>
-      <div style="display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-radius: 16px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.1);">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C2F760" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
-        <span style="flex: 1 1 0%; min-width: 0px; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span data-type="">best seo company in kerala</span><span data-caret="" style="display: inline-block; width: 2px; height: 1.1em; margin-left: 2px; vertical-align: -3px; background: rgb(194, 247, 96);"></span></span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 12px; padding: 20px; border-radius: 16px; background: linear-gradient(160deg, rgba(194, 247, 96, 0.09), rgba(255, 255, 255, 0.02));">
-        <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.7 5.3 4 8.6 9.3 9.3-5.3.7-8.6 4-9.3 9.3-.7-5.3-4-8.6-9.3-9.3C8 10.6 11.3 7.3 12 2z"></path></svg><span data-eng-name="">ChatGPT answer</span></span>
-        <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.88);"><strong style="color: rgb(255, 255, 255); font-weight: 600;">WiseUp Branding</strong><span data-eng-rest=""> is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.</span></p>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); font-size: 12.5px; color: rgba(255, 255, 255, 0.8);"><span style="width: 6px; height: 6px; border-radius: 50%; background: rgb(194, 247, 96);"></span>wiseup.in</span>
-          <span style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); font-size: 12.5px; color: rgba(255, 255, 255, 0.8);">Cited source</span>
-        </div>
-      </div>
-      <div class="wu-stats" style="display: grid; grid-template-columns: repeat(3, minmax(0px, 1fr)); gap: 8px;">
-        <div style="padding: 14px; border-radius: 14px; background: rgb(11, 11, 11); display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5);">Google</span><span style="font-size: 15px;">Ranked</span></div>
-        <div style="padding: 14px; border-radius: 14px; background: rgb(11, 11, 11); display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5);">Bing</span><span style="font-size: 15px;">Indexed</span></div>
-        <div style="padding: 14px; border-radius: 14px; background: rgb(11, 11, 11); display: flex; flex-direction: column; gap: 6px;"><span style="font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5);">AI search</span><span style="font-size: 15px; color: rgb(194, 247, 96);">Recommended</span></div>
-      </div>
-    </div>
-    
-  </div>
+// Platforms: [ name, mark, text, tag ].
+$wu_platforms = array(
+	array( 'WordPress', 'wordpress.svg', 'Optimise WordPress websites for technical performance, content structure, indexing, on-page SEO and search visibility.', '' ),
+	array( 'WooCommerce', 'woocommerce.svg', 'WooCommerce SEO covering product and category optimisation, product search visibility, internal linking, technical issues, structured data and transactional search intent.', 'Dedicated e-commerce SEO' ),
+	array( 'Shopify', 'shopify.svg', 'Shopify SEO covering collection and product pages, site structure, technical SEO, content optimisation and organic visibility for Shopify stores.', 'Dedicated e-commerce SEO' ),
+	array( 'React.js', 'react.svg', 'Rendering, crawlable routes and metadata for JavaScript-heavy React applications.', '' ),
+	array( 'Next.js', 'nextdotjs.svg', 'SSR and static generation, metadata, sitemaps and Core Web Vitals for Next.js sites.', '' ),
+	array( 'Django', 'django.svg', 'Clean URL patterns, template-level metadata, sitemaps and performance for Django builds.', '' ),
+	array( 'Nest.js', 'nestjs.svg', 'Headless and API-driven setups made crawlable, with rendering and structured data handled correctly.', '' ),
+	array( 'Node.js', 'nodedotjs.svg', 'Rendering strategy, routing, redirects and page speed for custom Node.js websites.', '' ),
+);
 
-  <div data-reveal="" data-delay="450" style="position: relative; width: 100%; max-width: 1240px; margin: 0px auto; padding: 1.5px; border-radius: 32px; overflow: hidden; background: rgba(194, 247, 96, 0.18);">
-    <div data-spinfast="" style="position: absolute; left: 50%; top: 50%; width: 200%; aspect-ratio: 1 / 1; margin: -100% 0px 0px -100%; background: conic-gradient(rgba(194, 247, 96, 0) 0deg, rgba(194, 247, 96, 0) 250deg, rgb(194, 247, 96) 320deg, rgb(246, 255, 217) 345deg, rgba(194, 247, 96, 0) 360deg); pointer-events: none;"></div>
-    <div style="position: relative; border-radius: 30.5px; overflow: hidden; background: rgb(12, 14, 9); padding: clamp(22px, 2.6vw, 34px) clamp(22px, 3vw, 40px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 24px clamp(28px, 4vw, 56px); align-items: center;">
-      <div style="position: relative; display: flex; align-items: center; gap: clamp(16px, 2vw, 24px); min-width: 0px;">
-        <span style="position: relative; flex: 0 0 auto; width: clamp(64px, 6vw, 84px); aspect-ratio: 1 / 1;">
-          <img src="<?php echo esc_url( $wu_assets ); ?>img/icon-character.gif" alt="Wiso" style="position: relative; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: rgb(0, 0, 0); border: 2px solid rgb(194, 247, 96);">
-        </span>
-        <div style="display: flex; flex-direction: column; gap: 10px; min-width: 0px;">
-          
-          <p style="font-size: clamp(20px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.03em; text-wrap: balance;">How visible is your website on Google, Bing and <span style="color: rgb(194, 247, 96);">AI search?</span></p>
-        </div>
-      </div>
-      <div style="position: relative; display: flex; flex-direction: column; gap: 12px; min-width: 0px;">
-        <form data-hero-form="" novalidate="" style="width: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px; border-radius: var(--wu-hero-form-r); background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(194, 247, 96, 0.5);"><input name="hpCheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
-          <span style="flex: 0 0 auto; margin-left: 10px; color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"></path></svg></span>
-          <input name="heroUrl" maxlength="300" inputmode="url" autocomplete="url" aria-label="Website URL" aria-invalid="false" placeholder="Enter your website URL" style="flex: 1 1 220px; min-width: 0px; padding: 15px 8px; background: transparent; border: 0px; outline: none; color: rgb(255, 255, 255); font-size: 16px;">
-          <button type="submit" class="scp3" style="flex: var(--wu-hero-btn-f); cursor: pointer; border: 0px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 24px; border-radius: 999px; background: radial-gradient(120% 160% at 50% 0%, rgb(241, 237, 182) 0%, rgb(185, 210, 83) 42%, rgb(95, 108, 39) 100%); color: rgb(14, 18, 6); font-family: inherit; font-weight: 600; font-size: 15px; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; transition: filter 0.3s;">Get My Free Proposal <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></button>
-        </form>
-        <span role="alert" data-hero-err="" hidden="" style="padding: 0px 18px; font-size: 13.5px; color: rgb(255, 138, 107);"></span>
-      </div>
-    </div>
-  </div></section><?php wiseup_ai_overview( array(
+// Projects: [ name, image, tags, link ].
+$wu_projects = array(
+	array( 'Smoke House', 'assets/landing/img/case-smokehouse.jpg', array( 'Local SEO', 'Content SEO' ), '' ),
+	array( 'Bootland', 'assets/landing/img/case-bootland.jpg', array( 'Technical SEO', 'On-Page SEO' ), '' ),
+	array( 'Indus Go', 'assets/landing/img/case-indusgo.jpg', array( 'SEO Strategy', 'AI Search Visibility' ), home_url( '/case-studies/indusgo/' ) ),
+	array( 'Erets Space', 'assets/landing/img/case-erets.jpg', array( 'Content SEO', 'Link Building' ), '' ),
+	array( 'Golden Karak', 'assets/landing/img/case-karak.jpg', array( 'Local SEO', 'Mobile SEO' ), home_url( '/case-studies/golden-karak/' ) ),
+);
+
+// Tools: [ name, mark ].
+$wu_tools = array( array( 'Semrush', 'semrush' ), array( 'Ahrefs', 'fav-ahrefs.com.png' ), array( 'Screaming Frog', 'fav-screamingfrog.co.uk.png' ), array( 'Moz', 'ddg-moz.com.ico' ), array( 'Google Trends', 'fav-trends.google.com.png' ), array( 'Heap', 'fav-heap.io.png' ), array( 'Google Search Console', 'googlesearchconsole' ), array( 'Google Analytics 4', 'googleanalytics' ), array( 'Google Tag Manager', 'googletagmanager' ), array( 'Microsoft Clarity', 'fav-clarity.microsoft.com.png' ) );
+
+// Process: [ stage title, icon, months, steps ].
+$wu_process = array(
+	array( 'Discover & Strategise', 'search', 'Months 1–2', array( 'Discovery', 'SEO & AI Audit', 'Keyword Research', 'Competitor Analysis', 'SEO Roadmap' ) ),
+	array( 'Optimise & Strengthen', 'tool', 'Months 3–4', array( 'Technical SEO', 'On-Page SEO', 'Content Optimisation', 'AI Search Optimisation', 'Authority Building' ) ),
+	array( 'Measure & Grow', 'chart', 'Months 5–6', array( 'Performance Tracking', 'SEO Recommendations', 'Content Expansion', 'Continuous Optimisation', 'Scale' ) ),
+);
+
+// Package groups: [ title, items ].
+$wu_package = array(
+	array( 'Research & Content', array( 'Thorough Keyword Research', 'Content Creation', 'Competitor Benchmarking', 'Duplicate Content Analysis' ) ),
+	array( 'Website & Technical Optimisation', array( 'Speed Tests', 'Website Downtime Monitoring', 'HTML and Content Structure Optimisation', 'Meta Information Optimisation', 'Rich Snippet Implementation', 'UI/UX Designs' ) ),
+	array( 'Authority & Performance', array( 'Inbound Backlinking', 'Google Search Console Setup', 'Google Analytics 4 Enhancement', 'Comprehensive Monthly Reports', '24/7 support' ) ),
+);
+
+$wu_industries = array(
+	array( 'E-commerce & Retail', 'bag' ), array( 'SaaS & Technology', 'code' ), array( 'Professional Services', 'scale' ), array( 'Education & Training', 'cap' ),
+	array( 'Healthcare & Wellness', 'health' ), array( 'Real Estate & Construction', 'home' ), array( 'Hospitality & Travel', 'bed' ), array( 'Finance & Business Services', 'chart' ),
+);
+
+// Why WiseUp: [ icon, title, text ].
+$wu_why = array(
+	array( 'target', 'Strategies That Fit Your Business', 'We take time to understand your business, audience, competitors and goals before planning a campaign. Every strategy is built around what your business needs, not a one-size-fits-all approach.' ),
+	array( 'globe', 'Experienced Team With the Right Expertise', 'Our team brings together skills in keyword research, content, technical optimisation and digital marketing. You get the right expertise working together to improve your website’s performance.' ),
+	array( 'scale', 'Ethical Practices, Always', 'We follow search engine guidelines and focus on sustainable methods. No shortcuts or risky tactics that could harm your website or brand reputation.' ),
+	array( 'chart', 'Focus on Real Business Growth', 'Rankings and traffic matter, but what happens after visitors reach your website matters too. We focus on attracting relevant visitors who are more likely to become enquiries and customers.' ),
+	array( 'eye', 'Clear Reports and Regular Updates', 'You stay informed about campaign activities and progress. We share reports on traffic, rankings, visibility and important improvements, so you know where things stand.' ),
+	array( 'code', 'Solutions for Different Website Platforms', 'Whether your website runs on WordPress, Shopify, WooCommerce or a custom framework, we adapt our approach to its platform and technical requirements.' ),
+);
+
+$wu_faq = array(
+	array( 'How long do SEO efforts typically take to show significant, measurable results for an established website?', 'Most established websites see measurable gains: better rankings, impressions and organic traffic, within three to six months. Highly competitive keywords or new markets can take six to twelve. Technical fixes often show impact sooner, and results compound the longer a consistent strategy runs.' ),
+	array( 'What deliverables and reports will we receive every month?', 'A monthly SEO report covering keyword rankings, organic traffic, conversions, Search Console and GA4 insights, AI search visibility, the work completed and the plan for next month, plus access to a live dashboard whenever you need it.' ),
+	array( 'Should SEO be part of a broader digital marketing strategy?', 'Yes. SEO builds long-term organic visibility, while paid ads, social media and content marketing drive faster reach. Planned together, each channel strengthens the others, and your overall cost per lead comes down.' ),
+	array( 'What Is WooCommerce SEO and How Does It Benefit E-commerce Businesses?', 'WooCommerce SEO optimises WordPress-based online stores: product and category pages, site structure, structured data, internal linking and technical performance, so your products appear for high-intent, ready-to-buy searches. The result is more organic shoppers and sales without relying entirely on paid ads.' ),
+);
+$wu_services_select = array( 'Free SEO Assessment', 'SEO Package Quote', 'AI SEO & Search Visibility', 'Local SEO', 'WooCommerce / Shopify SEO', 'Something else' );
+
+add_action( 'wp_footer', function () use ( $wu_faq ) {
+	$items = array();
+	foreach ( $wu_faq as $q ) $items[] = array( '@type' => 'Question', 'name' => $q[0], 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $q[1] ) );
+	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . "</script>\n";
+}, 20 );
+
+wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' );
+?>
+<div class="wiseup-home wiseup-in-theme wu-ev wu-dm wu-pm wu-seo">
+<main id="main">
+
+	<!-- 1. Hero -->
+	<section class="ev-hero dm-hero">
+		<div class="ev-hero__glow" aria-hidden="true"></div>
+		<div class="wrap ev-hero__grid">
+			<div class="ev-hero__copy">
+				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>SEO Company in Kerala</h1>
+				<h2 class="ev-hero__h"><span class="sh__a">Search is changing. Make sure your brand is still being found.</span></h2>
+				<p class="ev-hero__p">A website that doesn’t appear when customers search for your services is missing valuable opportunities. WiseUp is an SEO company in Kerala that brings technical optimisation, strategic content, keyword intelligence and competitor analysis together to strengthen your online presence. We build search strategies that position your brand across traditional search engines and AI-powered platforms, helping potential customers find and consider your business.</p>
+				<div class="ev-btns">
+					<?php echo $wu_btn( 'Get My Free Proposal', 'teal', $wu_lead ); // phpcs:ignore ?>
+					<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
+				</div>
+			</div>
+			<div class="ev-stage seo-card" data-stage aria-hidden="true">
+				<div class="seo-card__chips"><?php foreach ( array( array( 'ChatGPT', 'fav-chatgpt.com.png' ), array( 'Gemini', 'googlegemini.svg' ), array( 'Perplexity', 'perplexity.svg' ), array( 'AI Overviews', 'google' ), array( 'Bing', 'fav-bing.com.png' ) ) as $wu_k => $e ) echo '<span class="' . ( 0 === $wu_k ? 'is-on' : '' ) . '">' . $wu_mark( $e[1] ) . esc_html( $e[0] ) . '</span>'; // phpcs:ignore ?></div>
+				<div class="seo-card__q"><?php echo $wu_svg( $wu_icons['search'], 18 ); // phpcs:ignore ?><span>best seo company in kerala</span><i></i></div>
+				<div class="seo-card__a">
+					<small><?php echo $wu_svg( $wu_icons['spark'], 14 ); // phpcs:ignore ?>ChatGPT answer</small>
+					<p><b>WiseUp Branding</b> is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.</p>
+					<div class="seo-card__src"><span><i></i>wiseup.in</span><span>Cited source</span></div>
+				</div>
+				<div class="seo-card__st"><div><small>Google</small>Ranked</div><div><small>Bing</small>Indexed</div><div class="is-hi"><small>AI search</small>Recommended</div></div>
+			</div>
+		</div>
+		<div class="logos ev-logos" role="region" aria-label="Client logos"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul><?php echo $wu_li; // phpcs:ignore ?></ul><ul aria-hidden="true"><?php echo str_replace( '" alt="', '" alt="" data-alt="', $wu_li ); // phpcs:ignore ?></ul></div></div></div></div>
+	</section>
+
+<?php wiseup_ai_overview( array(
 	'q' => 'What does an SEO company in Kerala do?',
 	'a' => '<b>WiseUp</b> is an SEO company in Kerala that brings <b>technical optimisation, strategic content, keyword intelligence and competitor analysis</b> together to strengthen your online presence. We build search strategies that position your brand across traditional search engines and AI-powered platforms, helping potential customers find and consider your business.',
 	'points' => array(
@@ -225,557 +255,387 @@ add_action(
 	),
 	'links' => array( array( 'Be found', '#visibility' ), array( 'Services', '#services' ), array( 'Platforms', '#platforms' ), array( 'Process', '#process' ), array( 'Packages', '#packages' ), array( 'FAQ', '#faq' ) ),
 	'fact' => 'Packages from <b>₹70K</b> onwards',
-) ); ?><section id="visibility" data-screen-label="Be Found" style="max-width: 1240px; margin: 0px auto; padding: clamp(80px, 10vw, 130px) clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 56px;">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 48px; align-items: end;">
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>Search visibility</span>
-      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; text-wrap: balance; letter-spacing: -0.05em; line-height: 0.98;"><span style="color: rgb(210, 234, 166);">Be Found</span> Where Your Customers Are Searching</h2>
-    </div>
-    <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); text-wrap: pretty;">Search visibility now extends beyond traditional search results. Customers use Google, Bing and AI platforms such as ChatGPT, Gemini and Claude to research businesses, compare services and find solutions. WiseUp combines established SEO practices with emerging AI search optimisation to strengthen your brand's presence across these discovery channels.</p>
-  </div>
-  <div data-reveal="" style="overflow: hidden; mask: linear-gradient(90deg, transparent, rgb(0, 0, 0) 8%, rgb(0, 0, 0) 92%, transparent);">
-    <div data-marquee="fwd" data-speed="38000" style="display: flex; width: max-content; gap: 10px; padding-right: 10px;">
-      <span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/google.svg" alt="Google logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Google Search</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/google.svg" alt="Google logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">AI Overviews</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-bing.com.png" alt="Bing logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Bing</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-chatgpt.com.png" alt="ChatGPT logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">ChatGPT</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlemaps.svg" alt="Google Maps logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Google Maps</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlegemini.svg" alt="Google Gemini logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Gemini</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-bing.com.png" alt="Bing logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Copilot</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/perplexity.svg" alt="Perplexity logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Perplexity</span>
-      <span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/google.svg" alt="Google logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Google Search</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/google.svg" alt="Google logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">AI Overviews</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-bing.com.png" alt="Bing logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Bing</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-chatgpt.com.png" alt="ChatGPT logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">ChatGPT</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlemaps.svg" alt="Google Maps logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Google Maps</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlegemini.svg" alt="Google Gemini logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Gemini</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; background: rgb(14, 14, 14); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-bing.com.png" alt="Bing logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Copilot</span><span style="flex: 0 0 auto; display: inline-flex; align-items: center; gap: 12px; padding: 10px 26px 10px 10px; border-radius: 999px; border: 1px solid rgba(194, 247, 96, 0.4); color: rgb(194, 247, 96); font-size: clamp(18px, 1.8vw, 24px); letter-spacing: -0.02em;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/perplexity.svg" alt="Perplexity logo" style="width: 36px; height: 36px; border-radius: 50%; background: rgb(255, 255, 255); padding: 7px; object-fit: contain;">Perplexity</span>
-    </div>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px;">
-    <div data-tilt="" data-spot="" data-reveal="" style="position: relative; border-radius: 24px; overflow: hidden; min-height: 440px; background: rgb(14, 14, 14); display: flex; flex-direction: column; justify-content: flex-end;">
-      <img loading="lazy" decoding="async" data-parallax-img="0.1" src="<?php echo esc_url( $wu_assets ); ?>img/dsc00377-copy-1.png" alt="The WiseUp SEO team" style="position: absolute; left: 0px; top: -10%; width: 100%; height: 120%; object-fit: cover; pointer-events: none;">
-      <div style="position: relative; padding: 120px clamp(24px, 3vw, 36px) clamp(24px, 3vw, 36px); background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.92) 55%); display: flex; flex-direction: column; gap: 14px;">
-        <span style="font-size: 14px; color: rgb(194, 247, 96);">01</span>
-        <h3 style="font-size: clamp(26px, 2.6vw, 36px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">How WiseUp Helps</h3>
-        <p style="font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, 0.82); text-wrap: pretty;">We build SEO strategies around your business, not pre-defined packages of optimisation activities. Our team assesses your business objectives, target audience, competitors, search demand and website performance to identify where the strongest opportunities lie. Every recommendation is connected to a clear objective: improve organic visibility, attract relevant traffic, increase enquiries and support measurable business growth.</p>
-      </div>
-    </div>
-    <div data-tilt="" data-reveal="" data-delay="100" style="border-radius: 24px; padding: clamp(24px, 3vw, 36px); background: linear-gradient(135deg, rgb(194, 224, 90), rgb(143, 168, 58)); color: rgb(14, 18, 6); display: flex; flex-direction: column; gap: 14px; justify-content: space-between;">
-      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-        <span style="padding: 8px 14px; border-radius: 999px; background: rgba(14, 18, 6, 0.12); font-size: 13.5px;">New keywords</span><span style="padding: 8px 14px; border-radius: 999px; background: rgba(14, 18, 6, 0.12); font-size: 13.5px;">Locations</span><span style="padding: 8px 14px; border-radius: 999px; background: rgba(14, 18, 6, 0.12); font-size: 13.5px;">Services</span><span style="padding: 8px 14px; border-radius: 999px; background: rgba(14, 18, 6, 0.12); font-size: 13.5px;">Products</span><span style="padding: 8px 14px; border-radius: 999px; background: rgba(14, 18, 6, 0.12); font-size: 13.5px;">Markets</span><span style="padding: 8px 14px; border-radius: 999px; background: rgb(14, 18, 6); color: rgb(194, 247, 96); font-size: 13.5px;">AI search</span>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 14px; padding-top: 60px;">
-        <span style="font-size: 14px;">02</span>
-        <h3 style="font-size: clamp(26px, 2.6vw, 36px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">Scale With Search</h3>
-        <p style="font-size: 16px; line-height: 1.7; text-wrap: pretty;">As your business expands, we extend your SEO strategy to match. From new services and product categories to additional locations, markets and search opportunities, we identify the areas where your brand can build a stronger presence. Our approach also adapts to evolving search behaviour, including AI-generated answers and conversational search, keeping your visibility strategy aligned with your business growth.</p>
-      </div>
-    </div>
-  </div></section><section id="services" data-screen-label="Services" style="max-width: 1240px; margin: 0px auto; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px) clamp(90px, 10vw, 130px); display: flex; flex-direction: column; gap: 48px;">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px; align-items: end;">
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>SEO Services</span>
-      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; text-wrap: balance;"><span style="color: rgb(210, 234, 166);">Build Search Visibility</span> With the Right SEO Services</h2>
-    </div>
-    <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); text-wrap: pretty;">WiseUp brings technical SEO, content, keyword strategy, website optimisation and authority building together through a connected approach. Our search engine optimisation services are structured around your website's requirements and the opportunities within your industry, with each activity contributing to stronger organic performance.</p>
-  </div>
-  <div style="display: grid; grid-template-columns: var(--wu-svc-cols); gap: 12px; grid-auto-flow: dense;">
-    <div data-tilt="" data-spot="" data-reveal="" style="grid-column: span var(--wu-wide-span); border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M20 20l-4.8-4.8"></path><path d="M8 10.5h5M10.5 8v5"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">01</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">SEO Strategy &amp; Keyword Research</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72); max-width: 620px;">Our SEO strategy begins with understanding your market, competitors and customer search behaviour. We identify relevant keywords across informational, commercial and transactional intent, assessing their search demand, competition and business relevance. From keyword mapping and content gaps to search opportunity analysis, we develop a practical roadmap that gives every page a clear purpose and direction.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="80" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="3"></rect><path d="M7.5 8.5h9M7.5 12h6M7.5 15.5h8"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">02</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">On-Page SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">We optimise the elements that influence page relevance, search visibility and user experience. Our on-page SEO includes title tags, meta descriptions, heading structures, URLs, keyword placement, content optimisation, image attributes, internal linking and structured data. We also review page organisation and content quality to ensure your website communicates its relevance clearly to both visitors and search engines.</p>
-    </div>
-    <div data-tilt="" data-reveal="" style="grid-column: span var(--wu-wide-span); position: relative; overflow: hidden; border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); display: flex; flex-direction: column; gap: 14px; border: 1px solid transparent; background: linear-gradient(135deg, rgb(30, 37, 18), rgb(10, 10, 10) 60%) padding-box padding-box, linear-gradient(140deg, rgb(194, 247, 96) 0%, rgba(194, 247, 96, 0.12) 45%, rgba(194, 247, 96, 0.6) 100%) border-box border-box;">
-      <div data-blob="4" style="position: absolute; width: 420px; height: 420px; right: -140px; top: -180px; border-radius: 50%; background: radial-gradient(circle, rgba(194, 247, 96, 0.22), rgba(194, 247, 96, 0) 65%); pointer-events: none;"></div>
-      <div style="position: relative; display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;"><span style="width: 46px; height: 46px; border-radius: 14px; background: rgb(194, 247, 96); color: rgb(14, 18, 6); display: grid; place-items: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.6 4.6 3.4 7.4 8 8-4.6.6-7.4 3.4-8 8-.6-4.6-3.4-7.4-8-8 4.6-.6 7.4-3.4 8-8z"></path></svg></span><span style="padding: 6px 12px; border-radius: 999px; background: rgba(194, 247, 96, 0.12); color: rgb(194, 247, 96); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;">03 · Where search is heading</span></div>
-      <h3 style="position: relative; font-size: clamp(24px, 2.6vw, 36px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">AI SEO &amp; Search Visibility</h3>
-      <p style="position: relative; font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.82); max-width: 640px;">WiseUp incorporates Answer Engine Optimisation (AEO), Generative Engine Optimisation (GEO) and LLM-focused strategies into its broader SEO approach. We work on answer-focused content, entity clarity, topical authority, structured data, source accessibility and consistent brand information to improve how your business can be discovered across AI-powered search experiences. Our approach covers platforms such as ChatGPT, Gemini, Claude and Perplexity, alongside conventional search engines.</p>
-      <div style="position: relative; display: flex; gap: 8px; flex-wrap: wrap;"><span style="padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 12.5px;">AEO</span><span style="padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 12.5px;">GEO</span><span style="padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 12.5px;">LLM visibility</span><span style="padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 12.5px;">AI Overviews</span><span style="padding: 7px 13px; border-radius: 999px; background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.14); font-size: 12.5px;">Entity optimisation</span></div>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="3"></rect><path d="M7.5 9h5M7.5 12.5h9M7.5 16h6"></path><path d="M17 5.5c.2 1.3 1 2.1 2.3 2.3-1.3.2-2.1 1-2.3 2.3-.2-1.3-1-2.1-2.3-2.3 1.3-.2 2.1-1 2.3-2.3z" fill="currentColor" stroke="none"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">04</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">AI Overview Optimisation (AIO)</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">Google AI Overviews are changing how information appears in search results. Our AIO services focus on improving your website's eligibility to appear as a cited source in AI-generated summaries. We work on content relevance, clear information structures, topical coverage, entity consistency and supporting page signals. This helps search engines identify useful information on your website and consider it for relevant AI-generated responses.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="80" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">05</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">Technical SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">Our technical SEO services address website issues that affect crawling, indexing, rendering, and performance. We conduct technical audits and work on site architecture, XML sitemaps, robots.txt, canonical tags, redirects, broken links, Core Web Vitals, mobile usability, structured data, and page speed. From identifying crawl errors to resolving indexing barriers, we strengthen the technical elements required for sustainable organic search performance.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3.5H7a2.5 2.5 0 0 0-2.5 2.5v12A2.5 2.5 0 0 0 7 20.5h10a2.5 2.5 0 0 0 2.5-2.5V9z"></path><path d="M14 3.5V9h5.5M8.5 13h7M8.5 16.5h5"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">06</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">Content SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">Our content SEO strategy connects keyword opportunities with your audience's needs and your business offerings. We develop and optimise service pages, landing pages, product content, blogs and supporting resources to improve topical relevance and organic visibility. Content gap analysis, search intent mapping, topic clusters, internal linking and content updates ensure your website has a clear, connected content strategy.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="80" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"></path><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">07</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">Off-Page SEO &amp; Link Building</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">We strengthen your website's external authority through strategic link acquisition, backlink analysis, competitor link research, digital PR opportunities and relevant brand mentions. Our off-page SEO services prioritise credible sources, industry relevance and natural link profiles. We also monitor existing backlinks to identify potentially harmful patterns and opportunities to improve your website's authority.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="160" style="grid-column: span var(--wu-wide-span); border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">08</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">Local SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">We improve your local search presence through Google Business Profile management and targeted keywords that connect your business with nearby customers. Our local SEO services cover business profile management, local citations, business information consistency, location landing pages, review visibility, and locally relevant content. Whether you're targeting Calicut, other cities across Kerala, or multiple service locations, we align your local search presence with your business reach.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.6 3.7 5.6 3.7 9s-1.2 6.4-3.7 9c-2.5-2.6-3.7-5.6-3.7-9S9.5 5.6 12 3z"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">09</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">International SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">We build international SEO strategies for businesses targeting customers across countries and languages. Our work covers international keyword research, website localisation, country-specific content, URL structures, hreflang implementation and regional targeting. We also review technical configurations to ensure search engines can identify the right content for audiences in different markets.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="80" style="border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.5"></rect><path d="M10.5 18.5h3"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">10</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">Mobile SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">We optimise mobile website performance across responsive layouts, navigation, page speed, content presentation, usability and Core Web Vitals. Our mobile SEO work also addresses technical accessibility and rendering issues that affect how search engines access mobile pages. The result is a website experience designed to support both mobile visitors and organic search performance.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="160" style="grid-column: span var(--wu-wide-span); border-radius: 20px; padding: clamp(24px, 2.6vw, 32px); background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start;"><span style="width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18.5a4.5 4.5 0 0 1-.6-9 6 6 0 0 1 11.6 1.5 3.75 3.75 0 0 1-.5 7.5z"></path><path d="M12 11.5v5M9.8 13.7l2.2-2.2 2.2 2.2"></path></svg></span><span style="font-size: 14px; color: rgba(255, 255, 255, 0.4);">11</span></div>
-      <h3 style="font-size: clamp(22px, 2.2vw, 30px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">SaaS SEO</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">Our SaaS SEO services focus on reaching users at every stage of the software buying journey. We optimise product pages, feature pages, integration pages, use-case landing pages and comparison content around high-intent search opportunities. Our strategy also covers competitor positioning, technical SEO, topical content clusters and conversion-focused optimisation to strengthen organic acquisition and attract users who are actively evaluating software solutions.</p>
-    </div>
-  </div></section><section id="platforms" data-screen-label="Platforms" style="max-width: 1240px; margin: 0px auto; padding: clamp(40px, 5vw, 60px) clamp(20px, 4vw, 40px) clamp(90px, 10vw, 130px); display: flex; flex-direction: column; gap: 48px;">
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px; align-items: end;">
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>Platforms</span>
-      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; text-wrap: balance;"><span style="color: rgb(210, 234, 166);">Every Platform</span> Needs a Different Approach</h2>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 14px;">
-      <p data-reveal="" style="font-size: clamp(20px, 1.8vw, 24px); line-height: 1.4; font-weight: 300;">Built to work with your website.</p>
-      <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); text-wrap: pretty;">SEO requirements change depending on how a website is built. WiseUp adapts its SEO approach to your platform, website structure, business model and the way your customers search.</p>
-    </div>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px;">
-    <div data-tilt="" data-spot="" data-reveal="" style="border-radius: 20px; padding: 30px; background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px; min-height: 280px;">
-      <img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/wordpress.svg" alt="WordPress" style="width: 48px; height: 48px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;">
-      <h3 style="font-size: clamp(24px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">WordPress</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">Optimise WordPress websites for technical performance, content structure, indexing, on-page SEO and search visibility.</p>
-    </div>
-    <div data-tilt="" data-reveal="" data-delay="80" style="border-radius: 20px; padding: 30px; display: flex; flex-direction: column; gap: 14px; min-height: 280px; border: 1px solid transparent; background: linear-gradient(135deg, rgb(30, 37, 18), rgb(10, 10, 10) 65%) padding-box padding-box, linear-gradient(140deg, rgb(194, 247, 96) 0%, rgba(194, 247, 96, 0.12) 45%, rgba(194, 247, 96, 0.6) 100%) border-box border-box;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/woocommerce.svg" alt="WooCommerce" style="width: 48px; height: 48px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;"><span style="padding: 6px 12px; border-radius: 999px; background: rgb(194, 247, 96); color: rgb(14, 18, 6); font-size: 12px; font-weight: 500;">Dedicated e-commerce SEO</span></div>
-      <h3 style="font-size: clamp(24px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">WooCommerce</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.8);">WooCommerce SEO covering product and category optimisation, product search visibility, internal linking, technical issues, structured data and transactional search intent.</p>
-    </div>
-    <div data-tilt="" data-spot="" data-reveal="" data-delay="160" style="border-radius: 20px; padding: 30px; background: rgb(14, 14, 14); display: flex; flex-direction: column; gap: 14px; min-height: 280px;">
-      <img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/shopify.svg" alt="Shopify" style="width: 48px; height: 48px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;">
-      <h3 style="font-size: clamp(24px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1; margin-top: auto;">Shopify</h3>
-      <p style="font-size: 15.5px; line-height: 1.65; color: rgba(255, 255, 255, 0.72);">Shopify SEO covering collection and product pages, site structure, technical SEO, content optimisation and organic visibility for Shopify stores.</p>
-    </div>
-  </div>
-  <div style="display: flex; flex-direction: column; border-top: 1px solid rgba(255, 255, 255, 0.15);">
-    <a data-reveal="" href="#contact" class="scp4" style="display: grid; grid-template-columns: var(--wu-row-cols); gap: var(--wu-row-gap); align-items: center; padding: var(--wu-row-pad); border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); transition: background 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s, padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);">
-      <span style="display: flex; align-items: center; gap: 16px; min-width: 0px;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/react.svg" alt="React.js logo" style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;"><h3 style="font-size: clamp(22px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">React.js</h3></span>
-      <p style="font-size: 16px; line-height: 1.6; opacity: 0.8; padding-left: var(--wu-row-pl);">Rendering, crawlable routes and metadata for JavaScript-heavy React applications.</p>
-      <span style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid; display: var(--wu-row-arr-d); place-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-    </a>
-    <a data-reveal="" href="#contact" class="scp4" style="display: grid; grid-template-columns: var(--wu-row-cols); gap: var(--wu-row-gap); align-items: center; padding: var(--wu-row-pad); border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); transition: background 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s, padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);">
-      <span style="display: flex; align-items: center; gap: 16px; min-width: 0px;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/nextdotjs.svg" alt="Next.js logo" style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;"><h3 style="font-size: clamp(22px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">Next.js</h3></span>
-      <p style="font-size: 16px; line-height: 1.6; opacity: 0.8; padding-left: var(--wu-row-pl);">SSR and static generation, metadata, sitemaps and Core Web Vitals for Next.js sites.</p>
-      <span style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid; display: var(--wu-row-arr-d); place-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-    </a>
-    <a data-reveal="" href="#contact" class="scp4" style="display: grid; grid-template-columns: var(--wu-row-cols); gap: var(--wu-row-gap); align-items: center; padding: var(--wu-row-pad); border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); transition: background 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s, padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);">
-      <span style="display: flex; align-items: center; gap: 16px; min-width: 0px;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/django.svg" alt="Django logo" style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;"><h3 style="font-size: clamp(22px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">Django</h3></span>
-      <p style="font-size: 16px; line-height: 1.6; opacity: 0.8; padding-left: var(--wu-row-pl);">Clean URL patterns, template-level metadata, sitemaps and performance for Django builds.</p>
-      <span style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid; display: var(--wu-row-arr-d); place-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-    </a>
-    <a data-reveal="" href="#contact" class="scp4" style="display: grid; grid-template-columns: var(--wu-row-cols); gap: var(--wu-row-gap); align-items: center; padding: var(--wu-row-pad); border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); transition: background 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s, padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);">
-      <span style="display: flex; align-items: center; gap: 16px; min-width: 0px;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/nestjs.svg" alt="Nest.js logo" style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;"><h3 style="font-size: clamp(22px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">Nest.js</h3></span>
-      <p style="font-size: 16px; line-height: 1.6; opacity: 0.8; padding-left: var(--wu-row-pl);">Headless and API-driven setups made crawlable, with rendering and structured data handled correctly.</p>
-      <span style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid; display: var(--wu-row-arr-d); place-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-    </a>
-    <a data-reveal="" href="#contact" class="scp4" style="display: grid; grid-template-columns: var(--wu-row-cols); gap: var(--wu-row-gap); align-items: center; padding: var(--wu-row-pad); border-bottom: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); transition: background 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s, padding 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);">
-      <span style="display: flex; align-items: center; gap: 16px; min-width: 0px;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/nodedotjs.svg" alt="Node.js logo" style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgb(255, 255, 255); padding: 9px; object-fit: contain;"><h3 style="font-size: clamp(22px, 2.4vw, 32px); font-weight: 400; letter-spacing: -0.035em; line-height: 1.1;">Node.js</h3></span>
-      <p style="font-size: 16px; line-height: 1.6; opacity: 0.8; padding-left: var(--wu-row-pl);">Rendering strategy, routing, redirects and page speed for custom Node.js websites.</p>
-      <span style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid; display: var(--wu-row-arr-d); place-items: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-    </a>
-  </div></section><section id="work" data-screen-label="Results" style="max-width: 1240px; margin: 0px auto; padding: 60px clamp(20px, 4vw, 40px) 120px; display: flex; flex-direction: column; gap: 48px;">
-  <div style="display: flex; flex-direction: column; gap: 24px;">
-    <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>SEO Projects</span>
-    <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; text-wrap: balance;"><span style="color: rgb(210, 234, 166);">From Strategy</span> to Real Results.</h2>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 16px; align-items: stretch;">
-    <a data-tilt="" data-reveal="" href="#contact" class="scp5" style="display: flex; flex-direction: column; border-radius: 24px; overflow: hidden; background: rgb(14, 14, 14); color: rgb(255, 255, 255); min-height: 100%;">
-      <div style="flex: 1 1 0%; min-height: 320px; overflow: hidden;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/case-smokehouse.jpg" alt="Smoke House SEO project" class="scp6" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);"></div>
-      <div style="padding: clamp(22px, 3vw, 32px); display: flex; justify-content: space-between; align-items: flex-end; gap: 20px;">
-        <div style="display: flex; flex-direction: column; gap: 14px; min-width: 0px;">
-          <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(194, 247, 96);">Featured project</span>
-          <h3 style="font-size: clamp(28px, 3vw, 42px); font-weight: 400; letter-spacing: -0.045em; line-height: 1;">Smoke House</h3>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;"><span style="padding: 6px 12px; border-radius: 999px; background: rgba(194, 247, 96, 0.1); color: rgb(228, 245, 196); font-size: 12.5px;">Local SEO</span><span style="padding: 6px 12px; border-radius: 999px; background: rgba(194, 247, 96, 0.1); color: rgb(228, 245, 196); font-size: 12.5px;">Content SEO</span></div>
-        </div>
-        <span style="flex: 0 0 auto; width: 52px; height: 52px; border-radius: 50%; background: rgb(194, 247, 96); color: rgb(14, 18, 6); display: grid; place-items: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-      </div>
-    </a>
-    <div style="display: flex; flex-direction: column; gap: 12px;">
-      <a data-reveal="" href="#contact" class="scp7" style="display: grid; grid-template-columns: clamp(96px, 12vw, 140px) minmax(0px, 1fr) 40px; gap: 20px; align-items: center; padding: 14px; border-radius: 20px; background: rgb(14, 14, 14); color: rgb(255, 255, 255); transition: background 0.4s;">
-        <span style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; display: block;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/case-bootland.jpg" alt="Bootland SEO project" style="width: 100%; height: 100%; object-fit: cover; display: block;"></span>
-        <span style="display: flex; flex-direction: column; gap: 8px; min-width: 0px;"><h3 style="font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1;">Bootland</h3><span style="font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.6);">Technical SEO · On-Page SEO</span></span>
-        <span style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-      </a>
-      <a data-reveal="" data-delay="80" href="#contact" class="scp7" style="display: grid; grid-template-columns: clamp(96px, 12vw, 140px) minmax(0px, 1fr) 40px; gap: 20px; align-items: center; padding: 14px; border-radius: 20px; background: rgb(14, 14, 14); color: rgb(255, 255, 255); transition: background 0.4s;">
-        <span style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; display: block;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/case-indusgo.jpg" alt="Indus Go SEO project" style="width: 100%; height: 100%; object-fit: cover; display: block;"></span>
-        <span style="display: flex; flex-direction: column; gap: 8px; min-width: 0px;"><h3 style="font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1;">Indus Go</h3><span style="font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.6);">SEO Strategy · AI Search Visibility</span></span>
-        <span style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-      </a>
-      <a data-reveal="" data-delay="160" href="#contact" class="scp7" style="display: grid; grid-template-columns: clamp(96px, 12vw, 140px) minmax(0px, 1fr) 40px; gap: 20px; align-items: center; padding: 14px; border-radius: 20px; background: rgb(14, 14, 14); color: rgb(255, 255, 255); transition: background 0.4s;">
-        <span style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; display: block;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/case-erets.jpg" alt="Erets Space SEO project" style="width: 100%; height: 100%; object-fit: cover; display: block;"></span>
-        <span style="display: flex; flex-direction: column; gap: 8px; min-width: 0px;"><h3 style="font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1;">Erets Space</h3><span style="font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.6);">Content SEO · Link Building</span></span>
-        <span style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-      </a>
-      <a data-reveal="" data-delay="240" href="#contact" class="scp7" style="display: grid; grid-template-columns: clamp(96px, 12vw, 140px) minmax(0px, 1fr) 40px; gap: 20px; align-items: center; padding: 14px; border-radius: 20px; background: rgb(14, 14, 14); color: rgb(255, 255, 255); transition: background 0.4s;">
-        <span style="aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; display: block;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/case-karak.jpg" alt="Golden Karak SEO project" style="width: 100%; height: 100%; object-fit: cover; display: block;"></span>
-        <span style="display: flex; flex-direction: column; gap: 8px; min-width: 0px;"><h3 style="font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.1;">Golden Karak</h3><span style="font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, 0.6);">Local SEO · Mobile SEO</span></span>
-        <span style="width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span>
-      </a>
-    </div>
-  </div></section><section data-screen-label="Tools" style="position: relative; background: radial-gradient(80% 60%, rgb(26, 29, 16) 0%, rgb(0, 0, 0) 70%); padding: clamp(90px, 10vw, 130px) 0px; overflow: hidden;">
-  <div style="max-width: 1240px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; align-items: center; gap: 48px;">
-    <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px;">
-      <span data-reveal="" style="display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>Our stack</span>
-      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98;"><span style="color: rgb(210, 234, 166);">Tools</span> We Work With</h2>
-    </div>
-    <div data-reveal="" data-orbitwrap="" style="display: var(--wu-orbit-d); position: relative; width: 100%; max-width: 820px; aspect-ratio: 1 / 1; margin: 20px 0px 30px;">
-      <div style="position: absolute; inset: 0px; border-radius: 50%; background: radial-gradient(circle, rgba(194, 247, 96, 0.16) 0%, rgba(194, 247, 96, 0.04) 35%, rgba(194, 247, 96, 0) 62%);"></div>
-      <div data-orbit="outer" style="position: absolute; inset: 7%; border-radius: 50%; border: 1px solid rgba(194, 247, 96, 0.22);">
-        <div style="position: absolute; left: 50%; top: 0%; width: 0px; height: 0px;">
-          <div data-counter="outer" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/semrush.svg" alt="Semrush logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Semrush</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 93.3%; top: 25%; width: 0px; height: 0px;">
-          <div data-counter="outer" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-ahrefs.com.png" alt="Ahrefs logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Ahrefs</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 93.3%; top: 75%; width: 0px; height: 0px;">
-          <div data-counter="outer" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-screamingfrog.co.uk.png" alt="Screaming Frog logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Screaming Frog</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 50%; top: 100%; width: 0px; height: 0px;">
-          <div data-counter="outer" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/ddg-moz.com.ico" alt="Moz logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Moz</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 6.7%; top: 75%; width: 0px; height: 0px;">
-          <div data-counter="outer" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-trends.google.com.png" alt="Google Trends logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Google Trends</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 6.7%; top: 25%; width: 0px; height: 0px;">
-          <div data-counter="outer" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-heap.io.png" alt="Heap logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Heap</span>
-          </div>
-        </div>
-      </div>
-      <div data-orbit="inner" style="position: absolute; inset: 27%; border-radius: 50%; border: 1px dashed rgba(194, 247, 96, 0.4);">
-        <div style="position: absolute; left: 85.36%; top: 14.64%; width: 0px; height: 0px;">
-          <div data-counter="inner" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlesearchconsole.svg" alt="Google Search Console logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Google Search Console</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 85.36%; top: 85.36%; width: 0px; height: 0px;">
-          <div data-counter="inner" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googleanalytics.svg" alt="Google Analytics 4 logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Google Analytics 4</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 14.64%; top: 85.36%; width: 0px; height: 0px;">
-          <div data-counter="inner" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googletagmanager.svg" alt="Google Tag Manager logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Google Tag Manager</span>
-          </div>
-        </div>
-        <div style="position: absolute; left: 14.64%; top: 14.64%; width: 0px; height: 0px;">
-          <div data-counter="inner" style="position: absolute; left: -60px; top: -44px; width: 120px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
-            <span class="scp8" style="width: clamp(60px, 7vw, 76px); aspect-ratio: 1 / 1; border-radius: 22px; background: rgb(255, 255, 255); display: grid; place-items: center; box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px, rgba(194, 247, 96, 0) 0px 0px 0px 6px; transition: box-shadow 0.35s, transform 0.35s;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-clarity.microsoft.com.png" alt="Microsoft Clarity logo" style="width: 56%; height: 56%; object-fit: contain;"></span>
-            <span style="font-size: 13px; line-height: 1.2; text-align: center; color: rgba(255, 255, 255, 0.85); white-space: nowrap; padding: 5px 10px; border-radius: 999px; background: rgba(0, 0, 0, 0.65);">Microsoft Clarity</span>
-          </div>
-        </div>
-      </div>
-      <div style="position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 24%; aspect-ratio: 1 / 1; border-radius: 50%; background: rgb(11, 11, 11); border: 1px solid rgba(194, 247, 96, 0.6); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center;">
-        <img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icon-character.gif" alt="Wiso" style="width: 46%; aspect-ratio: 1 / 1; border-radius: 50%; object-fit: cover;">
-        <span style="font-size: clamp(12px, 1.3vw, 15px); line-height: 1.2;">WiseUp<br>SEO Stack</span>
-      </div>
-    </div>
-    <div style="display: var(--wu-grid-d); width: 100%; grid-template-columns: repeat(2, minmax(0px, 1fr)); gap: 10px;">
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/semrush.svg" alt="Semrush logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Semrush</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-ahrefs.com.png" alt="Ahrefs logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Ahrefs</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-screamingfrog.co.uk.png" alt="Screaming Frog logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Screaming Frog</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googlesearchconsole.svg" alt="Google Search Console logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Search Console</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googleanalytics.svg" alt="Google Analytics logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Google Analytics 4</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/googletagmanager.svg" alt="Google Tag Manager logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Tag Manager</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-clarity.microsoft.com.png" alt="Microsoft Clarity logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Microsoft Clarity</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/ddg-moz.com.ico" alt="Moz logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Moz</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-trends.google.com.png" alt="Google Trends logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Google Trends</span>
-      <span style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 18px 10px; border-radius: 18px; background: rgb(14, 14, 14); border: 1px solid rgba(255, 255, 255, 0.08); font-size: 13.5px; text-align: center;"><img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icons/fav-heap.io.png" alt="Heap logo" style="width: 52px; height: 52px; border-radius: 16px; background: rgb(255, 255, 255); padding: 12px; object-fit: contain;">Heap</span>
-    </div>
-  </div></section><section id="process" data-screen-label="Process" style="padding: 120px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 64px; background: rgb(0,0,0);">
-  <div style="max-width: 1240px; margin: 0 auto; width: 100%; display: flex; flex-direction: column; gap: 24px;">
-    <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>How we work</span>
-    <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; text-wrap: balance; max-width: 900px;"><span style="color: rgb(210, 234, 166);">How We Work</span> to Build Better SEO Results</h2>
-  </div>
+) ); ?>
 
-  <!-- Process Steps -->
-  <div style="max-width: 1240px; margin: 0 auto; width: 100%; position: relative;">
+	<!-- 2. Be found -->
+	<section class="sec ev-sec" id="visibility">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Search visibility' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Be Found Where Your', 'Customers Are Searching' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>Search visibility now extends beyond traditional search results. Customers use Google, Bing and AI platforms such as ChatGPT, Gemini and Claude to research businesses, compare services and find solutions. WiseUp combines established SEO practices with emerging AI search optimisation to strengthen your brand’s presence across these discovery channels.</p></div>
+			</div>
+			<ul class="seo-chans">
+				<?php foreach ( $wu_visibility as $v ) echo '<li>' . ( $v[1] ? $wu_mark( $v[1] ) : '<span class="dm-mark">' . $wu_svg( $wu_icons['spark'], 20 ) . '</span>' ) . '<span>' . esc_html( $v[0] ) . '</span></li>'; // phpcs:ignore ?>
+			</ul>
+			<ul class="pm-grid pm-grid--two">
+				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['target'], 24 ); // phpcs:ignore ?></span><h3>How WiseUp Helps</h3><p>We build SEO strategies around your business, not pre-defined packages of optimisation activities. Our team assesses your business objectives, target audience, competitors, search demand and website performance to identify where the strongest opportunities lie. Every recommendation is connected to a clear objective: improve organic visibility, attract relevant traffic, increase enquiries and support measurable business growth.</p></li>
+				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['rocket'], 24 ); // phpcs:ignore ?></span><h3>Scale With Search</h3><p>As your business expands, we extend your SEO strategy to match. From new services and product categories to additional locations, markets and search opportunities, we identify the areas where your brand can build a stronger presence. Our approach also adapts to evolving search behaviour, including AI-generated answers and conversational search, keeping your visibility strategy aligned with your business growth.</p><div class="seo-tags"><?php foreach ( array( 'New keywords', 'Locations', 'Services', 'Products', 'Markets', 'AI search' ) as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></div></li>
+			</ul>
+		</div>
+	</section>
 
-    <!-- Horizontal connector line (desktop) -->
-    <div style="display: none; position: absolute; top: 44px; left: calc(16.66% - 2px); right: calc(16.66% - 2px); height: 2px; background: rgba(255,255,255,0.1); z-index: 0;" class="wu-proc-line"></div>
-    <div style="position: absolute; top: 44px; left: calc(16.66% - 2px); width: 0%; height: 2px; background: linear-gradient(90deg, rgb(125,154,42), rgb(233,249,138)); box-shadow: rgb(194,247,96) 0px 0px 10px; z-index: 1; transition: width 1.2s ease;" data-fill="" class="wu-proc-fill"></div>
+	<!-- 3. Services -->
+	<section class="sec ev-sec" id="services">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'SEO Services' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Build Search Visibility With', 'the Right SEO Services' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>WiseUp brings technical SEO, content, keyword strategy, website optimisation and authority building together through a connected approach. Our search engine optimisation services are structured around your website’s requirements and the opportunities within your industry, with each activity contributing to stronger organic performance.</p></div>
+			</div>
+			<?php
+			$wu_list = array();
+			foreach ( $wu_services as $s ) {
+				$extra = $s[3] ? '<div class="seo-tags">' . implode( '', array_map( function ( $t ) { return '<span>' . esc_html( $t ) . '</span>'; }, $s[3] ) ) . '</div>' : '';
+				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__brands">' . implode( '', array_map( $wu_mark, $s[4] ) ) . '</span>', $extra );
+			}
+			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
+			?>
+		</div>
+	</section>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 0;">
+	<!-- 4. Platforms -->
+	<section class="sec ev-sec" id="platforms">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Platforms' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Every Platform Needs', 'a Different Approach' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p class="dm-intro-lead">Built to work with your website.</p><p>SEO requirements change depending on how a website is built. WiseUp adapts its SEO approach to your platform, website structure, business model and the way your customers search.</p></div>
+			</div>
+			<ul class="pm-grid pm-grid--tools">
+				<?php foreach ( $wu_platforms as $p ) : ?>
+				<li><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?><h3><?php echo esc_html( $p[0] ); ?></h3><p><?php echo esc_html( $p[2] ); ?></p><?php if ( $p[3] ) echo '<div class="seo-tags"><span>' . esc_html( $p[3] ) . '</span></div>'; ?></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
 
-      <!-- Step 1 -->
-      <div data-reveal="" style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 0 12px;">
-        <!-- Step number circle -->
-        <div style="position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgb(14,18,6); border: 2px solid rgba(194,247,96,0.5); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; flex-shrink: 0;">
-          <span style="font-size: 15px; font-weight: 600; color: rgba(194,247,96,0.8);">1</span>
-        </div>
-        <!-- Connector line right (mobile) -->
-        <div style="position: absolute; top: 25px; left: 50%; right: -50%; height: 2px; background: rgba(255,255,255,0.1);"></div>
-        <!-- Card -->
-        <div data-tilt="" style="width: 100%; border-radius: 20px; padding: 28px 26px 32px; background: rgb(14,14,14); display: flex; flex-direction: column; gap: 20px; border: 1px solid rgba(255,255,255,0.06);">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="width: 38px; height: 38px; border-radius: 11px; background: rgb(22,27,12); border: 1px solid rgba(194,247,96,0.2); display: grid; place-items: center; color: rgba(194,247,96,0.7); flex-shrink: 0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
-            </span>
-            <div>
-              <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(194,247,96); margin-bottom: 3px;">MONTHS 1–2</span>
-              <h3 style="font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2;">Discover &amp; Strategise</h3>
-            </div>
-          </div>
-          <ul style="display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(255,255,255,0.07);">
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>Discovery
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>SEO &amp; AI Audit
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>Keyword Research
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>Competitor Analysis
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>SEO Roadmap
-            </li>
-          </ul>
-        </div>
-      </div>
+	<!-- 5. Projects -->
+	<section class="sec ev-sec" id="work">
+		<div class="wrap">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'SEO Projects' ); // phpcs:ignore ?>
+				<h2 class="sh__h"><?php echo $wu_h( 'From Strategy', 'to Real Results.' ); // phpcs:ignore ?></h2>
+			</div>
+			<ul class="seo-proj">
+				<?php foreach ( $wu_projects as $wu_i => $pj ) : $tag = $pj[3] ? 'a' : 'div'; $href = $pj[3] ? ' href="' . esc_url( $pj[3] ) . '"' : ''; ?>
+				<li<?php echo 0 === $wu_i ? ' class="is-lead"' : ''; ?>><<?php echo $tag . $href; // phpcs:ignore ?> class="seo-proj__in"><img src="<?php echo esc_url( WISEUP_URL . $pj[1] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' project' ); ?>" width="640" height="480" loading="lazy" decoding="async"><span class="seo-proj__t"><?php if ( 0 === $wu_i ) echo '<em>Featured project</em>'; ?><b><?php echo esc_html( $pj[0] ); ?></b><span class="seo-tags"><?php foreach ( $pj[2] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></span></span></<?php echo $tag; ?>></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
 
-      <!-- Step 2 -->
-      <div data-reveal="" data-delay="120" style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 0 12px;">
-        <div style="position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgb(14,18,6); border: 2px solid rgba(194,247,96,0.5); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; flex-shrink: 0;">
-          <span style="font-size: 15px; font-weight: 600; color: rgba(194,247,96,0.8);">2</span>
-        </div>
-        <div style="position: absolute; top: 25px; left: -50%; right: -50%; height: 2px; background: rgba(255,255,255,0.1);"></div>
-        <div data-tilt="" style="width: 100%; border-radius: 20px; padding: 28px 26px 32px; background: rgb(14,14,14); display: flex; flex-direction: column; gap: 20px; border: 1px solid rgba(255,255,255,0.06);">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <span style="width: 38px; height: 38px; border-radius: 11px; background: rgb(22,27,12); border: 1px solid rgba(194,247,96,0.2); display: grid; place-items: center; color: rgba(194,247,96,0.7); flex-shrink: 0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
-            </span>
-            <div>
-              <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(194,247,96); margin-bottom: 3px;">MONTHS 3–4</span>
-              <h3 style="font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2;">Optimise &amp; Strengthen</h3>
-            </div>
-          </div>
-          <ul style="display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(255,255,255,0.07);">
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>Technical SEO
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>On-Page SEO
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>Content Optimisation
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>AI Search Optimisation
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.5); flex-shrink: 0;"></span>Authority Building
-            </li>
-          </ul>
-        </div>
-      </div>
+	<!-- 6. Tools -->
+	<section class="sec ev-sec" id="tools">
+		<div class="wrap">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'Our stack' ); // phpcs:ignore ?>
+				<h2 class="sh__h"><?php echo $wu_h( 'Tools', 'We Work With' ); // phpcs:ignore ?></h2>
+			</div>
+			<ul class="dm-tools">
+				<?php foreach ( $wu_tools as $tl ) echo '<li>' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore ?>
+			</ul>
+		</div>
+	</section>
 
-      <!-- Step 3 (highlighted / active) -->
-      <div data-reveal="" data-delay="240" style="position: relative; display: flex; flex-direction: column; align-items: center; padding: 0 12px;">
-        <!-- Glowing active circle -->
-        <div style="position: relative; z-index: 2; width: 52px; height: 52px; border-radius: 50%; background: rgb(194,247,96); box-shadow: 0 0 0 6px rgba(194,247,96,0.18), 0 0 18px rgba(194,247,96,0.7); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; flex-shrink: 0;">
-          <span style="font-size: 15px; font-weight: 700; color: rgb(14,18,6);">3</span>
-        </div>
-        <div style="position: absolute; top: 25px; left: -50%; right: 50%; height: 2px; background: rgba(255,255,255,0.1);"></div>
-        <!-- Highlighted card -->
-        <div data-tilt="" style="width: 100%; border-radius: 20px; padding: 28px 26px 32px; display: flex; flex-direction: column; gap: 20px; position: relative; overflow: hidden; border: 1px solid transparent; background: linear-gradient(135deg, rgb(30,34,20), rgb(14,14,14)) padding-box, linear-gradient(140deg, rgba(194,247,96,0.6), rgba(255,255,255,0.04) 50%, rgba(194,247,96,0.35)) border-box;">
-          <!-- Glow blob -->
-          <div style="position: absolute; width: 200px; height: 200px; right: -60px; top: -80px; border-radius: 50%; background: radial-gradient(circle, rgba(194,247,96,0.15), rgba(194,247,96,0) 65%); pointer-events: none;"></div>
-          <div style="position: relative; display: flex; align-items: center; gap: 12px;">
-            <span style="width: 38px; height: 38px; border-radius: 11px; background: rgb(194,247,96); display: grid; place-items: center; color: rgb(14,18,6); flex-shrink: 0;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c.7 5.3 4 8.6 9.3 9.3-5.3.7-8.6 4-9.3 9.3-.7-5.3-4-8.6-9.3-9.3C8 10.6 11.3 7.3 12 2z"/></svg>
-            </span>
-            <div>
-              <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(194,247,96); margin-bottom: 3px;">MONTHS 5–6</span>
-              <h3 style="position: relative; font-size: clamp(18px, 1.8vw, 22px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.2;">Measure &amp; Grow</h3>
-            </div>
-          </div>
-          <ul style="position: relative; display: flex; flex-direction: column; gap: 0; border-top: 1px solid rgba(255,255,255,0.1);">
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.6); flex-shrink: 0;"></span>Performance Tracking
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.6); flex-shrink: 0;"></span>SEO Recommendations
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.6); flex-shrink: 0;"></span>Content Expansion
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 15px; color: rgba(255,255,255,0.78);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgba(194,247,96,0.6); flex-shrink: 0;"></span>Continuous Optimisation
-            </li>
-            <li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 15px; font-weight: 600; color: rgb(194,247,96);">
-              <span style="width: 5px; height: 5px; border-radius: 50%; background: rgb(194,247,96); flex-shrink: 0; box-shadow: 0 0 6px rgba(194,247,96,0.8);"></span>Scale
-            </li>
-          </ul>
-        </div>
-      </div>
+	<!-- 7. Process -->
+	<section class="sec ev-sec" id="process">
+		<div class="wrap">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'How we work' ); // phpcs:ignore ?>
+				<h2 class="sh__h"><?php echo $wu_h( 'How We Work to Build', 'Better SEO Results' ); // phpcs:ignore ?></h2>
+			</div>
+			<div class="dm-tl" data-tl>
+				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
+				<ol class="dm-tl__list">
+					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
+					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><span class="dm-tl__out" aria-hidden="true"><small>Timeline</small><?php echo esc_html( $s[2] ); ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><div class="seo-tags"><?php foreach ( $s[3] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></div></div></li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
+		</div>
+	</section>
 
-    </div>
-  </div></section><section id="packages" data-screen-label="Packages" style="background: rgb(255, 255, 255); color: rgb(10, 10, 10); border-radius: 32px; margin: 0px clamp(12px, 2vw, 24px); padding: clamp(80px, 9vw, 110px) 0px;">
-  <div style="max-width: 1240px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 56px;">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px; align-items: end;">
-      <div style="display: flex; flex-direction: column; gap: 24px;">
-        <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(95, 122, 22);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(95, 122, 22, 0), rgb(95, 122, 22));"></span>SEO Packages</span>
-        <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; text-wrap: balance; letter-spacing: -0.05em; line-height: 0.98;">SEO Package Is Built Around a 360° Strategy</h2>
-      </div>
-      <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgb(61, 61, 61); text-wrap: pretty;">A complete SEO strategy needs more than a few website changes. Our packages bring together essential optimisation, content, technical improvements and performance tracking to strengthen your online presence. The scope and deliverables are tailored to your selected package and business requirements.</p>
-      <p data-reveal="" style="align-self: start; justify-self: start; display: inline-flex; align-items: baseline; gap: 10px; padding: 10px 18px; border-radius: 999px; background: rgb(14, 18, 6); color: rgb(255, 255, 255); font-size: 15px;">Packages from <strong style="color: rgb(194, 247, 96); font-size: 20px; font-weight: 600; letter-spacing: -0.02em;">₹70K onwards</strong></p>
-    </div>
-    <div style="display: flex; flex-direction: column; gap: 20px;">
-      <h3 data-reveal="" style="font-size: clamp(22px, 2.2vw, 28px); font-weight: 500; letter-spacing: -0.03em;">SEO Strategy Includes</h3>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px;">
-        <div data-reveal="" style="border-radius: 20px; background: rgb(243, 245, 236); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
-          <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(95, 122, 22); font-weight: 500;">Research &amp; Content</span>
-          <ul style="display: flex; flex-direction: column; gap: 14px;">
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Thorough Keyword Research</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Content Creation</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Competitor Benchmarking</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Duplicate Content Analysis</li>
-          </ul>
-        </div>
-        <div data-reveal="" data-delay="100" style="border-radius: 20px; background: rgb(243, 245, 236); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
-          <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(95, 122, 22); font-weight: 500;">Website &amp; Technical Optimisation</span>
-          <ul style="display: flex; flex-direction: column; gap: 14px;">
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Speed Tests</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Website Downtime Monitoring</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>HTML and Content Structure Optimisation</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Meta Information Optimisation</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Rich Snippet Implementation</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>UI/UX Designs</li>
-          </ul>
-        </div>
-        <div data-reveal="" data-delay="200" style="border-radius: 20px; background: rgb(243, 245, 236); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
-          <span style="font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(95, 122, 22); font-weight: 500;">Authority &amp; Performance</span>
-          <ul style="display: flex; flex-direction: column; gap: 14px;">
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Inbound Backlinking</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Google Search Console Setup</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Google Analytics 4 Enhancement</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>Comprehensive Monthly Reports</li>
-            <li style="display: flex; gap: 12px; align-items: flex-start; font-size: 16px; line-height: 1.4;"><span style="flex: 0 0 auto; width: 22px; height: 22px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(194, 247, 96); display: grid; place-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>24/7 support</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div data-reveal="" style="border-radius: 24px; background: rgb(14, 18, 6); color: rgb(255, 255, 255); padding: clamp(26px, 3vw, 40px); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap;">
-      <p style="font-size: clamp(18px, 1.8vw, 22px); line-height: 1.45; max-width: 640px; text-wrap: pretty;">Not sure which SEO package fits your business? Choose from our affordable SEO services in Kerala, with scopes tailored to your website, competition and growth priorities. Request a free SEO assessment to identify the right starting point.</p>
-      <a data-magnetic="" href="#contact" class="scp9" style="display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; background: radial-gradient(120% 160% at 50% 0%, rgb(241, 237, 182) 0%, rgb(185, 210, 83) 42%, rgb(95, 108, 39) 100%); color: rgb(14, 18, 6); font-weight: 600; font-size: 16px; box-shadow: rgba(210, 234, 166, 0.45) 0px 0px 0px 1px, rgba(185, 210, 83, 0.7) 0px 12px 34px -10px; transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);">Request a Quote <span style="width: 32px; height: 32px; margin-right: -14px; border-radius: 50%; background: rgb(14, 18, 6); color: rgb(217, 245, 122); display: grid; place-items: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></span></a>
-    </div>
-  </div></section><section data-screen-label="Industries" style="max-width: 1240px; margin: 0px auto; padding: clamp(90px, 10vw, 130px) clamp(20px, 4vw, 40px) 60px; display: flex; flex-direction: column; gap: 48px;">
-  <div style="display: flex; flex-direction: column; gap: 24px;">
-    <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>Industries</span>
-    <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; text-wrap: balance;"><span style="color: rgb(210, 234, 166);">SEO for Businesses</span> Across Industries</h2>
-    <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.75);">We develop search strategies for businesses across:</p>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1px; background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; overflow: hidden;">
-    <div data-reveal="" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7.5h16l-1.3 11a2 2 0 0 1-2 1.8H7.3a2 2 0 0 1-2-1.8z"></path><path d="M8.5 10V6.5a3.5 3.5 0 0 1 7 0V10"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">E-commerce &amp; Retail</h3></div>
-    <div data-reveal="" data-delay="60" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16.5V20M9.5 9l-2 1.5 2 1.5M14.5 9l2 1.5-2 1.5"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">SaaS &amp; Technology</h3></div>
-    <div data-reveal="" data-delay="120" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"></rect><path d="M9 7V5.5A1.5 1.5 0 0 1 10.5 4h3A1.5 1.5 0 0 1 15 5.5V7M3 12.5h18"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">Professional Services</h3></div>
-    <div data-reveal="" data-delay="180" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9L12 4.5 21.5 9 12 13.5z"></path><path d="M6.5 11v4.5c0 1.4 2.5 3 5.5 3s5.5-1.6 5.5-3V11M21.5 9v5"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">Education &amp; Training</h3></div>
-    <div data-reveal="" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-8-4.6-8-10.4A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 3.1c0 5.8-8 10.4-8 10.4z"></path><path d="M8 12.5h2.2l1.3-2.2 1.8 4 1.2-1.8H16"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">Healthcare &amp; Wellness</h3></div>
-    <div data-reveal="" data-delay="60" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17M5.5 20.5V10L12 5l6.5 5v10.5"></path><path d="M10 20.5v-5h4v5"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">Real Estate &amp; Construction</h3></div>
-    <div data-reveal="" data-delay="120" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 13.8L4 11.5l1.5-1.5 7 .6 4-4a2 2 0 0 1 2.9 2.9l-4 4 .6 7-1.5 1.5-2.3-6.2-3.2 3.2.3 2.5-1.2 1.2-1.6-3.1-3.1-1.6 1.2-1.2 2.5.3z"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">Hospitality &amp; Travel</h3></div>
-    <div data-reveal="" data-delay="180" class="scp0" style="background: rgb(0, 0, 0); padding: 30px 26px; display: flex; flex-direction: column; gap: 36px; transition: background 0.4s, color 0.4s;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17M5 17V11M9.7 17v-6M14.3 17v-6M19 17v-6M2.5 8.5L12 3.5l9.5 5z"></path></svg><h3 style="font-size: 21px; font-weight: 400; letter-spacing: -0.03em; line-height: 1.15;">Finance &amp; Business Services</h3></div>
-  </div></section><section data-screen-label="Why WiseUp" style="position: relative; padding: clamp(80px, 9vw, 120px) 0px;">
-  <div style="max-width: 1240px; margin: 0px auto; padding: 0px clamp(20px, 4vw, 40px); display: flex; flex-direction: column; gap: 48px;">
-    <div style="display: flex; flex-direction: column; gap: 24px;">
-      <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>Why WiseUp</span>
-      <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; text-wrap: balance; letter-spacing: -0.05em; line-height: 0.98;">Why Choose <span style="color: rgb(210, 234, 166);">WiseUp?</span></h2>
-      <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.75); max-width: 760px; text-wrap: pretty;">At WiseUp, we focus on getting your business noticed by the right audience. We bring together strategy, creativity and technical expertise to improve your online visibility and support your business growth. Here's what makes us a reliable partner.</p>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 12px;">
-      <div data-tilt="" data-spot="" data-reveal="" style="border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; background: linear-gradient(rgb(6, 6, 6), rgb(6, 6, 6)) padding-box padding-box, linear-gradient(140deg, rgba(194, 247, 96, 0.55) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.03) 65%, rgba(194, 247, 96, 0.3) 100%) border-box border-box;"><span style="flex: 0 0 auto; margin-bottom: 14px; width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="1" fill="currentColor"></circle></svg></span><h3 style="font-size: 20px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.15;">Strategies That Fit Your Business</h3><p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">We take time to understand your business, audience, competitors and goals before planning a campaign. Every strategy is built around what your business needs, not a one-size-fits-all approach.</p></div>
-      <div data-tilt="" data-spot="" data-reveal="" data-delay="80" style="border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; background: linear-gradient(rgb(6, 6, 6), rgb(6, 6, 6)) padding-box padding-box, linear-gradient(140deg, rgba(194, 247, 96, 0.55) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.03) 65%, rgba(194, 247, 96, 0.3) 100%) border-box border-box;"><span style="flex: 0 0 auto; margin-bottom: 14px; width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c.5-3.5 3.2-5.5 6.5-5.5s6 2 6.5 5.5"></path><circle cx="17" cy="9" r="2.5"></circle><path d="M17 14c2.4 0 4.2 1.6 4.5 4.5"></path></svg></span><h3 style="font-size: 20px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.15;">Experienced Team With the Right Expertise</h3><p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">Our team brings together skills in keyword research, content, technical optimisation and digital marketing. You get the right expertise working together to improve your website's performance.</p></div>
-      <div data-tilt="" data-spot="" data-reveal="" data-delay="160" style="border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; background: linear-gradient(rgb(6, 6, 6), rgb(6, 6, 6)) padding-box padding-box, linear-gradient(140deg, rgba(194, 247, 96, 0.55) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.03) 65%, rgba(194, 247, 96, 0.3) 100%) border-box border-box;"><span style="flex: 0 0 auto; margin-bottom: 14px; width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.2-7.5 9.5-4.3-1.3-7.5-4.9-7.5-9.5V6z"></path><path d="M8.5 12.2l2.4 2.4 4.6-4.8"></path></svg></span><h3 style="font-size: 20px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.15;">Ethical Practices, Always</h3><p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">We follow search engine guidelines and focus on sustainable methods. No shortcuts or risky tactics that could harm your website or brand reputation.</p></div>
-      <div data-tilt="" data-spot="" data-reveal="" style="border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; background: linear-gradient(rgb(6, 6, 6), rgb(6, 6, 6)) padding-box padding-box, linear-gradient(140deg, rgba(194, 247, 96, 0.55) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.03) 65%, rgba(194, 247, 96, 0.3) 100%) border-box border-box;"><span style="flex: 0 0 auto; margin-bottom: 14px; width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5h18"></path><path d="M4 16l5-5 4 3 7-7.5"></path><path d="M15 6.5h5v5"></path></svg></span><h3 style="font-size: 20px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.15;">Focus on Real Business Growth</h3><p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">Rankings and traffic matter, but what happens after visitors reach your website matters too. We focus on attracting relevant visitors who are more likely to become enquiries and customers.</p></div>
-      <div data-tilt="" data-spot="" data-reveal="" data-delay="80" style="border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; background: linear-gradient(rgb(6, 6, 6), rgb(6, 6, 6)) padding-box padding-box, linear-gradient(140deg, rgba(194, 247, 96, 0.55) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.03) 65%, rgba(194, 247, 96, 0.3) 100%) border-box border-box;"><span style="flex: 0 0 auto; margin-bottom: 14px; width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="2.5"></rect><path d="M8 16v-3M12 16V9.5M16 16v-5"></path></svg></span><h3 style="font-size: 20px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.15;">Clear Reports and Regular Updates</h3><p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">You stay informed about campaign activities and progress. We share reports on traffic, rankings, visibility and important improvements, so you know where things stand.</p></div>
-      <div data-tilt="" data-spot="" data-reveal="" data-delay="160" style="border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 10px; border: 1px solid transparent; background: linear-gradient(rgb(6, 6, 6), rgb(6, 6, 6)) padding-box padding-box, linear-gradient(140deg, rgba(194, 247, 96, 0.55) 0%, rgba(255, 255, 255, 0.06) 35%, rgba(255, 255, 255, 0.03) 65%, rgba(194, 247, 96, 0.3) 100%) border-box border-box;"><span style="flex: 0 0 auto; margin-bottom: 14px; width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(145deg, rgb(35, 41, 18) 0%, rgb(11, 11, 11) 70%); border: 1px solid rgba(194, 247, 96, 0.28); display: grid; place-items: center; color: rgb(194, 247, 96);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="2"></rect><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"></rect><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"></rect></svg></span><h3 style="font-size: 20px; font-weight: 500; letter-spacing: -0.035em; line-height: 1.15;">Solutions for Different Website Platforms</h3><p style="font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.65);">Whether your website runs on WordPress, Shopify, WooCommerce or a custom framework, we adapt our approach to its platform and technical requirements.</p></div>
-    </div>
-  </div></section><section id="faq" data-screen-label="FAQ" style="max-width: 1240px; margin: 0px auto; padding: 40px clamp(20px, 4vw, 40px) 120px; display: grid; grid-template-columns: var(--wu-proc-cols); gap: clamp(32px, 5vw, 64px); align-items: start;">
-  <div style="display: flex; flex-direction: column; gap: 24px; position: var(--wu-proc-pos); top: 120px; align-self: start;">
-    <span data-reveal="" style="align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 500; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: rgb(194, 247, 96);"><span style="width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(194, 247, 96, 0), rgb(194, 247, 96));"></span>FAQ</span>
-    <h2 data-reveal="" style="font-size: clamp(36px, 4.4vw, 64px); font-weight: 400; letter-spacing: -0.05em; line-height: 0.98; text-wrap: balance;"><span style="color: rgb(210, 234, 166);">What Businesses Ask</span> Our SEO Experts</h2>
-  </div>
-  <div style="display: flex; flex-direction: column; gap: 10px;">
-    <div data-spot="" style="position: relative; overflow: hidden; border-radius: 14px; background: rgb(14, 14, 14); padding: 0px 24px;">
-      <button data-faq-t="0" aria-expanded="true" style="color-scheme: unset; forced-color-adjust: unset; math-depth: unset; position: unset; position-anchor: unset; text-size-adjust: unset; appearance: unset; font-family: unset; font-feature-settings: unset; font-kerning: unset; font-language-override: unset; font-optical-sizing: unset; font-palette: unset; font-size-adjust: unset; font-stretch: unset; font-style: unset; font-synthesis: unset; font-variant: unset; font-variation-settings: unset; position-area: unset; text-orientation: unset; text-rendering: unset; text-spacing-trim: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; align-content: unset; place-self: unset; alignment-baseline: unset; anchor-name: unset; anchor-scope: unset; animation-composition: unset; animation: unset; animation-trigger: unset; app-region: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-shape: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-decoration-break: unset; box-shadow: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-animation: unset; caret-color: unset; caret-shape: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; columns: unset; column-fill: unset; rule-break: unset; rule: unset; rule-inset: unset; rule-visibility-items: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; corner-shape: unset; corner-block-end-shape: unset; corner-block-start-shape: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cx: unset; cy: unset; d: unset; dominant-baseline: unset; dynamic-range-limit: unset; empty-cells: unset; field-sizing: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; flex-line-count: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; interactivity: unset; interest-delay: unset; interpolate-size: unset; isolation: unset; justify-items: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-block: unset; overflow-clip-margin: unset; overflow-inline: unset; overflow-wrap: unset; overflow: unset; overlay: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding-inline: unset; page: unset; page-margin-safety: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position-try: unset; position-visibility: unset; print-color-adjust: unset; quotes: unset; r: unset; reading-flow: unset; reading-order: unset; resize: unset; rotate: unset; ruby-align: unset; ruby-overhang: unset; ruby-position: unset; rule-overlap: unset; rx: unset; ry: unset; scale: unset; scroll-axis-lock: unset; scroll-behavior: unset; scroll-initial-target: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-marker-group: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-target-group: unset; scroll-timeline: unset; scrollbar-color: unset; scrollbar-gutter: unset; scrollbar-width: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-autospace: unset; text-box: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-fit: unset; text-indent: unset; text-justify: unset; text-overflow: unset; text-shadow: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; text-wrap: unset; timeline-scope: unset; timeline-trigger: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; trigger-scope: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-transition-class: unset; view-transition-group: unset; view-transition-name: unset; view-transition-scope: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; white-space-collapse: unset; widows: unset; will-change: unset; window-drag: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset; cursor: pointer; width: 100%; box-sizing: border-box; padding: 22px 0px; display: flex; justify-content: space-between; gap: 20px; align-items: center; font-size: 18px; font-weight: 500; line-height: 1.35; color: rgb(255, 255, 255);">How long do SEO efforts typically take to show significant, measurable results for an established website?<span style="flex: 0 0 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgb(194, 247, 96); color: rgb(194, 247, 96); display: grid; place-items: center; font-size: 18px; transition: transform 0.3s; transform: rotate(45deg);">+</span></button>
-      <div class="wu-faq-a" data-faq-a="0" data-open="1"><div style="overflow: hidden;"><p style="padding: 0px 40px 22px 0px; font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, 0.72);">Most established websites see measurable gains: better rankings, impressions and organic traffic, within three to six months. Highly competitive keywords or new markets can take six to twelve. Technical fixes often show impact sooner, and results compound the longer a consistent strategy runs.</p></div></div>
-    </div>
-    <div data-spot="" style="position: relative; overflow: hidden; border-radius: 14px; background: rgb(14, 14, 14); padding: 0px 24px;">
-      <button data-faq-t="1" aria-expanded="false" style="color-scheme: unset; forced-color-adjust: unset; math-depth: unset; position: unset; position-anchor: unset; text-size-adjust: unset; appearance: unset; font-family: unset; font-feature-settings: unset; font-kerning: unset; font-language-override: unset; font-optical-sizing: unset; font-palette: unset; font-size-adjust: unset; font-stretch: unset; font-style: unset; font-synthesis: unset; font-variant: unset; font-variation-settings: unset; position-area: unset; text-orientation: unset; text-rendering: unset; text-spacing-trim: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; align-content: unset; place-self: unset; alignment-baseline: unset; anchor-name: unset; anchor-scope: unset; animation-composition: unset; animation: unset; animation-trigger: unset; app-region: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-shape: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-decoration-break: unset; box-shadow: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-animation: unset; caret-color: unset; caret-shape: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; columns: unset; column-fill: unset; rule-break: unset; rule: unset; rule-inset: unset; rule-visibility-items: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; corner-shape: unset; corner-block-end-shape: unset; corner-block-start-shape: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cx: unset; cy: unset; d: unset; dominant-baseline: unset; dynamic-range-limit: unset; empty-cells: unset; field-sizing: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; flex-line-count: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; interactivity: unset; interest-delay: unset; interpolate-size: unset; isolation: unset; justify-items: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-block: unset; overflow-clip-margin: unset; overflow-inline: unset; overflow-wrap: unset; overflow: unset; overlay: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding-inline: unset; page: unset; page-margin-safety: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position-try: unset; position-visibility: unset; print-color-adjust: unset; quotes: unset; r: unset; reading-flow: unset; reading-order: unset; resize: unset; rotate: unset; ruby-align: unset; ruby-overhang: unset; ruby-position: unset; rule-overlap: unset; rx: unset; ry: unset; scale: unset; scroll-axis-lock: unset; scroll-behavior: unset; scroll-initial-target: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-marker-group: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-target-group: unset; scroll-timeline: unset; scrollbar-color: unset; scrollbar-gutter: unset; scrollbar-width: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-autospace: unset; text-box: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-fit: unset; text-indent: unset; text-justify: unset; text-overflow: unset; text-shadow: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; text-wrap: unset; timeline-scope: unset; timeline-trigger: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; trigger-scope: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-transition-class: unset; view-transition-group: unset; view-transition-name: unset; view-transition-scope: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; white-space-collapse: unset; widows: unset; will-change: unset; window-drag: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset; cursor: pointer; width: 100%; box-sizing: border-box; padding: 22px 0px; display: flex; justify-content: space-between; gap: 20px; align-items: center; font-size: 18px; font-weight: 500; line-height: 1.35; color: rgb(255, 255, 255);">What deliverables and reports will we receive every month?<span style="flex: 0 0 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgb(194, 247, 96); color: rgb(194, 247, 96); display: grid; place-items: center; font-size: 18px; transition: transform 0.3s; transform: rotate(0deg);">+</span></button>
-      <div class="wu-faq-a" data-faq-a="1"><div style="overflow: hidden;"><p style="padding: 0px 40px 22px 0px; font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, 0.72);">A monthly SEO report covering keyword rankings, organic traffic, conversions, Search Console and GA4 insights, AI search visibility, the work completed and the plan for next month, plus access to a live dashboard whenever you need it.</p></div></div>
-    </div>
-    <div data-spot="" style="position: relative; overflow: hidden; border-radius: 14px; background: rgb(14, 14, 14); padding: 0px 24px;">
-      <button data-faq-t="2" aria-expanded="false" style="color-scheme: unset; forced-color-adjust: unset; math-depth: unset; position: unset; position-anchor: unset; text-size-adjust: unset; appearance: unset; font-family: unset; font-feature-settings: unset; font-kerning: unset; font-language-override: unset; font-optical-sizing: unset; font-palette: unset; font-size-adjust: unset; font-stretch: unset; font-style: unset; font-synthesis: unset; font-variant: unset; font-variation-settings: unset; position-area: unset; text-orientation: unset; text-rendering: unset; text-spacing-trim: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; align-content: unset; place-self: unset; alignment-baseline: unset; anchor-name: unset; anchor-scope: unset; animation-composition: unset; animation: unset; animation-trigger: unset; app-region: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-shape: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-decoration-break: unset; box-shadow: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-animation: unset; caret-color: unset; caret-shape: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; columns: unset; column-fill: unset; rule-break: unset; rule: unset; rule-inset: unset; rule-visibility-items: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; corner-shape: unset; corner-block-end-shape: unset; corner-block-start-shape: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cx: unset; cy: unset; d: unset; dominant-baseline: unset; dynamic-range-limit: unset; empty-cells: unset; field-sizing: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; flex-line-count: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; interactivity: unset; interest-delay: unset; interpolate-size: unset; isolation: unset; justify-items: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-block: unset; overflow-clip-margin: unset; overflow-inline: unset; overflow-wrap: unset; overflow: unset; overlay: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding-inline: unset; page: unset; page-margin-safety: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position-try: unset; position-visibility: unset; print-color-adjust: unset; quotes: unset; r: unset; reading-flow: unset; reading-order: unset; resize: unset; rotate: unset; ruby-align: unset; ruby-overhang: unset; ruby-position: unset; rule-overlap: unset; rx: unset; ry: unset; scale: unset; scroll-axis-lock: unset; scroll-behavior: unset; scroll-initial-target: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-marker-group: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-target-group: unset; scroll-timeline: unset; scrollbar-color: unset; scrollbar-gutter: unset; scrollbar-width: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-autospace: unset; text-box: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-fit: unset; text-indent: unset; text-justify: unset; text-overflow: unset; text-shadow: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; text-wrap: unset; timeline-scope: unset; timeline-trigger: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; trigger-scope: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-transition-class: unset; view-transition-group: unset; view-transition-name: unset; view-transition-scope: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; white-space-collapse: unset; widows: unset; will-change: unset; window-drag: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset; cursor: pointer; width: 100%; box-sizing: border-box; padding: 22px 0px; display: flex; justify-content: space-between; gap: 20px; align-items: center; font-size: 18px; font-weight: 500; line-height: 1.35; color: rgb(255, 255, 255);">Should SEO be part of a broader digital marketing strategy?<span style="flex: 0 0 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgb(194, 247, 96); color: rgb(194, 247, 96); display: grid; place-items: center; font-size: 18px; transition: transform 0.3s; transform: rotate(0deg);">+</span></button>
-      <div class="wu-faq-a" data-faq-a="2"><div style="overflow: hidden;"><p style="padding: 0px 40px 22px 0px; font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, 0.72);">Yes. SEO builds long-term organic visibility, while paid ads, social media and content marketing drive faster reach. Planned together, each channel strengthens the others, and your overall cost per lead comes down.</p></div></div>
-    </div>
-    <div data-spot="" style="position: relative; overflow: hidden; border-radius: 14px; background: rgb(14, 14, 14); padding: 0px 24px;">
-      <button data-faq-t="3" aria-expanded="false" style="color-scheme: unset; forced-color-adjust: unset; math-depth: unset; position: unset; position-anchor: unset; text-size-adjust: unset; appearance: unset; font-family: unset; font-feature-settings: unset; font-kerning: unset; font-language-override: unset; font-optical-sizing: unset; font-palette: unset; font-size-adjust: unset; font-stretch: unset; font-style: unset; font-synthesis: unset; font-variant: unset; font-variation-settings: unset; position-area: unset; text-orientation: unset; text-rendering: unset; text-spacing-trim: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; align-content: unset; place-self: unset; alignment-baseline: unset; anchor-name: unset; anchor-scope: unset; animation-composition: unset; animation: unset; animation-trigger: unset; app-region: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-shape: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-decoration-break: unset; box-shadow: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-animation: unset; caret-color: unset; caret-shape: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; columns: unset; column-fill: unset; rule-break: unset; rule: unset; rule-inset: unset; rule-visibility-items: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; corner-shape: unset; corner-block-end-shape: unset; corner-block-start-shape: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cx: unset; cy: unset; d: unset; dominant-baseline: unset; dynamic-range-limit: unset; empty-cells: unset; field-sizing: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; flex-line-count: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; interactivity: unset; interest-delay: unset; interpolate-size: unset; isolation: unset; justify-items: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-block: unset; overflow-clip-margin: unset; overflow-inline: unset; overflow-wrap: unset; overflow: unset; overlay: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding-inline: unset; page: unset; page-margin-safety: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position-try: unset; position-visibility: unset; print-color-adjust: unset; quotes: unset; r: unset; reading-flow: unset; reading-order: unset; resize: unset; rotate: unset; ruby-align: unset; ruby-overhang: unset; ruby-position: unset; rule-overlap: unset; rx: unset; ry: unset; scale: unset; scroll-axis-lock: unset; scroll-behavior: unset; scroll-initial-target: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-marker-group: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-target-group: unset; scroll-timeline: unset; scrollbar-color: unset; scrollbar-gutter: unset; scrollbar-width: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-autospace: unset; text-box: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-fit: unset; text-indent: unset; text-justify: unset; text-overflow: unset; text-shadow: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; text-wrap: unset; timeline-scope: unset; timeline-trigger: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; trigger-scope: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-transition-class: unset; view-transition-group: unset; view-transition-name: unset; view-transition-scope: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; white-space-collapse: unset; widows: unset; will-change: unset; window-drag: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset; cursor: pointer; width: 100%; box-sizing: border-box; padding: 22px 0px; display: flex; justify-content: space-between; gap: 20px; align-items: center; font-size: 18px; font-weight: 500; line-height: 1.35; color: rgb(255, 255, 255);">What Is WooCommerce SEO and How Does It Benefit E-commerce Businesses?<span style="flex: 0 0 32px; height: 32px; border-radius: 50%; border: 1.5px solid rgb(194, 247, 96); color: rgb(194, 247, 96); display: grid; place-items: center; font-size: 18px; transition: transform 0.3s; transform: rotate(0deg);">+</span></button>
-      <div class="wu-faq-a" data-faq-a="3"><div style="overflow: hidden;"><p style="padding: 0px 40px 22px 0px; font-size: 16px; line-height: 1.7; color: rgba(255, 255, 255, 0.72);">WooCommerce SEO optimises WordPress-based online stores: product and category pages, site structure, structured data, internal linking and technical performance, so your products appear for high-intent, ready-to-buy searches. The result is more organic shoppers and sales without relying entirely on paid ads.</p></div></div>
-    </div>
-  </div></section><section id="contact" data-screen-label="Lead Form" style="padding: 0px clamp(12px, 2vw, 24px) 24px;">
-  <div style="position: relative; max-width: 1400px; margin: 0px auto; border-radius: 32px; overflow: hidden; background: rgb(28, 29, 25); box-shadow: rgba(194, 247, 96, 0.35) 0px 0px 0px 1px inset; padding: clamp(48px, 7vw, 96px) clamp(24px, 5vw, 72px);">
-    <div data-blob="1" style="position: absolute; width: 700px; height: 700px; left: -200px; top: -300px; border-radius: 50%; background: radial-gradient(circle, rgb(123, 129, 70) 0%, rgba(123, 129, 70, 0) 65%); filter: blur(30px); pointer-events: none;"></div>
-    <div data-blob="2" style="position: absolute; width: 700px; height: 700px; right: -250px; bottom: -350px; border-radius: 50%; background: radial-gradient(circle, rgb(86, 96, 42) 0%, rgba(86, 96, 42, 0) 65%); filter: blur(30px); pointer-events: none;"></div>
-    <div style="position: relative; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(40px, 5vw, 72px); align-items: start;">
-      <div style="display: flex; flex-direction: column; gap: 24px;">
-        <img loading="lazy" decoding="async" src="<?php echo esc_url( $wu_assets ); ?>img/icon-character.gif" alt="Wiso" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; background: rgb(0, 0, 0); box-shadow: rgb(194, 247, 96) 0px 0px 0px 2px, rgba(194, 247, 96, 0.5) 0px 0px 30px;">
-        <h2 data-reveal="" style="font-size: clamp(40px, 5vw, 72px); font-weight: 400; text-wrap: balance; letter-spacing: -0.05em; line-height: 0.98;"><span style="color: rgb(210, 234, 166);">Get Your Free</span> SEO Assessment</h2>
-        <p data-reveal="" style="font-size: 17px; line-height: 1.7; color: rgba(255, 255, 255, 0.82); max-width: 480px; text-wrap: pretty;">Share your website and goals. Our SEO experts will review where you stand on Google, Bing and AI search, and send back a clear plan with a quote.</p>
-        <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px;">
-          <a href="mailto:brandingwithwiseup@gmail.com" class="scp1" style="color: rgba(255, 255, 255, 0.8);">brandingwithwiseup@gmail.com</a>
-          <a href="https://wa.me/+916282434503" class="scp1" style="color: rgba(255, 255, 255, 0.8);">Chat on WhatsApp</a>
-        </div>
-      </div>
-      <div data-contact-wrap="">
-      <form data-contact-form="" novalidate="" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; padding: clamp(20px, 2.4vw, 28px); border-radius: 24px; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.1);"><input name="hpCheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; opacity: 0; pointer-events: none;">
-        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.65);">Name<input maxlength="60" name="name" placeholder="Your name" class="scpa" style="padding: 15px 16px; border-radius: 12px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-size: 15px; outline: none;"></label>
-        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.65);">Phone<input maxlength="16" name="phone" type="tel" placeholder="+91" class="scpa" style="padding: 15px 16px; border-radius: 12px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-size: 15px; outline: none;"></label>
-        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.65);">Email<input maxlength="254" name="email" type="email" placeholder="you@company.com" class="scpa" style="padding: 15px 16px; border-radius: 12px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-size: 15px; outline: none;"></label>
-        <label style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.65);">Website<input maxlength="300" name="website" placeholder="yourwebsite.com" class="scpa" style="padding: 15px 16px; border-radius: 12px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-size: 15px; outline: none;"></label>
-        <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.65);">What do you need?<select name="service" style="padding: 15px 16px; border-radius: 12px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-size: 15px; outline: none;"><option>Free SEO Assessment</option><option>SEO Package Quote</option><option>AI SEO &amp; Search Visibility</option><option>Local SEO</option><option>WooCommerce / Shopify SEO</option><option>Something else</option></select></label>
-        <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: rgba(255, 255, 255, 0.65);">Message<textarea maxlength="1000" name="message" rows="4" placeholder="Tell us about your business and goals" class="scpa" style="padding: 15px 16px; border-radius: 12px; background: rgb(11, 11, 11); border: 1px solid rgba(255, 255, 255, 0.12); color: rgb(255, 255, 255); font-size: 15px; outline: none; resize: vertical;"></textarea></label>
-        <span role="alert" data-contact-err="" hidden="" style="grid-column: 1 / -1; font-size: 13.5px; color: rgb(255, 138, 107);"></span>
-        <button type="submit" class="scp3" style="grid-column: 1 / -1; cursor: pointer; border: 0px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 17px 28px; border-radius: 999px; background: radial-gradient(120% 160% at 50% 0%, rgb(241, 237, 182) 0%, rgb(185, 210, 83) 42%, rgb(95, 108, 39) 100%); color: rgb(14, 18, 6); font-weight: 600; font-size: 16px; font-family: inherit; transition: filter 0.3s;">Request a Quote <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"></path><path d="M8.5 7H17v8.5"></path></svg></button>
-      </form>
-      </div>
-      <div data-sent="" hidden="">
-        <div style="padding: clamp(28px, 3vw, 40px); border-radius: 24px; background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(194, 247, 96, 0.35); display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
-          <span style="width: 52px; height: 52px; border-radius: 50%; background: rgb(194, 247, 96); color: rgb(14, 18, 6); display: grid; place-items: center;"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
-          <h3 style="font-size: 28px; font-weight: 400; letter-spacing: -0.035em;">Thanks, we've got it.</h3>
-          <p style="font-size: 16px; line-height: 1.65; color: rgba(255, 255, 255, 0.75);">Our SEO team will review your website and get back to you within one working day.</p>
-          <button data-reset="" style="color-scheme: unset; forced-color-adjust: unset; math-depth: unset; position: unset; position-anchor: unset; text-size-adjust: unset; appearance: unset; font-family: unset; font-feature-settings: unset; font-kerning: unset; font-language-override: unset; font-optical-sizing: unset; font-palette: unset; font-size-adjust: unset; font-stretch: unset; font-style: unset; font-synthesis: unset; font-variant: unset; font-variation-settings: unset; font-weight: unset; position-area: unset; text-orientation: unset; text-rendering: unset; text-spacing-trim: unset; -webkit-font-smoothing: unset; -webkit-locale: unset; -webkit-text-orientation: unset; -webkit-writing-mode: unset; writing-mode: unset; zoom: unset; accent-color: unset; place-content: unset; place-items: unset; place-self: unset; alignment-baseline: unset; anchor-name: unset; anchor-scope: unset; animation-composition: unset; animation: unset; animation-trigger: unset; app-region: unset; aspect-ratio: unset; backdrop-filter: unset; backface-visibility: unset; background: unset; background-blend-mode: unset; baseline-shift: unset; baseline-source: unset; block-size: unset; border-block: unset; border: unset; border-radius: unset; border-collapse: unset; border-end-end-radius: unset; border-end-start-radius: unset; border-inline: unset; border-shape: unset; border-start-end-radius: unset; border-start-start-radius: unset; inset: unset; box-decoration-break: unset; box-shadow: unset; box-sizing: unset; break-after: unset; break-before: unset; break-inside: unset; buffered-rendering: unset; caption-side: unset; caret-animation: unset; caret-color: unset; caret-shape: unset; clear: unset; clip: unset; clip-path: unset; clip-rule: unset; color-interpolation: unset; color-interpolation-filters: unset; color-rendering: unset; columns: unset; column-fill: unset; gap: unset; rule-break: unset; rule: unset; rule-inset: unset; rule-visibility-items: unset; column-span: unset; contain: unset; contain-intrinsic-block-size: unset; contain-intrinsic-size: unset; contain-intrinsic-inline-size: unset; container: unset; content: unset; content-visibility: unset; corner-shape: unset; corner-block-end-shape: unset; corner-block-start-shape: unset; counter-increment: unset; counter-reset: unset; counter-set: unset; cx: unset; cy: unset; d: unset; display: unset; dominant-baseline: unset; dynamic-range-limit: unset; empty-cells: unset; field-sizing: unset; fill: unset; fill-opacity: unset; fill-rule: unset; filter: unset; flex: unset; flex-flow: unset; flex-line-count: unset; float: unset; flood-color: unset; flood-opacity: unset; grid: unset; grid-area: unset; height: unset; hyphenate-character: unset; hyphenate-limit-chars: unset; hyphens: unset; image-orientation: unset; image-rendering: unset; initial-letter: unset; inline-size: unset; inset-block: unset; inset-inline: unset; interactivity: unset; interest-delay: unset; interpolate-size: unset; isolation: unset; letter-spacing: unset; lighting-color: unset; line-break: unset; line-height: unset; list-style: unset; margin-block: unset; margin: unset; margin-inline: unset; marker: unset; mask: unset; mask-type: unset; math-shift: unset; math-style: unset; max-block-size: unset; max-height: unset; max-inline-size: unset; max-width: unset; min-block-size: unset; min-height: unset; min-inline-size: unset; min-width: unset; mix-blend-mode: unset; object-fit: unset; object-position: unset; object-view-box: unset; offset: unset; opacity: unset; order: unset; orphans: unset; outline: unset; outline-offset: unset; overflow-anchor: unset; overflow-block: unset; overflow-clip-margin: unset; overflow-inline: unset; overflow-wrap: unset; overflow: unset; overlay: unset; overscroll-behavior-block: unset; overscroll-behavior-inline: unset; overscroll-behavior: unset; padding-block: unset; padding: unset; padding-inline: unset; page: unset; page-margin-safety: unset; page-orientation: unset; paint-order: unset; perspective: unset; perspective-origin: unset; pointer-events: unset; position-try: unset; position-visibility: unset; print-color-adjust: unset; quotes: unset; r: unset; reading-flow: unset; reading-order: unset; resize: unset; rotate: unset; ruby-align: unset; ruby-overhang: unset; ruby-position: unset; rule-overlap: unset; rx: unset; ry: unset; scale: unset; scroll-axis-lock: unset; scroll-behavior: unset; scroll-initial-target: unset; scroll-margin-block: unset; scroll-margin: unset; scroll-margin-inline: unset; scroll-marker-group: unset; scroll-padding-block: unset; scroll-padding: unset; scroll-padding-inline: unset; scroll-snap-align: unset; scroll-snap-stop: unset; scroll-snap-type: unset; scroll-target-group: unset; scroll-timeline: unset; scrollbar-color: unset; scrollbar-gutter: unset; scrollbar-width: unset; shape-image-threshold: unset; shape-margin: unset; shape-outside: unset; shape-rendering: unset; size: unset; speak: unset; stop-color: unset; stop-opacity: unset; stroke: unset; stroke-dasharray: unset; stroke-dashoffset: unset; stroke-linecap: unset; stroke-linejoin: unset; stroke-miterlimit: unset; stroke-opacity: unset; stroke-width: unset; tab-size: unset; table-layout: unset; text-align: unset; text-align-last: unset; text-anchor: unset; text-autospace: unset; text-box: unset; text-combine-upright: unset; text-decoration: unset; text-decoration-skip-ink: unset; text-emphasis: unset; text-emphasis-position: unset; text-fit: unset; text-indent: unset; text-justify: unset; text-overflow: unset; text-shadow: unset; text-transform: unset; text-underline-offset: unset; text-underline-position: unset; text-wrap: unset; timeline-scope: unset; timeline-trigger: unset; touch-action: unset; transform: unset; transform-box: unset; transform-origin: unset; transform-style: unset; transition: unset; translate: unset; trigger-scope: unset; user-select: unset; vector-effect: unset; vertical-align: unset; view-timeline: unset; view-transition-class: unset; view-transition-group: unset; view-transition-name: unset; view-transition-scope: unset; visibility: unset; border-spacing: unset; -webkit-box-align: unset; -webkit-box-decoration-break: unset; -webkit-box-direction: unset; -webkit-box-flex: unset; -webkit-box-ordinal-group: unset; -webkit-box-orient: unset; -webkit-box-pack: unset; -webkit-box-reflect: unset; -webkit-line-break: unset; -webkit-line-clamp: unset; -webkit-mask-box-image: unset; -webkit-rtl-ordering: unset; -webkit-ruby-position: unset; -webkit-tap-highlight-color: unset; -webkit-text-combine: unset; -webkit-text-decorations-in-effect: unset; -webkit-text-fill-color: unset; -webkit-text-security: unset; -webkit-text-stroke: unset; -webkit-user-drag: unset; white-space-collapse: unset; widows: unset; width: unset; will-change: unset; window-drag: unset; word-break: unset; word-spacing: unset; x: unset; y: unset; z-index: unset; cursor: pointer; color: rgb(194, 247, 96); font-size: 15px;">Send another request</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section></div>
-<?php wiseup_landing_chrome_footer( 'seo' ); ?>
-<?php wp_footer(); ?>
-</body>
-</html>
+	<!-- 8. Packages -->
+	<section class="sec ev-sec" id="packages">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'SEO Packages' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'SEO Package Is Built', 'Around a 360° Strategy' ); // phpcs:ignore ?></h2>
+					<p class="seo-from">Packages from <strong>₹70K onwards</strong></p>
+				</div>
+				<div class="ev-intro"><p>A complete SEO strategy needs more than a few website changes. Our packages bring together essential optimisation, content, technical improvements and performance tracking to strengthen your online presence. The scope and deliverables are tailored to your selected package and business requirements.</p></div>
+			</div>
+			<h3 class="pm-sub">SEO Strategy Includes</h3>
+			<ul class="pm-grid pm-grid--tools">
+				<?php foreach ( $wu_package as $g ) : ?>
+				<li><h3><?php echo esc_html( $g[0] ); ?></h3><ul class="pm-list"><?php foreach ( $g[1] as $it ) echo '<li>' . esc_html( $it ) . '</li>'; ?></ul></li>
+				<?php endforeach; ?>
+			</ul>
+			<div class="pm-band">
+				<p class="pm-band__p">Not sure which SEO package fits your business? Choose from our affordable SEO services in Kerala, with scopes tailored to your website, competition and growth priorities. Request a free SEO assessment to identify the right starting point.</p>
+				<?php echo $wu_btn( 'Request a Quote', 'teal', $wu_lead ); // phpcs:ignore ?>
+			</div>
+		</div>
+	</section>
+
+	<!-- 9. Industries -->
+	<section class="sec ev-sec" id="industries">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Industries' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'SEO for Businesses', 'Across Industries' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>We develop search strategies for businesses across:</p></div>
+			</div>
+			<ul class="dm-ind">
+				<?php foreach ( $wu_industries as $ind ) : ?>
+				<li><span class="dm-ind__i"><?php echo $wu_svg( $wu_icons[ $ind[1] ], 22 ); // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
+
+	<!-- 10. Why WiseUp -->
+	<section class="sec ev-sec" id="why">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Why WiseUp' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Why Choose', 'WiseUp?' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>At WiseUp, we focus on getting your business noticed by the right audience. We bring together strategy, creativity and technical expertise to improve your online visibility and support your business growth. Here’s what makes us a reliable partner.</p></div>
+			</div>
+			<ul class="pm-grid pm-grid--why">
+				<?php foreach ( $wu_why as $w ) : ?>
+				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $w[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
+
+	<!-- 11. FAQ (with FAQPage schema) -->
+	<section class="sec ev-sec" id="faq" aria-labelledby="dm-faq-h">
+		<div class="wrap dm-faq">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
+				<h2 id="dm-faq-h" class="sh__h"><?php echo $wu_h( 'What Businesses Ask', 'Our SEO Experts' ); // phpcs:ignore ?></h2>
+			</div>
+			<div class="faq">
+				<?php foreach ( $wu_faq as $q ) : ?>
+				<details class="faq__item" name="faq">
+					<summary class="faq__q"><h3><?php echo esc_html( $q[0] ); ?></h3><span class="faq__dot" aria-hidden="true"></span></summary>
+					<p class="faq__a"><?php echo esc_html( $q[1] ); ?></p>
+				</details>
+				<?php endforeach; ?>
+			</div>
+		</div>
+	</section>
+
+	<!-- 12. Final CTA: free SEO assessment -->
+			<section class="sec ev-sec" id="enquire">
+		<div class="wrap">
+			<div class="ev-final">
+				<div class="ev-final__copy">
+					<?php echo $wu_eyebrow( 'Get started' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Get Your Free', 'SEO Assessment' ); // phpcs:ignore ?></h2>
+					<p class="ev-final__p">Share your website and goals. Our SEO experts will review where you stand on Google, Bing and AI search, and send back a clear plan with a quote.</p>
+					<div class="ev-contact">
+						<a class="ev-ct ev-ct--wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener">
+							<span class="ev-ct__i"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35Zm-5.42 7.4h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.89 9.88Zm8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45h.01c6.55 0 11.89-5.34 11.89-11.89a11.82 11.82 0 0 0-3.48-8.41Z"/></svg></span>
+							<span class="ev-ct__t"><small>Chat on WhatsApp</small>+91 62824 34503</span>
+							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
+						</a>
+						<a class="ev-ct" href="tel:+916282434503">
+							<span class="ev-ct__i"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2Z"/></svg></span>
+							<span class="ev-ct__t"><small>Call us</small>+91 62824 34503</span>
+							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
+						</a>
+					</div>
+				</div>
+				<form class="ev-form" data-dm-form novalidate data-endpoint="<?php echo esc_url( rest_url( 'wiseup/v1/enquiry' ) ); ?>" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wp_rest' ) ); ?>" data-source="<?php echo esc_attr( $wu_src ); ?>">
+					<label><span>Name</span><input name="name" required autocomplete="name"></label>
+					<label><span>Website</span><input name="company" type="url" autocomplete="url" placeholder="https://"></label>
+					<label><span>Email</span><input name="email" type="email" autocomplete="email"></label>
+					<label><span>Phone</span><input name="phone" type="tel" required autocomplete="tel"></label>
+					<label class="ev-form__wide"><span>What do you need?</span>
+						<select name="service" required>
+							<option value="" selected disabled>Choose one</option>
+							<?php foreach ( $wu_services_select as $s ) echo '<option>' . esc_html( $s ) . '</option>'; ?>
+						</select>
+					</label>
+					<label class="ev-form__wide"><span>Message</span><textarea name="project" rows="4"></textarea></label>
+					<input class="ev-hp" name="hp_website" tabindex="-1" autocomplete="off" aria-hidden="true">
+					<button class="b b--teal ev-form__send" type="submit"><span class="b__label">Request a Quote</span><span class="b__ico"><?php echo $wu_arrow . $wu_arrow; // phpcs:ignore ?></span></button>
+					<p class="ev-form__note" data-ev-note aria-live="polite"></p>
+				</form>
+			</div>
+		</div>
+	</section>
+</main>
+</div>
+<script>
+(function () {
+	// enquiry form → wiseup/v1/enquiry (saved to Leads); WhatsApp link if sending fails
+	var f = document.querySelector('[data-dm-form]');
+	if (f) {
+		var note = f.querySelector('[data-ev-note]'), btn = f.querySelector('button[type=submit]');
+		f.addEventListener('submit', function (e) {
+			e.preventDefault();
+			var bad = [].slice.call(f.querySelectorAll('input,select,textarea')).filter(function (el) { return el.name !== 'hp_website' && !el.checkValidity(); });
+			if (bad.length) { bad[0].focus(); note.textContent = bad[0].name === 'email' ? 'Please check the email address.' : 'Please add your name, phone and the service you need.'; return; }
+			var d = new FormData(f), v = function (k) { return String(d.get(k) || '').trim(); };
+			var msg = ['Services required: ' + v('service'), 'Website: ' + (v('company') || '-'), 'Project: ' + (v('project') || '-')].join('\n');
+			var wa = 'https://wa.me/916282434503?text=' + encodeURIComponent('Hi WiseUp, I am ' + v('name') + '.\n' + msg);
+			btn.disabled = true; note.textContent = 'Sending…';
+			fetch(f.dataset.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': f.dataset.nonce },
+				body: JSON.stringify({ name: v('name'), phone: v('phone'), email: v('email'), service: v('service'), message: msg, page: location.href, source: f.dataset.source, hp_website: v('hp_website') }) })
+				.then(function (r) { if (!r.ok) throw 0; f.reset(); note.textContent = 'Thanks, we have your details and will be in touch soon.'; })
+				.catch(function () { note.innerHTML = 'Couldn’t send that right now. <a href="' + wa + '" target="_blank" rel="noopener">Send it on WhatsApp instead</a>.'; })
+				.then(function () { btn.disabled = false; });
+		});
+	}
+	// reviews carousel
+	var qs = document.querySelector('[data-quotes]');
+	if (qs) {
+		var tr = qs.querySelector('[data-q-track]'), cardsQ = [].slice.call(tr.children), dots = qs.querySelectorAll('.ev-quotes__dots i');
+		var step = function (dd) { var w = cardsQ[0].getBoundingClientRect().width + parseFloat(getComputedStyle(tr).columnGap || 0); tr.scrollBy({ left: dd * w, behavior: 'smooth' }); };
+		qs.querySelector('[data-q-prev]').addEventListener('click', function () { step(-1); });
+		qs.querySelector('[data-q-next]').addEventListener('click', function () { step(1); });
+		var mark = function () { var max = tr.scrollWidth - tr.clientWidth, k = max > 0 ? Math.round(tr.scrollLeft / max * (cardsQ.length - 1)) : 0; dots.forEach(function (x, i) { x.classList.toggle('is-on', i === k); }); qs.querySelector('[data-q-prev]').disabled = tr.scrollLeft < 4; qs.querySelector('[data-q-next]').disabled = tr.scrollLeft > max - 4; };
+		tr.addEventListener('scroll', function () { requestAnimationFrame(mark); }, { passive: true }); mark();
+		var fitQ = function () { cardsQ.forEach(function (c) { var t = c.querySelector('.ev-quote__text'), b = c.querySelector('.ev-quote__more'); if (c.classList.contains('is-open')) return; b.hidden = !(t.scrollHeight > t.clientHeight + 2); }); };
+		cardsQ.forEach(function (c) { c.querySelector('.ev-quote__more').addEventListener('click', function () { var o = c.classList.toggle('is-open'); this.textContent = o ? 'Show less' : 'Read more'; this.setAttribute('aria-expanded', o); }); });
+		fitQ(); addEventListener('resize', fitQ);
+	}
+	// "why" cards: the hovered / focused card opens
+	document.querySelectorAll('.wu-dm [data-ev-exp]').forEach(function (g) {
+		var cs = [].slice.call(g.children);
+		cs.forEach(function (c) { var on = function () { cs.forEach(function (x) { x.classList.toggle('is-on', x === c); }); }; c.addEventListener('pointerenter', on); c.addEventListener('focus', on); c.addEventListener('click', on); });
+	});
+	// approach: the row crossing the middle of the screen is lit, the sticky figure follows it
+	if ('IntersectionObserver' in window) document.querySelectorAll('.wu-dm [data-spy]').forEach(function (sp) {
+		var rows = [].slice.call(sp.querySelectorAll('.dm-spy__row')), prs = [].slice.call(sp.querySelectorAll('.dm-plan__row')), plan = sp.querySelector('.dm-plan');
+		var on = function (k) {
+			rows.forEach(function (r, i) { r.classList.toggle('is-on', i === k); });
+			prs.forEach(function (r, i) { r.classList.toggle('is-done', i <= k); r.classList.toggle('is-on', i === k); });
+			if (plan) plan.classList.toggle('is-built', k === rows.length - 1);
+		};
+		sp.classList.add('is-spy'); on(0);
+		var so = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) on(rows.indexOf(e.target)); }); }, { rootMargin: '-48% 0px -48% 0px' });
+		rows.forEach(function (r) { so.observe(r); });
+	});
+	// channels orbit: a node (or the auto cycle while on screen) chooses the channel shown beside it
+	document.querySelectorAll('.wu-dm [data-orb]').forEach(function (orb) {
+		var nodes = [].slice.call(orb.querySelectorAll('.dm-orb__node')), panels = [].slice.call(orb.querySelectorAll('.dm-orb__panel')), lines = [].slice.call(orb.querySelectorAll('.dm-orb__lines line'));
+		var cur = 0, timer = null, user = false, seen = false;
+		var show = function (k) {
+			cur = k;
+			nodes.forEach(function (n, i) { n.classList.toggle('is-on', i === k); n.setAttribute('aria-pressed', i === k ? 'true' : 'false'); });
+			panels.forEach(function (pn, i) { pn.classList.toggle('is-on', i === k); pn.setAttribute('aria-hidden', i === k ? 'false' : 'true'); });
+			lines.forEach(function (l, i) { l.classList.toggle('is-on', i === k); });
+			var bi = orb.querySelector('.dm-orb__bar i'); if (bi) { bi.style.animation = 'none'; void bi.offsetWidth; bi.style.animation = ''; }
+		};
+		orb.classList.add('is-live'); show(0);
+		nodes.forEach(function (n, i) { n.addEventListener('click', function () { user = true; orb.classList.add('is-user'); clearInterval(timer); show(i); }); });
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) { orb.classList.add('is-user'); return; }
+		new IntersectionObserver(function (es) {
+			es.forEach(function (e) {
+				clearInterval(timer);
+				orb.classList.toggle('is-run', e.isIntersecting && !user);
+				if (e.isIntersecting && !user) timer = setInterval(function () { show((cur + 1) % nodes.length); }, 5000);
+			});
+		}, { threshold: 0.45 }).observe(orb);
+	});
+	if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+	var gs = document.documentElement.classList.contains('wu-motion');
+	document.documentElement.classList.add('ev-anim');
+	if (!gs) document.querySelectorAll('.wu-dm [data-count]').forEach(function (el) {
+		var raw = el.getAttribute('data-count'), to = +raw, dp = (raw.split('.')[1] || '').length, t0 = performance.now();
+		(function stp(t) { var k = Math.min(1, (t - t0) / 1400); el.textContent = (to * (1 - Math.pow(1 - k, 3))).toFixed(dp); if (k < 1) requestAnimationFrame(stp); })(t0);
+	});
+	if (matchMedia('(hover: hover)').matches) {
+		document.querySelectorAll('.wu-dm .ev-card').forEach(function (c) {
+			c.addEventListener('pointermove', function (e) { var b = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - b.left) + 'px'); c.style.setProperty('--my', (e.clientY - b.top) + 'px'); });
+		});
+		var st = document.querySelector('.wu-dm [data-stage]');
+		if (st) st.parentNode.addEventListener('pointermove', function (e) { var b = st.getBoundingClientRect(); st.style.setProperty('--rx', ((e.clientX - b.left) / b.width - .5).toFixed(3)); st.style.setProperty('--ry', ((e.clientY - b.top) / b.height - .5).toFixed(3)); });
+	}
+	var fx = function () {
+		if (!window.gsap || !window.ScrollTrigger) return;
+		// services: stacking cards; the covered card shrinks back and dims as the next one slides over it
+		document.querySelectorAll('.wu-dm [data-stack]').forEach(function (list) {
+			var cs = [].slice.call(list.children);
+			cs.forEach(function (c, i) {
+				gsap.from(c.querySelectorAll('.dm-stack__l > *, .dm-stack__r > *'), { y: 34, opacity: 0, duration: 0.9, stagger: 0.07, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: c, start: 'top 82%', once: true } });
+				var next = cs[i + 1];
+				if (!next) return;
+				gsap.fromTo(c, { scale: 1, '--dim': 0 }, { scale: 0.94, '--dim': 0.6, ease: 'none', scrollTrigger: { trigger: next, start: 'top bottom', end: function () { return 'top ' + (parseFloat(getComputedStyle(next).top) || 0) + 'px'; }, scrub: true, invalidateOnRefresh: true } });
+			});
+		});
+		// tools: each folder's icons pop in one after another
+		gsap.utils.toArray('.wu-dm .dm-tools').forEach(function (g) {
+			gsap.from(g.querySelectorAll('.dm-mark'), { scale: 0.5, opacity: 0, duration: 0.7, stagger: 0.05, ease: 'back.out(2)', clearProps: 'transform,opacity', scrollTrigger: { trigger: g, start: 'top 88%', once: true } });
+		});
+		// stages: the cards climb into a staircase, each drawing its top line
+		document.querySelectorAll('.wu-dm [data-climb]').forEach(function (cl) {
+			var steps = [].slice.call(cl.children);
+			if (matchMedia('(min-width: 1100px)').matches) {
+				cl.classList.add('is-live');
+				var ct = gsap.timeline({ scrollTrigger: { trigger: cl, start: 'top 90%', end: 'bottom 72%', scrub: 0.7 } });
+				steps.forEach(function (s, i) {
+					var c = s.querySelector('.dm-climb__card');
+					ct.fromTo(c, { y: 150, opacity: 0.1 }, { y: 0, opacity: 1, ease: 'power2.out', duration: 1 }, i * 0.45)
+						.fromTo(c, { '--ln': 0 }, { '--ln': 1, ease: 'none', duration: 0.6 }, i * 0.45 + 0.55);
+				});
+			} else steps.forEach(function (s) { gsap.from(s, { y: 40, opacity: 0, duration: 1, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: s, start: 'top 88%', once: true } }); });
+		});
+		// process: the line fills with the scroll, each step's dot lights as the line reaches it, its card slides in
+		document.querySelectorAll('.wu-dm [data-tl]').forEach(function (tl) {
+			var wide = matchMedia('(min-width: 900px)').matches;
+			tl.classList.add('is-live');
+			gsap.fromTo(tl.querySelector('.dm-tl__line i'), { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: tl, start: 'top 60%', end: 'bottom 60%', scrub: true } });
+			[].slice.call(tl.querySelectorAll('.dm-tl__step')).forEach(function (s, i) {
+				ScrollTrigger.create({ trigger: s.querySelector('.dm-tl__node'), start: 'center 60%', onEnter: function () { s.classList.add('is-on'); }, onLeaveBack: function () { s.classList.remove('is-on'); } });
+				gsap.from(s.querySelector('.dm-tl__card'), { x: wide ? (i % 2 ? 70 : -70) : 40, opacity: 0, duration: 1.1, ease: 'expo.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: s, start: 'top 82%', once: true } });
+			});
+		});
+	};
+	if (gs) addEventListener('DOMContentLoaded', function () { if (window.__wuEvMotion) fx(); });
+	else addEventListener('load', fx);
+	// this page's own blocks: staggered rise (GSAP when the engine runs, otherwise a class toggle)
+	var mineSel = '.dm-ind li, .dm-kl .ev-panel, .dm-apps__f, .dm-brand, .dm-pkg__table, .dm-pkg .ev-panel, .ev-quotes';
+	var mine = [].slice.call(document.querySelectorAll('.wu-dm :is(' + mineSel + ')'));
+	if (gs) {
+		// the GSAP scripts load after this one: run once they have
+		addEventListener('DOMContentLoaded', function () {
+			if (!window.__wuEvMotion || !window.gsap || !window.ScrollTrigger) return;
+			gsap.set(mine, { opacity: 0, y: 56 });
+			ScrollTrigger.batch(mine, { start: 'top 90%', once: true, onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'expo.out', clearProps: 'transform' }); } });
+		});
+		return;
+	}
+	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
+	document.querySelectorAll('.wu-dm :is(.ev-card, .ev-step, .ev-exp__card, ' + mineSel + ')').forEach(function (el, i) {
+		if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('ev-rise'); el.style.setProperty('--d', (i % 3) * 70 + 'ms'); io.observe(el); }
+	});
+})();
+</script>
+<script>(function(){if(!matchMedia('(hover: hover)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;document.querySelectorAll('.dm-stack__in').forEach(function(c){c.addEventListener('pointermove',function(e){var b=c.getBoundingClientRect();c.style.setProperty('--sx',(e.clientX-b.left)+'px');c.style.setProperty('--sy',(e.clientY-b.top)+'px');});});})();</script>
+<?php
+$wu_lead_source = $wu_src;
+include WISEUP_DIR . 'landing/lead-popup.php';
+foreach ( array( 'vendor/gsap.min.js', 'vendor/ScrollTrigger.min.js', 'vendor/SplitText.min.js', 'vendor/lenis.min.js', 'event-branding.js', 'ev-map.js' ) as $wu_js ) {
+	echo '<script src="' . esc_url( WISEUP_URL . 'assets/js/' . $wu_js . '?ver=' . filemtime( WISEUP_DIR . 'assets/js/' . $wu_js ) ) . '"></script>' . "\n";
+}
+wiseup_landing_close( $wu_src );
+
+

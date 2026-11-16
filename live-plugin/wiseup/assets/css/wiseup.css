@@ -3062,3 +3062,15 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 .mega__third { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 6px 31px !important; padding: 0 !important; border: 0 !important; }
 .mega__third a { padding: 4px 11px; border-radius: 99px; font-size: 12.5px; color: #a9a9b0; background: rgb(255 255 255 / .05); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08); transition: background .25s, color .25s; }
 .mega__third a:hover, .mega__third a:focus-visible { color: #11150a; background: #beda52; box-shadow: none; }
+
+/* v1.3.69: mega menu sub-items as a floating toast beside the hovered group (the menu keeps its height) */
+.mega .mega__grp { position: relative; }
+.mega .mega__grp .mega__sub, .mega .mega__grp:hover .mega__sub, .mega .mega__grp:focus-within .mega__sub { position: absolute; z-index: 5; top: 0; left: calc(100% - 6px); width: 250px; max-height: none; margin: 0 !important; padding: 8px !important; overflow: visible; border-radius: 18px; background: #0d0d10; box-shadow: inset 0 0 0 1px rgb(190 218 82 / .35), 0 24px 50px -16px rgb(0 0 0 / .95); opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-10px) scale(.97); transform-origin: 0 20px; transition: opacity .22s ease, transform .35s cubic-bezier(.2, 1.4, .4, 1), visibility 0s .22s; }
+.mega .mega__grp:hover .mega__sub, .mega .mega__grp:focus-within .mega__sub { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition: opacity .22s ease, transform .35s cubic-bezier(.2, 1.4, .4, 1), visibility 0s; }
+.mega .mega__grp:nth-child(even) .mega__sub { left: auto; right: calc(100% - 6px); transform: translateX(10px) scale(.97); transform-origin: 100% 20px; }
+.mega .mega__grp:nth-child(even):hover .mega__sub, .mega .mega__grp:nth-child(even):focus-within .mega__sub { transform: none; }
+.mega .mega__grp:nth-last-child(-n+2) .mega__sub { top: auto; bottom: 0; }
+.mega .mega__sub::before { content: ''; position: absolute; top: 22px; left: -7px; width: 12px; height: 12px; border-radius: 3px; background: #0d0d10; transform: rotate(45deg); box-shadow: -1px 1px 0 0 rgb(190 218 82 / .35); }
+.mega .mega__grp:nth-child(even) .mega__sub::before { left: auto; right: -7px; box-shadow: 1px -1px 0 0 rgb(190 218 82 / .35); }
+.mega .mega__grp:nth-last-child(-n+2) .mega__sub::before { top: auto; bottom: 22px; }
+@media (prefers-reduced-motion: reduce) { .mega .mega__sub, .mega .mega__grp:hover .mega__sub { transition: none; } }
