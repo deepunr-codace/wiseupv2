@@ -42,21 +42,29 @@ $wu_svc_icons = array(
 	'megaphone' => '<path d="M4 10v4a1 1 0 0 0 1 1h2l7 4V5L7 9H5a1 1 0 0 0-1 1Z"/><path d="M17.5 9.5a3.5 3.5 0 0 1 0 5"/>',
 );
 
-// title, icon, tags, landing template it links to (if any), the lead popup's service option
+// The service structure (same as the Services menu in the header): title, visual/icon, chips, page it links to (if one is
+// published), the lead popup's service option, anchor id.
+$wu_dm_url   = wiseup_svc_page_url( 'wiseup-digital-marketing' );
+$wu_seo_url  = wiseup_svc_page_url( 'wiseup-seo' );
+$wu_ppc_url  = wiseup_svc_page_url( 'wiseup-performance-marketing' ) ?: wiseup_svc_page_url( 'wiseup-performance' );
+$wu_ev_url   = wiseup_svc_page_url( 'wiseup-event-branding' );
+$wu_studio   = wiseup_svc_page_url( 'wiseup-studio' );
 $wu_services = array(
-	array( 'Brand Strategy & Identity', 'signature', array( 'Brand Strategy & Positioning', 'Logo & Brand Identity Design', 'Personal Branding', 'Market Research', 'Consultancy' ), '', 'Brand Strategy & Identity' ),
-	array( 'Packaging Design & Events', 'box', array( 'Product Packaging Design', 'Signage & Print Production', 'Event Branding' ), '', 'Packaging Design & Events' ),
-	array( 'Web Development', 'code', array( 'Business Websites', 'Online Stores', 'Built to be found and to convert' ), '', 'Web Development' ),
-	array( 'SEO Services', 'search', array( 'Search Engine Optimization', 'Local SEO in Kozhikode & Kerala', 'Be found. Be chosen.' ), 'wiseup-seo', 'SEO Services' ),
-	array( 'Performance Marketing', 'target', array( 'Google Ads', 'Meta Ads', 'Lead generation & PPC' ), 'wiseup-performance', 'Performance Marketing' ),
-	array( 'Digital Marketing', 'globe', array( 'Strategy & Creatives', 'PR & Crisis Management' ), '', 'Digital Marketing & Social Media' ),
-	array( 'Social Media Marketing', 'chat', array( 'Reels', 'Influencer Marketing', 'Engagement & Sponsorship' ), 'wiseup-social-media', 'Digital Marketing & Social Media' ),
-	array( 'Video & Photography', 'video', array( 'TV Commercials', 'Theater & Digital Ads', 'Photoshoot & Product Shoot', 'Corporate & Concept Films', 'CGI & AI Videos' ), '', 'Video & Photography' ),
-	array( 'Campaigns & Media Buying', 'megaphone', array( 'OOH, Print & Radio Campaigns', 'Digital & Video Campaigns', 'Media Planning & Buying', 'Monitoring' ), '', 'Campaigns & Media Buying' ),
+	array( 'Digital Marketing', 'globe', array( 'Content Marketing', 'Digital Branding', 'Website Development', 'Digital PR', 'AI Automation & CRM' ), $wu_dm_url, 'Digital Marketing & Social Media', 'digital-marketing' ),
+	array( 'Social Media Marketing', 'chat', array( 'Influencer Marketing', 'PR (Public Relations)', 'Engagement', 'Crisis Management', 'Sponsorship' ), 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/', 'Digital Marketing & Social Media', 'social-media' ),
+	array( 'SEO (Search Engine Optimization)', 'search', array( 'SEO Strategy & Keyword Research', 'On-Page SEO', 'Technical SEO', 'Local SEO', 'AI SEO' ), $wu_seo_url, 'SEO Services', 'seo' ),
+	array( 'Performance Marketing (PPC)', 'target', array( 'Google Ads', 'Meta Ads' ), $wu_ppc_url, 'Performance Marketing', 'ppc' ),
+	array( 'Video Production & Photography', 'video', array( 'Corporate Films', 'Presentation (PPT)', 'Concept Videos', 'CGI Videos', 'AI Videos' ), $wu_studio, 'Video & Photography', 'video' ),
+	array( 'Brand Solutions', 'signature', array( 'Logo Design', 'Corporate Identity', 'Consultancy', 'Product Packaging', 'Signage', 'Print Production' ), 'https://wiseup.in/services/brand-solutions', 'Brand Strategy & Identity', 'brand-solutions' ),
+	array( 'Strategic Campaigns', 'megaphone', array( 'OOH Campaigns', 'Print Campaigns', 'Digital Campaigns', 'Video Campaigns', 'Radio Campaigns' ), '', 'Campaigns & Media Buying', 'campaigns' ),
+	array( 'Strategic Planning', 'target', array( 'Market Research', 'Promotional Plans' ), 'https://wiseup.in/services/brand-solutions/strategic-planning', 'Brand Strategy & Identity', 'strategic-planning' ),
+	array( 'Media & Release', 'megaphone', array( 'Media Buying', 'Media Planning', 'Media Monitoring', 'Print Media Release' ), 'https://wiseup.in/services/brand-solutions/media', 'Campaigns & Media Buying', 'media' ),
+	array( 'Event Branding', 'box', array( 'Corporate Events', 'Virtual & Hybrid Events', 'Stage, Backdrops & Entrances', 'Badges & Printed Material' ), $wu_ev_url ? $wu_ev_url : 'https://wiseup.in/services/brand-solutions/events', 'Packaging Design & Events', 'event-branding' ),
+	array( 'Web Solutions', 'code', array( 'ERP Solutions', 'Business Websites', 'Online Stores' ), '', 'Web Development', 'web' ),
 );
 
 $wu_svc_vis = require WISEUP_DIR . 'landing/services-visuals.php';
-$wu_svc_wide = array( 0, 6, 7 ); // bento: these cards span wider, picture beside the text
+$wu_svc_wide = array( 0, 6, 10 ); // bento: these cards span wider, picture beside the text
 
 $wu_arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>';
 
@@ -74,11 +82,11 @@ wiseup_landing_open( 'wu-landing wu-svc-page' );
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What services does WiseUp offer?',
-	'a' => '<b>WiseUp</b> offers nine services under one roof: <b>brand strategy and identity, packaging design and events, web development, SEO, performance marketing, digital marketing, social media marketing, video and photography, and campaigns and media buying</b>. Pick one service or combine several into one plan.',
+	'a' => '<b>WiseUp</b> offers <b>digital marketing, social media marketing, SEO, performance marketing, video production and photography, brand solutions, strategic campaigns, strategic planning, media and release, event branding and web solutions</b> under one roof. Pick one service or combine several into one plan.',
 	'points' => array(
-		array( 'Brand and design', 'Brand strategy and identity, packaging design and events.' ),
-		array( 'Growth', 'SEO, performance marketing, digital marketing and social media marketing.' ),
-		array( 'Production and reach', 'Video and photography, web development, campaigns and media buying.' ),
+		array( 'Marketing', 'Digital marketing, social media marketing, SEO and performance marketing (PPC).' ),
+		array( 'Brand and production', 'Brand solutions, video production and photography, event branding.' ),
+		array( 'Planning and reach', 'Strategic campaigns, strategic planning, media and release, and web solutions.' ),
 	),
 	'links' => array( array( 'All services', '#wu-svc-list' ), array( 'Get our plan', '#wu-svc-cta' ) ),
 ) ); ?>	<section class="sv-list" id="wu-svc-list" aria-label="<?php esc_attr_e( 'All services', 'wiseup' ); ?>">
@@ -87,7 +95,7 @@ wiseup_landing_open( 'wu-landing wu-svc-page' );
 				<?php foreach ( $wu_services as $i => $s ) :
 					$n    = sprintf( '%02d', $i + 1 );
 					?>
-					<li class="sv-card sv-card--<?php echo esc_attr( $s[1] ); ?><?php echo in_array( $i, $wu_svc_wide, true ) ? ' sv-card--wide' : ''; ?>" data-card id="svc-<?php echo (int) $i + 1; ?>">
+					<li class="sv-card sv-card--<?php echo esc_attr( $s[1] ); ?><?php echo in_array( $i, $wu_svc_wide, true ) ? ' sv-card--wide' : ''; ?>" data-card id="svc-<?php echo esc_attr( $s[5] ); ?>">
 						<div class="sv-vis" aria-hidden="true"><?php echo $wu_svc_vis[ $s[1] ]; // phpcs:ignore -- fixed markup ?></div>
 						<div class="sv-card__body">
 							<div class="sv-card__top">
@@ -99,11 +107,8 @@ wiseup_landing_open( 'wu-landing wu-svc-page' );
 								<?php foreach ( $s[2] as $tag ) : ?><li><?php echo esc_html( $tag ); ?></li><?php endforeach; ?>
 							</ul>
 							<div class="sv-card__foot">
-								<?php if ( 'Social Media Marketing' === $s[0] ) :
-									// Link to the social media service page (owner, 2026-11-03).
-									$wu_smm_url = 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/'; // the owner's link
-									?>
-									<a class="sv-link" href="<?php echo esc_url( $wu_smm_url ); ?>"><?php esc_html_e( 'Explore service', 'wiseup' ); ?> <?php echo $wu_arrow; // phpcs:ignore ?></a>
+								<?php if ( ! empty( $s[3] ) ) : ?>
+									<a class="sv-link" href="<?php echo esc_url( $s[3] ); ?>"><?php esc_html_e( 'Explore service', 'wiseup' ); ?> <?php echo $wu_arrow; // phpcs:ignore ?></a>
 								<?php endif; ?>
 								<button class="sv-link sv-link--ghost" type="button" data-lead-open data-lead-source="services" data-svc-pick="<?php echo esc_attr( $s[4] ); ?>"><?php esc_html_e( 'Get our plan', 'wiseup' ); ?> <?php echo $wu_arrow; // phpcs:ignore ?></button>
 							</div>

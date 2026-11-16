@@ -42,7 +42,7 @@ body.wu-svc-page { background: #000; color: #fff; margin: 0; }
 .sv-card__top { display: flex; align-items: flex-start; justify-content: space-between; }
 .sv-card__ico { display: grid; place-items: center; width: 58px; height: 58px; border-radius: 18px; background: rgba(190, 218, 82, .1); color: var(--lime); border: 1px solid rgba(190, 218, 82, .22); transition: background .35s, color .35s; }
 .sv-card:hover .sv-card__ico { background: var(--lime); color: #11150a; }
-.sv-card__n { font-size: clamp(44px, 4vw, 64px); font-weight: 600; letter-spacing: -.06em; line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .2); transition: -webkit-text-stroke-color .35s; }
+.sv-card__n { font-size: clamp(44px, 4vw, 64px); font-family: "Outfit", Inter, system-ui, sans-serif; font-weight: 400; letter-spacing: .02em; line-height: .8; color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .2); transition: -webkit-text-stroke-color .35s; }
 .sv-card:hover .sv-card__n { -webkit-text-stroke-color: rgba(190, 218, 82, .7); }
 .sv-card__t { margin-top: 8px; font-size: clamp(22px, 1.9vw, 30px); font-weight: 500; letter-spacing: -.035em; line-height: 1.1; }
 .sv-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -329,3 +329,11 @@ svg.vz { fill: none; stroke-linecap: round; stroke-linejoin: round; overflow: vi
 /* "Explore service" (solid lime) button: dark text and arrow; a general link rule was turning both white (2026-11-03) */
 .wu-svc a.sv-link:not(.sv-link--ghost), .wu-svc a.sv-link:not(.sv-link--ghost):hover, .wu-svc a.sv-link:not(.sv-link--ghost):focus-visible { color: #11150a !important; }
 .wu-svc a.sv-link:not(.sv-link--ghost) svg { stroke: currentColor; color: #11150a; }
+
+/* v1.3.70: eleven services (the service structure): bento spans */
+@media (min-width: 1101px) {
+  .sv-card:nth-child(n) { grid-column: span 4; }
+  .sv-card:nth-child(1), .sv-card:nth-child(7) { grid-column: span 7; }
+  .sv-card:nth-child(2), .sv-card:nth-child(6) { grid-column: span 5; }
+  .sv-card:nth-child(11) { grid-column: span 12; }
+}

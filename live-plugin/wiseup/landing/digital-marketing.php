@@ -356,11 +356,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 						<div class="dm-plan__hd"><span class="dm-plan__t">Your marketing plan</span><span class="dm-plan__st"><b class="dm-plan__tpl">Template</b><b class="dm-plan__own">Built for you</b></span></div>
 						<?php
 						$wu_plan = array(
-							array( 'Audience', '<span class="dm-pv dm-pv--aud2">' . implode( '', array_map( function ( $c ) { return '<i class="c' . $c . '"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8.5" r="3.6"/><path d="M4.8 20c.5-3.9 3.4-6 7.2-6s6.7 2.1 7.2 6z"/></svg></i>'; }, array( 1, 2, 3, 4 ) ) ) . '<em>+</em></span>' ),
-							array( 'Market', '<span class="dm-pv dm-pv--map"><svg viewBox="0 0 120 40" width="120" height="40" aria-hidden="true"><g fill="currentColor" opacity=".28">' . str_repeat( '<circle r="1.6" cx="0" cy="0"/>', 0 ) . '</g><g class="dots"></g><circle class="ring" cx="34" cy="22" r="5"/><circle class="pin" cx="34" cy="22" r="3"/><circle class="pin" cx="72" cy="12" r="2.4"/><circle class="pin" cx="96" cy="28" r="2.4"/><path class="arc" d="M34 22 C48 4 62 4 72 12 S88 30 96 28" fill="none" stroke-dasharray="2 3"/></svg></span>' ),
+							array( 'Audience', '<span class="dm-pv dm-pv--aud2">' . implode( '', array_map( function ( $f ) { return '<i><img src="' . esc_url( WISEUP_ASSETS . '/landing/img/aud-' . $f . '.webp' ) . '" alt="" width="28" height="28" loading="lazy" decoding="async"></i>'; }, array( 1, 2, 3, 4 ) ) ) . '<em>+</em></span>' ),
+							array( 'Market', '<span class="dm-pv dm-pv--map">' . $wu_mark( 'googlemaps.svg' ) . $wu_mark( 'fav-trends.google.com.png' ) . $wu_mark( 'googleanalytics' ) . '</span>' ),
 							array( 'Marketing mix', '<span class="dm-pv dm-pv--mix">' . $wu_mark( 'google' ) . $wu_mark( 'meta' ) . $wu_mark( 'instagram' ) . $wu_mark( 'linkedin' ) . $wu_mark( 'youtube' ) . '</span>' ),
 							array( 'Creative', '<span class="dm-pv dm-pv--mix">' . $wu_mark( 'adobephotoshop' ) . $wu_mark( 'adobeillustrator' ) . $wu_mark( 'figma' ) . $wu_mark( 'canva' ) . '</span>' ),
-							array( 'Insights', '<span class="dm-pv dm-pv--ins2">' . $wu_mark( 'googleanalytics' ) . '<svg viewBox="0 0 120 36" width="96" height="30" aria-hidden="true"><polyline points="2,32 22,27 40,29 58,19 76,21 94,11 118,4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/><circle cx="118" cy="4" r="3.4" fill="currentColor"/></svg></span>' ),
+							array( 'Insights', '<span class="dm-pv dm-pv--ins2">' . $wu_mark( 'googleanalytics' ) . $wu_mark( 'looker.svg' ) . $wu_mark( 'fav-clarity.microsoft.com.png' ) . '</span>' ),
 						);
 						foreach ( $wu_plan as $pl ) :
 							?>
@@ -439,11 +439,22 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				</div>
 				<div class="ev-intro"><p>We work with businesses across different sectors, adapting our marketing approach to their audiences, markets and business objectives.</p></div>
 			</div>
-			<ul class="dm-ind">
+			<ul class="dm-ind dm-ind--sr">
 				<?php foreach ( $wu_industries as $wu_i => $ind ) : ?>
 				<li><span class="dm-ind__i"><?php echo $wu_svg( $wu_icons[ $ind[1] ], 22 ); // phpcs:ignore ?></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
 				<?php endforeach; ?>
 			</ul>
+			<div class="dm-ind2" aria-hidden="true">
+				<?php foreach ( array( array_slice( $wu_industries, 0, 5 ), array_slice( $wu_industries, 5 ) ) as $wu_r => $wu_row ) : ?>
+				<div class="dm-ind2__row<?php echo $wu_r ? ' is-rev' : ''; ?>">
+					<div class="dm-ind2__track">
+						<?php for ( $wu_c = 0; $wu_c < 2; $wu_c++ ) : foreach ( $wu_row as $wu_k => $ind ) : ?>
+						<span class="dm-ind2__w<?php echo ( $wu_k + $wu_r ) % 2 ? ' is-o' : ''; ?>"><?php echo esc_html( $ind[0] ); ?></span><i class="dm-ind2__s"></i>
+						<?php endforeach; endfor; ?>
+					</div>
+				</div>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</section>
 
@@ -467,9 +478,12 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					<span class="ev-map__k" aria-hidden="true">Kerala</span>
 					<span class="ev-map__n" aria-hidden="true">N</span>
 				</div>
+				<div class="dm-kl__right">
+				<p class="dm-kl__roll" aria-hidden="true"><span class="dm-kl__pre">Reaching</span><span class="dm-kl__win"><span class="dm-kl__col"><b>Calicut</b><b>Kerala</b><b>India</b><b>the Gulf</b><b>Calicut</b></span></span></p>
 				<div class="dm-kl__two">
-					<div class="ev-panel"><span class="dm-kl__i"><?php echo $wu_svg( $wu_icons['pin'], 24 ); // phpcs:ignore ?></span><h3>Digital Marketing Company in Calicut, Kerala</h3><p>Based in Calicut, WiseUp works with businesses that want to strengthen their local presence and build a wider digital reach. We consider local search behaviour, audience interests and market competition when shaping campaigns for businesses in and around the city.</p></div>
-						<div class="ev-panel"><span class="dm-kl__i"><?php echo $wu_svg( $wu_icons['globe'], 24 ); // phpcs:ignore ?></span><h3>Supporting Businesses Across Kerala and Beyond</h3><p>A business does not have to limit its reach to its immediate location. We work towards marketing objectives that may involve audiences across Kerala and, where relevant, wider national and international markets.</p></div>
+					<div class="ev-panel dm-kl__it"><span class="dm-kl__r dm-kl__r--1" aria-hidden="true"><i></i></span><h3>Digital Marketing Company in Calicut, Kerala</h3><p>Based in Calicut, WiseUp works with businesses that want to strengthen their local presence and build a wider digital reach. We consider local search behaviour, audience interests and market competition when shaping campaigns for businesses in and around the city.</p></div>
+						<div class="ev-panel dm-kl__it"><span class="dm-kl__r dm-kl__r--3" aria-hidden="true"><i></i></span><h3>Supporting Businesses Across Kerala and Beyond</h3><p>A business does not have to limit its reach to its immediate location. We work towards marketing objectives that may involve audiences across Kerala and, where relevant, wider national and international markets.</p></div>
+				</div>
 				</div>
 			</div>
 		</div>

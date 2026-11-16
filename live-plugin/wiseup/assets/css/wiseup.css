@@ -3074,3 +3074,33 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 .mega .mega__grp:nth-child(even) .mega__sub::before { left: auto; right: -7px; box-shadow: 1px -1px 0 0 rgb(190 218 82 / .35); }
 .mega .mega__grp:nth-last-child(-n+2) .mega__sub::before { top: auto; bottom: 22px; }
 @media (prefers-reduced-motion: reduce) { .mega .mega__sub, .mega .mega__grp:hover .mega__sub { transition: none; } }
+
+/* v1.3.70: realistic jute rope (two twisted strands, fibre highlight, soft shadow) and a brass eyelet the rope passes through */
+.mega__rope { fill: none; stroke: #4b3a22; stroke-width: 6.4; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 3px 2px rgba(0,0,0,.55)); }
+.mega__strand { fill: none; stroke-width: 3.1; stroke-linecap: round; stroke-linejoin: round; }
+.mega__strand--a { stroke: #b08c56; }
+.mega__strand--b { stroke: #8c6d40; }
+.mega__rope-hi { fill: none; stroke: rgba(240,220,170,.35); stroke-width: 1; stroke-linecap: round; stroke-dasharray: 1.5 2.6; transform: translate(-1.2px,-1.2px); }
+.mega__eye { fill: url(#mg-brass); stroke: #3a2a10; stroke-width: .8; r: 8; filter: drop-shadow(0 2px 2px rgba(0,0,0,.6)); }
+.mega__hole { fill: url(#mg-hole); r: 4.6; stroke: rgba(255,238,190,.35); stroke-width: .8; }
+.mega__lip { fill: none; stroke: #e7cf8c; stroke-width: 1.6; stroke-linecap: round; opacity: .9; }
+:root[data-theme='light'] .mega__rope { stroke: #4b3a22; }
+
+/* v1.3.70: softer, friendlier rope (warm natural cotton, smooth strands) and no sub-item flyouts in the mega menu */
+.mega__rope { stroke: #7a5f3a; stroke-width: 6.8; filter: drop-shadow(0 4px 3px rgba(0,0,0,.4)); }
+.mega__strand { stroke-width: 3.3; }
+.mega__strand--a { stroke: #e3c994; }
+.mega__strand--b { stroke: #c9a468; }
+.mega__rope-hi { stroke: rgba(255,246,222,.5); }
+:root[data-theme='light'] .mega__rope { stroke: #7a5f3a; }
+.mega .mega__sub, .mega .mega__third { display: none !important; }
+
+/* v1.3.70: the mega menu hangs on two slim lime light-cables (design-system material) with a light pulse running down, instead of rope */
+.mega__rope { stroke: #beda52; stroke-width: 2.2; filter: drop-shadow(0 0 5px rgba(190,218,82,.55)) drop-shadow(0 3px 3px rgba(0,0,0,.5)); }
+.mega__rope-hi { stroke: #fff; stroke-width: 2.2; stroke-dasharray: 3 30; transform: none; animation: mega-pulse 1.6s linear infinite; filter: drop-shadow(0 0 4px #fff); }
+.mega__strand, .mega__lip { display: none; }
+.mega__eye { fill: #beda52; stroke: #11150a; stroke-width: 2; r: 6.5; filter: drop-shadow(0 0 6px rgba(190,218,82,.6)); }
+.mega__hole { fill: #11150a; stroke: none; r: 2.4; }
+:root[data-theme='light'] .mega__rope { stroke: #8fa838; }
+@keyframes mega-pulse { to { stroke-dashoffset: -33; } }
+@media (prefers-reduced-motion: reduce) { .mega__rope-hi { animation: none; display: none; } }
