@@ -17,18 +17,6 @@ add_action( 'wp_head', function () {
 ";
 }, 1 );
 
-/** URL of the first published page using a given template, or ''. */
-function wiseup_svc_page_url( $template ) {
-	$ids = get_posts( array(
-		'post_type'      => 'page',
-		'post_status'    => 'publish',
-		'meta_key'       => '_wp_page_template', // phpcs:ignore -- small, one-off lookup
-		'meta_value'     => $template,           // phpcs:ignore
-		'posts_per_page' => 1,
-		'fields'         => 'ids',
-	) );
-	return $ids ? get_permalink( $ids[0] ) : '';
-}
 
 $wu_svc_icons = array(
 	'signature' => '<path d="M3 17c2-6 3.5-11 5-11 1.5 0 .5 7-1 10s-1 2 1 0 3-5 4-5 0 4 1 4 2-3 3-3 1 2 2 2 2-1 2-1"/>',
@@ -50,16 +38,16 @@ $wu_ppc_url  = wiseup_svc_page_url( 'wiseup-performance-marketing' ) ?: wiseup_s
 $wu_ev_url   = wiseup_svc_page_url( 'wiseup-event-branding' );
 $wu_studio   = wiseup_svc_page_url( 'wiseup-studio' );
 $wu_services = array(
-	array( 'Digital Marketing', 'globe', array( 'Content Marketing', 'Digital Branding', 'Website Development', 'Digital PR', 'AI Automation & CRM' ), $wu_dm_url, 'Digital Marketing & Social Media', 'digital-marketing' ),
+	array( 'Digital Marketing', 'globe', array( 'Content Marketing', 'Digital Branding', 'Website Development', 'Digital PR', 'AI Automation & CRM' ), '', 'Digital Marketing & Social Media', 'digital-marketing' ),
 	array( 'Social Media Marketing', 'chat', array( 'Influencer Marketing', 'PR (Public Relations)', 'Engagement', 'Crisis Management', 'Sponsorship' ), 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/', 'Digital Marketing & Social Media', 'social-media' ),
-	array( 'SEO (Search Engine Optimization)', 'search', array( 'SEO Strategy & Keyword Research', 'On-Page SEO', 'Technical SEO', 'Local SEO', 'AI SEO' ), $wu_seo_url, 'SEO Services', 'seo' ),
-	array( 'Performance Marketing (PPC)', 'target', array( 'Google Ads', 'Meta Ads' ), $wu_ppc_url, 'Performance Marketing', 'ppc' ),
-	array( 'Video Production & Photography', 'video', array( 'Corporate Films', 'Presentation (PPT)', 'Concept Videos', 'CGI Videos', 'AI Videos' ), $wu_studio, 'Video & Photography', 'video' ),
-	array( 'Brand Solutions', 'signature', array( 'Logo Design', 'Corporate Identity', 'Consultancy', 'Product Packaging', 'Signage', 'Print Production' ), 'https://wiseup.in/services/brand-solutions', 'Brand Strategy & Identity', 'brand-solutions' ),
+	array( 'SEO (Search Engine Optimization)', 'search', array( 'SEO Strategy & Keyword Research', 'On-Page SEO', 'Technical SEO', 'Local SEO', 'AI SEO' ), '', 'SEO Services', 'seo' ),
+	array( 'Performance Marketing (PPC)', 'target', array( 'Google Ads', 'Meta Ads' ), '', 'Performance Marketing', 'ppc' ),
+	array( 'Video Production & Photography', 'video', array( 'Corporate Films', 'Presentation (PPT)', 'Concept Videos', 'CGI Videos', 'AI Videos' ), '', 'Video & Photography', 'video' ),
+	array( 'Brand Solutions', 'signature', array( 'Logo Design', 'Corporate Identity', 'Consultancy', 'Product Packaging', 'Signage', 'Print Production' ), '', 'Brand Strategy & Identity', 'brand-solutions' ),
 	array( 'Strategic Campaigns', 'megaphone', array( 'OOH Campaigns', 'Print Campaigns', 'Digital Campaigns', 'Video Campaigns', 'Radio Campaigns' ), '', 'Campaigns & Media Buying', 'campaigns' ),
-	array( 'Strategic Planning', 'target', array( 'Market Research', 'Promotional Plans' ), 'https://wiseup.in/services/brand-solutions/strategic-planning', 'Brand Strategy & Identity', 'strategic-planning' ),
-	array( 'Media & Release', 'megaphone', array( 'Media Buying', 'Media Planning', 'Media Monitoring', 'Print Media Release' ), 'https://wiseup.in/services/brand-solutions/media', 'Campaigns & Media Buying', 'media' ),
-	array( 'Event Branding', 'box', array( 'Corporate Events', 'Virtual & Hybrid Events', 'Stage, Backdrops & Entrances', 'Badges & Printed Material' ), $wu_ev_url ? $wu_ev_url : 'https://wiseup.in/services/brand-solutions/events', 'Packaging Design & Events', 'event-branding' ),
+	array( 'Strategic Planning', 'target', array( 'Market Research', 'Promotional Plans' ), '', 'Brand Strategy & Identity', 'strategic-planning' ),
+	array( 'Media & Release', 'megaphone', array( 'Media Buying', 'Media Planning', 'Media Monitoring', 'Print Media Release' ), '', 'Campaigns & Media Buying', 'media' ),
+	array( 'Event Branding', 'box', array( 'Corporate Events', 'Virtual & Hybrid Events', 'Stage, Backdrops & Entrances', 'Badges & Printed Material' ), '', 'Packaging Design & Events', 'event-branding' ),
 	array( 'Web Solutions', 'code', array( 'ERP Solutions', 'Business Websites', 'Online Stores' ), '', 'Web Development', 'web' ),
 );
 

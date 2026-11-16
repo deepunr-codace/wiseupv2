@@ -336,3 +336,32 @@ function wiseup_page_overview( $slug ) {
 	wiseup_ai_overview( $o[ $slug ] );
 	return ob_get_clean();
 }
+
+/** URL of the first published page using a given template, or '' (cached per request). */
+if ( ! function_exists( 'wiseup_svc_page_url' ) ) {
+	function wiseup_svc_page_url( $template ) {
+		static $cache = array();
+		if ( ! isset( $cache[ $template ] ) ) {
+			$ids = get_posts( array(
+				'post_type'      => 'page',
+				'post_status'    => 'publish',
+				'meta_key'       => '_wp_page_template', // phpcs:ignore -- small, one-off lookup
+				'meta_value'     => $template,           // phpcs:ignore
+				'posts_per_page' => 1,
+				'fields'         => 'ids',
+			) );
+			$cache[ $template ] = $ids ? get_permalink( $ids[0] ) : '';
+		}
+		return $cache[ $template ];
+	}
+}
+
+/** Menu link for a service: its page if one is published, else '#'. */
+function wiseup_svc_link( $templates, $fallback = '#' ) {
+	foreach ( (array) $templates as $t ) {
+		$u = wiseup_svc_page_url( $t );
+		if ( $u ) return $u;
+	}
+	return $fallback;
+}
+
