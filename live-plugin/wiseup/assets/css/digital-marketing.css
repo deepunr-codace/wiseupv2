@@ -1882,11 +1882,6 @@ html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead::before { conte
 /* SEO tools: the original look: centred one-line heading ("Tools" light lime, eyebrow with a lead line), stack below */
 .wu-seo #tools.seo-stk > .wrap { display: block !important; }
 .wu-seo .seo-stk__sh { margin-bottom: 0; }
-.wu-seo .seo-stk__sh .sh__h { display: block; font-size: clamp(36px, 4.4vw, 64px); }
-.wu-seo .seo-stk__sh .sh__h span { display: inline !important; color: #fff !important; }
-.wu-seo .seo-stk__sh .sh__h span:first-child { color: #d2eaa6 !important; }
-.wu-seo .seo-stk__sh .sh__h .sh__a { color: #d2eaa6 !important; -webkit-text-fill-color: #d2eaa6 !important; background: none !important; }
-.wu-seo .seo-stk__sh .sh__h .sh__b { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }
 
 /* SEO projects: results from the CodeAce brochure appear over the card on hover / keyboard focus / tap */
 .wu-seo .seo-proj__in { position: relative; }
@@ -2062,3 +2057,8 @@ html body .wu-seo .ev-hero .ev-hero__copy p.ev-hero__p { font-size: 17px !import
 /* SEO hero: the URL check now sits above the stats, across the full hero width */
 .wu-seo .ev-hero__grid > .seo-check-wrap { grid-column: 1 / -1; margin-top: clamp(40px, 4.4vw, 64px); }
 .wu-seo .ev-hero__grid > .seo-check-wrap + .ev-proof { margin-top: clamp(20px, 2vw, 28px); }
+/* SEO page: every paragraph 17px, lead lines included (owner) */
+.wu-seo { --seo-lead: 17px; }
+.wu-seo main > .ev-sec :is(.dm-intro-lead, .seo-w, .ev-scrub, .seo-pkcta p, .ev-final__p) { font-size: 17px !important; line-height: 1.65 !important; }
+html body .wu-seo main > .ev-sec p.ev-scrub, html body .wu-seo main > .ev-sec .ev-price p { font-size: 17px !important; line-height: 1.65 !important; }
+html body .wu-seo #packages .ev-price p.ev-scrub.ev-scrub { font-size: 17px !important; line-height: 1.65 !important; }
