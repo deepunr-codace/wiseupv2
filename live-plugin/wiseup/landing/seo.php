@@ -238,11 +238,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				</div>
 			</div>
 			<div class="ev-stage seo-card" data-stage aria-hidden="true">
-				<div class="seo-card__chips"><?php foreach ( array( array( 'ChatGPT', 'fav-chatgpt.com.png' ), array( 'Gemini', 'googlegemini.svg' ), array( 'Perplexity', 'perplexity.svg' ), array( 'AI Overviews', 'google' ), array( 'Bing', 'fav-bing.com.png' ) ) as $wu_k => $e ) echo '<span class="' . ( 0 === $wu_k ? 'is-on' : '' ) . '">' . $wu_mark( $e[1] ) . esc_html( $e[0] ) . '</span>'; // phpcs:ignore ?></div>
-				<div class="seo-card__q"><?php echo $wu_svg( $wu_icons['search'], 18 ); // phpcs:ignore ?><span>best seo company in kerala</span><i></i></div>
+				<div class="seo-card__chips"><?php foreach ( array( array( 'ChatGPT', 'fav-chatgpt.com.png' ), array( 'Gemini', 'googlegemini.svg' ), array( 'Perplexity', 'perplexity.svg' ), array( 'AI Overviews', 'google' ), array( 'Bing', 'fav-bing.com.png' ) ) as $wu_k => $e ) echo '<span data-eng="' . (int) $wu_k . '" class="' . ( 0 === $wu_k ? 'is-on' : '' ) . '">' . $wu_mark( $e[1] ) . esc_html( $e[0] ) . '</span>'; // phpcs:ignore ?></div>
+				<div class="seo-card__q"><?php echo $wu_svg( $wu_icons['search'], 18 ); // phpcs:ignore ?><span data-type>best seo company in kerala</span><i></i></div>
 				<div class="seo-card__a">
-					<small><?php echo $wu_svg( $wu_icons['spark'], 14 ); // phpcs:ignore ?>ChatGPT answer</small>
-					<p><b>WiseUp Marketing Agency</b> is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.</p>
+					<small><?php echo $wu_svg( $wu_icons['spark'], 14 ); // phpcs:ignore ?><span data-eng-name>ChatGPT</span>&nbsp;answer</small>
+					<p><b>WiseUp Marketing Agency</b><span data-eng-rest> is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.</span></p>
 					<div class="seo-card__src"><span><i></i>wiseup.in</span><span>Cited source</span></div>
 				</div>
 				<div class="seo-card__st"><div><small>Google</small>Ranked</div><div><small>Bing</small>Indexed</div><div class="is-hi"><small>AI search</small>Recommended</div></div>
@@ -258,7 +258,69 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 					<?php endforeach; ?>
 				</dl>
 		</div>
+		<script>(function(){var c=document.querySelector('.wu-seo .seo-card');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;var Q=['best seo company in kerala','seo agency in calicut','who can get my brand recommended by chatgpt?','local seo services near me','woocommerce seo experts in kerala'],A=[' is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.',' works with businesses in Calicut and across Kerala, combining keyword research, on-page SEO and link building to grow organic traffic and enquiries.',' specialises in AI SEO, using AEO and GEO to structure content, entities and citations so brands get recommended by ChatGPT, Gemini and Perplexity.',' offers local SEO services including Google Business Profile optimisation, local citations and review strategy to rank businesses in Maps and the local pack.',' provides dedicated WooCommerce SEO, optimising product and category pages, structured data and site speed to win high-intent shopping searches.'];var el=c.querySelector('[data-type]'),nm=c.querySelector('[data-eng-name]'),rs=c.querySelector('[data-eng-rest]'),ch=[].slice.call(c.querySelectorAll('[data-eng]')),qi=0,t;function eng(n){ch.forEach(function(x,k){x.classList.toggle('is-on',k===n);});if(nm&&ch[n])nm.textContent=ch[n].textContent.trim();if(rs){rs.style.opacity=0;setTimeout(function(){rs.textContent=A[n];rs.style.opacity=1;},250);}}function erase(){if(el.textContent.length){el.textContent=el.textContent.slice(0,-1);t=setTimeout(erase,22);}else{qi=(qi+1)%Q.length;eng(qi%ch.length);type(0);}}function type(i){el.textContent=Q[qi].slice(0,i);if(i<Q[qi].length)t=setTimeout(function(){type(i+1);},55+Math.random()*40);else t=setTimeout(erase,2600);}new IntersectionObserver(function(e){clearTimeout(t);if(e[0].isIntersecting)t=setTimeout(erase,1800);}).observe(c);})();</script>
 		<div class="logos ev-logos" role="region" aria-label="Client logos"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul><?php echo $wu_li; // phpcs:ignore ?></ul><ul aria-hidden="true"><?php echo str_replace( '" alt="', '" alt="" data-alt="', $wu_li ); // phpcs:ignore ?></ul></div></div></div></div>
+		<div class="wrap seo-check-wrap">
+			<div class="seo-check">
+				<div class="seo-check__in">
+					<div class="seo-check__q"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="84" height="84" loading="lazy" decoding="async"><p>How visible is your website on Google, Bing and <span>AI search?</span></p></div>
+					<form class="seo-check__f" data-seo-check novalidate>
+						<?php echo $wu_svg( $wu_icons['globe'], 18 ); // phpcs:ignore ?>
+						<input name="seo_url" type="text" inputmode="url" autocomplete="url" maxlength="300" aria-label="Website URL" placeholder="Enter your website URL">
+						<button type="submit" class="seo-check__b">Get My Free Proposal <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<dialog class="seo-rp" data-seo-report aria-labelledby="seo-rp-t">
+			<button type="button" class="seo-rp__x" data-rp-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+			<div data-rp-step>
+				<p class="seo-rp__k"><span aria-hidden="true"></span>Free SEO report</p>
+				<h2 class="seo-rp__t" id="seo-rp-t">We will send you a free report</h2>
+				<p class="seo-rp__s">Our team checks how <b data-rp-host>your website</b> shows up on Google, Bing and AI search, and sends the report to you. Free, no obligation.</p>
+				<form class="seo-rp__f" data-rp-form novalidate data-endpoint="<?php echo esc_url( rest_url( 'wiseup/v1/enquiry' ) ); ?>" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wp_rest' ) ); ?>">
+					<label class="seo-rp__l">Website<input name="website" type="text" inputmode="url" autocomplete="url" maxlength="300" required></label>
+					<label class="seo-rp__l">Full name<input name="name" type="text" autocomplete="name" placeholder="Your name" required></label>
+					<div class="seo-rp__row">
+						<label class="seo-rp__l">Email<input name="email" type="email" autocomplete="email" placeholder="you@company.com" required></label>
+						<label class="seo-rp__l">Phone<input name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+91 98765 43210" pattern="[0-9+()\s-]{7,}" required></label>
+					</div>
+					<input class="seo-rp__hp" name="hp_website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+					<button type="submit" class="seo-check__b seo-rp__b">Send me the free report <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+					<p class="seo-rp__n" data-rp-note aria-live="polite"></p>
+				</form>
+			</div>
+			<div class="seo-rp__done" data-rp-done hidden>
+				<span class="seo-rp__ok" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+				<h2 class="seo-rp__t">Thank you, your request is in</h2>
+				<p class="seo-rp__s">We will send the free report for <b data-rp-host>your website</b> to <b data-rp-mail></b>.</p>
+				<button type="button" class="seo-check__b seo-rp__b" data-rp-close>Done</button>
+			</div>
+		</dialog>
+		<script>(function(){
+var f=document.querySelector('[data-seo-check]'),d=document.querySelector('[data-seo-report]');if(!f||!d)return;
+var rf=d.querySelector('[data-rp-form]'),note=d.querySelector('[data-rp-note]'),step=d.querySelector('[data-rp-step]'),done=d.querySelector('[data-rp-done]'),send=rf.querySelector('button[type=submit]'),web=rf.elements.website;
+function host(u){return String(u).trim().replace(/^https?:\/\//i,'').replace(/^www\./i,'').replace(/\/.*$/,'')||'your website';}
+function setHost(u){[].forEach.call(d.querySelectorAll('[data-rp-host]'),function(b){b.textContent=host(u);});}
+function close(){d.close();}
+f.addEventListener('submit',function(e){e.preventDefault();var i=f.querySelector('input'),u=(i.value||'').trim();if(!u){i.focus();i.classList.add('is-err');setTimeout(function(){i.classList.remove('is-err');},900);return;}
+web.value=u;setHost(u);step.hidden=false;done.hidden=true;note.textContent='';note.className='seo-rp__n';
+d.showModal();setTimeout(function(){(rf.elements.name.value?rf.elements.email:rf.elements.name).focus();},50);});
+web.addEventListener('input',function(){setHost(web.value);});
+[].forEach.call(d.querySelectorAll('[data-rp-close]'),function(b){b.addEventListener('click',close);});
+d.addEventListener('click',function(e){if(e.target===d)close();});
+rf.addEventListener('submit',function(e){e.preventDefault();
+var bad=[].filter.call(rf.querySelectorAll('input:not(.seo-rp__hp)'),function(el){el.classList.remove('is-bad');return !el.checkValidity();});
+if(bad.length){bad.forEach(function(el){el.classList.add('is-bad');});bad[0].focus();note.className='seo-rp__n is-err';note.textContent=bad[0].validity.valueMissing?'Please fill in the highlighted fields.':'Please check the highlighted field.';return;}
+if(rf.elements.hp_website.value)return;
+var v=function(n){return rf.elements[n].value.trim();},site=v('website');
+send.disabled=true;note.className='seo-rp__n';note.textContent='Sending…';
+fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/json','X-WP-Nonce':rf.dataset.nonce},body:JSON.stringify({name:v('name'),email:v('email'),phone:v('phone'),service:'Free SEO report',message:'Free SEO report requested for: '+site,page:location.pathname,source:'seo'})})
+.then(function(r){return r.json().catch(function(){return {};}).then(function(j){if(!r.ok||(j&&j.ok===false))throw 0;});})
+.then(function(){d.querySelector('[data-rp-mail]').textContent=v('email');step.hidden=true;done.hidden=false;note.textContent='';f.reset();})
+.catch(function(){note.className='seo-rp__n is-err';note.textContent='Could not send right now. ';var a=document.createElement('a');a.target='_blank';a.rel='noopener';a.textContent='Send it on WhatsApp instead';a.href=<?php echo wp_json_encode( $wu_wa ); ?>.split('?')[0]+'?text='+encodeURIComponent('Hi WiseUp, please send me a free SEO report for '+site+'.\nName: '+v('name')+'\nEmail: '+v('email')+'\nPhone: '+v('phone'));note.append(a);})
+.then(function(){send.disabled=false;});});
+})();</script>
 	</section>
 
 <?php wiseup_ai_overview( array(

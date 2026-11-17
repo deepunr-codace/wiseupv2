@@ -26,8 +26,10 @@
 		lenis.on('scroll', ST.update);
 		gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
 		gsap.ticker.lagSmoothing(0);
-		var dlg = document.querySelector('[data-lead-modal]');
-		if (dlg) new MutationObserver(function () { if (dlg.open) lenis.stop(); else lenis.start(); }).observe(dlg, { attributes: true, attributeFilter: ['open'] });
+		// Pause smooth scroll while any page popup is open (lead popup, SEO free-report popup).
+		var dlgs = [].slice.call(document.querySelectorAll('[data-lead-modal], [data-seo-report]'));
+		var syncDlg = function () { if (dlgs.some(function (x) { return x.open; })) lenis.stop(); else lenis.start(); };
+		dlgs.forEach(function (x) { new MutationObserver(syncDlg).observe(x, { attributes: true, attributeFilter: ['open'] }); });
 	}
 
 	var intro = gsap.timeline({ paused: true });
