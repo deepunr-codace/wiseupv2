@@ -336,9 +336,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 			<div class="ev-head">
 				<div class="sh">
 					<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Digital Marketing Services That Bring', 'Every Part of Your Brand Together' ); // phpcs:ignore ?></h2>
+					<h2 class="sh__h"><?php echo $wu_h( 'Digital Marketing Services That Create', 'Stronger Brand Connections' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>Your brand does not operate through separate channels, and your marketing should not either. We bring together the services your business needs, whether that means strengthening one area or building a connected strategy across multiple platforms.</p></div>
+				<div class="ev-intro"><p>Every business needs the right mix of marketing, not just more marketing. From search visibility and targeted campaigns to content and branding, we bring the right services together around your business needs, whether you want to strengthen one area or manage multiple channels.</p></div>
 			</div>
 			<?php
 			$wu_svc_brands = array(
