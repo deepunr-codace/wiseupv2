@@ -3115,3 +3115,7 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 @keyframes cta-spin { to { transform: rotate(360deg); } }
 @media (hover: hover) { .hd__cta:hover .hd__cta-border::before { animation-play-state: paused; } }
 @media (prefers-reduced-motion: reduce) { .hd__cta-border::before { animation: none; } }
+
+/* PageSpeed: the hero sheen layer (masked by the wordmark SVG) only exists after page load (html.wu-sheen, set in render.php),
+   so its mask image is not fetched on the critical path and is not the LCP element. The sheen starts at 2.4s anyway. */
+html:not(.wu-sheen) .lunar__img::after { display: none; }

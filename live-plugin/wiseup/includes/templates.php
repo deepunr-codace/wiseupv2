@@ -129,6 +129,17 @@ add_action( 'template_redirect', function () {
 	remove_action( 'wp_footer', 'wp_enqueue_global_styles', 1 );
 	remove_action( 'wp_footer', 'wp_enqueue_stored_styles', 1 );
 	remove_action( 'wp_head', 'wp_custom_css_cb', 101 );
+	// Kadence prints a tiny footer script that reads clientWidth for --scrollbar-offset (unused by WiseUp pages): a forced
+	// reflow PageSpeed flagged on the homepage (~170 ms). Drop it here.
+	add_action( 'wp_footer', function () {
+		global $wp_filter;
+		if ( empty( $wp_filter['wp_footer'] ) ) return;
+		foreach ( $wp_filter['wp_footer']->callbacks as $prio => $cbs ) {
+			foreach ( $cbs as $cb ) {
+				if ( is_array( $cb['function'] ) && isset( $cb['function'][1] ) && 'action_add_scrollbar_offset_script' === $cb['function'][1] ) remove_action( 'wp_footer', $cb['function'], $prio );
+			}
+		}
+	}, 0 );
 } );
 
 // ---------- Title & description ----------

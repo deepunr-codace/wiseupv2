@@ -97,9 +97,10 @@ add_action( 'wp_head', function () {
 	foreach ( array( 'fonts/inter-300_700-normal.woff2', 'fonts/outfit-200_500-normal.woff2' ) as $font ) {
 		echo '<link rel="preload" href="' . esc_url( wiseup_asset( $font ) ) . "\" as=\"font\" type=\"font/woff2\" crossorigin>\n";
 	}
-	// Homepage: the hero wordmark's light sweep is masked by this SVG (the LCP element); fetch it with the HTML instead of after the CSS.
+	// Homepage: the hero sheen layer (its CSS mask is the wordmark SVG) is switched on after load, so its mask image is
+	// not fetched on the critical path and is not the LCP element (PageSpeed, 2026-11-17).
 	if ( 'home' === $slug ) {
-		echo '<link rel="preload" href="' . esc_url( wiseup_asset( 'brand/hero-wiseup-lunar-logo-big.svg' ) ) . '" as="image" type="image/svg+xml" fetchpriority="high">' . "
+		echo "<script>addEventListener('load',function(){setTimeout(function(){document.documentElement.classList.add('wu-sheen');},300);});</script>
 ";
 	}
 	if ( $page && $page['extra_head'] ) {
