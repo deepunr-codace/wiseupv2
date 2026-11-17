@@ -428,7 +428,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			?>
 			<div class="seo-stk__orb">
 				<?php echo $wu_ring( array_slice( $wu_tools, 0, 6 ), 'out' ) . $wu_ring( array_slice( $wu_tools, 6 ), 'in' ); // phpcs:ignore ?>
-				<div class="seo-stk__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="120" height="120" loading="lazy" decoding="async"></div>
+				<div class="seo-stk__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="120" height="120" loading="lazy" decoding="async"><span>WiseUp<br>SEO Stack</span></div>
 			</div>
 			<ul class="seo-stk__grid">
 				<?php foreach ( $wu_tools as $tl ) echo '<li>' . $wu_tile( $tl ) . '</li>'; // phpcs:ignore ?>

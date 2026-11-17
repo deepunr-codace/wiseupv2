@@ -1872,30 +1872,21 @@ html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead::before { conte
   .wu-seo .seo-stk__grid .seo-stk__t { width: 52px; border-radius: 16px; }
   .wu-seo .seo-stk__grid .seo-stk__n { padding: 0; background: none; white-space: normal; }
 }
-/* SEO tools in the design system: heading left (beside the rings, as on the DM page), plain black section, logos without boxes, names on hover, DM-style rings and Wiso */
-.wu-seo .seo-stk { background: none; }
-.wu-seo .seo-stk__sh { text-align: left; align-items: flex-start; }
-.wu-seo .seo-stk__orb { width: min(100%, 640px); margin: 0 0 0 auto; }
-.wu-seo .seo-stk__orb::before { background: radial-gradient(circle, rgb(190 218 82 / .1) 0%, transparent 55%); }
-.wu-seo .seo-stk__ring--out { inset: 2%; border: 1px dashed rgb(255 255 255 / .1); }
-.wu-seo .seo-stk__ring--in { inset: 22%; border: 1px dashed rgb(255 255 255 / .1); }
-.wu-seo .seo-stk__it { left: -26px; top: -26px; width: 52px; gap: 0; }
-.wu-seo .seo-stk__orb .seo-stk__t { width: 52px; border-radius: 0; background: none; box-shadow: none; transition: transform .6s cubic-bezier(.2, .9, .2, 1); }
-.wu-seo .seo-stk__orb .seo-stk__t .dm-mark { width: 100%; height: 100%; filter: drop-shadow(0 6px 10px rgb(0 0 0 / .5)); }
-.wu-seo .seo-stk__orb .seo-stk__it:hover .seo-stk__t { transform: scale(1.2); box-shadow: none; }
-.wu-seo .seo-stk__orb .seo-stk__n { position: absolute; left: 50%; bottom: calc(100% + 8px); translate: -50% 6px; opacity: 0; pointer-events: none; padding: 4px 12px; border-radius: 99px; background: #beda52; color: #11150a; font-size: 12px; font-weight: 600; transition: opacity .4s, translate .4s; }
-.wu-seo .seo-stk__orb .seo-stk__it:hover .seo-stk__n { opacity: 1; translate: -50% 0; }
-.wu-seo .seo-stk__core { width: 130px; height: 130px; border: 0; background: radial-gradient(circle, rgb(190 218 82 / .18), transparent 70%); }
-.wu-seo .seo-stk__core img { width: 110px; box-shadow: 0 0 0 3px rgb(190 218 82 / .5), 0 0 40px rgb(190 218 82 / .25); }
-@media (max-width: 767px) {
-  .wu-seo .seo-stk__grid li { background: none; padding: 10px 6px; }
-  .wu-seo .seo-stk__grid .seo-stk__t { background: none; box-shadow: none; }
-  .wu-seo .seo-stk__grid .seo-stk__t .dm-mark { width: 100%; height: 100%; }
-}
-
 /* SEO packages: the "Not sure which package" text as a lime CTA band under the package rows */
 .wu-seo .seo-pkcta { position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: clamp(20px, 4vw, 64px); margin-top: clamp(40px, 5vw, 72px); padding: clamp(28px, 3.4vw, 48px) clamp(24px, 4vw, 56px); border-radius: 28px; background: radial-gradient(90% 140% at 100% 0%, #d8ec8a 0%, transparent 60%), #beda52; color: #11150a; }
 .wu-seo .seo-pkcta::after { content: ""; position: absolute; right: -60px; bottom: -120px; width: 320px; aspect-ratio: 1; border-radius: 50%; border: 40px solid rgb(17 21 10 / .06); pointer-events: none; }
 .wu-seo .seo-pkcta p { position: relative; z-index: 1; max-width: 62ch; margin: 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; font-weight: 500; color: #11150a !important; }
 .wu-seo .seo-pkcta .b { position: relative; z-index: 1; flex: none; }
 @media (max-width: 767px) { .wu-seo .seo-pkcta { flex-direction: column; align-items: flex-start; border-radius: 22px; } }
+
+/* SEO tools: the original look: centred one-line heading ("Tools" light lime, eyebrow with a lead line), stack below */
+.wu-seo #tools.seo-stk > .wrap { display: block !important; }
+.wu-seo .seo-stk__sh { margin-bottom: 0; }
+.wu-seo .seo-stk__sh .sh__h { display: block; font-size: clamp(36px, 4.4vw, 64px); }
+.wu-seo .seo-stk__sh .sh__h span { display: inline !important; color: #fff !important; }
+.wu-seo .seo-stk__sh .sh__h span:first-child { color: #d2eaa6 !important; }
+.wu-seo .seo-stk__sh .eyebrow { background: none !important; box-shadow: none !important; border: 0 !important; padding: 0 !important; color: #c2f760 !important; }
+.wu-seo .seo-stk__sh .eyebrow .eyebrow__dot { width: 36px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgb(194 247 96 / 0), #c2f760) !important; box-shadow: none !important; animation: none !important; }
+.wu-seo .seo-stk__sh .eyebrow .eyebrow__dot::after { display: none !important; }
+.wu-seo .seo-stk__sh .sh__h .sh__a { color: #d2eaa6 !important; -webkit-text-fill-color: #d2eaa6 !important; background: none !important; }
+.wu-seo .seo-stk__sh .sh__h .sh__b { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }
