@@ -667,30 +667,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 	<!-- 13. Client experiences -->
 	<section class="sec ev-sec" id="reviews">
 		<div class="wrap">
-			<div class="ev-quotes" data-quotes>
-				<div class="ev-quotes__head">
-					<h2 class="ev-quotes__h sh__h"><?php echo $wu_h( 'Beyond Campaigns:', 'Client Experiences' ); // phpcs:ignore ?></h2>
-					<div class="ev-quotes__nav">
-						<button type="button" class="ev-qnav" data-q-prev aria-label="Previous review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/></svg></button>
-						<button type="button" class="ev-qnav" data-q-next aria-label="Next review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/></svg></button>
-					</div>
-				</div>
-				<div class="ev-quotes__track" data-q-track tabindex="0" aria-label="Client reviews">
-					<?php foreach ( array(
-						array( 'Mohamed Afsal K', 'Director (Sales and Marketing), Onesto and Mercado Pvt Ltd · Google review', array( 'We are very satisfied with the social media marketing services provided by WiseUp Branding. Since they started managing our social media pages, we have seen a noticeable increase in engagement and sales.', 'Their team is creative, professional, and always supportive whenever we need assistance or updates. They truly understand branding and marketing strategies that work.', 'Thank you, WiseUp Branding, for your continuous support and dedication. Highly recommended for businesses looking to grow online!' ) ),
-						array( 'Arjun', 'Branding Manager, Sathya Agencies · Google review', array( 'We had a wonderful experience working with WiseUp for Sathya Agencies. Their team handled our video production projects professionally with creative concepts and trending video ideas that perfectly matched our brand. The quality of the videos, editing, and overall presentation was excellent and helped us attract more customer attention online.', 'Apart from video production, WiseUp also provided strong support for our digital presence. Their digital marketing strategies, creative content, and consistent support helped improve our online visibility and engagement. The team was responsive, creative, and always ready to bring fresh ideas to the table.', 'We truly appreciate their dedication, professionalism, and innovative approach. Highly recommended for anyone looking for quality video production, branding, and digital marketing services.' ) ),
-						array( 'Sharlet N Shaji', 'Google review', array( 'I recently got my logo designed and I’m extremely happy with the result. The designer perfectly understood my vision and created a logo that looks professional, unique, and elegant. The communication was smooth, delivery was on time, and the overall experience was excellent. Highly recommend for anyone looking for quality branding and logo design work.' ) ),
-					) as $q ) : ?>
-					<figure class="ev-quote" data-quote>
-						<div class="ev-quote__head"><span class="ev-quote__mark" aria-hidden="true">&ldquo;</span><div class="ev-quote__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div></div>
-						<blockquote class="ev-quote__text"><?php foreach ( $q[2] as $p ) echo '<p>' . esc_html( $p ) . '</p>'; ?></blockquote>
-						<button class="ev-quote__more" type="button" hidden aria-expanded="false">Read more</button>
-						<figcaption><span class="ev-quote__av" aria-hidden="true"><?php echo esc_html( mb_substr( $q[0], 0, 1 ) ); ?></span><span><strong><?php echo esc_html( $q[0] ); ?></strong><span><?php echo esc_html( $q[1] ); ?></span></span></figcaption>
-					</figure>
-					<?php endforeach; ?>
-				</div>
-				<div class="ev-quotes__dots" aria-hidden="true"><i></i><i></i><i></i></div>
-			</div>
+			<div class="sh"><h2 class="sh__h"><?php echo $wu_h( 'Beyond Campaigns:', 'Client Experiences' ); // phpcs:ignore ?></h2></div>
+			<?php include WISEUP_DIR . 'landing/reviews.php'; ?>
 		</div>
 	</section>
 

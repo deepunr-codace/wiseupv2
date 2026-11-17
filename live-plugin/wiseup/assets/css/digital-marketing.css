@@ -2059,3 +2059,6 @@ html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead::before { conte
 .wu-seo { --seo-body: 17px; }
 .wu-seo .ev-hero__p { font-size: 17px !important; }
 html body .wu-seo .ev-hero .ev-hero__copy p.ev-hero__p { font-size: 17px !important; }
+/* SEO hero: the URL check now sits above the stats, across the full hero width */
+.wu-seo .ev-hero__grid > .seo-check-wrap { grid-column: 1 / -1; margin-top: clamp(40px, 4.4vw, 64px); }
+.wu-seo .ev-hero__grid > .seo-check-wrap + .ev-proof { margin-top: clamp(20px, 2vw, 28px); }

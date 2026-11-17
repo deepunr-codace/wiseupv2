@@ -247,19 +247,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				</div>
 				<div class="seo-card__st"><div><small>Google</small>Ranked</div><div><small>Bing</small>Indexed</div><div class="is-hi"><small>AI search</small>Recommended</div></div>
 			</div>
-				<dl class="ev-proof">
-					<?php foreach ( array(
-						array( '5', 'K+', 'Keywords ranked for our clients' ),
-						array( '8', '+', 'Years with CodeAce' ),
-						array( '150', '+', 'Skilled professionals on our team' ),
-						array( '5.0', '★', 'Google rating from client reviews' ),
-					) as $wu_st ) : ?>
-					<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
-					<?php endforeach; ?>
-				</dl>
-		</div>
-		<script>(function(){var c=document.querySelector('.wu-seo .seo-card');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;var Q=['best seo company in kerala','seo agency in calicut','who can get my brand recommended by chatgpt?','local seo services near me','woocommerce seo experts in kerala'],A=[' is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.',' works with businesses in Calicut and across Kerala, combining keyword research, on-page SEO and link building to grow organic traffic and enquiries.',' specialises in AI SEO, using AEO and GEO to structure content, entities and citations so brands get recommended by ChatGPT, Gemini and Perplexity.',' offers local SEO services including Google Business Profile optimisation, local citations and review strategy to rank businesses in Maps and the local pack.',' provides dedicated WooCommerce SEO, optimising product and category pages, structured data and site speed to win high-intent shopping searches.'];var el=c.querySelector('[data-type]'),nm=c.querySelector('[data-eng-name]'),rs=c.querySelector('[data-eng-rest]'),ch=[].slice.call(c.querySelectorAll('[data-eng]')),qi=0,t;function eng(n){ch.forEach(function(x,k){x.classList.toggle('is-on',k===n);});if(nm&&ch[n])nm.textContent=ch[n].textContent.trim();if(rs){rs.style.opacity=0;setTimeout(function(){rs.textContent=A[n];rs.style.opacity=1;},250);}}function erase(){if(el.textContent.length){el.textContent=el.textContent.slice(0,-1);t=setTimeout(erase,22);}else{qi=(qi+1)%Q.length;eng(qi%ch.length);type(0);}}function type(i){el.textContent=Q[qi].slice(0,i);if(i<Q[qi].length)t=setTimeout(function(){type(i+1);},55+Math.random()*40);else t=setTimeout(erase,2600);}new IntersectionObserver(function(e){clearTimeout(t);if(e[0].isIntersecting)t=setTimeout(erase,1800);}).observe(c);})();</script>
-		<div class="wrap seo-check-wrap">
+			<div class="seo-check-wrap">
 			<div class="seo-check">
 				<div class="seo-check__in">
 					<div class="seo-check__q"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="84" height="84" loading="lazy" decoding="async"><p>How visible is your website on Google, Bing and <span>AI search?</span></p></div>
@@ -271,6 +259,18 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				</div>
 			</div>
 		</div>
+			<dl class="ev-proof">
+					<?php foreach ( array(
+						array( '5', 'K+', 'Keywords ranked for our clients' ),
+						array( '8', '+', 'Years with CodeAce' ),
+						array( '150', '+', 'Skilled professionals on our team' ),
+						array( '5.0', '★', 'Google rating from client reviews' ),
+					) as $wu_st ) : ?>
+					<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
+					<?php endforeach; ?>
+				</dl>
+		</div>
+		<script>(function(){var c=document.querySelector('.wu-seo .seo-card');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;var Q=['best seo company in kerala','seo agency in calicut','who can get my brand recommended by chatgpt?','local seo services near me','woocommerce seo experts in kerala'],A=[' is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.',' works with businesses in Calicut and across Kerala, combining keyword research, on-page SEO and link building to grow organic traffic and enquiries.',' specialises in AI SEO, using AEO and GEO to structure content, entities and citations so brands get recommended by ChatGPT, Gemini and Perplexity.',' offers local SEO services including Google Business Profile optimisation, local citations and review strategy to rank businesses in Maps and the local pack.',' provides dedicated WooCommerce SEO, optimising product and category pages, structured data and site speed to win high-intent shopping searches.'];var el=c.querySelector('[data-type]'),nm=c.querySelector('[data-eng-name]'),rs=c.querySelector('[data-eng-rest]'),ch=[].slice.call(c.querySelectorAll('[data-eng]')),qi=0,t;function eng(n){ch.forEach(function(x,k){x.classList.toggle('is-on',k===n);});if(nm&&ch[n])nm.textContent=ch[n].textContent.trim();if(rs){rs.style.opacity=0;setTimeout(function(){rs.textContent=A[n];rs.style.opacity=1;},250);}}function erase(){if(el.textContent.length){el.textContent=el.textContent.slice(0,-1);t=setTimeout(erase,22);}else{qi=(qi+1)%Q.length;eng(qi%ch.length);type(0);}}function type(i){el.textContent=Q[qi].slice(0,i);if(i<Q[qi].length)t=setTimeout(function(){type(i+1);},55+Math.random()*40);else t=setTimeout(erase,2600);}new IntersectionObserver(function(e){clearTimeout(t);if(e[0].isIntersecting)t=setTimeout(erase,1800);}).observe(c);})();</script>
 		<dialog class="seo-rp" data-seo-report aria-labelledby="seo-rp-t">
 			<button type="button" class="seo-rp__x" data-rp-close aria-label="Close"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
 			<div data-rp-step>
@@ -599,30 +599,8 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 	<!-- 11. Client experiences (same reviews as the Digital Marketing page) -->
 	<section class="sec ev-sec" id="reviews">
 		<div class="wrap">
-			<div class="ev-quotes" data-quotes>
-				<div class="ev-quotes__head">
-					<h2 class="ev-quotes__h sh__h"><?php echo $wu_h( 'Beyond Campaigns:', 'Client Experiences' ); // phpcs:ignore ?></h2>
-					<div class="ev-quotes__nav">
-						<button type="button" class="ev-qnav" data-q-prev aria-label="Previous review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/></svg></button>
-						<button type="button" class="ev-qnav" data-q-next aria-label="Next review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/></svg></button>
-					</div>
-				</div>
-				<div class="ev-quotes__track" data-q-track tabindex="0" aria-label="Client reviews">
-					<?php foreach ( array(
-						array( 'Mohamed Afsal K', 'Director (Sales and Marketing), Onesto and Mercado Pvt Ltd · Google review', array( 'We are very satisfied with the social media marketing services provided by WiseUp Branding. Since they started managing our social media pages, we have seen a noticeable increase in engagement and sales.', 'Their team is creative, professional, and always supportive whenever we need assistance or updates. They truly understand branding and marketing strategies that work.', 'Thank you, WiseUp Branding, for your continuous support and dedication. Highly recommended for businesses looking to grow online!' ) ),
-						array( 'Arjun', 'Branding Manager, Sathya Agencies · Google review', array( 'We had a wonderful experience working with WiseUp for Sathya Agencies. Their team handled our video production projects professionally with creative concepts and trending video ideas that perfectly matched our brand. The quality of the videos, editing, and overall presentation was excellent and helped us attract more customer attention online.', 'Apart from video production, WiseUp also provided strong support for our digital presence. Their digital marketing strategies, creative content, and consistent support helped improve our online visibility and engagement. The team was responsive, creative, and always ready to bring fresh ideas to the table.', 'We truly appreciate their dedication, professionalism, and innovative approach. Highly recommended for anyone looking for quality video production, branding, and digital marketing services.' ) ),
-						array( 'Sharlet N Shaji', 'Google review', array( 'I recently got my logo designed and I’m extremely happy with the result. The designer perfectly understood my vision and created a logo that looks professional, unique, and elegant. The communication was smooth, delivery was on time, and the overall experience was excellent. Highly recommend for anyone looking for quality branding and logo design work.' ) ),
-					) as $q ) : ?>
-					<figure class="ev-quote" data-quote>
-						<div class="ev-quote__head"><span class="ev-quote__mark" aria-hidden="true">&ldquo;</span><div class="ev-quote__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div></div>
-						<blockquote class="ev-quote__text"><?php foreach ( $q[2] as $p ) echo '<p>' . esc_html( $p ) . '</p>'; ?></blockquote>
-						<button class="ev-quote__more" type="button" hidden aria-expanded="false">Read more</button>
-						<figcaption><span class="ev-quote__av" aria-hidden="true"><?php echo esc_html( mb_substr( $q[0], 0, 1 ) ); ?></span><span><strong><?php echo esc_html( $q[0] ); ?></strong><span><?php echo esc_html( $q[1] ); ?></span></span></figcaption>
-					</figure>
-					<?php endforeach; ?>
-				</div>
-				<div class="ev-quotes__dots" aria-hidden="true"><i></i><i></i><i></i></div>
-			</div>
+			<div class="sh"><h2 class="sh__h"><?php echo $wu_h( 'Beyond Campaigns:', 'Client Experiences' ); // phpcs:ignore ?></h2></div>
+			<?php include WISEUP_DIR . 'landing/reviews.php'; ?>
 		</div>
 	</section>
 
