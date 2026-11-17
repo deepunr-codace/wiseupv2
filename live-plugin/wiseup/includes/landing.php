@@ -299,6 +299,8 @@ function wiseup_ai_overview( $o ) {
 .wu-aio3.is-open .wu-aio3__in>*{transition-delay:calc(.25s + var(--k,0)*.08s)!important}
 @media (hover:hover){.wu-aio3:hover .wu-aio3__in>*{transition-delay:calc(.25s + var(--k,0)*.08s)!important}}
 @media (prefers-reduced-motion:reduce){.wu-aio3 .wu-aio3__panel{transition:none!important}}
+.wu-aio3 .wu-aio3__note{margin:0 0 14px;font-size:12.5px;color:#a7a7af}
+@media (max-height:740px){.wu-aio3 .wu-aio3__panel,.wu-aio3.is-open .wu-aio3__panel{max-height:calc(100vh - 24px)!important;overflow-y:auto!important;overscroll-behavior:contain}}
 @keyframes wu-aio3-p{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(14deg)}}
 @keyframes wu-aio3-d{0%{transform:scale(1);opacity:1}100%{transform:scale(4);opacity:0}}
 @media (max-width:640px){.wu-aio3__panel{width:min(310px,calc(100vw - 52px))}.wu-aio3__in{width:100%}}
@@ -316,7 +318,8 @@ function wiseup_ai_overview( $o ) {
 		foreach ( $points as $pt ) echo '<li><b>' . esc_html( $pt[0] ) . '.</b> ' . esc_html( $pt[1] ) . '</li>';
 		echo '</ul>';
 	}
-	echo '<button type="button" class="wu-aio3__cta" data-lead-open>Get our plan <span aria-hidden="true">&rarr;</span></button></div></div>';
+	if ( ! empty( $o['note'] ) ) echo '<p class="wu-aio3__a wu-aio3__note">' . wp_kses( $o['note'], $allowed ) . '</p>';
+	echo '<button type="button" class="wu-aio3__cta" data-lead-open>' . esc_html( isset( $o['cta'] ) ? $o['cta'] : 'Get our plan' ) . ' <span aria-hidden="true">&rarr;</span></button></div></div>';
 	echo '<button type="button" class="wu-aio3__tab" aria-expanded="false" aria-controls="wu-aio3-panel">' . $spark . '<span>AI Overview</span><i aria-hidden="true"></i></button>'; // phpcs:ignore
 	echo '</aside>' . "\n";
 	echo '<script type="application/ld+json">' . wp_json_encode( array(

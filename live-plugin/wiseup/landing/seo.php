@@ -331,12 +331,15 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does an SEO company in Kerala do?',
-	'a' => '<b>WiseUp</b> is an SEO company in Kerala that brings <b>technical optimisation, strategic content, keyword intelligence and competitor analysis</b> together to strengthen your online presence. We build search strategies that position your brand across traditional search engines and AI-powered platforms, helping potential customers find and consider your business.',
+	'a' => 'An SEO company in Kerala helps a business get found on Google, Google Maps and AI search tools. The work usually covers a technical website audit, keyword and competitor research, on-page and content optimisation, local SEO (Google Business Profile, citations, reviews) and regular reporting on rankings, traffic and enquiries.',
 	'points' => array(
-		array( 'Be found', 'A website that does not appear when customers search for your services misses valuable opportunities.' ),
-		array( 'Search is changing', 'We optimise for both traditional search engines and AI-powered platforms.' ),
-		array( 'Packages', 'Research and content, website and technical optimisation, authority and performance.' ),
+		array( 'Audit first', 'We check crawlability, speed, mobile usability, indexing and on-page issues before changing anything.' ),
+		array( 'Content and keywords', 'We map search terms to pages and build content that answers what customers actually ask.' ),
+		array( 'Local and AI visibility', 'We optimise your Maps listing, citations and reviews, and structure content so AI tools can quote it accurately.' ),
+		array( 'Reporting', 'You get monthly reports covering rankings, organic traffic, leads and next steps.' ),
 	),
+	'note' => 'Results depend on competition and your starting point. Get a free audit of your site and we’ll show you what to fix first.',
+	'cta' => 'Get a free audit',
 	'links' => array( array( 'Be found', '#visibility' ), array( 'Services', '#services' ), array( 'Platforms', '#platforms' ), array( 'Process', '#process' ), array( 'Packages', '#packages' ), array( 'FAQ', '#faq' ) ),
 	'fact' => 'Packages from <b>₹70K</b> onwards',
 ) ); ?>
