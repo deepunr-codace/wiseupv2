@@ -2044,9 +2044,9 @@ html body .wu-dm:not(.wu-pm) #channels .ev-intro p.dm-intro-lead::before { conte
 
 /* SEO URL bar + report dialog: browser autofill keeps the dark field (no light-blue box) */
 .wu-seo .seo-check__f input:is(:-webkit-autofill, :-webkit-autofill:hover, :-webkit-autofill:focus, :autofill),
-.seo-rp input:is(:-webkit-autofill, :-webkit-autofill:hover, :-webkit-autofill:focus, :autofill) { -webkit-text-fill-color: #fff !important; caret-color: #fff; -webkit-box-shadow: 0 0 0 1000px #0c0e09 inset !important; box-shadow: 0 0 0 1000px #0c0e09 inset !important; transition: background-color 9999s ease-out 0s; }
+.seo-rp input:is(:-webkit-autofill, :-webkit-autofill:hover, :-webkit-autofill:focus, :autofill) { -webkit-text-fill-color: #fff !important; caret-color: #fff; -webkit-box-shadow: 0 0 0 1000px #1b1d18 inset !important; box-shadow: 0 0 0 1000px #1b1d18 inset !important; transition: background-color 9999s ease-out 0s; }
 .wu-seo .seo-check__f input { background: transparent !important; color: #fff !important; }
 /* Browser autofill paints inputs light blue; keep the band and popup fields dark */
-.wu-seo .seo-check__f input:-webkit-autofill, .wu-seo .seo-check__f input:-webkit-autofill:hover, .wu-seo .seo-check__f input:-webkit-autofill:focus { -webkit-text-fill-color: #fff; caret-color: #fff; -webkit-box-shadow: 0 0 0 1000px #0c0e09 inset; box-shadow: 0 0 0 1000px #0c0e09 inset; transition: background-color 9999s 0s; }
-.wu-seo .seo-rp__l input:-webkit-autofill, .wu-seo .seo-rp__l input:-webkit-autofill:hover, .wu-seo .seo-rp__l input:-webkit-autofill:focus { -webkit-text-fill-color: #fff; caret-color: #fff; -webkit-box-shadow: 0 0 0 1000px #17190f inset; box-shadow: 0 0 0 1000px #17190f inset; transition: background-color 9999s 0s; }
+.wu-seo .seo-check__f input:-webkit-autofill, .wu-seo .seo-check__f input:-webkit-autofill:hover, .wu-seo .seo-check__f input:-webkit-autofill:focus { -webkit-text-fill-color: #fff; caret-color: #fff; -webkit-box-shadow: 0 0 0 1000px #1b1d18 inset; box-shadow: 0 0 0 1000px #1b1d18 inset; transition: background-color 9999s 0s; }
+.wu-seo .seo-rp__l input:-webkit-autofill, .wu-seo .seo-rp__l input:-webkit-autofill:hover, .wu-seo .seo-rp__l input:-webkit-autofill:focus { -webkit-text-fill-color: #fff; caret-color: #fff; -webkit-box-shadow: 0 0 0 1000px #181a15 inset; box-shadow: 0 0 0 1000px #181a15 inset; transition: background-color 9999s 0s; }
 .wu-seo .seo-check__f input, .wu-seo .seo-rp__l input { color-scheme: dark; }
