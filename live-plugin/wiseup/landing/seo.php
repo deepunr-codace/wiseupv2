@@ -8,7 +8,7 @@
 defined( 'ABSPATH' ) || exit;
 
 $wu_src   = 'seo';
-$wu_title = apply_filters( 'wiseup_landing_title', 'SEO Company in Kerala | WiseUp Branding' );
+$wu_title = apply_filters( 'wiseup_landing_title', 'SEO Company in Kerala | WiseUp Marketing Agency' );
 $wu_desc  = apply_filters( 'wiseup_landing_description', 'WiseUp is an SEO company in Kerala building visibility across Google, Bing and AI-powered search with technical SEO, content, AI SEO and data-led strategy.' );
 $wu_seo   = defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || defined( 'SEOPRESS_VERSION' );
 if ( ! $wu_seo ) {
@@ -160,11 +160,12 @@ $wu_platforms = array(
 
 // Projects: [ name, image, tags, link ].
 $wu_projects = array(
-	array( 'Smoke House', 'assets/landing/img/case-smokehouse.jpg', array( 'Local SEO', 'Content SEO' ), '' ),
-	array( 'Bootland', 'assets/landing/img/case-bootland.jpg', array( 'Technical SEO', 'On-Page SEO' ), '' ),
-	array( 'Indus Go', 'assets/landing/img/case-indusgo.jpg', array( 'SEO Strategy', 'AI Search Visibility' ), home_url( '/case-studies/indusgo/' ) ),
-	array( 'Erets Space', 'assets/landing/img/case-erets.jpg', array( 'Content SEO', 'Link Building' ), '' ),
-	array( 'Golden Karak', 'assets/landing/img/case-karak.jpg', array( 'Local SEO', 'Mobile SEO' ), home_url( '/case-studies/golden-karak/' ) ),
+	// [ name, image (plugin path, or '' for a name tile), tags, link, logo (shown on a dark tile instead of a photo) ]
+	array( 'Leyali', '', array(), '', 'assets/clients/client-logos-2026/leyali.webp' ),
+	array( 'Gloveda', 'assets/landing/img/case-gloveda.webp', array(), '', '' ),
+	array( 'Ikayaa Food Products', '', array(), '', 'assets/clients/client-logos-2026/ikayaa.webp' ),
+	array( 'KPG Roofings', 'assets/landing/img/case-kpg.webp', array(), '', '' ),
+	array( 'Ceramic Roof Tiles', 'assets/landing/img/case-ceramicrooftiles.webp', array(), '', '' ),
 );
 
 // Tools: [ name, mark ].
@@ -241,11 +242,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				<div class="seo-card__q"><?php echo $wu_svg( $wu_icons['search'], 18 ); // phpcs:ignore ?><span>best seo company in kerala</span><i></i></div>
 				<div class="seo-card__a">
 					<small><?php echo $wu_svg( $wu_icons['spark'], 14 ); // phpcs:ignore ?>ChatGPT answer</small>
-					<p><b>WiseUp Branding</b> is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.</p>
+					<p><b>WiseUp Marketing Agency</b> is a Kerala-based SEO company known for technical SEO, content strategy and AI search optimisation, helping businesses get found on Google, Bing and AI assistants.</p>
 					<div class="seo-card__src"><span><i></i>wiseup.in</span><span>Cited source</span></div>
 				</div>
 				<div class="seo-card__st"><div><small>Google</small>Ranked</div><div><small>Bing</small>Indexed</div><div class="is-hi"><small>AI search</small>Recommended</div></div>
 			</div>
+				<dl class="ev-proof">
+					<?php foreach ( array(
+						array( '5', 'K+', 'Keywords ranked' ),
+						array( '8', '+', 'Years with CodeAce' ),
+						array( '150', '+', 'Talented professionals working' ),
+					) as $wu_st ) : ?>
+					<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
+					<?php endforeach; ?>
+				</dl>
 		</div>
 		<div class="logos ev-logos" role="region" aria-label="Client logos"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul><?php echo $wu_li; // phpcs:ignore ?></ul><ul aria-hidden="true"><?php echo str_replace( '" alt="', '" alt="" data-alt="', $wu_li ); // phpcs:ignore ?></ul></div></div></div></div>
 	</section>
@@ -392,21 +402,36 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			</div>
 			<ul class="seo-proj">
 				<?php foreach ( $wu_projects as $wu_i => $pj ) : $tag = $pj[3] ? 'a' : 'div'; $href = $pj[3] ? ' href="' . esc_url( $pj[3] ) . '"' : ''; ?>
-				<li<?php echo 0 === $wu_i ? ' class="is-lead"' : ''; ?>><<?php echo $tag . $href; // phpcs:ignore ?> class="seo-proj__in"><img src="<?php echo esc_url( WISEUP_URL . $pj[1] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' SEO project by WiseUp, Kerala' ); ?>" width="640" height="480" loading="lazy" decoding="async"><span class="seo-proj__t"><?php if ( 0 === $wu_i ) echo '<em>Featured project</em>'; ?><b><?php echo esc_html( $pj[0] ); ?></b><span class="seo-tags"><?php foreach ( $pj[2] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></span></span></<?php echo $tag; ?>></li>
+				<li<?php echo 0 === $wu_i ? ' class="is-lead"' : ''; ?>><<?php echo $tag . $href; // phpcs:ignore ?> class="seo-proj__in"><?php if ( $pj[1] ) : ?><img src="<?php echo esc_url( WISEUP_URL . $pj[1] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' SEO project by WiseUp, Kerala' ); ?>" width="640" height="800" loading="lazy" decoding="async"><?php elseif ( $pj[4] ) : ?><span class="seo-proj__ph is-logo"><img src="<?php echo esc_url( WISEUP_URL . $pj[4] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' logo, SEO project by WiseUp, Kerala' ); ?>" loading="lazy" decoding="async"></span><?php else : ?><span class="seo-proj__ph" aria-hidden="true"><i><?php echo esc_html( mb_substr( $pj[0], 0, 1 ) ); ?></i></span><?php endif; ?><span class="seo-proj__t"><b><?php echo esc_html( $pj[0] ); ?></b><span class="seo-tags"><?php foreach ( $pj[2] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></span></span></<?php echo $tag; ?>></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
 	</section>
 
-	<!-- 6. Tools -->
-	<section class="sec ev-sec" id="tools">
+	<!-- 6. Tools (the original SEO page's two-ring stack) -->
+	<section class="sec ev-sec seo-stk" id="tools">
 		<div class="wrap">
-			<div class="sh">
+			<div class="sh seo-stk__sh">
 				<?php echo $wu_eyebrow( 'Our stack' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><?php echo $wu_h( 'Tools', 'We Work With' ); // phpcs:ignore ?></h2>
 			</div>
-			<ul class="dm-tools">
-				<?php foreach ( $wu_tools as $tl ) echo '<li>' . $wu_mark( $tl[1] ) . '<span>' . esc_html( $tl[0] ) . '</span></li>'; // phpcs:ignore ?>
+			<?php
+			$wu_tile = function ( $tl ) use ( $wu_mark ) { return '<span class="seo-stk__t">' . $wu_mark( $tl[1] ) . '</span><span class="seo-stk__n">' . esc_html( $tl[0] ) . '</span>'; };
+			$wu_ring = function ( $list, $cls ) use ( $wu_tile ) {
+				$n = count( $list ); $o = '<div class="seo-stk__ring seo-stk__ring--' . $cls . '">';
+				foreach ( array_values( $list ) as $k => $tl ) {
+					$a = deg2rad( -90 + 360 * $k / $n + ( 'in' === $cls ? 45 : 0 ) );
+					$o .= '<div class="seo-stk__at" style="left:' . round( 50 + 50 * cos( $a ), 2 ) . '%;top:' . round( 50 + 50 * sin( $a ), 2 ) . '%"><div class="seo-stk__it">' . $wu_tile( $tl ) . '</div></div>';
+				}
+				return $o . '</div>';
+			};
+			?>
+			<div class="seo-stk__orb">
+				<?php echo $wu_ring( array_slice( $wu_tools, 0, 6 ), 'out' ) . $wu_ring( array_slice( $wu_tools, 6 ), 'in' ); // phpcs:ignore ?>
+				<div class="seo-stk__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="120" height="120" loading="lazy" decoding="async"></div>
+			</div>
+			<ul class="seo-stk__grid">
+				<?php foreach ( $wu_tools as $tl ) echo '<li>' . $wu_tile( $tl ) . '</li>'; // phpcs:ignore ?>
 			</ul>
 		</div>
 	</section>
@@ -441,26 +466,40 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 		</div>
 	</section>
 
-	<!-- 8. Packages -->
+	<!-- 8. Packages (same pricing + package layout as the Digital Marketing page) -->
 	<section class="sec ev-sec" id="packages">
 		<div class="wrap">
-			<div class="ev-head">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'SEO Packages' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'SEO Package Is Built', 'Around a 360° Strategy' ); // phpcs:ignore ?></h2>
-					<p class="seo-from">Packages from <strong>₹70K onwards</strong></p>
+			<div class="ev-disc">
+				<div class="ev-disc__l">
+					<div class="sh">
+						<?php echo $wu_eyebrow( 'SEO Packages' ); // phpcs:ignore ?>
+						<h2 class="sh__h"><?php echo $wu_h( 'SEO Package Is Built', 'Around a 360° Strategy' ); // phpcs:ignore ?></h2>
+					</div>
+					<div class="ev-price ev-price--col">
+						<p>A complete SEO strategy needs more than a few website changes. Our packages bring together essential optimisation, content, technical improvements and performance tracking to strengthen your online presence. The scope and deliverables are tailored to your selected package and business requirements.</p>
+					</div>
 				</div>
-				<div class="ev-intro"><p>A complete SEO strategy needs more than a few website changes. Our packages bring together essential optimisation, content, technical improvements and performance tracking to strengthen your online presence. The scope and deliverables are tailored to your selected package and business requirements.</p></div>
+				<div class="ev-disc__card">
+					<span class="ev-disc__pill">SEO Packages</span>
+					<p class="ev-disc__from"><span>Packages from</span><strong>₹70K onwards</strong></p>
+					<?php echo $wu_btn( 'Request a Quote', 'teal', $wu_lead ); // phpcs:ignore ?>
+				</div>
 			</div>
-			<h3 class="pm-sub">SEO Strategy Includes</h3>
-			<ul class="pm-grid pm-grid--tools">
-				<?php foreach ( $wu_package as $g ) : ?>
-				<li><h3><?php echo esc_html( $g[0] ); ?></h3><ul class="pm-list"><?php foreach ( $g[1] as $it ) echo '<li>' . esc_html( $it ) . '</li>'; ?></ul></li>
-				<?php endforeach; ?>
-			</ul>
-			<div class="pm-band">
-				<p class="pm-band__p">Not sure which SEO package fits your business? Choose from our affordable SEO services in Kerala, with scopes tailored to your website, competition and growth priorities. Request a free SEO assessment to identify the right starting point.</p>
-				<?php echo $wu_btn( 'Request a Quote', 'teal', $wu_lead ); // phpcs:ignore ?>
+			<div class="dm-pkg">
+				<div class="dm-pkg__table">
+					<h3>SEO Strategy Includes</h3>
+					<ul class="dm-pkg__chips">
+						<?php $wu_pk_ic = array( 'search', 'tool', 'chart' ); foreach ( $wu_package as $wu_k => $g ) : ?>
+						<li><span class="dm-pkg__ic"><?php echo $wu_svg( $wu_icons[ $wu_pk_ic[ $wu_k ] ?? 'spark' ], 22 ); // phpcs:ignore ?></span><span><?php echo esc_html( $g[0] ); ?></span><small class="dm-pkg__d"><?php echo esc_html( implode( ' · ', $g[1] ) ); ?></small><button type="button" class="dm-pkg__sw" role="switch" aria-checked="true" aria-label="<?php echo esc_attr( $g[0] ); ?>"><i></i></button></li>
+						<?php endforeach; ?>
+					</ul>
+					<script>(function(){var u=document.querySelector('.dm-pkg__chips');if(!u||!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){u.classList.add('is-lit');io.disconnect();}},{threshold:.5});io.observe(u);})();</script>
+					<script>document.querySelectorAll('.dm-pkg__sw').forEach(function(b){b.addEventListener('click',function(){var on=b.getAttribute('aria-checked')!=='true';b.setAttribute('aria-checked',on?'true':'false');b.closest('li').classList.toggle('is-off',!on);});});</script>
+				</div>
+			</div>
+			<div class="seo-pkcta">
+				<p>Not sure which SEO package fits your business? Choose from our affordable SEO services in Kerala, with scopes tailored to your website, competition and growth priorities. Request a free SEO assessment to identify the right starting point.</p>
+				<?php echo $wu_btn( 'Request a Quote', 'night', $wu_lead ); // phpcs:ignore ?>
 			</div>
 		</div>
 	</section>
@@ -502,6 +541,36 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 		</div>
 	</section>
 
+
+	<!-- 11. Client experiences (same reviews as the Digital Marketing page) -->
+	<section class="sec ev-sec" id="reviews">
+		<div class="wrap">
+			<div class="ev-quotes" data-quotes>
+				<div class="ev-quotes__head">
+					<h2 class="ev-quotes__h sh__h"><?php echo $wu_h( 'Beyond Campaigns:', 'Client Experiences' ); // phpcs:ignore ?></h2>
+					<div class="ev-quotes__nav">
+						<button type="button" class="ev-qnav" data-q-prev aria-label="Previous review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/></svg></button>
+						<button type="button" class="ev-qnav" data-q-next aria-label="Next review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/></svg></button>
+					</div>
+				</div>
+				<div class="ev-quotes__track" data-q-track tabindex="0" aria-label="Client reviews">
+					<?php foreach ( array(
+						array( 'Mohamed Afsal K', 'Director (Sales and Marketing), Onesto and Mercado Pvt Ltd · Google review', array( 'We are very satisfied with the social media marketing services provided by WiseUp Branding. Since they started managing our social media pages, we have seen a noticeable increase in engagement and sales.', 'Their team is creative, professional, and always supportive whenever we need assistance or updates. They truly understand branding and marketing strategies that work.', 'Thank you, WiseUp Branding, for your continuous support and dedication. Highly recommended for businesses looking to grow online!' ) ),
+						array( 'Arjun', 'Branding Manager, Sathya Agencies · Google review', array( 'We had a wonderful experience working with WiseUp for Sathya Agencies. Their team handled our video production projects professionally with creative concepts and trending video ideas that perfectly matched our brand. The quality of the videos, editing, and overall presentation was excellent and helped us attract more customer attention online.', 'Apart from video production, WiseUp also provided strong support for our digital presence. Their digital marketing strategies, creative content, and consistent support helped improve our online visibility and engagement. The team was responsive, creative, and always ready to bring fresh ideas to the table.', 'We truly appreciate their dedication, professionalism, and innovative approach. Highly recommended for anyone looking for quality video production, branding, and digital marketing services.' ) ),
+						array( 'Sharlet N Shaji', 'Google review', array( 'I recently got my logo designed and I’m extremely happy with the result. The designer perfectly understood my vision and created a logo that looks professional, unique, and elegant. The communication was smooth, delivery was on time, and the overall experience was excellent. Highly recommend for anyone looking for quality branding and logo design work.' ) ),
+					) as $q ) : ?>
+					<figure class="ev-quote" data-quote>
+						<div class="ev-quote__head"><span class="ev-quote__mark" aria-hidden="true">&ldquo;</span><div class="ev-quote__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div></div>
+						<blockquote class="ev-quote__text"><?php foreach ( $q[2] as $p ) echo '<p>' . esc_html( $p ) . '</p>'; ?></blockquote>
+						<button class="ev-quote__more" type="button" hidden aria-expanded="false">Read more</button>
+						<figcaption><span class="ev-quote__av" aria-hidden="true"><?php echo esc_html( mb_substr( $q[0], 0, 1 ) ); ?></span><span><strong><?php echo esc_html( $q[0] ); ?></strong><span><?php echo esc_html( $q[1] ); ?></span></span></figcaption>
+					</figure>
+					<?php endforeach; ?>
+				</div>
+				<div class="ev-quotes__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+			</div>
+		</div>
+	</section>
 
 	<!-- 12. Final CTA: free SEO assessment -->
 			<section class="sec ev-sec" id="enquire">

@@ -70,7 +70,7 @@ function wiseup_page_html( $slug, $html ) {
 
 /** Homepage: gives the held-back hero strip images (see wiseup_page_html()) their addresses once the page has loaded. */
 function wiseup_home_strip_images() {
-	echo "<script>(function(){var done=0,go=function(){if(done)return;done=1;document.querySelectorAll('img[data-wu-src],img[data-wu-srcset]').forEach(function(i){if(i.dataset.wuSrcset){i.srcset=i.dataset.wuSrcset;i.removeAttribute('data-wu-srcset');}if(i.dataset.wuSrc){i.src=i.dataset.wuSrc;i.removeAttribute('data-wu-src');}});};if(document.readyState==='complete')go();else addEventListener('load',go,{once:true});['touchstart','pointerdown','scroll','keydown'].forEach(function(e){addEventListener(e,go,{once:true,passive:true});});})();</script>\n";
+	echo "<script>(function(){var done=0,go=function(){if(done)return;done=1;var q=[].slice.call(document.querySelectorAll('img[data-wu-src],img[data-wu-srcset]')),idle=window.requestIdleCallback||function(f){return setTimeout(f,16);},step=function(){q.splice(0,4).forEach(function(i){if(i.dataset.wuSrcset){i.srcset=i.dataset.wuSrcset;i.removeAttribute('data-wu-srcset');}if(i.dataset.wuSrc){i.src=i.dataset.wuSrc;i.removeAttribute('data-wu-src');}});if(q.length)idle(step);};idle(step);};if(document.readyState==='complete')go();else addEventListener('load',go,{once:true});['touchstart','pointerdown','scroll','keydown'].forEach(function(e){addEventListener(e,go,{once:true,passive:true});});})();</script>\n";
 }
 
 /** Includes a header/footer part with the current page's slug available as $wu_slug. */
@@ -96,6 +96,11 @@ add_action( 'wp_head', function () {
 	}
 	foreach ( array( 'fonts/inter-300_700-normal.woff2', 'fonts/outfit-200_500-normal.woff2' ) as $font ) {
 		echo '<link rel="preload" href="' . esc_url( wiseup_asset( $font ) ) . "\" as=\"font\" type=\"font/woff2\" crossorigin>\n";
+	}
+	// Homepage: the hero wordmark's light sweep is masked by this SVG (the LCP element); fetch it with the HTML instead of after the CSS.
+	if ( 'home' === $slug ) {
+		echo '<link rel="preload" href="' . esc_url( wiseup_asset( 'brand/hero-wiseup-lunar-logo-big.svg' ) ) . '" as="image" type="image/svg+xml" fetchpriority="high">' . "
+";
 	}
 	if ( $page && $page['extra_head'] ) {
 		$extra = $page['extra_head'];

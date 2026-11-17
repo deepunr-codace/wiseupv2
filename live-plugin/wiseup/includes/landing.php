@@ -236,7 +236,7 @@ function wiseup_ai_overview( $o ) {
 .wu-aio3__tab:focus-visible{outline:2px solid #beda52;outline-offset:-2px}
 .wu-aio3__tab svg{width:15px;height:15px;animation:wu-aio3-p 3s ease-in-out infinite}
 .wu-aio3__tab span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-.wu-aio3__tab i{width:6px;height:6px;border-radius:50%;background:#beda52;box-shadow:0 0 0 0 rgba(190,218,82,.6);animation:wu-aio3-d 2.4s ease-out infinite}
+.wu-aio3__tab i{width:6px;height:6px;border-radius:50%;background:#beda52;position:relative}.wu-aio3__tab i::after{content:"";position:absolute;inset:0;border-radius:50%;background:rgba(190,218,82,.6);animation:wu-aio3-d 2.4s ease-out infinite}
 .wu-aio3__panel{position:absolute;right:100%;top:50%;width:340px;max-height:min(78vh,560px);overflow:auto;background:#111113;border-radius:20px 0 0 20px;box-shadow:-10px 12px 40px -14px rgba(0,0,0,.9);clip-path:inset(0 0 0 100% round 20px 0 0 20px);opacity:0;pointer-events:none;transform:translateY(-50%) translateX(14px);transition:clip-path .65s cubic-bezier(.2,.9,.2,1),opacity .3s,transform .65s cubic-bezier(.2,.9,.2,1)}
 .wu-aio3.is-open .wu-aio3__panel{clip-path:inset(0 0 0 0 round 20px 0 0 20px);opacity:1;pointer-events:auto;transform:translateY(-50%)}
 @media (hover:hover){.wu-aio3:hover .wu-aio3__panel{clip-path:inset(0 0 0 0 round 20px 0 0 20px);opacity:1;pointer-events:auto;transform:translateY(-50%)}.wu-aio3:hover .wu-aio3__tab svg{animation:wu-aio3-s .8s cubic-bezier(.3,1.4,.5,1) forwards}}
@@ -300,7 +300,7 @@ function wiseup_ai_overview( $o ) {
 @media (hover:hover){.wu-aio3:hover .wu-aio3__in>*{transition-delay:calc(.25s + var(--k,0)*.08s)!important}}
 @media (prefers-reduced-motion:reduce){.wu-aio3 .wu-aio3__panel{transition:none!important}}
 @keyframes wu-aio3-p{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(14deg)}}
-@keyframes wu-aio3-d{0%{box-shadow:0 0 0 0 rgba(190,218,82,.6)}100%{box-shadow:0 0 0 9px rgba(190,218,82,0)}}
+@keyframes wu-aio3-d{0%{transform:scale(1);opacity:1}100%{transform:scale(4);opacity:0}}
 @media (max-width:640px){.wu-aio3__panel{width:min(310px,calc(100vw - 52px))}.wu-aio3__in{width:100%}}
 @media (prefers-reduced-motion:reduce){.wu-aio3,.wu-aio3__panel{transition:none}.wu-aio3__tab svg,.wu-aio3__tab i{animation:none}}
 </style>' . "\n";

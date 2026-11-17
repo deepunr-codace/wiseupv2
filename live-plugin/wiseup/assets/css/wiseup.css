@@ -3107,3 +3107,11 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 /* hover bridge: an invisible strip over the gap between the Services button and the panel, so moving the pointer down never closes the menu */
 .hd__item--mega > .hd__link--parent { position: relative; }
 .hd__item--mega > .hd__link--parent::after { content: ''; position: absolute; left: -24px; right: -24px; top: 100%; height: 22px; }
+
+/* perf: the header button's light sweep turns a rotating layer (runs on the compositor) instead of animating a custom property (repainted every frame) */
+.hd__cta-border { overflow: hidden; background: #2b3330; animation: none !important; }
+.hd__cta-border::before { content: ''; position: absolute; left: 50%; top: 50%; width: 260px; height: 260px; margin: -130px 0 0 -130px;
+  background: conic-gradient(#2b3330 0deg, #2b3330 270deg, var(--teal) 315deg, #fff 330deg, #2b3330 345deg); animation: cta-spin 3.5s linear infinite; will-change: transform; }
+@keyframes cta-spin { to { transform: rotate(360deg); } }
+@media (hover: hover) { .hd__cta:hover .hd__cta-border::before { animation-play-state: paused; } }
+@media (prefers-reduced-motion: reduce) { .hd__cta-border::before { animation: none; } }
