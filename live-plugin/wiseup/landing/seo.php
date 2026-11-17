@@ -250,7 +250,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				<dl class="ev-proof">
 					<?php foreach ( array(
 						array( '5', 'K+', 'Keywords ranked for our clients' ),
-						array( '8', '+', 'Years of experience, backed by CodeAce' ),
+						array( '8', '+', 'Years with CodeAce' ),
 						array( '150', '+', 'Skilled professionals on our team' ),
 					) as $wu_st ) : ?>
 					<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
