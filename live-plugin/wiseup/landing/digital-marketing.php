@@ -297,14 +297,15 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a digital marketing agency in Kerala do?',
-	'a' => '<b>WiseUp</b> is a digital marketing agency in Kerala that combines <b>strategy, creativity and technology</b> to build campaigns around your business goals. From <b>SEO and paid advertising to social media, content and branding</b>, we bring the right elements together to turn audience interest into meaningful business opportunities.',
+	'a' => 'A digital marketing agency in Kerala helps businesses attract customers online through search, social media, paid advertising, content and branding. The work usually covers market and competitor research, SEO, Google and Meta Ads, social media management, content and creative production, website optimisation and monthly reporting on traffic, leads and return on ad spend.',
 	'points' => array(
-		array( 'Services', 'SEO, performance marketing and PPC, social media marketing, content and creative production, branding, website development, PR and AI business automation.' ),
-		array( 'How we work', 'We start with your goals and audience, then plan the channels, creative and tracking around them.' ),
-		array( 'Where', 'Based in Calicut, working with businesses across Kerala and beyond.' ),
+		array( 'Services', 'SEO, Google Ads and Meta Ads, social media marketing, content and video production, branding, website development, digital PR and AI automation with CRM.' ),
+		array( 'How it works', 'We start by understanding your business, audience and competitors, then build a plan covering the right channels, creative and tracking, and refine it every month using performance data.' ),
+		array( 'Who it’s for', 'Startups, small businesses and established brands in healthcare, real estate, education, retail, hospitality and more.' ),
+		array( 'Where', 'WiseUp is based in Calicut (Kozhikode) and works with businesses across Kerala, India and the Gulf.' ),
 	),
 	'links' => array( array( 'Services', '#dm-services' ), array( 'Channels', '#channels' ), array( 'Kerala', '#kerala' ), array( 'Process', '#dm-process' ), array( 'Pricing', '#pricing' ), array( 'FAQ', '#faq' ) ),
-	'fact' => 'Packages start at <b>₹60,000</b>',
+	'note' => 'Packages start at <b>₹60,000</b> per month, depending on scope. Get a free marketing plan before you see a price.',
 ) ); ?>	<!-- 2. Good marketing moves business forward -->
 	<section class="sec ev-sec" id="approach">
 		<div class="wrap dm-split">
