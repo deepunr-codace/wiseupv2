@@ -287,6 +287,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 					array( '3', 'M+', 'Audience reached' ),
 					array( '21.6', 'M+', 'Impressions for one launch' ),
 					array( '8', '', 'Years of CodeAce engineering' ),
+					array( '5.0', '★', 'Google rating from client reviews' ),
 				) as $wu_st ) : ?>
 				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
 				<?php endforeach; ?>

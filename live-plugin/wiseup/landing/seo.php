@@ -161,11 +161,11 @@ $wu_platforms = array(
 // Projects: [ name, image, tags, link ].
 $wu_projects = array(
 	// [ name, image (plugin path, or '' for a name tile), tags, link, logo (shown on a dark tile instead of a photo) ]
-	array( 'Leyali', '', array(), '', 'assets/clients/client-logos-2026/leyali.webp', array( '', '', 'Shopify e-commerce store with a streamlined shopping experience.' ) ),
+	array( 'Leyali', '', array(), '', 'assets/clients/client-logos-2026/leyali.webp', array( '', '', 'Shopify e-commerce store with a streamlined shopping experience.', 'bag', 'Shopify' ) ),
 	array( 'Gloveda', 'assets/landing/img/case-gloveda.webp', array(), '', '', array( '900+', 'Orders in the first 3 months', 'Shopify e-commerce and digital marketing.' ) ),
 	array( 'Ikayaa Food Products', '', array(), '', 'assets/clients/client-logos-2026/ikayaa.webp', array( '15+', 'International markets', 'Export-focused B2B website supporting expansion.' ) ),
 	array( 'KPG Roofings', 'assets/landing/img/case-kpg.webp', array(), '', '', array( '45+', 'Showrooms connected online', 'Corporate website and digital presence.' ) ),
-	array( 'Ceramic Roof Tiles', 'assets/landing/img/case-ceramicrooftiles.webp', array(), '', '' ),
+	array( 'Ceramic Roof Tiles', 'assets/landing/img/case-ceramicrooftiles.webp', array(), '', '', array( '', '', 'Keyword rankings across India.', 'chart', 'India' ) ),
 );
 
 // Tools: [ name, mark ].
@@ -252,6 +252,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 						array( '5', 'K+', 'Keywords ranked for our clients' ),
 						array( '8', '+', 'Years with CodeAce' ),
 						array( '150', '+', 'Skilled professionals on our team' ),
+						array( '5.0', '★', 'Google rating from client reviews' ),
 					) as $wu_st ) : ?>
 					<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
 					<?php endforeach; ?>
@@ -374,22 +375,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 				</div>
 				<div class="ev-intro"><p class="dm-intro-lead">Built to work with your website.</p><p>SEO requirements change depending on how a website is built. WiseUp adapts its SEO approach to your platform, website structure, business model and the way your customers search.</p></div>
 			</div>
-			<div class="seo-plat" data-plat>
-				<div class="seo-plat__row" role="tablist" aria-label="Website platforms">
-					<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
-					<button type="button" class="seo-plat__tab<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" role="tab" id="seo-plat-t<?php echo (int) $wu_k; ?>" aria-controls="seo-plat-p<?php echo (int) $wu_k; ?>" aria-selected="<?php echo 0 === $wu_k ? 'true' : 'false'; ?>"><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?><span><?php echo esc_html( $p[0] ); ?></span></button>
-					<?php endforeach; ?>
-				</div>
-				<div class="seo-plat__stage">
-					<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
-					<div class="seo-plat__pane<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" role="tabpanel" id="seo-plat-p<?php echo (int) $wu_k; ?>" aria-labelledby="seo-plat-t<?php echo (int) $wu_k; ?>">
-						<span class="seo-plat__big" aria-hidden="true"><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?></span>
-						<div><h3><?php echo esc_html( $p[0] ); ?></h3><p><?php echo esc_html( $p[2] ); ?></p><?php if ( $p[3] ) echo '<span class="seo-plat__tag">' . esc_html( $p[3] ) . '</span>'; ?></div>
-					</div>
-					<?php endforeach; ?>
-				</div>
-			</div>
-			<script>(function(){var r=document.querySelector('[data-plat]');if(!r)return;var t=[].slice.call(r.querySelectorAll('.seo-plat__tab')),p=[].slice.call(r.querySelectorAll('.seo-plat__pane'));var go=function(i){t.forEach(function(b,k){b.classList.toggle('is-on',k===i);b.setAttribute('aria-selected',k===i?'true':'false');});p.forEach(function(x,k){x.classList.toggle('is-on',k===i);});};t.forEach(function(b,i){b.addEventListener('click',function(){go(i);});b.addEventListener('mouseenter',function(){if(matchMedia('(hover: hover)').matches)go(i);});b.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-9;if(n>-9){n=(n+t.length)%t.length;go(n);t[n].focus();e.preventDefault();}});});})();</script>
+			<ul class="seo-pc" data-pc>
+				<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
+				<li class="seo-pc__c">
+					<div class="seo-pc__top"><span class="seo-pc__lg"><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?></span><span class="seo-pc__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span></div>
+					<h3><?php echo esc_html( $p[0] ); ?></h3>
+				</li>
+				<?php endforeach; ?>
+			</ul>
 		</div>
 	</section>
 
@@ -402,7 +395,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			</div>
 			<ul class="seo-proj">
 				<?php foreach ( $wu_projects as $wu_i => $pj ) : $tag = $pj[3] ? 'a' : 'div'; $href = $pj[3] ? ' href="' . esc_url( $pj[3] ) . '"' : ''; ?>
-				<li<?php echo 0 === $wu_i ? ' class="is-lead"' : ''; ?><?php echo ! empty( $pj[5] ) ? ' tabindex="0"' : ''; ?>><<?php echo $tag . $href; // phpcs:ignore ?> class="seo-proj__in"><?php if ( $pj[1] ) : ?><img src="<?php echo esc_url( WISEUP_URL . $pj[1] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' SEO project by WiseUp, Kerala' ); ?>" width="640" height="800" loading="lazy" decoding="async"><?php elseif ( $pj[4] ) : ?><span class="seo-proj__ph is-logo"><img src="<?php echo esc_url( WISEUP_URL . $pj[4] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' logo, SEO project by WiseUp, Kerala' ); ?>" loading="lazy" decoding="async"></span><?php else : ?><span class="seo-proj__ph" aria-hidden="true"><i><?php echo esc_html( mb_substr( $pj[0], 0, 1 ) ); ?></i></span><?php endif; ?><?php if ( ! empty( $pj[5] ) ) : ?><span class="seo-proj__st"><?php if ( $pj[5][0] ) : ?><strong><?php echo esc_html( $pj[5][0] ); ?></strong><small><?php echo esc_html( $pj[5][1] ); ?></small><?php endif; ?><span><?php echo esc_html( $pj[5][2] ); ?></span></span><?php endif; ?><span class="seo-proj__t"><b><?php echo esc_html( $pj[0] ); ?></b><span class="seo-tags"><?php foreach ( $pj[2] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></span></span></<?php echo $tag; ?>></li>
+				<li<?php echo 0 === $wu_i ? ' class="is-lead"' : ''; ?><?php echo ! empty( $pj[5] ) ? ' tabindex="0"' : ''; ?>><<?php echo $tag . $href; // phpcs:ignore ?> class="seo-proj__in"><?php if ( $pj[1] ) : ?><img src="<?php echo esc_url( WISEUP_URL . $pj[1] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' SEO project by WiseUp, Kerala' ); ?>" width="640" height="800" loading="lazy" decoding="async"><?php elseif ( $pj[4] ) : ?><span class="seo-proj__ph is-logo"><img src="<?php echo esc_url( WISEUP_URL . $pj[4] ); ?>" alt="<?php echo esc_attr( $pj[0] . ' logo, SEO project by WiseUp, Kerala' ); ?>" loading="lazy" decoding="async"></span><?php else : ?><span class="seo-proj__ph" aria-hidden="true"><i><?php echo esc_html( mb_substr( $pj[0], 0, 1 ) ); ?></i></span><?php endif; ?><?php if ( ! empty( $pj[5] ) ) : ?><span class="seo-proj__st<?php echo $pj[5][0] ? '' : ' is-line'; ?>"><?php if ( ! $pj[5][0] && ! empty( $pj[5][3] ) ) : ?><i class="seo-proj__ic"><?php echo $wu_svg( $wu_icons[ $pj[5][3] ], 26 ); // phpcs:ignore ?></i><?php endif; ?><?php if ( $pj[5][0] ) : ?><strong><?php echo esc_html( $pj[5][0] ); ?></strong><small><?php echo esc_html( $pj[5][1] ); ?></small><?php endif; ?><span><?php echo ! empty( $pj[5][4] ) ? str_replace( esc_html( $pj[5][4] ), '<b>' . esc_html( $pj[5][4] ) . '</b>', esc_html( $pj[5][2] ) ) : esc_html( $pj[5][2] ); // phpcs:ignore ?></span></span><?php endif; ?><span class="seo-proj__t"><b><?php echo esc_html( $pj[0] ); ?></b><span class="seo-tags"><?php foreach ( $pj[2] as $t ) echo '<span>' . esc_html( $t ) . '</span>'; ?></span></span></<?php echo $tag; ?>></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
