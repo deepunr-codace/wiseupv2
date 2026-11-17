@@ -2062,3 +2062,33 @@ html body .wu-seo .ev-hero .ev-hero__copy p.ev-hero__p { font-size: 17px !import
 .wu-seo main > .ev-sec :is(.dm-intro-lead, .seo-w, .ev-scrub, .seo-pkcta p, .ev-final__p) { font-size: 17px !important; line-height: 1.65 !important; }
 html body .wu-seo main > .ev-sec p.ev-scrub, html body .wu-seo main > .ev-sec .ev-price p { font-size: 17px !important; line-height: 1.65 !important; }
 html body .wu-seo #packages .ev-price p.ev-scrub.ev-scrub { font-size: 17px !important; line-height: 1.65 !important; }
+
+/* SEO platforms: "Built to work with your website." as a feature line (lime marker, "your website" in lime with a hand-drawn underline that draws in) */
+html body .wu-seo #platforms p.seo-built { position: relative; display: inline-block; margin: 0 0 18px; padding-left: 22px; font-family: var(--font-mark, inherit); font-size: clamp(22px, 2vw, 28px) !important; font-weight: 400 !important; line-height: 1.3 !important; letter-spacing: -.02em; color: #fff; }
+.wu-seo #platforms p.seo-built::before { content: ""; position: absolute; left: 0; top: .48em; width: 10px; height: 10px; border-radius: 50%; background: #beda52; box-shadow: 0 0 0 5px rgb(190 218 82 / .15), 0 0 18px rgb(190 218 82 / .6); }
+.wu-seo .seo-built__w { position: relative; display: inline-block; color: #beda52; font-style: italic; }
+.wu-seo .seo-built__w svg { position: absolute; left: -2%; right: -2%; bottom: -.28em; width: 104%; height: .42em; overflow: visible; }
+.wu-seo .seo-built__w path { fill: none; stroke: #beda52; stroke-width: 2.4; stroke-linecap: round; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 1.1s cubic-bezier(.65, 0, .35, 1) .35s; }
+.wu-seo .seo-built { opacity: 0; translate: 0 12px; transition: opacity .8s ease, translate .9s cubic-bezier(.2, .9, .2, 1); }
+.wu-seo .seo-built.is-in { opacity: 1; translate: 0 0; }
+.wu-seo .seo-built.is-in .seo-built__w path { stroke-dashoffset: 0; }
+@media (prefers-reduced-motion: reduce) { .wu-seo .seo-built { opacity: 1; translate: 0 0; transition: none; } .wu-seo .seo-built__w path { stroke-dashoffset: 0; transition: none; } }
+html body .wu-seo #platforms .ev-intro p.dm-intro-lead.seo-built { position: relative; display: inline-block; margin: 0 0 18px; padding-left: 22px; font-family: var(--font-mark, inherit); font-size: clamp(22px, 2vw, 28px) !important; font-weight: 400 !important; line-height: 1.3 !important; letter-spacing: -.02em; color: #fff; }
+html body .wu-seo #platforms .ev-intro p.dm-intro-lead.seo-built::before { content: "" !important; display: block !important; position: absolute; left: 0; top: .5em; width: 10px; height: 10px; border-radius: 50%; background: #beda52 !important; box-shadow: 0 0 0 5px rgb(190 218 82 / .15), 0 0 18px rgb(190 218 82 / .6); }
+html body .wu-seo #platforms .ev-intro p.dm-intro-lead.seo-built::before { content: none !important; display: none !important; }
+html body .wu-seo #platforms .ev-intro p.dm-intro-lead.seo-built { padding-left: 0 !important; }
+/* "Built to work with your website." sits under the platforms heading, smaller, no underline */
+html body .wu-seo #platforms .sh p.dm-intro-lead.seo-built { display: block; margin: 16px 0 0; padding: 0 !important; font-family: var(--font-mark, inherit); font-size: 20px !important; font-weight: 400 !important; line-height: 1.4 !important; letter-spacing: -.01em; color: #fff; }
+html body .wu-seo #platforms .sh p.dm-intro-lead.seo-built::before { content: none !important; display: none !important; }
+/* "Built to work with your website." in the page font (Inter), no italic */
+html body .wu-seo #platforms .sh p.dm-intro-lead.seo-built { font-family: var(--font, Inter, system-ui, sans-serif) !important; font-weight: 500 !important; }
+html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal; font-family: inherit; }
+
+/* SEO platform cards: neumorphic black (raised soft cards on the black page, press in on hover; no hairline, no lime tint) */
+.wu-seo .seo-pc { gap: clamp(16px, 1.8vw, 24px); }
+.wu-seo .seo-pc__c { background: linear-gradient(145deg, #141416, #0a0a0b) !important; box-shadow: -7px -7px 16px rgb(255 255 255 / .035), 9px 11px 24px rgb(0 0 0 / .9), inset 1px 1px 0 rgb(255 255 255 / .05) !important; transition: box-shadow .6s ease, translate .6s cubic-bezier(.2, .9, .2, 1); }
+.wu-seo .seo-pc__c:hover { translate: 0 0 !important; box-shadow: inset 6px 6px 14px rgb(0 0 0 / .85), inset -5px -5px 12px rgb(255 255 255 / .035) !important; }
+.wu-seo .seo-pc__lg .dm-mark { box-shadow: 4px 5px 10px rgb(0 0 0 / .7), -2px -2px 6px rgb(255 255 255 / .04) !important; }
+/* SEO FAQ: answers can hold more than one paragraph */
+.wu-seo .faq__a > p { margin: 0; }
+.wu-seo .faq__a > p + p { margin-top: 12px; }

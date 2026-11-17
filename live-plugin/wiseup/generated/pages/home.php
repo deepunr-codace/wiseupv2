@@ -976,6 +976,7 @@ defined( 'ABSPATH' ) || exit;
 									Be found. Be chosen.
 								</li>
 							</ul>
+							<a class="svc__more" href="https://wiseup.in/services/seo-company-in-kerala/">Explore service<svg class="svc__more-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
 						</div>
 					</div>
 				</li>
@@ -1159,7 +1160,7 @@ defined( 'ABSPATH' ) || exit;
 	<section class="seq" id="voice" aria-labelledby="hero-title">
 		<div class="seq__pin" data-seq>
 			<div class="wrap seq__copy">
-				<h1 id="hero-title" class="seq__line" data-words>
+				<h2 id="hero-title" class="seq__line" data-words>
 					<span class="seq__a">
 						We create a voice.
 					</span>
@@ -1169,7 +1170,7 @@ defined( 'ABSPATH' ) || exit;
 					<span class="seq__c">
 						A burning flame.
 					</span>
-				</h1>
+				</h2>
 			</div>
 		</div>
 		<div class="wrap seq__after">

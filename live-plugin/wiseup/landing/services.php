@@ -40,7 +40,7 @@ $wu_studio   = wiseup_svc_page_url( 'wiseup-studio' );
 $wu_services = array(
 	array( 'Digital Marketing', 'globe', array( 'Content Marketing', 'Digital Branding', 'Website Development', 'Digital PR', 'AI Automation & CRM' ), 'https://wiseup.in/services/digital-marketing-agency-in-kerala/', 'Digital Marketing & Social Media', 'digital-marketing' ),
 	array( 'Social Media Marketing', 'chat', array( 'Influencer Marketing', 'PR (Public Relations)', 'Engagement', 'Crisis Management', 'Sponsorship' ), 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/', 'Digital Marketing & Social Media', 'social-media' ),
-	array( 'SEO (Search Engine Optimization)', 'search', array( 'SEO Strategy & Keyword Research', 'On-Page SEO', 'Technical SEO', 'Local SEO', 'AI SEO' ), '', 'SEO Services', 'seo' ),
+	array( 'SEO (Search Engine Optimization)', 'search', array( 'SEO Strategy & Keyword Research', 'On-Page SEO', 'Technical SEO', 'Local SEO', 'AI SEO' ), 'https://wiseup.in/services/seo-company-in-kerala/', 'SEO Services', 'seo' ),
 	array( 'Performance Marketing (PPC)', 'target', array( 'Google Ads', 'Meta Ads' ), '', 'Performance Marketing', 'ppc' ),
 	array( 'Video Production & Photography', 'video', array( 'Corporate Films', 'Presentation (PPT)', 'Concept Videos', 'CGI Videos', 'AI Videos' ), '', 'Video & Photography', 'video' ),
 	array( 'Brand Solutions', 'signature', array( 'Logo Design', 'Corporate Identity', 'Consultancy', 'Product Packaging', 'Signage', 'Print Production' ), '', 'Brand Strategy & Identity', 'brand-solutions' ),

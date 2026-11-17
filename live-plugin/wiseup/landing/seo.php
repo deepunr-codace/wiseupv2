@@ -211,13 +211,20 @@ $wu_why = array(
 );
 
 $wu_faq = array(
-	array( 'How long do SEO efforts typically take to show significant, measurable results for an established website?', 'Most established websites see measurable gains: better rankings, impressions and organic traffic, within three to six months. Highly competitive keywords or new markets can take six to twelve. Technical fixes often show impact sooner, and results compound the longer a consistent strategy runs.' ),
-	array( 'What deliverables and reports will we receive every month?', 'A monthly SEO report covering keyword rankings, organic traffic, conversions, Search Console and GA4 insights, AI search visibility, the work completed and the plan for next month, plus access to a live dashboard whenever you need it.' ),
-	array( 'Should SEO be part of a broader digital marketing strategy?', 'Yes. SEO builds long-term organic visibility, while paid ads, social media and content marketing drive faster reach. Planned together, each channel strengthens the others, and your overall cost per lead comes down.' ),
-	array( 'What Is WooCommerce SEO and How Does It Benefit E-commerce Businesses?', 'WooCommerce SEO optimises WordPress-based online stores: product and category pages, site structure, structured data, internal linking and technical performance, so your products appear for high-intent, ready-to-buy searches. The result is more organic shoppers and sales without relying entirely on paid ads.' ),
+	array( 'How much does SEO cost in Kerala?', array( 'SEO services at WiseUp start from ₹70,000 per month. The final cost depends on your website, industry competition, target locations and the scope of work required. We prepare a custom proposal after reviewing your website and business goals.' ) ),
+	array( 'When can I expect to see measurable SEO progress?', array( 'SEO typically takes 3–6 months to show measurable progress. The timeline depends on your website’s current performance, competition, technical condition and content requirements. Consistent optimisation helps build search visibility over time.' ) ),
+	array( 'Can an SEO company guarantee first-page rankings on Google?', array( 'No ethical SEO company can guarantee first-page rankings because Google controls its search algorithms and ranking systems. At WiseUp, we focus on improving your website’s technical health, content, relevance and authority to strengthen its search performance.' ) ),
+	array( 'What services does an SEO company provide?', array( 'An SEO company provides services such as keyword research, technical optimisation, on-page SEO, content development, link building, local SEO and performance tracking.', 'WiseUp also works on AI search visibility and Google AI Overview optimisation.' ) ),
+	array( 'Does my business need SEO?', array( 'If your potential customers search online for your products or services, SEO can help them find your business. It improves your website’s visibility, attracts relevant visitors and creates more opportunities for enquiries.' ) ),
 );
 $wu_services_select = array( 'Free SEO Assessment', 'SEO Package Quote', 'AI SEO & Search Visibility', 'Local SEO', 'WooCommerce / Shopify SEO', 'Something else' );
 
+
+add_action( 'wp_footer', function () use ( $wu_faq ) {
+	$items = array();
+	foreach ( $wu_faq as $f ) $items[] = array( '@type' => 'Question', 'name' => $f[0], 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => implode( ' ', $f[1] ) ) );
+	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items ) ) . "</script>\n";
+}, 20 );
 
 wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' );
 ?>
@@ -433,8 +440,9 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 				<div class="sh">
 					<?php echo $wu_eyebrow( 'Platforms' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Every Platform Needs', 'a Different Approach' ); // phpcs:ignore ?></h2>
+					<p class="dm-intro-lead seo-built" data-built>Built to work with <span class="seo-built__w">your website</span>.</p><script>(function(){var e=document.querySelector('[data-built]');if(!e)return;if(!('IntersectionObserver' in window)){e.classList.add('is-in');return;}var o=new IntersectionObserver(function(x){if(x[0].isIntersecting){e.classList.add('is-in');o.disconnect();}},{threshold:.6});o.observe(e);})();</script>
 				</div>
-				<div class="ev-intro"><p class="dm-intro-lead">Built to work with your website.</p><p>SEO requirements change depending on how a website is built. WiseUp adapts its SEO approach to your platform, website structure, business model and the way your customers search.</p></div>
+				<div class="ev-intro"><p>SEO requirements change depending on how a website is built. WiseUp adapts its SEO approach to your platform, website structure, business model and the way your customers search.</p></div>
 			</div>
 			<ul class="seo-pc" data-pc>
 				<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
@@ -601,6 +609,24 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 		<div class="wrap">
 			<div class="sh"><h2 class="sh__h"><?php echo $wu_h( 'Beyond Campaigns:', 'Client Experiences' ); // phpcs:ignore ?></h2></div>
 			<?php include WISEUP_DIR . 'landing/reviews.php'; ?>
+		</div>
+	</section>
+
+	<!-- FAQ (owner's five questions, with FAQPage schema) -->
+	<section class="sec ev-sec" id="faq" aria-labelledby="seo-faq-h">
+		<div class="wrap dm-faq">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
+				<h2 id="seo-faq-h" class="sh__h"><?php echo $wu_h( 'Frequently Asked', 'Questions' ); // phpcs:ignore ?></h2>
+			</div>
+			<div class="faq">
+				<?php foreach ( $wu_faq as $f ) : ?>
+				<details class="faq__item" name="faq">
+					<summary class="faq__q"><h3><?php echo esc_html( $f[0] ); ?></h3><span class="faq__dot" aria-hidden="true"></span></summary>
+					<div class="faq__a"><?php foreach ( $f[1] as $para ) echo '<p>' . esc_html( $para ) . '</p>'; ?></div>
+				</details>
+				<?php endforeach; ?>
+			</div>
 		</div>
 	</section>
 
