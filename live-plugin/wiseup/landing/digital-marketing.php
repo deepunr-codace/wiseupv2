@@ -228,9 +228,9 @@ $wu_why = array(
 // kind: photo = cover image, logo = colour logo on a white tile, none = no artwork yet (KPG Roofings: no logo on file).
 $wu_results = array(
 	array( 'Onesto & Mercado', 'logo', WISEUP_ASSETS . '/clients/client-logos-2026/onesto-marcado.png', home_url( '/case-studies/onesto/' ) ),
-	array( 'IndusGo', 'photo', WISEUP_URL . 'assets/landing/img/case-indusgo.jpg', home_url( '/case-studies/indusgo/' ) ),
-	array( 'Sathya', 'photo', WISEUP_URL . 'assets/work/case-sathya-720.webp', home_url( '/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ) ),
-	array( 'KPG Roofings', 'photo', WISEUP_URL . 'assets/landing/img/case-kpg.webp', '' ),
+	array( 'IndusGo', 'photo', WISEUP_URL . 'assets/landing/img/case-indusgo.jpg', home_url( '/case-studies/indusgo/' ), array( '10', 'Campaign videos produced every month', '', array( array( '100K+', 'reach on several videos' ) ) ) ),
+	array( 'Sathya', 'photo', WISEUP_URL . 'assets/work/case-sathya-720.webp', home_url( '/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ), array( '1M+', 'Minimum reach on every video', '', array( array( '100+', 'videos in total' ), array( '6+', 'store launches' ), array( '5+', 'video formats' ) ) ) ),
+	array( 'KPG Roofings', 'photo', WISEUP_URL . 'assets/landing/img/case-kpg.webp', '', array( '45+', 'Showrooms connected online', 'Corporate website and digital presence.' ) ),
 );
 
 $wu_package = array(
@@ -648,9 +648,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 				<?php foreach ( $wu_results as $r ) :
 					$tag  = $r[3] ? 'a' : 'div';
 					$href = $r[3] ? ' href="' . esc_url( $r[3] ) . '"' : ''; ?>
-				<li class="dm-brand dm-brand--<?php echo esc_attr( $r[1] ); ?>">
+				<li class="dm-brand dm-brand--<?php echo esc_attr( $r[1] ); ?>"<?php echo ( ! empty( $r[4] ) && ! $r[3] ) ? ' tabindex="0"' : ''; ?>>
 					<<?php echo $tag . $href; // phpcs:ignore ?> class="dm-brand__in">
-						<span class="dm-brand__art">
+						<span class="dm-brand__art"><?php if ( ! empty( $r[4] ) ) : ?><span class="dm-brand__st"><?php if ( $r[4][0] ) : ?><strong><?php echo esc_html( $r[4][0] ); ?></strong><small><?php echo esc_html( $r[4][1] ); ?></small><?php endif; ?><?php if ( $r[4][2] ) : ?><span><?php echo esc_html( $r[4][2] ); ?></span><?php endif; ?><?php if ( ! empty( $r[4][3] ) ) : ?><em class="dm-brand__mini"><?php foreach ( $r[4][3] as $mi ) echo '<i><b>' . esc_html( $mi[0] ) . '</b>' . esc_html( $mi[1] ) . '</i>'; ?></em><?php endif; ?></span><?php endif; ?>
 							<?php if ( 'none' === $r[1] ) : ?>
 							<span class="dm-brand__ph" aria-hidden="true"><?php echo $wu_svg( '<path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-5h5v5"/>', 44, 1.4 ); // phpcs:ignore ?></span>
 							<?php else : ?>

@@ -38,7 +38,7 @@ $wu_ppc_url  = wiseup_svc_page_url( 'wiseup-performance-marketing' ) ?: wiseup_s
 $wu_ev_url   = wiseup_svc_page_url( 'wiseup-event-branding' );
 $wu_studio   = wiseup_svc_page_url( 'wiseup-studio' );
 $wu_services = array(
-	array( 'Digital Marketing', 'globe', array( 'Content Marketing', 'Digital Branding', 'Website Development', 'Digital PR', 'AI Automation & CRM' ), '', 'Digital Marketing & Social Media', 'digital-marketing' ),
+	array( 'Digital Marketing', 'globe', array( 'Content Marketing', 'Digital Branding', 'Website Development', 'Digital PR', 'AI Automation & CRM' ), 'https://wiseup.in/services/digital-marketing-agency-in-kerala/', 'Digital Marketing & Social Media', 'digital-marketing' ),
 	array( 'Social Media Marketing', 'chat', array( 'Influencer Marketing', 'PR (Public Relations)', 'Engagement', 'Crisis Management', 'Sponsorship' ), 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/', 'Digital Marketing & Social Media', 'social-media' ),
 	array( 'SEO (Search Engine Optimization)', 'search', array( 'SEO Strategy & Keyword Research', 'On-Page SEO', 'Technical SEO', 'Local SEO', 'AI SEO' ), '', 'SEO Services', 'seo' ),
 	array( 'Performance Marketing (PPC)', 'target', array( 'Google Ads', 'Meta Ads' ), '', 'Performance Marketing', 'ppc' ),
