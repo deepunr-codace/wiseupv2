@@ -480,7 +480,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			</div>
 			<div class="dm-pkg">
 				<div class="dm-pkg__table">
-					<h3>SEO Strategy Includes</h3>
+					<h3>SEO Packages Include</h3>
 					<ul class="dm-pkg__chips">
 						<?php $wu_pk_ic = array( 'search', 'tool', 'chart' ); foreach ( $wu_package as $wu_k => $g ) : ?>
 						<li><span class="dm-pkg__ic"><?php echo $wu_svg( $wu_icons[ $wu_pk_ic[ $wu_k ] ?? 'spark' ], 22 ); // phpcs:ignore ?></span><span><?php echo esc_html( $g[0] ); ?></span><small class="dm-pkg__d"><?php echo esc_html( implode( ' · ', $g[1] ) ); ?></small><button type="button" class="dm-pkg__sw" role="switch" aria-checked="true" aria-label="<?php echo esc_attr( $g[0] ); ?>"><i></i></button></li>
