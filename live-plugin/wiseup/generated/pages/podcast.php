@@ -806,6 +806,27 @@ defined( 'ABSPATH' ) || exit;
   .pc-brands__track { animation: none; }
   .pc-brands__row { overflow-x: auto; }
 }
+
+/* featured Malayalam caption: Anek Malayalam, a lime hook pill, the line set as a quote */
+.pc-ml, .pc-page .pc-ml { font-family: 'Anek Malayalam', 'Noto Sans Malayalam', 'Inter', sans-serif; }
+.pc-ep h3 { font-family: 'Inter', 'Anek Malayalam', 'Noto Sans Malayalam', sans-serif; }
+.pc-page .pc-feat__ml { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 16px 0 0; color: inherit; font-weight: 600; }
+.pc-feat__pill { display: inline-flex; align-items: center; gap: 7px; padding: 6px 14px 6px 12px; border-radius: 99px; background: #beda52; color: #11150a; font: 700 12px/1 'Inter', sans-serif; letter-spacing: .08em; text-transform: uppercase; box-shadow: 0 6px 16px -8px rgb(190 218 82 / .7); }
+.pc-feat__pill i { display: grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; background: #11150a; color: #beda52; font-style: normal; font-size: 13px; line-height: 1; }
+.pc-feat__mlt { position: relative; padding-left: 14px; font-family: 'Anek Malayalam', 'Noto Sans Malayalam', sans-serif; font-size: clamp(.95rem, .88rem + .3vw, 1.08rem); font-weight: 600; line-height: 1.35; letter-spacing: 0; color: #e8f3bf; }
+.pc-feat__mlt::before { content: ''; position: absolute; left: 0; top: .2em; bottom: .25em; width: 3px; border-radius: 3px; background: linear-gradient(#beda52, rgb(190 218 82 / .2)); }
+:root[data-theme='light'] .pc-feat__mlt { color: #3f5212; }
+:root[data-theme='light'] .pc-feat__mlt::before { background: linear-gradient(#8fa838, rgb(143 168 56 / .2)); }
+.pc-feat__ml .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* featured cards: no YouTube badge on the thumbnail; the Play Episode button carries the YouTube icon */
+.pc-fstack .pc-feat__play { display: none !important; }
+.pc-feat__row .b__ico .pc-yt { width: 22px; height: 16px; }
+
+/* hero Malayalam line: Anek Malayalam, quote bar, the key word in lime */
+.pc-page .pc-hero__ml { font-family: 'Anek Malayalam', 'Noto Sans Malayalam', sans-serif; font-size: clamp(1.05rem, .92rem + .5vw, 1.35rem); font-weight: 500; line-height: 1.5; letter-spacing: 0; color: var(--ink-2, var(--ink)); }
+.pc-hero__ml mark { background: none; color: #beda52; font-weight: 700; }
+:root[data-theme='light'] .pc-hero__ml mark { color: #5e8a14; }
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"PodcastSeries","name":"WiseUp Podcast","description":"A Malayalam business podcast with entrepreneurs, creators and changemakers who are building a better tomorrow.","url":"https://wiseup.in/podcast","image":"https://wiseup.in/podcast/banner.jpg","inLanguage":"ml","sameAs":["https://www.youtube.com/@WiseUpPodcast_"]}</script>
 	<div class="pc-page" data-mood="day">
 		<section class="sec pc-hero" id="top" aria-label="WiseUp Podcast">
@@ -832,7 +853,7 @@ defined( 'ABSPATH' ) || exit;
 						</em>
 					</h1>
 					<p class="pc-hero__ml pc-ml" lang="ml" data-reveal="up" data-intro data-delay="0.2">
-						ഓൺലൈൻ ബിസിനസ്സ് വളർത്താൻ, ഇനി കാര്യങ്ങൾ കുറച്ചുകൂടി എളുപ്പം.
+						ഓൺലൈൻ ബിസിനസ്സ് വളർത്താൻ, ഇനി കാര്യങ്ങൾ കുറച്ചുകൂടി <mark>എളുപ്പം</mark>.
 					</p>
 					<div class="pc-hero__row" data-reveal="up" data-intro data-delay="0.3">
 						<a class="b b--teal" href="https://www.youtube.com/watch?v=h9kHyyUruSg" rel="noopener" target="_blank">
@@ -940,8 +961,8 @@ defined( 'ABSPATH' ) || exit;
 				</span>
 				<ul class="pc-fstack" data-fstack>
 					<li class="pc-fcard" data-fcard>
-						<a class="pc-feat__frame" data-embed data-video-id="h9kHyyUruSg" href="https://www.youtube.com/watch?v=h9kHyyUruSg" target="_blank" rel="noopener">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/yt-featured.webp" alt="Jijo Sunny on the WiseUp Podcast: Lakhs Flow Through Coffee, But It Is Not a Coffee Shop" width="800" height="450" loading="eager">
+						<a class="pc-feat__frame" data-embed data-video-id="EUEvrO6kOdQ" href="https://www.youtube.com/watch?v=EUEvrO6kOdQ" target="_blank" rel="noopener">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/yt-fathima.webp" alt="Dr. Fathima Nilufer Sherif on the WiseUp Podcast: Anti-Ageing, Skin Health &amp; Haircare Secrets" width="800" height="450" loading="eager">
 							<span class="pc-feat__play yt">
 								<svg viewBox="0 0 68 48" aria-hidden="true">
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
@@ -951,7 +972,57 @@ defined( 'ABSPATH' ) || exit;
 						</a>
 						<div class="pc-fcard__body">
 							<p class="pc-ml pc-feat__ml" lang="ml">
-								കാപ്പി വഴി ലക്ഷങ്ങൾ, പക്ഷെ കാപ്പിക്കടയല്ല
+								<span class="pc-feat__pill" lang="en">Beauty <i aria-hidden="true">=</i><span class="sr-only">equals</span> Confidence</span>
+								<span class="pc-feat__mlt">വെളുപ്പിച്ചു സുന്ദരിയാക്കലല്ല</span>
+							</p>
+							<h2 class="pc-feat__title">
+								Anti-Ageing, Skin Health &amp; Haircare Secrets
+							</h2>
+							<p class="pc-feat__guest">
+								Dr. Fathima Nilufer Sherif · Founder, Therefore I&#039;m
+							</p>
+							<p class="pc-feat__sub">
+								From a single clinic in Thrissur in 2015 to an aesthetics and wellness brand across several cities. Dr. Fathima on what really works in skincare and haircare, and what is just marketing hype.
+							</p>
+							<div class="pc-feat__row">
+								<a class="b b--teal" href="https://www.youtube.com/watch?v=EUEvrO6kOdQ" rel="noopener" target="_blank">
+									<span class="b__label">
+										Play Episode
+									</span>
+									<span class="b__ico">
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+									</span>
+								</a>
+								<a class="b b--night" href="#episodes">
+									<span class="b__label">
+										More Episodes
+									</span>
+									<span class="b__ico">
+										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
+										</svg>
+										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
+										</svg>
+									</span>
+								</a>
+							</div>
+						</div>
+					</li>
+					<li class="pc-fcard" data-fcard>
+						<a class="pc-feat__frame" data-embed data-video-id="h9kHyyUruSg" href="https://www.youtube.com/watch?v=h9kHyyUruSg" target="_blank" rel="noopener">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/yt-featured.webp" alt="Jijo Sunny on the WiseUp Podcast: Lakhs Flow Through Coffee, But It Is Not a Coffee Shop" width="800" height="450" loading="lazy">
+							<span class="pc-feat__play yt">
+								<svg viewBox="0 0 68 48" aria-hidden="true">
+									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
+									<path fill="#fff" d="M45 24 27 14v20z"/>
+								</svg>
+							</span>
+						</a>
+						<div class="pc-fcard__body">
+							<p class="pc-ml pc-feat__ml" lang="ml">
+								<span class="pc-feat__mlt">കാപ്പി വഴി ലക്ഷങ്ങൾ, പക്ഷെ കാപ്പിക്കടയല്ല</span>
 							</p>
 							<h2 class="pc-feat__title">
 								Lakhs Flow Through Coffee, But It Is Not a Coffee Shop
@@ -968,12 +1039,8 @@ defined( 'ABSPATH' ) || exit;
 										Play Episode
 									</span>
 									<span class="b__ico">
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
 									</span>
 								</a>
 								<a class="b b--night" href="#episodes">
@@ -1018,12 +1085,8 @@ defined( 'ABSPATH' ) || exit;
 										Play Episode
 									</span>
 									<span class="b__ico">
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
 									</span>
 								</a>
 								<a class="b b--night" href="#episodes">
@@ -1068,12 +1131,8 @@ defined( 'ABSPATH' ) || exit;
 										Play Episode
 									</span>
 									<span class="b__ico">
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
 									</span>
 								</a>
 								<a class="b b--night" href="#episodes">
@@ -1118,12 +1177,8 @@ defined( 'ABSPATH' ) || exit;
 										Play Episode
 									</span>
 									<span class="b__ico">
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
 									</span>
 								</a>
 								<a class="b b--night" href="#episodes">
@@ -1168,12 +1223,8 @@ defined( 'ABSPATH' ) || exit;
 										Play Episode
 									</span>
 									<span class="b__ico">
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
-										<svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-											<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>
-										</svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
+										<svg class="ico pc-yt" width="22" height="16" viewBox="0 0 68 48" aria-hidden="true" focusable="false"><path fill="#f00" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/><path fill="#fff" d="M45 24 27 14v20z"/></svg>
 									</span>
 								</a>
 								<a class="b b--night" href="#episodes">
@@ -1234,6 +1285,36 @@ defined( 'ABSPATH' ) || exit;
 				</div>
 				<ul class="pc-eps__grid" data-eps-grid>
 					<li class="pc-ep" data-ep>
+						<a class="pc-ep__th" data-embed data-video-id="EUEvrO6kOdQ" href="https://www.youtube.com/watch?v=EUEvrO6kOdQ" target="_blank" rel="noopener" aria-label="Play: Anti-Ageing, Skin Health &amp; Haircare Secrets">
+							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/EUEvrO6kOdQ.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/EUEvrO6kOdQ-sm.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/EUEvrO6kOdQ.webp 640w" sizes="(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 82vw" alt="Anti-Ageing, Skin Health &amp; Haircare Secrets" width="640" height="360" loading="eager">
+							<span class="pc-ep__play yt">
+								<svg viewBox="0 0 68 48" aria-hidden="true">
+									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
+									<path fill="#fff" d="M45 24 27 14v20z"/>
+								</svg>
+							</span>
+						</a>
+						<div class="pc-ep__body">
+							<span class="pc-ep__tag">
+								Dr. Fathima Nilufer Sherif
+							</span>
+							<h3>
+								<a href="https://www.youtube.com/watch?v=EUEvrO6kOdQ" target="_blank" rel="noopener">
+									Anti-Ageing, Skin Health &amp; Haircare Secrets
+								</a>
+							</h3>
+							<a class="pc-ep__go" href="https://www.youtube.com/watch?v=EUEvrO6kOdQ" target="_blank" rel="noopener">
+								Watch episode
+								<i>
+									<svg viewBox="0 0 24 24" width="16" height="16">
+										<path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+										</path>
+									</svg>
+								</i>
+							</a>
+						</div>
+					</li>
+					<li class="pc-ep" data-ep>
 						<a class="pc-ep__th" data-embed data-video-id="fNWZJYJqIKk" href="https://www.youtube.com/watch?v=fNWZJYJqIKk" target="_blank" rel="noopener" aria-label="Play: How to Find the Market Size of a D2C Product Using AI">
 							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/fNWZJYJqIKk.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/fNWZJYJqIKk-sm.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/fNWZJYJqIKk.webp 640w" sizes="(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 82vw" alt="How to Find the Market Size of a D2C Product Using AI" width="640" height="360" loading="eager">
 							<span class="pc-ep__play yt">
@@ -1241,14 +1322,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__new">
-								<i>
-								</i>
-								Latest
-							</span>
-							<span class="pc-ep__meta">
-								1K views · Sept 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1280,9 +1353,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								40K views · Sept 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<span class="pc-ep__tag">
@@ -1312,9 +1382,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								213K views · Aug 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1346,9 +1413,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								59K views · Aug 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<span class="pc-ep__tag">
@@ -1378,9 +1442,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								8K views · Jul 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1412,9 +1473,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								17K views · Jul 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<span class="pc-ep__tag">
@@ -1444,9 +1502,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								1K views · Jul 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1478,9 +1533,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								42K views · Jun 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<span class="pc-ep__tag">
@@ -1510,9 +1562,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								5K views · May 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1544,9 +1593,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								11K views · May 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<span class="pc-ep__tag">
@@ -1576,9 +1622,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								3K views · May 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1610,9 +1653,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								55K views · Apr 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<span class="pc-ep__tag">
@@ -1642,9 +1682,6 @@ defined( 'ABSPATH' ) || exit;
 									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								7K views · Mar 2026
 							</span>
 						</a>
 						<div class="pc-ep__body">
@@ -1676,9 +1713,6 @@ defined( 'ABSPATH' ) || exit;
 									<path fill="#fff" d="M45 24 27 14v20z"/>
 								</svg>
 							</span>
-							<span class="pc-ep__meta">
-								5K views · Jan 2026
-							</span>
 						</a>
 						<div class="pc-ep__body">
 							<h3>
@@ -1687,36 +1721,6 @@ defined( 'ABSPATH' ) || exit;
 								</a>
 							</h3>
 							<a class="pc-ep__go" href="https://www.youtube.com/watch?v=wX2qo9iU13Y" target="_blank" rel="noopener">
-								Watch episode
-								<i>
-									<svg viewBox="0 0 24 24" width="16" height="16">
-										<path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-										</path>
-									</svg>
-								</i>
-							</a>
-						</div>
-					</li>
-					<li class="pc-ep" data-ep>
-						<a class="pc-ep__th" data-embed data-video-id="7laWPDIhhAE" href="https://www.youtube.com/watch?v=7laWPDIhhAE" target="_blank" rel="noopener" aria-label="Play: Why Government Offices Don’t Have Targets - Explained by a Former Deputy Collector">
-							<img src="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/7laWPDIhhAE.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/7laWPDIhhAE-sm.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/podcast/ep/7laWPDIhhAE.webp 640w" sizes="(min-width: 1000px) 30vw, (min-width: 700px) 45vw, 82vw" alt="Why Government Offices Don’t Have Targets - Explained by a Former Deputy Collector" width="640" height="360" loading="lazy">
-							<span class="pc-ep__play yt">
-								<svg viewBox="0 0 68 48" aria-hidden="true">
-									<path class="yt__bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55C3.97 2.33 2.27 4.81 1.48 7.74.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"/>
-									<path fill="#fff" d="M45 24 27 14v20z"/>
-								</svg>
-							</span>
-							<span class="pc-ep__meta">
-								2K views · Dec 2025
-							</span>
-						</a>
-						<div class="pc-ep__body">
-							<h3>
-								<a href="https://www.youtube.com/watch?v=7laWPDIhhAE" target="_blank" rel="noopener">
-									Why Government Offices Don’t Have Targets - Explained by a Former Deputy Collector
-								</a>
-							</h3>
-							<a class="pc-ep__go" href="https://www.youtube.com/watch?v=7laWPDIhhAE" target="_blank" rel="noopener">
 								Watch episode
 								<i>
 									<svg viewBox="0 0 24 24" width="16" height="16">

@@ -57,8 +57,8 @@ WISEUP_HTML
 			'extra_head'  => <<<'WISEUP_HTML'
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@700;800&display=swap" rel="stylesheet"></noscript>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400..800&display=swap" rel="stylesheet"></noscript>
 WISEUP_HTML
 ,
 		),

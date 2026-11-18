@@ -60,7 +60,8 @@ function wiseup_page_html( $slug, $html ) {
 		}, $html );
 	}
 	// AI Overview box after the hero of each generated page.
-	$marks = array( 'home' => '<section class="sec" id="services"', 'contact' => '<section class="sec cx-sec" id="form"', 'podcast' => '<section class="sec" id="featured"', 'about' => '<section class="ab__blk" id="who"' );
+	// AI Overview now only on the service pages (owner, 2026-11-18): no marks here.
+	$marks = array(); $wu_old_marks = array( 'home' => '<section class="sec" id="services"', 'contact' => '<section class="sec cx-sec" id="form"', 'podcast' => '<section class="sec" id="featured"', 'about' => '<section class="ab__blk" id="who"' );
 	if ( isset( $marks[ $slug ] ) && function_exists( 'wiseup_page_overview' ) ) {
 		$pos = strpos( $html, $marks[ $slug ] );
 		if ( false !== $pos ) $html = substr( $html, 0, $pos ) . wiseup_page_overview( $slug ) . substr( $html, $pos );

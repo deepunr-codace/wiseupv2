@@ -41,7 +41,7 @@ wiseup_landing_open( 'wu-landing wu-tv-page' );
         </div>
     </section>
 
-<?php wiseup_ai_overview( array(
+<?php if ( apply_filters( 'wiseup_ai_overview_on', false, 'tv' ) ) wiseup_ai_overview( array(
 	'q' => 'What is WiseUp TV?',
 	'a' => '<b>WiseUp TV</b> is a media platform dedicated to documenting and shaping business narratives through carefully crafted storytelling and considered production. It works with brands that value <b>depth over volume, meaning over messaging</b>, and long-term perception over short-term reach.',
 	'points' => array(

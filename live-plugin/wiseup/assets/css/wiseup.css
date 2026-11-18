@@ -3119,3 +3119,11 @@ html body [data-wpr-lazyrender] { content-visibility: visible !important; contai
 /* PageSpeed: the hero sheen layer (masked by the wordmark SVG) only exists after page load (html.wu-sheen, set in render.php),
    so its mask image is not fetched on the critical path and is not the LCP element. The sheen starts at 2.4s anyway. */
 html:not(.wu-sheen) .lunar__img::after { display: none; }
+
+/* v1.3.99: shorter mega menu: 11 groups in 3 columns (4 rows instead of 6), the last one spans two columns so no row is left half empty */
+.hd__mega { width: min(1180px, calc(100vw - 32px)) !important; }
+.mega__cols { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; align-items: stretch !important; }
+.mega__cols > .mega__grp { display: flex; align-items: center; }
+.mega__cols > .mega__grp > .mega__head { flex: 1; }
+.mega__cols > .mega__grp:last-child:nth-child(3n + 2) { grid-column: span 2; }
+@media (max-width: 1360px) { .hd__mega { width: min(1060px, calc(100vw - 32px)) !important; } }

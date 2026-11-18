@@ -68,7 +68,7 @@ wiseup_landing_open( 'wu-landing wu-svc-page' );
 		</div>
 	</section>
 
-<?php wiseup_ai_overview( array(
+<?php if ( apply_filters( 'wiseup_ai_overview_on', false, 'services' ) ) wiseup_ai_overview( array(
 	'q' => 'What services does WiseUp offer?',
 	'a' => '<b>WiseUp</b> offers <b>digital marketing, social media marketing, SEO, performance marketing, video production and photography, brand solutions, strategic campaigns, strategic planning, media and release, event branding and web solutions</b> under one roof. Pick one service or combine several into one plan.',
 	'points' => array(
