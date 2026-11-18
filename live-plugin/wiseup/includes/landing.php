@@ -12,7 +12,7 @@ function wiseup_landing_templates() {
 	return array(
 		'wiseup-social-media' => array( 'social-media.php', __( 'WiseUp: Social Media Marketing', 'wiseup' ), 'social-media' ),
 		'wiseup-seo'          => array( 'seo.php', __( 'WiseUp: SEO Company', 'wiseup' ), 'seo' ),
-		'wiseup-performance'  => array( 'performance.php', __( 'WiseUp: Performance Marketing', 'wiseup' ), 'performance' ),
+		'wiseup-performance'  => array( 'performance-marketing.php', __( 'WiseUp: Performance Marketing', 'wiseup' ), 'performance-marketing' ), // owner 2026-11-18: same page as the doc-based template (the old performance.php content did not match the doc)
 		'wiseup-services'     => array( 'services.php', __( 'WiseUp: Services', 'wiseup' ), 'services' ),
 		'wiseup-tv'           => array( 'wiseup-tv.php', __( 'WiseUp: TV', 'wiseup' ), 'wiseup-tv' ),
 		'wiseup-studio'       => array( 'wiseup-studio.php', __( 'WiseUp: Studio', 'wiseup' ), 'wiseup-studio' ),
