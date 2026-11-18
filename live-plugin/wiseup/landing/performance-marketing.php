@@ -377,11 +377,17 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				</div>
 				<div class="ev-intro"><p>Managing advertisements is only one part of a campaign. We also use advertising and analytics platforms to monitor performance, measure conversions and understand how people interact with your website.</p></div>
 			</div>
-			<ul class="pm-grid pm-grid--tools">
-				<?php foreach ( $wu_platforms as $p ) : ?>
-				<li><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?><h3><?php echo esc_html( $p[0] ); ?></h3><p><?php echo esc_html( $p[2] ); ?></p></li>
+			<ul class="pmx" data-pmx>
+				<?php foreach ( $wu_platforms as $wu_k => $p ) : ?>
+				<li class="pmx__c">
+					<div class="pmx__top"><span class="pmx__lg"><?php echo $wu_mark( $p[1] ); // phpcs:ignore ?></span><span class="pmx__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span></div>
+					<h3><?php echo esc_html( $p[0] ); ?></h3>
+					<div class="pmx__d" id="pmx-d<?php echo (int) $wu_k; ?>"><div><p><?php echo esc_html( $p[2] ); ?></p></div></div>
+					<button type="button" class="pmx__b" aria-expanded="false" aria-controls="pmx-d<?php echo (int) $wu_k; ?>" aria-label="<?php echo esc_attr( $p[0] ); ?>"><i aria-hidden="true"></i></button>
+				</li>
 				<?php endforeach; ?>
 			</ul>
+			<script>(function(){document.querySelectorAll('[data-pmx] .pmx__b').forEach(function(b){b.addEventListener('click',function(){var c=b.closest('.pmx__c'),on=!c.classList.contains('is-open');c.classList.toggle('is-open',on);b.setAttribute('aria-expanded',on?'true':'false');});});})();</script>
 		</div>
 	</section>
 
@@ -422,13 +428,15 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		</div>
 	</section>
 
-	<!-- 8. Trusted strategies (the doc's client project and testimonial placeholder is not shown) -->
+	<!-- 8. Trusted strategies + client reviews (the doc's testimonial placeholder) -->
 	<section class="sec ev-sec" id="trusted">
 		<div class="wrap">
-			<div class="pm-band">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'Testimonials' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><?php echo $wu_h( 'Trusted Strategies.', 'Transparent Results.' ); // phpcs:ignore ?></h2>
-				<?php echo $wu_btn( 'Plan Your Next Campaign', 'teal', $wu_lead ); // phpcs:ignore ?>
 			</div>
+			<?php include WISEUP_DIR . 'landing/reviews.php'; // client reviews, same as the Social Media / DM / SEO pages ?>
+			<div class="pm-trusted-cta"><?php echo $wu_btn( 'Plan Your Next Campaign', 'teal', $wu_lead ); // phpcs:ignore ?></div>
 		</div>
 	</section>
 
