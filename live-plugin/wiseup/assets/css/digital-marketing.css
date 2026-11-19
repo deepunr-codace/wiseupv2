@@ -2274,3 +2274,259 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 /* Eco bullseye image (transparent PNG, target near its right edge): keep the whole target on screen */
 @media (min-width: 1024px) { .wu-pm .pm-hero--full .pm-bg img { width: min(60vw, 1240px); right: 1vw; } }
 @media (max-width: 1023px) { .wu-pm .pm-hero--full .pm-bg img { width: 100%; margin-left: 0; } }
+
+/* Performance hero, owner's original photo (2026-11-19, "Neon Marketing Streams Hitting the Bullseye.png, use this"):
+   it has its own misty background, so it fills the hero edge to edge (cover, arrow and target on the right), darkened
+   behind the copy and fading to black at the bottom; on phones it stays behind the text under a dark wash. */
+.wu-pm .pm-hero--photo .pm-bg { height: min(100%, max(680px, 60vw)); }
+.wu-pm .pm-hero--photo .pm-bg img { position: absolute; inset: 0; right: auto; top: 0; translate: none; width: 100%; height: 100%; max-width: none;
+  object-fit: cover; object-position: 72% 45%; -webkit-mask-image: none; mask-image: none; }
+.wu-pm .pm-hero--photo .pm-bg::after {
+  background: linear-gradient(90deg, #000 0%, rgb(0 0 0 / .92) 32%, rgb(0 0 0 / .6) 50%, rgb(0 0 0 / .08) 74%),
+              linear-gradient(180deg, rgb(0 0 0 / .6) 0%, rgb(0 0 0 / 0) 20%, rgb(0 0 0 / 0) 64%, #000 100%) !important; }
+@media (max-width: 1023px) {
+  .wu-pm .pm-hero--photo { display: block; }
+  .wu-pm .pm-hero--photo .pm-bg { position: absolute; inset: 0 0 auto; height: min(100%, 900px); margin: 0; }
+  .wu-pm .pm-hero--photo .pm-bg img { width: 100%; margin: 0; object-position: 80% 50%; }
+  .wu-pm .pm-hero--photo .pm-bg::after { display: block;
+    background: linear-gradient(180deg, rgb(0 0 0 / .72) 0%, rgb(0 0 0 / .82) 50%, rgb(0 0 0 / .9) 78%, #000 100%) !important; }
+}
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--photo .pm-bg::after {
+    background: linear-gradient(90deg, #000 0%, rgb(0 0 0 / .94) 40%, rgb(0 0 0 / .6) 55%, rgb(0 0 0 / .08) 76%),
+                linear-gradient(180deg, rgb(0 0 0 / .6) 0%, rgb(0 0 0 / 0) 20%, rgb(0 0 0 / 0) 64%, #000 100%) !important; }
+}
+/* black overlay over the whole photo (owner, 2026-11-19: "add black overlay") */
+.wu-pm .pm-hero--photo .pm-bg::before { content: ""; position: absolute; inset: 0; z-index: 1; background: rgb(0 0 0 / .45); }
+.wu-pm .pm-hero--photo .pm-bg::after { z-index: 2; }
+/* Golden road across the whole hero (owner, 2026-11-19: "make it hero bg fully"): full width behind the copy, sitting low
+   so the road runs under the text; a left fade keeps the paragraph readable. Phones keep it under the copy. */
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--wide .pm-bg img { left: 0; right: 0; width: 100%; max-width: none; top: auto; bottom: 2%; translate: none;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%); mask-image: linear-gradient(180deg, transparent 0, #000 14%); }
+  .wu-pm .pm-hero--wide .pm-bg::after { background: linear-gradient(90deg, rgb(0 0 0 / .9) 0%, rgb(0 0 0 / .78) 30%, rgb(0 0 0 / .25) 48%, rgb(0 0 0 / 0) 60%),
+    linear-gradient(180deg, rgb(0 0 0 / 0) 70%, #000 100%); }
+}
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--wide .pm-bg::after { background: linear-gradient(90deg, rgb(0 0 0 / .92) 0%, rgb(0 0 0 / .84) 36%, rgb(0 0 0 / .3) 50%, rgb(0 0 0 / 0) 60%),
+    linear-gradient(180deg, rgb(0 0 0 / 0) 70%, #000 100%); }
+}
+/* stronger black on the left behind the copy (owner, 2026-11-19: "left side dark black overlay") */
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--wide .pm-bg::after { background: linear-gradient(90deg, #000 0%, #000 34%, rgb(0 0 0 / .9) 44%, rgb(0 0 0 / .45) 56%, rgb(0 0 0 / 0) 68%),
+    linear-gradient(180deg, rgb(0 0 0 / 0) 70%, #000 100%); }
+}
+
+/* Performance hero scene (2026-11-19, owner: "Right-Aligned Marketing Growth Illustration.png ... place it creatively in hero
+   bg, need that valli to be animated, stones to be animated"). The image is cut into layers (scratchpad rag/layers.py):
+   base (grass + rock), 5 stone steps, 4 icon tiles, target, vine. On view: the stones rise one by one, the tiles drop on
+   them, the target pops, the vine grows left to right up to it; then the tiles hover and the vine sways. */
+.wu-pm .pm-hero--scene .pm-bg::after { display: none !important; }
+.wu-pm .pm-hero--scene .pm-scene__box { position: absolute; right: 0; bottom: 4%; width: min(62vw, 1240px); aspect-ratio: 1875 / 839; }
+.wu-pm .pm-hero--scene .pm-bg .pm-l { position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; top: 0 !important; translate: none; -webkit-mask-image: none !important; mask-image: none !important; display: block; }
+/* entrance (uses translate / scale / opacity / clip-path; the idle loops use transform) */
+.wu-pm .pm-scene:not(.is-on) .pm-l { opacity: 0; }
+.wu-pm .pm-scene .pm-l--base { transition: opacity 1s ease; }
+.wu-pm .pm-scene:not(.is-on) .pm-l--step { translate: 0 70px; }
+.wu-pm .pm-scene .pm-l--step { transition: translate 1s cubic-bezier(.2, .9, .25, 1.15), opacity .6s ease; transition-delay: calc(.15s + var(--i) * .14s); }
+.wu-pm .pm-scene:not(.is-on) .pm-l--tile { translate: 0 -46px; }
+.wu-pm .pm-scene .pm-l--tile { transition: translate .8s cubic-bezier(.3, 1.4, .5, 1), opacity .4s ease; transition-delay: calc(.55s + var(--i) * .14s); }
+.wu-pm .pm-scene .pm-l--target { transform-origin: 87% 12%; transition: scale .8s cubic-bezier(.3, 1.6, .5, 1), opacity .4s ease; transition-delay: 1.2s; }
+.wu-pm .pm-scene:not(.is-on) .pm-l--target { scale: .55; }
+.wu-pm .pm-scene .pm-l--vine { clip-path: inset(0 0 0 0); transition: clip-path 2.2s cubic-bezier(.45, 0, .25, 1) 1.1s, opacity .3s ease 1.1s; }
+.wu-pm .pm-scene:not(.is-on) .pm-l--vine { clip-path: inset(0 72% 0 0); }
+/* idle */
+.wu-pm .pm-scene.is-on:not(.is-still) .pm-l--tile { animation: pm-hover 3.6s ease-in-out infinite alternate; animation-delay: calc(1.6s + var(--i) * -.9s); }
+@keyframes pm-hover { from { transform: translateY(0); } to { transform: translateY(-7px); } }
+.wu-pm .pm-scene.is-on:not(.is-still) .pm-l--vine { transform-origin: 29% 31%; animation: pm-sway 5.5s ease-in-out 3.4s infinite alternate; }
+@keyframes pm-sway { from { transform: rotate(0deg) translateY(0); } to { transform: rotate(-1.2deg) translateY(-3px); } }
+.wu-pm .pm-scene.is-on:not(.is-still) .pm-l--target { animation: pm-target 6s ease-in-out 3.4s infinite; }
+@keyframes pm-target { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2deg) translateY(-4px); } }
+.wu-pm .pm-scene.is-still .pm-l { transition: none !important; animation: none !important; }
+/* phones and tablets: the scene sits in the flow under the copy */
+@media (max-width: 1023px) {
+  .wu-pm .pm-hero--scene .pm-bg { position: relative !important; height: auto !important; overflow: visible; margin: 12px 0 0 !important; }
+  .wu-pm .pm-hero--scene .pm-scene__box { position: relative; right: auto; bottom: auto; width: 100%; }
+}
+@media (min-width: 1024px) { .wu-pm .pm-hero--scene .pm-scene__box { width: min(64vw, 1300px); right: -1vw; bottom: 13%; } }
+/* Ground the scene (owner, 2026-11-19: "looks like this is staying in air. not realistic"): a soft lit floor under the rocks,
+   a faint reflection on it, and the icon tiles rest on their stones (no hovering). */
+.wu-pm .pm-hero--scene .pm-scene__box::before { content: ""; position: absolute; left: 4%; right: -6%; bottom: -10%; height: 34%; z-index: 0; pointer-events: none;
+  background: radial-gradient(60% 55% at 58% 42%, rgb(190 218 82 / .16), rgb(190 218 82 / .05) 45%, transparent 72%),
+              radial-gradient(48% 30% at 56% 30%, rgb(0 0 0 / .9), transparent 75%);
+  filter: blur(6px); }
+.wu-pm .pm-hero--scene .pm-scene__box { -webkit-box-reflect: below -4% linear-gradient(transparent 76%, rgb(255 255 255 / .16)); }
+.wu-pm .pm-scene.is-on .pm-l--tile { animation: none !important; transform: none !important; }
+.wu-pm .pm-scene.is-on:not(.is-still) .pm-l--target { animation-name: pm-target2; }
+@keyframes pm-target2 { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-1.5deg); } }
+
+
+/* Performance hero stats strip darker over the photo (owner, 2026-11-19: "ee strip kurachude dark akkaam") */
+.wu-pm .pm-hero--photo .ev-proof { background: rgb(4 4 5 / .88) !important; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+
+/* Performance hero: a natural vine climbs the stones to the target, then the target shines (owner, 2026-11-19). The SVG uses
+   the photo's own pixel grid (1670x942) with xMaxYMid slice, so the photo is aligned the same way (object-position 100% 50%). */
+.wu-pm .pm-hero--photo .pm-vine { display: none; }
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--photo .pm-bg img { object-position: 100% 50% !important; }
+  .wu-pm .pm-hero--photo .pm-vine { display: block; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; overflow: visible; }
+}
+.pm-vine__stem path, .pm-leaf__stalk, .pm-leaf__vein { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.pm-vine__s0 { stroke: #16260b; stroke-width: 13; }
+.pm-vine__s1 { stroke: #3d6519; stroke-width: 9; }
+.pm-vine__s2 { stroke: #8fbf4a; stroke-width: 2.6; stroke-opacity: .5; translate: -1.5px -2px; }
+.pm-vine__stem path { stroke-dasharray: var(--len) var(--len); stroke-dashoffset: var(--len); filter: drop-shadow(0 3px 3px rgb(0 0 0 / .6)); }
+.pm-vine.is-on .pm-vine__stem path { stroke-dashoffset: 0; transition: stroke-dashoffset var(--dur) cubic-bezier(.35, .1, .4, 1); }
+.pm-leaf { transform-box: fill-box; transform-origin: 0% 50%; scale: 0; opacity: 0; filter: drop-shadow(0 2px 2px rgb(0 0 0 / .55)); }
+.pm-vine.is-on .pm-leaf { scale: 1; opacity: 1; transition: scale .7s cubic-bezier(.3, 1.5, .5, 1) var(--d), opacity .3s ease var(--d); }
+.pm-leaf__stalk { stroke: #3f6a1c; stroke-width: 2.4; }
+.pm-leaf__vein { stroke: #c9e88e; stroke-width: 1; stroke-opacity: .5; }
+.pm-vine.is-hit .pm-leaf { animation: pm-leaf-sway 4.5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes pm-leaf-sway { from { rotate: -4deg; } to { rotate: 5deg; } }
+/* tip: a small flower opens, tiny lime arrows rise (no glow, owner 2026-11-19: "glow venda") */
+.pm-bloom__flower { scale: 0; transform-box: fill-box; transform-origin: center; }
+.pm-vine.is-hit .pm-bloom__flower { scale: 1; transition: scale .9s cubic-bezier(.3, 1.6, .5, 1); }
+.pm-bloom__petal { fill: #e9f6b7; stroke: #9cbf3a; stroke-width: 1.2; filter: drop-shadow(0 2px 2px rgb(0 0 0 / .5)); }
+.pm-bloom__core { fill: #f2c94c; stroke: #b98a1c; stroke-width: 1.2; }
+.pm-bloom__up { fill: none; stroke: #beda52; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.pm-vine.is-hit .pm-bloom__up { animation: pm-up 2.4s ease-out infinite; animation-delay: calc(.9s + var(--k) * .55s); }
+@keyframes pm-up { 0% { opacity: 0; translate: 0 6px; } 20% { opacity: 1; } 100% { opacity: 0; translate: 0 -46px; } }
+.pm-vine.is-still * { transition: none !important; animation: none !important; }
+.pm-vine.is-still .pm-bloom__flower { scale: 1; }
+
+/* vine toned to the darkened photo */
+@media (min-width: 1024px) { .wu-pm .pm-hero--photo .pm-vine { filter: brightness(.8) saturate(.88); } }
+
+/* Performance hero, idea 4 (owner, 2026-11-19: "4 onn try cheyyam"): a stone thermometer carved into the rock face under
+   the tiles fills with lime gel. Same pixel grid as the photo (1670x942, xMaxYMid slice); desktop only. Replaces the vine. */
+.wu-pm .pm-hero--photo .pm-meter { display: none; }
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--photo .pm-meter { display: block; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; overflow: visible; }
+}
+.pm-meter__groove { fill: #050604; stroke: rgb(255 255 255 / .16); stroke-width: 2; filter: drop-shadow(0 -2px 1px rgb(0 0 0 / .8)); }
+.pm-meter__tick { stroke: rgb(255 255 255 / .28); stroke-width: 3; stroke-linecap: round; transition: stroke .4s ease; transition-delay: calc(1.1s + var(--t) * .62s); }
+.pm-meter.is-on .pm-meter__tick { stroke: #beda52; }
+.pm-meter__bulb { transform-box: fill-box; transform-origin: 50% 100%; scale: 1 0; }
+.pm-meter.is-on .pm-meter__bulb { scale: 1 1; transition: scale .7s ease-out; }
+.pm-meter__gel { transform-box: fill-box; transform-origin: 50% 100%; scale: 1 0; }
+.pm-meter.is-on .pm-meter__gel { scale: 1 1; transition: scale 3.4s cubic-bezier(.45, .05, .35, 1) .65s; }
+.pm-meter__bub { fill: rgb(255 255 255 / .75); opacity: 0; }
+.pm-meter.is-on .pm-meter__bub { animation: pm-bub 2.6s ease-in infinite; animation-delay: calc(.8s + var(--b) * .7s); }
+@keyframes pm-bub { 0% { opacity: 0; translate: 0 0; } 15% { opacity: .9; } 100% { opacity: 0; translate: 0 -190px; } }
+.pm-meter__up path { fill: none; stroke: #beda52; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.pm-meter.is-full .pm-meter__up path { animation: pm-up 2.4s ease-out infinite; animation-delay: calc(var(--k) * .55s); }
+.pm-meter.is-still * { transition: none !important; animation: none !important; }
+.pm-meter > g { translate: 0 -46px; }
+
+/* Performance hero, idea 1 (owner, 2026-11-19: "1 try cheyyam, pipe idea"): a glass pipe over the stones fills with lime gel,
+   valves turn lime as it passes, then a ring around the bullseye fills. Same 1670x942 grid as the photo; desktop only. */
+.wu-pm .pm-hero--photo .pm-pipe { display: none; }
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--photo .pm-pipe { display: block; position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; overflow: visible; }
+}
+.pm-pipe path, .pm-pipe circle { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.pm-pipe__shadow { stroke: rgb(0 0 0 / .55); stroke-width: 28; translate: 0 6px; filter: blur(4px); }
+.pm-pipe__glass { stroke: rgb(215 235 255 / .22); stroke-width: 24; }
+.pm-pipe__inner { stroke: rgb(6 8 6 / .82); stroke-width: 18; }
+.pm-pipe__gel { stroke: url(#pmp-gel); stroke-width: 12; stroke-dasharray: var(--len) var(--len); stroke-dashoffset: var(--len); }
+.pm-pipe.is-on .pm-pipe__gel { stroke-dashoffset: 0; transition: stroke-dashoffset var(--dur) cubic-bezier(.4, .05, .4, 1); }
+.pm-pipe__shine { stroke: rgb(255 255 255 / .38); stroke-width: 2.5; translate: -2px -6px; }
+.pm-valve__ring { fill: #0b0d09 !important; stroke: rgb(215 235 255 / .4); stroke-width: 3; }
+.pm-valve__dot { fill: #2a2e26 !important; transition: fill .35s ease var(--d); }
+.pm-pipe.is-on .pm-valve__dot { fill: #beda52 !important; }
+.pm-pipe__ring-glass { stroke: rgb(215 235 255 / .22); stroke-width: 16; }
+.pm-pipe__ring-gel { stroke: #d9ea6a; stroke-width: 9; stroke-dasharray: 628.3 628.3; stroke-dashoffset: 628.3; opacity: .92; }
+.pm-pipe.is-full .pm-pipe__ring-gel { stroke-dashoffset: 0; transition: stroke-dashoffset 1.6s cubic-bezier(.4, .05, .3, 1); }
+.pm-pipe.is-still * { transition: none !important; }
+
+/* pipe v2 (owner: "originality ila … circle venda … end appre sidelott pokunnapole"): no ring, the pipe turns right into the
+   gap between the stones and fades; thinner, darker, toned to the photo, sits on the stones with a contact shadow, metal clamps,
+   and the gel keeps flowing slowly once full. */
+@media (min-width: 1024px) { .wu-pm .pm-hero--photo .pm-pipe { filter: brightness(.82) saturate(.85); } }
+.pm-pipe__shadow { stroke: rgb(0 0 0 / .7) !important; stroke-width: 22 !important; translate: 3px 9px !important; filter: blur(5px); }
+.pm-pipe__glass { stroke: rgb(200 215 225 / .16) !important; stroke-width: 18 !important; }
+.pm-pipe__inner { stroke: rgb(8 10 8 / .78) !important; stroke-width: 14 !important; }
+.pm-pipe__gel { stroke-width: 9 !important; }
+.pm-pipe__flow { stroke: rgb(235 245 170 / .55); stroke-width: 2.4; stroke-dasharray: 10 34; opacity: 0; }
+.pm-pipe.is-full .pm-pipe__flow { opacity: 1; transition: opacity .8s ease; animation: pm-flow 2.2s linear infinite; }
+@keyframes pm-flow { to { stroke-dashoffset: -88; } }
+.pm-pipe__shine { stroke: rgb(255 255 255 / .22) !important; stroke-width: 1.8 !important; translate: -1px -5px !important; }
+.pm-valve__band { fill: url(#pmp-metal) !important; stroke: rgb(0 0 0 / .6); stroke-width: 1; }
+.pm-valve__dot { fill: #2a2e26 !important; transition: fill .35s ease var(--d); }
+.pm-pipe.is-on .pm-valve__dot { fill: #beda52 !important; }
+
+/* pipe v3 (owner: "bhakki kalliludeyum venam … each milestone related contents"): the pipe climbs the whole tile column and
+   disappears over the top stone; labels appear at five clamps as the gel reaches them. */
+.pm-tag { opacity: 0; translate: -10px 0; }
+.pm-pipe.is-on .pm-tag { opacity: 1; translate: 0 0; transition: opacity .5s ease var(--d), translate .6s cubic-bezier(.2, .9, .3, 1) var(--d); }
+.pm-tag__bg { fill: rgb(8 9 8 / .78); stroke: rgb(255 255 255 / .14); stroke-width: 1.2; }
+.pm-tag__dot { fill: #beda52 !important; }
+.pm-tag__t { fill: #f2f2ee; font: 600 17px/1 Inter, system-ui, sans-serif; letter-spacing: .01em; }
+
+/* pipe tags v2 (owner: "kurachude originality venam. content font size kurakkam. pipe il creative ayitt attach cheytholu"):
+   each label is a small dark tag hung from its clamp on a wire, eyelet + lime edge, smaller type, gentle sway. */
+.pm-tag { opacity: 0; transform-box: view-box; transform-origin: 0 -14px; scale: .6; }
+.pm-pipe.is-on .pm-tag { opacity: 1; scale: 1; transition: opacity .45s ease var(--d), scale .7s cubic-bezier(.3, 1.6, .5, 1) var(--d); }
+.pm-pipe.is-full .pm-tag { animation: pm-tag-sway var(--w) ease-in-out infinite alternate; }
+@keyframes pm-tag-sway { from { rotate: calc(var(--s) * -3deg); } to { rotate: calc(var(--s) * 3deg); } }
+.pm-tag__wire { fill: none !important; stroke: rgb(190 200 205 / .55); stroke-width: 1.6; }
+.pm-tag__bg { fill: rgb(10 11 9 / .9) !important; stroke: rgb(255 255 255 / .16); stroke-width: 1; }
+.pm-tag__edge { fill: #beda52 !important; }
+.pm-tag__hole { fill: #050605 !important; stroke: rgb(200 210 215 / .7); stroke-width: 1.4; }
+.pm-tag__t { fill: #ecece6; font: 500 13.5px/1 Inter, system-ui, sans-serif; letter-spacing: .02em; }
+.pm-pipe.is-still .pm-tag { opacity: 1; scale: 1; }
+
+/* performance: no whole-SVG filter (it repainted every frame), colours toned directly; loops pause off screen */
+@media (min-width: 1024px) { .wu-pm .pm-hero--photo .pm-pipe { filter: none !important; } }
+.pm-pipe { opacity: .9; }
+.pm-pipe.is-paused *, .pm-pipe.is-paused { animation-play-state: paused !important; }
+.pm-pipe__shadow { filter: none !important; stroke: rgb(0 0 0 / .55) !important; }
+
+/* loops stop after a few cycles so the hero costs nothing once it has settled */
+.pm-pipe.is-full .pm-pipe__flow { animation-iteration-count: 4 !important; }
+.pm-pipe.is-full .pm-tag { animation-iteration-count: 4 !important; }
+
+/* price tags on threads at every clamp + tiny marketing marks in the gel (owner, 2026-11-19) */
+.pm-tag { transform-origin: 0 0 !important; }
+.pm-pipe.is-full .pm-tag { animation: pm-tag-sway var(--w) ease-in-out infinite alternate !important; animation-iteration-count: infinite !important; }
+@keyframes pm-tag-sway { from { rotate: calc(var(--s) * -4deg); } to { rotate: calc(var(--s) * 4deg); } }
+.pm-tag__wire { stroke: rgb(214 196 160 / .7) !important; stroke-width: 1.3 !important; }
+.pm-tag__bg { fill: rgb(12 13 10 / .92) !important; stroke: #9cbf3a; stroke-width: 1.2; }
+.pm-tag__hole { fill: #050605 !important; stroke: rgb(214 196 160 / .9) !important; stroke-width: 1.2 !important; }
+.pm-tag__t { font: 500 12.5px/1 Inter, system-ui, sans-serif !important; fill: #e8ecd8 !important; letter-spacing: .01em; }
+.pm-mark { fill: #1f2d0a; font: 700 9px/1 Inter, system-ui, sans-serif; opacity: 0; }
+
+/* hero heading broken by sense (owner, 2026-11-19): "Make Every Ad / Spend Count. / Focus on Results That Matter." */
+@media (min-width: 1024px) {
+  .wu-pm .ev-hero__h.pm-h3 { font-size: min(4.1rem, 6.6cqi) !important; line-height: 1.04; }
+  .wu-pm .ev-hero__h.pm-h3 .sh__b { max-width: none !important; white-space: nowrap; margin-top: .06em; }
+}
+@media (max-width: 1023px) { .wu-pm .ev-hero__h.pm-h3 .pm-br { display: none; } }
+
+/* tags stand above the pipe on their thread (owner: "tags melekk nikknm") */
+.pm-tag__wire { stroke-width: 1.4 !important; }
+
+/* realistic tags (owner: "nool correct holderl … tags kurachude realistic"): the thread starts from a metal loop on each clamp;
+   tags are kraft card with a reinforced punched hole, the thread knotted through it, a soft shadow and a worn corner. */
+.pm-valve__loop { fill: none !important; stroke: #8d9396; stroke-width: 1.8; }
+.pm-valve__dot { fill: #2a2e26 !important; }
+.pm-tag__wire { stroke: #b49a6c !important; stroke-width: 1.3 !important; }
+.pm-tag__knot { fill: none !important; stroke: #b49a6c; stroke-width: 1.3; stroke-linecap: round; }
+.pm-tag__bg { fill: url(#pmp-kraft) !important; stroke: rgb(60 45 20 / .55) !important; stroke-width: .8 !important; filter: drop-shadow(1px 3px 2px rgb(0 0 0 / .6)); }
+.pm-tag__fold { fill: rgb(60 45 20 / .28) !important; }
+.pm-tag__ring { fill: #e6dcc4 !important; stroke: rgb(60 45 20 / .5); stroke-width: .8; }
+.pm-tag__hole { fill: #0b0c0a !important; stroke: none !important; }
+.pm-tag__t { fill: #2d2417 !important; font: 600 12px/1 Inter, system-ui, sans-serif !important; letter-spacing: .01em; }
+
+/* Performance hero heading hierarchy (owner, 2026-11-19: "boring and matching allathe … size um boldness um correct ayit"):
+   the white promise big and bold, the grey line smaller and lighter as its follow-on */
+@media (min-width: 1024px) {
+  .wu-pm .ev-hero__h.pm-h3 { font-size: min(5.2rem, 9cqi) !important; line-height: .98; letter-spacing: -.035em; }
+  .wu-pm .ev-hero__h.pm-h3 .sh__a { font-weight: 600; }
+  .wu-pm .ev-hero__h.pm-h3 .sh__b { font-size: .56em; font-weight: 400; letter-spacing: -.02em; line-height: 1.1; margin-top: .42em; }
+}
+@media (max-width: 1023px) {
+  .wu-pm .ev-hero__h.pm-h3 .sh__a { font-weight: 600; }
+  .wu-pm .ev-hero__h.pm-h3 .sh__b { font-size: .62em; font-weight: 400; margin-top: .3em; }
+}

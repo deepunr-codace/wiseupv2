@@ -224,13 +224,33 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 <main id="main">
 
 	<!-- 1. Hero -->
-	<section class="ev-hero dm-hero pm-hero--img pm-hero--full">
-		<div class="pm-bg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-1752.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-1400.webp' ); ?> 1400w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-1752.webp' ); ?> 1752w" sizes="(max-width: 1023px) 160vw, 80vw" width="1752" height="897" alt="" fetchpriority="high" decoding="async"></div>
+	<section class="ev-hero dm-hero pm-hero--img pm-hero--full pm-hero--photo">
+		<div class="pm-bg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
+			<defs>
+				<linearGradient id="pmp-gel" gradientUnits="userSpaceOnUse" x1="700" y1="724" x2="1420" y2="80"><stop offset="0" stop-color="#4f7f1c"/><stop offset=".6" stop-color="#97b83a"/><stop offset="1" stop-color="#c9d45a"/></linearGradient>
+				<linearGradient id="pmp-kraft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8ad7c"/><stop offset="1" stop-color="#a88c5c"/></linearGradient>
+				<linearGradient id="pmp-metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9aa0a3"/><stop offset=".45" stop-color="#3d4245"/><stop offset="1" stop-color="#15181a"/></linearGradient>
+				<radialGradient id="pmp-fade"><stop offset="0" stop-color="#000"/><stop offset=".5" stop-color="#000" stop-opacity=".9"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+				<mask id="pmp-ends" maskUnits="userSpaceOnUse" x="0" y="0" width="1670" height="942"><rect width="1670" height="942" fill="#fff"/>
+					<ellipse cx="700" cy="724" rx="90" ry="70" fill="url(#pmp-fade)"/><ellipse cx="1500" cy="60" rx="90" ry="60" fill="url(#pmp-fade)"/></mask>
+			</defs>
+			<g mask="url(#pmp-ends)">
+				<path class="pm-pipe__shadow" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<path class="pm-pipe__glass" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<path class="pm-pipe__inner" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<path class="pm-pipe__gel" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<g class="pm-pipe__marks" data-pm-marks></g>
+				<path class="pm-pipe__flow" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<path class="pm-pipe__shine" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<g class="pm-pipe__clamps" data-pm-valves></g>
+			</g>
+			<g class="pm-pipe__labels" data-pm-labels></g>
+		</svg></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Performance Marketing Agency in Kerala</h1>
-				<h2 class="ev-hero__h pm-h3"><span class="sh__a">Make Every Ad Spend Count.</span> <span class="sh__b">Focus on Results That Matter.</span></h2>
+				<h2 class="ev-hero__h pm-h3"><span class="sh__a">Make Every Ad <br class="pm-br">Spend Count.</span> <span class="sh__b">Focus on Results That Matter.</span></h2>
 				<p class="ev-hero__p">Getting clicks is easy. Turning those clicks into enquiries, customers and sales takes a well-planned strategy. WiseUp is a performance marketing agency in Kerala, working with businesses looking for a reliable performance marketing agency in Calicut and across Kerala. We bring audience research, creative campaigns and data-driven optimisation together to make your advertising work harder. Our campaigns focus on reaching relevant audiences, generating quality leads and making better use of your advertising budget.</p>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Get Started', 'teal', $wu_lead ); // phpcs:ignore ?>
@@ -250,6 +270,64 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		</div>
 		<div class="logos ev-logos" role="region" aria-label="Client logos"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul><?php echo $wu_li; // phpcs:ignore ?></ul><ul aria-hidden="true"><?php echo str_replace( '" alt="', '" alt="" data-alt="', $wu_li ); // phpcs:ignore ?></ul></div></div></div></div>
 	</section>
+<script>
+(function () {
+	// Performance hero (owner, 2026-11-19, idea 1): green-yellow gel fills a glass pipe over the stones (ad spend counted and
+	// analysed); it climbs the stones and turns off to the side behind them (no ring, owner: 'circle venda').
+	var svg = document.querySelector('[data-pm-pipe]'); if (!svg || !matchMedia('(min-width: 1024px)').matches) return;
+	var gel = svg.querySelector('.pm-pipe__gel'), L = gel.getTotalLength(), DUR = 5.2;
+	svg.style.setProperty('--len', L); svg.style.setProperty('--dur', DUR + 's');
+	// metal clamps where the pipe rests on the stones; at five of them a small label (the hero copy's own words: clicks,
+	// relevant audiences, enquiries, customers, sales) appears as the gel reaches it
+	// each tag names the stone icon next to its clamp
+	var spots = [
+		[960, 622, 'Ad Campaigns'], [1112, 588, 'Sales Funnel'], [1250, 515, 'Targeting'], [1342, 438, 'Growth'],
+		[1382, 350, 'TikTok Ads'], [1388, 255, 'Meta Ads'], [1366, 165, 'Google Ads']
+	], vg = svg.querySelector('[data-pm-valves]'), lg = svg.querySelector('[data-pm-labels]'), html = '', labels = [];
+	var near = function (pt) { var best = 0, bd = 1e9; for (var at = 0; at <= L; at += 4) { var q = gel.getPointAtLength(at), d = (q.x - pt[0]) * (q.x - pt[0]) + (q.y - pt[1]) * (q.y - pt[1]); if (d < bd) { bd = d; best = at; } } return best; };
+	spots.forEach(function (pt) {
+		var best = near(pt), q = gel.getPointAtLength(best), r = gel.getPointAtLength(Math.min(L, best + 2)), ang = Math.atan2(r.y - q.y, r.x - q.x) * 180 / Math.PI, d = (best / L * DUR).toFixed(2);
+		html += '<g class="pm-valve" style="--d:' + d + 's" transform="translate(' + q.x.toFixed(1) + ' ' + q.y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ')">' +
+			'<rect x="-5" y="-13" width="10" height="26" rx="2.5" class="pm-valve__band"/><circle cx="0" cy="-17.5" r="3.4" class="pm-valve__loop"/><circle cx="0" cy="6" r="2" class="pm-valve__dot"/></g>';
+		var ra = ang * Math.PI / 180; labels.push({ x: q.x + 17.5 * Math.sin(ra), y: q.y - 17.5 * Math.cos(ra), dx: -16, dy: -30, t: pt[2], d: d });
+	});
+	// each clamp has a small price tag hanging from it on a thread; it appears when the gel reaches the clamp and sways slowly
+	lg.innerHTML = labels.map(function (l, i) {
+		return '<g transform="translate(' + l.x.toFixed(1) + ' ' + l.y.toFixed(1) + ')"><g class="pm-tag" style="--d:' + l.d + 's;--s:' + (i % 2 ? -1 : 1) + ';--w:' + (4.6 + (i % 3) * .9).toFixed(1) + 's">' +
+			'<path class="pm-tag__wire" d="M0 0 Q ' + (l.dx * .2).toFixed(1) + ' ' + (l.dy * .55).toFixed(1) + ' ' + l.dx + ' ' + l.dy + '"/>' +
+			'<g class="pm-tag__card" transform="translate(' + l.dx + ' ' + l.dy + ') rotate(-8)"><path class="pm-tag__bg"/>' +
+			'<path class="pm-tag__fold"/><circle class="pm-tag__ring" cx="-2" cy="0" r="4.6"/><circle class="pm-tag__hole" cx="-2" cy="0" r="2.3"/>' +
+			'<path class="pm-tag__knot" d="M-2 -2.3 C 3 -6 6 -3 4 1 C 2 4 -1 3 -2 2.3"/><text class="pm-tag__t" y="4.4">' + l.t + '</text></g></g></g>';
+	}).join('');
+	[].forEach.call(lg.querySelectorAll('.pm-tag__card'), function (c) {
+		var t = c.querySelector('text'), w = t.getComputedTextLength() + 26;
+		// price-tag shape: pointed end with the eyelet at (0,0), body to the left
+		c.querySelector('.pm-tag__bg').setAttribute('d', 'M 7 0 L -4 -11 L ' + (-w + 3) + ' -11 Q ' + (-w) + ' -11 ' + (-w) + ' -8 L ' + (-w) + ' 8 Q ' + (-w) + ' 11 ' + (-w + 3) + ' 11 L -4 11 Z');
+		t.setAttribute('x', (-w + 9).toFixed(0));
+		c.querySelector('.pm-tag__fold').setAttribute('d', 'M ' + (-w) + ' 6 L ' + (-w + 6) + ' 11 L ' + (-w) + ' 11 Z');
+	});
+	// tiny marketing marks carried along inside the gel once it is full (SMIL, paused off screen)
+	var marks = ['₹', '@', '%', '♥', '▶', '₹', '#'], mg = '', pathD = gel.getAttribute('d');
+	marks.forEach(function (m, i) {
+		mg += '<text class="pm-mark" text-anchor="middle" y="3.2">' + m +
+			'<animateMotion dur="9s" begin="indefinite" repeatCount="indefinite" path="' + pathD + '"/>' +
+			'<animate attributeName="opacity" dur="9s" begin="indefinite" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;.06;.9;1"/></text>';
+	});
+	svg.querySelector('[data-pm-marks]').innerHTML = mg;
+	vg.innerHTML = html;
+	if (matchMedia('(prefers-reduced-motion: reduce)').matches) { svg.classList.add('is-on', 'is-full', 'is-still'); return; }
+	var go = function () {
+		svg.classList.add('is-on');
+		setTimeout(function () {
+			svg.classList.add('is-full');
+			[].forEach.call(svg.querySelectorAll('.pm-mark'), function (t, i) { [].forEach.call(t.children, function (an) { an.beginElementAt(i * 1.3); }); });
+		}, DUR * 1000);
+	};
+	// keep it light: pause the looping bits while the hero is off screen
+	if ('IntersectionObserver' in window) new IntersectionObserver(function (es) { var off = !es[0].isIntersecting; svg.classList.toggle('is-paused', off); if (svg.pauseAnimations) off ? svg.pauseAnimations() : svg.unpauseAnimations(); }).observe(svg);
+	if (document.readyState === 'complete') setTimeout(go, 500); else addEventListener('load', function () { setTimeout(go, 500); });
+})();
+</script>
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a performance marketing agency in Kerala do?',
