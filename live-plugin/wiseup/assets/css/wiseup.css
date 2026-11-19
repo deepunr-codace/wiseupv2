@@ -3127,3 +3127,12 @@ html:not(.wu-sheen) .lunar__img::after { display: none; }
 .mega__cols > .mega__grp > .mega__head { flex: 1; }
 .mega__cols > .mega__grp:last-child:nth-child(3n + 2) { grid-column: span 2; }
 @media (max-width: 1360px) { .hd__mega { width: min(1060px, calc(100vw - 32px)) !important; } }
+
+/* Homepage growing band: black neumorphic card (2026-11-19) */
+.grow .grow__chart {
+  background-color: #0c0c0d !important;
+  background-image: linear-gradient(145deg, #121214, #080809) !important;
+  box-shadow: -10px -10px 24px rgb(255 255 255 / .045), 14px 16px 34px rgb(0 0 0 / .95), inset 1px 1px 0 rgb(255 255 255 / .07), inset -1px -1px 0 rgb(0 0 0 / .7) !important;
+}
+.grow .grow__stats::before { background: #0e0e10; }
+:root[data-theme='light'] .grow .grow__chart { box-shadow: 10px 12px 28px rgb(0 0 0 / .28), -6px -6px 16px rgb(255 255 255 / .9), inset 1px 1px 0 rgb(255 255 255 / .07) !important; }

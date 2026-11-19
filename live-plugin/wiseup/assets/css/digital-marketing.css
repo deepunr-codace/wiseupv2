@@ -2116,4 +2116,83 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 @media (hover: none) { .wu-pm .pmx__c:hover:not(.is-open) .pmx__d { grid-template-rows: 0fr; } .wu-pm .pmx__c:hover:not(.is-open) .pmx__d > div { opacity: 0; } .wu-pm .pmx__c:hover:not(.is-open) .pmx__b { rotate: 0deg; background: none; color: #fff; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .35); } }
 @media (prefers-reduced-motion: reduce) { .wu-pm .pmx__d, .wu-pm .pmx__b { transition: none; } }
 .wu-pm .pmx { align-items: stretch; }
+.wu-pm .pmx__c { background: linear-gradient(145deg, #121214, #080809); box-shadow: -8px -8px 20px rgb(255 255 255 / .04), 12px 14px 30px rgb(0 0 0 / .95), inset 1px 1px 0 rgb(255 255 255 / .07), inset -1px -1px 0 rgb(0 0 0 / .7); transition: box-shadow .6s ease; }
+.wu-pm .pmx__c:is(:hover, .is-open, :focus-within) { box-shadow: inset 6px 6px 14px rgb(0 0 0 / .9), inset -6px -6px 14px rgb(255 255 255 / .035), inset 0 0 0 1px rgb(190 218 82 / .3); }
 .wu-pm .pm-trusted-cta { display: flex; justify-content: center; margin-top: clamp(32px, 3.6vw, 52px); }
+
+/* Performance: "From Ad Clicks to Business Results" as an expanding row of four scenes (2026-11-19).
+   Hover / focus / tap opens a panel to its full text; the open panel turns lime and its drawing plays. */
+.wu-pm .pmf { display: flex; gap: clamp(12px, 1.2vw, 18px); height: clamp(470px, 36vw, 520px); margin: clamp(32px, 3.4vw, 52px) 0 0; padding: 0; list-style: none; }
+.wu-pm .pmf__p { position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; padding: clamp(22px, 2vw, 30px); border-radius: 28px; overflow: hidden; cursor: pointer; outline: none;
+  background: linear-gradient(145deg, #121214, #080809);
+  box-shadow: -8px -8px 20px rgb(255 255 255 / .04), 12px 14px 30px rgb(0 0 0 / .95), inset 1px 1px 0 rgb(255 255 255 / .07), inset -1px -1px 0 rgb(0 0 0 / .7);
+  transition: flex-grow .85s cubic-bezier(.2, .9, .2, 1); }
+.wu-pm .pmf__p::before { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(120% 90% at 85% 0%, #d8ec8a, #beda52 55%, #a9c43f); opacity: 0; transition: opacity .7s ease; }
+.wu-pm .pmf__p.is-on { flex-grow: 3.1; }
+.wu-pm .pmf__p.is-on::before { opacity: 1; }
+.wu-pm .pmf__p:focus-visible { box-shadow: 0 0 0 2px #beda52, 12px 14px 30px rgb(0 0 0 / .95); }
+.wu-pm .pmf__art, .wu-pm .pmf__body { position: relative; z-index: 1; }
+.wu-pm .pmf__art { height: 150px; display: flex; align-items: center; opacity: .55; transform-origin: left center; transform: scale(.82); transition: opacity .6s ease, transform .8s cubic-bezier(.2, .9, .2, 1); }
+.wu-pm .pmf__art svg { width: 320px; max-width: none; height: 150px; flex: none; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.wu-pm .pmf__p.is-on .pmf__art { opacity: 1; transform: scale(1); }
+.wu-pm .pmf__body { margin-top: auto; }
+.wu-pm .pmf__ic { display: grid; place-items: center; width: 46px; height: 46px; margin-bottom: 18px; border-radius: 50%; color: #beda52; background: #000; box-shadow: inset 0 0 0 1.5px rgb(190 218 82 / .4); transition: background .6s, box-shadow .6s; }
+.wu-pm .pmf__p.is-on .pmf__ic { background: #11150a; box-shadow: none; }
+.wu-pm .pmf__p h3 { width: min(15ch, 100%); margin: 0; font-size: clamp(19px, 1.5vw, 23px) !important; font-weight: 500; line-height: 1.22; letter-spacing: -.02em; color: #fff; transition: color .6s ease; }
+.wu-pm .pmf__p.is-on h3 { width: min(24ch, 100%); color: #11150a; }
+.wu-pm .pmf__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .8s cubic-bezier(.2, .9, .2, 1); }
+.wu-pm .pmf__more p { width: clamp(280px, 37vw, 560px); min-height: 0; margin: 0; padding-top: 14px; overflow: hidden; font-size: 17px !important; line-height: 1.6; color: #1d2410; opacity: 0; transition: opacity .3s ease; }
+.wu-pm .pmf__p.is-on .pmf__more { grid-template-rows: 1fr; }
+.wu-pm .pmf__p.is-on .pmf__more p { opacity: 1; transition: opacity .55s ease .35s; }
+/* scene strokes: grey on black, ink on lime */
+.wu-pm .pmf svg :is(.pmf-st, .pmf-base) { stroke: rgb(255 255 255 / .3); stroke-width: 2.5; }
+.wu-pm .pmf svg .pmf-path { stroke: #beda52; stroke-width: 2.5; stroke-dasharray: 6 9; }
+.wu-pm .pmf svg :is(.pmf-cur path, .pmf-rain circle, .pmf-bars rect, .pmf-k) { fill: rgb(255 255 255 / .28); }
+.wu-pm .pmf svg :is(.pmf-goal, .pmf-pass circle) { fill: #beda52; }
+.wu-pm .pmf svg .pmf-tick { stroke: #11150a; stroke-width: 3; }
+.wu-pm .pmf__p.is-on svg :is(.pmf-st, .pmf-base) { stroke: rgb(17 21 10 / .45); }
+.wu-pm .pmf__p.is-on svg .pmf-path { stroke: #11150a; }
+.wu-pm .pmf__p.is-on svg :is(.pmf-cur path, .pmf-rain circle, .pmf-k) { fill: rgb(17 21 10 / .55); }
+.wu-pm .pmf__p.is-on svg :is(.pmf-bars rect, .pmf-goal, .pmf-pass circle) { fill: #11150a; }
+.wu-pm .pmf__p.is-on svg .pmf-tick { stroke: #beda52; }
+/* scene motion, only on the open panel */
+.wu-pm .pmf__p.is-on .pmf-path { animation: pmf-dash 1.2s linear infinite; }
+@keyframes pmf-dash { to { stroke-dashoffset: -30; } }
+.wu-pm .pmf__p.is-on .pmf-cur { animation: pmf-cur 3.2s cubic-bezier(.5, 0, .3, 1) infinite; }
+@keyframes pmf-cur { 0% { transform: translate(18px, 100px); } 45%, 100% { transform: translate(122px, 36px); } }
+.wu-pm .pmf-goal { transform-box: fill-box; transform-origin: center; }
+.wu-pm .pmf__p.is-on .pmf-goal { animation: pmf-pop 3.2s ease infinite; }
+@keyframes pmf-pop { 0%, 60% { transform: scale(1); } 70% { transform: scale(1.25); } 80%, 100% { transform: scale(1); } }
+.wu-pm .pmf__p.is-on .pmf-rain circle { animation: pmf-rain 2.6s ease-in infinite; animation-delay: calc(var(--d, 0) * 1s); }
+.wu-pm .pmf-rain circle:nth-child(2) { --d: .3; } .wu-pm .pmf-rain circle:nth-child(3) { --d: .6; } .wu-pm .pmf-rain circle:nth-child(4) { --d: .9; }
+.wu-pm .pmf-rain circle:nth-child(5) { --d: 1.2; } .wu-pm .pmf-rain circle:nth-child(6) { --d: 1.5; } .wu-pm .pmf-rain circle:nth-child(7) { --d: 1.8; } .wu-pm .pmf-rain circle:nth-child(8) { --d: 2.1; }
+@keyframes pmf-rain { 0% { transform: translateY(0); opacity: 1; } 70% { transform: translateY(58px); opacity: .9; } 100% { transform: translateY(64px); opacity: 0; } }
+.wu-pm .pmf-pass circle { transform-box: fill-box; transform-origin: center; }
+.wu-pm .pmf__p.is-on .pmf-pass circle { animation: pmf-out 2.6s ease infinite; }
+.wu-pm .pmf__p.is-on .pmf-pass circle:nth-child(2) { animation-delay: 1.3s; }
+@keyframes pmf-out { 0%, 40% { transform: scale(0); } 60% { transform: scale(1.2); } 75%, 100% { transform: scale(1); } }
+.wu-pm .pmf-bars rect { transform-box: fill-box; transform-origin: bottom; }
+.wu-pm .pmf__p.is-on .pmf-bars rect { animation: pmf-bar .9s cubic-bezier(.2, .9, .2, 1) both; animation-delay: calc(.15s + var(--b) * .1s); }
+@keyframes pmf-bar { from { transform: scaleY(0); } }
+.wu-pm .pmf__p.is-on .pmf-k1 { animation: pmf-k1 4s ease-in-out infinite; }
+.wu-pm .pmf__p.is-on .pmf-k2 { animation: pmf-k2 4s ease-in-out infinite; }
+.wu-pm .pmf__p.is-on .pmf-k3 { animation: pmf-k3 4s ease-in-out infinite; }
+@keyframes pmf-k1 { 50% { transform: translateX(120px); } }
+@keyframes pmf-k2 { 50% { transform: translateX(-90px); } }
+@keyframes pmf-k3 { 50% { transform: translateX(80px); } }
+@media (max-width: 899px) {
+  .wu-pm .pmf { flex-direction: column; height: auto; }
+  .wu-pm .pmf__p, .wu-pm .pmf__p.is-on { flex: none; }
+  .wu-pm .pmf__art { height: 120px; transform: scale(.8); }
+  .wu-pm .pmf__p h3 { width: auto; }
+  .wu-pm .pmf__more { grid-template-rows: 1fr; }
+  .wu-pm .pmf__more p { width: auto; opacity: 1; color: rgb(255 255 255 / .68); }
+  .wu-pm .pmf__p.is-on .pmf__more p { color: #1d2410; }
+}
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmf *, .wu-pm .pmf__p { animation: none !important; transition: none !important; } }
+
+/* Performance hero: wider copy column (2026-11-19, owner: "increase width") */
+@media (min-width: 1024px) {
+  .wu-pm .ev-hero__grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr); }
+  .wu-pm .ev-hero__p { max-width: 46rem; }
+}

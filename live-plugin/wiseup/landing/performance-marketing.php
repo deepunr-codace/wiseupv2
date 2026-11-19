@@ -401,11 +401,28 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				</div>
 				<div class="ev-intro"><p>Clicks and impressions show how people interact with advertisements, but they do not tell the whole story. Our PPC marketing approach looks at what happens after someone clicks, from website visits and enquiries to completed purchases. By connecting campaign activity with conversion data, we can assess lead quality, acquisition costs, and revenue where reliable data is available. These insights help us understand which campaigns contribute to business goals, where advertising spend needs attention, and which opportunities are worth pursuing.</p></div>
 			</div>
-			<ul class="pm-grid pm-grid--two">
-				<?php foreach ( $wu_results as $r ) : ?>
-				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $r[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $r[1] ); ?></h3><p><?php echo esc_html( $r[2] ); ?></p></li>
+			<?php
+			// Decorative scenes, one per step (aria-hidden): click path, lead filter, revenue bars, tuning sliders.
+			$wu_pmf_art = array(
+				'<svg viewBox="0 0 320 150" aria-hidden="true"><path class="pmf-path" d="M30 112 C 90 112, 90 40, 150 40 S 210 112, 290 70"/><g class="pmf-cur" transform="translate(18 100)"><path d="M0 0 L0 22 L6 16 L11 26 L15 24 L10 14 L18 14 Z"/></g><rect class="pmf-st" x="132" y="24" width="36" height="32" rx="7"/><path class="pmf-st" d="M140 34h20M140 41h14M140 48h18"/><circle class="pmf-goal" cx="290" cy="70" r="17"/><path class="pmf-tick" d="M282 70l6 6 11-12"/></svg>',
+				'<svg viewBox="0 0 320 150" aria-hidden="true"><path class="pmf-st" d="M70 22h180l-62 62v44l-56 0v-44z"/><g class="pmf-rain"><circle cx="96" cy="8" r="5"/><circle cx="128" cy="2" r="5"/><circle cx="160" cy="10" r="5"/><circle cx="192" cy="4" r="5"/><circle cx="224" cy="9" r="5"/><circle cx="112" cy="14" r="5"/><circle cx="176" cy="16" r="5"/><circle cx="208" cy="15" r="5"/></g><g class="pmf-pass"><circle cx="152" cy="138" r="6"/><circle cx="168" cy="138" r="6"/></g></svg>',
+				'<svg viewBox="0 0 320 150" aria-hidden="true"><path class="pmf-base" d="M30 132h260"/><g class="pmf-bars"><rect x="48" y="96" width="30" height="36" rx="6" style="--b:0"/><rect x="98" y="80" width="30" height="52" rx="6" style="--b:1"/><rect x="148" y="66" width="30" height="66" rx="6" style="--b:2"/><rect x="198" y="44" width="30" height="88" rx="6" style="--b:3"/><rect x="248" y="18" width="30" height="114" rx="6" style="--b:4"/></g><path class="pmf-path" d="M63 88 L113 72 L163 58 L213 36 L263 10"/></svg>',
+				'<svg viewBox="0 0 320 150" aria-hidden="true"><g class="pmf-sl"><path class="pmf-base" d="M40 36h240M40 76h240M40 116h240"/><circle class="pmf-k pmf-k1" cx="110" cy="36" r="10"/><circle class="pmf-k pmf-k2" cx="220" cy="76" r="10"/><circle class="pmf-k pmf-k3" cx="150" cy="116" r="10"/></g></svg>',
+			);
+			?>
+			<ol class="pmf" data-pmf>
+				<?php foreach ( $wu_results as $i => $r ) : ?>
+				<li class="pmf__p<?php echo 0 === $i ? ' is-on' : ''; ?>" tabindex="0" style="--i:<?php echo (int) $i; ?>">
+					<div class="pmf__art"><?php echo $wu_pmf_art[ $i ]; // phpcs:ignore ?></div>
+					<div class="pmf__body">
+						<span class="pmf__ic"><?php echo $wu_svg( $wu_icons[ $r[0] ], 22 ); // phpcs:ignore ?></span>
+						<h3><?php echo esc_html( $r[1] ); ?></h3>
+						<div class="pmf__more"><p><?php echo esc_html( $r[2] ); ?></p></div>
+					</div>
+				</li>
 				<?php endforeach; ?>
-			</ul>
+			</ol>
+			<script>(function(){var l=document.querySelector('[data-pmf]');if(!l)return;var ps=[].slice.call(l.children);function on(p){ps.forEach(function(x){x.classList.toggle('is-on',x===p);});}ps.forEach(function(p){p.addEventListener('mouseenter',function(){if(matchMedia('(hover:hover)').matches)on(p);});p.addEventListener('focus',function(){on(p);});p.addEventListener('click',function(){on(p);});});})();</script>
 		</div>
 	</section>
 
