@@ -2196,3 +2196,81 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
   .wu-pm .ev-hero__grid { grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr); }
   .wu-pm .ev-hero__p { max-width: 46rem; }
 }
+
+/* Event Branding hero heading on three balanced lines (2026-11-19): the DM rule keeps each part on one line, which
+   cut "...Agency in Kerala" off at the column edge. Here both parts flow together and wrap at ~11.5em. */
+.wu-evb .ev-hero__h { max-width: 11.6em !important; text-wrap: balance; }
+.wu-evb .ev-hero__h .sh__a, .wu-evb .ev-hero__h .sh__b { display: inline !important; white-space: normal !important; }
+
+/* Performance hero heading on three balanced lines (2026-11-19, owner: "make it 3 line") */
+.wu-pm .ev-hero__h.pm-h3 { max-width: 11.2em; text-wrap: balance; }
+
+/* Performance hero (2026-11-19): the owner's edited neon bullseye image in the right column on the plain black hero,
+   like the other service pages. It runs out to the right screen edge (as on Digital Marketing) and fades in on the
+   left, top and bottom. Heading two-tone, broken by colour: white line, then the grey part. */
+.wu-pm .pm-hero--img .ev-hero__h .sh__b { color: var(--mute); }
+.wu-pm .pm-hero--img .ev-hero__p { max-width: 36rem; }
+.wu-pm .ev-stage.pm-shot { aspect-ratio: auto; height: auto; display: block; }
+.wu-pm .ev-stage.pm-shot img { display: block; width: 100%; height: auto;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 16%), linear-gradient(180deg, transparent 0, #000 12%, #000 86%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image: linear-gradient(90deg, transparent 0, #000 16%), linear-gradient(180deg, transparent 0, #000 12%, #000 86%, transparent 100%);
+          mask-composite: intersect; }
+.wu-pm .ev-hero__h.pm-h3 { max-width: none; text-wrap: balance; }
+.wu-pm .ev-hero__h.pm-h3 .sh__a, .wu-pm .ev-hero__h.pm-h3 .sh__b { display: block; white-space: normal; }
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--img .ev-hero__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); align-items: center; }
+  .wu-pm .pm-hero--img .ev-hero__copy { container-type: inline-size; }
+  /* "Make Every Ad Spend Count." on one white line, the grey part on two */
+  .wu-pm .ev-hero__h.pm-h3 { font-size: min(3.9rem, 7.25cqi) !important; }
+  .wu-pm .ev-hero__h.pm-h3 .sh__a { white-space: nowrap; }
+  .wu-pm .pm-hero--img .ev-stage.pm-shot {
+    --bleed: max(0px, calc((100vw - min(100vw - 2 * var(--gx, 20px), var(--maxw, 1288px))) / 2));
+    margin-right: calc(-1 * var(--bleed)); width: calc(100% + var(--bleed)); max-width: none; justify-self: stretch; }
+  .wu-pm .ev-stage.pm-shot img { width: 118%; max-width: none; margin-left: -6%; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%), linear-gradient(180deg, transparent 0, #000 12%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 14%), linear-gradient(180deg, transparent 0, #000 12%, #000 86%, transparent 100%); }
+  .wu-pm .pm-hero--img .ev-stage.pm-shot { overflow: hidden; }
+}
+@media (max-width: 1023px) { .wu-pm .ev-stage.pm-shot { max-width: 640px; margin-inline: auto; } }
+
+/* Performance hero as a full background (2026-11-19, owner: "use this as full hero bg"): the cleaned neon bullseye
+   image (pure black ground) spans the hero, anchored right so the arrow and target sit beside the copy; a soft dark
+   fade behind the text keeps the paragraph clear of the app icons. */
+.wu-pm .pm-hero--full .pm-bg { position: absolute; inset: 0 0 auto; height: min(100%, max(720px, 100svh)); z-index: 0; overflow: hidden; pointer-events: none; }
+.wu-pm .pm-hero--full .pm-bg img { position: absolute; right: 0; top: 52%; translate: 0 -50%; width: min(82vw, 1560px); height: auto; max-width: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 88%, transparent 100%); mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 88%, transparent 100%); }
+.wu-pm .pm-hero--full .pm-bg::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, #000 0%, rgb(0 0 0 / .9) 30%, rgb(0 0 0 / .55) 46%, rgb(0 0 0 / 0) 62%); }
+.wu-pm .pm-hero--full .ev-hero__glow { display: none; }
+.wu-pm .pm-hero--full > .wrap, .wu-pm .pm-hero--full > .logos { position: relative; z-index: 1; }
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--full .ev-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, .9fr); }
+  .wu-pm .pm-hero--full .ev-hero__copy { grid-column: 1; }
+  .wu-pm .pm-hero--full .ev-proof { grid-column: 1 / -1; }
+  /* grey part on its own two lines: "Focus on Results / That Matter." */
+  .wu-pm .pm-hero--full .ev-hero__h.pm-h3 .sh__b { max-width: 10.5em; }
+}
+@media (max-width: 1023px) {
+  .wu-pm .pm-hero--full .pm-bg { height: min(100%, 820px); }
+  .wu-pm .pm-hero--full .pm-bg img { width: 150vw; right: -28vw; top: auto; bottom: 4%; translate: none; }
+  .wu-pm .pm-hero--full .pm-bg::after { background: linear-gradient(180deg, rgb(0 0 0 / .55) 0%, rgb(0 0 0 / .78) 50%, rgb(0 0 0 / .35) 82%, #000 100%); }
+}
+/* full-bg fine tune: the image starts after the text column so the app icons never sit behind the copy */
+@media (min-width: 1024px) {
+  .wu-pm .pm-hero--full .pm-bg img { width: min(64vw, 1300px); right: -5vw; }
+  .wu-pm .pm-hero--full .pm-bg::after { background: linear-gradient(90deg, #000 0%, rgb(0 0 0 / .85) 34%, rgb(0 0 0 / 0) 50%); }
+}
+@media (min-width: 1024px) and (max-width: 1279px) { .wu-pm .pm-hero--full .ev-hero__p { max-width: 30rem; } }
+/* phones and tablets: the scene sits under the copy (between the stats and the logos), not behind the text */
+@media (max-width: 1023px) {
+  .wu-pm .pm-hero--full { display: flex; flex-direction: column; }
+  .wu-pm .pm-hero--full > .wrap { order: 0; }
+  .wu-pm .pm-hero--full .pm-bg { order: 1; position: relative; inset: auto; height: auto; margin: 8px 0 -8px; }
+  .wu-pm .pm-hero--full .pm-bg img { position: static; width: 128%; max-width: none; margin-left: -20%; translate: none; }
+  .wu-pm .pm-hero--full .pm-bg::after { display: none; }
+  .wu-pm .pm-hero--full > .logos { order: 2; }
+}
+@media (max-width: 1023px) { .wu-pm .pm-hero--full .pm-bg img { width: 112%; margin-left: -4%; } }
+/* Eco bullseye image (transparent PNG, target near its right edge): keep the whole target on screen */
+@media (min-width: 1024px) { .wu-pm .pm-hero--full .pm-bg img { width: min(60vw, 1240px); right: 1vw; } }
+@media (max-width: 1023px) { .wu-pm .pm-hero--full .pm-bg img { width: 100%; margin-left: 0; } }

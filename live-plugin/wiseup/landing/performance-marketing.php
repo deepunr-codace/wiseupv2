@@ -224,20 +224,18 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 <main id="main">
 
 	<!-- 1. Hero -->
-	<section class="ev-hero dm-hero">
+	<section class="ev-hero dm-hero pm-hero--img pm-hero--full">
+		<div class="pm-bg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-1752.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-1400.webp' ); ?> 1400w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-eco-1752.webp' ); ?> 1752w" sizes="(max-width: 1023px) 160vw, 80vw" width="1752" height="897" alt="" fetchpriority="high" decoding="async"></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Performance Marketing Agency in Kerala</h1>
-				<h2 class="ev-hero__h"><span class="sh__a">Make Every Ad Spend Count. Focus on Results That Matter.</span></h2>
+				<h2 class="ev-hero__h pm-h3"><span class="sh__a">Make Every Ad Spend Count.</span> <span class="sh__b">Focus on Results That Matter.</span></h2>
 				<p class="ev-hero__p">Getting clicks is easy. Turning those clicks into enquiries, customers and sales takes a well-planned strategy. WiseUp is a performance marketing agency in Kerala, working with businesses looking for a reliable performance marketing agency in Calicut and across Kerala. We bring audience research, creative campaigns and data-driven optimisation together to make your advertising work harder. Our campaigns focus on reaching relevant audiences, generating quality leads and making better use of your advertising budget.</p>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Get Started', 'teal', $wu_lead ); // phpcs:ignore ?>
 					<?php echo $wu_btn( 'Talk to Our Team', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
 				</div>
-			</div>
-			<div class="ev-stage dm-shot" data-stage>
-				<img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-760.webp' ); ?> 760w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/dm-hero-growth-1200.webp' ); ?> 1200w" sizes="(max-width: 1023px) 92vw, 46vw" width="1116" height="920" fetchpriority="high" decoding="async" alt="WiseUp performance marketing agency in Kerala: laptop with a rising ad results chart and marketing icons">
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(

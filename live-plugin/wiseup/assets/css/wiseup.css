@@ -3136,3 +3136,8 @@ html:not(.wu-sheen) .lunar__img::after { display: none; }
 }
 .grow .grow__stats::before { background: #0e0e10; }
 :root[data-theme='light'] .grow .grow__chart { box-shadow: 10px 12px 28px rgb(0 0 0 / .28), -6px -6px 16px rgb(255 255 255 / .9), inset 1px 1px 0 rgb(255 255 255 / .07) !important; }
+
+/* Hero dot hover target (2026-11-19): a fixed invisible circle takes the pointer, the breathing dot doesn't, so resting on
+   the dot's edge no longer switches the hover effect on and off */
+.lunar__mark .wm__dot { pointer-events: none; }
+.lunar__mark .wm__hit { pointer-events: all; cursor: pointer; }

@@ -509,36 +509,16 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				</article>
 				<?php endforeach; ?>
 			</div>
-			<div class="ev-quotes" data-quotes>
-				<div class="ev-quotes__head">
-					<h3 class="ev-quotes__h">What clients say</h3>
-					<div class="ev-quotes__nav">
-						<button type="button" class="ev-qnav" data-q-prev aria-label="Previous review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/></svg></button>
-						<button type="button" class="ev-qnav" data-q-next aria-label="Next review"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/></svg></button>
-					</div>
-				</div>
-				<div class="ev-quotes__track" data-q-track tabindex="0" aria-label="Client reviews">
-					<figure class="ev-quote" data-quote>
-						<div class="ev-quote__head"><span class="ev-quote__mark" aria-hidden="true">&ldquo;</span><div class="ev-quote__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div></div>
-						<blockquote class="ev-quote__text"><p>We had a wonderful experience working with WiseUp for Sathya Agencies. Their team handled our video production projects professionally with creative concepts and trending video ideas that perfectly matched our brand. The quality of the videos, editing, and overall presentation was excellent and helped us attract more customer attention online.</p><p>Apart from video production, WiseUp also provided strong support for our digital presence. Their digital marketing strategies, creative content, and consistent support helped improve our online visibility and engagement. The team was responsive, creative, and always ready to bring fresh ideas to the table.</p><p>We truly appreciate their dedication, professionalism, and innovative approach. Highly recommended for anyone looking for quality video production, branding, and digital marketing services.</p></blockquote>
-						<button class="ev-quote__more" type="button" hidden aria-expanded="false">Read more</button>
-						<figcaption><span class="ev-quote__av" aria-hidden="true">A</span><span><strong>Arjun</strong><span>Branding Manager, Sathya Agencies · Google review</span></span></figcaption>
-					</figure>
-					<figure class="ev-quote" data-quote>
-						<div class="ev-quote__head"><span class="ev-quote__mark" aria-hidden="true">&ldquo;</span><div class="ev-quote__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div></div>
-						<blockquote class="ev-quote__text"><p>We are very satisfied with the social media marketing services provided by WiseUp Branding. Since they started managing our social media pages, we have seen a noticeable increase in engagement and sales.</p><p>Their team is creative, professional, and always supportive whenever we need assistance or updates. They truly understand branding and marketing strategies that work.</p><p>Thank you, WiseUp Branding, for your continuous support and dedication. Highly recommended for businesses looking to grow online!</p></blockquote>
-						<button class="ev-quote__more" type="button" hidden aria-expanded="false">Read more</button>
-						<figcaption><span class="ev-quote__av" aria-hidden="true">M</span><span><strong>Mohamed Afsal K</strong><span>Director (Sales and Marketing), Onesto and Mercado Pvt Ltd · Google review</span></span></figcaption>
-					</figure>
-					<figure class="ev-quote" data-quote>
-						<div class="ev-quote__head"><span class="ev-quote__mark" aria-hidden="true">&ldquo;</span><div class="ev-quote__stars" role="img" aria-label="5 out of 5 stars">★★★★★</div></div>
-						<blockquote class="ev-quote__text"><p>I recently got my logo designed and I’m extremely happy with the result. The designer perfectly understood my vision and created a logo that looks professional, unique, and elegant. The communication was smooth, delivery was on time, and the overall experience was excellent. Highly recommend for anyone looking for quality branding and logo design work.</p></blockquote>
-						<button class="ev-quote__more" type="button" hidden aria-expanded="false">Read more</button>
-						<figcaption><span class="ev-quote__av" aria-hidden="true">S</span><span><strong>Sharlet N Shaji</strong><span>Google review</span></span></figcaption>
-					</figure>
-				</div>
-				<div class="ev-quotes__dots" aria-hidden="true"><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="sec ev-sec" id="reviews">
+		<div class="wrap">
+			<div class="sh">
+				<?php echo $wu_eyebrow( 'Testimonials' ); // phpcs:ignore ?>
+				<h2 class="sh__h"><span class="sh__a">What clients say</span></h2>
 			</div>
+			<?php include WISEUP_DIR . 'landing/reviews.php'; ?>
 		</div>
 	</section>
 

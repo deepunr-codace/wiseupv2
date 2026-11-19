@@ -61,6 +61,49 @@ function wiseup_cs_meta( $post ) {
 }
 
 /**
+ * Homepage work row: case studies published in wp-admin that the hand-made tiles in generated/pages/home.php don't
+ * cover yet, newest first (owner, 2026-11-19: "automatically add next adding case study"). Printed at the start of
+ * each of the row's 3 loop sets; $copy > 0 = a hidden duplicate set (aria-hidden, not focusable). Needs a featured
+ * image. Off with add_filter( 'wiseup_home_auto_cases', '__return_false' ).
+ */
+function wiseup_home_cs_tiles( $copy = 0 ) {
+	static $posts = null;
+	if ( ! apply_filters( 'wiseup_home_auto_cases', true ) || ! post_type_exists( 'case-studies' ) ) return;
+	if ( null === $posts ) {
+		$known = apply_filters( 'wiseup_home_known_cases', array( 'bootland', 'smokehouse', 'erets', 'indusgo', 'golden-karak',
+			'sathya-agencies-brand-launch-campaign-kerala', 'eallisto-corporate-event-branding',
+			'popees-brand-campaigns-creative-marketing', 'case-studies-formaa-living-branding', 'onesto' ) );
+		$posts = array();
+		foreach ( get_posts( array( 'post_type' => 'case-studies', 'post_status' => 'publish', 'numberposts' => 30, 'orderby' => 'date', 'order' => 'DESC' ) ) as $p ) {
+			if ( ! in_array( $p->post_name, $known, true ) && has_post_thumbnail( $p ) ) $posts[] = $p;
+		}
+	}
+	$stats = wiseup_cs_stats();
+	foreach ( $posts as $p ) {
+		$title = get_the_title( $p );
+		$terms = get_the_terms( $p, 'case-study-category' );
+		$cat   = ( $terms && ! is_wp_error( $terms ) ) ? $terms[0]->name : '';
+		$label = $title . ( $cat ? ', ' . $cat : '' ) . ': view case study';
+		$img   = get_the_post_thumbnail( $p, 'large', array(
+			'alt'      => trim( $title . ' ' . strtolower( $cat ) ) . ' by WiseUp',
+			'sizes'    => '(max-width: 640px) 72vw, 35vw',
+			'loading'  => 'lazy',
+			'decoding' => 'async',
+			'class'    => '',
+		) );
+		echo '<li class="rows__tile"' . ( $copy ? ' aria-hidden="true"' : '' ) . '><a class="rows__link" href="' . esc_url( get_permalink( $p ) ) . '"'
+			. ( $copy ? ' tabindex="-1"' : '' ) . ' aria-label="' . esc_attr( $label ) . '">' . $img;
+		if ( isset( $stats[ $p->post_name ] ) ) {
+			$s = $stats[ $p->post_name ];
+			echo '<span class="rows__stats" aria-hidden="true"><span class="rows__big"><b>' . esc_html( $s[0] ) . '</b><span>' . esc_html( $s[1] ) . '</span></span><span class="rows__mini">';
+			foreach ( $s[2] as $m ) echo '<span><b>' . esc_html( $m[0] ) . '</b>' . esc_html( $m[1] ) . '</span>';
+			echo '</span></span>';
+		}
+		echo "</a></li>\n";
+	}
+}
+
+/**
  * Results shown on a card's hover (the same figures as the homepage work rows and the social media page Results
  * section), keyed by the case study's slug: [ big figure, its label, [ [ figure, label ] … ] ].
  */

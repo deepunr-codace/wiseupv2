@@ -22,6 +22,7 @@ defined( 'ABSPATH' ) || exit;
 							<path class="wm__l" data-ch="p" d="M881.487 251.149L881.487 251.149Q861.726 251.149 848.725 242.482Q835.724 233.815 828.27 219.947Q820.817 206.08 817.523 190.652Q814.23 175.224 814.23 161.357L814.23 161.357Q814.23 142.636 817.35 126.341Q820.47 110.047 827.75 97.566Q835.031 85.086 848.205 77.979Q861.379 70.872 881.487 70.872L881.487 70.872Q903.328 70.872 921.183 82.659Q939.037 94.446 949.784 114.901Q960.532 135.355 960.532 161.357L960.532 161.357Q960.532 187.705 949.611 207.986Q938.69 228.268 920.663 239.708Q902.635 251.149 881.487 251.149M872.82 223.067L872.82 223.067Q889.461 223.067 902.115 215.267Q914.769 207.466 921.703 193.425Q928.636 179.385 928.636 161.357L928.636 161.357Q928.636 134.315 914.076 116.808Q899.515 99.3 872.82 99.3L872.82 99.3Q856.872 99.3 844.391 107.1Q831.911 114.901 824.977 128.768Q818.043 142.636 818.043 161.357L818.043 161.357Q818.043 178.691 824.11 192.559Q830.177 206.426 842.485 214.747Q854.792 223.067 872.82 223.067M786.495 317.019L786.495 74.685L816.656 74.685L818.043 112.821L818.043 317.019L786.495 317.019"/>
 						</g>
 						<circle class="wm__dot" cx="259.01" cy="21.295" r="21.295" fill="url(#paint1_radial_wiseup)"/>
+						<circle class="wm__hit" cx="259.01" cy="21.295" r="28" fill="none"/>
 						<defs>
 							<linearGradient id="paint0_linear_wiseup" x1="0" y1="158.51" x2="960.532" y2="158.51" gradientUnits="userSpaceOnUse">
 								<stop class="wm__s0" stop-color="white"/>
@@ -44,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
 				// the letters sway gently and drift through soft colours, and tiny icons of WiseUp's services (likes, chat, hashtag, @, review
 				// star, megaphone, play, camera, target, SEO magnifier, code, bulb, pen nib, box) float up from the dot (no glows, no shadows).
 				// Strip speed drives window.wuP.v (exposed by the site bundle).
-				var mark = document.querySelector('[data-lunar-mark]'), dot = mark && mark.querySelector('.wm__dot');
+				var mark = document.querySelector('[data-lunar-mark]'), dot = mark && (mark.querySelector('.wm__hit') || mark.querySelector('.wm__dot'));
 				if (!mark || matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover: hover)').matches) return;
 				[].forEach.call(mark.querySelectorAll('.wm__l'), function (l, i) { l.style.setProperty('--i', i); });
 
@@ -115,8 +116,11 @@ defined( 'ABSPATH' ) || exit;
 				mark.addEventListener('pointerleave', function () { go(0); charge(false); });
 				if (dot) {
 					dot.style.cursor = 'pointer';
-					dot.addEventListener('pointerenter', function () { go(FAST); charge(true); });
-					dot.addEventListener('pointerleave', function () { go(mark.matches(':hover') ? BASE : 0); charge(false); });
+					// fixed-size hit circle (the visible dot breathes, so hovering its edge used to flip the effect on and off);
+					// leaving waits a moment so a pointer resting on the edge doesn't flicker it
+					var offT = 0;
+					dot.addEventListener('pointerenter', function () { clearTimeout(offT); go(FAST); charge(true); });
+					dot.addEventListener('pointerleave', function () { clearTimeout(offT); offT = setTimeout(function () { go(mark.matches(':hover') ? BASE : 0); charge(false); }, 160); });
 				}
 			})();
 		</script>
@@ -1264,6 +1268,7 @@ defined( 'ABSPATH' ) || exit;
 		<div class="rows" data-reveal="up">
 			<div class="rows__row rows__row--stats" data-work-row data-dir="1">
 				<ul class="rows__track" data-sets="3">
+					<?php if ( function_exists( 'wiseup_home_cs_tiles' ) ) wiseup_home_cs_tiles( 0 ); ?>
 					<li class="rows__tile">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" aria-label="Bootland, Event branding: view case study">
 							<img alt="Bootland event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
@@ -1319,6 +1324,7 @@ defined( 'ABSPATH' ) || exit;
 							<img alt="Onesto &amp; Mercado architecture brand content and digital marketing by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
 						</a>
 					</li>
+					<?php if ( function_exists( 'wiseup_home_cs_tiles' ) ) wiseup_home_cs_tiles( 1 ); ?>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
 							<img alt="Bootland event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
@@ -1369,6 +1375,7 @@ defined( 'ABSPATH' ) || exit;
 							<img alt="Onesto &amp; Mercado architecture brand content and digital marketing by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-720.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-360.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-540.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/work/case-onesto-720.webp 720w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="720" height="720">
 						</a>
 					</li>
+					<?php if ( function_exists( 'wiseup_home_cs_tiles' ) ) wiseup_home_cs_tiles( 2 ); ?>
 					<li class="rows__tile" aria-hidden="true">
 						<a class="rows__link" href="https://wiseup.in/case-studies/bootland/" tabindex="-1" aria-label="Bootland, Event branding: view case study">
 							<img alt="Bootland event branding by WiseUp" src="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp" srcset="<?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_2gPB3L.webp 360w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_zfHU4.webp 540w, <?php echo esc_url( WISEUP_ASSETS ); ?>/_astro/case-bootland.GE2Z-y8R_1WMvRq.webp 606w" sizes="(max-width: 640px) 72vw, 35vw" loading="lazy" decoding="async" width="606" height="600">
