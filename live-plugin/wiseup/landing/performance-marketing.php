@@ -25,6 +25,13 @@ if ( ! $wu_seo ) {
 	}, 2 );
 }
 wiseup_landing_isolate();
+// Hero photo is the page's largest paint: preload it ourselves, first thing in the head (WP Rocket had been preloading an
+// old, unused image and lazy-loading this one; the img also opts out of lazy load).
+add_action( 'wp_head', function () {
+	$u = WISEUP_URL . 'assets/landing/img/pm-hero-steps-';
+	echo '<link rel="preload" as="image" href="' . esc_url( $u . '1280.webp' ) . '" imagesrcset="' . esc_url( $u . '900.webp' ) . ' 900w, ' . esc_url( $u . '1280.webp' ) . ' 1280w, ' . esc_url( $u . '1670.webp' ) . ' 1670w" imagesizes="100vw" fetchpriority="high">' . "
+";
+}, 0 );
 // Motion engine flag before first paint (same as the Event Branding page; removed after 3s if the scripts never start).
 add_action( 'wp_head', function () {
 	echo "<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('wu-motion');setTimeout(function(){if(!window.__wuEvMotion)d.classList.remove('wu-motion');},3000);})();</script>\n";
@@ -225,7 +232,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 
 	<!-- 1. Hero -->
 	<section class="ev-hero dm-hero pm-hero--img pm-hero--full pm-hero--photo">
-		<div class="pm-bg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
+		<div class="pm-bg" aria-hidden="true"><img class="skip-lazy" data-no-lazy="1" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?> 1280w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
 			<defs>
 				<linearGradient id="pmp-gel" gradientUnits="userSpaceOnUse" x1="700" y1="724" x2="1420" y2="80"><stop offset="0" stop-color="#4f7f1c"/><stop offset=".6" stop-color="#97b83a"/><stop offset="1" stop-color="#c9d45a"/></linearGradient>
 				<linearGradient id="pmp-kraft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8ad7c"/><stop offset="1" stop-color="#a88c5c"/></linearGradient>
@@ -235,14 +242,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 					<ellipse cx="700" cy="724" rx="90" ry="70" fill="url(#pmp-fade)"/><ellipse cx="1500" cy="60" rx="90" ry="60" fill="url(#pmp-fade)"/></mask>
 			</defs>
 			<g mask="url(#pmp-ends)">
-				<path class="pm-pipe__shadow" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
-				<path class="pm-pipe__glass" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
-				<path class="pm-pipe__inner" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
-				<path class="pm-pipe__gel" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
+				<path class="pm-pipe__shadow" d="M 700 724 L 735.0 675.7 Q 742 666 753.7 663.5 L 1138.3 582.5 Q 1150 580 1160.6 574.5 L 1289.4 507.5 Q 1300 502 1307.0 492.3 L 1345.0 439.7 Q 1352 430 1360.5 421.5 L 1375.5 406.5 Q 1384 398 1384.0 386.0 L 1384.0 116.0 Q 1384 104 1392.5 95.5 L 1419.5 68.5 Q 1428 60 1440.0 60.0 L 1500 60"/>
+				<path class="pm-pipe__glass" d="M 700 724 L 735.0 675.7 Q 742 666 753.7 663.5 L 1138.3 582.5 Q 1150 580 1160.6 574.5 L 1289.4 507.5 Q 1300 502 1307.0 492.3 L 1345.0 439.7 Q 1352 430 1360.5 421.5 L 1375.5 406.5 Q 1384 398 1384.0 386.0 L 1384.0 116.0 Q 1384 104 1392.5 95.5 L 1419.5 68.5 Q 1428 60 1440.0 60.0 L 1500 60"/>
+				<path class="pm-pipe__inner" d="M 700 724 L 735.0 675.7 Q 742 666 753.7 663.5 L 1138.3 582.5 Q 1150 580 1160.6 574.5 L 1289.4 507.5 Q 1300 502 1307.0 492.3 L 1345.0 439.7 Q 1352 430 1360.5 421.5 L 1375.5 406.5 Q 1384 398 1384.0 386.0 L 1384.0 116.0 Q 1384 104 1392.5 95.5 L 1419.5 68.5 Q 1428 60 1440.0 60.0 L 1500 60"/>
+				<path class="pm-pipe__gel" d="M 700 724 L 735.0 675.7 Q 742 666 753.7 663.5 L 1138.3 582.5 Q 1150 580 1160.6 574.5 L 1289.4 507.5 Q 1300 502 1307.0 492.3 L 1345.0 439.7 Q 1352 430 1360.5 421.5 L 1375.5 406.5 Q 1384 398 1384.0 386.0 L 1384.0 116.0 Q 1384 104 1392.5 95.5 L 1419.5 68.5 Q 1428 60 1440.0 60.0 L 1500 60"/>
 				<g class="pm-pipe__marks" data-pm-marks></g>
-				<path class="pm-pipe__flow" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
-				<path class="pm-pipe__shine" d="M 700 724 C 712 690 726 672 750 662 C 780 652 820 664 850 648 C 880 632 905 640 940 628 C 975 616 1000 612 1030 598 C 1060 584 1090 596 1120 586 C 1150 576 1165 540 1205 526 C 1245 512 1275 524 1300 500 C 1318 482 1320 452 1342 438 C 1362 424 1376 404 1378 378 C 1380 352 1384 330 1392 306 C 1398 284 1392 262 1386 240 C 1380 218 1372 198 1366 176 C 1360 150 1366 118 1392 96 C 1418 76 1456 66 1500 60"/>
-				<g class="pm-pipe__clamps" data-pm-valves></g>
+				<path class="pm-pipe__flow" d="M 700 724 L 735.0 675.7 Q 742 666 753.7 663.5 L 1138.3 582.5 Q 1150 580 1160.6 574.5 L 1289.4 507.5 Q 1300 502 1307.0 492.3 L 1345.0 439.7 Q 1352 430 1360.5 421.5 L 1375.5 406.5 Q 1384 398 1384.0 386.0 L 1384.0 116.0 Q 1384 104 1392.5 95.5 L 1419.5 68.5 Q 1428 60 1440.0 60.0 L 1500 60"/>
+				<path class="pm-pipe__shine" d="M 700 724 L 735.0 675.7 Q 742 666 753.7 663.5 L 1138.3 582.5 Q 1150 580 1160.6 574.5 L 1289.4 507.5 Q 1300 502 1307.0 492.3 L 1345.0 439.7 Q 1352 430 1360.5 421.5 L 1375.5 406.5 Q 1384 398 1384.0 386.0 L 1384.0 116.0 Q 1384 104 1392.5 95.5 L 1419.5 68.5 Q 1428 60 1440.0 60.0 L 1500 60"/>
+				<g class="pm-pipe__elbows"><g class="pm-elbow" transform="translate(742 666)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g><g class="pm-elbow" transform="translate(1150 580)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g><g class="pm-elbow" transform="translate(1300 502)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g><g class="pm-elbow" transform="translate(1352 430)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g><g class="pm-elbow" transform="translate(1384 398)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g><g class="pm-elbow" transform="translate(1384 104)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g><g class="pm-elbow" transform="translate(1428 60)"><circle r="13.5" class="pm-elbow__body"/><circle r="9" class="pm-elbow__rim"/><circle cx="-4" cy="-4" r="2.4" class="pm-elbow__hi"/></g></g><g class="pm-pipe__clamps" data-pm-valves></g>
 			</g>
 			<g class="pm-pipe__labels" data-pm-labels></g>
 		</svg></div>
@@ -259,16 +266,17 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
-					array( '120', '+', 'Projects delivered' ),
-					array( '3', 'M+', 'Audience reached' ),
-					array( '21.6', 'M+', 'Impressions for one launch' ),
-					array( '8', '', 'Years of CodeAce engineering' ),
+					// owner's figures (2026-11-20); [ number, suffix, label, prefix ]
+					array( '50', 'L+', 'Ad Spend Managed' ),
+					array( '6', 'X+', 'Average ROAS' ),
+					array( '250', 'K+', 'Leads generated' ),
+					array( '1', 'Cr+', 'Revenue generated', '₹' ),
+					array( '500', '+', 'Campaigns delivered' ),
 				) as $wu_st ) : ?>
-				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
+				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><?php if ( ! empty( $wu_st[3] ) ) : ?><em class="ev-stat__pre"><?php echo esc_html( $wu_st[3] ); ?></em><?php endif; ?><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
 				<?php endforeach; ?>
 			</dl>
 		</div>
-		<div class="logos ev-logos" role="region" aria-label="Client logos"><div class="logos__marquee"><div class="logos__row"><div class="logos__track"><ul><?php echo $wu_li; // phpcs:ignore ?></ul><ul aria-hidden="true"><?php echo str_replace( '" alt="', '" alt="" data-alt="', $wu_li ); // phpcs:ignore ?></ul></div></div></div></div>
 	</section>
 <script>
 (function () {
@@ -285,11 +293,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		[1382, 350, 'TikTok Ads'], [1388, 255, 'Meta Ads'], [1366, 165, 'Google Ads']
 	], vg = svg.querySelector('[data-pm-valves]'), lg = svg.querySelector('[data-pm-labels]'), html = '', labels = [];
 	var near = function (pt) { var best = 0, bd = 1e9; for (var at = 0; at <= L; at += 4) { var q = gel.getPointAtLength(at), d = (q.x - pt[0]) * (q.x - pt[0]) + (q.y - pt[1]) * (q.y - pt[1]); if (d < bd) { bd = d; best = at; } } return best; };
-	spots.forEach(function (pt) {
-		var best = near(pt), q = gel.getPointAtLength(best), r = gel.getPointAtLength(Math.min(L, best + 2)), ang = Math.atan2(r.y - q.y, r.x - q.x) * 180 / Math.PI, d = (best / L * DUR).toFixed(2);
-		html += '<g class="pm-valve" style="--d:' + d + 's" transform="translate(' + q.x.toFixed(1) + ' ' + q.y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ')">' +
-			'<rect x="-5" y="-13" width="10" height="26" rx="2.5" class="pm-valve__band"/><circle cx="0" cy="-17.5" r="3.4" class="pm-valve__loop"/><circle cx="0" cy="6" r="2" class="pm-valve__dot"/></g>';
-		var ra = ang * Math.PI / 180; labels.push({ x: q.x + 17.5 * Math.sin(ra), y: q.y - 17.5 * Math.cos(ra), dx: -16, dy: -30, t: pt[2], d: d });
+	// no pipe any more (owner, 2026-11-20: "remove pipe and gel, just clamp tags in the stone"): each tag hangs from a small
+	// metal clamp bolted into its stone; the tags appear one by one from the bottom stone up
+	spots.forEach(function (pt, i) {
+		var d = (.3 + i * .45).toFixed(2);
+		html += '<g class="pm-valve pm-valve--wall" style="--d:' + d + 's" transform="translate(' + pt[0] + ' ' + pt[1] + ')">' +
+			'<rect x="-11" y="-4.5" width="22" height="9" rx="2.5" class="pm-valve__foot"/><circle cx="-6.5" cy="0" r="1.6" class="pm-valve__bolt"/><circle cx="6.5" cy="0" r="1.6" class="pm-valve__bolt"/>' +
+			'<rect x="-2" y="-10" width="4" height="7" class="pm-valve__leg"/><circle cx="0" cy="-12.5" r="3.4" class="pm-valve__loop"/></g>';
+		labels.push({ x: pt[0], y: pt[1] - 12.5, dx: -16, dy: -30, t: pt[2], d: d });
 	});
 	// each clamp has a small price tag hanging from it on a thread; it appears when the gel reaches the clamp and sways slowly
 	lg.innerHTML = labels.map(function (l, i) {
@@ -351,54 +362,198 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				<div class="ev-intro"><p>Every business has different advertising goals. At WiseUp, we plan campaigns around your objectives, target audience and budget, selecting the right channels to reach potential customers. Our performance marketing services cover campaign planning, execution, tracking and ongoing optimisation.</p></div>
 			</div>
 			<?php
-			$wu_list = array();
-			foreach ( $wu_services as $s ) {
-				$wu_list[] = array( $s[0], $s[2], '<span class="dm-stack__brands">' . implode( '', array_map( $wu_mark, $s[4] ) ) . '</span>', '' );
-			}
-			echo $wu_stack( $wu_list, 'services' ); // phpcs:ignore -- escaped in the helper
+			// "A customer's day" v2 (owner, 2026-11-20: "ellam cheytho. serikkum ullapole thonnanam"): a realistic phone (titanium
+			// frame, side buttons, glass), screens drawn like the real apps, small action chips around the phone per stage, a
+			// platform-coloured glow behind, a lime progress rail on the steps. Same script as v1. Images are placeholders from
+			// the plugin's own case photos (no client names shown) until the owner sends generated ones.
+			$img = function ( $f ) { return esc_url( WISEUP_URL . 'assets/landing/img/' . $f ); };
+			$sb  = '<div class="ps-bar"><b>9:41</b><span class="ps-bar__r"><i class="ps-sig"></i><i class="ps-wifi"></i><i class="ps-bat"></i></span></div>';
+			$ico = array(
+				'mic'   => '<svg viewBox="0 0 24 24"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-2.1A7 7 0 0 0 19 12z" fill="#4285f4"/></svg>',
+				'heart' => '<svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.4C.9 8 3 4.5 6.6 4.5c2 0 3.5 1.1 4.4 2.5.9-1.4 2.4-2.5 4.4-2.5C19 4.5 21.1 8 19.6 11.6 17.5 16.4 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+				'cmt'   => '<svg viewBox="0 0 24 24"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.2-4.2A8.5 8.5 0 1 1 20.5 11.5z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+				'send'  => '<svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+				'save'  => '<svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+				'lock'  => '<svg viewBox="0 0 24 24"><path d="M7 10V7a5 5 0 0 1 10 0v3M5 10h14v11H5z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+			);
+			$logo = function ( $f ) { return esc_url( WISEUP_URL . 'assets/clients/client-logos-2026/' . $f . '.webp' ); };
+			$wu_svc_opts = '';
+			$wu_svc_short = array( 'Search Ads', 'YouTube & Display', 'Shopping & PMax', 'Meta Ads', 'LinkedIn Ads', 'Remarketing', 'Landing Pages' );
+			$wu_svc_pills = '';
+			foreach ( $wu_services as $wu_k => $wu_sv ) { $wu_svc_pills .= '<label class="ps-wu__pill"><input type="radio" name="service" value="' . esc_attr( $wu_sv[0] ) . '"' . ( 0 === $wu_k ? ' required' : '' ) . '><span>' . esc_html( isset( $wu_svc_short[ $wu_k ] ) ? $wu_svc_short[ $wu_k ] : $wu_sv[0] ) . '</span></label>'; }
+			foreach ( $wu_services as $wu_sv ) { $wu_svc_opts .= '<option>' . esc_html( $wu_sv[0] ) . '</option>'; }
+			$wu_scr = array(
+				// 1 Google Search
+				'<div class="ps ps--g">' . $sb . '<div class="ps-g__logo"><b style="color:#4285f4">G</b><b style="color:#ea4335">o</b><b style="color:#fbbc05">o</b><b style="color:#4285f4">g</b><b style="color:#34a853">l</b><b style="color:#ea4335">e</b></div>'
+				. '<div class="ps-g__q"><span class="ps-type">best restaurant in calicut</span>' . $ico['mic'] . '</div>'
+				. '<div class="ps-g__tabs"><b class="on">All</b><b>Maps</b><b>Images</b><b>News</b></div>'
+				. '<div class="ps-g__res is-ad"><small class="ps-spons">Sponsored</small><div class="ps-g__site"><span class="ps-fav is-logo" style="--logo:url(' . $logo( 'bucho' ) . ')"></span><div><b>Smoke House</b><small>Restaurant · Calicut Beach</small></div></div><b class="ps-g__title">Smoke House · Calicut</b><i class="ps-ln"></i><i class="ps-ln s"></i>'
+				. '<div class="ps-g__links"><b>Menu</b><b>Book a table</b><b>Directions</b></div></div>'
+				. '<div class="ps-g__res"><div class="ps-g__site"><span class="ps-fav g"></span><div><i class="ps-ln w40"></i></div></div><i class="ps-ln t"></i><i class="ps-ln"></i></div>'
+				. '<div class="ps-g__res"><div class="ps-g__site"><span class="ps-fav g"></span><div><i class="ps-ln w40"></i></div></div><i class="ps-ln t"></i><i class="ps-ln"></i></div><i class="ps-home"></i></div>',
+				// 2 YouTube
+				'<div class="ps ps--yt">' . $sb . '<div class="ps-yt__top"><b class="ps-yt__logo"><i></i>YouTube</b></div>'
+				. '<div class="ps-yt__video" style="background-image:url(' . $img( 'pm-scr-smokehouse.webp' ) . ')"><b class="ps-yt__ad">Ad · 0:15</b><b class="ps-yt__skip">Skip Ad<span>▸|</span></b><i class="ps-yt__bar"><i></i></i></div>'
+				. '<div class="ps-yt__ch"><span class="ps-fav is-logo" style="--logo:url(' . $logo( 'bucho' ) . ')"></span><div><b>Smoke House</b><small>Sponsored</small></div><b class="ps-yt__visit">Visit site</b></div>'
+				. '<div class="ps-yt__rec"><i class="ps-yt__th"></i><div><i class="ps-ln d"></i><i class="ps-ln d s"></i></div></div><div class="ps-yt__rec"><i class="ps-yt__th"></i><div><i class="ps-ln d"></i><i class="ps-ln d s"></i></div></div><i class="ps-home l"></i></div>',
+				// 3 Shopping
+				'<div class="ps ps--sh">' . $sb . '<div class="ps-g__q sm"><span>herbal skin care</span>' . $ico['mic'] . '</div><div class="ps-g__tabs"><b>All</b><b class="on">Shopping</b><b>Images</b></div><small class="ps-spons">Sponsored · Shop</small>'
+				. '<div class="ps-sh__grid">'
+				. '<div class="ps-sh__p is-ad"><i class="ps-sh__img" style="background-image:url(' . $img( 'pm-scr-gloveda.webp' ) . ')"></i><i class="ps-ln"></i><b class="ps-sh__price"></b><small>Gloveda</small></div>'
+				. '<div class="ps-sh__p"><i class="ps-sh__img g"></i><i class="ps-ln"></i><b class="ps-sh__price g"></b><i class="ps-ln w40"></i></div>'
+				. '<div class="ps-sh__p"><i class="ps-sh__img g"></i><i class="ps-ln"></i><b class="ps-sh__price g"></b><i class="ps-ln w40"></i></div>'
+				. '<div class="ps-sh__p"><i class="ps-sh__img g"></i><i class="ps-ln"></i><b class="ps-sh__price g"></b><i class="ps-ln w40"></i></div></div><i class="ps-home"></i></div>',
+				// 4 Instagram
+				'<div class="ps ps--ig">' . $sb . '<div class="ps-ig__top"><b class="ps-ig__logo">Instagram</b><span>' . $ico['heart'] . $ico['send'] . '</span></div>'
+				. '<div class="ps-ig__stories"><i class="me"></i><i></i><i></i><i></i><i></i></div>'
+				. '<div class="ps-ig__who"><span class="ps-ig__ring"><span class="ps-fav is-logo" style="--logo:url(' . $logo( 'goldekarak' ) . ')"></span></span><div><b>Golden Karak</b><small>Sponsored</small></div><b class="ps-dots">•••</b></div>'
+				. '<div class="ps-ig__pic" style="background-image:url(' . $img( 'pm-scr-karak.webp' ) . ')"><span class="ps-ig__heart">' . $ico['heart'] . '</span></div>'
+				. '<div class="ps-ig__cta">Learn more<span>›</span></div>'
+				. '<div class="ps-ig__acts">' . $ico['heart'] . $ico['cmt'] . $ico['send'] . '<span class="r">' . $ico['save'] . '</span></div><i class="ps-ln"></i><i class="ps-ln s"></i><i class="ps-home"></i></div>',
+				// 5 LinkedIn
+				'<div class="ps ps--li">' . $sb . '<div class="ps-li__top"><b class="ps-li__in">in</b><i class="ps-li__search"></i><span class="ps-fav"></span></div>'
+				. '<div class="ps-li__post"><div class="ps-li__who"><span class="ps-fav is-logo sq" style="--logo:url(' . $logo( 'erets' ) . ')"></span><div><b>Erets Space</b><small>Promoted</small></div></div><i class="ps-ln"></i><i class="ps-ln"></i><i class="ps-ln s"></i>'
+				. '<div class="ps-li__pic" style="background-image:url(' . $img( 'pm-scr-erets.webp' ) . ')"></div><div class="ps-li__foot"><div><i class="ps-ln w40"></i></div><b class="ps-li__cta">Request demo</b></div></div>'
+				. '<div class="ps-li__post sm"><div class="ps-li__who"><span class="ps-fav sq g"></span><div><i class="ps-ln w40"></i></div></div><i class="ps-ln"></i></div><i class="ps-home"></i></div>',
+				// 6 Remarketing (lock screen)
+				'<div class="ps ps--lk" style="--wall:url(' . $img( 'pm-scr-karak.webp' ) . ')">' . $sb . '<div class="ps-lk__lock">' . $ico['lock'] . '</div><div class="ps-lk__date">Thursday 20 November</div><div class="ps-lk__time">9:41</div>'
+				. '<div class="ps-lk__note"><i class="ps-lk__app ig"></i><div><div class="ps-lk__h"><b>Instagram</b><small>now</small></div><b>Golden Karak</b><i class="ps-ln l"></i></div><i class="ps-lk__thumb" style="background-image:url(' . $img( 'pm-scr-karak.webp' ) . ')"></i></div>'
+				. '<div class="ps-lk__note n2"><i class="ps-lk__app gg">G</i><div><div class="ps-lk__h"><b>Google</b><small>2m ago</small></div><b>Golden Karak</b><i class="ps-ln l"></i></div></div>'
+				. '<div class="ps-lk__bottom"><i class="ps-lk__btn"></i><i class="ps-lk__btn"></i></div><i class="ps-home l"></i></div>',
+				// 7 Landing page = WiseUp's own enquiry form, iPhone style, it really sends. Kept simple (owner, 2026-11-20: "ithra
+				// content kuthi nirakknda, simple ayit mathi"): the 3D rocket, one heading, one line, name + phone, one button.
+				'<div class="ps ps--wu is-simple">' . $sb . '<div class="ps-wu__url">' . $ico['lock'] . 'wiseup.in</div>'
+				. '<div class="ps-wu__art"><img src="' . esc_url( WISEUP_URL . 'assets/landing/img/pm-proc/launch.webp' ) . '" alt="" width="150" height="150"></div>'
+				. '<div class="ps-wu__title"><b>Request a Campaign Consultation</b><small>See the plan before you see a price.</small></div>'
+				. '<form class="ps-wu__form" data-pmj-form novalidate data-endpoint="' . esc_url( rest_url( 'wiseup/v1/enquiry' ) ) . '" data-nonce="' . esc_attr( wp_create_nonce( 'wp_rest' ) ) . '" data-source="' . esc_attr( $wu_src ) . '">'
+				. '<div class="ps-wu__group">'
+				. '<label class="ps-wu__row"><span>Name</span><input name="name" required autocomplete="name" placeholder="Your name"></label>'
+				. '<label class="ps-wu__row"><span>Phone</span><input name="phone" type="tel" required autocomplete="tel" placeholder="Mobile number"></label>'
+				. '</div>'
+				. '<input class="ev-hp" name="hp_website" tabindex="-1" autocomplete="off" aria-hidden="true">'
+				. '<button class="ps-wu__send" type="submit">Get our plan <span aria-hidden="true">→</span></button>'
+				. '<p class="ps-wu__note" data-pmj-note aria-live="polite"></p>'
+				. '<a class="ps-wu__wa" href="https://wa.me/916282434503?text=' . rawurlencode( 'Hi WiseUp, I would like to know more about your performance marketing services.' ) . '" target="_blank" rel="noopener">or chat on WhatsApp</a>'
+				. '</form>'
+				. '<div class="ps-wu__toast" data-pmj-toast><span>✓</span><div><b>Enquiry sent</b><small>Thanks, we have your details and will be in touch soon.</small></div></div><i class="ps-home"></i></div>',
+			);
+			// small action chips beside the phone, per stage
+			$wu_chip = array(
+				array( array( '🔍', 'Searched' ), array( '↗', 'Clicked your ad' ) ),
+				array( array( '▶', 'Watched' ), array( '↗', 'Visited site' ) ),
+				array( array( '⇄', 'Compared' ), array( '🛒', 'Added to cart' ) ),
+				array( array( '♥', 'Liked' ), array( '↗', 'Learn more' ) ),
+				array( array( '💼', 'Decision-maker' ), array( '↗', 'Demo request' ) ),
+				array( array( '↺', 'Came back' ), array( '🛒', 'Back to cart' ) ),
+				array( array( '✓', 'New lead' ), array( '☎', 'Call back' ) ),
+			);
 			?>
+			<div class="pmj" data-pmj>
+				<div class="pmj__phone">
+					<?php foreach ( $wu_chip as $k => $cc ) : ?><div class="pmj__chips" aria-hidden="true" data-pmj-chips="<?php echo (int) $k; ?>"><?php foreach ( $cc as $ci => $c ) : ?><span class="pmj__chip c<?php echo (int) $ci; ?>"><i><?php echo esc_html( $c[0] ); ?></i><?php echo esc_html( $c[1] ); ?></span><?php endforeach; ?></div><?php endforeach; ?>
+					<div class="pmj__device"><i class="pmj__btn b1"></i><i class="pmj__btn b2"></i><i class="pmj__btn b3"></i><i class="pmj__btn b4"></i><i class="pmj__btn b5"></i><div class="pmj__island"></div><div class="pmj__screens">
+					<?php foreach ( $wu_scr as $k => $scr ) : ?><div class="pmj__screen<?php echo 0 === $k ? ' is-on' : ''; ?>" data-pmj-screen="<?php echo (int) $k; ?>"<?php echo $k < count( $wu_scr ) - 1 ? ' aria-hidden="true"' : ' inert'; ?>><?php echo $scr; // phpcs:ignore -- static markup ?></div><?php endforeach; ?>
+					</div><i class="pmj__glass"></i></div>
+					<i class="pmj__shadow"></i>
+				</div>
+				<div class="pmj__col">
+				<div class="pmj__vinewrap" aria-hidden="true"><div class="pmj__vine">
+					<div class="pmj__cable2" style="--cab:url(<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-climb/rope-kid.webp?v=2' ); ?>)"></div>
+					<div class="pmj__boy" data-pmj-boy><img class="pb-f rest" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-climb/kid.webp' ); ?>" style="--hx:.5791" alt="" width="90" height="135" decoding="async"></div><i class="pmj__kidzone" data-pmj-kidzone aria-hidden="true"></i>
+				</div></div>
+				<div class="pmj__stage" aria-hidden="true"><div class="pmj__stage-in"><div class="pmj__stage-body" data-pmj-body></div></div></div>
+				<ol class="pmj__steps">
+					<?php foreach ( array_values( $wu_services ) as $k => $sv ) : ?>
+					<li class="pmj__step<?php echo 0 === $k ? ' is-on' : ''; ?>" data-pmj-step="<?php echo (int) $k; ?>">
+						<i class="pmj__lamp" aria-hidden="true"></i>
+						<div class="pmj__mini" aria-hidden="true" inert><div class="pmj__device sm"><div class="pmj__screen is-on"><?php echo $wu_scr[ $k ]; // phpcs:ignore ?></div></div></div>
+						<span class="pmj__brands"><?php echo implode( '', array_map( $wu_mark, $sv[4] ) ); // phpcs:ignore ?></span>
+						<h3><?php echo $wu_stack_title( $sv[0] ); // phpcs:ignore ?></h3>
+						<p><?php echo esc_html( $sv[2] ); ?></p>
+					</li>
+					<?php endforeach; ?>
+				</ol>
+					<div class="pmj__tail" data-pmj-tail aria-hidden="true"></div>
+				</div>
+			</div>
 <script>
 (function () {
-	var NS = 'http://www.w3.org/2000/svg';
-	document.querySelectorAll('.wu-dm ol.dm-stack[data-stack]').forEach(function (ol) {
-		var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
-		var cards = [].slice.call(ol.children).filter(function (c) { return c.classList.contains('dm-stack__card'); });
-		if (!rm) ol.classList.add('is-js');
-		var mk = function (n, c) { var e = document.createElementNS(NS, n); if (c) e.setAttribute('class', c); return e; };
-		var svg = mk('svg', 'dm-stack__path'); svg.setAttribute('aria-hidden', 'true');
-		var groove = mk('path', 'dm-groove'), edge = mk('path', 'dm-groove-edge'), fill = mk('path', 'dm-groove-fill'), orb = mk('circle', 'dm-groove-orb');
-		orb.setAttribute('r', '9');
-		[groove, edge, fill, orb].forEach(function (e) { svg.appendChild(e); });
-		ol.insertBefore(svg, ol.firstChild);
-		var len = 0, pts = [], lit = -1;
-		var layout = function () {
-			var vis = [].slice.call(ol.querySelectorAll('.dm-stack__vis')), o = ol.getBoundingClientRect();
-			if (vis.length < 2 || innerWidth <= 860) { svg.style.display = 'none'; cards.forEach(function (c) { c.classList.add('is-lit'); }); return; }
-			svg.style.display = '';
-			pts = vis.map(function (v) { var r = v.getBoundingClientRect(); return [r.left - o.left + r.width / 2, r.top - o.top + r.height / 2]; });
-			var d = 'M' + pts[0][0] + ' ' + (pts[0][1] - 70) + ' L' + pts[0].join(' ');
-			for (var i = 1; i < pts.length; i++) { var a = pts[i - 1], b = pts[i], m = (a[1] + b[1]) / 2; d += ' C' + a[0] + ' ' + m + ' ' + b[0] + ' ' + m + ' ' + b.join(' '); }
-			[groove, edge, fill].forEach(function (p) { p.setAttribute('d', d); });
-			len = fill.getTotalLength(); fill.style.strokeDasharray = len; move();
+	var root = document.querySelector('[data-pmj]'); if (!root) return;
+	var steps = [].slice.call(root.querySelectorAll('[data-pmj-step]')), screens = [].slice.call(root.querySelectorAll('[data-pmj-screen]'));
+	var body = root.querySelector('[data-pmj-body]'), box = root.querySelector('.pmj__stage-in'), cur = -1, busy = false, want = -1;
+	var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var fill = function (k) {
+		var src = steps[k], card = document.createElement('div');
+		card.className = 'pmj__card';
+		[src.querySelector('.pmj__brands'), [].filter.call(src.querySelectorAll('h3'), function (x) { return !x.closest('.pmj__mini'); })[0], [].filter.call(src.querySelectorAll('p'), function (x) { return !x.closest('.pmj__mini'); })[0]].forEach(function (n) { if (n) card.appendChild(n.cloneNode(true)); });
+		body.innerHTML = ''; body.appendChild(card);
+	};
+	// card stack (owner, 2026-11-20: easier on the eye than the 3D turn): the next card rises from below and settles on top,
+	// the old one shrinks, darkens and sinks back; scrolling up plays it the other way (the old card slides off downwards and
+	// the earlier one comes forward from behind)
+	var render = function (k) {
+		if (!body || k === cur) return;
+		if (cur < 0 || still || !box.animate) { cur = k; fill(k); return; }
+		if (busy) { want = k; return; }
+		var dir = k > cur ? 1 : -1; cur = k; busy = true;
+		var old = box.cloneNode(true), ob = old.querySelector('[data-pmj-body]');
+		if (ob) ob.removeAttribute('data-pmj-body');
+		old.classList.add('is-ghost'); old.style.zIndex = dir > 0 ? 0 : 2; box.style.zIndex = 1;
+		box.parentNode.insertBefore(old, box);
+		fill(k);
+		var low = { transform: 'translateY(70px) scale(.97)', opacity: 0, filter: 'brightness(1)' },
+			back = { transform: 'translateY(-18px) scale(.92)', opacity: 0, filter: 'brightness(.45)' },
+			rest = { transform: 'none', opacity: 1, filter: 'brightness(1)' }, T = { duration: 720, easing: 'cubic-bezier(.22,1,.36,1)' };
+		Promise.all(dir > 0
+			? [box.animate([low, rest], T).finished, old.animate([rest, back], T).finished]
+			: [box.animate([back, rest], T).finished, old.animate([rest, low], { duration: 620, easing: 'cubic-bezier(.4,0,.6,1)' }).finished]
+		).then(function () {
+			old.remove(); box.style.zIndex = '';
+			busy = false; if (want >= 0 && want !== cur) { var w = want; want = -1; render(w); } else want = -1;
+		});
+	};
+	// the boy climbs the vine with the scroll (bottom of the screen at the first service, near the top at the last)
+	var boy = root.querySelector('[data-pmj-boy]');
+	if (boy && !still) {
+		var moveT = 0, ticking = false;
+		var climb = function () {
+			ticking = false;
+			var r = root.getBoundingClientRect(), vh = innerHeight;
+			// after the last service the phone (WiseUp's form) stays on screen through an extra stretch (.pmj__tail) while the kid
+			// lets go and slides down his rope out of sight; then the section scrolls away (owner, 2026-11-20)
+			var tail = root.querySelector('[data-pmj-tail]'), tH = tail ? tail.offsetHeight : 0;
+			var pr = Math.min(1, Math.max(0, (vh * .5 - r.top) / (r.height - tH - vh * .5)));
+			var tp = tail ? Math.min(1, Math.max(0, (vh * .55 - tail.getBoundingClientRect().top) / (tH * .7))) : 0;
+			// keep him in the middle band of the screen: 55% down at the first service, 18% at the last
+			var vine = boy.parentNode, want = vh * (.55 - .37 * pr) - 20 + Math.pow(tp, 1.7) * vh * 1.05, by = want - vine.getBoundingClientRect().top;
+			vine.style.setProperty('--by', by.toFixed(1)); vine.style.setProperty('--sy', (scrollY * .6).toFixed(0));
+			boy.classList.add('is-climbing'); clearTimeout(moveT); moveT = setTimeout(function () { boy.classList.remove('is-climbing'); }, 180);
 		};
-		var move = function () {
-			if (!len) return;
-			var o = ol.getBoundingClientRect(), p = (innerHeight * 0.62 - o.top) / (o.height || 1);
-			p = Math.max(0, Math.min(1, p)); if (rm) p = 1;
-			fill.style.strokeDashoffset = len * (1 - p);
-			var pt = fill.getPointAtLength(p * len); orb.setAttribute('cx', pt.x); orb.setAttribute('cy', pt.y);
-			orb.style.opacity = p > 0.005 && p < 0.995 ? 1 : 0;
-			var y = p * o.height;
-			cards.forEach(function (c, i) { if (pts[i] && pts[i][1] - 30 <= y) c.classList.add('is-lit'); else if (pts[i]) c.classList.remove('is-lit'); });
+		addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(climb); } }, { passive: true });
+		var place = function () {
+			var r = root.getBoundingClientRect(), vh = innerHeight, span = r.height - vh * .5;
+			[].forEach.call(root.querySelectorAll('[data-pc-node]'), function (n, i) {
+				var st = steps[i]; if (!st) return;
+				var sr = st.getBoundingClientRect(), off = sr.top + sr.height / 2 - r.top;
+				var pr = Math.min(1, Math.max(0, off / span));
+				n.style.top = ((1 - pr) * (vh - 190) + 60 + 4).toFixed(0) + 'px';
+			});
 		};
-		if ('IntersectionObserver' in window && !rm) {
-			var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { threshold: 0, rootMargin: '0px 0px 15% 0px' });
-			cards.forEach(function (c) { io.observe(c); });
-		} else cards.forEach(function (c) { c.classList.add('is-in'); });
-		layout(); addEventListener('resize', layout); addEventListener('load', layout); addEventListener('scroll', move, { passive: true });
-		if (window.ResizeObserver) new ResizeObserver(layout).observe(ol);
-		setTimeout(layout, 1200);
-	});
+		place(); addEventListener('resize', place); addEventListener('load', place);
+		climb();
+	}
+	var set = function (k) {
+		steps.forEach(function (s, i) { s.classList.toggle('is-on', i === k); });
+		[].forEach.call(root.querySelectorAll('[data-pc-node]'), function (n, i) { n.classList.toggle('is-lit', i <= k); });
+		screens.forEach(function (s, i) { s.classList.toggle('is-on', i === k); s.inert = i !== k; });
+		render(k);
+	};
+	render(0);
+	if (!('IntersectionObserver' in window)) return;
+	var io = new IntersectionObserver(function (es) {
+		es.forEach(function (e) { if (e.isIntersecting) set(+e.target.getAttribute('data-pmj-step')); });
+	}, { rootMargin: '-45% 0px -45% 0px' });
+	steps.forEach(function (s) { io.observe(s); });
 })();
 </script>
 		</div>
@@ -414,14 +569,62 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 				</div>
 				<div class="ev-intro"><p>Good campaign performance starts before an advertisement goes live. We follow a structured process to understand your goals, reach the right audience and improve campaigns using performance data.</p></div>
 			</div>
-			<div class="dm-tl" data-tl>
-				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
-				<ol class="dm-tl__list">
-					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
-					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
-					<?php endforeach; ?>
-				</ol>
+			<?php
+			// Performance's own process view (owner, 2026-11-20): an optimisation loop. The six steps sit on a ring; a lime point
+			// travels round it with the scroll, each station lights as it arrives, and after "Test and Optimise" it comes back to
+			// the first step, because campaigns keep improving.
+			$wu_pico = function ( $i ) { $n = array( 'goals', 'audience', 'strategy', 'launch', 'monitor', 'optimise' ); return WISEUP_URL . 'assets/landing/img/pm-proc/' . $n[ $i ] . '.webp'; };
+			$wu_gn = count( $wu_process );
+			$wu_lp = function ( $i, $r ) use ( $wu_gn ) { $t = deg2rad( -90 + $i * 360 / $wu_gn ); return array( 240 + $r * cos( $t ), 240 + $r * sin( $t ) ); };
+			?>
+			<div class="pm-gauge pm-loop" data-gauge>
+				<div class="pm-gauge__pin">
+					<div class="pm-gauge__dial" aria-hidden="true">
+						<svg viewBox="0 0 480 480">
+							<circle class="pm-loop__base" cx="240" cy="240" r="170"/>
+							<circle class="pm-loop__prog" cx="240" cy="240" r="170" pathLength="100"/>
+							<g class="pm-loop__dot"><circle cx="240" cy="70" r="9"/></g>
+							<?php foreach ( $wu_process as $wu_i => $s ) : list( $x, $y ) = $wu_lp( $wu_i, 170 ); ?>
+							<g class="pm-loop__st" data-seg transform="translate(<?php echo round( $x, 1 ) . ' ' . round( $y, 1 ); ?>)"><circle r="38"/><image data-seg-ic href="<?php echo esc_url( $wu_pico( $wu_i ) ); ?>" x="-27" y="-27" width="54" height="54"/></g>
+							<?php endforeach; ?>
+							<text class="pm-gauge__num" x="240" y="250" text-anchor="middle" data-gauge-num>01</text>
+							<text class="pm-gauge__of" x="240" y="282" text-anchor="middle">OF <?php echo esc_html( sprintf( '%02d', $wu_gn ) ); ?></text>
+							<g class="pm-loop__again" transform="translate(228 296)" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/></g>
+						</svg>
+					</div>
+					<ol class="pm-gauge__steps">
+						<?php foreach ( $wu_process as $wu_i => $s ) : ?>
+						<li class="pm-gauge__step<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" data-gauge-step><span class="pm-gauge__si" aria-hidden="true"><img src="<?php echo esc_url( $wu_pico( $wu_i ) ); ?>" alt="" width="64" height="64" loading="lazy" decoding="async"></span><span class="pm-gauge__sn"><?php echo esc_html( sprintf( 'Step %02d / %02d', $wu_i + 1, $wu_gn ) ); ?></span><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></li>
+						<?php endforeach; ?>
+					</ol>
+				</div>
 			</div>
+			<script>
+			(function () {
+				var g = document.querySelector('[data-gauge]'); if (!g) return;
+				if (!matchMedia('(min-width: 900px)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+				g.classList.add('is-live');
+				var steps = [].slice.call(g.querySelectorAll('[data-gauge-step]')), sts = g.querySelectorAll('[data-seg]'),
+					num = g.querySelector('[data-gauge-num]'), n = steps.length, cur = -1, pos = 0, want = 0, raf = 0;
+				var frame = function () {
+					pos += (want - pos) * .12;
+					g.style.setProperty('--lp', pos.toFixed(4));
+					raf = Math.abs(want - pos) > .0005 ? requestAnimationFrame(frame) : 0;
+				};
+				var upd = function () {
+					var r = g.getBoundingClientRect(), span = r.height - innerHeight, p = Math.min(1, Math.max(0, -r.top / (span || 1)));
+					// the point reaches step k at k / n of the way round; the last stretch brings it back to step 1
+					want = p; if (!raf) raf = requestAnimationFrame(frame);
+					var k = Math.min(n - 1, Math.floor(p * n + .02)), back = p > .985;
+					g.classList.toggle('is-back', back);
+					var key = back ? 'b' : k; if (key === cur) return; cur = key;
+					steps.forEach(function (s, i) { s.classList.toggle('is-on', i === k); });
+					[].forEach.call(sts, function (s, i) { s.classList.toggle('is-lit', back || i <= k); s.classList.toggle('is-now', back ? i === 0 : i === k); });
+					num.textContent = (k < 9 ? '0' : '') + (k + 1);
+				};
+				addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); upd();
+			})();
+			</script>
 		</div>
 	</section>
 
@@ -604,6 +807,26 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 </div>
 <script>
 (function () {
+	// the phone's last screen: WiseUp's enquiry form, sent to wiseup/v1/enquiry (saved to Leads); WhatsApp link if it fails
+	var pf = document.querySelector('.pmj__phone [data-pmj-form]');
+	if (pf) {
+		var pn = pf.querySelector('[data-pmj-note]'), pb = pf.querySelector('button[type=submit]'), pt = pf.parentNode.querySelector('[data-pmj-toast]');
+		pf.addEventListener('submit', function (e) {
+			e.preventDefault();
+			var v0 = function (k) { var el = pf.elements[k]; return el && String(el.value || '').trim(); };
+			var bad = [].slice.call(pf.querySelectorAll('input,select')).filter(function (el) { return el.name !== 'hp_website' && !el.checkValidity(); });
+			if (bad.length) { bad[0].focus(); pn.textContent = !v0('name') || !v0('phone') ? 'Please add your name and phone number.' : 'Please pick what you need.'; return; }
+			var d = new FormData(pf), v = function (k) { return String(d.get(k) || '').trim(); };
+			var svc = v('service') || 'Performance Marketing', msg = 'Services required: ' + svc + '\n(sent from the phone on the Performance Marketing page)';
+			var wa = 'https://wa.me/916282434503?text=' + encodeURIComponent('Hi WiseUp, I am ' + v('name') + '.\nServices required: ' + svc);
+			pb.disabled = true; pn.textContent = 'Sending…';
+			fetch(pf.dataset.endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': pf.dataset.nonce },
+				body: JSON.stringify({ name: v('name'), phone: v('phone'), service: svc, message: msg, page: location.href, source: pf.dataset.source, hp_website: v('hp_website') }) })
+				.then(function (r) { if (!r.ok) throw 0; pf.reset(); pn.textContent = ''; pt.classList.add('is-on'); setTimeout(function () { pt.classList.remove('is-on'); }, 6000); })
+				.catch(function () { pn.innerHTML = 'Couldn’t send that right now. <a href="' + wa + '" target="_blank" rel="noopener">Send it on WhatsApp</a>.'; })
+				.then(function () { pb.disabled = false; });
+		});
+	}
 	// enquiry form → wiseup/v1/enquiry (saved to Leads); WhatsApp link if sending fails
 	var f = document.querySelector('[data-dm-form]');
 	if (f) {
@@ -745,6 +968,50 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -8% 0px' });
 	document.querySelectorAll('.wu-dm :is(.ev-card, .ev-step, .ev-exp__card, ' + mineSel + ')').forEach(function (el, i) {
 		if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('ev-rise'); el.style.setProperty('--d', (i % 3) * 70 + 'ms'); io.observe(el); }
+	});
+})();
+</script>
+<script>
+// hover the kid: he and the rope swing like a real pendulum hanging from the top of the screen (pushed gently in step with
+// the swing, then left to settle by itself) (owner, 2026-11-20). Touch: tap the kid. The hover zone does not swing, so the swing never
+// slips out from under the pointer.
+(function () {
+	var vine = document.querySelector('.wu-pm .pmj__vine'), zone = vine && vine.querySelector('[data-pmj-kidzone]'), ask = vine && vine.querySelector('[data-pmj-ask]');
+	if (!zone) return;
+	var still = matchMedia('(prefers-reduced-motion: reduce)').matches, hover = matchMedia('(hover: hover)').matches;
+	var W = 2 * Math.PI / 1.9, th = 0, om = 0, target = 0, last = 0, raf = 0, hide = 0;
+	var tick = function (now) {
+		var dt = Math.min(.033, (now - last) / 1000 || .016); last = now;
+		var amp = Math.sqrt(th * th + (om / W) * (om / W)), push = 0;
+		if (target && amp < target) push = (om >= 0 ? 1 : -1) * 22 * Math.min(1, (target - amp) / 1.5 + .2);
+		var acc = -W * W * th - (target ? .35 : .9) * om + push;
+		om += acc * dt; th += om * dt;
+		var r = th * Math.PI / 180, by = parseFloat(getComputedStyle(vine).getPropertyValue('--by')) || 0;
+		vine.style.setProperty('--sw', th.toFixed(3) + 'deg');
+		vine.style.setProperty('--swx', (-by * Math.sin(r)).toFixed(2));
+		vine.style.setProperty('--swy', (by * (Math.cos(r) - 1)).toFixed(2));
+		if (target || amp > .03) raf = requestAnimationFrame(tick);
+		else { raf = 0; th = om = 0; vine.style.setProperty('--sw', '0deg'); vine.style.setProperty('--swx', 0); vine.style.setProperty('--swy', 0); }
+	};
+	var swing = function (g) {
+		if (still) return; target = g;
+		if (g && Math.abs(om) < 2 && Math.abs(th) < .3) om = 9;
+		if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
+	};
+	var open = function () { clearTimeout(hide); if (ask) ask.classList.add('is-open'); };
+	var close = function () { clearTimeout(hide); hide = setTimeout(function () { if (ask) ask.classList.remove('is-open'); }, 500); };
+	if (hover) {
+		zone.addEventListener('mouseenter', function () { swing(4); open(); });
+		zone.addEventListener('mouseleave', function () { swing(0); close(); });
+		if (ask) { ask.addEventListener('mouseenter', function () { swing(0); open(); }); ask.addEventListener('mouseleave', close); }
+	}
+	zone.addEventListener('click', function () { if (ask && ask.classList.contains('is-open')) { ask.classList.remove('is-open'); swing(0); } else { open(); swing(hover ? 4 : 2.5); if (!hover) setTimeout(function () { swing(0); }, 1800); } });
+	if (!ask) return;
+	// the message names the service the visitor is reading about right now
+	var wa = ask.querySelector('[data-ask-wa]');
+	if (wa) wa.addEventListener('click', function () {
+		var h = document.querySelector('[data-pmj-step].is-on h3'), name = h ? h.textContent.trim() : 'your performance marketing services';
+		window.open('https://wa.me/916282434503?text=' + encodeURIComponent('Hi WiseUp, I would like to know more about ' + name + '.'), '_blank', 'noopener');
 	});
 })();
 </script>

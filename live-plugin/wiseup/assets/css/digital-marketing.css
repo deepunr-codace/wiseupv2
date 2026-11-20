@@ -2558,3 +2558,752 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
   #pm-services .sh__h .sh__a, #pm-services .sh__h .sh__b { display: block; white-space: nowrap; }
   #pm-services .sh__h { font-size: min(var(--seo-h2, 46px), 6.3cqi) !important; max-width: none !important; }
 }
+
+/* Performance hero: five owner stats in one row (2026-11-20) */
+@media (min-width: 1024px) { .wu-pm .pm-hero--photo .ev-proof { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; } }
+@media (max-width: 1023px) { .wu-pm .pm-hero--photo .ev-proof > :last-child:nth-child(odd) { grid-column: 1 / -1; } }
+.wu-pm .ev-stat__pre { margin-right: .04em; }
+
+
+
+/* Performance services "a customer's day" v2 (owner, 2026-11-20: "ellam cheytho. serikkum ullapole thonnanam"):
+   realistic phone, app-accurate screens, action chips, platform-coloured glow, lime progress rail. Script unchanged (it only
+   toggles .is-on on the active step and screen); everything else here keys off those with :has(). */
+#pm-services { position: relative; overflow-x: clip; --pjc: 190 218 82; transition: --pjc .8s; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="0"]) { --pjc: 66 133 244; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="1"]) { --pjc: 255 48 48; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="2"]) { --pjc: 52 168 83; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="3"]) { --pjc: 225 48 108; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="4"]) { --pjc: 10 102 194; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="5"]) { --pjc: 242 201 76; }
+#pm-services:has(.pmj__step.is-on[data-pmj-step="6"]) { --pjc: 190 218 82; }
+.wu-pm .pmj { position: relative; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 110px); margin-top: clamp(36px, 4vw, 64px); }
+
+/* ---- the phone ---- */
+.wu-pm .pmj__phone { position: sticky; top: calc(50vh - 320px); align-self: start; height: 640px; display: grid; place-items: center; perspective: 1400px; }
+.wu-pm .pmj__phone::before { content: ""; position: absolute; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(closest-side, rgb(var(--pjc) / .30), rgb(var(--pjc) / .08) 55%, transparent); filter: blur(20px); transition: background .8s ease; }
+.wu-pm .pmj__device { position: relative; width: 288px; height: 600px; border-radius: 52px; padding: 11px;
+  background: linear-gradient(135deg, #5b5d61 0%, #2a2b2e 18%, #16171a 50%, #2c2d30 82%, #63656a 100%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .18), inset 0 0 0 4px #0b0b0c, 0 50px 90px -30px rgb(0 0 0 / .95), 0 18px 30px -12px rgb(0 0 0 / .7);
+  transform: rotateY(-14deg) rotateX(5deg); transform-style: preserve-3d; }
+.wu-pm .pmj__btn { position: absolute; width: 4px; border-radius: 2px; background: linear-gradient(90deg, #1a1b1d, #5d5f63); }
+.wu-pm .pmj__btn.b1 { left: -3px; top: 118px; height: 30px; } .wu-pm .pmj__btn.b2 { left: -3px; top: 170px; height: 56px; } .wu-pm .pmj__btn.b3 { left: -3px; top: 238px; height: 56px; }
+.wu-pm .pmj__btn.b4 { right: -3px; left: auto; top: 190px; height: 86px; background: linear-gradient(270deg, #1a1b1d, #5d5f63); }
+.wu-pm .pmj__island { position: absolute; top: 22px; left: 50%; translate: -50% 0; width: 96px; height: 28px; border-radius: 16px; background: #000; z-index: 5; box-shadow: inset -22px 0 0 -18px #1b2a4a; }
+.wu-pm .pmj__screens { position: relative; height: 100%; border-radius: 42px; overflow: hidden; background: #fff; }
+.wu-pm .pmj__glass { position: absolute; inset: 11px; border-radius: 42px; pointer-events: none; z-index: 6;
+  background: linear-gradient(115deg, rgb(255 255 255 / .16) 0%, rgb(255 255 255 / .04) 28%, transparent 42%, transparent 70%, rgb(255 255 255 / .05) 100%); }
+.wu-pm .pmj__shadow { position: absolute; bottom: 4px; width: 230px; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgb(0 0 0 / .85), transparent); filter: blur(6px); translate: 18px 0; }
+@supports (animation-timeline: view()) {
+  .wu-pm .pmj__device { animation: pmj-tilt linear both; animation-timeline: view(); animation-range: entry 40% exit 60%; }
+  @keyframes pmj-tilt { from { transform: rotateY(-18deg) rotateX(6deg); } 50% { transform: rotateY(-8deg) rotateX(3deg); } to { transform: rotateY(10deg) rotateX(2deg); } }
+}
+.wu-pm .pmj__screen { position: absolute; inset: 0; opacity: 0; scale: .985; transition: opacity .55s ease, scale .65s cubic-bezier(.2, .9, .3, 1); }
+.wu-pm .pmj__screen.is-on { opacity: 1; scale: 1; }
+
+/* action chips beside the phone */
+.wu-pm .pmj__chips { position: absolute; inset: 0; pointer-events: none; z-index: 7; }
+.wu-pm .pmj__chip { position: absolute; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 9px 9px; border-radius: 999px; white-space: nowrap;
+  background: rgb(14 15 13 / .82); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1), 0 12px 24px rgb(0 0 0 / .5); color: #f1f3ea; font: 600 13px/1 Inter, system-ui, sans-serif;
+  opacity: 0; scale: .7; transition: opacity .35s ease, scale .5s cubic-bezier(.3, 1.6, .5, 1); }
+.wu-pm .pmj__chip i { display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: rgb(var(--pjc)); color: #fff; font-style: normal; font-size: 12px; transition: background .8s; }
+.wu-pm .pmj__chip.c0 { left: 2%; top: 26%; } .wu-pm .pmj__chip.c1 { right: 0; top: 62%; }
+.wu-pm .pmj__phone:has([data-pmj-screen="0"].is-on) [data-pmj-chips="0"] .pmj__chip, .wu-pm .pmj__phone:has([data-pmj-screen="1"].is-on) [data-pmj-chips="1"] .pmj__chip,
+.wu-pm .pmj__phone:has([data-pmj-screen="2"].is-on) [data-pmj-chips="2"] .pmj__chip, .wu-pm .pmj__phone:has([data-pmj-screen="3"].is-on) [data-pmj-chips="3"] .pmj__chip,
+.wu-pm .pmj__phone:has([data-pmj-screen="4"].is-on) [data-pmj-chips="4"] .pmj__chip, .wu-pm .pmj__phone:has([data-pmj-screen="5"].is-on) [data-pmj-chips="5"] .pmj__chip,
+.wu-pm .pmj__phone:has([data-pmj-screen="6"].is-on) [data-pmj-chips="6"] .pmj__chip { opacity: 1; scale: 1; transition-delay: .9s; }
+.wu-pm .pmj__phone:has(.pmj__screen.is-on) .pmj__chips .pmj__chip.c1 { transition-delay: 1.8s; }
+.wu-pm .pmj__chips .pmj__chip { animation: pmj-float 4s ease-in-out infinite alternate; } .wu-pm .pmj__chip.c1 { animation-delay: -2s; }
+@keyframes pmj-float { to { translate: 0 -8px; } }
+
+/* ---- steps with a progress rail ---- */
+.wu-pm .pmj__steps { position: relative; list-style: none; margin: 0; padding: 0 0 0 40px; --pp: 0; }
+.wu-pm .pmj__steps::before, .wu-pm .pmj__steps::after { content: ""; position: absolute; left: 6px; top: 10vh; bottom: 10vh; width: 2px; border-radius: 2px; background: rgb(255 255 255 / .1); }
+.wu-pm .pmj__steps::after { bottom: auto; height: calc((100% - 20vh) * var(--pp)); background: linear-gradient(180deg, #beda52, rgb(var(--pjc))); transition: height .7s cubic-bezier(.3, .9, .3, 1); box-shadow: 0 0 12px rgb(190 218 82 / .5); }
+.wu-pm .pmj__steps:has([data-pmj-step="1"].is-on) { --pp: .1667; } .wu-pm .pmj__steps:has([data-pmj-step="2"].is-on) { --pp: .3333; } .wu-pm .pmj__steps:has([data-pmj-step="3"].is-on) { --pp: .5; }
+.wu-pm .pmj__steps:has([data-pmj-step="4"].is-on) { --pp: .6667; } .wu-pm .pmj__steps:has([data-pmj-step="5"].is-on) { --pp: .8333; } .wu-pm .pmj__steps:has([data-pmj-step="6"].is-on) { --pp: 1; }
+.wu-pm .pmj__step { position: relative; min-height: 64vh; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; opacity: .28; transition: opacity .5s ease; }
+.wu-pm .pmj__step::before { content: ""; position: absolute; left: -40px; top: 50%; width: 14px; height: 14px; margin-top: -7px; border-radius: 50%; background: #0b0c0a; box-shadow: inset 0 0 0 2px rgb(255 255 255 / .25); transition: background .4s, box-shadow .4s; }
+.wu-pm .pmj__step.is-on { opacity: 1; }
+.wu-pm .pmj__step.is-on::before { background: #beda52; box-shadow: 0 0 0 6px rgb(190 218 82 / .18); }
+.wu-pm .pmj__step h3 { margin: 14px 0; font-size: clamp(26px, 2.3vw, 36px) !important; font-weight: 500; line-height: 1.15; letter-spacing: -.02em; color: #fff; transform-origin: 0 50%; transition: scale .5s ease; }
+.wu-pm .pmj__step.is-on h3 { scale: 1.04; }
+.wu-pm .pmj__step h3 span { color: var(--mute, #8e8e93); }
+.wu-pm .pmj__step p { margin: 0; max-width: 34rem; font-size: 17px !important; line-height: 1.7; color: rgb(255 255 255 / .72); }
+.wu-pm .pmj__brands { display: flex; gap: 8px; }
+.wu-pm .pmj__mini { display: none; }
+
+/* ---- shared screen parts ---- */
+.wu-pm .ps { position: absolute; inset: 0; padding: 54px 14px 14px; display: flex; flex-direction: column; gap: 10px; font: 500 12px/1.3 -apple-system, "SF Pro Text", Inter, system-ui, sans-serif; color: #202124; background: #fff; }
+.wu-pm .ps > * { flex-shrink: 0; }
+.wu-pm .ps i, .wu-pm .ps b, .wu-pm .ps small { font-style: normal; display: block; }
+.wu-pm .ps small { font-size: 10px; color: #70757a; }
+.wu-pm .ps-bar { position: absolute; top: 0; left: 0; right: 0; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; font-size: 13px; z-index: 4; }
+.wu-pm .ps-bar b { font-weight: 600; }
+.wu-pm .ps-bar__r { display: flex; gap: 5px; align-items: center; }
+.wu-pm .ps-sig { width: 16px; height: 10px; background: linear-gradient(90deg, currentColor 3px, transparent 3px 4px, currentColor 4px 7px, transparent 7px 8px, currentColor 8px 11px, transparent 11px 12px, currentColor 12px) bottom/100% 100% no-repeat; clip-path: polygon(0 70%, 25% 70%, 25% 45%, 50% 45%, 50% 22%, 75% 22%, 75% 0, 100% 0, 100% 100%, 0 100%); }
+.wu-pm .ps-wifi { width: 14px; height: 10px; border-radius: 14px 14px 0 0; background: currentColor; clip-path: polygon(50% 100%, 0 0, 100% 0); }
+.wu-pm .ps-bat { width: 22px; height: 11px; border-radius: 3px; border: 1.5px solid currentColor; opacity: .9; background: linear-gradient(90deg, currentColor 70%, transparent 70%) 2px 2px / calc(100% - 4px) calc(100% - 4px) no-repeat; }
+.wu-pm .ps-home { position: absolute; bottom: 7px; left: 50%; translate: -50% 0; width: 110px; height: 4px; border-radius: 3px; background: #111; } .wu-pm .ps-home.l { background: #fff; }
+.wu-pm .ps-ln { height: 7px; border-radius: 4px; background: #e2e4e1; } .wu-pm .ps-ln.s { width: 60%; } .wu-pm .ps-ln.w40 { width: 40%; } .wu-pm .ps-ln.t { width: 75%; height: 9px; background: #c4c8cc; }
+.wu-pm .ps-ln.d { background: #3a3a3a; } .wu-pm .ps-ln.l { background: rgb(255 255 255 / .4); }
+.wu-pm .ps-fav { width: 22px; height: 22px; border-radius: 50%; flex: none; background: linear-gradient(135deg, #beda52, #4f7f1c); box-shadow: inset 0 0 0 2px #fff; }
+.wu-pm .ps-fav.g { background: #dadce0; } .wu-pm .ps-fav.sq { border-radius: 6px; }
+.wu-pm .ps-spons { font-weight: 700 !important; color: #202124 !important; font-size: 11px !important; }
+.wu-pm .ps-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; border-right: 1.5px solid #1a73e8; vertical-align: bottom; }
+.wu-pm .pmj__screen.is-on .ps-type { animation: ps-type 1.5s steps(26) .3s forwards, ps-caret .7s step-end infinite; }
+@keyframes ps-type { to { width: 100%; } } @keyframes ps-caret { 50% { border-color: transparent; } }
+.wu-pm .ps-fill { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; }
+.wu-pm .pmj__screen.is-on .ps-fill { animation: ps-type .7s steps(11) .5s forwards; } .wu-pm .pmj__screen.is-on .ps-fill.f2 { animation-delay: 1.3s; }
+
+/* 1 Google */
+.wu-pm .ps-g__logo { display: flex; justify-content: center; margin-top: 8px; font: 500 30px/1 "Product Sans", Inter, sans-serif; letter-spacing: -1px; }
+.wu-pm .ps-g__q { display: flex; align-items: center; justify-content: space-between; height: 42px; padding: 0 14px 0 16px; border-radius: 22px; background: #fff; box-shadow: 0 1px 6px rgb(32 33 36 / .28); font-size: 13px; color: #202124; }
+.wu-pm .ps-g__q.sm { height: 36px; margin-top: 4px; } .wu-pm .ps-g__q svg { width: 18px; height: 18px; flex: none; }
+.wu-pm .ps-g__tabs { display: flex; gap: 14px; padding: 0 4px; font-size: 11px; color: #5f6368; border-bottom: 1px solid #ebebeb; }
+.wu-pm .ps-g__tabs b { padding-bottom: 7px; font-weight: 500; } .wu-pm .ps-g__tabs b.on { color: #1a73e8; box-shadow: inset 0 -3px 0 #1a73e8; }
+.wu-pm .ps-g__res { display: grid; gap: 6px; padding: 10px 2px; }
+.wu-pm .ps-g__res.is-ad { padding: 10px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 2px #beda52, 0 8px 18px rgb(0 0 0 / .1); opacity: 0; translate: 0 12px; }
+.wu-pm .pmj__screen.is-on .ps-g__res.is-ad { opacity: 1; translate: 0 0; transition: opacity .5s ease 1.9s, translate .6s cubic-bezier(.3, 1.3, .5, 1) 1.9s; }
+.wu-pm .ps-g__site { display: flex; gap: 8px; align-items: center; } .wu-pm .ps-g__site b { font-size: 12px; } .wu-pm .ps-g__site > div { flex: 1; }
+.wu-pm .ps-g__title { color: #1a0dab; font-size: 15px; font-weight: 500; }
+.wu-pm .ps-g__links { display: flex; gap: 6px; margin-top: 2px; } .wu-pm .ps-g__links b { padding: 5px 9px; border-radius: 14px; border: 1px solid #dadce0; font-size: 10px; color: #1a0dab; font-weight: 500; }
+
+/* 2 YouTube */
+.wu-pm .ps--yt { background: #0f0f0f; color: #f1f1f1; }
+.wu-pm .ps-yt__top { display: flex; align-items: center; height: 26px; }
+.wu-pm .ps-yt__logo { display: flex; align-items: center; gap: 4px; font: 700 15px/1 Inter, sans-serif; letter-spacing: -.6px; }
+.wu-pm .ps-yt__logo i { width: 22px; height: 15px; border-radius: 4px; background: #ff0000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 15'%3E%3Cpath d='M9 4.5v6l5-3z' fill='%23fff'/%3E%3C/svg%3E"); }
+.wu-pm .ps-yt__video { position: relative; margin: 0 -14px; aspect-ratio: 16 / 9; background: #222 center / cover; }
+.wu-pm .ps-yt__ad { position: absolute; left: 8px; bottom: 12px; padding: 3px 6px; border-radius: 3px; background: #f2c94c; color: #111; font-size: 10px; font-weight: 700; }
+.wu-pm .ps-yt__skip { position: absolute; right: 0; bottom: 14px; display: flex; gap: 6px; align-items: center; padding: 8px 10px; background: rgb(0 0 0 / .75); border: 1px solid rgb(255 255 255 / .3); border-right: 0; font-size: 11px; font-weight: 500; opacity: 0; }
+.wu-pm .pmj__screen.is-on .ps-yt__skip { opacity: 1; transition: opacity .3s ease 2.6s; }
+.wu-pm .ps-yt__bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgb(255 255 255 / .25); } .wu-pm .ps-yt__bar i { height: 100%; width: 0; background: #f2c94c; }
+.wu-pm .pmj__screen.is-on .ps-yt__bar i { width: 100%; transition: width 6s linear .2s; }
+.wu-pm .ps-yt__ch { display: flex; gap: 10px; align-items: center; } .wu-pm .ps-yt__ch > div { flex: 1; } .wu-pm .ps-yt__ch b { font-size: 13px; } .wu-pm .ps-yt__ch small { color: #aaa; }
+.wu-pm .ps-yt__visit { padding: 7px 12px; border-radius: 16px; background: #3ea6ff; color: #0f0f0f; font-size: 11px; font-weight: 600 !important; }
+.wu-pm .ps-yt__rec { display: grid; grid-template-columns: 110px 1fr; gap: 10px; } .wu-pm .ps-yt__rec > div { display: grid; gap: 6px; align-content: start; }
+.wu-pm .ps-yt__th { aspect-ratio: 16 / 9; border-radius: 8px; background: #272727; }
+
+/* 3 Shopping */
+.wu-pm .ps-sh__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.wu-pm .ps-sh__p { display: grid; gap: 5px; padding: 6px; border-radius: 12px; background: #fff; box-shadow: 0 0 0 1px #ececec; opacity: 0; translate: 0 10px; }
+.wu-pm .ps-sh__p.is-ad { box-shadow: 0 0 0 2px #beda52, 0 8px 16px rgb(0 0 0 / .1); }
+.wu-pm .ps-sh__img { aspect-ratio: 1; border-radius: 8px; background: #f1f3f4 center / cover; } .wu-pm .ps-sh__img.g { background: #f1f3f4; }
+.wu-pm .ps-sh__price { width: 46%; height: 10px; border-radius: 4px; background: #202124; } .wu-pm .ps-sh__price.g { background: #c4c8cc; }
+.wu-pm .ps-sh__p small { font-size: 9.5px; color: #188038; font-weight: 600; }
+.wu-pm .pmj__screen.is-on .ps-sh__p { opacity: 1; translate: 0 0; transition: opacity .4s ease, translate .5s cubic-bezier(.3, 1.4, .5, 1); }
+.wu-pm .pmj__screen.is-on .ps-sh__p:nth-child(2) { transition-delay: .12s; } .wu-pm .pmj__screen.is-on .ps-sh__p:nth-child(3) { transition-delay: .24s; } .wu-pm .pmj__screen.is-on .ps-sh__p:nth-child(4) { transition-delay: .36s; }
+
+/* 4 Instagram */
+.wu-pm .ps--ig { gap: 8px; }
+.wu-pm .ps-ig__top { display: flex; align-items: center; justify-content: space-between; } .wu-pm .ps-ig__top span { display: flex; gap: 14px; } .wu-pm .ps-ig__top svg { width: 20px; height: 20px; }
+.wu-pm .ps-ig__logo { font: italic 600 21px/1 "Billabong", "Brush Script MT", cursive; letter-spacing: -.3px; }
+.wu-pm .ps-ig__stories { display: flex; gap: 10px; margin: 0 -14px; padding: 0 14px 8px; border-bottom: 1px solid #efefef; }
+.wu-pm .ps-ig__stories i { width: 44px; height: 44px; border-radius: 50%; padding: 2px; background: conic-gradient(from 200deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5, #feda75); flex: none; box-shadow: inset 0 0 0 4px #fff; }
+.wu-pm .ps-ig__stories i:nth-child(odd) { filter: saturate(.9); } .wu-pm .ps-ig__stories i.me { background: #dbdbdb; }
+.wu-pm .ps-ig__who { display: flex; align-items: center; gap: 8px; } .wu-pm .ps-ig__who b { font-size: 12px; } .wu-pm .ps-ig__who > div { flex: 1; } .wu-pm .ps-ig__who small { color: #262626; }
+.wu-pm .ps-ig__ring { padding: 2px; border-radius: 50%; background: conic-gradient(#feda75, #fa7e1e, #d62976, #962fbf, #feda75); } .wu-pm .ps-dots { letter-spacing: 1px; }
+.wu-pm .ps-ig__pic { position: relative; margin: 0 -14px; aspect-ratio: 1 / 1; background: #ddd center / cover; display: grid; place-items: center; }
+.wu-pm .ps-ig__heart svg { width: 84px; height: 84px; color: #fff; fill: #fff; filter: drop-shadow(0 4px 12px rgb(0 0 0 / .4)); }
+.wu-pm .ps-ig__heart svg path { fill: #fff; stroke: none; }
+.wu-pm .ps-ig__heart { opacity: 0; scale: .2; } .wu-pm .pmj__screen.is-on .ps-ig__heart { animation: ps-heart 1.3s ease 1s; }
+@keyframes ps-heart { 0% { opacity: 0; scale: .2; } 25% { opacity: 1; scale: 1.15; } 40% { scale: .95; } 70% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 1; } }
+.wu-pm .ps-ig__cta { display: flex; justify-content: space-between; margin: -8px -14px 0; padding: 10px 14px; background: #3797f0; color: #fff; font-weight: 600; font-size: 12px; }
+.wu-pm .ps-ig__acts { display: flex; gap: 14px; align-items: center; } .wu-pm .ps-ig__acts svg { width: 22px; height: 22px; } .wu-pm .ps-ig__acts .r { margin-left: auto; display: flex; }
+.wu-pm .pmj__screen.is-on .ps-ig__acts > svg:first-child { color: #ff3040; animation: ps-like .4s ease 1.3s both; }
+.wu-pm .pmj__screen.is-on .ps-ig__acts > svg:first-child path { fill: #ff3040; stroke: #ff3040; transition: fill 0s 1.3s; }
+@keyframes ps-like { 50% { scale: 1.3; } }
+
+/* 5 LinkedIn */
+.wu-pm .ps--li { background: #f4f2ee; }
+.wu-pm .ps-li__top { display: flex; align-items: center; gap: 10px; margin: -6px -14px 0; padding: 6px 14px 10px; background: #fff; }
+.wu-pm .ps-li__in { width: 26px; height: 26px; border-radius: 5px; background: #0a66c2; color: #fff; font: 700 16px/26px Inter, sans-serif; text-align: center; }
+.wu-pm .ps-li__search { flex: 1; height: 28px; border-radius: 6px; background: #edf3f8; }
+.wu-pm .ps-li__post { display: grid; gap: 7px; margin: 0 -14px; padding: 12px 14px; background: #fff; }
+.wu-pm .ps-li__who { display: flex; gap: 8px; align-items: center; } .wu-pm .ps-li__who b { font-size: 12px; } .wu-pm .ps-li__who .ps-fav { width: 36px; height: 36px; }
+.wu-pm .ps-li__pic { margin: 2px -14px 0; aspect-ratio: 1.91 / 1; background: #ddd center / cover; }
+.wu-pm .ps-li__foot { display: flex; align-items: center; gap: 10px; margin: -7px -14px 0; padding: 10px 14px; background: #eef3f8; } .wu-pm .ps-li__foot > div { flex: 1; }
+.wu-pm .ps-li__cta { padding: 6px 12px; border-radius: 16px; border: 1.5px solid #0a66c2; color: #0a66c2; font-size: 11px; font-weight: 600 !important; }
+.wu-pm .pmj__screen.is-on .ps-li__cta { animation: ps-press .5s ease 1.6s; } @keyframes ps-press { 50% { background: #0a66c2; color: #fff; scale: .96; } }
+
+/* 6 lock screen */
+.wu-pm .ps--lk { color: #fff; background: #111; }
+.wu-pm .ps--lk::before { content: ""; position: absolute; inset: -20px; background: var(--wall) center / cover; filter: blur(14px) brightness(.62) saturate(1.2); z-index: 0; }
+.wu-pm .ps--lk > * { position: relative; z-index: 1; } .wu-pm .ps--lk .ps-bar { position: absolute; }
+.wu-pm .ps-lk__lock { display: flex; justify-content: center; } .wu-pm .ps-lk__lock svg { width: 16px; height: 16px; }
+.wu-pm .ps-lk__date { text-align: center; font-size: 14px; font-weight: 600; opacity: .9; }
+.wu-pm .ps-lk__time { margin: -6px 0 14px; text-align: center; font: 600 72px/1 -apple-system, "SF Pro Display", Inter, sans-serif; letter-spacing: -2px; }
+.wu-pm .ps-lk__note { display: flex; gap: 10px; align-items: center; padding: 11px; border-radius: 18px; background: rgb(245 245 245 / .22); backdrop-filter: blur(16px); opacity: 0; translate: 0 -16px; scale: .96; }
+.wu-pm .ps-lk__note > div { flex: 1; display: grid; gap: 3px; } .wu-pm .ps-lk__note b { font-size: 12px; }
+.wu-pm .ps-lk__h { display: flex; justify-content: space-between; } .wu-pm .ps-lk__h b { font-size: 10px !important; opacity: .75; text-transform: uppercase; letter-spacing: .04em; } .wu-pm .ps-lk__h small { color: rgb(255 255 255 / .7); }
+.wu-pm .ps-lk__app { width: 30px; height: 30px; border-radius: 8px; flex: none; } .wu-pm .ps-lk__app.ig { background: radial-gradient(circle at 30% 110%, #fdf497, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.wu-pm .ps-lk__app.gg { display: grid; place-items: center; background: #fff; color: #4285f4; font: 700 16px/1 Inter, sans-serif; }
+.wu-pm .ps-lk__thumb { width: 38px; height: 38px; border-radius: 8px; background: center / cover; flex: none; }
+.wu-pm .pmj__screen.is-on .ps-lk__note { opacity: 1; translate: 0 0; scale: 1; transition: opacity .5s ease .5s, translate .7s cubic-bezier(.3, 1.4, .5, 1) .5s, scale .7s ease .5s; }
+.wu-pm .pmj__screen.is-on .ps-lk__note.n2 { transition-delay: 1.6s; }
+.wu-pm .ps-lk__bottom { display: flex; justify-content: space-between; margin-top: auto; padding: 0 22px 18px; }
+.wu-pm .ps-lk__btn { width: 44px; height: 44px; border-radius: 50%; background: rgb(255 255 255 / .18); backdrop-filter: blur(8px); }
+
+/* 7 landing page */
+.wu-pm .ps--lp { background: #f6f7f2; }
+.wu-pm .ps-lp__url { display: flex; align-items: center; justify-content: center; gap: 5px; height: 30px; border-radius: 10px; background: #e9ebe4; font-size: 12px; color: #3c4043; } .wu-pm .ps-lp__url svg { width: 12px; height: 12px; }
+.wu-pm .ps-lp__hero { display: flex; align-items: flex-end; height: 120px; padding: 12px; border-radius: 14px; background: #222 center / cover; color: #fff; font-size: 16px; box-shadow: inset 0 -60px 50px -20px rgb(0 0 0 / .7); }
+.wu-pm .ps-lp__form { display: grid; gap: 9px; padding: 14px; border-radius: 14px; background: #fff; box-shadow: 0 6px 18px rgb(0 0 0 / .08); }
+.wu-pm .ps-lp__h { font-size: 14px; }
+.wu-pm .ps-lp__form label { display: grid; gap: 4px; font-size: 10px; color: #6a6c66; }
+.wu-pm .ps-lp__form label i { height: 32px; border-radius: 8px; border: 1px solid #d9dbd4; padding: 0 10px; display: flex !important; align-items: center; font-size: 12px; color: #202124; }
+.wu-pm .ps-lp__send { padding: 11px; border-radius: 10px; background: #beda52; text-align: center; font-weight: 700; color: #11150a; }
+.wu-pm .pmj__screen.is-on .ps-lp__send { animation: ps-press2 .5s ease 2s; } @keyframes ps-press2 { 50% { scale: .96; filter: brightness(.9); } }
+.wu-pm .ps-lp__toast { display: flex; gap: 10px; align-items: center; margin-top: auto; margin-bottom: 14px; padding: 12px; border-radius: 16px; background: #11150a; color: #fff; opacity: 0; translate: 0 16px; }
+.wu-pm .ps-lp__toast > span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #beda52; color: #11150a; font-weight: 800; }
+.wu-pm .ps-lp__toast small { color: rgb(255 255 255 / .6) !important; }
+.wu-pm .pmj__screen.is-on .ps-lp__toast { opacity: 1; translate: 0 0; transition: opacity .5s ease 2.5s, translate .6s cubic-bezier(.3, 1.4, .5, 1) 2.5s; }
+
+/* tablets and phones: a small real phone above each service */
+@media (max-width: 1023px) {
+  .wu-pm .pmj { grid-template-columns: minmax(0, 1fr); }
+  .wu-pm .pmj__phone { display: none; }
+  .wu-pm .pmj__steps { padding-left: 0; } .wu-pm .pmj__steps::before, .wu-pm .pmj__steps::after, .wu-pm .pmj__step::before { display: none; }
+  .wu-pm .pmj__step { min-height: 0; opacity: 1; padding: 30px 0; }
+  .wu-pm .pmj__mini { display: block; margin-bottom: 20px; }
+  .wu-pm .pmj__device.sm { width: 230px; height: 330px; padding: 8px; border-radius: 34px 34px 0 0; transform: none; animation: none; overflow: hidden; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+  .wu-pm .pmj__device.sm .pmj__screen { position: relative; height: 560px; border-radius: 28px 28px 0 0; overflow: hidden; opacity: 1; scale: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wu-pm .pmj *, .wu-pm .pmj *::before, .wu-pm .pmj *::after { animation: none !important; transition: none !important; }
+  .wu-pm .ps-type, .wu-pm .ps-fill { width: auto; border: 0; }
+  .wu-pm .ps-g__res.is-ad, .wu-pm .ps-sh__p, .wu-pm .ps-lk__note, .wu-pm .ps-lp__toast, .wu-pm .ps-yt__skip, .wu-pm .pmj__chip { opacity: 1; translate: none; scale: 1; }
+}
+
+/* v2 fixes: flex on <b> elements, Instagram avatar ring, progress rail drawn per step so it meets the dots */
+.wu-pm .ps b.ps-yt__logo, .wu-pm .ps b.ps-yt__skip { display: flex; }
+.wu-pm .ps-ig__ring { display: block; flex: none; } .wu-pm .ps-ig__ring .ps-fav { width: 30px; height: 30px; }
+.wu-pm .pmj__steps::after { display: none; }
+.wu-pm .pmj__steps::before { top: 0; bottom: 0; }
+.wu-pm .pmj__step::after { content: ""; position: absolute; left: -34px; top: 0; width: 2px; height: 0; background: linear-gradient(180deg, #beda52, rgb(var(--pjc))); box-shadow: 0 0 10px rgb(190 218 82 / .45); transition: height .7s cubic-bezier(.3, .9, .3, 1); }
+.wu-pm .pmj__step:has(~ .pmj__step.is-on)::after { height: 100%; }
+.wu-pm .pmj__step.is-on::after { height: 50%; }
+.wu-pm .pmj__step::before { z-index: 1; }
+@media (max-width: 1023px) { .wu-pm .pmj__step::after { display: none; } }
+.wu-pm .ps-fav { display: block; }
+
+/* phone story v3 (owner, 2026-11-20): bigger phone like an iPhone 17/18 Pro, standing straight (no tilt), status bar clear of
+   the Dynamic Island; the right side is a sticky "stage" panel where each service's text shatters out and assembles in. */
+.wu-pm .pmj { grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); align-items: start; }
+.wu-pm .pmj__phone { top: calc(50vh - min(380px, 44vh)); height: min(760px, 88vh); perspective: none; }
+.wu-pm .pmj__device { --h: min(720px, 84vh); width: calc(var(--h) / 2.12); height: var(--h); padding: 10px; border-radius: calc(var(--h) / 11.5); transform: none !important; animation: none !important;
+  background: linear-gradient(90deg, #6e7074 0%, #3a3b3e 3%, #1d1e21 8%, #1d1e21 92%, #3a3b3e 97%, #6e7074 100%);
+  box-shadow: inset 0 0 0 1.5px rgb(255 255 255 / .22), inset 0 0 0 3px #08080a, inset 0 0 0 4px #2b2c2f, 0 60px 100px -36px rgb(0 0 0 / .95), 0 24px 40px -18px rgb(0 0 0 / .75); }
+.wu-pm .pmj__screens { border-radius: calc(var(--h) / 13); }
+.wu-pm .pmj__glass { inset: 10px; border-radius: calc(var(--h) / 13); background: linear-gradient(160deg, rgb(255 255 255 / .12) 0%, rgb(255 255 255 / .03) 22%, transparent 40%); }
+.wu-pm .pmj__island { top: 21px; width: 31%; height: 30px; border-radius: 18px; }
+.wu-pm .pmj__btn.b1 { top: 16%; height: 4.5%; } .wu-pm .pmj__btn.b2 { top: 24%; height: 8.5%; } .wu-pm .pmj__btn.b3 { top: 34%; height: 8.5%; }
+.wu-pm .pmj__btn.b4 { top: 27%; height: 13%; } .wu-pm .pmj__btn.b5 { right: -3px; left: auto; top: 58%; height: 7%; }
+.wu-pm .pmj__shadow { translate: 0 0; width: 70%; }
+.wu-pm .ps { padding-top: 62px; font-size: 13px; }
+.wu-pm .ps-bar { height: 58px; padding: 10px 26px 0 32px; font-size: 14px; }
+.wu-pm .ps-bar > b { width: 30%; text-align: center; }
+.wu-pm .ps-bar__r { width: 30%; justify-content: center; }
+/* stage panel */
+.wu-pm .pmj__col { display: grid; }
+.wu-pm .pmj__col > * { grid-area: 1 / 1; }
+.wu-pm .pmj__stage { position: sticky; top: calc(50vh - 230px); align-self: start; height: 460px; z-index: 2; }
+.wu-pm .pmj__stage-in { position: relative; height: 100%; padding: clamp(28px, 3vw, 44px); border-radius: 32px; overflow: hidden;
+  background: radial-gradient(120% 90% at 100% 0%, rgb(var(--pjc) / .16), transparent 55%), linear-gradient(160deg, #141513, #070807);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08), inset 0 1px 0 rgb(255 255 255 / .1), 0 40px 80px -40px rgb(0 0 0 / .9); transition: background .8s ease; }
+.wu-pm .pmj__count { position: absolute; top: 26px; right: 30px; font: 600 13px/1 ui-monospace, Menlo, monospace; letter-spacing: .1em; color: rgb(255 255 255 / .4); }
+.wu-pm .pmj__count b { color: #beda52; font-size: 15px; }
+.wu-pm .pmj__stage-body { position: relative; height: 100%; display: grid; }
+.wu-pm .pmj__card { grid-area: 1 / 1; align-self: center; }
+.wu-pm .pmj__card .pmj__brands { margin-bottom: 18px; }
+.wu-pm .pmj__card h3 { margin: 0 0 16px; font-size: clamp(28px, 2.5vw, 40px) !important; font-weight: 500; line-height: 1.12; letter-spacing: -.02em; color: #fff; }
+.wu-pm .pmj__card h3 span { color: var(--mute, #8e8e93); }
+.wu-pm .pmj__card p { margin: 0; font-size: 17px !important; line-height: 1.7; color: rgb(255 255 255 / .74); }
+.wu-pm .pmj__card .pmj__w, .wu-pm .pmj__card .dm-mark { display: inline-block; }
+.wu-pm .pmj__card .pmj__w, .wu-pm .pmj__card .dm-mark { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(.6); filter: blur(6px); }
+.wu-pm .pmj__card.is-in .pmj__w, .wu-pm .pmj__card.is-in .dm-mark { opacity: 1; transform: none; filter: none;
+  transition: opacity .5s ease var(--d), transform .9s cubic-bezier(.16, 1, .3, 1) var(--d), filter .6s ease var(--d); }
+.wu-pm .pmj__card.is-out .pmj__w, .wu-pm .pmj__card.is-out .dm-mark { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(.5); filter: blur(4px);
+  transition: opacity .5s ease var(--d), transform .7s cubic-bezier(.5, 0, .9, .4) var(--d), filter .5s ease var(--d); }
+.wu-pm .pmj__burst { position: absolute; left: 50%; top: 50%; width: 0; height: 0; pointer-events: none; z-index: -1; }
+.wu-pm .pmj__burst i { position: absolute; width: 14px; height: 6px; border-radius: 2px; background: linear-gradient(90deg, #beda52, rgb(var(--pjc))); opacity: 0; clip-path: polygon(0 0, 100% 30%, 70% 100%, 10% 80%); }
+.wu-pm .pmj__burst.go i { animation: pmj-shard 1s cubic-bezier(.2, .8, .3, 1) var(--d) forwards; }
+@keyframes pmj-shard { 0% { opacity: 1; transform: translate(0, 0) rotate(0) scale(var(--s)); } 100% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(var(--s)); } }
+/* the step list stays (it is the real content and the scroll markers) but only its rail shows on desktop */
+@media (min-width: 1024px) {
+  .wu-pm .pmj__step > * { visibility: hidden; }
+  .wu-pm .pmj__steps { padding-left: 0; }
+  .wu-pm .pmj__steps::before { left: auto; right: -28px; }
+  .wu-pm .pmj__step::before { left: auto; right: -34px; } .wu-pm .pmj__step::after { left: auto; right: -28px; }
+}
+@media (max-width: 1023px) { .wu-pm .pmj__stage { display: none; } .wu-pm .pmj__device.sm { --h: 330px; border-radius: 34px 34px 0 0; } }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__card .pmj__w, .wu-pm .pmj__card .dm-mark { opacity: 1 !important; transform: none !important; filter: none !important; } }
+@media (max-width: 1023px) { .wu-pm .pmj__device.sm { width: 230px; height: 330px; padding: 8px; } }
+.wu-pm .pmj__card h3 .pmj__w { color: inherit !important; }
+.wu-pm .pmj__phone { top: calc(50vh - min(360px, 43vh)); } .wu-pm .pmj__device { --h: min(700px, 82vh); }
+@media (max-width: 1023px) { .wu-pm .pmj { grid-template-columns: minmax(0, 1fr); } }
+
+/* phone story v4 (owner, 2026-11-20: "logos alignment wrong … box onnude premium … ai feel und … box marinju poyalo … right side
+   line natural akkanm nammde hero vibe pole"): matte stone-dark stage with grain and a lime hairline, the counter as a kraft tag
+   like the hero's, the content flips over like a card, and the rail is a small glass pipe filling with lime gel past metal clamps. */
+.wu-pm .pmj__stage { perspective: 1600px; }
+.wu-pm .pmj__stage-in { overflow: visible; background: #0c0d0b !important; border-radius: 26px;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .07), inset 0 1px 0 rgb(255 255 255 / .09), 0 1px 0 rgb(0 0 0 / .8), 0 50px 90px -50px rgb(0 0 0 / .95) !important; }
+.wu-pm .pmj__stage-in::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: .5; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.wu-pm .pmj__stage-in::after { content: ""; position: absolute; left: 40px; right: 40px; top: 0; height: 1px; background: linear-gradient(90deg, transparent, rgb(190 218 82 / .55), transparent); }
+/* counter = kraft tag */
+.wu-pm .pmj__count { top: -14px; right: 34px; display: flex; align-items: baseline; gap: 2px; padding: 8px 14px 8px 26px; border-radius: 4px 7px 7px 4px;
+  background: linear-gradient(180deg, #c8ad7c, #a88c5c); color: #2d2417 !important; font: 700 15px/1 Inter, system-ui, sans-serif !important; letter-spacing: 0 !important;
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%); box-shadow: 0 6px 12px rgb(0 0 0 / .5); rotate: 4deg; z-index: 3; }
+.wu-pm .pmj__count b { color: #2d2417 !important; font-size: 17px !important; } .wu-pm .pmj__count small { font-size: 11px; opacity: .7; }
+.wu-pm .pmj__hole { position: absolute; left: 11px; top: 50%; width: 7px; height: 7px; margin-top: -3.5px; border-radius: 50%; background: #0c0d0b; box-shadow: 0 0 0 2px #e6dcc4; }
+/* content: brands aligned, flip */
+.wu-pm .pmj__card .pmj__brands { display: flex; align-items: center; gap: 10px; }
+.wu-pm .pmj__card .dm-mark { display: grid !important; place-items: center; margin: 0; opacity: 1 !important; transform: none !important; filter: none !important; }
+.wu-pm .pmj__stage-body { transform-style: preserve-3d; }
+.wu-pm .pmj__card { backface-visibility: hidden; transform-origin: 50% 50% -60px; transform: rotateX(calc(var(--dir, 1) * -96deg)); opacity: 0; }
+.wu-pm .pmj__card.is-in { transform: none; opacity: 1; transition: transform .95s cubic-bezier(.2, .85, .25, 1) .12s, opacity .4s ease .2s; }
+.wu-pm .pmj__card.is-in.no-anim { transition: none; }
+.wu-pm .pmj__card.is-out { transform: rotateX(calc(var(--dir, 1) * 96deg)); opacity: 0; transition: transform .75s cubic-bezier(.55, 0, .75, .35), opacity .45s ease .25s; }
+.wu-pm .pmj__card .pmj__w { opacity: 1 !important; transform: none !important; filter: none !important; }
+/* the rail as a small glass pipe with clamps */
+@media (min-width: 1024px) {
+  .wu-pm .pmj__steps::before { right: -33px !important; width: 12px !important; border-radius: 6px !important;
+    background: linear-gradient(90deg, rgb(200 215 225 / .22), rgb(8 10 8 / .9) 25%, rgb(8 10 8 / .9) 75%, rgb(200 215 225 / .14)) !important; box-shadow: 3px 6px 10px rgb(0 0 0 / .7); }
+  .wu-pm .pmj__step::after { right: -30px !important; width: 6px !important; border-radius: 3px; box-shadow: none !important;
+    background: linear-gradient(180deg, #4f7f1c, #97b83a 70%, #c9d45a) !important;
+    background-image: repeating-linear-gradient(180deg, transparent 0 22px, rgb(235 245 170 / .55) 22px 26px), linear-gradient(180deg, #4f7f1c, #97b83a 70%, #c9d45a) !important; }
+  .wu-pm .pmj__step::before { right: -38px !important; width: 22px !important; height: 9px !important; margin-top: -4.5px !important; border-radius: 2.5px !important;
+    background: linear-gradient(180deg, #9aa0a3, #3d4245 45%, #15181a) !important; box-shadow: 0 2px 3px rgb(0 0 0 / .7) !important; }
+  .wu-pm .pmj__step.is-on::before, .wu-pm .pmj__step:has(~ .pmj__step.is-on)::before { background: linear-gradient(180deg, #9aa0a3, #3d4245 45%, #15181a) !important; }
+  .wu-pm .pmj__step > i.pmj__lamp { visibility: visible; }
+}
+.wu-pm .pmj__step:has(~ .pmj__step.is-on) .pmj__lamp, .wu-pm .pmj__step.is-on .pmj__lamp { background: #beda52; box-shadow: 0 0 6px #beda52; }
+.wu-pm .pmj__lamp { position: absolute; right: -28px; top: 50%; width: 4px; height: 4px; margin-top: -2px; border-radius: 50%; background: #2a2e26; z-index: 2; transition: background .4s, box-shadow .4s; }
+@media (max-width: 1023px) { .wu-pm .pmj__lamp { display: none; } }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__card { transition: none !important; transform: none !important; } }
+@media (min-width: 1024px) {
+  .wu-pm .pmj__steps::before { right: auto !important; left: -44px !important; }
+  .wu-pm .pmj__step::after { right: auto !important; left: -41px !important; }
+  .wu-pm .pmj__step::before { right: auto !important; left: -49px !important; }
+  .wu-pm .pmj__lamp { right: auto; left: -40px; }
+}
+
+/* phone story v5 (owner, 2026-11-20): a vine hangs in the middle with a small boy climbing it as you scroll; the right box turns
+   over as a whole 3D card (the text itself no longer animates). The glass-pipe rail is hidden. */
+.wu-pm .pmj__col { position: relative; }
+.wu-pm .pmj__vinewrap { position: absolute; left: clamp(-90px, -5vw, -60px); top: 0; bottom: 0; width: 56px; pointer-events: none; }
+.wu-pm .pmj__vine { position: sticky; top: 0; height: 100vh; overflow: hidden; -webkit-mask-image: linear-gradient(transparent, #000 6%, #000 90%, transparent); mask-image: linear-gradient(transparent, #000 6%, #000 90%, transparent); }
+.wu-pm .pmj__vsvg { position: absolute; left: 0; top: -6vh; width: 56px; height: 2000px; overflow: visible; transform-origin: 50% 0; animation: pmv-sway 7s ease-in-out infinite alternate; }
+@keyframes pmv-sway { from { rotate: -.6deg; } to { rotate: .6deg; } }
+.wu-pm .pmv-stem, .wu-pm .pmv-stem2 { fill: none; stroke-linecap: round; }
+.wu-pm .pmv-stem2 { stroke: #16260b; stroke-width: 6; }
+.wu-pm .pmv-stem { stroke: #4d7a22; stroke-width: 3.2; }
+.wu-pm .pmv-leaf { fill: #5f9a2a; stroke: #2f5e17; stroke-width: .8; transform-box: fill-box; }
+.wu-pm .pmv-leaf:nth-of-type(3n) { fill: #79b03a; } .wu-pm .pmv-leaf:nth-of-type(4n) { fill: #4a8020; }
+.wu-pm .pmj__boy { --py: 0; position: absolute; left: 50%; top: 0; width: 46px; margin-left: -23px; translate: 0 calc((1 - var(--py)) * (100vh - 190px) + 60px); transition: translate .25s linear; }
+.wu-pm .pmj__boy svg { width: 100%; overflow: visible; filter: drop-shadow(0 6px 6px rgb(0 0 0 / .6)); }
+.wu-pm .pmj__boy path { stroke-linecap: round; stroke-linejoin: round; }
+.wu-pm .pb-arm path { fill: none; stroke: #d39b6e; stroke-width: 5; }
+.wu-pm .pb-skin { fill: #d39b6e; } .wu-pm .pb-hair { fill: #1b1410; } .wu-pm .pb-eye { fill: #1b1410; }
+.wu-pm .pb-smile { fill: none; stroke: #6b3a24; stroke-width: 1.3; }
+.wu-pm .pb-shirt { fill: #beda52; stroke: #8fa838; stroke-width: 1; }
+.wu-pm .pb-mundu { fill: #f4f1e6; stroke: #c9c3ae; stroke-width: 1; }
+.wu-pm .pb-mundu-leg { fill: none; stroke: #d39b6e; stroke-width: 5; } .wu-pm .pb-foot { fill: #3a2a1e; }
+.wu-pm .pb-arm, .wu-pm .pb-leg { transform-box: fill-box; }
+.wu-pm .pb-arm.l { transform-origin: 90% 100%; } .wu-pm .pb-arm.r { transform-origin: 10% 100%; } .wu-pm .pb-leg { transform-origin: 50% 0; }
+.wu-pm .pmj__boy.is-climbing .pb-arm.l, .wu-pm .pmj__boy.is-climbing .pb-leg.r { animation: pb-a .36s ease-in-out infinite alternate; }
+.wu-pm .pmj__boy.is-climbing .pb-arm.r, .wu-pm .pmj__boy.is-climbing .pb-leg.l { animation: pb-b .36s ease-in-out infinite alternate; }
+@keyframes pb-a { from { translate: 0 0; } to { translate: 0 6px; } } @keyframes pb-b { from { translate: 0 6px; } to { translate: 0 0; } }
+.wu-pm .pmj__boy:not(.is-climbing) svg { animation: pb-idle 2.4s ease-in-out infinite alternate; }
+@keyframes pb-idle { to { rotate: 3deg; } }
+/* pipe rail off */
+@media (min-width: 1024px) {
+  .wu-pm .pmj__steps::before, .wu-pm .pmj__step::after, .wu-pm .pmj__step::before, .wu-pm .pmj__lamp { display: none !important; }
+}
+@media (max-width: 1023px) { .wu-pm .pmj__vinewrap { display: none; } }
+/* whole-box turn: the text stays still inside the card */
+.wu-pm .pmj__stage { perspective: 1400px; }
+.wu-pm .pmj__stage-in { transform-style: preserve-3d; backface-visibility: hidden; will-change: transform; }
+.wu-pm .pmj__card, .wu-pm .pmj__card.is-in, .wu-pm .pmj__card.is-out { transform: none !important; opacity: 1 !important; transition: none !important; }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__vsvg, .wu-pm .pmj__boy svg { animation: none !important; } }
+
+/* rope ladder instead of the vine (owner, 2026-11-20: "kaattu valli venda … 1"): two twisted jute ropes with knotted wooden rungs;
+   the boy climbs it with the scroll, hands on the ropes. */
+.wu-pm .pmj__vinewrap { width: 64px; }
+.wu-pm .pmj__ladder { width: 64px !important; animation-duration: 9s; }
+.wu-pm .pl-rope-s { stroke: rgb(0 0 0 / .6); stroke-width: 7; fill: none; translate: 3px 4px; }
+.wu-pm .pl-rope { stroke: url(#pl-twist); stroke-width: 5.5; fill: none; }
+.wu-pm .pl-wood { fill: url(#pl-woodg); stroke: #3a2410; stroke-width: .8; filter: drop-shadow(2px 4px 2px rgb(0 0 0 / .6)); }
+.wu-pm .pl-grain { stroke: rgb(255 230 190 / .18); stroke-width: 1.2; fill: none; }
+.wu-pm .pl-knot { fill: url(#pl-twist); stroke: #5a3e1e; stroke-width: .6; }
+.wu-pm .pmj__boy { width: 54px; margin-left: -27px; }
+.wu-pm .pmj__boy { width: 52px; margin-left: -26px; }
+
+/* fiber-optic cable instead of the ladder (owner, 2026-11-20: "ladder venda, tech related … cherkkan venam"): a dark sheathed
+   cable with a lime core, light pulses running up it, nodes that light up once the boy has climbed past them. */
+.wu-pm .pmj__cable { width: 64px !important; animation-duration: 8s; }
+.wu-pm .pmj__cable path { fill: none; stroke-linecap: round; }
+.wu-pm .pc-shadow { stroke: rgb(0 0 0 / .7); stroke-width: 12; translate: 4px 5px; }
+.wu-pm .pc-sheath { stroke: #1a1c1a; stroke-width: 9; }
+.wu-pm .pc-core { stroke: #3d5a14; stroke-width: 3; }
+.wu-pm .pc-pulse { stroke: #e9f6a0; stroke-width: 3; stroke-dasharray: 14 150; animation: pc-run 2.4s linear infinite; filter: drop-shadow(0 0 4px #beda52); }
+.wu-pm .pc-pulse.p2 { stroke-dasharray: 6 230; animation-duration: 3.6s; opacity: .7; }
+@keyframes pc-run { to { stroke-dashoffset: 328; } }
+.wu-pm .pc-ring { fill: #0c0d0b; stroke: #3a3d38; stroke-width: 2.4; transition: stroke .4s ease; }
+.wu-pm .pc-dot { fill: #2a2e26; transition: fill .4s ease; }
+.wu-pm .pc-node.is-lit .pc-ring { stroke: #beda52; } .wu-pm .pc-node.is-lit .pc-dot { fill: #beda52; filter: drop-shadow(0 0 4px #beda52); }
+.wu-pm .pmj__boy { width: 50px; margin-left: -25px; }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pc-pulse { animation: none; } }
+
+/* climbing boy + cable from the owner's generated images (2026-11-20): braided fiber cable (tiled), gunmetal connectors that light
+   when the boy has passed them, the boy's two climbing frames alternate while scrolling, a resting frame when still. */
+.wu-pm .pmj__cable2 { position: absolute; left: 50%; top: 0; bottom: 0; width: 30px; margin-left: -15px; background: var(--cab) center top / 30px auto repeat-y;
+  filter: drop-shadow(5px 8px 6px rgb(0 0 0 / .7)); animation: pc2-sway 8s ease-in-out infinite alternate; transform-origin: 50% 0; }
+@keyframes pc2-sway { from { rotate: -.35deg; } to { rotate: .35deg; } }
+.wu-pm .pmj__pulse { position: absolute; left: 50%; top: 0; bottom: 0; width: 6px; margin-left: -3px; mix-blend-mode: screen; opacity: .85;
+  background: linear-gradient(180deg, transparent 0 40%, rgb(233 246 160 / .95) 48%, transparent 56%) 0 0 / 100% 260px repeat-y; animation: pc2-run 2.2s linear infinite; }
+@keyframes pc2-run { to { background-position-y: -260px; } }
+.wu-pm .pc-n { position: absolute; left: 50%; width: 48px; height: 27px; margin-left: -24px; display: grid; place-items: center; }
+.wu-pm .pc-n img { grid-area: 1 / 1; width: 48px; height: auto; filter: drop-shadow(2px 4px 3px rgb(0 0 0 / .7)); }
+.wu-pm .pc-n img.on { opacity: 0; transition: opacity .45s ease; }
+.wu-pm .pc-n.is-lit img.on { opacity: 1; }
+.wu-pm .pmj__boy { width: 0 !important; margin-left: 0 !important; left: 50% !important; height: 135px; }
+.wu-pm .pmj__boy .pb-f { position: absolute; top: -6px; left: 0; width: 90px; height: 135px; max-width: none; margin-left: calc(var(--hx) * -90px); filter: drop-shadow(6px 10px 8px rgb(0 0 0 / .6)); opacity: 0; }
+.wu-pm .pmj__boy:not(.is-climbing) .pb-f.rest { opacity: 1; animation: pb2-idle 2.6s ease-in-out infinite alternate; transform-origin: calc(var(--hx) * 100%) 0; }
+@keyframes pb2-idle { from { rotate: -2deg; } to { rotate: 2deg; } }
+.wu-pm .pmj__boy.is-climbing .pb-f.a { animation: pb2-a .44s steps(1) infinite; }
+.wu-pm .pmj__boy.is-climbing .pb-f.b { animation: pb2-b .44s steps(1) infinite; }
+@keyframes pb2-a { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes pb2-b { 0% { opacity: 0; } 50% { opacity: 1; } }
+.wu-pm .pmj__vinewrap { width: 90px; left: clamp(-110px, -6vw, -76px); }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__cable2, .wu-pm .pmj__pulse, .wu-pm .pmj__boy .pb-f { animation: none !important; } }
+/* thinner cable, bigger boy (owner, 2026-11-20: "cable valuthum chekkan cheruthum. cable width kurakknm") */
+.wu-pm .pmj__cable2 { width: 16px; margin-left: -8px; background-size: 16px auto; }
+.wu-pm .pmj__pulse { width: 3px; margin-left: -1.5px; }
+.wu-pm .pc-n { width: 30px; height: 17px; margin-left: -15px; } .wu-pm .pc-n img { width: 30px; }
+.wu-pm .pmj__boy { height: 170px; }
+.wu-pm .pmj__boy .pb-f { width: 114px; height: 171px; margin-left: calc(var(--hx) * -114px); }
+.wu-pm .pmj__vinewrap { width: 114px; }
+/* cable 20px, 7 connectors (one per service) lit as each service becomes active */
+.wu-pm .pmj__cable2 { width: 20px; margin-left: -10px; background-size: 20px auto; }
+.wu-pm .pc-n { width: 34px; height: 19px; margin-left: -17px; margin-top: -9px; } .wu-pm .pc-n img { width: 34px; }
+
+/* boy hangs on the end of the rope (owner, 2026-11-20): one image (looking at the viewer), the rope comes down from the top to his
+   hand and ends there; scrolling pulls him up, only the rope moves (its texture runs up with the scroll). Connectors removed. */
+.wu-pm .pmj__vine { --py: 0; --sy: 0; }
+.wu-pm .pmj__boy { --py: inherit; }
+.wu-pm .pmj__boy .pb-f.a, .wu-pm .pmj__boy .pb-f.b { display: none !important; }
+.wu-pm .pmj__boy .pb-f.rest { opacity: 1 !important; animation: pb3-hang 3.2s ease-in-out infinite alternate !important; transform-origin: calc(var(--hx) * 100%) 2% !important; }
+@keyframes pb3-hang { from { rotate: -3deg; } to { rotate: 3deg; } }
+.wu-pm .pmj__cable2, .wu-pm .pmj__pulse { bottom: auto !important; height: calc((1 - var(--py)) * (100vh - 190px) + 66px); transition: height .25s linear; }
+.wu-pm .pmj__cable2 { background-position: center calc(var(--sy) * -1px) !important; animation: none !important; }
+.wu-pm .pc-n { display: none !important; }
+.wu-pm .pmj__vine { --by: 300; }
+.wu-pm .pmj__boy { translate: 0 calc(var(--by) * 1px) !important; transition: none !important; }
+.wu-pm .pmj__cable2, .wu-pm .pmj__pulse { height: calc(var(--by) * 1px + 4px) !important; transition: none !important; }
+/* a plain twisted jute rope instead of the fiber cable (owner, 2026-11-20: "fiber cable venda. valliyo noolo mathi") */
+.wu-pm .pmj__cable2 { width: 9px !important; margin-left: -4.5px !important; border-radius: 5px;
+  background: linear-gradient(90deg, rgb(0 0 0 / .45), transparent 35%, rgb(255 240 210 / .18) 50%, transparent 65%, rgb(0 0 0 / .5)),
+              repeating-linear-gradient(155deg, #c9a46a 0 4px, #9b7744 4px 6px, #7d5a2e 6px 8px) !important;
+  background-size: 100% 100%, 100% 22px !important; background-position: 0 0, 0 calc(var(--sy) * -1px) !important; filter: drop-shadow(4px 6px 4px rgb(0 0 0 / .6)); }
+.wu-pm .pmj__pulse { display: none !important; }
+/* rope runs through both hands and its end hangs down past his feet (behind the boy) */
+.wu-pm .pmj__cable2 { height: calc(var(--by) * 1px + 150px) !important; z-index: 0;
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 26px), transparent); mask-image: linear-gradient(#000 calc(100% - 26px), transparent); }
+.wu-pm .pmj__boy { z-index: 1; }
+/* owner's generated jute rope (2026-11-20), tiled, texture runs with the scroll */
+.wu-pm .pmj__cable2 { width: 16px !important; margin-left: -8px !important; border-radius: 0;
+  background: var(--cab) 50% calc(var(--sy) * -1px) / 16px auto repeat-y !important; filter: brightness(.85) drop-shadow(4px 6px 4px rgb(0 0 0 / .6)); }
+/* rope tail visibly hangs below his feet */
+.wu-pm .pmj__cable2 { height: calc(var(--by) * 1px + 250px) !important; -webkit-mask-image: linear-gradient(#000 calc(100% - 50px), transparent); mask-image: linear-gradient(#000 calc(100% - 50px), transparent); }
+
+/* boy and rope in one image (owner's edit, 2026-11-20): his hands and legs really hold the rope; above the image the rope
+   continues as the matching cream tile up to the top of the screen. */
+.wu-pm .pmj__boy .pb-f.rest { width: 160px !important; height: 240px !important; margin-left: calc(var(--hx) * -160px) !important; top: 0 !important; filter: drop-shadow(8px 12px 10px rgb(0 0 0 / .55)); transform-origin: calc(var(--hx) * 100%) 0 !important; }
+.wu-pm .pmj__vinewrap { width: 160px; }
+.wu-pm .pmj__cable2 { width: 10.4px !important; margin-left: -5.2px !important; background-size: 10.4px auto !important; height: calc(var(--by) * 1px + 3px) !important;
+  -webkit-mask-image: none !important; mask-image: none !important; filter: drop-shadow(4px 6px 4px rgb(0 0 0 / .55)) !important; }
+.wu-pm .pmj__vinewrap { left: clamp(-185px, -11vw, -150px) !important; }
+/* the little kid (owner's "Joyful Child Climbing a Rope", 2026-11-20) */
+.wu-pm .pmj__boy .pb-f.rest { width: 180px !important; height: 270px !important; margin-left: calc(var(--hx) * -180px) !important; }
+.wu-pm .pmj__cable2 { width: 8px !important; margin-left: -4px !important; background-size: 8px auto !important; }
+.wu-pm .pmj__cable2 { width: 9.4px !important; margin-left: -4.2px !important; background-size: 9.4px auto !important; }
+
+/* pipe no longer reads as a snake (2026-11-20): straight runs with metal elbows at the bends, clearer glass,
+   no dashed line down the middle, clamps bolted to the stones on a bracket */
+.wu-pm .pm-pipe path { stroke-linejoin: round; }
+.wu-pm .pm-pipe__glass { stroke: rgb(225 238 245 / .26) !important; stroke-width: 20 !important; }
+.wu-pm .pm-pipe__inner { stroke: rgb(10 14 12 / .5) !important; stroke-width: 15 !important; }
+.wu-pm .pm-pipe__gel { stroke-width: 8 !important; opacity: .92; }
+.wu-pm .pm-pipe__flow { display: none !important; }
+.wu-pm .pm-pipe__shine { stroke: rgb(255 255 255 / .42) !important; stroke-width: 1.6 !important; translate: 0 -6px !important; }
+.wu-pm .pm-elbow__body { fill: url(#pmp-metal); stroke: rgb(0 0 0 / .6); stroke-width: 1.2; }
+.wu-pm .pm-elbow__rim { fill: none; stroke: rgb(255 255 255 / .18); stroke-width: 1.4; }
+.wu-pm .pm-elbow__hi { fill: rgb(255 255 255 / .35); }
+.wu-pm .pm-valve__leg { fill: #2a2e30; }
+.wu-pm .pm-valve__foot { fill: url(#pmp-metal); stroke: rgb(0 0 0 / .55); stroke-width: .8; }
+.wu-pm .pm-valve__bolt { fill: #c9cdcf; stroke: rgb(0 0 0 / .5); stroke-width: .5; }
+/* no pipe, no gel (owner, 2026-11-20): only the tags, each on a small clamp bolted into its stone */
+.wu-pm .pm-pipe__shadow, .wu-pm .pm-pipe__glass, .wu-pm .pm-pipe__inner, .wu-pm .pm-pipe__gel, .wu-pm .pm-pipe__flow,
+.wu-pm .pm-pipe__shine, .wu-pm .pm-pipe__elbows, .wu-pm .pm-pipe__marks { display: none !important; }
+.wu-pm .pm-valve--wall { filter: drop-shadow(1px 2px 1.5px rgb(0 0 0 / .7)); }
+.wu-pm .pm-valve--wall .pm-valve__loop { stroke: #b9bec1 !important; stroke-width: 2 !important; }
+/* rope above the kid = his own rope, cut from the same image (2026-11-20, owner: "sync akku 100%"): same width (8.09px = 46px
+   of the 1024px source at 180px), same colour and twist, phase-aligned to where it meets the image; it no longer slides */
+.wu-pm .pmj__cable2 { width: 8.09px !important; margin-left: -4.045px !important; filter: none !important;
+  background: var(--cab) 50% calc(100% - 2.65px) / 8.09px auto repeat-y !important; }
+/* card stack change (2026-11-20): a copy of the old card sits on top of / behind the new one while they swap */
+.wu-pm .pmj__stage-in.is-ghost { position: absolute; inset: 0; pointer-events: none; }
+/* hover the kid: rope + kid swing together around the top of the rope (--sw, --swx, --swy from the script) */
+.wu-pm .pmj__vine { --sw: 0deg; --swx: 0; --swy: 0; }
+.wu-pm .pmj__cable2 { transform-origin: 50% 0; rotate: var(--sw); }
+.wu-pm .pmj__boy { translate: calc(var(--swx) * 1px) calc(var(--by) * 1px + var(--swy) * 1px) !important; rotate: var(--sw); transform-origin: 0 0; }
+.wu-pm .pmj__boy .pb-f.rest { pointer-events: auto; cursor: grab; }
+/* kid above the phone and the card while he swings; wider column so he is not cut off; his question bubble (2026-11-20) */
+.wu-pm .pmj__vinewrap { z-index: 20; width: 640px !important; left: calc(clamp(-185px, -11vw, -150px) - 240px) !important; }
+.wu-pm .pmj__ask { position: absolute; left: 50%; top: 0; margin-left: 46px; translate: 0 calc(var(--by) * 1px - 34px); width: 250px; z-index: 3;
+  padding: 16px 16px 12px; border-radius: 18px 18px 18px 4px; background: #f4f1e8; color: #11150a; box-shadow: 0 18px 40px -12px rgb(0 0 0 / .7);
+  opacity: 0; scale: .85; transform-origin: 0 100%; pointer-events: none; transition: opacity .25s ease, scale .35s cubic-bezier(.3, 1.5, .5, 1); }
+.wu-pm .pmj__ask.is-open { opacity: 1; scale: 1; pointer-events: auto; }
+.wu-pm .pmj__ask-q { margin: 0 0 10px; font: 600 15px/1.3 Inter, system-ui, sans-serif; color: #11150a; }
+.wu-pm .pmj__ask-cs { display: flex; flex-wrap: wrap; gap: 6px; }
+.wu-pm .pmj__ask-c { appearance: none; border: 1px solid rgb(17 21 10 / .18); background: #fff; color: #11150a; border-radius: 999px; padding: 6px 10px;
+  font: 500 12.5px/1.2 Inter, system-ui, sans-serif; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+.wu-pm .pmj__ask-c:hover, .wu-pm .pmj__ask-c:focus-visible { background: #beda52; border-color: #8fa838; outline: none; }
+.wu-pm .pmj__ask-n { margin: 10px 0 0; font: 500 11px/1 Inter, system-ui, sans-serif; color: #5d6152; }
+.wu-pm .pmj__boy .pb-f.rest { cursor: pointer; }
+/* phone screens show real WiseUp clients (owner, 2026-11-20): their logos as the profile/favicon marks */
+.wu-pm .ps-fav.is-logo { background: #fff var(--logo) center / 78% auto no-repeat; box-shadow: inset 0 0 0 1px rgb(0 0 0 / .12); }
+/* the question is a kraft tag tied to the kid's rope with a string, so it hangs from the rope and swings with it (2026-11-20) */
+.wu-pm .pmj__ask-arm { position: absolute; left: 50%; top: 0; width: 0; height: 0; z-index: 3; transform-origin: 0 0; rotate: var(--sw); pointer-events: none; }
+.wu-pm .pmj__ask-str { position: absolute; left: 0; top: calc(var(--by) * 1px - 30px); width: 60px; height: 40px; overflow: visible; opacity: 0; transition: opacity .2s ease; }
+.wu-pm .pmj__ask-str path { fill: none; stroke: #cdb98f; stroke-width: 1.6; stroke-linecap: round; }
+.wu-pm .pmj__ask-str circle { fill: #8a744b; }
+.wu-pm .pmj__ask-arm:has(.pmj__ask.is-open) .pmj__ask-str { opacity: 1; }
+.wu-pm .pmj__ask { left: 46px !important; top: calc(var(--by) * 1px - 6px) !important; margin-left: 0 !important; translate: none !important;
+  background: linear-gradient(180deg, #e0cba0, #cdb282) !important; border-radius: 14px !important; padding: 16px 16px 12px 30px !important;
+  transform-origin: 12px 12px !important; rotate: -2deg; box-shadow: 0 16px 34px -12px rgb(0 0 0 / .75), inset 0 0 0 1px rgb(90 70 30 / .25) !important; }
+.wu-pm .pmj__ask::before { content: ""; position: absolute; left: 7px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: #1a1712;
+  box-shadow: 0 0 0 3px #efe2c4, 0 0 0 4px rgb(90 70 30 / .35); }
+.wu-pm .pmj__ask-c { background: #f6efdf !important; border-color: rgb(80 60 25 / .22) !important; }
+.wu-pm .pmj__ask-c:hover, .wu-pm .pmj__ask-c:focus-visible { background: #beda52 !important; border-color: #8fa838 !important; }
+.wu-pm .pmj__ask-n { color: #6b5a3a !important; }
+.wu-pm .pmj__ask-str { width: 90px !important; height: 60px !important; }
+.wu-pm .pmj__ask { left: 70px !important; top: calc(var(--by) * 1px + 10px) !important; }
+/* string visible (site-wide svg max-width: 100% had squeezed it to 0); a still hover zone over the kid's resting place */
+.wu-pm .pmj__ask-str { max-width: none !important; }
+.wu-pm .pmj__boy .pb-f.rest { pointer-events: none !important; }
+.wu-pm .pmj__kidzone { position: absolute; left: 50%; top: 0; width: 170px; height: 270px; margin-left: -110px; translate: 0 calc(var(--by) * 1px);
+  pointer-events: auto; cursor: pointer; z-index: 2; }
+/* tag tied to the end of the kid's rope (the tassel by his feet), just the question + a WhatsApp button (owner, 2026-11-20) */
+.wu-pm .pmj__ask-str { left: 14px !important; top: calc(var(--by) * 1px + 252px) !important; width: 60px !important; height: 40px !important; }
+.wu-pm .pmj__ask { left: 46px !important; top: calc(var(--by) * 1px + 266px) !important; width: auto !important; padding: 12px 14px 12px 28px !important; rotate: 3deg; }
+.wu-pm .pmj__ask::before { left: 7px !important; top: 15px !important; width: 9px !important; height: 9px !important; }
+.wu-pm .pmj__ask-q { margin: 0 0 9px !important; font-size: 14px !important; white-space: nowrap; }
+.wu-pm .pmj__ask-wa { appearance: none; border: 0; display: inline-flex; align-items: center; gap: 7px; padding: 8px 14px 8px 11px; border-radius: 999px;
+  background: #25d366; color: #fff; font: 600 13px/1 Inter, system-ui, sans-serif; cursor: pointer; box-shadow: 0 4px 10px -4px rgb(0 0 0 / .45); transition: background .2s ease, translate .2s ease; }
+.wu-pm .pmj__ask-wa svg { width: 16px; height: 16px; }
+.wu-pm .pmj__ask-wa:hover, .wu-pm .pmj__ask-wa:focus-visible { background: #1ebe5b; translate: 0 -1px; outline: none; }
+/* room for the tag under the kid: he starts a little higher, the column fades only at the very bottom */
+.wu-pm .pmj__vine { -webkit-mask-image: linear-gradient(transparent, #000 6%, #000 97%, transparent) !important; mask-image: linear-gradient(transparent, #000 6%, #000 97%, transparent) !important; }
+/* one swing for rope, kid and tag: a gentle idle sway (--idle) plus the hover pendulum (--sw), all around the rope top, so the
+   tag's string always meets the rope end (the kid's own sway around his hand is gone) */
+@property --idle { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+.wu-pm .pmj__vine { animation: pmk-idle 3.4s ease-in-out infinite alternate; }
+@keyframes pmk-idle { from { --idle: -.7deg; } to { --idle: .7deg; } }
+.wu-pm .pmj__cable2, .wu-pm .pmj__ask-arm { rotate: calc(var(--sw) + var(--idle)) !important; }
+.wu-pm .pmj__boy { translate: 0 calc(var(--by) * 1px) !important; rotate: calc(var(--sw) + var(--idle)) !important; transform-origin: 0 calc(var(--by) * -1px) !important; }
+.wu-pm .pmj__boy .pb-f.rest { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__vine { animation: none; } }
+/* the question is a child's school slate (wooden frame, chalk writing) hanging from the end of the kid's rope on two strings;
+   it hangs straight down and swings a little behind the rope, like a real weight (owner, 2026-11-20) */
+.wu-pm .pmj__vinewrap { z-index: 60 !important; }
+.wu-pm .pmj__vine { -webkit-mask-image: none !important; mask-image: none !important; }
+.wu-pm .pmj__cable2 { -webkit-mask-image: linear-gradient(transparent, #000 70px) !important; mask-image: linear-gradient(transparent, #000 70px) !important; }
+.wu-pm .pmj__ask-hang { position: absolute; left: 14px; top: calc(var(--by) * 1px + 256px); width: 0; height: 0; transform-origin: 0 0;
+  rotate: calc((var(--sw) + var(--idle)) * -.75); transition: rotate .45s cubic-bezier(.3, 1.4, .5, 1); }
+.wu-pm .pmj__ask-hang .pmj__ask-str { left: -100px !important; top: -6px !important; width: 200px !important; height: 44px !important; }
+.wu-pm .pmj__ask-hang .pmj__ask-str path { stroke: #d7c398; stroke-width: 1.6; }
+.wu-pm .pmj__ask-hang .pmj__ask { left: -104px !important; top: 34px !important; width: 208px !important; padding: 12px 14px 14px !important; rotate: none !important;
+  border: 8px solid transparent; border-radius: 9px !important; text-align: center; transform-origin: 50% -34px !important;
+  background: radial-gradient(120% 90% at 30% 20%, rgb(255 255 255 / .07), transparent 60%) padding-box, linear-gradient(160deg, #2e3430, #1f2421) padding-box,
+    repeating-linear-gradient(95deg, #8a5a2b 0 3px, #9d6a36 3px 7px, #7c4f24 7px 9px) border-box !important;
+  box-shadow: 0 18px 30px -12px rgb(0 0 0 / .85), inset 0 0 0 1px rgb(0 0 0 / .5) !important; }
+.wu-pm .pmj__ask-hang .pmj__ask::before, .wu-pm .pmj__ask-hang .pmj__ask::after { content: ""; position: absolute; top: -6px; width: 7px; height: 7px; border-radius: 50%;
+  background: #c9ced0; box-shadow: inset 0 -1px 1px rgb(0 0 0 / .5); left: 14px !important; }
+.wu-pm .pmj__ask-hang .pmj__ask::after { left: auto !important; right: 14px; }
+.wu-pm .pmj__ask-hang .pmj__ask-q { font: 700 22px/1.05 Caveat, 'Comic Sans MS', cursive !important; color: rgb(246 244 236 / .92) !important; white-space: normal !important;
+  margin: 0 0 10px !important; text-shadow: 0 0 1px rgb(255 255 255 / .35); letter-spacing: .01em; }
+.wu-pm .pmj__ask-hang .pmj__ask-wa { font-size: 12.5px; padding: 7px 13px 7px 10px; }
+.wu-pm .pmj__ask-hang .pmj__ask.is-open ~ * { display: none; }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__ask-hang { transition: none; } }
+
+/* Process = a speedometer (2026-11-20; the pipe timeline is on the DM page): the needle moves through the six steps with the
+   scroll, each segment lights up, the step shows beside it. Without the script (phones, reduced motion) a plain card list. */
+.wu-pm .pm-gauge__dial { display: none; }
+.wu-pm .pm-gauge__steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.wu-pm .pm-gauge__step { padding: 22px 22px 20px; border-radius: 22px; background: #111113; }
+.wu-pm .pm-gauge__si { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 13px; background: #1b1d17; color: #beda52; margin-bottom: 14px; }
+.wu-pm .pm-gauge__sn { display: block; font: 600 12px/1 Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: #8fa838; margin-bottom: 10px; }
+.wu-pm .pm-gauge__step h3 { margin: 0 0 10px; }
+.wu-pm .pm-gauge__step p { margin: 0; color: #a8a8b0; }
+@media (min-width: 900px) {
+  .wu-pm .pm-gauge__steps { grid-template-columns: repeat(3, 1fr); }
+  .wu-pm .pm-gauge.is-live { --a: -90deg; height: calc(100vh + 6 * 40vh); margin-top: -6vh; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__pin { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 5vw, 90px); align-items: center; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__dial { display: block; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__dial svg { width: 100%; max-width: 640px; height: auto; display: block; overflow: visible; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__steps { grid-template-columns: 1fr; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__step { grid-area: 1 / 1; background: none; padding: 0; opacity: 0; translate: 0 26px; pointer-events: none;
+    transition: opacity .45s ease, translate .6s cubic-bezier(.22, 1, .36, 1); }
+  .wu-pm .pm-gauge.is-live .pm-gauge__step.is-on { opacity: 1; translate: 0 0; pointer-events: auto; transition-delay: .12s; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__step h3 { font-size: clamp(28px, 2.6vw, 40px) !important; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 16px; }
+  .wu-pm .pm-gauge.is-live .pm-gauge__step p { font-size: 17px; line-height: 1.7; max-width: 30em; }
+}
+.wu-pm .pm-gauge__tick { stroke: #3a3d36; stroke-width: 1.4; }
+.wu-pm .pm-gauge__seg { fill: none; stroke: #1d201a; stroke-width: 26; transition: stroke .5s ease; }
+.wu-pm .pm-gauge__seg.is-lit { stroke: #beda52; }
+.wu-pm .pm-gauge__ic { color: #4a4e44; transition: color .5s ease; }
+.wu-pm .pm-gauge__ic.is-lit { color: #beda52; }
+.wu-pm .pm-gauge__needle { transform-box: view-box; transform-origin: 240px 240px; rotate: var(--a); }
+.wu-pm .pm-gauge__needle path { fill: #f2f2ee; }
+.wu-pm .pm-gauge__hub { fill: #111113; stroke: #f2f2ee; stroke-width: 3; }
+.wu-pm .pm-gauge__hub2 { fill: #beda52; }
+.wu-pm .pm-gauge__num { font: 700 46px/1 Outfit, Inter, system-ui, sans-serif; fill: #fff; letter-spacing: -.02em; }
+.wu-pm .pm-gauge__of { font: 600 10px/1 Inter, system-ui, sans-serif; fill: #8a8a92; letter-spacing: .2em; }
+.wu-pm .pm-gauge__num { font-size: 40px !important; }
+
+/* Process = an optimisation loop (2026-11-20, replaces the speedometer): six stations on a ring, a lime point goes round with
+   the scroll, stations light as it arrives, and after step 6 it returns to step 1. */
+.wu-pm .pm-loop.is-live { --lp: 0; height: calc(100vh + 6 * 45vh); }
+.wu-pm .pm-loop.is-live .pm-gauge__dial svg { max-width: 520px; margin-inline: auto; }
+.wu-pm .pm-loop__base { fill: none; stroke: #1b1d18; stroke-width: 6; }
+.wu-pm .pm-loop__prog { fill: none; stroke: #beda52; stroke-width: 6; stroke-linecap: round; stroke-dasharray: 100 100;
+  stroke-dashoffset: calc(100 - var(--lp) * 100); transform-box: view-box; transform-origin: 240px 240px; rotate: -90deg; }
+.wu-pm .pm-loop__st circle { fill: #111113; stroke: #2c2f28; stroke-width: 2; transition: fill .45s ease, stroke .45s ease; }
+.wu-pm .pm-loop__st [data-seg-ic] { color: #5a5e53; transition: color .45s ease; }
+.wu-pm .pm-loop__st.is-lit circle { stroke: #beda52; }
+.wu-pm .pm-loop__st.is-lit [data-seg-ic] { color: #beda52; }
+.wu-pm .pm-loop__st.is-now circle { fill: #beda52; }
+.wu-pm .pm-loop__st.is-now [data-seg-ic] { color: #11150a; }
+.wu-pm .pm-loop__st > circle { transform-box: fill-box; transform-origin: center; transition: fill .45s ease, stroke .45s ease, scale .5s cubic-bezier(.3, 1.5, .5, 1); }
+.wu-pm .pm-loop__st.is-now > circle { scale: 1.12; }
+.wu-pm .pm-loop__dot { transform-box: view-box; transform-origin: 240px 240px; rotate: calc(var(--lp) * 360deg); }
+.wu-pm .pm-loop__dot circle { fill: #f2f2ee; stroke: #beda52; stroke-width: 4; }
+.wu-pm .pm-loop .pm-gauge__num { font-size: 64px !important; }
+.wu-pm .pm-loop .pm-gauge__of { font-size: 11px; }
+.wu-pm .pm-loop__again { color: #beda52; opacity: 0; transition: opacity .4s ease; }
+.wu-pm .pm-loop.is-back .pm-loop__again { opacity: 1; }
+/* loop: bigger ring, columns closer, less empty space (owner, 2026-11-20) */
+@media (min-width: 900px) {
+  .wu-pm .pm-loop.is-live .pm-gauge__pin { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 3vw, 56px); }
+  .wu-pm .pm-loop.is-live .pm-gauge__dial svg { width: min(100%, 78vh, 680px); max-width: none; margin-inline: auto 0; }
+  .wu-pm .pm-loop.is-live .pm-gauge__step h3 { font-size: clamp(30px, 3vw, 46px) !important; }
+  .wu-pm .pm-loop.is-live .pm-gauge__step p { font-size: 18px; }
+}
+.wu-pm .pm-loop__st [data-seg-ic] circle { fill: none !important; stroke: currentColor !important; stroke-width: 1.7 !important; scale: none !important; }
+
+/* phone's last screen = WiseUp's own enquiry form in iOS style (2026-11-20): Safari address pill, dark brand card, grouped
+   inset list (label left, field right, hairlines), lime button, a real success toast */
+.wu-pm .ps--wu { background: #f2f2f7; display: flex; flex-direction: column; gap: 12px; }
+.wu-pm .ps-wu__url { display: flex; align-items: center; justify-content: center; gap: 5px; height: 32px; margin: 0 2px; border-radius: 11px; background: #e3e3e8; font: 500 12.5px/1 -apple-system, 'SF Pro Text', Inter, system-ui, sans-serif; color: #1c1c1e; }
+.wu-pm .ps-wu__url svg { width: 11px; height: 11px; }
+.wu-pm .ps-wu__hero { display: grid; gap: 6px; padding: 16px 16px 18px; border-radius: 18px; background: #0c0d0b; color: #fff;
+  background-image: radial-gradient(120% 80% at 100% 0%, rgb(190 218 82 / .22), transparent 60%); }
+.wu-pm .ps-wu__hero img { width: 84px; height: auto; margin-bottom: 4px; }
+.wu-pm .ps-wu__hero small { font: 600 10px/1 Inter, system-ui, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #beda52; }
+.wu-pm .ps-wu__hero b { font: 600 19px/1.15 -apple-system, 'SF Pro Display', Inter, system-ui, sans-serif; letter-spacing: -.01em; }
+.wu-pm .ps-wu__form { display: grid; gap: 10px; }
+.wu-pm .ps-wu__group { border-radius: 14px; background: #fff; overflow: hidden; }
+.wu-pm .ps-wu__row { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 14px; position: relative; font: 400 14px/1.2 -apple-system, 'SF Pro Text', Inter, system-ui, sans-serif; color: #1c1c1e; }
+.wu-pm .ps-wu__row + .ps-wu__row::before { content: ""; position: absolute; left: 14px; right: 0; top: 0; height: 1px; background: #e5e5ea; }
+.wu-pm .ps-wu__row span { flex: none; width: 64px; }
+.wu-pm .ps-wu__row input, .wu-pm .ps-wu__row select { flex: 1; min-width: 0; border: 0; background: none; padding: 0; height: 44px; font: inherit; color: #1c1c1e; text-align: right; outline: none; -webkit-appearance: none; appearance: none; }
+.wu-pm .ps-wu__row input::placeholder { color: #a3a3a8; }
+.wu-pm .ps-wu__row select { text-align-last: right; color: #1c1c1e; cursor: pointer; padding-right: 16px; }
+.wu-pm .ps-wu__row.is-sel::after { content: ""; position: absolute; right: 14px; top: 50%; width: 7px; height: 7px; border: solid #a3a3a8; border-width: 0 1.8px 1.8px 0; rotate: -45deg; translate: 0 -50%; pointer-events: none; }
+.wu-pm .ps-wu__row:focus-within { background: #fafaf6; }
+.wu-pm .ps-wu__send { appearance: none; border: 0; height: 48px; border-radius: 14px; background: #beda52; color: #11150a; font: 600 15px/1 -apple-system, 'SF Pro Text', Inter, system-ui, sans-serif; cursor: pointer; transition: filter .2s ease, scale .2s ease; }
+.wu-pm .ps-wu__send:hover { filter: brightness(.95); } .wu-pm .ps-wu__send:active { scale: .98; } .wu-pm .ps-wu__send:disabled { opacity: .6; }
+.wu-pm .ps-wu__send:focus-visible { outline: 2px solid #11150a; outline-offset: 2px; }
+.wu-pm .ps-wu__note { min-height: 14px; margin: 0; font: 400 11.5px/1.35 Inter, system-ui, sans-serif; color: #6c6c70; text-align: center; }
+.wu-pm .ps-wu__note a { color: #128c7e; font-weight: 600; }
+.wu-pm .ps-wu__toast { display: flex; gap: 10px; align-items: center; margin-top: auto; margin-bottom: 14px; padding: 12px 14px; border-radius: 18px; background: rgb(28 28 30 / .94); color: #fff;
+  opacity: 0; translate: 0 16px; pointer-events: none; transition: opacity .4s ease, translate .55s cubic-bezier(.3, 1.4, .5, 1); }
+.wu-pm .ps-wu__toast.is-on { opacity: 1; translate: 0 0; }
+.wu-pm .ps-wu__toast > span { display: grid; place-items: center; flex: none; width: 28px; height: 28px; border-radius: 50%; background: #beda52; color: #11150a; font-weight: 800; }
+.wu-pm .ps-wu__toast b { display: block; font-size: 13px; } .wu-pm .ps-wu__toast small { display: block; font-size: 11px; line-height: 1.3; color: rgb(255 255 255 / .65); }
+/* extra stretch after the last service: phone + form stay pinned while the kid slides down out of sight (2026-11-20) */
+.wu-pm .pmj__tail { height: 95vh; }
+@media (max-width: 1023px) { .wu-pm .pmj__tail { display: none; } }
+.wu-pm .pmj__tail { grid-area: 2 / 1 / 3 / -1; }
+/* owner's 3D icon set on the loop (2026-11-20): grey and dimmed until the point reaches a station, full colour after;
+   the current station gets a lime ring (no lime fill, the icons are lime themselves) */
+.wu-pm .pm-loop__st > circle { fill: #141513 !important; stroke: #2c2f28 !important; stroke-width: 2 !important; }
+.wu-pm .pm-loop__st.is-lit > circle { stroke: #4a5a1e !important; }
+.wu-pm .pm-loop__st.is-now > circle { stroke: #beda52 !important; stroke-width: 3 !important; }
+.wu-pm .pm-loop__st image { filter: grayscale(1) brightness(.6); opacity: .55; transition: filter .5s ease, opacity .5s ease; }
+.wu-pm .pm-loop__st.is-lit image { filter: none; opacity: 1; }
+.wu-pm .pm-gauge__si { width: 64px !important; height: 64px !important; background: none !important; border-radius: 0 !important; }
+.wu-pm .pm-gauge__si img { width: 64px; height: 64px; display: block; }
+
+/* WiseUp form screen, more inviting (2026-11-20): lime-glow hero card with the owner's figures and the Google rating, a
+   "Replies fast" live dot, tap pills for the service, big lime "Get our plan" button, WhatsApp as a second way */
+.wu-pm .ps--wu { gap: 10px !important; padding-bottom: 18px; }
+.wu-pm .ps-wu__hero { gap: 10px !important; padding: 14px 14px 12px !important; border-radius: 20px !important;
+  background: radial-gradient(120% 90% at 100% 0%, rgb(190 218 82 / .32), transparent 55%), radial-gradient(90% 70% at 0% 100%, rgb(190 218 82 / .12), transparent 60%), #0c0d0b !important; }
+.wu-pm .ps-wu__top { display: flex; align-items: center; justify-content: space-between; }
+.wu-pm .ps-wu__top img { width: 76px !important; margin: 0 !important; }
+.wu-pm .ps-wu__live { display: inline-flex; align-items: center; gap: 5px; padding: 4px 8px; border-radius: 999px; background: rgb(255 255 255 / .08); font: 600 9.5px/1 Inter, system-ui, sans-serif; color: #dfe9b8; }
+.wu-pm .ps-wu__live i { width: 6px; height: 6px; border-radius: 50%; background: #3ddc84; box-shadow: 0 0 0 0 rgb(61 220 132 / .6); animation: wu-live 1.8s ease-out infinite; }
+@keyframes wu-live { 70% { box-shadow: 0 0 0 6px rgb(61 220 132 / 0); } 100% { box-shadow: 0 0 0 0 rgb(61 220 132 / 0); } }
+.wu-pm .ps-wu__hero > b { font: 700 20px/1.12 -apple-system, 'SF Pro Display', Inter, system-ui, sans-serif !important; letter-spacing: -.015em; }
+.wu-pm .ps-wu__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.wu-pm .ps-wu__stats span { display: grid; gap: 3px; padding: 8px 6px; border-radius: 12px; background: rgb(255 255 255 / .06); font: 500 8.5px/1.15 Inter, system-ui, sans-serif; color: rgb(255 255 255 / .62); text-align: center; }
+.wu-pm .ps-wu__stats b { font: 700 16px/1 Outfit, Inter, system-ui, sans-serif; color: #beda52; }
+.wu-pm .ps-wu__rate { font: 500 10.5px/1 Inter, system-ui, sans-serif; color: rgb(255 255 255 / .7); }
+.wu-pm .ps-wu__rate em { font-style: normal; color: #fbbc05; letter-spacing: 1px; } .wu-pm .ps-wu__rate b { color: #fff; }
+.wu-pm .ps-wu__form { gap: 9px !important; }
+.wu-pm .ps-wu__row { min-height: 42px !important; }
+.wu-pm .ps-wu__row input { height: 40px !important; }
+.wu-pm .ps-wu__need { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 5px; }
+.wu-pm .ps-wu__need legend { padding: 0 2px 6px; font: 600 11px/1 -apple-system, Inter, system-ui, sans-serif; color: #6c6c70; text-transform: uppercase; letter-spacing: .06em; }
+.wu-pm .ps-wu__pill { position: relative; cursor: pointer; }
+.wu-pm .ps-wu__pill input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.wu-pm .ps-wu__pill span { display: block; padding: 7px 10px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px #dcdce1; font: 500 11.5px/1 -apple-system, Inter, system-ui, sans-serif; color: #1c1c1e; transition: background .2s ease, box-shadow .2s ease, color .2s ease; }
+.wu-pm .ps-wu__pill:hover span { box-shadow: inset 0 0 0 1px #a7b86b; }
+.wu-pm .ps-wu__pill input:checked + span { background: #11150a; color: #beda52; box-shadow: none; }
+.wu-pm .ps-wu__pill input:focus-visible + span { outline: 2px solid #11150a; outline-offset: 2px; }
+.wu-pm .ps-wu__send { height: 50px !important; font-size: 16px !important; font-weight: 700 !important; box-shadow: 0 10px 22px -10px rgb(143 168 56 / .9); }
+.wu-pm .ps-wu__send span { display: inline-block; transition: translate .25s ease; } .wu-pm .ps-wu__send:hover span { translate: 3px 0; }
+.wu-pm .ps-wu__note { margin-top: -2px !important; font-weight: 500 !important; color: #3a3a3c !important; }
+.wu-pm .ps-wu__wa { justify-self: center; font: 600 11.5px/1 Inter, system-ui, sans-serif; color: #128c7e; text-decoration: none; }
+.wu-pm .ps-wu__wa:hover { text-decoration: underline; }
+.wu-pm .ps-wu__pill input { opacity: 0 !important; -webkit-appearance: none !important; appearance: none !important; background: none !important; border: 0 !important; box-shadow: none !important; width: 100% !important; height: 100% !important; padding: 0 !important; }
+.wu-pm .ps-wu__rate { display: flex !important; align-items: center; gap: 5px; }
+.wu-pm .ps-wu__rate em, .wu-pm .ps-wu__rate b { display: inline !important; font-size: 10.5px !important; line-height: 1 !important; }
+.wu-pm .ps--wu { position: relative; }
+.wu-pm .ps-wu__toast { position: absolute !important; left: 14px; right: 14px; bottom: 26px; margin: 0 !important; z-index: 3; }
+.wu-pm .ps-wu__pill span { background: #fff !important; color: #1c1c1e !important; }
+.wu-pm .ps-wu__pill input:checked + span { background: #11150a !important; color: #beda52 !important; box-shadow: none !important; }
+
+/* simple WiseUp form screen (2026-11-20): big 3D rocket on a soft lime disc, heading + one line, name + phone, one button */
+.wu-pm .ps--wu.is-simple { gap: 14px !important; }
+.wu-pm .ps-wu__art { position: relative; display: grid; place-items: center; height: 170px; margin-top: 4px; }
+.wu-pm .ps-wu__art::before { content: ""; position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #f3f8dc, #dfeca6 60%, #cfe07f); }
+.wu-pm .ps-wu__art img { position: relative; width: 150px; height: 150px; filter: drop-shadow(0 14px 14px rgb(60 80 10 / .25)); }
+.wu-pm .pmj__screen.is-on .ps-wu__art img { animation: wu-rocket 3.2s ease-in-out infinite; }
+@keyframes wu-rocket { 50% { translate: 3px -8px; } }
+.wu-pm .ps-wu__title { display: grid; gap: 6px; text-align: center; padding: 0 8px; }
+.wu-pm .ps-wu__title b { font: 700 21px/1.15 -apple-system, 'SF Pro Display', Inter, system-ui, sans-serif; letter-spacing: -.02em; color: #1c1c1e; }
+.wu-pm .ps-wu__title small { font: 500 12.5px/1.3 -apple-system, Inter, system-ui, sans-serif; color: #6c6c70; }
+@media (prefers-reduced-motion: reduce) { .wu-pm .pmj__screen.is-on .ps-wu__art img { animation: none; } }
+.wu-pm .ps--wu.is-simple { height: 100%; box-sizing: border-box; }
+.wu-pm .ps--wu.is-simple .ps-wu__art { margin-top: auto; }
+.wu-pm .ps--wu.is-simple .ps-wu__form { margin-bottom: auto; }
+/* speed (2026-11-20): the hero paragraph is the largest paint on phones; show it at once instead of waiting for the motion
+   scripts to fade it in (the heading keeps its entrance) */
+.wu-pm .pm-hero--photo .ev-hero__p { opacity: 1 !important; visibility: visible !important; transform: none !important; translate: none !important; filter: none !important; }
