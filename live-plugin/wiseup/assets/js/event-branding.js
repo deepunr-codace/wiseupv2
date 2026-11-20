@@ -53,7 +53,8 @@
 			},
 		});
 	}
-	var h1 = $('.ev-hero__h');
+	// a hero marked data-css-intro shows its content with a CSS entrance on first paint (no wait for these scripts)
+	var h1 = $('.ev-hero:not([data-css-intro]) .ev-hero__h');
 	if (h1) splitLines(h1, true, 0.05);
 	$$('.ev-sec .sh__h, .ev-quotes__h').forEach(function (el) { el.setAttribute('data-split', ''); splitLines(el, false); });
 
@@ -71,7 +72,7 @@
 	}
 
 	// hero entrance, in order
-	var hero = $('.ev-hero');
+	var hero = $('.ev-hero:not([data-css-intro])');
 	if (hero) {
 		var eb = $('.eyebrow', hero); if (eb) block(eb, { kind: 'fade', intro: true, at: 0 });
 		var hp = $('.ev-hero__p', hero); if (hp) block(hp, { intro: true, at: 0.35 });

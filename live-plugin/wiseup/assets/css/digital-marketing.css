@@ -3307,3 +3307,20 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 /* speed (2026-11-20): the hero paragraph is the largest paint on phones; show it at once instead of waiting for the motion
    scripts to fade it in (the heading keeps its entrance) */
 .wu-pm .pm-hero--photo .ev-hero__p { opacity: 1 !important; visibility: visible !important; transform: none !important; translate: none !important; filter: none !important; }
+
+/* swipe-deck card change (2026-11-20): the lime light that runs across a card as it lands */
+.wu-pm .pmj__stage-in { overflow: hidden !important; }
+.wu-pm .pmj__glare { position: absolute; top: -10%; bottom: -10%; left: 0; width: 38%; pointer-events: none; z-index: 3;
+  background: linear-gradient(90deg, transparent, rgb(190 218 82 / .13) 45%, rgb(255 255 255 / .1) 50%, rgb(190 218 82 / .13) 55%, transparent); }
+/* Performance hero shows at once (2026-11-20): content was hidden until the motion scripts loaded, so on a slow first load
+   only the paragraph appeared; now everything comes in together with a short CSS fade-up on first paint */
+.wu-motion .wu-ev .ev-hero[data-css-intro] :is(.ev-hero__h, .eyebrow, .ev-hero__p, .ev-btns, .ev-stat) { visibility: visible !important; opacity: 1; }
+.ev-hero[data-css-intro] :is(.eyebrow, .ev-hero__h, .ev-hero__p, .ev-btns, .ev-proof) { animation: pm-hero-in .8s cubic-bezier(.22, 1, .36, 1) both; }
+.ev-hero[data-css-intro] .ev-hero__h { animation-delay: .06s; }
+.ev-hero[data-css-intro] .ev-hero__p { animation-delay: .14s; }
+.ev-hero[data-css-intro] .ev-btns { animation-delay: .22s; }
+.ev-hero[data-css-intro] .ev-proof { animation-delay: .3s; }
+@keyframes pm-hero-in { from { opacity: 0; translate: 0 18px; } }
+@media (prefers-reduced-motion: reduce) { .ev-hero[data-css-intro] :is(.eyebrow, .ev-hero__h, .ev-hero__p, .ev-btns, .ev-proof) { animation: none; } }
+/* more scroll per service card (owner, 2026-11-20: "cards changing in small scroll, need more length"): 64vh → 115vh */
+@media (min-width: 1024px) { .wu-pm .pmj__step { min-height: 115vh; } }

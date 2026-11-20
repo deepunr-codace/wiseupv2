@@ -231,7 +231,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 <main id="main">
 
 	<!-- 1. Hero -->
-	<section class="ev-hero dm-hero pm-hero--img pm-hero--full pm-hero--photo">
+	<section class="ev-hero dm-hero pm-hero--img pm-hero--full pm-hero--photo" data-css-intro>
 		<div class="pm-bg" aria-hidden="true"><img class="skip-lazy" data-no-lazy="1" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?> 1280w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
 			<defs>
 				<linearGradient id="pmp-gel" gradientUnits="userSpaceOnUse" x1="700" y1="724" x2="1420" y2="80"><stop offset="0" stop-color="#4f7f1c"/><stop offset=".6" stop-color="#97b83a"/><stop offset="1" stop-color="#c9d45a"/></linearGradient>
@@ -488,9 +488,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		[src.querySelector('.pmj__brands'), [].filter.call(src.querySelectorAll('h3'), function (x) { return !x.closest('.pmj__mini'); })[0], [].filter.call(src.querySelectorAll('p'), function (x) { return !x.closest('.pmj__mini'); })[0]].forEach(function (n) { if (n) card.appendChild(n.cloneNode(true)); });
 		body.innerHTML = ''; body.appendChild(card);
 	};
-	// card stack (owner, 2026-11-20: easier on the eye than the 3D turn): the next card rises from below and settles on top,
-	// the old one shrinks, darkens and sinks back; scrolling up plays it the other way (the old card slides off downwards and
-	// the earlier one comes forward from behind)
+	// plain card change (owner, 2026-11-20: "chumma lights okke add akki bhor akkalle … standard ayit"): the old card fades out
+	// moving a little up, the new one fades in from a little below (the other way round when scrolling up)
 	var render = function (k) {
 		if (!body || k === cur) return;
 		if (cur < 0 || still || !box.animate) { cur = k; fill(k); return; }
@@ -498,16 +497,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		var dir = k > cur ? 1 : -1; cur = k; busy = true;
 		var old = box.cloneNode(true), ob = old.querySelector('[data-pmj-body]');
 		if (ob) ob.removeAttribute('data-pmj-body');
-		old.classList.add('is-ghost'); old.style.zIndex = dir > 0 ? 0 : 2; box.style.zIndex = 1;
+		old.classList.add('is-ghost'); old.style.zIndex = 2; box.style.zIndex = 1;
 		box.parentNode.insertBefore(old, box);
 		fill(k);
-		var low = { transform: 'translateY(70px) scale(.97)', opacity: 0, filter: 'brightness(1)' },
-			back = { transform: 'translateY(-18px) scale(.92)', opacity: 0, filter: 'brightness(.45)' },
-			rest = { transform: 'none', opacity: 1, filter: 'brightness(1)' }, T = { duration: 720, easing: 'cubic-bezier(.22,1,.36,1)' };
-		Promise.all(dir > 0
-			? [box.animate([low, rest], T).finished, old.animate([rest, back], T).finished]
-			: [box.animate([back, rest], T).finished, old.animate([rest, low], { duration: 620, easing: 'cubic-bezier(.4,0,.6,1)' }).finished]
-		).then(function () {
+		var d = dir * 18;
+		Promise.all([
+			old.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(' + (-d) + 'px)' }], { duration: 240, easing: 'ease-in', fill: 'forwards' }).finished,
+			box.animate([{ opacity: 0, transform: 'translateY(' + d + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 480, delay: 230, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }).finished
+		]).then(function () {
 			old.remove(); box.style.zIndex = '';
 			busy = false; if (want >= 0 && want !== cur) { var w = want; want = -1; render(w); } else want = -1;
 		});
