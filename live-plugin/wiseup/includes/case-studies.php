@@ -116,3 +116,26 @@ function wiseup_cs_stats() {
 		'erets'        => array( '9+', 'international media features within weeks of launch', array( array( '6+', 'global partners at launch' ), array( '3', 'continents' ), array( '12', 'weeks, discovery to live' ) ) ),
 	);
 }
+
+/**
+ * A case study published, updated, unpublished or deleted changes the homepage work row (wiseup_home_cs_tiles()),
+ * so the cached homepage and case studies listing are cleared then (owner, 2026-11-20: a new MyWear case study did
+ * not show because WP Rocket kept serving the old homepage).
+ */
+function wiseup_cs_purge_cache( $post_id ) {
+	if ( 'case-studies' !== get_post_type( $post_id ) || wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) return;
+	if ( function_exists( 'rocket_clean_home' ) ) rocket_clean_home();
+	if ( function_exists( 'rocket_clean_post' ) ) {
+		$front = (int) get_option( 'page_on_front' );
+		if ( $front ) rocket_clean_post( $front );
+	}
+	if ( function_exists( 'rocket_clean_files' ) ) {
+		$list = get_post_type_archive_link( 'case-studies' );
+		if ( $list ) rocket_clean_files( array( $list ) );
+	}
+	do_action( 'wiseup_cs_cache_purged', $post_id );
+}
+add_action( 'transition_post_status', function ( $new, $old, $post ) {
+	if ( 'publish' === $new || 'publish' === $old ) wiseup_cs_purge_cache( $post->ID );
+}, 10, 3 );
+add_action( 'before_delete_post', 'wiseup_cs_purge_cache' );
