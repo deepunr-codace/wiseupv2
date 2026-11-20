@@ -11,8 +11,9 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 		<div class="lunar">
 			<h1 class="lunar__mark" data-lunar-mark>
+				<span class="sr-only">WiseUp, Branding &amp; Marketing Agency</span>
 				<span class="lunar__img">
-					<svg class="wm" role="img" aria-label="WiseUp" width="961" height="317" viewBox="0 0 960.532 317.019" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<svg class="wm" aria-hidden="true" focusable="false" width="961" height="317" viewBox="0 0 960.532 317.019" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g class="wm__letters" fill="url(#paint0_linear_wiseup)">
 							<path class="wm__l" data-ch="w" d="M135.035 74.685L173.697 219.947L165.169 219.6L204.116 74.685L235.955 74.685L184.216 247.682L156.924 247.682L113.429 101.38L121.958 101.38L77.894 247.682L50.602 247.682L0 74.685L31.555 74.685L69.365 219.6L61.121 219.947L100.921 74.685L135.035 74.685"/>
 							<path class="wm__l" data-ch="i" d="M243.236 247.682L243.236 74.685L274.784 74.685L274.784 247.682L243.236 247.682"/>

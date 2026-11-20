@@ -2550,3 +2550,11 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 
 /* From Ad Clicks panels shorter now the drawings are gone (owner, 2026-11-20: "reduce height") */
 @media (min-width: 900px) { .wu-pm .pmf { height: clamp(320px, 24vw, 360px) !important; } }
+
+/* Performance services heading on two whole lines (owner, 2026-11-20: "align beautifully"):
+   "Performance Marketing Services" / "to Reach, Engage and Convert" */
+@media (min-width: 900px) {
+  #pm-services .ev-head .sh { container-type: inline-size; }
+  #pm-services .sh__h .sh__a, #pm-services .sh__h .sh__b { display: block; white-space: nowrap; }
+  #pm-services .sh__h { font-size: min(var(--seo-h2, 46px), 6.3cqi) !important; max-width: none !important; }
+}
