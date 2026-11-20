@@ -1578,3 +1578,7 @@ html body .wu-ev .ev-choose.is-tabs .ev-chk__top { display: block !important; al
 /* closing call-to-action eyebrow ("Get started" / "Enquire") the same size as every other section eyebrow */
 .wu-ev .ev-final .eyebrow { font-size: 11px !important; letter-spacing: .14em !important; line-height: 1 !important; }
 .wu-ev .ev-final .ev-final__copy .eyebrow.eyebrow { font-size: 11px !important; line-height: 1 !important; }
+
+/* header on the same edges as the page content on the service pages (owner, 2026-11-20: "make header width and page max width
+   same"): these pages use a 1480px content width, the header used the homepage 1360px */
+body:has(.wu-ev) .hd { width: min(100% - 2 * clamp(20px, 3.4vw, 56px), 1480px) !important; }

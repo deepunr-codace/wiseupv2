@@ -2530,3 +2530,23 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
   .wu-pm .ev-hero__h.pm-h3 .sh__a { font-weight: 600; }
   .wu-pm .ev-hero__h.pm-h3 .sh__b { font-size: .62em; font-weight: 400; margin-top: .3em; }
 }
+
+/* one heading (owner, 2026-11-20: "this is one sentence/heading"): both parts the same size and weight, only the colour differs;
+   four balanced lines "Make Every Ad / Spend Count. / Focus on Results / That Matter." */
+.wu-pm .ev-hero__h.pm-h3 .sh__a, .wu-pm .ev-hero__h.pm-h3 .sh__b { font-weight: 600 !important; }
+.wu-pm .ev-hero__h.pm-h3 .sh__b { font-size: 1em !important; letter-spacing: inherit !important; line-height: inherit !important; margin-top: 0 !important; white-space: normal !important; }
+@media (min-width: 1024px) { .wu-pm .ev-hero__h.pm-h3 { font-size: min(4.6rem, 8cqi) !important; line-height: 1 !important; } }
+
+/* hero heading on two lines (owner, 2026-11-20: "hero heading 2 line akkuo beautifully"): one sentence per line, same size
+   and weight, white then grey; sized so the longer grey line fits the copy column */
+.wu-pm .ev-hero__h.pm-h3 .pm-br { display: none !important; }
+@media (min-width: 1024px) {
+  .wu-pm .ev-hero__h.pm-h3 { font-size: min(4rem, 6.2cqi) !important; line-height: 1.06 !important; letter-spacing: -.035em; }
+  .wu-pm .ev-hero__h.pm-h3 .sh__a, .wu-pm .ev-hero__h.pm-h3 .sh__b { display: block; white-space: nowrap !important; }
+}
+@media (min-width: 1024px) { .wu-pm .ev-hero__h.pm-h3 { font-size: min(4.5rem, 6.9cqi) !important; } }
+/* hero paragraph as wide as the heading (owner: "increase hero description width too") */
+@media (min-width: 1024px) { .wu-pm .pm-hero--img .ev-hero__p { max-width: 100% !important; width: max-content; max-inline-size: min(100%, 44rem); } }
+
+/* From Ad Clicks panels shorter now the drawings are gone (owner, 2026-11-20: "reduce height") */
+@media (min-width: 900px) { .wu-pm .pmf { height: clamp(320px, 24vw, 360px) !important; } }
