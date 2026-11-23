@@ -3338,3 +3338,8 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
   .wu-pm .ps-wu__wa { padding: 10px 6px !important; }
   body.page-template-wiseup-performance-marketing .ft__link { display: inline-flex; align-items: center; min-height: 44px; }
 }
+
+/* hero image/card on a data-css-intro hero (DM, SEO): the JS entrance is skipped there, so show the stage with a CSS fade instead of leaving it at opacity 0 */
+.wu-motion .wu-ev .ev-hero[data-css-intro] .ev-stage { opacity: 1; visibility: visible !important; animation: pm-stage-in .9s .15s ease-out both; }
+@keyframes pm-stage-in { from { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .wu-motion .wu-ev .ev-hero[data-css-intro] .ev-stage { animation: none; } }
