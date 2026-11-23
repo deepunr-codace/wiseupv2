@@ -20,6 +20,7 @@ function wiseup_landing_templates() {
 		'wiseup-digital-marketing' => array( 'digital-marketing.php', __( 'WiseUp: Digital Marketing', 'wiseup' ), 'digital-marketing' ),
 		'wiseup-performance-marketing' => array( 'performance-marketing.php', __( 'WiseUp: Performance Marketing (new)', 'wiseup' ), 'performance-marketing' ),
 		'wiseup-media-buying' => array( 'media-buying.php', __( 'WiseUp: Media Buying', 'wiseup' ), 'media-buying' ),
+		'wiseup-branding'    => array( 'branding.php', __( 'WiseUp: Branding', 'wiseup' ), 'branding' ),
 		'wiseup-portfolio'    => array( 'portfolio.php', __( 'WiseUp: Portfolio', 'wiseup' ), 'portfolio' ),
 	);
 }

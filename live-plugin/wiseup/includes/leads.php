@@ -101,6 +101,7 @@ function wiseup_lead_sources() {
 		'digital-marketing' => __( 'Digital marketing page', 'wiseup' ),
 		'performance-marketing' => __( 'Performance marketing (new) page', 'wiseup' ),
 		'media-buying' => __( 'Media buying page', 'wiseup' ),
+		'branding' => __( 'Branding page', 'wiseup' ),
 		'portfolio'    => __( 'Portfolio page', 'wiseup' ),
 	);
 }
