@@ -227,16 +227,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				<p class="ev-lead">Event branding is the practice of giving an event its own visual identity and tone, so that every part of it feels like it belongs together. The name, logo, colours, fonts, theme and signage all work as one identity, from the invitation people receive to the backdrop they photograph. At WiseUp, we see this as strategic work, not decoration. Done well, guests do not notice the branding as separate pieces. They simply feel that the event was thought through.</p>
 				<div class="ev-fam3" data-fam3>
 					<h3>Same Family, Its Own Personality</h3>
-					<div class="ev-fam3__stage ev-fam5" aria-hidden="true">
-						<div class="ev-f5__kit ev-f5__kit--summit">
-							<div class="ev-f5__back"><i class="ev-f5__frame"></i><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#e9cf8e" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><span class="ev-f5__t"><i>Leadership</i> <b>summit</b></span><span class="ev-f5__lines"><i></i><i></i></span></div>
-							<div class="ev-f5__badge"><i class="ev-f5__strap"></i><span class="ev-f5__card"><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#e9cf8e" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><i class="ev-f5__bar"></i><i class="ev-f5__bar ev-f5__bar--s"></i></span></div>
-						</div>
-						<div class="ev-f5__brand"><span class="ev-f5__core"><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg></span><span class="ev-f5__pal"><i></i><i></i><i></i></span></div>
-						<div class="ev-f5__kit ev-f5__kit--party">
-							<div class="ev-f5__back"><span class="ev-f5__conf"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><span class="ev-f5__t"><b>Customer</b> <i>celebration</i></span></div>
-							<div class="ev-f5__ticket"><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><i class="ev-f5__perf"></i><span class="ev-f5__stub"><i class="ev-f5__bar"></i><i class="ev-f5__bar ev-f5__bar--s"></i></span></div>
-						</div>
+					<div class="ev-fam3__stage ev-famkit">
+						<figure class="ev-famkit__k ev-famkit__k--l"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-kit-summit-1000.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-kit-summit-600.webp' ); ?> 600w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-kit-summit-1000.webp' ); ?> 1000w" sizes="(max-width: 767px) 46vw, 460px" width="1000" height="814" loading="lazy" decoding="async" alt="Leadership summit kit: a navy folder with gold lines and a cream name badge, both with the WiseUp Branding logo"></figure>
+						<figure class="ev-famkit__k ev-famkit__k--r"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-kit-party-1000.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-kit-party-600.webp' ); ?> 600w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-kit-party-1000.webp' ); ?> 1000w" sizes="(max-width: 767px) 46vw, 460px" width="1000" height="721" loading="lazy" decoding="async" alt="Customer celebration kit: a coral and purple invitation with confetti and a pink ticket, both with the WiseUp Branding logo"></figure>
+						<div class="ev-famkit__core" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/brand/wiseup-logo.webp' ); ?>" width="315" height="114" alt="" loading="lazy" decoding="async"><span class="ev-famkit__sw"><i></i><i></i><i></i></span></div>
 					</div>
 					<div class="ev-fam3__text">
 						<p>A company already has a brand identity, so why does an event need another one? Because an event is a moment with its own purpose, audience, and mood. A leadership summit and a customer celebration may belong to the same company, yet they should not look or sound identical.</p>
@@ -250,13 +244,24 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 	<!-- 3. Services -->
 	<section class="sec ev-sec" id="ev-services">
 		<div class="wrap">
-			<div class="ev-head">
+			<div class="ev-head ev-head--walk" data-walk>
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
 				<h2 class="sh__h"><span class="sh__a">Event Branding Services</span> <span class="sh__b">for Every Part of Your Event</span></h2>
 			</div>
-			<div class="ev-intro"><p>Think back to the last event you attended. You probably cannot recall every slide or speaker, but you remember how it felt to walk in: the arch, the signage, the stage lit in one colour story. That feeling was never an accident. Guests meet your event as a series of small encounters, from the invitation to the registration desk to the kit they carry home, and each one either strengthens the story or weakens it. Our event branding services cover all of them, so nothing feels like an afterthought.</p></div>
+			<div class="ev-walk"><p class="ev-walk__p" data-wordlit><span class="ev-walk__a">Think back to the last event you attended.</span> You probably cannot recall every slide or speaker, but you remember how it felt to walk in: <mark data-w="0">the arch</mark>, <mark data-w="1">the signage</mark>, <mark data-w="2">the stage lit in one colour story</mark>. That feeling was never an accident. Guests meet your event as a series of small encounters, from the invitation to the registration desk to the kit they carry home, and each one either strengthens the story or weakens it. Our event branding services cover all of them, so nothing feels like an afterthought.</p></div>
 			</div>
+			<script>(function(){
+				var p = document.querySelector('[data-wordlit]'); if (!p || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+				var ws = [], tw = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), t, nodes = [];
+				while ((t = tw.nextNode())) nodes.push(t);
+				nodes.forEach(function(n){ var f = document.createDocumentFragment(); n.nodeValue.split(/(\s+)/).forEach(function(x){ if (!x) return; if (/^\s+$/.test(x)) { f.appendChild(document.createTextNode(x)); return; } var s = document.createElement('span'); s.className = 'ev-wl'; s.textContent = x; ws.push(s); f.appendChild(s); }); n.parentNode.replaceChild(f, n); });
+				p.classList.add('is-wl');
+				var go = function(){ var r = p.getBoundingClientRect(), vh = innerHeight, a = vh * .9, b = vh * .35 - r.height * .4; var q = Math.max(0, Math.min(1, (a - r.top) / (a - b))); var n = Math.round(q * ws.length); ws.forEach(function(w, k){ w.classList.toggle('is-lit', k < n); }); };
+				go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go);
+			})();</script>
+
+
 			<?php
 			// Same journey as the Digital Marketing services: a line runs down the page and lights each service as it passes.
 			$wu_ev_t = function ( $t ) {
@@ -383,7 +388,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 					<div class="ev-vt__stick">
 						<ol class="ev-vt__list"><li style="--k:0">The platform lobby and the first screen attendees see</li><li style="--k:1">Branded joining pages and reminder emails</li><li style="--k:2">Virtual backgrounds for speakers</li><li style="--k:3">Presentation slides and motion graphics</li><li style="--k:4">Lower-thirds and speaker identification</li></ol>
 						<div class="ev-vt__scrub" aria-hidden="true"><span class="ev-vt__segs"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i></span><span class="ev-vt__fill"></span><span class="ev-vt__head"></span></div>
-						<p class="ev-note ev-vt__note">Each of these appears for only a few seconds. Together, they decide whether the event feels organised or improvised.</p>
 					</div>
 				</div>
 			</div>
@@ -421,7 +425,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<script>(function(){
 				var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
 				var f = document.querySelector('[data-fam3]');
-				if (f) { var st = f.querySelector('.ev-fam3__stage');
+				var st = f && f.querySelector('.ev-fam3__stage'); if (st) {
 					var go = function(){ var r = st.getBoundingClientRect(), vh = innerHeight; var p = rm ? 1 : Math.max(0, Math.min(1, (vh * .9 - r.top) / (vh * .55))); f.style.setProperty('--p', p.toFixed(3)); };
 					go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go); }
 				var sc = document.querySelector('[data-vj-screen]'), steps = [].slice.call(document.querySelectorAll('[data-vj-step]'));
@@ -618,11 +622,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-intro"><p>Most agencies can show you an attractive mood board. Fewer can tell you who will be at the venue at 6 am on setup day. The checks that separate the two are practical, and they are far easier to make before you sign than after something goes wrong. Here is what we would look at in your position.</p></div>
 			</div>
 			<div class="ev-sg" data-sg>
-				<div class="ev-sg__side" aria-hidden="true">
-					<p class="ev-sg__count"><b data-sg-n>0</b><span>/5</span></p>
-					<svg class="ev-sg__sig" viewBox="0 0 320 120"><path pathLength="1" d="M14 78c22-30 40-58 52-56 14 3-22 68-6 70 14 2 26-40 38-38 10 2-8 34 4 34 12 0 22-26 34-24 10 2 0 22 10 22 14 0 26-30 42-30 12 0 6 20 18 20 20 0 44-24 70-26 14-1 24 4 30 8"/><path pathLength="1" d="M96 98c50-8 120-10 190-4"/></svg>
-					<span class="ev-sg__line"></span>
-				</div>
+				<div class="ev-sg__side" aria-hidden="true"><div class="ev-sg__ring"><svg viewBox="0 0 120 120"><circle class="ev-sg__track" cx="60" cy="60" r="54"/><circle class="ev-sg__seg" cx="60" cy="60" r="54" stroke-dasharray="60.86 278.43" stroke-dashoffset="0.00"/><circle class="ev-sg__seg" cx="60" cy="60" r="54" stroke-dasharray="60.86 278.43" stroke-dashoffset="-67.86"/><circle class="ev-sg__seg" cx="60" cy="60" r="54" stroke-dasharray="60.86 278.43" stroke-dashoffset="-135.72"/><circle class="ev-sg__seg" cx="60" cy="60" r="54" stroke-dasharray="60.86 278.43" stroke-dashoffset="-203.58"/><circle class="ev-sg__seg" cx="60" cy="60" r="54" stroke-dasharray="60.86 278.43" stroke-dashoffset="-271.43"/></svg><p class="ev-sg__count"><b data-sg-n>0</b><span>/5</span></p></div></div>
 				<ol class="ev-sg__list">
 					<?php foreach ( array(
 					array( 'Portfolio relevance', 'Ask for work from events of a similar size and type. Look for photographs of real installations, not only digital mock-ups, because a design that looks good on screen can fall flat in a hall.' ),
@@ -641,32 +641,36 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<script>(function(){
 				var w = document.querySelector('[data-sg]'); if (!w) return;
 				var it = [].slice.call(w.querySelectorAll('.ev-sg__it')), n = w.querySelector('[data-sg-n]');
-				if (matchMedia('(prefers-reduced-motion: reduce)').matches) { it.forEach(function(l){ l.classList.add('is-on'); }); n.textContent = it.length; w.classList.add('is-done'); return; }
+				if (matchMedia('(prefers-reduced-motion: reduce)').matches) { it.forEach(function(l){ l.classList.add('is-on'); }); n.textContent = it.length; [].forEach.call(w.querySelectorAll('.ev-sg__seg'), function(g){ g.classList.add('is-on'); }); w.classList.add('is-done'); return; }
 				w.classList.add('is-live');
-				var go = function(){ var c = 0; it.forEach(function(l){ var on = l.getBoundingClientRect().top < innerHeight * .6; l.classList.toggle('is-on', on); if (on) c++; }); n.textContent = c; w.classList.toggle('is-done', c === it.length); };
+				var go = function(){ var c = 0; it.forEach(function(l){ var on = l.getBoundingClientRect().top < innerHeight * .6; l.classList.toggle('is-on', on); if (on) c++; }); n.textContent = c; [].forEach.call(w.querySelectorAll('.ev-sg__seg'), function(g, k){ g.classList.toggle('is-on', k < c); }); w.classList.toggle('is-done', c === it.length); };
 				go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go);
 			})();</script>
-			<div class="ev-ask ev-ask--open">
-				<h3>Questions to Ask Any Agency, Including Us</h3>
-				<ol class="ev-ask__list">
+			<div class="ev-iv" data-iv>
+				<h3 class="ev-iv__h">Questions to Ask Any Agency, Including Us</h3>
+				<ol class="ev-iv__list">
 					<?php foreach ( array(
-						'Can I see photographs of installations from events similar to mine?',
 						'Who handles production, printing and installation, and who is accountable for each?',
 						'What file standards do you follow before anything goes to print?',
 						'How many revision rounds are included, and what happens after that?',
 						'Will someone from your team be at the venue during setup and on event day?',
 						'What is your timeline for an event on my date, and what do you need from me to keep to it?',
 						'What does the quote include, and what could cost extra?',
-					) as $q ) echo '<li>' . esc_html( $q ) . '</li>'; ?>
+					) as $q ) echo '<li class="ev-iv__q"><svg class="ev-iv__tick" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10.5"/><path pathLength="1" d="M7.5 12.4l3 3 6-6.4"/></svg><span>' . esc_html( $q ) . '</span></li>'; ?>
 				</ol>
-				<p class="ev-note">At WiseUp, we are glad to be asked every one of these. Clear answers early in the conversation are usually a good sign of how the project will run.</p>
+				<p class="ev-iv__note"><span>At WiseUp, we are glad to be asked every one of these. Clear answers early in the conversation are usually a good sign of how the project will run.</span></p>
 			</div>
 		</div>
+			<script>(function(){ var w = document.querySelector('[data-iv]'); if (!w) return; var it = [].slice.call(w.querySelectorAll('.ev-iv__q, .ev-iv__note'));
+				if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) { it.forEach(function(l){ l.classList.add('is-in'); }); return; }
+				w.classList.add('is-live'); var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -22% 0px' });
+				it.forEach(function(l){ io.observe(l); }); })();</script>
+
 	</section>
 
 	<!-- 12. FAQ (with FAQPage schema) -->
 	<section class="sec ev-sec" id="faq" aria-labelledby="ev-faq-h">
-		<div class="wrap ev-faqsplit">
+		<div class="wrap dm-faq">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
 				<h2 id="ev-faq-h" class="sh__h"><span class="sh__a">Frequently Asked</span> <span class="sh__b">Questions</span></h2>
@@ -681,6 +685,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 		</div>
 	</section>
+
+	<?php wiseup_other_services( 'wiseup-event-branding' ); ?>
+
 
 	<!-- 13. Final CTA: short enquiry form (name, company, event type, date, city), WhatsApp button and phone number -->
 	<section class="sec ev-sec" id="enquire">

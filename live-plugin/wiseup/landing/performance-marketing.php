@@ -29,7 +29,7 @@ wiseup_landing_isolate();
 // old, unused image and lazy-loading this one; the img also opts out of lazy load).
 add_action( 'wp_head', function () {
 	$u = WISEUP_URL . 'assets/landing/img/pm-hero-steps-';
-	echo '<link rel="preload" as="image" href="' . esc_url( $u . '1280.webp' ) . '" imagesrcset="' . esc_url( $u . '900.webp' ) . ' 900w, ' . esc_url( $u . '1280.webp' ) . ' 1280w, ' . esc_url( $u . '1670.webp' ) . ' 1670w" imagesizes="100vw" fetchpriority="high">' . "
+	echo '<link rel="preload" as="image" href="' . esc_url( $u . '1280.webp' ) . '" imagesrcset="' . esc_url( $u . '900.webp' ) . ' 900w, ' . esc_url( $u . '1280.webp' ) . ' 1280w, ' . esc_url( $u . '1670.webp' ) . ' 1670w" imagesizes="(max-width: 767px) 62vw, 100vw" fetchpriority="high">' . "
 ";
 }, 0 );
 // Motion engine flag before first paint (same as the Event Branding page; removed after 3s if the scripts never start).
@@ -232,7 +232,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 
 	<!-- 1. Hero -->
 	<section class="ev-hero dm-hero pm-hero--img pm-hero--full pm-hero--photo" data-css-intro>
-		<div class="pm-bg" aria-hidden="true"><img class="skip-lazy" data-no-lazy="1" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?> 1280w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
+		<div class="pm-bg" aria-hidden="true"><img class="skip-lazy" data-no-lazy="1" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?> 1280w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="(max-width: 767px) 62vw, 100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
 			<defs>
 				<linearGradient id="pmp-gel" gradientUnits="userSpaceOnUse" x1="700" y1="724" x2="1420" y2="80"><stop offset="0" stop-color="#4f7f1c"/><stop offset=".6" stop-color="#97b83a"/><stop offset="1" stop-color="#c9d45a"/></linearGradient>
 				<linearGradient id="pmp-kraft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8ad7c"/><stop offset="1" stop-color="#a88c5c"/></linearGradient>
@@ -339,11 +339,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a performance marketing agency in Kerala do?',
-	'a' => '<b>WiseUp</b> is a performance marketing agency in Kerala that brings <b>audience research, creative campaigns and data-driven optimisation</b> together to make your advertising work harder, reaching relevant audiences, generating quality leads and making better use of your advertising budget.',
+	'a' => 'A performance marketing agency runs <b>paid advertising where results are measured by enquiries, leads and sales</b>, not just clicks. <b>WiseUp</b>, based in Kozhikode (Calicut), plans, launches and optimises paid campaigns for Kerala businesses. It has managed <b>50L+ in ad spend across 500+ campaigns</b>.',
 	'points' => array(
-		array( 'Platforms', 'Google Search, Display, YouTube, Shopping and Performance Max, plus Meta (Facebook and Instagram) and LinkedIn advertising.' ),
-		array( 'How we work', 'We plan around your goals, audience and budget, launch with conversion tracking, then test and optimise using performance data.' ),
-		array( 'What you see', 'Clear reports on impressions, clicks, CTR, CPC, conversions, cost per lead and ROAS where applicable.' ),
+		array( 'Services', 'Google Search, Display, YouTube, Shopping and Performance Max, Meta (Facebook and Instagram), LinkedIn for B2B, remarketing, and landing page optimisation.' ),
+		array( 'How it works', 'Goals and KPIs, audience research, strategy and budget, launch with conversion tracking, then ongoing testing of creatives, audiences and bids.' ),
+		array( 'Tracking and reports', 'Google Analytics 4, Tag Manager, Meta Pixel and Looker Studio, with reports on impressions, clicks, CTR, CPC, conversions, cost per lead and ROAS.' ),
+		array( 'Transparency', 'You keep access to your ad accounts. WiseUp can also audit and take over existing campaigns.' ),
+		array( 'Best suited to', 'E-commerce, real estate, healthcare, education, travel and hospitality, and B2B services.' ),
 	),
 	'links' => array( array( 'Services', '#pm-services' ), array( 'Process', '#pm-process' ), array( 'Tracking tools', '#pm-tools' ), array( 'Why WiseUp', '#why' ), array( 'FAQ', '#faq' ) ),
 ) ); ?>
@@ -485,8 +487,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		[src.querySelector('.pmj__brands'), [].filter.call(src.querySelectorAll('h3'), function (x) { return !x.closest('.pmj__mini'); })[0], [].filter.call(src.querySelectorAll('p'), function (x) { return !x.closest('.pmj__mini'); })[0]].forEach(function (n) { if (n) card.appendChild(n.cloneNode(true)); });
 		body.innerHTML = ''; body.appendChild(card);
 	};
-	// plain card change (owner, 2026-11-20: "chumma lights okke add akki bhor akkalle … standard ayit"): the old card fades out
-	// moving a little up, the new one fades in from a little below (the other way round when scrolling up)
+	// card change (owner, 2026-11-23: "need good transition, smooth, card changing like. equal timing with the left side"): the whole
+	// card swaps on the phone screen's own clock (opacity .55s, scale .65s, easing cubic-bezier(.2,.9,.3,1)): the old card leaves upward
+	// quickly, the new one rises in from below and lands at the same moment as the screen; reversed when scrolling up
+	var EASE = 'cubic-bezier(.2,.9,.3,1)';
 	var render = function (k) {
 		if (!body || k === cur) return;
 		if (cur < 0 || still || !box.animate) { cur = k; fill(k); return; }
@@ -497,10 +501,14 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		old.classList.add('is-ghost'); old.style.zIndex = 2; box.style.zIndex = 1;
 		box.parentNode.insertBefore(old, box);
 		fill(k);
-		var d = dir * 18;
+		var y = dir * 34;
+		// opacity and movement run on separate clocks so the two cards' text never shows through each other:
+		// the old card is gone by 230ms, the new one starts to appear at 250ms and lands at ~610ms (the phone screen's own .55-.65s)
 		Promise.all([
-			old.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(' + (-d) + 'px)' }], { duration: 240, easing: 'ease-in', fill: 'forwards' }).finished,
-			box.animate([{ opacity: 0, transform: 'translateY(' + d + 'px)' }, { opacity: 1, transform: 'none' }], { duration: 480, delay: 230, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' }).finished
+			old.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 230, easing: 'cubic-bezier(.4,0,1,1)', fill: 'forwards' }).finished,
+			old.animate([{ transform: 'translateY(0) scale(1)' }, { transform: 'translateY(' + (-y) + 'px) scale(.97)' }], { duration: 360, easing: 'cubic-bezier(.4,0,.9,.5)', fill: 'forwards' }).finished,
+			box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 360, delay: 250, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards' }).finished,
+			box.animate([{ transform: 'translateY(' + y + 'px) scale(.985)' }, { transform: 'translateY(0) scale(1)' }], { duration: 480, delay: 130, easing: EASE, fill: 'backwards' }).finished
 		]).then(function () {
 			old.remove(); box.style.zIndex = '';
 			busy = false; if (want >= 0 && want !== cur) { var w = want; want = -1; render(w); } else want = -1;
@@ -756,6 +764,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 			</div>
 		</div>
 	</section>
+
+	<?php wiseup_other_services( 'wiseup-performance-marketing' ); ?>
+
 
 	<!-- 11. Final CTA -->
 		<section class="sec ev-sec" id="enquire">

@@ -2853,6 +2853,7 @@ $arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
                     </section>
 
                     <!-- CTA -->
+                    <?php wiseup_other_services( 'wiseup-social-media' ); ?>
                     <section id="wu-smm-cta" class="wu-section">
                         <div class="wu-cta-box">
                             <div class="wu-blob"

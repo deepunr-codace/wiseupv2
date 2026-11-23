@@ -20,6 +20,48 @@ function wiseup_networks() {
 	);
 }
 
+/** Icons for the "Other services" cards: key => inner SVG (24px, stroked). */
+function wiseup_os_icons() {
+	return array(
+		'dm'    => '<path d="M3 20h18"/><path d="M6 20V11M12 20V5M18 20v-6"/><path d="m5 8 5-4 4 3 5-4"/>',
+		'smm'   => '<path d="M5 5h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-5 4v-4H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/><path d="M9 10.5c0-1 1-1.6 1.7-1.2.5.3.8.8 1.3 1.4.5-.6.8-1.1 1.3-1.4.7-.4 1.7.2 1.7 1.2 0 1.4-1.8 2.4-3 3.3-1.2-.9-3-1.9-3-3.3z"/>',
+		'seo'   => '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.9-4.9"/><path d="M8 11.5 10 9.5l1.5 1.5L14 8.5"/>',
+		'perf'  => '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/><path d="m12 12 7-7M16 4h4v4"/>',
+		'mb'    => '<rect x="3" y="4" width="18" height="10" rx="1.5"/><path d="M8 14v6M16 14v6M6 20h4M14 20h4"/><path d="m6 9 3-2 3 3 3-2 3 1"/>',
+		'ev'    => '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/>',
+		'video' => '<rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3"/>',
+		'web'   => '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><circle cx="6" cy="6.5" r=".6"/><circle cx="8.5" cy="6.5" r=".6"/>',
+		'brand' => '<path d="M4 20c4-1 6-3 7-6"/><path d="M14 4l6 6-8 8-6-6z"/><path d="m16 8-6 6"/>',
+		'plan'  => '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+		'star'  => '<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/>',
+	);
+}
+
+/** Admin labels for those icons. */
+function wiseup_os_icon_labels() {
+	return array(
+		'dm' => 'Growth chart', 'smm' => 'Chat and heart', 'seo' => 'Search', 'perf' => 'Target', 'mb' => 'Billboard', 'ev' => 'Sparkles',
+		'video' => 'Video', 'web' => 'Website', 'brand' => 'Brand', 'plan' => 'Plan', 'star' => 'Star',
+	);
+}
+
+/**
+ * The service list behind the "Other services we provide" carousel (Wiseup → Other services).
+ * mode: auto = shown only when the service is live (a published page uses its template, or `live` is set);
+ *       show = always shown; hide = never. `url` empty = the page's own address. `tpl` = template keys (comma separated),
+ *       used to find the page and to leave the current page out of its own list.
+ */
+function wiseup_os_default_items() {
+	return array(
+		array( 'id' => 'digital-marketing', 'mode' => 'auto', 'title' => 'Digital Marketing', 'text' => 'Integrated campaigns that connect visibility, engagement, conversion and growth.', 'url' => '', 'icon' => 'dm', 'tpl' => 'wiseup-digital-marketing', 'live' => 'https://wiseup.in/services/digital-marketing-agency-in-kerala/' ),
+		array( 'id' => 'social-media', 'mode' => 'auto', 'title' => 'Social Media Marketing', 'text' => 'Strategy, content and campaigns for the platforms your customers use every day.', 'url' => '', 'icon' => 'smm', 'tpl' => 'wiseup-social-media,template-social-media-marketing.php', 'live' => 'https://wiseup.in/services/social-media-marketing-agency-in-kerala/' ),
+		array( 'id' => 'seo', 'mode' => 'auto', 'title' => 'SEO Company', 'text' => 'Be found on Google, Bing and AI search with a plan built around your business.', 'url' => '', 'icon' => 'seo', 'tpl' => 'wiseup-seo', 'live' => 'https://wiseup.in/services/seo-company-in-kerala/' ),
+		array( 'id' => 'performance-marketing', 'mode' => 'auto', 'title' => 'Performance Marketing', 'text' => 'Paid advertising measured by enquiries, leads and sales, not just clicks.', 'url' => '', 'icon' => 'perf', 'tpl' => 'wiseup-performance-marketing,wiseup-performance', 'live' => '' ),
+		array( 'id' => 'media-buying', 'mode' => 'auto', 'title' => 'Media Buying', 'text' => 'Outdoor, print and theatre placements planned and bought across Kerala.', 'url' => '', 'icon' => 'mb', 'tpl' => 'wiseup-media-buying', 'live' => '' ),
+		array( 'id' => 'event-branding', 'mode' => 'auto', 'title' => 'Event Branding', 'text' => 'One identity for your event, from the invitation to the stage backdrop.', 'url' => '', 'icon' => 'ev', 'tpl' => 'wiseup-event-branding', 'live' => '' ),
+	);
+}
+
 function wiseup_defaults() {
 	return array(
 		// General
@@ -78,6 +120,12 @@ function wiseup_defaults() {
 		'copyright'           => 'WiseUp',
 		'credit_name'         => 'CodeAce',
 		'credit_url'          => '',
+		// Other services carousel (Wiseup → Other services)
+		'os_enabled'          => 1,
+		'os_eyebrow'          => 'More services',
+		'os_heading'          => 'Other services',
+		'os_heading2'         => 'we provide',
+		'os_items'            => wiseup_os_default_items(),
 	);
 }
 
@@ -87,6 +135,8 @@ function wiseup_settings( $fresh = false ) {
 	if ( null === $cache || $fresh ) {
 		$saved = get_option( WISEUP_OPTION, array() );
 		$cache = array_replace_recursive( wiseup_defaults(), is_array( $saved ) ? $saved : array() );
+		// a saved service list replaces the built-in one as a whole (a recursive merge would put deleted services back)
+		if ( is_array( $saved ) && isset( $saved['os_items'] ) && is_array( $saved['os_items'] ) ) $cache['os_items'] = array_values( $saved['os_items'] );
 	}
 	return $cache;
 }

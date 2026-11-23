@@ -2047,3 +2047,226 @@ html body .wu-evb p:not(.eyebrow):not(#_):not(#__) { font-size: 17px !important;
 .ev-f5__kit--party .ev-f5__back { align-content: start; gap: 16px; }
 .ev-f5__ticket { -webkit-mask: none; mask: none; }
 @media (max-width: 899px) { .ev-f5__kit { height: 300px; } .ev-f5__badge { width: 52%; } .ev-f5__ticket { width: 70%; } .ev-f5__back { inset: 0 0 22% 0 !important; } }
+
+/* 2026-11-23: "Questions to Ask Any Agency" as a conversation: the client's questions arrive as chat bubbles, WiseUp's note is the lime reply (owner: "need more creative section") */
+.ev-ask--chat { display: grid; gap: clamp(28px, 4vw, 72px); }
+@media (min-width: 1024px) { .ev-ask--chat { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: start; } .ev-ask--chat > h3 { position: sticky; top: calc(var(--head-h, 90px) + 30px); } }
+.ev-ask--chat > h3 { margin: 0; }
+.ev-ask--chat .ev-ask__list { display: flex !important; flex-direction: column; align-items: flex-end; gap: 14px; margin: 0; padding: 0; list-style: none; counter-reset: none; columns: auto !important; grid-template-columns: none !important; }
+.ev-ask--chat .ev-ask__list li { position: relative; max-width: min(560px, 88%); margin: 0 !important; padding: 14px 20px !important; border-radius: 22px 22px 6px 22px; background: linear-gradient(160deg, #1d1d21, #131316); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .07), 0 18px 30px -18px rgb(0 0 0 / .9); font-size: clamp(15px, 1.15vw, 17px); line-height: 1.5; color: #ececf0; }
+.ev-ask--chat .ev-ask__list li::before { display: none !important; content: none !important; }
+.ev-ask--chat .ev-ask__list li:nth-child(odd) { margin-right: clamp(0px, 3vw, 40px) !important; }
+.ev-ask--chat .ev-ask__reply { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: end; gap: 12px; max-width: min(600px, 94%); margin: clamp(22px, 2.6vw, 34px) 0 0 !important; padding: 0 !important; border: 0 !important; }
+.ev-ask--chat .ev-ask__av { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #2e2e33, #0b0b0d 70%); box-shadow: inset 0 0 0 1px rgb(255 255 255 / .1); }
+.ev-ask--chat .ev-ask__av svg { width: 60%; }
+.ev-ask--chat .ev-ask__rt { padding: 16px 22px; border-radius: 22px 22px 22px 6px; background: linear-gradient(145deg, #d8ec8a, #a9c63a); color: #11150a; font-size: clamp(16px, 1.25vw, 18px); font-weight: 500; line-height: 1.5; box-shadow: 0 24px 40px -20px rgb(190 218 82 / .45); }
+.ev-ask--chat.is-live .ev-ask__list li, .ev-ask--chat.is-live .ev-ask__reply { opacity: 0; transform: translateY(18px) scale(.96); transform-origin: right bottom; transition: opacity .6s cubic-bezier(.2, .8, .2, 1), transform .6s cubic-bezier(.2, .8, .2, 1); }
+.ev-ask--chat.is-live .ev-ask__reply { transform-origin: left bottom; transition-delay: .25s; }
+.ev-ask--chat.is-live .is-in { opacity: 1 !important; transform: none !important; }
+/* chat: beat the older .ev-ask--open list rules */
+.wu-ev .ev-ask--open.ev-ask--chat .ev-ask__list { display: flex !important; flex-direction: column; align-items: flex-end; gap: 14px !important; row-gap: 14px !important; }
+.wu-ev .ev-ask--open.ev-ask--chat .ev-ask__list > li { display: block !important; max-width: min(560px, 88%); margin: 0 !important; padding: 14px 20px !important; border-radius: 22px 22px 6px 22px !important; background: linear-gradient(160deg, #1d1d21, #131316) !important; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .07), 0 18px 30px -18px rgb(0 0 0 / .9) !important; color: #ececf0; font-size: clamp(15px, 1.15vw, 17px); }
+.wu-ev .ev-ask--open.ev-ask--chat .ev-ask__list > li:nth-child(odd) { margin-right: clamp(0px, 3vw, 40px) !important; }
+.wu-ev .ev-ask--open.ev-ask--chat .ev-ask__list > li::before { display: none !important; content: none !important; }
+.wu-ev .ev-ask--open.ev-ask--chat .ev-ask__reply { padding: 0 !important; border: 0 !important; max-width: min(600px, 94%); margin-top: clamp(22px, 2.6vw, 34px) !important; }
+@media (min-width: 1024px) { .wu-ev .ev-ask--chat > h3 { grid-row: 1 / span 2; } .wu-ev .ev-ask--chat .ev-ask__list, .wu-ev .ev-ask--chat .ev-ask__reply { grid-column: 2; } .wu-ev .ev-ask--chat { row-gap: 0; } }
+
+/* 2026-11-23: "Same Family, Its Own Personality" as one designed block, no picture (owner: "contents verthe kootti vechapole, oru design kond varu") */
+.wu-ev .ev-fam3--type { display: grid; gap: clamp(24px, 3vw, 40px); margin-top: clamp(56px, 6vw, 96px); padding-top: clamp(40px, 4.4vw, 64px); border-top: 1px solid rgb(255 255 255 / .1); }
+@media (min-width: 1024px) { .wu-ev .ev-fam3--type { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 5vw, 96px); align-items: start; } }
+.wu-ev .ev-fam3--type .ev-fam3__h { margin: 0 !important; text-align: left !important; font-size: clamp(30px, 3.2vw, 46px) !important; font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
+.wu-ev .ev-fam3--type .ev-fam3__h span { display: block; color: #fff; }
+.wu-ev .ev-fam3--type .ev-fam3__h span + span { color: #9a9aa2; }
+.wu-ev .ev-fam3--type .ev-fam3__h::after { content: ''; display: flex; width: 120px; height: 14px; margin-top: clamp(22px, 2.4vw, 32px); background: radial-gradient(circle 7px at 7px 50%, #f4f4f6 98%, transparent) , radial-gradient(circle 7px at 27px 50%, #beda52 98%, transparent), radial-gradient(circle 7px at 47px 50%, #3a3a40 98%, transparent); }
+.wu-ev .ev-fam3--type .ev-fam3__text { display: grid !important; grid-template-columns: none !important; gap: 0 !important; columns: auto !important; }
+.wu-ev .ev-fam3--type .ev-fam3__text p { margin: 0 !important; max-width: 46rem; }
+.wu-ev .ev-fam3--type .ev-fam3__q { position: relative; padding-left: 0 !important; font-size: clamp(22px, 2vw, 30px) !important; font-weight: 500; line-height: 1.3 !important; letter-spacing: -.02em; color: #fff !important; }
+.wu-ev .ev-fam3--type .ev-fam3__q::before { content: '\201C'; display: block; height: .5em; margin-bottom: 6px; font: 700 2.4em/1 Georgia, serif; color: #beda52; }
+.wu-ev .ev-fam3--type .ev-fam3__p { margin-top: 18px !important; color: #a9a9b0 !important; }
+.wu-ev .ev-fam3--type .ev-fam3__a { margin-top: clamp(28px, 3vw, 40px) !important; padding: 2px 0 2px 22px !important; border-left: 2px solid #beda52; color: #e8e8ec !important; font-size: clamp(16px, 1.2vw, 18px) !important; line-height: 1.7 !important; }
+/* specificity: beat "#what .ev-fam3 > h3" and the site-wide "p:not(#_):not(#__)" 17px rule */
+.wu-ev #what .ev-fam3--type > h3.ev-fam3__h { font-size: clamp(30px, 3.2vw, 46px) !important; text-align: left !important; margin: 0 !important; }
+html body .wu-evb #what .ev-fam3--type p.ev-fam3__q:not(#_):not(#__) { font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.3 !important; color: #fff !important; }
+html body .wu-evb #what .ev-fam3--type p.ev-fam3__a:not(#_):not(#__) { font-size: clamp(16px, 1.2vw, 18px) !important; }
+html body .wu-evb #what .ev-fam3--type p.ev-fam3__q:not(#_):not(#__) { margin: 0 !important; padding: 0 !important; border: 0 !important; font-weight: 500 !important; letter-spacing: -.02em; }
+html body .wu-evb #what .ev-fam3--type p.ev-fam3__q:not(#_):not(#__)::before { content: '\201C'; display: block; height: .5em; margin-bottom: 8px; font: 700 2.4em/1 Georgia, serif; color: #beda52; }
+html body .wu-evb #what .ev-fam3--type p.ev-fam3__p:not(#_):not(#__) { margin: 18px 0 0 !important; padding: 0 !important; color: #a9a9b0 !important; }
+html body .wu-evb #what .ev-fam3--type p.ev-fam3__a:not(#_):not(#__) { margin: clamp(28px, 3vw, 40px) 0 0 !important; padding: 4px 0 4px 24px !important; border-left: 2px solid #beda52 !important; color: #e8e8ec !important; line-height: 1.7 !important; }
+html body .wu-evb #what .ev-fam3.ev-fam3--type:not(#_) { margin-top: clamp(56px, 6vw, 96px) !important; padding: clamp(44px, 4.6vw, 68px) 0 0 !important; border-top: 1px solid rgb(255 255 255 / .1) !important; background: none !important; box-shadow: none !important; }
+@media (min-width: 1024px) { html body .wu-evb #what .ev-fam3--type > h3.ev-fam3__h:not(#_) { position: sticky; top: calc(var(--head-h, 90px) + 30px); } }
+html body .wu-evb #what .ev-fam3--type > h3.ev-fam3__h:not(#_)::after { content: '' !important; display: block !important; width: 62px; height: 14px; margin-top: clamp(22px, 2.4vw, 32px); background: radial-gradient(circle 7px at 7px 50%, #f4f4f6 97%, transparent 100%), radial-gradient(circle 7px at 31px 50%, #beda52 97%, transparent 100%), radial-gradient(circle 7px at 55px 50%, #3a3a40 97%, transparent 100%) !important; }
+/* Event Branding services: every heading one colour (owner: "headings should be same size … same color too") */
+html body .wu-evb #ev-services .dm-stack h3, html body .wu-evb #ev-services .dm-stack h3 *:not(#_):not(#__) { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }
+/* Event Branding services: every heading one colour (owner: "headings should be same size … same color too") */
+html body .wu-evb #ev-services .dm-stack h3, html body .wu-evb #ev-services .dm-stack h3 *:not(#_):not(#__) { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }
+
+/* 2026-11-23: services intro as a full-width story line under the heading (owner: the right-hand paragraph looked odd) */
+.wu-ev .ev-head.ev-head--story { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: clamp(28px, 3.4vw, 48px) !important; align-items: start !important; }
+.wu-ev .ev-head--story > .ev-story { max-width: 1120px !important; padding: clamp(26px, 3vw, 40px) 0 0 !important; border-top: 1px solid rgb(255 255 255 / .1); }
+html body .wu-evb #ev-services .ev-story p:not(#_):not(#__) { margin: 0 !important; font-size: clamp(20px, 1.9vw, 28px) !important; font-weight: 400; line-height: 1.5 !important; letter-spacing: -.015em; color: #8c8c94 !important; }
+html body .wu-evb #ev-services .ev-story .ev-story__a { color: #fff; font-weight: 500; }
+html body .wu-evb #ev-services .ev-story mark { padding: 0; background: none; color: #beda52; }
+
+/* 2026-11-23, owner: "make the heading little small and make those cards more good" (#choose, under
+   "Choosing an agency"). The heading drops from 46px to 40px max; the five right-hand checks become
+   real cards: dark panel, hairline edge, ghost index number, lime rail and a soft lime wash once
+   ticked, plus a small lift on hover. Copy and the scroll ticking are unchanged. */
+html body .wu-evb #choose .ev-head .sh__h:not(#_):not(#__) {
+  font-size: clamp(1.8rem, 1.2rem + 1.55vw, 2.5rem) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -.03em !important;
+}
+.wu-ev #choose .ev-sg__list { counter-reset: sgc; gap: 14px !important; }
+.wu-ev #choose .ev-sg__it {
+  counter-increment: sgc;
+  grid-template-columns: 40px minmax(0, 1fr) !important;
+  gap: clamp(14px, 1.5vw, 20px) !important;
+  padding: clamp(20px, 2.2vw, 28px) clamp(20px, 2.4vw, 30px) !important;
+  border: 0 !important;
+  overflow: hidden;
+  border-radius: 20px;
+  background: linear-gradient(155deg, #121316, #0a0a0c 70%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08), 0 20px 44px -34px rgb(0 0 0 / .95);
+  transition: background .5s ease, box-shadow .5s ease, translate .4s ease;
+}
+.wu-ev #choose .ev-sg__it::before {
+  content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 3px;
+  border-radius: 0 3px 3px 0; background: var(--lime, #beda52);
+  opacity: 0; transform: scaleY(.45); transform-origin: 50% 0;
+  transition: opacity .45s ease, transform .5s cubic-bezier(.2, .8, .2, 1);
+}
+.wu-ev #choose .ev-sg__it::after {
+  content: counter(sgc, decimal-leading-zero);
+  position: absolute; right: clamp(18px, 2vw, 26px); top: clamp(14px, 1.6vw, 20px);
+  font: 500 clamp(28px, 2.4vw, 34px)/1 var(--font-mark, inherit);
+  letter-spacing: -.04em; color: rgb(255 255 255 / .1);
+  transition: color .5s ease; pointer-events: none;
+}
+.wu-ev #choose .ev-sg__it.is-on,
+.wu-ev #choose .ev-sg:not(.is-live) .ev-sg__it {
+  background: linear-gradient(155deg, rgb(190 218 82 / .08), #0a0a0c 62%);
+  box-shadow: inset 0 0 0 1px rgb(190 218 82 / .24), 0 24px 46px -36px rgb(0 0 0 / 1);
+}
+.wu-ev #choose .ev-sg__it.is-on::before,
+.wu-ev #choose .ev-sg:not(.is-live) .ev-sg__it::before { opacity: 1; transform: none; }
+.wu-ev #choose .ev-sg__it.is-on::after,
+.wu-ev #choose .ev-sg:not(.is-live) .ev-sg__it::after { color: rgb(190 218 82 / .38); }
+@media (hover: hover) {
+  .wu-ev #choose .ev-sg__it:hover {
+    translate: 0 -3px;
+    background: linear-gradient(155deg, #17181b, #0b0b0d 70%);
+    box-shadow: inset 0 0 0 1px rgb(190 218 82 / .36), 0 28px 52px -32px rgb(0 0 0 / 1);
+  }
+}
+.wu-ev #choose .ev-sg__it .ev-sg__tick { width: 40px; height: 40px; margin-top: 2px; }
+.wu-ev #choose .ev-sg__it h3 { margin: 0 0 10px !important; font-size: clamp(22px, 1.8vw, 27px) !important; line-height: 1.14 !important; letter-spacing: -.025em; }
+.wu-ev #choose .ev-sg__it p { font-size: clamp(15px, 1.05vw, 16.5px); line-height: 1.65; max-width: 44rem; }
+.wu-ev #choose .ev-sg__it > div { padding-right: clamp(0px, 2.6vw, 40px); }
+@media (max-width: 1023px) {
+  .wu-ev #choose .ev-sg__it { grid-template-columns: 34px minmax(0, 1fr) !important; gap: 14px !important; padding: 20px 18px 20px 20px !important; border-radius: 16px; }
+  .wu-ev #choose .ev-sg__it .ev-sg__tick { width: 34px; height: 34px; }
+  .wu-ev #choose .ev-sg__it h3 { font-size: 20px !important; }
+  .wu-ev #choose .ev-sg__it::after { font-size: 24px; right: 14px; top: 12px; }
+  .wu-ev #choose .ev-sg__it > div { padding-right: 0; }
+}
+
+
+/* Owner: "reduce heading size" (sign-off checks: Portfolio relevance, Production capability ...). */
+.wu-ev #choose .ev-sg__it h3 { font-size: clamp(18px, 1.35vw, 21px) !important; line-height: 1.2 !important; margin-bottom: 8px !important; }
+@media (max-width: 1023px) { .wu-ev #choose .ev-sg__it h3 { font-size: 17px !important; } }
+
+/* Same Family = two owner-generated kits (summit folder + badge, celebration invitation + ticket) sliding out from behind the WiseUp logo tile as the section scrolls in (--p from the fam3 script). Replaces the single venue photo. */
+html body .wu-evb #what .ev-fam3 > .ev-famkit { grid-column: 1 / -1 !important; position: relative; height: clamp(360px, 31vw, 470px); margin: clamp(28px, 3.4vw, 52px) 0 clamp(36px, 4vw, 64px) !important; }
+.ev-famkit__k { position: absolute; left: 50%; top: 50%; width: clamp(300px, 30vw, 460px); margin: 0; z-index: 1; opacity: calc(.15 + var(--p, 1) * .85); filter: drop-shadow(0 30px 40px rgb(0 0 0 / .6)); }
+.ev-famkit__k img { display: block; width: 100%; height: auto; }
+.ev-famkit__k--l { transform: translate(calc(-50% - var(--p, 1) * clamp(220px, 25vw, 380px)), -50%) rotate(calc(-5deg + var(--p, 1) * 3deg)) scale(calc(.8 + var(--p, 1) * .2)); }
+.ev-famkit__k--r { transform: translate(calc(-50% + var(--p, 1) * clamp(220px, 25vw, 380px)), -50%) rotate(calc(5deg - var(--p, 1) * 3deg)) scale(calc(.8 + var(--p, 1) * .2)); }
+.ev-famkit__core { position: absolute; left: 50%; top: 50%; z-index: 2; transform: translate(-50%, -50%); width: clamp(150px, 13vw, 200px); aspect-ratio: 1; border-radius: 30%; display: grid; place-items: center; align-content: center; gap: 14px; background: radial-gradient(circle at 35% 28%, #2a2a2f, #0c0c0e 70%); box-shadow: inset 0 1px 0 rgb(255 255 255 / .08), 0 0 0 1px rgb(255 255 255 / .06), 0 30px 60px rgb(0 0 0 / .7), 0 0 calc(20px + var(--p, 1) * 50px) rgb(190 218 82 / .16); }
+.ev-famkit__core img { width: 74%; height: auto; }
+.ev-famkit__sw { display: flex; gap: 6px; }
+.ev-famkit__sw i { width: 10px; height: 10px; border-radius: 50%; background: #f2f2f2; }
+.ev-famkit__sw i:nth-child(2) { background: var(--lime, #beda52); }
+.ev-famkit__sw i:nth-child(3) { background: #3a3a40; }
+@media (max-width: 767px) {
+  html body .wu-evb #what .ev-fam3 > .ev-famkit { height: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; }
+  .ev-famkit__core { position: relative; left: auto; top: auto; transform: none; grid-column: 1 / -1; grid-row: 1; justify-self: center; width: 120px; margin-bottom: 6px; }
+  .ev-famkit__k { position: relative; left: auto; top: auto; width: 100%; transform: none !important; opacity: 1; grid-row: 2; }
+}
+
+
+/* Services intro (final): heading left, paragraph under it; the words light up as it scrolls in */
+html body .wu-evb #ev-services .ev-head--walk { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; justify-items: start !important; text-align: left !important; align-items: start !important; gap: clamp(20px, 2.4vw, 32px) !important; }
+.ev-head--walk .sh { position: static; display: flex; flex-direction: column; align-items: flex-start; }
+html body .wu-evb #ev-services .ev-head--walk .sh__h { text-align: left !important; }
+.ev-walk { display: grid; justify-items: start; }
+html body .wu-evb .ev-walk__p:not(#_):not(#__) { margin: 0 !important; max-width: 52rem; font-size: clamp(18px, 1.5vw, 21px) !important; line-height: 1.65 !important; color: #8b8b93 !important; text-align: left !important; }
+.ev-walk__a { color: #fff; font-weight: 600; }
+html body .wu-evb .ev-walk__p mark { background: none !important; color: #fff !important; padding: 0; }
+.ev-walk__p.is-wl .ev-wl { opacity: .16; transition: opacity .35s ease; }
+.ev-walk__p.is-wl .ev-wl.is-lit { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .ev-walk__p.is-wl .ev-wl { transition: none; } }
+
+
+/* Sign-off sheet, v2 (owner: "signature pole ulla anm pls remove. make the section more beautiful"): signature gone; the counter sits inside a ring of five segments that light lime one by one with the checks. Check rows get hairline dividers and a soft lime wash when ticked. */
+.ev-sg__ring { position: relative; width: clamp(220px, 21vw, 300px); aspect-ratio: 1; display: grid; place-items: center; }
+.ev-sg__ring::before { content: ""; position: absolute; inset: 14%; border-radius: 50%; background: radial-gradient(circle at 50% 40%, rgb(190 218 82 / calc(.04 + var(--sgq, 0) * .12)), transparent 70%); }
+.ev-sg__ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.ev-sg__track { fill: none; stroke: rgb(255 255 255 / .06); stroke-width: 5; }
+.ev-sg__seg { fill: none; stroke: rgb(255 255 255 / .16); stroke-width: 5; stroke-linecap: round; transition: stroke .5s ease, filter .5s ease; }
+.ev-sg__seg.is-on { stroke: var(--lime, #beda52); filter: drop-shadow(0 0 6px rgb(190 218 82 / .55)); }
+.ev-sg:not(.is-live) .ev-sg__seg { stroke: var(--lime, #beda52); }
+html body .wu-evb .ev-sg__ring .ev-sg__count { position: relative; justify-content: center; }
+.ev-sg__ring .ev-sg__count b { font-size: clamp(84px, 8vw, 124px); }
+.ev-sg__ring .ev-sg__count span { font-size: clamp(28px, 2.6vw, 40px); }
+@media (max-width: 1023px) {
+  .ev-sg__ring { width: 92px; }
+  .ev-sg__ring .ev-sg__count b { font-size: 34px !important; }
+  .ev-sg__ring .ev-sg__count span { font-size: 15px; }
+  .ev-sg__ring .ev-sg__track, .ev-sg__ring .ev-sg__seg { stroke-width: 7; }
+}
+
+
+.ev-sg__seg.is-on { filter: none !important; }
+@media (min-width: 1024px) {
+  html body .wu-evb .ev-sg:not(#_) { grid-template-columns: minmax(0, 320px) minmax(0, 760px) !important; justify-content: center !important; column-gap: clamp(56px, 7vw, 120px) !important; }
+  html body .wu-evb .wrap.ev-faqsplit:not(#_) { grid-template-columns: minmax(0, 400px) minmax(0, 760px) !important; justify-content: center !important; column-gap: clamp(56px, 7vw, 120px) !important; }
+}
+
+
+/* "Questions to Ask Any Agency, Including Us" = interview sheet (owner picked idea 1): heading across the top, the seven questions in two columns, each with a big lime "Q" number and a circle that ticks as it scrolls in; WiseUp's line closes the sheet as a signed note with the real WiseUp logo. Replaces the chat bubbles. No boxes. */
+.ev-iv { counter-reset: q; margin-top: clamp(64px, 8vw, 120px); padding-top: clamp(36px, 4vw, 56px); border-top: 1px solid rgb(255 255 255 / .1); }
+html body .wu-evb .ev-iv__h:not(#_):not(#__) { margin: 0 0 clamp(28px, 3.4vw, 48px) !important; max-width: 22ch; font-size: clamp(28px, 3vw, 46px) !important; font-weight: 500 !important; line-height: 1.08 !important; letter-spacing: -.035em; color: #fff !important; }
+.ev-iv__list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(40px, 6vw, 96px); }
+.ev-iv__q { counter-increment: q; position: relative; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 16px; align-items: start; padding: 22px 0 22px 64px; border-bottom: 1px solid rgb(255 255 255 / .08); }
+.ev-iv__q::before { content: "Q" counter(q); position: absolute; left: 0; top: 20px; font: 600 clamp(20px, 1.6vw, 24px)/1 var(--font-mark, inherit); letter-spacing: -.02em; color: rgb(190 218 82 / .35); transition: color .5s ease; }
+.ev-iv__q.is-in::before { color: var(--lime, #beda52); }
+.ev-iv__tick { width: 28px; height: 28px; margin-top: 1px; }
+.ev-iv__tick circle { fill: none; stroke: rgb(255 255 255 / .2); stroke-width: 1.4; transition: fill .45s ease, stroke .45s ease; }
+.ev-iv__tick path { fill: none; stroke: #11150a; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset .5s .15s cubic-bezier(.6, .1, .2, 1); }
+.ev-iv__q.is-in .ev-iv__tick circle { fill: var(--lime, #beda52); stroke: var(--lime, #beda52); }
+.ev-iv__q.is-in .ev-iv__tick path { stroke-dashoffset: 0; }
+html body .wu-evb .ev-iv__q span:not(#_):not(#__) { font-size: clamp(17px, 1.3vw, 19px) !important; line-height: 1.5 !important; color: #c9c9cf !important; transition: color .5s ease; }
+html body .wu-evb .ev-iv__q.is-in span:not(#_):not(#__) { color: #fff !important; }
+.ev-iv.is-live .ev-iv__q { opacity: .5; transition: opacity .6s ease; }
+.ev-iv.is-live .ev-iv__q.is-in { opacity: 1; }
+html body .wu-evb .ev-iv__note:not(#_):not(#__) { display: flex; align-items: center; justify-content: space-between; gap: clamp(20px, 4vw, 56px); margin: clamp(32px, 4vw, 52px) 0 0 !important; padding: clamp(22px, 2.6vw, 32px) 0 0 !important; border-top: 1px solid rgb(190 218 82 / .35); font-size: clamp(18px, 1.5vw, 22px) !important; line-height: 1.5 !important; color: #fff !important; }
+.ev-iv__note span { max-width: 44rem; }
+.ev-iv__note img { flex: none; width: clamp(110px, 10vw, 150px); height: auto; transform: rotate(-4deg); opacity: .95; }
+.ev-iv.is-live .ev-iv__note { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+.ev-iv.is-live .ev-iv__note.is-in { opacity: 1; transform: none; }
+@media (max-width: 767px) {
+  .ev-iv__list { grid-template-columns: minmax(0, 1fr); }
+  .ev-iv__q { padding-left: 52px; }
+  html body .wu-evb .ev-iv__note:not(#_):not(#__) { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .ev-iv * { transition: none !important; } }
+
+
+html body .wu-evb p.ev-iv__note:not(.eyebrow):not(#_):not(#__) { font-size: clamp(18px, 1.5vw, 22px) !important; line-height: 1.5 !important; color: #fff !important; justify-content: center; text-align: center; }
+.ev-iv__note span { max-width: 52rem; margin-inline: auto; }
+@media (max-width: 767px) { html body .wu-evb p.ev-iv__note:not(.eyebrow):not(#_):not(#__) { align-items: center; } }
+/* Interview sheet: no divider lines between questions or above the note (owner: "remove unwanted lines") */
+.ev-iv__q { border-bottom: 0 !important; padding-block: 16px !important; }
+html body .wu-evb p.ev-iv__note:not(.eyebrow):not(#_):not(#__) { border-top: 0 !important; margin-top: clamp(20px, 2.6vw, 36px) !important; padding-top: 0 !important; }
+/* The sign-off cards carry their own lime rail (::before at left:0): the card must be its positioning parent, else the rail sits on the page edge */
+.wu-ev #choose .ev-sg__it { position: relative; }

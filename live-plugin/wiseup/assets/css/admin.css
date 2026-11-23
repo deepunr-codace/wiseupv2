@@ -38,3 +38,15 @@
 .wiseup-leadtabs a.is-active span { color: #dcdcde; }
 .wiseup-lead__form { display: inline-block; padding: 2px 8px; border-radius: 4px; background: #f0f0f1; font-size: 12px; }
 @media (max-width: 600px) { .wiseup-leadcards { grid-template-columns: 1fr; } }
+
+/* Other services editor */
+.wiseup-os-list { display: grid; gap: 10px; max-width: 980px; margin: 8px 0 14px; }
+.wiseup-os-row { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; padding: 14px 16px; background: #fff; border: 1px solid #dcdcde; border-radius: 8px; }
+.wiseup-os-row__main { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.wiseup-os-row__wide { grid-column: 1 / -1; }
+.wiseup-os-row label { display: grid; gap: 3px; font-size: 12px; color: #50575e; }
+.wiseup-os-row input.regular-text, .wiseup-os-row select, .wiseup-os-row textarea { width: 100%; max-width: none; }
+.wiseup-os-row__side { display: grid; gap: 8px; align-content: start; }
+.wiseup-os-row__btns { display: flex; gap: 6px; }
+.wiseup-os-reset { margin-left: 18px; font-size: 13px; }
+@media (max-width: 900px) { .wiseup-os-row { grid-template-columns: 1fr; } .wiseup-os-row__main { grid-template-columns: 1fr; } }

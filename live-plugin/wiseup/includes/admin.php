@@ -25,6 +25,7 @@ function wiseup_admin_fields() {
 			'subscribe_url'     => array( 'url', __( 'Subscribe link', 'wiseup' ), __( 'Also used by the footer channel card.', 'wiseup' ) ),
 			'subscribe_count'   => array( 'text', __( 'Subscriber count', 'wiseup' ), __( 'Shown on the pill, e.g. 91K. Empty hides it.', 'wiseup' ) ),
 		),
+		'other'   => array(), // the Other services tab has its own editor (wiseup_admin_other)
 		'footer'  => array(
 			'footer_tagline'      => array( 'textarea', __( 'Tagline', 'wiseup' ), '' ),
 			'footer_h_quick'      => array( 'text', __( 'First links heading', 'wiseup' ), __( 'Links: assign a menu to "WiseUp: footer Quick Links" under Appearance → Menus (or the built-in links are used).', 'wiseup' ) ),
@@ -74,7 +75,37 @@ function wiseup_sanitize( $input ) {
 	if ( ! $tab ) {
 		// WordPress runs this twice when the option is first created; the second pass gets the first pass's
 		// already-clean full array (no _tab), which must be kept, not replaced by the not-yet-saved current values.
-		return is_array( $input ) && isset( $input['default_theme'] ) ? array_replace_recursive( wiseup_defaults(), $input ) : $current;
+		if ( is_array( $input ) && isset( $input['default_theme'] ) ) {
+			$full = array_replace_recursive( wiseup_defaults(), $input );
+			if ( isset( $input['os_items'] ) && is_array( $input['os_items'] ) ) $full['os_items'] = array_values( $input['os_items'] );
+			return $full;
+		}
+		return $current;
+	}
+	if ( 'other' === $tab ) {
+		$current['os_enabled'] = empty( $input['os_enabled'] ) ? 0 : 1;
+		foreach ( array( 'os_eyebrow', 'os_heading', 'os_heading2' ) as $k ) $current[ $k ] = sanitize_text_field( isset( $input[ $k ] ) ? $input[ $k ] : '' );
+		if ( ! empty( $input['os_reset'] ) ) { $current['os_items'] = wiseup_os_default_items(); return $current; }
+		$items = array();
+		$icons = array_keys( wiseup_os_icons() );
+		foreach ( (array) ( isset( $input['os_items'] ) ? $input['os_items'] : array() ) as $it ) {
+			if ( ! is_array( $it ) ) continue;
+			$title = sanitize_text_field( isset( $it['title'] ) ? $it['title'] : '' );
+			if ( '' === $title || count( $items ) >= 16 ) continue;
+			$mode = isset( $it['mode'] ) && in_array( $it['mode'], array( 'auto', 'show', 'hide' ), true ) ? $it['mode'] : 'auto';
+			$items[] = array(
+				'id'    => sanitize_key( isset( $it['id'] ) ? $it['id'] : '' ),
+				'mode'  => $mode,
+				'title' => $title,
+				'text'  => sanitize_text_field( isset( $it['text'] ) ? $it['text'] : '' ),
+				'url'   => esc_url_raw( trim( isset( $it['url'] ) ? $it['url'] : '' ) ),
+				'icon'  => isset( $it['icon'] ) && in_array( $it['icon'], $icons, true ) ? $it['icon'] : 'star',
+				'tpl'   => sanitize_text_field( isset( $it['tpl'] ) ? $it['tpl'] : '' ),
+				'live'  => esc_url_raw( isset( $it['live'] ) ? $it['live'] : '' ),
+			);
+		}
+		$current['os_items'] = $items;
+		return $current;
 	}
 	foreach ( $fields[ $tab ] as $key => $f ) {
 		$type  = $f[0];
@@ -128,7 +159,7 @@ function wiseup_admin_page() {
 	if ( ! current_user_can( 'manage_options' ) ) return;
 	$new_leads = wiseup_lead_count( 'new' );
 	$leads_label = $new_leads ? sprintf( '%s (%d)', __( 'Leads', 'wiseup' ), $new_leads ) : __( 'Leads', 'wiseup' );
-	$tabs = array( 'dashboard' => __( 'Dashboard', 'wiseup' ), 'leads' => $leads_label, 'general' => __( 'General', 'wiseup' ), 'header' => __( 'Header', 'wiseup' ), 'footer' => __( 'Footer', 'wiseup' ) );
+	$tabs = array( 'dashboard' => __( 'Dashboard', 'wiseup' ), 'leads' => $leads_label, 'general' => __( 'General', 'wiseup' ), 'header' => __( 'Header', 'wiseup' ), 'footer' => __( 'Footer', 'wiseup' ), 'other' => __( 'Other services', 'wiseup' ) );
 	$tab  = isset( $_GET['tab'] ) && isset( $tabs[ sanitize_key( $_GET['tab'] ) ] ) ? sanitize_key( $_GET['tab'] ) : 'dashboard'; // phpcs:ignore WordPress.Security.NonceVerification -- navigation only
 	?>
 	<div class="wrap wiseup-admin">
@@ -144,6 +175,8 @@ function wiseup_admin_page() {
 			wiseup_admin_dashboard();
 		} elseif ( 'leads' === $tab ) {
 			wiseup_admin_leads();
+		} elseif ( 'other' === $tab ) {
+			wiseup_admin_other();
 		} else {
 			wiseup_admin_form( $tab );
 		}
@@ -338,5 +371,74 @@ function wiseup_admin_form( $tab ) {
 		</table>
 		<?php submit_button(); ?>
 	</form>
+	<?php
+}
+
+// ---------- Other services: the carousel shown at the bottom of every service page ----------
+function wiseup_admin_other() {
+	$s      = wiseup_settings();
+	$n      = WISEUP_OPTION;
+	$labels = wiseup_os_icon_labels();
+	$modes  = array( 'auto' => __( 'Auto: only when the page is live', 'wiseup' ), 'show' => __( 'Always show', 'wiseup' ), 'hide' => __( 'Hide', 'wiseup' ) );
+	$row = function ( $i, $it ) use ( $n, $labels, $modes ) {
+		$f = function ( $k ) use ( $n, $i ) { return esc_attr( $n . '[os_items][' . $i . '][' . $k . ']' ); };
+		$g = function ( $k, $d = '' ) use ( $it ) { return isset( $it[ $k ] ) ? $it[ $k ] : $d; };
+		?>
+		<div class="wiseup-os-row">
+			<input type="hidden" name="<?php echo $f( 'id' ); // phpcs:ignore ?>" value="<?php echo esc_attr( $g( 'id' ) ); ?>">
+			<input type="hidden" name="<?php echo $f( 'tpl' ); // phpcs:ignore ?>" value="<?php echo esc_attr( $g( 'tpl' ) ); ?>">
+			<input type="hidden" name="<?php echo $f( 'live' ); // phpcs:ignore ?>" value="<?php echo esc_attr( $g( 'live' ) ); ?>">
+			<div class="wiseup-os-row__main">
+				<label><span><?php esc_html_e( 'Title', 'wiseup' ); ?></span><input type="text" class="regular-text" name="<?php echo $f( 'title' ); // phpcs:ignore ?>" value="<?php echo esc_attr( $g( 'title' ) ); ?>"></label>
+				<label><span><?php esc_html_e( 'Link', 'wiseup' ); ?></span><input type="url" class="regular-text" name="<?php echo $f( 'url' ); // phpcs:ignore ?>" value="<?php echo esc_attr( $g( 'url' ) ); ?>" placeholder="<?php esc_attr_e( 'Empty = the service page itself', 'wiseup' ); ?>"></label>
+				<label class="wiseup-os-row__wide"><span><?php esc_html_e( 'Text', 'wiseup' ); ?></span><textarea rows="2" class="large-text" name="<?php echo $f( 'text' ); // phpcs:ignore ?>"><?php echo esc_textarea( $g( 'text' ) ); ?></textarea></label>
+			</div>
+			<div class="wiseup-os-row__side">
+				<label><span><?php esc_html_e( 'Show', 'wiseup' ); ?></span>
+					<select name="<?php echo $f( 'mode' ); // phpcs:ignore ?>">
+						<?php foreach ( $modes as $v => $l ) : ?><option value="<?php echo esc_attr( $v ); ?>" <?php selected( $g( 'mode', 'auto' ), $v ); ?>><?php echo esc_html( $l ); ?></option><?php endforeach; ?>
+					</select>
+				</label>
+				<label><span><?php esc_html_e( 'Icon', 'wiseup' ); ?></span>
+					<select name="<?php echo $f( 'icon' ); // phpcs:ignore ?>">
+						<?php foreach ( $labels as $v => $l ) : ?><option value="<?php echo esc_attr( $v ); ?>" <?php selected( $g( 'icon', 'star' ), $v ); ?>><?php echo esc_html( $l ); ?></option><?php endforeach; ?>
+					</select>
+				</label>
+				<span class="wiseup-os-row__btns">
+					<button type="button" class="button" data-act="up" aria-label="<?php esc_attr_e( 'Move up', 'wiseup' ); ?>">↑</button>
+					<button type="button" class="button" data-act="down" aria-label="<?php esc_attr_e( 'Move down', 'wiseup' ); ?>">↓</button>
+					<button type="button" class="button button-link-delete" data-act="del"><?php esc_html_e( 'Remove', 'wiseup' ); ?></button>
+				</span>
+			</div>
+		</div>
+		<?php
+	};
+	?>
+	<form method="post" action="options.php" class="wiseup-form wiseup-os-form">
+		<?php settings_fields( 'wiseup' ); ?>
+		<input type="hidden" name="<?php echo esc_attr( $n . '[_tab]' ); ?>" value="other">
+		<p class="wiseup-admin__lead"><?php esc_html_e( 'The "Other services we provide" carousel at the bottom of every service page. Each service page leaves itself out of its own list. "Auto" shows a service only once its page is published (Social Media, SEO and Digital Marketing are known to be live already).', 'wiseup' ); ?></p>
+		<table class="form-table" role="presentation">
+			<tr><th scope="row"><?php esc_html_e( 'Section', 'wiseup' ); ?></th><td><label><input type="checkbox" name="<?php echo esc_attr( $n . '[os_enabled]' ); ?>" value="1" <?php checked( ! empty( $s['os_enabled'] ) ); ?>> <?php esc_html_e( 'Show on the service pages', 'wiseup' ); ?></label></td></tr>
+			<tr><th scope="row"><label for="wiseup-os-eb"><?php esc_html_e( 'Label', 'wiseup' ); ?></label></th><td><input type="text" id="wiseup-os-eb" class="regular-text" name="<?php echo esc_attr( $n . '[os_eyebrow]' ); ?>" value="<?php echo esc_attr( $s['os_eyebrow'] ); ?>"></td></tr>
+			<tr><th scope="row"><label for="wiseup-os-h1"><?php esc_html_e( 'Heading', 'wiseup' ); ?></label></th><td><input type="text" id="wiseup-os-h1" class="regular-text" name="<?php echo esc_attr( $n . '[os_heading]' ); ?>" value="<?php echo esc_attr( $s['os_heading'] ); ?>"> <input type="text" class="regular-text" name="<?php echo esc_attr( $n . '[os_heading2]' ); ?>" value="<?php echo esc_attr( $s['os_heading2'] ); ?>"><p class="description"><?php esc_html_e( 'Two lines: the second one is shown in grey.', 'wiseup' ); ?></p></td></tr>
+		</table>
+		<h2><?php esc_html_e( 'Services', 'wiseup' ); ?></h2>
+		<div class="wiseup-os-list" data-os-list>
+			<?php foreach ( array_values( (array) $s['os_items'] ) as $i => $it ) $row( $i, $it ); ?>
+		</div>
+		<p><button type="button" class="button" data-os-add>+ <?php esc_html_e( 'Add a service', 'wiseup' ); ?></button>
+			<label class="wiseup-os-reset"><input type="checkbox" name="<?php echo esc_attr( $n . '[os_reset]' ); ?>" value="1"> <?php esc_html_e( 'Reset the list to the built-in services when saving', 'wiseup' ); ?></label></p>
+		<template id="wiseup-os-tpl"><?php $row( '__i__', array( 'mode' => 'show', 'icon' => 'star' ) ); ?></template>
+		<?php submit_button(); ?>
+	</form>
+	<script>
+	(function(){var f=document.querySelector('.wiseup-os-form');if(!f)return;var list=f.querySelector('[data-os-list]');
+	var reindex=function(){[].forEach.call(list.querySelectorAll('.wiseup-os-row'),function(r,i){[].forEach.call(r.querySelectorAll('[name]'),function(el){el.name=el.name.replace(/\[os_items\]\[[^\]]*\]/,'[os_items]['+i+']');});});};
+	list.addEventListener('click',function(e){var b=e.target.closest('button[data-act]');if(!b)return;e.preventDefault();var r=b.closest('.wiseup-os-row'),a=b.getAttribute('data-act');
+	if(a==='up'&&r.previousElementSibling)list.insertBefore(r,r.previousElementSibling);if(a==='down'&&r.nextElementSibling)list.insertBefore(r.nextElementSibling,r);if(a==='del')r.remove();});
+	f.querySelector('[data-os-add]').addEventListener('click',function(e){e.preventDefault();list.insertAdjacentHTML('beforeend',document.getElementById('wiseup-os-tpl').innerHTML.replace(/__i__/g,list.children.length));});
+	f.addEventListener('submit',reindex);})();
+	</script>
 	<?php
 }

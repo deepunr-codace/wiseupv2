@@ -745,6 +745,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		</div>
 	</section>
 
+	<?php wiseup_other_services( 'wiseup-digital-marketing' ); ?>
+
+
 	<!-- 16. Final CTA: lead form (Name | Business Name | Email | Phone | Services Required | Tell Us About Your Project) -->
 	<section class="sec ev-sec" id="enquire">
 		<div class="wrap">

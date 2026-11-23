@@ -633,6 +633,9 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 		</div>
 	</section>
 
+	<?php wiseup_other_services( 'wiseup-seo' ); ?>
+
+
 	<!-- 12. Final CTA: free SEO assessment -->
 			<section class="sec ev-sec" id="enquire">
 		<div class="wrap">

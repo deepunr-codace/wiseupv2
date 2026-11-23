@@ -305,6 +305,15 @@ function wiseup_ai_overview( $o ) {
 @keyframes wu-aio3-p{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.2) rotate(14deg)}}
 @keyframes wu-aio3-d{0%{transform:scale(1);opacity:1}100%{transform:scale(4);opacity:0}}
 @media (max-width:640px){.wu-aio3__panel{width:min(310px,calc(100vw - 52px))}.wu-aio3__in{width:100%}}
+@media (max-width:640px){
+.wu-aio3{right:auto!important;left:12px;top:auto!important;bottom:14px;transform:translate(0,140%)!important;align-items:flex-end}
+.wu-aio3.is-in,.wu-aio3:not(.is-js){transform:none!important}
+.wu-aio3__tab,.wu-aio3 .wu-aio3__tab,.wu-aio3:hover .wu-aio3__tab,.wu-aio3.is-open .wu-aio3__tab{flex-direction:row;width:auto!important;height:46px;padding:0 16px 0 14px;gap:9px;border-radius:99px!important;box-shadow:0 10px 24px -10px rgba(0,0,0,.9),inset 0 0 0 1px rgba(255,255,255,.1)}
+.wu-aio3__tab span{writing-mode:horizontal-tb;transform:none;font-size:12px;letter-spacing:.1em}
+.wu-aio3 .wu-aio3__panel{position:fixed;left:12px;right:12px;bottom:70px;top:auto;width:auto;max-height:min(72vh,520px);border-radius:20px!important;clip-path:inset(100% 0 0 0 round 20px);transform:translateY(14px);transform-origin:50% 100%}
+.wu-aio3.is-open .wu-aio3__panel{clip-path:inset(0 0 0 0 round 20px);transform:none}
+.wu-aio3__in{width:100%}
+}
 @media (prefers-reduced-motion:reduce){.wu-aio3,.wu-aio3__panel{transition:none}.wu-aio3__tab svg,.wu-aio3__tab i{animation:none}}
 </style>' . "\n";
 		echo '<script>(function(){var q=function(){document.querySelectorAll(".wu-aio3").forEach(function(b){if(b.dataset.done)return;b.dataset.done=1;b.classList.add("is-js");var show=function(){b.classList.add("is-in");};var t=setTimeout(show,2500);addEventListener("scroll",function(){if(scrollY>240){clearTimeout(t);show();}},{passive:true,once:true});var tab=b.querySelector(".wu-aio3__tab");tab.addEventListener("click",function(){var o=b.classList.toggle("is-open");tab.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(e){if(!b.contains(e.target)){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});document.addEventListener("keydown",function(e){if(e.key==="Escape"){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});b.querySelectorAll(".wu-aio3__cta").forEach(function(c){c.addEventListener("click",function(){b.classList.remove("is-open");});});});};if(document.readyState!=="loading")q();else document.addEventListener("DOMContentLoaded",q);})();</script>' . "\n";
@@ -411,3 +420,92 @@ function wiseup_svc_link( $templates, $fallback = '#' ) {
 	return $fallback;
 }
 
+
+/**
+ * "Other services we provide": a carousel of the service pages that are live, on every service page
+ * (owner, 2026-11-23: "other services we provide ennu oru section; ippo currently live ayittulla page mathram mathi, carousal pole").
+ * A service shows when a published page uses its template (or it is known to be live on wiseup.in); the current page is left out,
+ * so a new service page appears here by itself once it is published. Texts are short lines taken from each page's own copy.
+ *
+ * @param string $current Template key of the page being shown (e.g. 'wiseup-seo').
+ */
+function wiseup_other_services( $current = '' ) {
+	$s = wiseup_settings();
+	if ( empty( $s['os_enabled'] ) ) return;
+	$icons = wiseup_os_icons();
+	$cards = array();
+	foreach ( (array) $s['os_items'] as $it ) {
+		$mode = isset( $it['mode'] ) ? $it['mode'] : 'auto';
+		if ( 'hide' === $mode || empty( $it['title'] ) ) continue;
+		$tpls = array_filter( array_map( 'trim', explode( ',', isset( $it['tpl'] ) ? $it['tpl'] : '' ) ) );
+		if ( $current && in_array( $current, $tpls, true ) ) continue; // a page leaves itself out
+		$url = isset( $it['url'] ) ? trim( $it['url'] ) : '';
+		if ( ! $url ) {
+			foreach ( $tpls as $tp ) {
+				if ( function_exists( 'wiseup_svc_page_url' ) ) $url = wiseup_svc_page_url( $tp );
+				if ( $url ) break;
+			}
+		}
+		if ( ! $url && ! empty( $it['live'] ) ) $url = $it['live'];
+		if ( ! $url && 'show' === $mode ) $url = home_url( '/services/' );
+		if ( ! $url ) continue; // auto: not live yet
+		$cards[] = array( 'icon' => isset( $it['icon'], $icons[ $it['icon'] ] ) ? $icons[ $it['icon'] ] : $icons['star'], 'title' => $it['title'], 'text' => isset( $it['text'] ) ? $it['text'] : '', 'url' => $url );
+	}
+	$cards = apply_filters( 'wiseup_other_services', $cards, $current );
+	if ( ! $cards ) return;
+	static $css = false;
+	if ( ! $css ) {
+		$css = true;
+		echo '<style>
+.wu-os{padding-block:clamp(56px,6vw,96px);overflow-x:clip;color:#fff;font-family:Inter,system-ui,sans-serif}
+.wu-os *{box-sizing:border-box}
+.wu-os__in{width:min(100% - 2 * clamp(20px,3.4vw,56px),1480px);margin-inline:auto}
+.wu-os__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(28px,3.2vw,48px)}
+.wu-os__eb{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;padding:8px 16px 8px 12px;border-radius:99px;background:#0e0e10;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.wu-os__eb i{width:7px;height:7px;border-radius:50%;background:#beda52}
+.wu-os__h{margin:0;font-size:clamp(30px,3.6vw,52px);font-weight:500;line-height:1.05;letter-spacing:-.04em;color:#fff;text-wrap:balance}
+.wu-os__h span{display:block;color:#9a9aa2}
+.wu-os__nav{display:flex;gap:10px;flex:none}
+.wu-os__btn{display:grid;place-items:center;width:52px;height:52px;border:0;border-radius:50%;background:linear-gradient(145deg,#161618,#08080a);color:#fff;cursor:pointer;box-shadow:-5px -5px 14px rgba(255,255,255,.025),8px 10px 20px -8px rgba(0,0,0,.95),inset 0 0 0 1px rgba(255,255,255,.08);transition:color .3s,box-shadow .3s,opacity .3s}
+.wu-os__btn:hover:not(:disabled){color:#beda52;box-shadow:-5px -5px 14px rgba(255,255,255,.03),8px 10px 20px -8px rgba(0,0,0,.95),inset 0 0 0 1px rgba(190,218,82,.55)}
+.wu-os__btn:disabled{opacity:.3;cursor:default}
+.wu-os__btn svg{width:20px;height:20px}
+.wu-os__track{display:flex;gap:clamp(14px,1.6vw,22px);margin:0 calc(50% - 50vw);padding:6px max(clamp(20px,3.4vw,56px),calc((100vw - 1480px)/2 + clamp(20px,3.4vw,56px))) 30px;list-style:none;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(clamp(20px,3.4vw,56px),calc((100vw - 1480px)/2 + clamp(20px,3.4vw,56px)));scrollbar-width:none;cursor:grab;overscroll-behavior-x:contain}
+.wu-os__track::-webkit-scrollbar{display:none}
+.wu-os__track.is-drag{cursor:grabbing;scroll-snap-type:none}
+.wu-os__track.is-drag a{pointer-events:none}
+.wu-os__card{flex:0 0 min(400px,82vw);scroll-snap-align:start}
+.wu-os__card a{position:relative;display:flex;flex-direction:column;gap:18px;height:100%;min-height:310px;padding:clamp(24px,2.2vw,32px);border-radius:28px;overflow:hidden;color:inherit;text-decoration:none;background:linear-gradient(150deg,#151517,#08080a);box-shadow:-8px -8px 20px rgba(255,255,255,.025),14px 18px 34px -12px rgba(0,0,0,.95),inset 0 0 0 1px rgba(255,255,255,.06);transition:translate .55s cubic-bezier(.2,.9,.2,1),box-shadow .5s}
+.wu-os__card a::before{content:"";position:absolute;top:-45%;right:-35%;width:80%;aspect-ratio:1;border-radius:50%;background:radial-gradient(closest-side,rgba(190,218,82,.14),transparent);opacity:0;transition:opacity .6s}
+.wu-os__card a:hover,.wu-os__card a:focus-visible{translate:0 -6px;box-shadow:-8px -8px 20px rgba(255,255,255,.03),20px 28px 44px -14px rgba(0,0,0,.98),inset 0 0 0 1px rgba(190,218,82,.5);outline:none}
+.wu-os__card a:hover::before,.wu-os__card a:focus-visible::before{opacity:1}
+.wu-os__ic{position:relative;display:grid;place-items:center;width:60px;height:60px;border-radius:19px;color:#beda52;background:linear-gradient(145deg,#1b1b1e,#09090b);box-shadow:-4px -4px 10px rgba(255,255,255,.03),6px 8px 16px -6px rgba(0,0,0,.95),inset 0 0 0 1px rgba(190,218,82,.22)}
+.wu-os__ic svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.wu-os__t{position:relative;margin:auto 0 0;font-size:clamp(24px,2.1vw,30px);font-weight:500;line-height:1.1;letter-spacing:-.03em;color:#fff}
+.wu-os__p{position:relative;margin:0;font-size:15.5px;line-height:1.6;color:#a9a9b0}
+.wu-os__go{position:relative;display:inline-flex;align-items:center;gap:12px;margin-top:6px;font-size:14px;font-weight:600;color:#e6e6ea}
+.wu-os__go i{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#11150a;background:#beda52;transition:rotate .5s cubic-bezier(.2,.9,.2,1)}
+.wu-os__go svg{width:16px;height:16px}
+.wu-os__card a:hover .wu-os__go i{rotate:45deg}
+@media (max-width:767px){.wu-os__head{flex-direction:column;align-items:flex-start}.wu-os__nav{display:none}.wu-os__h{font-size:clamp(27px,7.6vw,32px)}.wu-os__card{flex-basis:min(320px,80vw)}.wu-os__card a{min-height:280px}.wu-os__track{padding-bottom:20px}}
+@media (prefers-reduced-motion:reduce){.wu-os__card a,.wu-os__go i{transition:none}}
+</style>';
+	}
+	$arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+	echo '<section class="wu-os" id="other-services" aria-labelledby="wu-os-h" data-wu-os><div class="wu-os__in" role="region" aria-roledescription="carousel" aria-label="' . esc_attr( $s['os_heading'] . ' ' . $s['os_heading2'] ) . '">';
+	echo '<div class="wu-os__head"><div><p class="wu-os__eb"><i aria-hidden="true"></i>' . esc_html( $s['os_eyebrow'] ) . '</p><h2 class="wu-os__h" id="wu-os-h">' . esc_html( $s['os_heading'] ) . ( $s['os_heading2'] ? ' <span>' . esc_html( $s['os_heading2'] ) . '</span>' : '' ) . '</h2></div>';
+	echo '<div class="wu-os__nav"><button type="button" class="wu-os__btn" data-os-prev aria-label="Previous services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button><button type="button" class="wu-os__btn" data-os-next aria-label="Next services">' . $arrow . '</button></div></div>'; // phpcs:ignore
+	echo '<ul class="wu-os__track" data-os-track>';
+	foreach ( $cards as $c ) {
+		echo '<li class="wu-os__card"><a href="' . esc_url( $c['url'] ) . '"><span class="wu-os__ic" aria-hidden="true"><svg viewBox="0 0 24 24">' . $c['icon'] . '</svg></span><h3 class="wu-os__t">' . esc_html( $c['title'] ) . '</h3><p class="wu-os__p">' . esc_html( $c['text'] ) . '</p><span class="wu-os__go">Explore service <i aria-hidden="true">' . $arrow . '</i></span></a></li>'; // phpcs:ignore
+	}
+	echo '</ul></div></section>';
+	echo '<script>(function(){var w=document.querySelector("[data-wu-os]");if(!w)return;var t=w.querySelector("[data-os-track]"),pv=w.querySelector("[data-os-prev]"),nx=w.querySelector("[data-os-next]"),nav=w.querySelector(".wu-os__nav");
+var step=function(){var c=t.querySelector(".wu-os__card");return c?c.getBoundingClientRect().width+parseFloat(getComputedStyle(t).columnGap||16):300};
+var upd=function(){var m=t.scrollWidth-t.clientWidth;pv.disabled=t.scrollLeft<4;nx.disabled=t.scrollLeft>m-4;if(nav)nav.style.visibility=m<8?"hidden":"";};
+pv.addEventListener("click",function(){t.scrollBy({left:-step(),behavior:"smooth"})});nx.addEventListener("click",function(){t.scrollBy({left:step(),behavior:"smooth"})});
+t.addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);upd();
+var d=0,x0=0,s0=0,moved=0;t.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse"||e.button)return;d=1;x0=e.clientX;s0=t.scrollLeft;moved=0});
+addEventListener("pointermove",function(e){if(!d)return;var dx=e.clientX-x0;if(Math.abs(dx)>5){moved=1;t.classList.add("is-drag")}if(moved)t.scrollLeft=s0-dx});
+addEventListener("pointerup",function(){if(!d)return;d=0;if(moved){var c=step(),n=Math.round(t.scrollLeft/c);t.classList.remove("is-drag");t.scrollTo({left:n*c,behavior:"smooth"})}});})();</script>'; // phpcs:ignore
+}
