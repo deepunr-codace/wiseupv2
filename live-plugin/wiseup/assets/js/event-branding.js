@@ -34,6 +34,13 @@
 
 	var intro = gsap.timeline({ paused: true });
 
+	// phones: no SplitText for headings / paragraphs (each split forces layout); a plain fade-up instead
+	var lite = matchMedia('(max-width: 767px)').matches;
+	function liteIn(el) {
+		gsap.set(el, { visibility: 'visible' });
+		gsap.from(el, { y: 26, opacity: 0, duration: 0.9, ease: EASE, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+	}
+
 	// run fn only once el is near the screen: splitting every heading at load forced layout on the whole page
 	var fontsReady = (document.fonts && document.fonts.ready) || Promise.resolve();
 	function whenNear(el, fn0, now) {
@@ -51,6 +58,7 @@
 		var done = false, requested = false, tw = null;
 		if (isIntro) intro.add(function () { requested = true; if (tw) tw.play(); }, 0.1);
 		if (!Split) { gsap.set(el, { visibility: 'visible' }); return; }
+		if (lite && !isIntro) { liteIn(el); return; }
 		whenNear(el, function () { Split.create(el, {
 			type: 'lines', mask: 'lines', linesClass: 'split-line', autoSplit: true,
 			onSplit: function (self) {
@@ -168,6 +176,7 @@
 		// 2. long lead paragraphs light up word by word as they pass through the screen
 		$$('#what .ev-lead, #what .ev-fam3__text p, .ev-head--stack > .ev-intro p:first-child, .ev-kl__lead .ev-lead, .ev-price--col p:first-child').forEach(function (el) {
 			el.classList.add('ev-scrub');
+			if (lite) return;
 			whenNear(el, function () { Split.create(el, { type: 'words', onSplit: function (self) {
 				return gsap.fromTo(self.words, { opacity: 0.18 }, { opacity: 1, ease: 'none', stagger: 0.1,
 					scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 48%', scrub: true } });
@@ -176,6 +185,7 @@
 		// 3. section intros rise in line by line
 		$$('.ev-head > .ev-intro p').forEach(function (el) {
 			if (el.classList.contains('ev-scrub')) return;
+			if (lite) { liteIn(el); return; }
 			whenNear(el, function () { Split.create(el, { type: 'lines', mask: 'lines', linesClass: 'split-line', autoSplit: true, onSplit: function (self) {
 				return gsap.from(self.lines, { yPercent: 105, duration: 1, stagger: 0.06, ease: EASE, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
 			} }); });

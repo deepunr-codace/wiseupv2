@@ -232,7 +232,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 <main id="main">
 
 	<!-- 1. Hero -->
-	<section class="ev-hero dm-hero">
+	<section class="ev-hero dm-hero" data-css-intro>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
