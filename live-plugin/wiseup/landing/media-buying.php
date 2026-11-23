@@ -1,9 +1,9 @@
 <?php
 /**
- * Media Buying Agency in Kerala ("WiseUp: Media Buying" in the page Template dropdown). Built from the owner's brief
- * (Downloads/media buying services page.docx, 2026-11-18): the doc is a page structure + keyword brief, so the copy is
- * written from it, in its section order. Owner answers: no prices anywhere; campaign snapshots = existing case studies
- * with their own figures (not claimed as OOH / print / theatre buys); trust strip = figures already on the site.
+ * Media Buying Agency in Kerala ("WiseUp: Media Buying" in the page Template dropdown). Copy = the owner's final doc
+ * (Downloads/media buying services page (1).docx, 2026-11-20), word for word in its order. The doc's campaign blocks are
+ * [Insert ...] placeholders, so the existing case studies stay under its heading until verified details are supplied.
+ * Kept though not in the doc: hero stats strip, AI Overview, Chat on WhatsApp button, budget-range options.
  * Design system: the Event Branding + Digital Marketing blocks (event-branding.css, digital-marketing.css) plus this
  * page's own pieces in assets/css/media-buying.css (.mb-*).
  */
@@ -75,125 +75,122 @@ $wu_icons = array(
 	'repeat' => '<path d="M4 12a8 8 0 0 1 13.7-5.6L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15"/><path d="M4 20v-5h5"/>',
 );
 
-// Line drawings for the three pillars (hero cards and the pillar panels).
+// Line drawings for the six services (service panels).
 $wu_art = array(
 	'ooh'     => '<svg class="mb-art" viewBox="0 0 240 160" aria-hidden="true"><path class="mb-art__sky" d="M0 128h240"/><circle class="mb-art__acc" cx="206" cy="30" r="10"/><rect class="mb-art__fill" x="34" y="24" width="150" height="72" rx="6"/><path d="M52 46h60M52 60h92M52 74h44"/><rect class="mb-art__acc" x="150" y="40" width="22" height="40" rx="3"/><path d="M78 96v32M140 96v32M66 128h24M128 128h24"/><path d="M30 110l10-8 10 8M196 120h30M206 112v8"/></svg>',
 	'print'   => '<svg class="mb-art" viewBox="0 0 240 160" aria-hidden="true"><path class="mb-art__fill" d="M44 22h140l12 12v104H44z"/><path d="M184 22v12h12"/><path d="M58 40h78M58 50h56"/><rect class="mb-art__acc" x="58" y="64" width="62" height="46" rx="3"/><path d="M132 66h48M132 76h48M132 86h40M132 96h48M132 106h32M58 122h122M58 130h90"/></svg>',
 	'theatre' => '<svg class="mb-art" viewBox="0 0 240 160" aria-hidden="true"><path d="M18 18h204"/><path class="mb-art__curtain" d="M18 18c6 40 4 84 0 112h24c-6-34-6-74 0-112z"/><path class="mb-art__curtain" d="M222 18c-6 40-4 84 0 112h-24c6-34 6-74 0-112z"/><rect class="mb-art__fill" x="52" y="30" width="136" height="70" rx="4"/><path class="mb-art__acc mb-art__beam" d="M120 52l-14 10 14 10z"/><path d="M60 118c10-6 20-6 30 0M98 118c10-6 20-6 30 0M136 118c10-6 20-6 30 0M78 136c10-6 20-6 30 0M116 136c10-6 20-6 30 0M154 136c10-6 20-6 30 0"/></svg>',
+	'digital' => '<svg class="mb-art" viewBox="0 0 240 160" aria-hidden="true"><rect class="mb-art__fill" x="30" y="20" width="150" height="100" rx="8"/><path d="M30 36h150"/><circle cx="42" cy="28" r="2.5"/><circle cx="52" cy="28" r="2.5"/><rect class="mb-art__acc" x="44" y="48" width="56" height="40" rx="4"/><path d="M112 52h54M112 62h44M112 72h54M44 100h122"/><rect class="mb-art__fill" x="164" y="64" width="50" height="78" rx="8"/><rect class="mb-art__acc" x="172" y="80" width="34" height="26" rx="3"/><path d="M172 116h34M172 124h22"/><path d="M84 140h50M109 120v20"/></svg>',
+	'video'   => '<svg class="mb-art" viewBox="0 0 240 160" aria-hidden="true"><rect class="mb-art__fill" x="28" y="26" width="184" height="104" rx="10"/><circle class="mb-art__acc" cx="120" cy="72" r="24"/><path d="M113 62l18 10-18 10z"/><path d="M44 116h152"/><path class="mb-art__acc" d="M44 116h70"/><circle cx="114" cy="116" r="4"/></svg>',
+	'radio'   => '<svg class="mb-art" viewBox="0 0 240 160" aria-hidden="true"><path d="M70 50 160 22"/><rect class="mb-art__fill" x="40" y="50" width="160" height="86" rx="12"/><circle class="mb-art__acc" cx="88" cy="93" r="26"/><circle cx="88" cy="93" r="10"/><path d="M134 72h48M134 84h48"/><rect x="134" y="100" width="48" height="16" rx="3"/><path class="mb-art__acc" d="M150 100v16"/><path d="M206 60c8 8 8 26 0 34M216 52c13 13 13 37 0 50"/></svg>',
 );
 
-// Hero tiles: [ anchor, title, promise ].
+// Hero service tiles (doc: "OOH Campaigns | Print Campaigns | Theatre Advertising"): [ anchor, label ].
 $wu_tiles = array(
-	array( 'ooh', 'OOH', 'Be seen where your customers travel every day.' ),
-	array( 'print', 'Print', 'Reach readers who trust their morning paper.' ),
-	array( 'theatre', 'Theatre', 'Speak to an audience that is already watching.' ),
+	array( 'ooh', 'OOH Campaigns' ),
+	array( 'print', 'Print Campaigns' ),
+	array( 'theatre', 'Theatre Advertising' ),
 );
 
-// Pillars: id, title, intro, formats, how we buy, angle, best for.
+// Services (doc order and wording): id, tab label, h3, paragraphs before the list, list lead, list, paragraphs after, best suited for.
 $wu_pillars = array(
 	array(
-		'id' => 'ooh', 'eyebrow' => 'Pillar 01 · OOH', 'h3' => 'OOH Media Buying in Kerala',
-		'what' => 'Out-of-home (OOH) advertising puts your brand on the roads, junctions, transit routes and public spaces your customers pass every day. It builds steady visibility in a city or locality, and it works well when you want people to remember your name before they need you.',
-		'formats' => array( 'Hoardings and unipoles', 'Gantries', 'Bus shelters', 'Transit and bus branding', 'Railway and airport sites', 'Mall and digital screens', 'Wall branding' ),
-		'how' => array( 'Site audit', 'Visibility check', 'Permissions and licensing', 'Installation', 'Proof-of-display photos' ),
-		'angle' => 'Being based in Kozhikode, we plan OOH around the high-footfall stretches of Kozhikode and Malabar, and we check every site on the ground before it goes into your plan. Availability changes often, so we confirm the inventory for your campaign dates instead of promising fixed locations upfront.',
-		'best' => array( 'Retail', 'Real estate', 'Jewellery', 'Hospitals' ),
-		'cta' => 'Plan an OOH campaign',
+		'id' => 'ooh', 'tab' => 'OOH', 'h3' => 'OOH Media Buying in Kerala',
+		'p' => array( 'A well-placed outdoor advertisement can make a brand part of the everyday landscape. From busy roads to commercial centres, outdoor advertising creates repeated opportunities for people to notice a brand.' ),
+		'lead' => 'Our OOH media buying services cover:',
+		'list' => array( 'Hoardings and unipoles', 'Roadside gantries', 'Bus shelters and transit advertising', 'Bus and vehicle branding', 'Railway and airport advertising', 'Mall and digital outdoor screens', 'Wall branding' ),
+		'kick' => 'The right location makes all the difference.',
+		'after' => array( 'We assess site visibility, traffic movement, audience relevance and available inventory before recommending placements. We also coordinate rate negotiations, permissions, installation and proof-of-display photographs.', 'For businesses targeting Kozhikode and Malabar, we consider local audience movement and high-footfall locations when planning outdoor campaigns.' ),
+		'best' => 'Retail, real estate, jewellery, healthcare, education and businesses looking to strengthen local brand visibility.',
 	),
 	array(
-		'id' => 'print', 'eyebrow' => 'Pillar 02 · Print', 'h3' => 'Print Media Buying in Kerala',
-		'what' => 'Newspapers are still where many Kerala households look for offers, admissions, jobs and announcements. Print gives your message the credibility of the paper it appears in, and it lets you reach a specific edition, district or readership on a specific day.',
-		'formats' => array( 'Newspaper display ads', 'Supplements', 'Solus and jacket ads', 'Classifieds', 'Tenders and public notices', 'Magazines' ),
-		'how' => array( 'Rate negotiation', 'Edition and position selection', 'Scheduling', 'Tear-sheet proof' ),
-		'angle' => 'We help you choose between Malayalam and English dailies based on who you need to reach, then buy edition by edition, so a campaign can run across Malabar, Kochi and Thiruvananthapuram without paying for readers outside your market.',
-		'best' => array( 'Offers', 'Admissions', 'Recruitment', 'Legal notices', 'Trust-led categories' ),
-		'cta' => 'Plan a print campaign',
+		'id' => 'print', 'tab' => 'Print', 'h3' => 'Print Media Buying in Kerala',
+		'p' => array( 'Print advertising gives brands access to established newspaper and magazine readership. The right publication, edition and advertisement position can make a significant difference to campaign reach.' ),
+		'lead' => 'Our print media buying services include:',
+		'list' => array( 'Newspaper display advertisements', 'Newspaper supplements', 'Solus and jacket advertisements', 'Classified advertisements', 'Tenders and public notices', 'Magazine advertisements' ),
+		'kick' => 'Every publication serves a different readership.',
+		'after' => array( 'We evaluate publication choices based on audience profiles, language preferences, circulation and geographical coverage. From Malayalam and English dailies to edition-specific placements, we coordinate bookings across Malabar, Kochi and Thiruvananthapuram.', 'Our process includes rate negotiation, advertisement positioning, scheduling and collection of newspaper tear sheets as publication proof.' ),
+		'best' => 'Retail promotions, educational admissions, recruitment, legal notices, public announcements and consumer brands.',
 	),
 	array(
-		'id' => 'theatre', 'eyebrow' => 'Pillar 03 · Theatre', 'h3' => 'Theatre Advertising in Kerala',
-		'what' => 'Cinema advertising reaches people who are seated, relaxed and looking at a big screen with nothing to skip. It is one of the few places where your ad gets full attention, which makes it a strong choice for launches and brands that rely on visual impact.',
-		'formats' => array( 'Pre-show ads', 'Interval slides', 'Lobby branding', 'Film-release tie-ins', 'Multiplex networks', 'Single-screen theatres' ),
-		'how' => array( 'Screen and city selection', 'Show-time planning', 'Playback confirmation' ),
-		'angle' => 'We select screens and cities by the audience you want, plan show times and film releases around your launch, and confirm that your ad was played as booked.',
-		'best' => array( 'Launches', 'Lifestyle and premium brands', 'Jewellery', 'Textiles' ),
-		'cta' => 'Plan a theatre campaign',
+		'id' => 'theatre', 'tab' => 'Theatre', 'h3' => 'Theatre Advertising in Kerala',
+		'p' => array( 'Cinema advertising puts brands in front of audiences during a focused viewing experience. It creates an opportunity to communicate through engaging screen advertisements and in-cinema branding.' ),
+		'lead' => 'Our theatre advertising services include:',
+		'list' => array( 'Pre-show advertisements', 'Interval slides', 'Lobby branding', 'Cinema screen advertisements', 'Film-release promotional tie-ins', 'Multiplex and single-screen placements' ),
+		'kick' => '',
+		'after' => array( 'We assess cinema locations, audience profiles, available formats and show schedules before recommending placements. WiseUp also coordinates bookings, advertisement submissions and playback confirmation.' ),
+		'best' => 'Jewellery, textiles, lifestyle brands, product launches, entertainment and premium consumer products.',
+	),
+	array(
+		'id' => 'digital', 'tab' => 'Digital', 'h3' => 'Digital Media Buying',
+		'p' => array( 'Digital advertising extends campaign reach across online platforms and helps brands connect with audiences through targeted placements.', 'Our digital media buying approach covers paid advertising opportunities across relevant digital channels, including search, social media and display advertising. We consider audience targeting, platform selection, campaign budgets and performance before recommending placements.', 'Digital campaigns can also support offline advertising by directing interested audiences towards websites, landing pages and enquiry channels.' ),
+		'lead' => '', 'list' => array(), 'kick' => '', 'after' => array(),
+		'best' => 'Lead generation, online promotions, product awareness, website traffic and integrated advertising campaigns.',
+	),
+	array(
+		'id' => 'video', 'tab' => 'Video', 'h3' => 'Video Advertising Campaigns',
+		'p' => array( 'Video brings brand messages to life through visuals, sound and storytelling. It gives businesses an effective format to communicate product features, promotions and brand messages.', 'WiseUp plans video advertising campaigns around suitable placements, audience preferences and campaign objectives. This can include video advertisements across digital platforms and relevant screen-based advertising opportunities.', 'From placement selection to campaign scheduling, we focus on getting video content in front of the intended audience.' ),
+		'lead' => '', 'list' => array(), 'kick' => '', 'after' => array(),
+		'best' => 'Product launches, brand awareness, retail promotions, hospitality and consumer brands.',
+	),
+	array(
+		'id' => 'radio', 'tab' => 'Radio', 'h3' => 'Radio Advertising Campaigns',
+		'p' => array( 'Radio advertising offers an opportunity to reach listeners during their daily routines, including travel, work and leisure.', 'Our radio advertising campaigns focus on selecting suitable stations, audience segments, time slots and campaign durations. We coordinate advertising schedules and placements based on the intended geographical coverage and campaign requirements.' ),
+		'lead' => '', 'list' => array(), 'kick' => '', 'after' => array(),
+		'best' => 'Retail offers, local promotions, public announcements, product launches and regional campaigns.',
 	),
 );
 
-// Media planning vs media buying: [ aspect, planning, buying ].
-$wu_vs = array(
-	array( 'Purpose', 'Decides where, when and how often your ad should appear.', 'Secures those placements at the right rates and gets them live.' ),
-	array( 'Key question', 'Which media will reach my audience best?', 'How do we get those spots at the best price and terms?' ),
-	array( 'Work involved', 'Audience research, media mix, budget split and schedule.', 'Negotiation, booking, execution and proof of display.' ),
-	array( 'Output', 'A media plan.', 'Live campaigns and a report showing they ran.' ),
+// One strategy: the doc's retail launch example as a small diagram (the sentence itself is in the paragraph).
+$wu_mix = array(
+	array( 'ooh', 'Outdoor hoardings', 'Local visibility' ),
+	array( 'print', 'Newspaper advertisements', 'Promotional offers' ),
+	array( 'radio', 'Radio spots', 'Wider awareness' ),
+	array( 'digital', 'Digital campaigns', 'Online enquiries' ),
 );
-// How media buying works: [ icon, step, text ].
-$wu_how = array(
-	array( 'map', 'Plan', 'Match the media to your audience, goal and budget.' ),
-	array( 'deal', 'Negotiate', 'Get rates, positions and terms that suit the plan.' ),
-	array( 'book', 'Book', 'Confirm sites, editions and screens for your dates.' ),
-	array( 'check', 'Verify', 'Collect proof that every ad ran as booked.' ),
-);
-// Which medium for which goal (doc table).
-$wu_goals = array(
-	array( 'Local dominance in a city or locality', 'OOH', 'ooh' ),
-	array( 'Credibility, offers, notices', 'Print', 'print' ),
-	array( 'Launch buzz, captive audience', 'Theatre', 'theatre' ),
-);
-// Sample budget split for the integrated section (an example, labelled as such on the page).
-$wu_split = array(
-	array( 'OOH', 45, 'Steady presence in your key city' ),
-	array( 'Print', 30, 'Offer and launch announcements' ),
-	array( 'Theatre', 15, 'Launch-week attention' ),
-	array( 'Digital support', 10, 'Retargeting and response tracking' ),
-);
-// Digital support points: [ icon, title, text ].
-$wu_digital = array(
-	array( 'repeat', 'Retarget people you reached offline', 'Follow up with online ads for the audiences and areas your OOH, print or theatre campaign covered, so the message is seen more than once.' ),
-	array( 'qr', 'Measure response online', 'QR codes, campaign links, landing pages and dedicated numbers show how many people responded to each offline placement.' ),
-	array( 'link', 'One plan across channels', 'Digital spends are planned in the same media plan, so offline and online ads support each other instead of competing for budget.' ),
-);
-// Process: [ title, icon, text ].
+// Process (doc): [ title, icon, text ].
 $wu_process = array(
-	array( 'Discovery', 'chat', 'We learn about your business, campaign goal, timeline, target locations and budget.' ),
-	array( 'Audience and market research', 'users', 'We study who you need to reach, where they live and travel, what they read and watch, and what competitors are doing.' ),
-	array( 'Media mix and budget', 'pie', 'We choose the right mix of OOH, print, theatre and digital support, and split the budget across them in a clear media plan.' ),
-	array( 'Negotiation and booking', 'deal', 'We negotiate rates, positions and schedules with media owners, then confirm every booking for your dates.' ),
-	array( 'Execution and monitoring', 'eye', 'We manage creatives, installation and release, and check that every placement goes live as planned.' ),
-	array( 'Reporting', 'chart', 'You receive proof of display, tear sheets and playback confirmation, with a summary of what ran and what responded.' ),
+	array( 'Discover', 'chat', 'We understand the business, advertising objectives, target audience, geographical coverage and campaign budget.' ),
+	array( 'Research', 'users', 'We assess the market, audience profiles, available media inventory, locations, publications and advertising opportunities.' ),
+	array( 'Plan', 'pie', 'We recommend suitable media formats, placements, schedules and budget allocations based on campaign requirements.' ),
+	array( 'Negotiate and Book', 'deal', 'We coordinate with media owners, negotiate available rates, confirm placements and arrange advertising bookings.' ),
+	array( 'Execute and Monitor', 'eye', 'We coordinate advertisement submissions, installations, publication schedules and campaign execution across selected channels.' ),
+	array( 'Verify and Report', 'chart', 'We collect available execution evidence, including display photographs, newspaper tear sheets and playback confirmations, and share campaign updates.' ),
 );
-// Why work with a media buying company: [ icon, title, text ].
+// Why work with a media buying company (doc): [ icon, title, text ].
 $wu_why = array(
-	array( 'tag', 'Negotiated rates', 'Media owners price differently for direct buyers and agencies that book regularly. We negotiate rates, positions and add-ons, so your budget covers more.' ),
-	array( 'one', 'One point of accountability', 'One team handles planning, booking, creatives and execution across every medium, instead of you coordinating with several vendors.' ),
-	array( 'camera', 'Proof of execution', 'You receive proof-of-display photos, tear sheets and playback confirmation for what you paid for.' ),
-	array( 'clock', 'Time saved', 'Site checks, permissions, rate comparisons and follow-ups are handled for you, so your team can focus on the business.' ),
+	array( 'tag', 'Rate negotiation', 'Comparing available inventory and negotiating media rates helps identify suitable advertising opportunities.' ),
+	array( 'one', 'Centralised coordination', 'Planning, booking and execution are managed through a single point of contact.' ),
+	array( 'search', 'Informed media selection', 'Audience profiles, location visibility and publication readership guide placement decisions.' ),
+	array( 'camera', 'Execution proof', 'Display photographs, publication proofs and playback confirmations help verify completed campaigns.' ),
+	array( 'clock', 'Time efficiency', 'Coordinating multiple media owners and advertising schedules becomes more manageable.' ),
 );
-// How we charge: [ icon, model, text ].
+// How does a media buying agency charge (doc): [ icon, model, text ].
 $wu_charge = array(
-	array( 'percent', 'Commission', 'A percentage of the media spend. Common for larger bookings, where the agency is paid from the value of the media it buys.' ),
-	array( 'flat', 'Flat fee', 'A fixed fee for planning and managing a specific campaign, agreed before work starts. Useful for one-off launches and short bursts.' ),
-	array( 'repeat', 'Retainer', 'A monthly fee for ongoing planning, buying and reporting. Suits brands that advertise across media throughout the year.' ),
+	array( 'percent', 'Commission-based', 'An agreed commission is charged on the media booking value.' ),
+	array( 'flat', 'Flat fee', 'A fixed professional fee covers media planning, coordination or campaign management.' ),
+	array( 'repeat', 'Retainer', 'A recurring fee covers ongoing media planning and buying requirements.' ),
 );
-// How to choose: checklist.
+// Choosing the right agency (doc).
 $wu_choose = array(
-	array( 'Transparency', 'You see the media costs and our fee separately, with no hidden mark-ups.' ),
-	array( 'Reporting', 'You receive clear reports and proof for every placement, not just an invoice.' ),
-	array( 'Local rate knowledge', 'The agency knows current rates, sites, editions and screens in your market.' ),
-	array( 'Proof of work', 'They can show past campaigns and the results behind them.' ),
+	'Transparency in media rates and agency fees.',
+	'Knowledge of local advertising inventory.',
+	'Experience across relevant media formats.',
+	'Clear campaign reporting and execution proof.',
+	'Communication and coordination throughout the campaign.',
 );
 // Industries: [ name, filled icon path ].
 $wu_ind = array(
 	array( 'Healthcare', 'M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM10 4h4v2h-4V4zm6 11h-3v3h-2v-3H8v-2h3v-3h2v3h3v2z' ),
 	array( 'Retail', 'M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z' ),
 	array( 'Education', 'M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z' ),
-	array( 'Real estate', 'M1 11v10h5v-6h4v6h5V11L8 6z M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3H10zm9 6h-2V7h2v2z' ),
+	array( 'Real Estate', 'M1 11v10h5v-6h4v6h5V11L8 6z M10 3v1.97l7 5V11h2v2h-2v2h2v2h-2v4h6V3H10zm9 6h-2V7h2v2z' ),
 	array( 'Jewellery', 'M19 3H5L2 9l10 12L22 9l-3-6zM9.62 8l1.5-3h1.76l1.5 3H9.62zM11 10v6.68L5.44 10H11zm2 0h5.56L13 16.68V10zm6.26-2h-2.65l-1.5-3h2.65l1.5 3zM6.24 5h2.65l-1.5 3H4.74l1.5-3z' ),
 	array( 'Textiles', 'M16 3l-2.2 1.6h-3.6L8 3 2.5 6.5l2.3 4.4 2.2-1.1V21h10V9.8l2.2 1.1 2.3-4.4z' ),
 	array( 'Hospitality', 'M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z' ),
 	array( 'FMCG', 'M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z' ),
 );
-// Campaign snapshots (owner: use existing case studies with their own figures): [ name, kind, image, figure, label, url ].
+// Campaign snapshots: the doc's campaign blocks are placeholders ([Insert ...]), so the existing case studies stay until verified campaign details are supplied.
 $wu_cases = array(
 	array( 'Bootland Expo 2026', 'Expo launch campaign', WISEUP_URL . 'assets/landing/img/case-bootland.jpg', '21.6M+', 'Impressions for the launch', 'https://wiseup.in/case-studies/bootland/' ),
 	array( 'Sathya Agencies', 'Brand launch campaign', WISEUP_ASSETS . '/work/case-sathya-720.webp', '1M+', 'Minimum reach on every video', 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ),
@@ -201,22 +198,17 @@ $wu_cases = array(
 );
 
 $wu_faq = array(
-	array( 'What is media buying?', 'Media buying is the process of purchasing advertising space and time, such as hoardings, newspaper space or cinema screen time, at the right price and on the right dates. A media buying agency negotiates with media owners, books the placements, manages execution and proves that your ads ran.' ),
-	array( 'What is the difference between media planning and media buying?', 'Media planning decides where, when and how often your ads should appear, based on your audience, goal and budget. Media buying secures those placements, negotiates the rates and terms, and gets the campaign live. Planning produces the plan; buying puts it into action.' ),
-	array( 'How much does a media buying agency charge?', 'Agencies usually charge a commission on the media spend, a flat fee for a specific campaign, or a monthly retainer for ongoing work. The right model depends on how often you advertise and how many media you use. We explain our fee separately from the media costs in every proposal.' ),
-	array( 'Do I need a media buying agency for a small budget?', 'A small budget gains the most from careful planning, because there is less room for waste. An agency can help you choose one or two media that suit your goal, negotiate better rates and avoid placements that look busy but reach the wrong people.' ),
-	array( 'How do I book OOH advertising in Kozhikode?', 'Share your campaign goal, target areas, dates and budget with us. We shortlist available hoardings and other OOH sites, check their visibility on the ground, handle permissions and printing, install the creatives and send you proof-of-display photos.' ),
-	array( 'Which newspapers work best for advertising in Kerala?', 'It depends on who you want to reach. Malayalam dailies have the widest reach across Kerala households, while English dailies suit professional, urban and some B2B audiences. Edition-wise buying lets you reach only the districts that matter, such as Malabar, Kochi or Thiruvananthapuram.' ),
-	array( 'How much does cinema advertising cost in Kerala?', 'Cinema advertising costs depend on the number of screens, the cities, multiplex or single-screen theatres, the ad format and how long the campaign runs. We share a plan with options for your budget before you commit to any booking.' ),
-	array( 'Can you buy media across Kerala and India?', 'Yes. We are based in Kozhikode and plan campaigns across all of Kerala. For brands that need reach beyond the state, we can plan and buy media in other parts of India as well.' ),
-	array( 'How do you prove my ads ran?', 'For OOH we share proof-of-display photos of every site, for print we share tear sheets of the published ads, and for theatre we confirm playback with the screens. You receive these with a summary report at the end of the campaign.' ),
-	array( 'How do digital and offline media buying work together?', 'Offline media such as OOH, print and theatre build awareness at scale. Digital ads can then retarget the people and areas you reached, and QR codes, campaign links and landing pages help measure how many people responded to each offline placement.' ),
+	array( 'What Does a Media Buying Agency Do?', 'A media buying agency selects and books advertising spaces across channels such as newspapers, television, radio, cinema, and outdoor media. It manages rate negotiations, placement selection, bookings, and campaign execution based on the client\'s advertising objectives.' ),
+	array( 'How Is Media Planning Different from Media Buying?', 'Media planning decides which advertising channels, locations and time slots suit a campaign. Media buying handles the purchase and booking of those placements. Both work together to ensure that advertising budgets are used effectively.' ),
+	array( 'What Are the Charges for Hiring a Media Buying Agency?', 'Media buying fees depend on the campaign budget, advertising format, duration, and services required. An agency may charge a fixed fee, commission, or monthly retainer. Media placement, production and installation expenses may be billed separately.' ),
+	array( 'Can Small Businesses Afford Media Buying Services?', 'Yes. Small businesses can use media buying services to identify advertising opportunities within their available budgets. An agency can compare placement costs, prioritise relevant locations, and recommend suitable channels without committing to unnecessary advertising spaces.' ),
+	array( 'How Can I Book Outdoor Advertising in Kozhikode?', 'You can book outdoor advertising in Kozhikode by selecting suitable locations, checking available hoardings and display formats, comparing rates and confirming booking permissions. The process also includes artwork preparation, installation, and verification of the advertisement display.' ),
+	array( 'Which Newspapers Are Suitable for Advertising in Kerala?', 'Malayalam newspapers are suitable for reaching regional audiences across Kerala, while English newspapers can target specific urban, professional, and business readerships. The right publication depends on your audience, campaign location, preferred language, and required circulation.' ),
+	array( 'What Determines the Cost of Cinema Advertising in Kerala?', 'Cinema advertising rates depend on the theatre location, number of screens, advertisement duration, screening frequency, and campaign period. Rates can also vary between multiplexes and single-screen theatres. Comparing available placements helps determine which option fits the campaign budget.' ),
+	array( 'Can a Media Buying Agency Manage Campaigns Across India?', 'Yes. Media buying agencies can coordinate advertising placements across multiple cities and states, depending on media availability and campaign requirements. WiseUp is based in Kozhikode and manages campaigns across Kerala, while pan-India requirements are evaluated based on the locations and media formats involved.' ),
+	array( 'How Can I Verify That My Advertisements Have Been Published or Displayed?', 'Advertisers can request execution records based on the media format. These may include photographs of installed outdoor advertisements, newspaper tear sheets, cinema playback confirmations, and radio transmission records. The available proof depends on the media provider and campaign arrangement.' ),
+	array( 'Can Digital and Traditional Media Buying Be Combined?', 'Yes. Digital and traditional media can run together as part of one advertising campaign. Outdoor, newspaper, cinema, and radio placements build brand visibility, while digital advertising supports online engagement, website visits, and lead generation. Using both allows brands to reach audiences across different touchpoints.' ),
 );
-add_action( 'wp_footer', function () use ( $wu_faq ) {
-	$items = array();
-	foreach ( $wu_faq as $q ) $items[] = array( '@type' => 'Question', 'name' => $q[0], 'acceptedAnswer' => array( '@type' => 'Answer', 'text' => $q[1] ) );
-	echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => $items ) ) . "</script>\n";
-}, 20 );
 
 $wu_addr = wiseup_opt( 'contact_address' );
 $wu_map  = wiseup_opt( 'contact_map' );
@@ -227,80 +219,22 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 <main id="main">
 
 	<!-- 1. Hero -->
-	<section class="ev-hero dm-hero mb-hero">
+	<section class="ev-hero dm-hero mb-hero mb-hero--photo">
+		<?php $wu_hb = WISEUP_URL . 'assets/landing/img/mb-hero-cinema-'; ?>
+		<div class="mb-hbg" aria-hidden="true"><img src="<?php echo esc_url( $wu_hb . '1400.webp' ); ?>" srcset="<?php echo esc_url( $wu_hb . '900.webp' ); ?> 900w, <?php echo esc_url( $wu_hb . '1400.webp' ); ?> 1400w, <?php echo esc_url( $wu_hb . '1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
-				<p class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Media planning &amp; buying</p>
-				<h1 class="ev-hero__h"><span class="sh__a">Media Buying Agency in Kerala</span> <span class="sh__b">for OOH, Print and Theatre Advertising</span></h1>
-				<p class="ev-hero__p">WiseUp is a media buying agency in Kerala that plans, negotiates and books your advertising across hoardings, newspapers and cinema screens. As a media planning and buying agency based in Kozhikode, we cover all of Kerala, and we prove every placement ran as booked.</p>
+				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Media Buying Agency in Kerala</h1>
+				<h2 class="ev-hero__h"><span class="sh__a">Getting the Right Ad Placement</span> <span class="sh__b">Makes All the Difference</span></h2>
+				<div class="ev-hero__p mb-hero__ps"><p class="mb-hero__lead">Advertising works best when the right audience sees it in the right place. At WiseUp, we make that happen through strategic media planning and buying.</p>
+				<p>WiseUp is a media buying agency in Kerala, specialising in outdoor (OOH), print, and theatre advertising. Based in Kozhikode, we plan and buy media placements across Kerala, helping businesses reach relevant audiences through the right advertising channels.</p>
+				<p>As a media planning and buying agency, we focus on selecting suitable media, negotiating placements, and managing campaigns from planning to execution.</p></div>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Get a Free Media Plan', 'teal', $wu_lead ); // phpcs:ignore ?>
-					<a class="mb-icbtn mb-icbtn--wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><?php echo $wu_wa_svg; // phpcs:ignore ?></a>
-					<a class="mb-icbtn" href="tel:+916282434503" aria-label="Call +91 62824 34503"><?php echo $wu_call_svg; // phpcs:ignore ?></a>
+					<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
 				</div>
 			</div>
-			<?php $wu_ca = esc_url( WISEUP_ASSETS . '/brand/wiseup-logo.webp' ); ?>
-			<!-- Hero scene (owner's script, walker removed on request): a road by the paddy fields with a WiseUp hoarding;
-			     a newspaper boy cycles past, throws a paper, and it opens on the same WiseUp ad. SVG + CSS, 16s loop. -->
-			<figure class="mb-scene" aria-label="Animation: a WiseUp hoarding beside a road through paddy fields, then a newspaper delivered by bicycle opens on the same WiseUp ad">
-				<svg viewBox="0 0 800 560" role="presentation" aria-hidden="true">
-					<defs>
-						<clipPath id="sc-clip"><rect width="800" height="560" rx="28"/></clipPath>
-						<g id="sc-ad">
-							<rect width="250" height="116" rx="6" fill="#0c0c0e"/>
-							<image href="<?php echo $wu_ca; // phpcs:ignore ?>" x="25" y="12" width="200" height="72"/>
-							<rect x="65" y="94" width="120" height="7" rx="3.5" fill="#beda52"/>
-						</g>
-					</defs>
-					<g clip-path="url(#sc-clip)">
-						<image href="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-scene-bg.webp' ); ?>" width="800" height="560" preserveAspectRatio="xMidYMid slice"/>
-						<!-- hoarding -->
-						<g class="sc-hoard">
-							<path d="M548 360V232M690 360V232" stroke="#3a3a3f" stroke-width="7"/>
-							<path d="M534 360h28M676 360h28" stroke="#3a3a3f" stroke-width="5"/>
-							<rect x="482" y="92" width="270" height="140" rx="8" fill="#16161a" stroke="#e6e6ea" stroke-width="3"/>
-							<use href="#sc-ad" x="492" y="104"/>
-							<rect class="sc-hoard__glow" x="476" y="86" width="282" height="152" rx="12" fill="none" stroke="#beda52" stroke-width="4"/>
-							<path class="sc-hoard__lamp" d="M512 84l10-14M722 84l-10-14" stroke="#e6e6ea" stroke-width="3" stroke-linecap="round"/>
-						</g>
-						<!-- cyclist -->
-						<g class="sc-cyc"><g transform="translate(0 412) scale(1.4)">
-							<g transform="translate(-26 -18)"><g class="sc-wheel"><circle r="18" fill="none" stroke="#e6e6ea" stroke-width="3"/><path d="M-18 0h36M0-18v36" stroke="#8a8a92" stroke-width="2"/></g></g>
-							<g transform="translate(30 -18)"><g class="sc-wheel"><circle r="18" fill="none" stroke="#e6e6ea" stroke-width="3"/><path d="M-18 0h36M0-18v36" stroke="#8a8a92" stroke-width="2"/></g></g>
-							<path d="M-26-18l18-26h30l8 26M-8-44l12 26 26-26M22-44l-4-12" fill="none" stroke="#beda52" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
-							<rect x="26" y="-56" width="22" height="14" rx="2" fill="#f1ece0" stroke="#8a8a92" stroke-width="2"/>
-							<path d="M-6-48l10-30M4-78l18 16" stroke="#3b82b6" stroke-width="9" stroke-linecap="round"/>
-							<path d="M-8-46l14 22" stroke="#26262b" stroke-width="7" stroke-linecap="round"/>
-							<circle cx="6" cy="-90" r="10" fill="#9c6b43"/>
-						</g></g>
-						<!-- thrown paper -->
-						<g class="sc-toss"><rect x="-12" y="-8" width="24" height="16" rx="2" fill="#f1ece0" stroke="#8a8a92" stroke-width="1.5"/></g>
-												<!-- newspaper close-up: the same ad -->
-						<g class="sc-paper"><g transform="translate(400 286)">
-							<g class="sc-paper__in">
-								<rect x="-190" y="-150" width="380" height="290" rx="6" fill="#f1ece0"/>
-								<rect x="-190" y="-150" width="380" height="290" rx="6" fill="none" stroke="#d6cfbd" stroke-width="2"/>
-								<rect x="-160" y="-128" width="320" height="16" rx="3" fill="#1d1d20"/>
-								<path d="M-160-100h320M-160-96h320" stroke="#1d1d20" stroke-width="1.5"/>
-								<path d="M-160-78h130M-160-66h120M-160-54h130M-160-42h100M-160 120h320M-160 108h320" stroke="#b5ad99" stroke-width="5" stroke-linecap="round"/>
-								<path d="M-12-78h172M-12-66h150" stroke="#55524a" stroke-width="7" stroke-linecap="round"/>
-								<use href="#sc-ad" x="-125" y="-24"/>
-								<rect x="-131" y="-30" width="262" height="128" rx="9" fill="none" stroke="#beda52" stroke-width="4"/>
-							</g>
-						</g></g>
-					</g>
-				</svg>
-			</figure>
-			<nav class="mb-tiles" aria-label="Our media">
-				<?php foreach ( $wu_tiles as $wu_k => $t ) : ?>
-				<a class="mb-tile mb-tile--<?php echo esc_attr( $t[0] ); ?>" href="#<?php echo esc_attr( $t[0] ); ?>" style="--k:<?php echo (int) $wu_k; ?>">
-					<span class="mb-tile__art"><?php echo $wu_art[ $t[0] ]; // phpcs:ignore ?></span>
-					<span class="mb-tile__t"><b><?php echo esc_html( $t[1] ); ?></b><small><?php echo esc_html( $t[2] ); ?></small></span>
-					<span class="mb-tile__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
-				</a>
-				<?php endforeach; ?>
-			</nav>
 			<dl class="ev-proof">
 				<?php foreach ( array(
 					array( '8', '+', 'Years with CodeAce' ),
@@ -311,259 +245,81 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
 				<?php endforeach; ?>
 			</dl>
+			<nav class="mb-htiles" aria-label="Our media">
+				<?php foreach ( $wu_tiles as $t ) : ?>
+				<a href="#<?php echo esc_attr( $t[0] ); ?>"><span class="mb-htiles__i" aria-hidden="true"><?php echo $wu_art[ $t[0] ]; // phpcs:ignore ?></span><?php echo esc_html( $t[1] ); ?><span class="mb-htiles__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span></a>
+				<?php endforeach; ?>
+			</nav>
 		</div>
 	</section>
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a media buying agency in Kerala do?',
-	'a' => '<b>WiseUp</b> is a media planning and buying agency in Kozhikode that <b>plans, negotiates, books and verifies</b> OOH, print and theatre advertising across Kerala, with digital ads to support offline campaigns.',
+	'a' => '<b>WiseUp</b> is a media buying agency in Kerala, based in Kozhikode, specialising in <b>outdoor (OOH), print and theatre advertising</b>, with digital, video and radio campaigns too. We select suitable media, negotiate placements and manage campaigns from planning to execution.',
 	'points' => array(
-		array( 'Media', 'Hoardings and other OOH sites, newspaper and magazine ads, and cinema advertising in multiplex and single-screen theatres.' ),
-		array( 'How it works', 'Discovery and research, a media mix and budget, negotiation and booking, execution, then reporting with proof.' ),
-		array( 'Proof', 'Proof-of-display photos for OOH, tear sheets for print and playback confirmation for theatre.' ),
-		array( 'Where', 'Based in Kozhikode, covering Malabar and the rest of Kerala, and able to buy media beyond the state.' ),
+		array( 'Media', 'OOH, print, theatre, digital, video and radio advertising.' ),
+		array( 'How it works', 'Discover, research, plan, negotiate and book, execute and monitor, then verify and report.' ),
+		array( 'Proof', 'Display photographs, newspaper tear sheets and playback confirmations.' ),
+		array( 'Where', 'Based in Kozhikode, working across Kozhikode, Malabar and the rest of Kerala.' ),
 	),
-	'note' => 'Every campaign starts with a free media plan, before any booking.',
-	'links' => array( array( 'Services', '#mb-services' ), array( 'Process', '#mb-process' ), array( 'Pricing models', '#mb-why' ), array( 'FAQ', '#faq' ) ),
+	'note' => 'Every campaign starts with a free media plan.',
+	'links' => array( array( 'Services', '#mb-services' ), array( 'Process', '#mb-process' ), array( 'Charges', '#mb-charge' ), array( 'FAQ', '#faq' ) ),
 ) ); ?>
 
-	<!-- 2. What is media buying -->
-	<section class="sec ev-sec" id="mb-what">
-		<div class="wrap">
-			<div class="ev-head">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'The basics' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'What Is', 'Media Buying?' ); // phpcs:ignore ?></h2>
-				</div>
-				<div class="ev-intro"><p class="mb-def">Media buying is the process of purchasing advertising space and time, such as hoardings, newspaper space and cinema screen time, at the right price and on the right dates. A media buying agency negotiates with media owners, books the placements, manages execution and proves that your ads ran.</p></div>
-			</div>
-
-			<div class="mb-two">
-				<div class="mb-vs">
-					<h3>Media Planning vs Media Buying</h3>
-					<table class="mb-table">
-						<thead><tr><th scope="col"><span class="sr-only">Aspect</span></th><th scope="col">Media planning</th><th scope="col">Media buying</th></tr></thead>
-						<tbody>
-						<?php foreach ( $wu_vs as $v ) : ?>
-							<tr><th scope="row"><?php echo esc_html( $v[0] ); ?></th><td><?php echo esc_html( $v[1] ); ?></td><td><?php echo esc_html( $v[2] ); ?></td></tr>
-						<?php endforeach; ?>
-						</tbody>
-					</table>
-				</div>
-				<div class="mb-how">
-					<h3>How Media Buying Works</h3>
-					<ol class="mb-steps">
-						<?php foreach ( $wu_how as $wu_k => $s ) : ?>
-						<li style="--k:<?php echo (int) $wu_k; ?>"><span class="mb-steps__i"><?php echo $wu_svg( $wu_icons[ $s[0] ], 22 ); // phpcs:ignore ?></span><div><b><?php echo esc_html( $s[1] ); ?></b><span><?php echo esc_html( $s[2] ); ?></span></div></li>
-						<?php endforeach; ?>
-					</ol>
-				</div>
-			</div>
-
-			<div class="mb-goals">
-				<h3>Which Medium for Which Goal?</h3>
-				<table class="mb-goal">
-					<thead><tr><th scope="col">Your goal</th><th scope="col">Best-fit pillar</th></tr></thead>
-					<tbody>
-					<?php foreach ( $wu_goals as $g ) : ?>
-						<tr><td><?php echo esc_html( $g[0] ); ?></td><td><a class="mb-pill mb-pill--<?php echo esc_attr( $g[2] ); ?>" href="#<?php echo esc_attr( $g[2] ); ?>"><?php echo esc_html( $g[1] ); ?></a></td></tr>
-					<?php endforeach; ?>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</section>
-
-	<!-- 3. Services: three pillars with a sticky jump nav -->
+	<!-- 2. Services -->
 	<section class="sec ev-sec" id="mb-services">
 		<div class="wrap">
 			<div class="ev-head">
 				<div class="sh">
 					<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Media Planning and Buying', 'Services We Offer' ); // phpcs:ignore ?></h2>
+					<h2 class="sh__h"><?php echo $wu_h( 'Media Buying Services That', 'Put Every Placement to Work' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>We plan and buy three kinds of offline media, each with the same care: the right placements, negotiated rates and proof that they ran. Pick a pillar below, or let us combine them in one plan.</p></div>
+				<div class="ev-intro"><p>At WiseUp, media buying goes beyond booking advertising space. We bring media selection, planning, negotiation, and campaign execution together to make every placement count. Our media buying services cover traditional and digital advertising channels, with campaigns shaped around business objectives and audience requirements.</p></div>
 			</div>
+			<div class="mb-svc">
 			<nav class="mb-jump" aria-label="Jump to a service" data-mb-jump>
-				<?php foreach ( $wu_pillars as $p ) : ?><a href="#<?php echo esc_attr( $p['id'] ); ?>"><?php echo esc_html( strtok( $p['h3'], ' ' ) ); ?></a><?php endforeach; ?>
+				<?php foreach ( $wu_pillars as $wu_k => $p ) : ?><a href="#<?php echo esc_attr( $p['id'] ); ?>"><span class="mb-jump__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span><span class="mb-jump__i" aria-hidden="true"><?php echo $wu_art[ $p['id'] ]; // phpcs:ignore ?></span><span class="mb-jump__t"><?php echo esc_html( $p['tab'] ); ?></span></a><?php endforeach; ?>
 			</nav>
 			<div class="mb-pillars">
 				<?php foreach ( $wu_pillars as $wu_k => $p ) : ?>
 				<article class="mb-pillar" id="<?php echo esc_attr( $p['id'] ); ?>" data-mb-pillar>
-					<div class="mb-pillar__vis"><span class="mb-pillar__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span><?php echo $wu_art[ $p['id'] ]; // phpcs:ignore ?></div>
+					<div class="mb-pillar__vis"><i class="mb-scr__fx" aria-hidden="true"></i><span class="mb-pillar__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span><?php echo $wu_art[ $p['id'] ]; // phpcs:ignore ?></div>
 					<div class="mb-pillar__body">
-						<p class="mb-pillar__kick"><?php echo esc_html( $p['eyebrow'] ); ?></p>
 						<h3><?php echo esc_html( $p['h3'] ); ?></h3>
-						<p><?php echo esc_html( $p['what'] ); ?></p>
-						<div class="mb-pillar__grid">
-							<div>
-								<h4>Formats we buy</h4>
-								<ul class="mb-chips"><?php foreach ( $p['formats'] as $f ) echo '<li>' . esc_html( $f ) . '</li>'; ?></ul>
-							</div>
-							<div>
-								<h4>How we buy</h4>
-								<ol class="mb-flow"><?php foreach ( $p['how'] as $f ) echo '<li>' . esc_html( $f ) . '</li>'; ?></ol>
-							</div>
+						<?php foreach ( $p['p'] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
+						<?php if ( $p['list'] ) : ?>
+						<div class="mb-pillar__list">
+							<h4><?php echo esc_html( $p['lead'] ); ?></h4>
+							<ul class="mb-chips"><?php foreach ( $p['list'] as $f ) echo '<li>' . esc_html( $f ) . '</li>'; ?></ul>
 						</div>
-						<p class="mb-pillar__angle"><?php echo esc_html( $p['angle'] ); ?></p>
+						<?php endif; ?>
+						<?php if ( $p['kick'] || $p['after'] ) : ?>
+						<div class="mb-pillar__angle">
+							<?php if ( $p['kick'] ) : ?><p class="mb-pillar__q"><?php echo esc_html( $p['kick'] ); ?></p><?php endif; ?>
+							<?php foreach ( $p['after'] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
+						</div>
+						<?php endif; ?>
 						<div class="mb-pillar__foot">
-							<p class="mb-best"><span>Best for</span><?php echo esc_html( implode( ' · ', $p['best'] ) ); ?></p>
-							<?php echo $wu_btn( $p['cta'], 'teal', $wu_lead ); // phpcs:ignore ?>
+							<p class="mb-best"><span>Best suited for:</span> <?php echo esc_html( $p['best'] ); ?></p>
+							<?php echo $wu_btn( 'Get a Free Media Plan', 'teal', $wu_lead ); // phpcs:ignore ?>
 						</div>
 					</div>
 				</article>
 				<?php endforeach; ?>
 			</div>
-		</div>
-	</section>
-
-	<!-- 4. Integrated media planning -->
-	<section class="sec ev-sec" id="mb-plan">
-		<div class="wrap">
-			<div class="mb-split">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'Integrated planning' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Media Planning and Buying,', 'Built Around One Strategy' ); // phpcs:ignore ?></h2>
-					<p class="mb-lead">OOH, print and theatre work best when they share one message, one schedule and one budget. As a media planning and buying agency, we decide what each pillar should do: OOH keeps your name visible in the places your customers pass, print carries the offer and the details, and theatre gives a launch its moment of full attention. Digital support then follows up with the people you reached. Unlike media planning and buying agencies that only book space, we plan the mix first, so every rupee has a job.</p>
-				</div>
-				<figure class="mb-budget" data-mb-budget>
-					<figcaption><b>A sample budget split</b><span>Example only. Your plan depends on your goal, cities and dates.</span></figcaption>
-					<div class="mb-bar" role="img" aria-label="Example split: OOH 45%, Print 30%, Theatre 15%, Digital support 10%">
-						<?php foreach ( $wu_split as $wu_k => $s ) : ?><i class="mb-bar__s mb-bar__s--<?php echo (int) $wu_k; ?>" style="--w:<?php echo (int) $s[1]; ?>"></i><?php endforeach; ?>
-					</div>
-					<ul class="mb-legend">
-						<?php foreach ( $wu_split as $wu_k => $s ) : ?>
-						<li class="mb-legend--<?php echo (int) $wu_k; ?>"><b><?php echo (int) $s[1]; ?>%</b><span><?php echo esc_html( $s[0] ); ?></span><small><?php echo esc_html( $s[2] ); ?></small></li>
-						<?php endforeach; ?>
-					</ul>
-				</figure>
 			</div>
 		</div>
 	</section>
 
-	<!-- 5. Digital media buying (supporting) -->
-	<section class="sec ev-sec" id="mb-digital">
+	<!-- 3. Campaigns -->
+	<section class="sec ev-sec" id="mb-work">
 		<div class="wrap">
 			<div class="ev-head">
 				<div class="sh">
-					<?php echo $wu_eyebrow( 'Digital support' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Digital Media Buying to Support', 'Your Offline Campaigns' ); // phpcs:ignore ?></h2>
-				</div>
-				<div class="ev-intro"><p>Digital media buying is not a separate pillar here; it is how we make offline campaigns go further. Media buying in digital marketing lets us reach the same audience again and measure who responded. For full-scale online advertising, see our <a href="https://wiseup.in/services/digital-marketing-agency-in-kerala/">digital marketing</a> services.</p></div>
-			</div>
-			<ul class="pm-grid mb-dig">
-				<?php foreach ( $wu_digital as $d ) : ?>
-				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $d[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $d[1] ); ?></h3><p><?php echo esc_html( $d[2] ); ?></p></li>
-				<?php endforeach; ?>
-			</ul>
-		</div>
-	</section>
-
-	<!-- 6. Process -->
-	<section class="sec ev-sec" id="mb-process">
-		<div class="wrap">
-			<div class="ev-head">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'Process' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'How Our Media Buying', 'Process Works' ); // phpcs:ignore ?></h2>
-				</div>
-				<div class="ev-intro"><p>Every campaign follows the same six steps, from the first conversation to the final proof. You know what is booked, what it costs and when it goes live.</p></div>
-			</div>
-			<div class="dm-tl" data-tl>
-				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
-				<ol class="dm-tl__list">
-					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
-					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
-					<?php endforeach; ?>
-				</ol>
-			</div>
-		</div>
-	</section>
-
-	<!-- 7. Why work with a media buying company -->
-	<section class="sec ev-sec" id="mb-why">
-		<div class="wrap">
-			<div class="ev-head">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'Why an agency' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Why Work With a', 'Media Buying Company' ); // phpcs:ignore ?></h2>
-				</div>
-				<div class="ev-intro"><p>You can book a hoarding or a newspaper ad yourself. A media buying company makes sure it is the right one, at the right rate, and that it actually runs.</p></div>
-			</div>
-			<ul class="pm-grid mb-why">
-				<?php foreach ( $wu_why as $w ) : ?>
-				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $w[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
-				<?php endforeach; ?>
-			</ul>
-
-			<div class="mb-two mb-two--charge">
-				<div>
-					<h3 class="mb-sub">How We Charge</h3>
-					<p class="mb-subp">Media buying agencies are usually paid in one of three ways. We recommend the one that fits how you advertise, and we always show our fee separately from the media cost.</p>
-					<ul class="mb-charge">
-						<?php foreach ( $wu_charge as $c ) : ?>
-						<li><span class="mb-charge__i"><?php echo $wu_svg( $wu_icons[ $c[0] ], 22 ); // phpcs:ignore ?></span><div><b><?php echo esc_html( $c[1] ); ?></b><p><?php echo esc_html( $c[2] ); ?></p></div></li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-				<div>
-					<h3 class="mb-sub">How to Choose a Media Buying Agency</h3>
-					<p class="mb-subp">Before you sign with any media buying agency, check for these four things.</p>
-					<ul class="mb-check">
-						<?php foreach ( $wu_choose as $c ) : ?>
-						<li><span class="mb-check__t" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="m6 12.5 4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b><?php echo esc_html( $c[0] ); ?></b><p><?php echo esc_html( $c[1] ); ?></p></div></li>
-						<?php endforeach; ?>
-					</ul>
+					<?php echo $wu_eyebrow( 'Campaigns' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Media Campaigns That', 'Make an Impact' ); // phpcs:ignore ?></h2>
 				</div>
 			</div>
-		</div>
-	</section>
-
-	<!-- 8. Kozhikode -->
-	<section class="sec ev-sec" id="mb-local">
-		<div class="wrap">
-			<div class="mb-local">
-				<div class="mb-local__copy">
-					<?php echo $wu_eyebrow( 'Kozhikode' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Media Buying Agency', 'in Kozhikode' ); // phpcs:ignore ?></h2>
-					<p>Searching for a media buying agency near me in Kozhikode? Our studio is at Govt. Cyberpark, so we know the city’s roads, junctions, editions and screens first-hand. Businesses looking for the best media buying agencies in Kozhikode want someone who can visit a site, talk to a local publisher and fix a problem the same day, and that is how we work.</p>
-					<p>From Kozhikode we cover Malabar and the rest of Kerala, from Kasaragod to Thiruvananthapuram. Among media buying agencies in Kerala, we combine local presence with one plan that can run across the state.</p>
-					<div class="ev-contact">
-						<a class="ev-ct" href="<?php echo esc_url( $wu_map ); ?>" target="_blank" rel="noopener">
-							<span class="ev-ct__i"><?php echo $wu_pin_svg; // phpcs:ignore ?></span>
-							<span class="ev-ct__t"><small>Visit us</small><?php echo esc_html( $wu_addr ); ?></span>
-							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
-						</a>
-						<a class="ev-ct" href="tel:+916282434503">
-							<span class="ev-ct__i"><?php echo $wu_call_svg; // phpcs:ignore ?></span>
-							<span class="ev-ct__t"><small>Call us</small>+91 62824 34503</span>
-							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
-						</a>
-					</div>
-				</div>
-				<div class="mb-local__map">
-					<iframe title="WiseUp office on Google Maps" src="https://maps.google.com/maps?q=Sahya%20Building%2C%20Govt.%20Cyberpark%2C%20Nellikkode%2C%20Kozhikode&amp;z=15&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- 9. Industries and proof -->
-	<section class="sec ev-sec" id="industries">
-		<div class="wrap">
-			<div class="ev-head">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'Industries & work' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Industries We Serve and', 'Campaigns We’ve Run' ); // phpcs:ignore ?></h2>
-				</div>
-				<div class="ev-intro"><p>We plan media for businesses that need to be seen locally and trusted widely. We are a Kerala-based team, and among media buying agencies in India we can also run campaigns beyond the state when your market grows.</p></div>
-			</div>
-			<ul class="dm-ind dm-mag mb-ind" data-mag>
-				<?php foreach ( $wu_ind as $ind ) : ?>
-				<li><span class="dm-ind__i"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="<?php echo esc_attr( $ind[1] ); ?>"/></svg></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
-				<?php endforeach; ?>
-			</ul>
-			<h3 class="mb-sub mb-sub--cases">Recent campaigns</h3>
 			<ul class="mb-cases">
 				<?php foreach ( $wu_cases as $c ) : ?>
 				<li>
@@ -576,11 +332,168 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 				</li>
 				<?php endforeach; ?>
 			</ul>
+		</div>
+	</section>
+
+	<!-- 4. One strategy -->
+	<section class="sec ev-sec" id="mb-plan">
+		<div class="wrap">
+			<div class="mb-split">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Integrated planning' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Media Planning and Buying,', 'Built Around One Strategy' ); // phpcs:ignore ?></h2>
+					<p class="mb-lead">Different advertising channels serve different purposes. OOH builds local visibility, print communicates detailed information, theatre creates screen-based engagement, and radio and digital campaigns extend audience reach.</p>
+					<p class="mb-lead">At WiseUp, media planning and buying begin with the campaign objective, target audience, geographical coverage and available budget. We then recommend a suitable combination of advertising formats. The media mix and budget allocation depend on the campaign requirements, available inventory and advertising rates. Every placement should contribute to the larger campaign objective.</p>
+				</div>
+				<figure class="mb-mix">
+					<blockquote><p>For example, a retail store launch in Kozhikode could combine outdoor hoardings for local visibility, newspaper advertisements for promotional offers, radio spots for wider awareness and digital campaigns to encourage online enquiries.</p></blockquote>
+					<ul class="mb-mix__l" aria-hidden="true">
+						<?php foreach ( $wu_mix as $wu_k => $m ) : ?>
+						<li style="--k:<?php echo (int) $wu_k; ?>"><span class="mb-mix__i"><?php echo $wu_art[ $m[0] ]; // phpcs:ignore ?></span><b><?php echo esc_html( $m[1] ); ?></b><small><?php echo esc_html( $m[2] ); ?></small></li>
+						<?php endforeach; ?>
+					</ul>
+				</figure>
+			</div>
+		</div>
+	</section>
+
+	<!-- 5. Process -->
+	<section class="sec ev-sec" id="mb-process">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Process' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'How Our Media Buying', 'Process Works' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>A well-planned campaign needs the right media, suitable placements and reliable execution. At WiseUp, we follow a structured process to manage each stage.</p></div>
+			</div>
+			<div class="dm-tl" data-tl>
+				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
+				<ol class="dm-tl__list">
+					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
+					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
+		</div>
+	</section>
+
+	<!-- 6. Why a media buying company -->
+	<section class="sec ev-sec" id="mb-why">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Why an agency' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Why Work With a', 'Media Buying Company?' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>Managing advertising placements across different media owners, publications and platforms takes time and coordination. A professional media buying company brings these activities together under one process.</p></div>
+			</div>
+			<ul class="pm-grid mb-why">
+				<?php foreach ( $wu_why as $w ) : ?>
+				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons[ $w[0] ], 24 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $w[1] ); ?></h3><p><?php echo esc_html( $w[2] ); ?></p></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</section>
+
+	<!-- 7. Charges + choosing an agency -->
+	<section class="sec ev-sec" id="mb-charge">
+		<div class="wrap">
+			<div class="mb-fees">
+				<div class="mb-fees__head">
+					<h2 class="mb-sub">How Does a Media Buying Agency Charge?</h2>
+					<p class="mb-subp">Media buying agencies generally follow different fee structures depending on the campaign and scope of work.</p>
+				</div>
+				<ul class="mb-charge mb-fees__list">
+					<?php foreach ( $wu_charge as $wu_ci => $c ) : ?>
+					<li class="mb-fee mb-fee--<?php echo (int) $wu_ci; ?>">
+						<span class="mb-fee__viz" aria-hidden="true"><?php if ( 0 === $wu_ci ) : ?><i class="mb-fee__val"></i><i class="mb-fee__cut"></i><?php elseif ( 1 === $wu_ci ) : ?><i class="mb-fee__one"></i><?php else : ?><i></i><i></i><i></i><i></i><i></i><i></i><?php endif; ?></span>
+						<span class="mb-charge__i"><?php echo $wu_svg( $wu_icons[ $c[0] ], 22 ); // phpcs:ignore ?></span>
+						<b><?php echo esc_html( $c[1] ); ?></b>
+						<p><?php echo esc_html( $c[2] ); ?></p>
+					</li>
+					<?php endforeach; ?>
+				</ul>
+				<p class="mb-fees__note">Media costs, agency fees and additional production or installation charges should be clearly communicated before a campaign begins.</p>
+			</div>
+			<div class="mb-pick">
+				<div class="mb-pick__head">
+					<h2 class="mb-sub">Choosing the Right Media Buying Agency</h2>
+					<p class="mb-subp">When comparing media buying agencies, consider:</p>
+					<blockquote class="mb-pick__q"><p>The right agency should explain not only where an advertisement will appear, but also why the placement suits the campaign.</p></blockquote>
+				</div>
+				<ul class="mb-check mb-pick__list">
+					<?php foreach ( $wu_choose as $c ) : ?>
+					<li><span class="mb-check__t" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="m6 12.5 4 4L18 8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><p><?php echo esc_html( $c ); ?></p></div></li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- 8. Kozhikode, Kerala-wide -->
+	<section class="sec ev-sec" id="mb-local">
+		<div class="wrap">
+			<div class="mb-local">
+				<div class="mb-local__copy">
+					<?php echo $wu_eyebrow( 'Kozhikode' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'A Media Buying Agency in Kozhikode', 'With Kerala-Wide Reach' ); // phpcs:ignore ?></h2>
+					<p>Based in Kozhikode, WiseUp works with businesses across Kerala to plan and coordinate advertising campaigns in different markets. From Malabar to Kochi and Thiruvananthapuram, we consider regional audiences, local media availability, and campaign objectives when selecting advertising placements.</p>
+					<p>Each location has its own audience patterns and media preferences. A campaign aimed at customers in Kozhikode may require a different mix of outdoor sites, newspaper editions, or cinema placements from one targeting audiences in Kochi or southern Kerala. We take these differences into account when recommending suitable media channels and locations.</p>
+					<p>Our work covers the coordination of media selection, placement bookings, schedules, and campaign execution. Whether a campaign focuses on one city or multiple districts, the aim is to maintain consistency while making media choices relevant to each market.</p>
+				</div>
+				<figure class="mb-kmap">
+					<div class="ev-map" data-ev-map role="img" aria-label="Map of Kerala with our studio at Govt. Cyberpark, Kozhikode, and the areas we cover: Kozhikode, Malabar and across Kerala">
+						<canvas class="ev-map__gl" aria-hidden="true"></canvas>
+						<canvas class="ev-map__ov" aria-hidden="true"></canvas>
+						<span class="ev-map__k" aria-hidden="true">Kerala</span>
+						<span class="ev-map__n" aria-hidden="true">N</span>
+					</div>
+					<figcaption class="mb-kmap__cap">
+						<a class="mb-kmap__row" href="<?php echo esc_url( $wu_map ); ?>" target="_blank" rel="noopener"><span class="mb-kmap__i"><?php echo $wu_pin_svg; // phpcs:ignore ?></span><span><small>Location:</small> Govt. Cyberpark, Kozhikode, Kerala.</span></a>
+						<p class="mb-kmap__row"><span class="mb-kmap__i"><?php echo $wu_svg( $wu_icons['map'], 20 ); // phpcs:ignore ?></span><span><small>Service coverage:</small> Kozhikode, Malabar and across Kerala.</span></p>
+					</figcaption>
+				</figure>
+			</div>
+		</div>
+	</section>
+
+	<!-- 9. Industries -->
+	<section class="sec ev-sec" id="industries">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Industries' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Industries', 'We Serve' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="ev-intro"><p>Different industries need different advertising approaches. WiseUp plans media campaigns around business objectives and audience requirements across sectors such as:</p></div>
+			</div>
+			<ul class="dm-ind dm-mag mb-ind" data-mag>
+				<?php foreach ( $wu_ind as $ind ) : ?>
+				<li><span class="dm-ind__i"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="<?php echo esc_attr( $ind[1] ); ?>"/></svg></span><strong><?php echo esc_html( $ind[0] ); ?></strong></li>
+				<?php endforeach; ?>
+			</ul>
 			<script>(function(){var u=document.querySelector('.wu-mb [data-mag]');if(!u)return;var li=[].slice.call(u.children);if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){li.forEach(function(l){l.classList.add('is-on');});return;}u.classList.add('is-js');var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-on',e.isIntersecting);});},{rootMargin:'-42% 0px -42% 0px'});li.forEach(function(l){io.observe(l);});})();</script>
 		</div>
 	</section>
 
-	<!-- 10. FAQ -->
+	<!-- 10. Kerala and India -->
+	<section class="sec ev-sec" id="mb-india">
+		<div class="wrap">
+			<div class="mb-india">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Kerala & India' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'Media Buying Campaigns', 'Across Kerala and India' ); // phpcs:ignore ?></h2>
+				</div>
+				<div class="mb-india__p">
+					<p>WiseUp coordinates outdoor, print, theatre, radio, and digital advertising campaigns across Kerala. Based in Kozhikode, we also assess media buying requirements beyond the state based on campaign locations, available inventory, and scope.</p>
+					<p>For businesses comparing media buying agencies in India, our media planning and coordination approach can support regional and multi-location advertising requirements.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- 11. FAQ -->
 	<section class="sec ev-sec" id="faq" aria-labelledby="mb-faq-h">
 		<div class="wrap dm-faq">
 			<div class="sh">
@@ -598,28 +511,29 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 		</div>
 	</section>
 
-	<!-- 11. Final CTA -->
+	<!-- 12. Final CTA -->
 	<section class="sec ev-sec" id="enquire">
 		<div class="wrap">
 			<div class="ev-final">
 				<div class="ev-final__copy">
 					<?php echo $wu_eyebrow( 'Get started' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Plan Your Next', 'Campaign With Us' ); // phpcs:ignore ?></h2>
-					<p class="ev-final__p">Tell us your budget and the media you are considering. We will come back with a free media plan before you book anything.</p>
+					<h2 class="sh__h"><?php echo $wu_h( 'Plan the Next', 'Campaign With Us' ); // phpcs:ignore ?></h2>
+					<p class="ev-final__p">The right advertising placement begins with a well-planned media strategy. WiseUp brings media planning, advertising selection, negotiation, and campaign execution together to make advertising more purposeful.</p>
+					<p class="ev-final__p mb-final__k">Let's put the right campaign in the right places.</p>
 					<div class="ev-contact">
 						<a class="ev-ct ev-ct--wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener">
 							<span class="ev-ct__i"><?php echo $wu_wa_svg; // phpcs:ignore ?></span>
-							<span class="ev-ct__t"><small>Chat on WhatsApp</small>+91 62824 34503</span>
+							<span class="ev-ct__t"><small>WhatsApp</small>+91 62824 34503</span>
 							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
 						</a>
 						<a class="ev-ct" href="tel:+916282434503">
 							<span class="ev-ct__i"><?php echo $wu_call_svg; // phpcs:ignore ?></span>
-							<span class="ev-ct__t"><small>Call us</small>+91 62824 34503</span>
+							<span class="ev-ct__t"><small>Call</small>+91 62824 34503</span>
 							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
 						</a>
 						<a class="ev-ct mb-ct-wide" href="<?php echo esc_url( $wu_map ); ?>" target="_blank" rel="noopener">
 							<span class="ev-ct__i"><?php echo $wu_pin_svg; // phpcs:ignore ?></span>
-							<span class="ev-ct__t"><small>Visit us</small><?php echo esc_html( $wu_addr ); ?></span>
+							<span class="ev-ct__t"><small>Visit WiseUp</small><?php echo esc_html( $wu_addr ); ?></span>
 							<span class="ev-ct__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
 						</a>
 					</div>
@@ -627,7 +541,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 				<form class="ev-form mb-form" data-dm-form novalidate data-endpoint="<?php echo esc_url( rest_url( 'wiseup/v1/enquiry' ) ); ?>" data-nonce="<?php echo esc_attr( wp_create_nonce( 'wp_rest' ) ); ?>" data-source="<?php echo esc_attr( $wu_src ); ?>">
 					<label><span>Name</span><input name="name" required autocomplete="name"></label>
 					<label><span>Phone</span><input name="phone" type="tel" required autocomplete="tel"></label>
-					<label class="ev-form__wide"><span>Budget range</span>
+					<label class="ev-form__wide"><span>Budget Range</span>
 						<select name="budget" required>
 							<option value="" selected disabled>Choose one</option>
 							<option>Under ₹1 lakh</option>
@@ -637,8 +551,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 							<option>Not sure yet</option>
 						</select>
 					</label>
-					<fieldset class="ev-form__wide mb-media"><legend>Media interest</legend>
-						<?php foreach ( array( 'OOH', 'Print', 'Theatre', 'Digital support' ) as $m ) : ?>
+					<fieldset class="ev-form__wide mb-media"><legend>Media Interest</legend>
+						<?php foreach ( array( 'OOH', 'Print', 'Theatre', 'Digital', 'Video', 'Radio' ) as $m ) : ?>
 						<label><input type="checkbox" name="media" value="<?php echo esc_attr( $m ); ?>"><span><?php echo esc_html( $m ); ?></span></label>
 						<?php endforeach; ?>
 					</fieldset>
@@ -735,7 +649,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 <?php
 $wu_lead_source = $wu_src;
 include WISEUP_DIR . 'landing/lead-popup.php';
-foreach ( array( 'vendor/gsap.min.js', 'vendor/ScrollTrigger.min.js', 'vendor/SplitText.min.js', 'vendor/lenis.min.js', 'event-branding.js' ) as $wu_js ) {
+foreach ( array( 'vendor/gsap.min.js', 'vendor/ScrollTrigger.min.js', 'vendor/SplitText.min.js', 'vendor/lenis.min.js', 'event-branding.js', 'ev-map.js' ) as $wu_js ) {
 	echo '<script src="' . esc_url( WISEUP_URL . 'assets/js/' . $wu_js . '?ver=' . filemtime( WISEUP_DIR . 'assets/js/' . $wu_js ) ) . '"></script>' . "\n";
 }
 wiseup_landing_close( $wu_src );

@@ -3032,25 +3032,6 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 .wu-pm .pmj__cable2 { width: 8px !important; margin-left: -4px !important; background-size: 8px auto !important; }
 .wu-pm .pmj__cable2 { width: 9.4px !important; margin-left: -4.2px !important; background-size: 9.4px auto !important; }
 
-/* pipe no longer reads as a snake (2026-11-20): straight runs with metal elbows at the bends, clearer glass,
-   no dashed line down the middle, clamps bolted to the stones on a bracket */
-.wu-pm .pm-pipe path { stroke-linejoin: round; }
-.wu-pm .pm-pipe__glass { stroke: rgb(225 238 245 / .26) !important; stroke-width: 20 !important; }
-.wu-pm .pm-pipe__inner { stroke: rgb(10 14 12 / .5) !important; stroke-width: 15 !important; }
-.wu-pm .pm-pipe__gel { stroke-width: 8 !important; opacity: .92; }
-.wu-pm .pm-pipe__flow { display: none !important; }
-.wu-pm .pm-pipe__shine { stroke: rgb(255 255 255 / .42) !important; stroke-width: 1.6 !important; translate: 0 -6px !important; }
-.wu-pm .pm-elbow__body { fill: url(#pmp-metal); stroke: rgb(0 0 0 / .6); stroke-width: 1.2; }
-.wu-pm .pm-elbow__rim { fill: none; stroke: rgb(255 255 255 / .18); stroke-width: 1.4; }
-.wu-pm .pm-elbow__hi { fill: rgb(255 255 255 / .35); }
-.wu-pm .pm-valve__leg { fill: #2a2e30; }
-.wu-pm .pm-valve__foot { fill: url(#pmp-metal); stroke: rgb(0 0 0 / .55); stroke-width: .8; }
-.wu-pm .pm-valve__bolt { fill: #c9cdcf; stroke: rgb(0 0 0 / .5); stroke-width: .5; }
-/* no pipe, no gel (owner, 2026-11-20): only the tags, each on a small clamp bolted into its stone */
-.wu-pm .pm-pipe__shadow, .wu-pm .pm-pipe__glass, .wu-pm .pm-pipe__inner, .wu-pm .pm-pipe__gel, .wu-pm .pm-pipe__flow,
-.wu-pm .pm-pipe__shine, .wu-pm .pm-pipe__elbows, .wu-pm .pm-pipe__marks { display: none !important; }
-.wu-pm .pm-valve--wall { filter: drop-shadow(1px 2px 1.5px rgb(0 0 0 / .7)); }
-.wu-pm .pm-valve--wall .pm-valve__loop { stroke: #b9bec1 !important; stroke-width: 2 !important; }
 /* rope above the kid = his own rope, cut from the same image (2026-11-20, owner: "sync akku 100%"): same width (8.09px = 46px
    of the 1024px source at 180px), same colour and twist, phase-aligned to where it meets the image; it no longer slides */
 .wu-pm .pmj__cable2 { width: 8.09px !important; margin-left: -4.045px !important; filter: none !important;
@@ -3324,3 +3305,6 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 @media (prefers-reduced-motion: reduce) { .ev-hero[data-css-intro] :is(.eyebrow, .ev-hero__h, .ev-hero__p, .ev-btns, .ev-proof) { animation: none; } }
 /* more scroll per service card (owner, 2026-11-20: "cards changing in small scroll, need more length"): 64vh → 115vh */
 @media (min-width: 1024px) { .wu-pm .pmj__step { min-height: 115vh; } }
+
+/* kid on the rope hidden (owner, 2026-11-23: "hide the kutti from performance marketing"); markup kept */
+.wu-pm .pmj__vinewrap { display: none !important; }

@@ -3141,3 +3141,20 @@ html:not(.wu-sheen) .lunar__img::after { display: none; }
    the dot's edge no longer switches the hover effect on and off */
 .lunar__mark .wm__dot { pointer-events: none; }
 .lunar__mark .wm__hit { pointer-events: all; cursor: pointer; }
+
+/* Owner: "padding same aakku ullile, menuvinte top and bottom padding kurakkanam". The menu pill loses height (8px -> 4px top/bottom) so it is as tall as the call and Get our plan buttons and every item sits the same distance from the dark bar's edge. */
+.hd .hd__nav { padding-block: 4px; }
+
+/* Homepage hero strip (owner: "first load aakumbol broken aayapole"): cards whose image is still waiting for the deferred swap (data-wu-src) showed their alt text and a broken-image look; keep them as plain dark cards until the image arrives. */
+img[data-wu-src], img[data-wu-srcset] { visibility: hidden; }
+
+/* Header balance (owner: "logo valuthum, menu cheruthum, buttons cheruthum aayapole; ellam kaanan bhangi ulla reethiyil"): logo a little smaller, menu text larger and brighter, nav pill and the round/CTA buttons one shared 60px height. Desktop header only (from 1200px, where the pill menu shows). */
+@media (min-width: 1200px) {
+  .hd .hd__logo img { height: clamp(40px, 3vw, 46px); }
+  .hd .hd__nav { min-height: 60px; align-items: center; }
+  .hd.is-docked .hd__logo img { height: clamp(34px, 2.7vw, 42px); }
+  .hd .hd__link { padding-block: 11px; font-size: clamp(14px, 1.06vw, 15.5px); color: #d4d4d9; }
+  .hd .hd__link:hover, .hd .hd__link[aria-current] { color: #fff; }
+  .hd .hd__call, .hd .hd__theme { width: 60px; height: 60px; }
+  .hd .hd__cta { height: 60px; font-size: 16px; }
+}

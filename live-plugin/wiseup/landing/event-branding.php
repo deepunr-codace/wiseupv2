@@ -177,8 +177,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
-			<?php echo $wu_eyebrow( __( 'Event branding', 'wiseup' ) ); // phpcs:ignore ?>
-			<h1 class="ev-hero__h"><span class="sh__a">Event Branding Agency in Kerala</span> <span class="sh__b">for Events People Remember</span></h1>
+			<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Event Branding Agency</h1>
+			<h2 class="ev-hero__h"><span class="sh__a">Event Branding Agency in Kerala</span> <span class="sh__b">for Events People Remember</span></h2>
 			<p class="ev-hero__p">People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop, and even the badge are already speaking for you. WiseUp is an event branding company in Kerala that designs, produces, and installs every one of them, so your event looks like one idea from start to finish.</p>
 			<div class="ev-btns">
 				<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
@@ -200,7 +200,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 				<?php endforeach; ?>
 			</dl>
 		</div>
-		<?php echo $wu_logo_strip( 'Client logos' ); // phpcs:ignore ?>
 	</section>
 
 	<div class="ev-ticker" aria-hidden="true"><div class="ev-ticker__track">
@@ -226,9 +225,24 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<div class="ev-prose">
 				<p class="ev-lead">Event branding is the practice of giving an event its own visual identity and tone, so that every part of it feels like it belongs together. The name, logo, colours, fonts, theme and signage all work as one identity, from the invitation people receive to the backdrop they photograph. At WiseUp, we see this as strategic work, not decoration. Done well, guests do not notice the branding as separate pieces. They simply feel that the event was thought through.</p>
-				<h3>Same Family, Its Own Personality</h3>
-				<p>A company already has a brand identity, so why does an event need another one? Because an event is a moment with its own purpose, audience, and mood. A leadership summit and a customer celebration may belong to the same company, yet they should not look or sound identical.</p>
-				<p>Branding for an event should echo the parent brand enough to be recognised, and still stand on its own. At WiseUp, we borrow the right cues from your brand, then build a distinct theme around the occasion. That balance is what makes an event feel connected to your company without being a repeat of your brochure.</p>
+				<div class="ev-fam3" data-fam3>
+					<h3>Same Family, Its Own Personality</h3>
+					<div class="ev-fam3__stage ev-fam5" aria-hidden="true">
+						<div class="ev-f5__kit ev-f5__kit--summit">
+							<div class="ev-f5__back"><i class="ev-f5__frame"></i><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#e9cf8e" stroke-width="7" stroke-linecap="square" stroke-linejoin="miter"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><span class="ev-f5__t"><i>Leadership</i> <b>summit</b></span><span class="ev-f5__lines"><i></i><i></i></span></div>
+							<div class="ev-f5__badge"><i class="ev-f5__strap"></i><span class="ev-f5__card"><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#e9cf8e" stroke-width="9" stroke-linecap="square" stroke-linejoin="miter"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><i class="ev-f5__bar"></i><i class="ev-f5__bar ev-f5__bar--s"></i></span></div>
+						</div>
+						<div class="ev-f5__brand"><span class="ev-f5__core"><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg></span><span class="ev-f5__pal"><i></i><i></i><i></i></span></div>
+						<div class="ev-f5__kit ev-f5__kit--party">
+							<div class="ev-f5__back"><span class="ev-f5__conf"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><span class="ev-f5__t"><b>Customer</b> <i>celebration</i></span></div>
+							<div class="ev-f5__ticket"><svg class="ev-f5__mk" viewBox="0 0 200 160"><path d="M50 120 100 40 150 120" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><circle class="ev-f5__dot" cx="100" cy="140" r="13"/></svg><i class="ev-f5__perf"></i><span class="ev-f5__stub"><i class="ev-f5__bar"></i><i class="ev-f5__bar ev-f5__bar--s"></i></span></div>
+						</div>
+					</div>
+					<div class="ev-fam3__text">
+						<p>A company already has a brand identity, so why does an event need another one? Because an event is a moment with its own purpose, audience, and mood. A leadership summit and a customer celebration may belong to the same company, yet they should not look or sound identical.</p>
+						<p>Branding for an event should echo the parent brand enough to be recognised, and still stand on its own. At WiseUp, we borrow the right cues from your brand, then build a distinct theme around the occasion. That balance is what makes an event feel connected to your company without being a repeat of your brochure.</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -360,23 +374,70 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<div class="ev-intro"><p>A virtual event has no venue to walk through and no entrance arch to set the mood. Everything your audience knows about your brand arrives through a screen, where attention is far easier to lose. At WiseUp, we design virtual and hybrid events as experiences in their own right, not as scaled-down versions of an on-site plan.</p></div>
 			</div>
-			<div class="ev-three">
-				<div class="ev-panel">
+			<div class="ev-vt" data-vt>
+				<div class="ev-vt__intro">
 					<h3>Virtual Event Branding: Making a Platform Feel Like Your Event</h3>
 					<p>On-site branding fills a physical space. Virtual branding has to build one. We map every point where an attendee meets your brand, from the invitation email to the closing screen, and give each a consistent look. That usually includes:</p>
-					<?php echo $wu_check( array( 'The platform lobby and the first screen attendees see', 'Branded joining pages and reminder emails', 'Virtual backgrounds for speakers', 'Presentation slides and motion graphics', 'Lower-thirds and speaker identification' ) ); // phpcs:ignore ?>
-					<p class="ev-note">Each of these appears for only a few seconds. Together, they decide whether the event feels organised or improvised.</p>
 				</div>
-				<div class="ev-panel">
+				<div class="ev-vt__run">
+					<div class="ev-vt__stick">
+						<ol class="ev-vt__list"><li style="--k:0">The platform lobby and the first screen attendees see</li><li style="--k:1">Branded joining pages and reminder emails</li><li style="--k:2">Virtual backgrounds for speakers</li><li style="--k:3">Presentation slides and motion graphics</li><li style="--k:4">Lower-thirds and speaker identification</li></ol>
+						<div class="ev-vt__scrub" aria-hidden="true"><span class="ev-vt__segs"><i style="--k:0"></i><i style="--k:1"></i><i style="--k:2"></i><i style="--k:3"></i><i style="--k:4"></i></span><span class="ev-vt__fill"></span><span class="ev-vt__head"></span></div>
+						<p class="ev-note ev-vt__note">Each of these appears for only a few seconds. Together, they decide whether the event feels organised or improvised.</p>
+					</div>
+				</div>
+			</div>
+			<script>(function(){
+				var w = document.querySelector('[data-vt]'); if (!w) return;
+				var run = w.querySelector('.ev-vt__run'), li = [].slice.call(w.querySelectorAll('.ev-vt__list li'));
+				if (matchMedia('(prefers-reduced-motion: reduce)').matches) { w.classList.add('is-still'); return; }
+				w.classList.add('is-live');
+				var go = function(){ var r = run.getBoundingClientRect(), span = r.height - innerHeight; var p = span > 0 ? Math.max(0, Math.min(1, -r.top / span)) : 1;
+					w.style.setProperty('--p', p.toFixed(4)); var i = Math.min(4, Math.floor(p * 5.0001)); li.forEach(function(l, k){ l.classList.toggle('is-on', k === i); l.classList.toggle('is-past', k < i); }); w.classList.toggle('is-end', p > .97); };
+				go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go);
+			})();</script>
+
+			<div class="ev-hb" data-hb>
+				<div class="ev-hb__copy">
 					<h3>Hybrid Event Branding: One Identity, Two Audiences</h3>
 					<p>The risk in a hybrid event is that remote attendees feel like an afterthought. We keep the physical and digital identities aligned, so a delegate in the hall and a delegate at a laptop experience the same event. We also brand the entry experience for remote attendees, so their first impression matches what guests get at the registration desk. Where it suits the event, we design kits that reach them in advance, which helps people at home feel part of the room before it begins.</p>
 				</div>
-				<div class="ev-panel ev-panel--list">
-					<h3>What a Virtual or Hybrid Package Includes</h3>
-					<?php echo $wu_check( array( 'Virtual stage and lobby design', 'Branded webinar template', 'Social media and email kit', 'LED and livestream overlay' ) ); // phpcs:ignore ?>
-					<p class="ev-note">Tell us the platform and the format, and we will recommend what your event actually needs.</p>
+				<div class="ev-hb__cmp" style="--x:50%">
+					<div class="ev-hb__side ev-hb__side--hall" aria-hidden="true"><div class="ev-hb__scene"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-1400.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-1400.webp' ); ?> 1400w" sizes="(max-width: 1023px) 92vw, 60vw" alt="" loading="lazy" decoding="async" width="1400" height="788"></div></div>
+					<div class="ev-hb__side ev-hb__side--screen" aria-hidden="true"><div class="ev-hb__frame"><div class="ev-hb__scene"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-1400.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-1400.webp' ); ?> 1400w" sizes="(max-width: 1023px) 92vw, 60vw" alt="" loading="lazy" decoding="async" width="1400" height="788"></div><span class="ev-hb__ui"><i class="is-live"></i><i class="is-l3"></i><span class="ev-hb__chat"><i></i><i></i><i></i></span></span></div></div>
+					<span class="ev-hb__handle" aria-hidden="true"><i></i></span>
+					<input class="ev-hb__range" type="range" min="0" max="100" value="50" aria-label="Compare the hall view and the laptop view">
+				</div>
+				<div class="ev-pk" data-pk>
+					<div class="ev-pk__head">
+						<h3>What a Virtual or Hybrid Package Includes</h3>
+						<p class="ev-note">Tell us the platform and the format, and we will recommend what your event actually needs.</p>
+						<?php echo $wu_btn( 'Get a Quote', 'teal', 'data-lead-open data-lead-source="event-branding"' ); // phpcs:ignore ?>
+					</div>
+					<ul class="ev-pk__list"><li><span class="ev-pk__i"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg></span><span class="ev-pk__t">Virtual stage and lobby design</span><img class="ev-pk__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-vj-bl-logo.webp' ); ?>" alt="" loading="lazy" decoding="async" width="900" height="506"><span class="ev-pk__go"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></li><li><span class="ev-pk__i"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg></span><span class="ev-pk__t">Branded webinar template</span><img class="ev-pk__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-vj-bl-tablet.webp' ); ?>" alt="" loading="lazy" decoding="async" width="900" height="506"><span class="ev-pk__go"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></li><li><span class="ev-pk__i"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></span><span class="ev-pk__t">Social media and email kit</span><img class="ev-pk__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-vj-bl-board.webp' ); ?>" alt="" loading="lazy" decoding="async" width="900" height="506"><span class="ev-pk__go"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></li><li><span class="ev-pk__i"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M21 6h-7.59l3.29-3.29L16 2l-4 4-4-4-.71.71L10.59 6H3c-1.1 0-2 .89-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.11-.9-2-2-2zm0 14H3V8h18v12zM9 10v8l7-4z"/></svg></span><span class="ev-pk__t">LED and livestream overlay</span><img class="ev-pk__img" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/ev-hb-bootland-900.webp' ); ?>" alt="" loading="lazy" decoding="async" width="900" height="506"><span class="ev-pk__go"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></li></ul>
 				</div>
 			</div>
+
+			<script>(function(){
+				var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+				var f = document.querySelector('[data-fam3]');
+				if (f) { var st = f.querySelector('.ev-fam3__stage');
+					var go = function(){ var r = st.getBoundingClientRect(), vh = innerHeight; var p = rm ? 1 : Math.max(0, Math.min(1, (vh * .9 - r.top) / (vh * .55))); f.style.setProperty('--p', p.toFixed(3)); };
+					go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go); }
+				var sc = document.querySelector('[data-vj-screen]'), steps = [].slice.call(document.querySelectorAll('[data-vj-step]'));
+				if (sc && steps.length) { var set = function(i){ sc.setAttribute('data-s', i); steps.forEach(function(s, k){ s.classList.toggle('is-on', k === i); }); }; set(0);
+					if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) set(+e.target.getAttribute('data-vj-step')); }); }, { rootMargin: '-45% 0px -45% 0px' }); steps.forEach(function(s){ io.observe(s); }); }
+					steps.forEach(function(s){ s.addEventListener('mouseenter', function(){ set(+s.getAttribute('data-vj-step')); }); }); }
+				var pk = document.querySelector('[data-pk] .ev-pk__list'); if (pk && matchMedia('(hover: hover)').matches) pk.addEventListener('pointermove', function (e) { var r = pk.getBoundingClientRect(); pk.style.setProperty('--py', (e.clientY - r.top) + 'px'); pk.style.setProperty('--px', (e.clientX - r.left) + 'px'); });
+				var c = document.querySelector('.ev-hb__cmp');
+				if (c) { var rg = c.querySelector('.ev-hb__range'), put = function(v){ c.style.setProperty('--x', v + '%'); rg.value = v; };
+					rg.addEventListener('input', function(){ put(+rg.value); });
+					var drag = false, at = function(e){ var r = c.getBoundingClientRect(); put(Math.round(Math.max(4, Math.min(96, (e.clientX - r.left) / r.width * 100)))); };
+					c.addEventListener('pointerdown', function(e){ drag = true; c.setPointerCapture(e.pointerId); at(e); });
+					c.addEventListener('pointermove', function(e){ if (drag) at(e); });
+					c.addEventListener('pointerup', function(){ drag = false; });
+					if (!rm && 'IntersectionObserver' in window) { var once = new IntersectionObserver(function(es){ if (!es[0].isIntersecting) return; once.disconnect(); var t0 = performance.now(); (function k(t){ var q = Math.min(1, (t - t0) / 2200); put(Math.round(50 + Math.sin(q * Math.PI * 2) * 22)); if (q < 1) requestAnimationFrame(k); })(t0); }, { threshold: .5 }); once.observe(c); } }
+			})();</script>
 		</div>
 	</section>
 
@@ -556,26 +617,36 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			</div>
 			<div class="ev-intro"><p>Most agencies can show you an attractive mood board. Fewer can tell you who will be at the venue at 6 am on setup day. The checks that separate the two are practical, and they are far easier to make before you sign than after something goes wrong. Here is what we would look at in your position.</p></div>
 			</div>
-			<ol class="ev-choose">
-				<?php foreach ( array(
+			<div class="ev-sg" data-sg>
+				<div class="ev-sg__side" aria-hidden="true">
+					<p class="ev-sg__count"><b data-sg-n>0</b><span>/5</span></p>
+					<svg class="ev-sg__sig" viewBox="0 0 320 120"><path pathLength="1" d="M14 78c22-30 40-58 52-56 14 3-22 68-6 70 14 2 26-40 38-38 10 2-8 34 4 34 12 0 22-26 34-24 10 2 0 22 10 22 14 0 26-30 42-30 12 0 6 20 18 20 20 0 44-24 70-26 14-1 24 4 30 8"/><path pathLength="1" d="M96 98c50-8 120-10 190-4"/></svg>
+					<span class="ev-sg__line"></span>
+				</div>
+				<ol class="ev-sg__list">
+					<?php foreach ( array(
 					array( 'Portfolio relevance', 'Ask for work from events of a similar size and type. Look for photographs of real installations, not only digital mock-ups, because a design that looks good on screen can fall flat in a hall.' ),
 					array( 'Production capability', 'Find out who prints, fabricates and installs. If the agency only designs, ask who is accountable when a banner arrives in the wrong size.' ),
 					array( 'Turnaround', 'Ask for a schedule that works backwards from your event date, with approval points along the way. A trustworthy agency will tell you what cannot be done in the time you have.' ),
 					array( 'Support on event day', 'Confirm that someone from the team will be at the venue during installation and while the event runs.' ),
 					array( 'Clarity on what is included', 'A good quote lists every item with its size, material, quantity and number of revision rounds. Vague quotes tend to grow.' ),
 				) as $i => $c ) : ?>
-				<li class="ev-chk">
-					<div class="ev-chk__top">
-						<span class="ev-chk__box" aria-hidden="true"><?php echo $wu_tick; // phpcs:ignore ?></span>
-						<span class="ev-chk__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $i + 1 ) ); ?></span>
-					</div>
-					<h3><?php echo esc_html( $c[0] ); ?></h3>
-					<p><?php echo esc_html( $c[1] ); ?></p>
-				</li>
-				<?php endforeach; ?>
-			</ol>
-			<script>(function(){var o=document.querySelector('.wu-ev .ev-choose');if(!o)return;o.classList.add('is-tabs');var li=[].slice.call(o.children);var on=function(x){li.forEach(function(l){var a=l===x;l.classList.toggle('is-on',a);l.querySelector('h3').setAttribute('aria-expanded',a?'true':'false');});};li.forEach(function(l){var h=l.querySelector('h3');h.setAttribute('tabindex','0');h.setAttribute('role','button');h.addEventListener('click',function(){on(l);});h.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();on(l);}});l.addEventListener('mouseenter',function(){if(matchMedia('(hover: hover) and (min-width: 1024px)').matches)on(l);});});on(li[0]);})();</script>
-			<div class="ev-panel ev-ask">
+					<li class="ev-sg__it" style="--k:<?php echo (int) $i; ?>">
+						<svg class="ev-sg__tick" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path pathLength="1" d="M14 25l7 7 14-15"/></svg>
+						<div><h3><?php echo esc_html( $c[0] ); ?></h3><p><?php echo esc_html( $c[1] ); ?></p></div>
+					</li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
+			<script>(function(){
+				var w = document.querySelector('[data-sg]'); if (!w) return;
+				var it = [].slice.call(w.querySelectorAll('.ev-sg__it')), n = w.querySelector('[data-sg-n]');
+				if (matchMedia('(prefers-reduced-motion: reduce)').matches) { it.forEach(function(l){ l.classList.add('is-on'); }); n.textContent = it.length; w.classList.add('is-done'); return; }
+				w.classList.add('is-live');
+				var go = function(){ var c = 0; it.forEach(function(l){ var on = l.getBoundingClientRect().top < innerHeight * .6; l.classList.toggle('is-on', on); if (on) c++; }); n.textContent = c; w.classList.toggle('is-done', c === it.length); };
+				go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go);
+			})();</script>
+			<div class="ev-ask ev-ask--open">
 				<h3>Questions to Ask Any Agency, Including Us</h3>
 				<ol class="ev-ask__list">
 					<?php foreach ( array(
