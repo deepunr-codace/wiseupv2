@@ -104,6 +104,11 @@ function wiseup_landing_open( $body_class = 'wu-landing' ) {
 <?php
 	wp_body_open();
 	wiseup_landing_chrome_header();
+	// service pages: links to other pages inside the page body open in a new tab (owner, 2026-11-23); the header and footer are left alone
+	if ( preg_match( '/\bwu-(ev|smm)-page\b/', $body_class ) ) {
+		ob_start( 'wiseup_new_tab_links' );
+		$GLOBALS['wiseup_newtab_ob'] = ob_get_level();
+	}
 }
 
 /**
@@ -129,6 +134,7 @@ function wiseup_landing_chrome_header() {
 
 /** Prints the plugin's footer, the scripts for the header, and closes the document. */
 function wiseup_landing_close( $lead_source = '' ) {
+	if ( ! empty( $GLOBALS['wiseup_newtab_ob'] ) && ob_get_level() >= $GLOBALS['wiseup_newtab_ob'] ) { ob_end_flush(); $GLOBALS['wiseup_newtab_ob'] = 0; }
 	wiseup_landing_chrome_footer( $lead_source, true );
 	?>
 </body>
@@ -508,4 +514,40 @@ t.addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);u
 var d=0,x0=0,s0=0,moved=0;t.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse"||e.button)return;d=1;x0=e.clientX;s0=t.scrollLeft;moved=0});
 addEventListener("pointermove",function(e){if(!d)return;var dx=e.clientX-x0;if(Math.abs(dx)>5){moved=1;t.classList.add("is-drag")}if(moved)t.scrollLeft=s0-dx});
 addEventListener("pointerup",function(){if(!d)return;d=0;if(moved){var c=step(),n=Math.round(t.scrollLeft/c);t.classList.remove("is-drag");t.scrollTo({left:n*c,behavior:"smooth"})}});})();</script>'; // phpcs:ignore
+}
+
+/**
+ * Output filter for service pages: adds target="_blank" rel="noopener" to links in the page body that go to another page.
+ * Left alone: #anchors and links to a section of the same page, mailto/tel/sms/javascript links, links that already have a
+ * target, popup buttons (data-lead-open), and anything inside <script> / <style>. Add data-same-tab to keep one in the tab.
+ */
+function wiseup_new_tab_links( $html ) {
+	$cur  = rtrim( (string) get_permalink( get_queried_object_id() ), '/' );
+	$bits = preg_split( '#(<script\b.*?</script>|<style\b.*?</style>)#is', $html, -1, PREG_SPLIT_DELIM_CAPTURE );
+	foreach ( $bits as $i => $bit ) {
+		if ( 1 === $i % 2 ) continue; // a script or style block
+		$bits[ $i ] = preg_replace_callback( '/<a\s[^>]*>/i', function ( $m ) use ( $cur ) {
+			$tag = $m[0];
+			if ( preg_match( '/\sdata-(lead-open|same-tab)\b/i', $tag ) ) return $tag;
+			if ( ! preg_match( '/\shref\s*=\s*(["\'])(.*?)\1/is', $tag, $h ) ) return $tag;
+			$href = trim( html_entity_decode( $h[2] ) );
+			if ( '' === $href || preg_match( '/^(#|javascript:|mailto:|tel:|sms:|data:)/i', $href ) ) return $tag;
+			$base = false !== strpos( $href, '#' ) ? substr( $href, 0, strpos( $href, '#' ) ) : $href;
+			if ( $cur && rtrim( $base, '/' ) === $cur ) return $tag; // the same page
+			if ( preg_match( '/\starget\s*=/i', $tag ) ) {
+				if ( preg_match( '/\starget\s*=\s*(["\'])_blank\1/i', $tag ) && ! preg_match( '/\srel\s*=\s*(["\'])[^"\']*noopener/i', $tag ) ) {
+					$tag = preg_match( '/\srel\s*=\s*(["\'])/i', $tag ) ? preg_replace( '/(\srel\s*=\s*(["\']))/i', '$1noopener ', $tag, 1 ) : substr( $tag, 0, -1 ) . ' rel="noopener">';
+				}
+				return $tag;
+			}
+			$add = ' target="_blank"';
+			if ( preg_match( '/\srel\s*=\s*(["\'])/i', $tag ) ) {
+				$tag = preg_replace( '/(\srel\s*=\s*(["\']))/i', '$1noopener ', $tag, 1 );
+			} else {
+				$add .= ' rel="noopener"';
+			}
+			return substr( $tag, 0, -1 ) . $add . '>';
+		}, $bit );
+	}
+	return implode( '', $bits );
 }
