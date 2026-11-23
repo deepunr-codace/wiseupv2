@@ -136,3 +136,7 @@ html body .wu-ev .ev-intro p { max-width: none !important; text-wrap: wrap !impo
 @media (min-width: 900px) { html body .wu-ev .ev-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) !important; } }
 @media (max-width: 899px) { html body .wu-ev .ev-head { grid-template-columns: minmax(0, 1fr) !important; } html body .wu-ev .ev-head > .ev-intro { padding-top: 0 !important; } }
 html body .wu-ev .sh, html body .wu-ev .sh__h { max-width: none !important; width: 100%; }
+/* spec fixes found in the audit: SEO and Performance section headings at 56/64, hero pills 32 tall */
+html body .wu-ev.wu-seo .sh__h, html body .wu-ev.wu-seo .sh h2, html body .wu-ev #pm-services .sh__h, html body .wu-ev #pm-services .sh__h .sh__a, html body .wu-ev #pm-services .sh__h .sh__b { font-size: var(--fs-h2) !important; line-height: var(--lh-h2) !important; white-space: normal !important; max-width: none !important; }
+html body .wu-ev .dm-hero__pill, html body .wu-ev .ev-hero .eyebrow { height: 32px; display: inline-flex; align-items: center; padding: 0 14px 0 12px !important; }
+@media (max-width: 767px) { html body .wu-ev .dm-hero__pill, html body .wu-ev .ev-hero .eyebrow { height: 28px; } }

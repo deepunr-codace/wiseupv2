@@ -3408,3 +3408,6 @@ html body .wu-dm .ev-sec .dm-stack h3 span,
 html body .wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 > span,
 html body .wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 .sh__b,
 html body .wu-seo main > .ev-sec .dm-stack h3 span { background: none !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }
+
+/* services headings: one colour, the grey second part removed (owner) */
+.wu-dm .dm-stack h3, .wu-dm .ev-sec .dm-stack h3, .wu-dm .dm-stack h3 span, .wu-dm .ev-sec .dm-stack h3 span, .wu-dm #dm-services h3, .wu-dm #dm-services h3 span { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }

@@ -127,6 +127,8 @@ function wiseup_landing_chrome_styles() {
 ";
 		echo '<style>html[data-svc-theme="light"]:has(.wu-ev,#wu-smm){filter:invert(1) hue-rotate(180deg);background:#fff}html[data-svc-theme="light"]:has(.wu-ev,#wu-smm) :is(img:not(.hd__logo img):not(.ft__logo img),video,picture,iframe,.mb-bb__site,.ev-hero__glow){filter:invert(1) hue-rotate(180deg)}html[data-svc-theme="light"]:has(.wu-ev,#wu-smm) .hd__theme-ico .ico--moon{translate:0 -140%;rotate:90deg;opacity:0}html[data-svc-theme="light"]:has(.wu-ev,#wu-smm) .hd__theme-ico .ico--sun{translate:0 0;rotate:0deg;opacity:1}</style>' . "
 ";
+		echo '<script>document.addEventListener("DOMContentLoaded",function(){var f=document.querySelector(".wu-ev .faq");if(f&&!f.querySelector("details[open]")){var d=f.querySelector("details");if(d)d.setAttribute("open","")}})</script>' . "
+";
 		$plugin_css = file_get_contents( WISEUP_DIR . 'assets/css/plugin.css' );
 		if ( false !== $plugin_css ) echo '<style id="wiseup-plugin-css">' . $plugin_css . "</style>\n";
 	}, 6 );
