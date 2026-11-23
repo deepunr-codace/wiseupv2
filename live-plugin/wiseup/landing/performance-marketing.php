@@ -37,7 +37,7 @@ add_action( 'wp_head', function () {
 	echo "<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('wu-motion');setTimeout(function(){if(!window.__wuEvMotion)d.classList.remove('wu-motion');},3000);})();</script>\n";
 }, 1 );
 add_action( 'wp_head', function () {
-	foreach ( array( 'event-branding.css', 'digital-marketing.css' ) as $css ) {
+	foreach ( array( 'event-branding.css', 'digital-marketing.css', 'service-system.css' ) as $css ) {
 		echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/' . $css . '?ver=' . filemtime( WISEUP_DIR . 'assets/css/' . $css ) ) . "\">\n";
 	}
 }, 8 );

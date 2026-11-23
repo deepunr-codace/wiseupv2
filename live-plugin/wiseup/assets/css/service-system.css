@@ -1,0 +1,138 @@
+/* WiseUp Service Pages: Layout & Alignment System v1.0, shared by every service page (.wu-ev). Layout and component specs only; no copy. */
+
+/* =====================================================================
+   WiseUp Service Pages: Layout and Alignment System v1.0 (design-system folder)
+   Tokens, container, section rhythm, type, cards, tiles, buttons, FAQ, contact panel.
+   Existing animations and interactions (hoarding stage, scroll walk, poster cards, counters,
+   timeline fill, map, carousel) are kept; only layout, type and component specs change.
+   ===================================================================== */
+.wu-ev {
+  --surface-0: #050506; --surface-1: #0E0E10; --surface-2: #16161A;
+  --text-1: #F5F5F6; --text-2: #E4E4E7; --text-3: #A1A1A9; --muted: #85858D;
+  --lime: #C5E048; --lime-ink: #0B0B0B; --lime-tint: rgba(197, 224, 72, .06); --lime-line: rgba(197, 224, 72, .2);
+  --border: rgba(255, 255, 255, .08); --border-strong: rgba(255, 255, 255, .14);
+  --container: 1440px; --page-pad: 64px; --gutter: 32px; --section-pad: 80px;
+  --eyebrow-to-h2: 24px; --header-to-content: 64px; --intro-offset: 64px;
+  --card-pad: 40px; --card-gap: 24px; --r-24: 24px;
+  --tile-m: 56px; --tile-m-r: 16px; --glyph-m: 24px;
+  --fs-h2: 56px; --lh-h2: 64px; --fs-h3: 40px; --lh-h3: 48px; --fs-h4: 24px; --lh-h4: 32px; --fs-body: 17px; --lh-body: 28px;
+}
+@media (max-width: 1199px) { .wu-ev { --page-pad: 48px; --gutter: 24px; --section-pad: 64px; --card-pad: 32px; --fs-h2: 48px; --lh-h2: 56px; } }
+@media (max-width: 1023px) { .wu-ev { --page-pad: 32px; --section-pad: 56px; --fs-h2: 40px; --lh-h2: 48px; } }
+@media (max-width: 767px) {
+  .wu-ev { --page-pad: 20px; --gutter: 16px; --section-pad: 40px; --eyebrow-to-h2: 16px; --header-to-content: 32px; --intro-offset: 0px; --card-pad: 24px; --card-gap: 12px; --r-24: 20px; --tile-m: 48px; --tile-m-r: 14px; --glyph-m: 22px;
+    --fs-h2: 32px; --lh-h2: 40px; --fs-h3: 26px; --lh-h3: 32px; --fs-h4: 20px; --lh-h4: 28px; --fs-body: 16px; --lh-body: 26px; }
+}
+html body .wu-ev .wrap { width: 100% !important; max-width: var(--container) !important; margin-inline: auto !important; padding-inline: var(--page-pad) !important; box-sizing: border-box; }
+body:has(.wu-ev) .hd { width: min(100% - 2 * var(--page-pad, 32px), 1312px) !important; }
+html body .wu-ev .sec.ev-sec { padding-block: var(--section-pad) !important; }
+html body .wu-ev .sh { display: flex; flex-direction: column; align-items: flex-start; gap: var(--eyebrow-to-h2); }
+html body .wu-ev .sh .eyebrow { margin: 0 !important; height: 32px; padding: 0 14px 0 12px !important; white-space: nowrap; flex: none; font: 600 12px/16px Inter, system-ui, sans-serif !important; letter-spacing: .12em; text-transform: uppercase; border-radius: 999px; background: var(--surface-1); border: 1px solid rgba(255, 255, 255, .1); color: var(--text-2); }
+html body .wu-ev .sh__h, html body .wu-ev .sh h2 { margin: 0 !important; font-size: var(--fs-h2) !important; line-height: var(--lh-h2) !important; font-weight: 500 !important; letter-spacing: -.03em !important; color: var(--text-1) !important; text-wrap: balance; overflow: visible !important; max-width: none; }
+html body .wu-ev .sh__h .sh__a, html body .wu-ev .sh__h .sh__b { display: block; font-size: inherit !important; line-height: inherit !important; letter-spacing: inherit !important; font-weight: 500 !important; overflow: visible !important; white-space: normal !important; max-width: none !important; margin: 0 !important; }
+html body .wu-ev .sh__h .sh__a { color: var(--text-1) !important; }
+html body .wu-ev .sh__h .sh__b { color: var(--muted) !important; }
+html body .wu-ev .ev-head { display: grid !important; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); column-gap: var(--gutter); row-gap: 24px; align-items: start; margin: 0 0 var(--header-to-content) !important; padding: 0 !important; }
+html body .wu-ev .ev-head > .ev-intro { padding-top: clamp(0px, calc((100vw - 1040px) * 999), var(--intro-offset)); margin: 0 !important; max-width: none; }
+html body .wu-ev .b { height: 56px !important; min-height: 56px; padding: 0 28px !important; border-radius: 999px !important; font: 600 16px/1 Inter, system-ui, sans-serif !important; gap: 12px !important; box-shadow: none !important; display: inline-flex; align-items: center; }
+html body .wu-ev .b--teal { background: var(--lime) !important; color: var(--lime-ink) !important; border: 0 !important; }
+html body .wu-ev .b--night { background: var(--surface-1) !important; color: var(--text-1) !important; border: 1px solid var(--border-strong) !important; }
+html body .wu-ev .ev-btns { gap: 16px !important; }
+@media (min-width: 1040px) {
+  html body .wu-ev .wrap.dm-faq { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); align-items: start; }
+  html body .wu-ev .wrap.dm-faq > .sh { position: sticky; top: 32px; }
+}
+html body .wu-ev .faq { display: flex; flex-direction: column; gap: 0 !important; }
+html body .wu-ev .faq__item { background: none !important; border: 0 !important; border-bottom: 1px solid var(--border-strong) !important; border-radius: 0 !important; box-shadow: none !important; padding: 0 !important; }
+html body .wu-ev .faq__q { padding: 24px 0 !important; gap: 16px !important; display: flex; align-items: center; justify-content: space-between; }
+html body .wu-ev .faq__q h3 { margin: 0 !important; font: 500 20px/28px Inter, system-ui, sans-serif !important; letter-spacing: -.01em; color: var(--text-1) !important; }
+html body .wu-ev .faq__a { padding: 0 56px 24px 0 !important; margin: 0 !important; font-size: 15px !important; line-height: 24px !important; color: var(--text-3) !important; max-width: none !important; }
+html body .wu-ev .ev-final { background: var(--surface-1) !important; border: 1px solid var(--border) !important; border-radius: 32px !important; padding: clamp(24px, 4vw, 64px) !important; box-shadow: none !important; }
+html body .wu-ev .ev-contact { gap: 16px !important; }
+html body .wu-ev .ev-ct { display: flex !important; align-items: center; gap: 16px !important; padding: 16px !important; border-radius: 16px !important; background: var(--surface-2) !important; border: 1px solid var(--border) !important; box-shadow: none !important; }
+html body .wu-ev .ev-ct__i { width: 40px !important; height: 40px !important; border-radius: 12px !important; background: var(--lime) !important; color: var(--lime-ink) !important; display: grid !important; place-items: center; flex: none; }
+html body .wu-ev .ev-ct__t small { display: block; margin-bottom: 4px; font: 600 12px/16px Inter, system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+html body .wu-ev .ev-form input, html body .wu-ev .ev-form select, html body .wu-ev .ev-form textarea { background: var(--surface-2) !important; border: 1px solid var(--border) !important; border-radius: 16px !important; min-height: 56px; box-shadow: none !important; color: var(--text-1) !important; }
+/* FAQ toggle: 40px outline circle with +, lime minus when open */
+html body .wu-ev .faq__dot { position: relative !important; flex: none; width: 40px !important; height: 40px !important; border-radius: 50% !important; background: none !important; border: 1px solid var(--border-strong) !important; box-shadow: none !important; transform: none !important; }
+html body .wu-ev .faq__dot::before, html body .wu-ev .faq__dot::after { content: "" !important; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.75px; margin: -.9px 0 0 -7px; border-radius: 2px; background: var(--text-1) !important; transition: transform .3s, background .3s; opacity: 1 !important; }
+html body .wu-ev .faq__dot::after { transform: rotate(90deg); }
+html body .wu-ev .faq__item[open] .faq__dot { border-color: var(--lime-line) !important; }
+html body .wu-ev .faq__item[open] .faq__dot::before, html body .wu-ev .faq__item[open] .faq__dot::after { background: var(--lime) !important; }
+html body .wu-ev .faq__item[open] .faq__dot::after { transform: rotate(0deg); }
+html body .wu-ev .faq__item[open] .faq__dot, html body .wu-ev .faq__q:hover .faq__dot { scale: 1 !important; }
+
+/* Other services carousel in the system (pattern E): container edge, header with arrows bottom-aligned, flat cards p40 r24, tile 56, H4 24/32 */
+html body .wu-ev .wu-os { padding-block: var(--section-pad) !important; }
+html body .wu-ev .wu-os__in { width: 100% !important; max-width: var(--container); padding-inline: var(--page-pad); margin-inline: auto; }
+html body .wu-ev .wu-os__head { align-items: flex-end; margin-bottom: var(--header-to-content) !important; gap: 24px; }
+html body .wu-ev .wu-os__eb { height: 32px; margin: 0 0 var(--eyebrow-to-h2) !important; padding: 0 14px 0 12px !important; background: var(--surface-1) !important; font: 600 12px/16px Inter, system-ui, sans-serif !important; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2) !important; }
+html body .wu-ev .wu-os__eb i { width: 6px; height: 6px; background: var(--lime) !important; box-shadow: 0 0 8px var(--lime); }
+html body .wu-ev .wu-os__h { font-size: var(--fs-h2) !important; line-height: var(--lh-h2) !important; letter-spacing: -.03em !important; font-weight: 500 !important; color: var(--text-1) !important; }
+html body .wu-ev .wu-os__h span { color: var(--muted) !important; }
+html body .wu-ev .wu-os__btn { width: 56px !important; height: 56px !important; background: var(--surface-1) !important; border: 1px solid var(--border-strong) !important; box-shadow: none !important; color: var(--text-1) !important; }
+html body .wu-ev .wu-os__btn:hover:not(:disabled) { color: var(--lime) !important; border-color: var(--lime-line) !important; box-shadow: none !important; }
+html body .wu-ev .wu-os__track { gap: var(--card-gap) !important; padding: 0 var(--page-pad) 0 max(var(--page-pad), calc((100vw - var(--container)) / 2 + var(--page-pad))) !important; scroll-padding-inline: max(var(--page-pad), calc((100vw - var(--container)) / 2 + var(--page-pad))) !important; }
+html body .wu-ev .wu-os__card { flex: 0 0 min(420px, 82vw) !important; }
+html body .wu-ev .wu-os__card a { gap: 0 !important; padding: var(--card-pad) !important; border-radius: var(--r-24) !important; background: var(--surface-1) !important; border: 1px solid var(--border) !important; box-shadow: none !important; min-height: 0 !important; }
+html body .wu-ev .wu-os__card a:hover, html body .wu-ev .wu-os__card a:focus-visible { box-shadow: none !important; translate: 0 -4px; border-color: var(--lime-line) !important; }
+html body .wu-ev .wu-os__card a::before { display: none; }
+html body .wu-ev .wu-os__ic { width: var(--tile-m) !important; height: var(--tile-m) !important; border-radius: var(--tile-m-r) !important; background: var(--surface-2) !important; border: 1px solid var(--border); box-shadow: none !important; }
+html body .wu-ev .wu-os__ic svg { width: var(--glyph-m); height: var(--glyph-m); stroke-width: 1.75; }
+html body .wu-ev .wu-os__t { margin: 24px 0 12px !important; font-size: var(--fs-h4) !important; line-height: var(--lh-h4) !important; letter-spacing: -.01em !important; }
+html body .wu-ev .wu-os__p { font-size: var(--fs-body) !important; line-height: var(--lh-body) !important; color: var(--text-3) !important; }
+html body .wu-ev .wu-os__go { margin-top: 32px !important; font-size: 16px; }
+html body .wu-ev .wu-os__go i { background: var(--lime) !important; color: var(--lime-ink) !important; }
+@media (max-width: 767px) { html body .wu-ev .wu-os__card { flex-basis: min(300px, 80vw) !important; } }
+/* enquiry form: label 14/20 -> 8 -> field 56 r16; fieldset legend on the same left edge; fields 24 apart */
+html body .wu-ev .ev-form { gap: 24px !important; }
+html body .wu-ev .ev-form label { display: grid; gap: 8px !important; }
+html body .wu-ev .ev-form label > span { margin: 0 !important; }
+html body .wu-ev .ev-form input:not([type=checkbox]), html body .wu-ev .ev-form select { height: 56px; padding: 0 16px !important; font: 400 16px/1 Inter, system-ui, sans-serif !important; border: 1px solid var(--border-strong) !important; outline: none; }
+html body .wu-ev .ev-form input:focus, html body .wu-ev .ev-form select:focus { border-color: var(--lime) !important; box-shadow: 0 0 0 3px var(--lime-line) !important; }
+
+/* =====================================================================
+   Mobile (<768) per the system: hero image on top (320) with the copy overlapping -56, full-width stacked buttons,
+   2x2 stats, swipe carousel for image cards, list rows for open columns, inline card headers,
+   form before contacts, sticky bottom bar (primary + 52px WhatsApp circle).
+   ===================================================================== */
+@media (max-width: 767px) {
+  html body .wu-ev .ev-final { display: flex !important; flex-direction: column; padding: 24px !important; border-radius: 28px !important; }
+  html body .wu-ev .ev-final__copy { display: contents !important; }
+  html body .wu-ev .ev-final__copy > * { order: 1; }
+  html body .wu-ev .ev-final > .ev-form { order: 2; margin-top: 24px; }
+  html body .wu-ev .ev-final__copy > .ev-contact { order: 3; margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border-strong); }
+}
+@media (max-width: 767px) {
+}
+
+/* headings use the full width: no balancing, wider heading column, two-tone flows inline on phones */
+@media (max-width: 767px) {
+  html body .wu-ev .sh__h .sh__a, html body .wu-ev .sh__h .sh__b { display: inline !important; }
+  html body .wu-ev .sh__h .sh__a::after { content: " "; }
+  html body .wu-ev .wu-os__h span { display: inline !important; }
+}
+
+/* paragraphs fill their column too: no 640 cap, no balancing/pretty wrapping */
+
+/* no hover effects on the service chips; the line through "transit advertising" was the old underline pseudo-element */
+
+/* every width: heading fills its column (fluid size, 7:5 split from 900, full-width stack below) */
+@media (min-width: 768px) and (max-width: 1439px) { .wu-ev { --fs-h2: clamp(34px, 4.1vw, 56px); --lh-h2: 1.14; } }
+@media (min-width: 900px) {
+}
+@media (max-width: 899px) {
+  html body .wu-ev .sh__h .sh__a, html body .wu-ev .sh__h .sh__b { display: inline !important; }
+  html body .wu-ev .sh__h .sh__a::after { content: " "; }
+}
+
+/* all headings flow continuously (both tones inline) so each line uses the full column width */
+html body .wu-ev .sh__h .sh__a, html body .wu-ev .sh__h .sh__b, html body .wu-ev .wu-os__h span { display: inline !important; }
+html body .wu-ev .sh__h .sh__a::after { content: " "; }
+html body .wu-ev .sh__h, html body .wu-ev .sh h2, html body .wu-ev .wu-os__h { text-wrap: wrap !important; }
+html body .wu-ev .sh__h .sh__a, html body .wu-ev .sh__h .sh__b, html body .wu-ev .wu-os__h span { display: inline !important; }
+html body .wu-ev .sh__h .sh__a::after { content: " "; }
+html body .wu-ev .ev-intro p { max-width: none !important; text-wrap: wrap !important; }
+@media (min-width: 900px) { html body .wu-ev .ev-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr) !important; } }
+@media (max-width: 899px) { html body .wu-ev .ev-head { grid-template-columns: minmax(0, 1fr) !important; } html body .wu-ev .ev-head > .ev-intro { padding-top: 0 !important; } }
+html body .wu-ev .sh, html body .wu-ev .sh__h { max-width: none !important; width: 100%; }

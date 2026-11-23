@@ -34,6 +34,8 @@ add_action( 'wp_head', function () {
 add_action( 'wp_head', function () {
 	echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/event-branding.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/event-branding.css' ) ) . "\">\n";
 	echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/digital-marketing.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/digital-marketing.css' ) ) . "\">\n";
+	echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/service-system.css?ver=' . filemtime( WISEUP_DIR . 'assets/css/service-system.css' ) ) . "\">
+";
 }, 8 );
 
 $wu_wa    = 'https://wa.me/916282434503?text=' . rawurlencode( 'Hi WiseUp, I would like to talk about branding for an event.' );

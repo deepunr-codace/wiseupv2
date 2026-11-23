@@ -1368,3 +1368,8 @@ html body .wu-mb .sh, html body .wu-mb .sh__h, html body .wu-mb .mb-split > .sh 
 /* all headings flow continuously (both tones inline) so each line uses the full column width */
 html body .wu-mb .sh__h .sh__a, html body .wu-mb .sh__h .sh__b, html body .wu-mb .wu-os__h span { display: inline !important; }
 html body .wu-mb .sh__h .sh__a::after { content: " "; }
+@media (max-width: 767px) {
+  html body .wu-mb .mb-hero .ev-hero__h, html body .wu-mb .mb-hero .ev-hero__h .sh__a, html body .wu-mb .mb-hero .ev-hero__h .sh__b { max-width: none !important; width: auto; text-wrap: wrap !important; white-space: normal !important; }
+  html body .wu-mb .mb-hero .ev-hero__h .sh__a::after { content: " "; }
+  html body .wu-mb .mb-hero .ev-hero__copy, html body .wu-mb .mb-hero .mb-hero__ps { text-align: left; }
+}
