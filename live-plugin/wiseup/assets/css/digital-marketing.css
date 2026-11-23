@@ -3343,3 +3343,68 @@ html body .wu-seo #platforms .sh p.seo-built .seo-built__w { font-style: normal;
 .wu-motion .wu-ev .ev-hero[data-css-intro] .ev-stage { opacity: 1; visibility: visible !important; animation: pm-stage-in .9s .15s ease-out both; }
 @keyframes pm-stage-in { from { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .wu-motion .wu-ev .ev-hero[data-css-intro] .ev-stage { animation: none; } }
+
+/* ===== 2026-11-23, owner: "mobile view service section make it same like desktop" (Performance phone story): below 1024px the phone is pinned at the top (scaled down) and the service card sits pinned under it, changing as each service is scrolled past, exactly like desktop. The per-service mini phones are gone. ===== */
+@media (max-width: 1023px) {
+  .wu-pm .pmj { --k: .5; --pmt: 66px; grid-template-columns: minmax(0, 1fr); gap: 12px; align-items: start; margin-top: 26px; }
+  .wu-pm .pmj__phone { display: grid; position: sticky; top: var(--pmt); z-index: 3; height: calc(var(--k) * 600px); place-items: start center; margin: 0; perspective: none; }
+  .wu-pm .pmj__phone::before { top: 0; left: 50%; translate: -50% 0; width: 300px; height: calc(var(--k) * 600px); filter: blur(26px); }
+  .wu-pm .pmj__device { --h: 600px; width: 283px; height: 600px; transform: scale(var(--k)) !important; transform-origin: 50% 0; }
+  .wu-pm .pmj__chips, .wu-pm .pmj__shadow { display: none; }
+  .wu-pm .pmj__stage { display: block; position: sticky; top: calc(var(--pmt) + var(--k) * 600px + 12px); height: 276px; z-index: 2; }
+  .wu-pm .pmj__stage-in { padding: 20px 22px; border-radius: 24px; }
+  .wu-pm .pmj__card h3 { margin: 0 0 10px; font-size: 20px !important; line-height: 1.2; }
+  .wu-pm .pmj__card p { font-size: 13.5px !important; line-height: 1.55; }
+  .wu-pm .pmj__card .pmj__brands { margin-bottom: 12px; gap: 8px; }
+  .wu-pm .pmj__step { min-height: 62vh; padding: 20px 0; opacity: 1; }
+  .wu-pm .pmj__step > * { visibility: hidden; }
+  .wu-pm .pmj__mini { display: none !important; }
+  .wu-pm .pmj__tail { display: block; height: 70vh; }
+}
+@media (max-width: 1023px) and (max-height: 760px) { .wu-pm .pmj { --k: .44; } .wu-pm .pmj__stage { height: 262px; } }
+@media (max-width: 1023px) and (min-height: 900px) { .wu-pm .pmj { --k: .56; --pmt: 74px; } .wu-pm .pmj__stage { height: 300px; } }
+/* card heights measured for the longest service text (it must fit inside the pinned card) */
+@media (max-width: 1023px) { .wu-pm .pmj__stage { height: 372px; } }
+@media (max-width: 1023px) and (max-height: 760px) { .wu-pm .pmj { --k: .4; } .wu-pm .pmj__stage { height: 404px; } .wu-pm .pmj__card p { font-size: 13px !important; } }
+@media (max-width: 1023px) and (min-height: 900px) { .wu-pm .pmj__stage { height: 384px; } }
+
+/* owner: "mobile width kootanam": the phone is bigger on mobile (about 76% of the desktop size, ~215px wide); only its upper part shows and it fades out behind the pinned card, so everything still fits in one screen. */
+@media (max-width: 1023px) {
+  .wu-pm .pmj { --k: .76; --vis: 336px; }
+  .wu-pm .pmj__phone { height: var(--vis); overflow: hidden; -webkit-mask-image: linear-gradient(#000 80%, transparent); mask-image: linear-gradient(#000 80%, transparent); }
+  .wu-pm .pmj__phone::before { height: var(--vis); }
+  .wu-pm .pmj__stage { top: calc(var(--pmt) + var(--vis) + 8px); }
+}
+@media (max-width: 1023px) and (max-height: 760px) { .wu-pm .pmj { --k: .6; --vis: 250px; } }
+@media (max-width: 1023px) and (min-height: 900px) { .wu-pm .pmj { --k: .9; --vis: 400px; } }
+/* last service (WiseUp's enquiry form on the phone): the whole phone shows and the card slides down below it, so the form can be used on a tall enough phone screen */
+@media (max-width: 1023px) {
+  .wu-pm .pmj__stage { transition: translate .6s cubic-bezier(.2, .8, .2, 1); }
+}
+@media (max-width: 1023px) and (min-height: 800px) {
+  .wu-pm .pmj:has(.pmj__step[data-pmj-step="6"].is-on) .pmj__phone { overflow: visible; -webkit-mask-image: none; mask-image: none; }
+  .wu-pm .pmj:has(.pmj__step[data-pmj-step="6"].is-on) .pmj__stage { translate: 0 calc(var(--k) * 600px - var(--vis) + 8px); }
+}
+@media (max-width: 1023px) and (min-height: 800px) {
+  .wu-pm .pmj__phone { transition: translate .6s cubic-bezier(.2, .8, .2, 1); }
+  .wu-pm .pmj:has(.pmj__step[data-pmj-step="6"].is-on) .pmj__phone { translate: 0 -34px; }
+  .wu-pm .pmj:has(.pmj__step[data-pmj-step="6"].is-on) .pmj__stage { translate: 0 calc(var(--k) * 600px - var(--vis) - 58px); }
+}
+
+/* ===== 2026-11-23, owner: "optimize all services page for mobile": touch-friendly targets and readable labels on phones (service pages). ===== */
+@media (max-width: 767px) {
+  .wu-ev .ev-more, .wu-ev .dm-stack__more { min-height: 44px; padding-block: 12px; }
+  .wu-dm .dm-pkg__sw { position: relative; }
+  .wu-dm .dm-pkg__sw::after { content: ""; position: absolute; inset: -8px -6px; }
+  .wu-ev .eyebrow, .wu-pm .eyebrow, .wu-mb .eyebrow, .wu-br .eyebrow { font-size: 12px; }
+  .wu-ev .ev-stop__pill, .wu-ev .ev-disc__pill { font-size: 12px; }
+}
+
+/* ===== 2026-11-23, owner: "title color orupole alla. same akknm": every services-journey title (Digital Marketing, SEO, Event Branding) is solid white entirely, matching Event Branding (no gradient fill that changed colour with the title's length, no grey part). ===== */
+html body .wu-dm .ev-sec .dm-stack h3,
+html body .wu-seo ol.dm-stack[data-stack] .dm-stack__card h3,
+html body .wu-seo main > .ev-sec .dm-stack h3 { background: none !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }
+html body .wu-dm .ev-sec .dm-stack h3 span,
+html body .wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 > span,
+html body .wu-seo ol.dm-stack[data-stack] .dm-stack__card h3 .sh__b,
+html body .wu-seo main > .ev-sec .dm-stack h3 span { background: none !important; color: #fff !important; -webkit-text-fill-color: #fff !important; }

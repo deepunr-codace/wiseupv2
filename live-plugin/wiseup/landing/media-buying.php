@@ -228,8 +228,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 
 	<!-- 1. Hero -->
 	<section class="ev-hero dm-hero mb-hero mb-hero--photo" data-css-intro>
-		<?php $wu_hb = WISEUP_URL . 'assets/landing/img/mb-hero-cinema-'; ?>
-		<div class="mb-hbg" aria-hidden="true"><img src="<?php echo esc_url( $wu_hb . '1400.webp' ); ?>" srcset="<?php echo esc_url( $wu_hb . '900.webp' ); ?> 900w, <?php echo esc_url( $wu_hb . '1400.webp' ); ?> 1400w, <?php echo esc_url( $wu_hb . '1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"></div>
+		<div class="mb-hbg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-1400.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-1400.webp' ); ?> 1400w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="940" alt="" fetchpriority="high" decoding="async"></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
@@ -284,102 +283,134 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 				</div>
 				<div class="ev-intro"><p>At WiseUp, media buying goes beyond booking advertising space. We bring media selection, planning, negotiation, and campaign execution together to make every placement count. Our media buying services cover traditional and digital advertising channels, with campaigns shaped around business objectives and audience requirements.</p></div>
 			</div>
-			<div class="mb-bb" data-mb-bb>
-				<div class="mb-bb__stage">
+			<div class="mb-run" data-mb-run><div class="mb-stage" data-mb-stage>
+			<div class="mb-bb" data-mb-top>
 				<div class="mb-bb__site" aria-hidden="true">
-					<div class="mb-bb__lamps"><i></i><i></i><i></i></div>
 					<div class="mb-bb__board">
 						<?php foreach ( $wu_pillars as $wu_k => $p ) : $wu_src = WISEUP_URL . 'assets/landing/img/mb-ch-' . $p['id'] . '-1600.webp'; ?>
 						<div class="mb-bb__poster<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" data-k="<?php echo esc_attr( $p['id'] ); ?>" style="--img:url('<?php echo esc_url( $wu_src ); ?>')"><i></i><i></i><i></i><i></i></div>
 						<?php endforeach; ?>
 						<span class="mb-bb__glare"></span>
 					</div>
-					<img class="mb-bb__rig" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hoarding-1672.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hoarding-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hoarding-1672.webp' ); ?> 1672w" sizes="(min-width: 1240px) 1180px, 100vw" width="1672" height="941" alt="" decoding="async">
+					<img class="mb-bb__rig" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-1670.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-1670.webp' ); ?> 1672w" sizes="(min-width: 1240px) 1180px, 100vw" width="1670" height="941" alt="" decoding="async">
 				</div>
-				<div class="mb-bb__dial" role="tablist" aria-label="Media buying services">
-					<?php foreach ( $wu_pillars as $wu_k => $p ) : ?>
-					<button class="mb-bb__ch<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" type="button" role="tab" id="<?php echo esc_attr( $p['id'] ); ?>-tab" aria-selected="<?php echo 0 === $wu_k ? 'true' : 'false'; ?>" aria-controls="<?php echo esc_attr( $p['id'] ); ?>" data-k="<?php echo esc_attr( $p['id'] ); ?>"><span aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span><span class="mb-bb__lbl"><?php echo esc_html( $p['tab'] ); ?></span></button>
-					<?php endforeach; ?>
-				</div>
-				<div class="mb-bb__held">
-					<img class="mb-bb__hands" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-board-1672.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-board-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-board-1672.webp' ); ?> 1672w" sizes="(min-width: 1240px) 1000px, 100vw" width="1672" height="941" alt="" loading="lazy" decoding="async">
-					<img class="mb-bb__hand mb-bb__hand--l" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hand-l.webp' ); ?>" width="420" height="600" alt="" loading="lazy" decoding="async">
-					<img class="mb-bb__hand mb-bb__hand--r" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hand-r.webp' ); ?>" width="420" height="600" alt="" loading="lazy" decoding="async">
-					<div class="mb-bb__panels">
-						<?php foreach ( $wu_pillars as $wu_k => $p ) : ?>
-						<div class="mb-bb__panel<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" id="<?php echo esc_attr( $p['id'] ); ?>" role="tabpanel" aria-labelledby="<?php echo esc_attr( $p['id'] ); ?>-tab" data-k="<?php echo esc_attr( $p['id'] ); ?>">
-							<p class="mb-tl__alt"><?php echo esc_html( $wu_ch_alt[ $p['id'] ] ); ?></p>
-							<div class="mb-bb__c1">
-								<h3><?php echo esc_html( $p['h3'] ); ?></h3>
-								<p class="mb-bb__lead"><?php echo esc_html( $p['p'][0] ); ?></p>
-								<?php if ( $p['kick'] ) : ?><p class="mb-bb__kick"><?php echo esc_html( $p['kick'] ); ?></p><?php endif; ?>
-							</div>
-							<div class="mb-bb__c2">
-								<?php if ( $p['list'] ) : ?>
-								<h4><?php echo esc_html( $p['lead'] ); ?></h4>
-								<ul class="mb-bb__chips"><?php foreach ( $p['list'] as $f ) echo '<li>' . esc_html( $f ) . '</li>'; ?></ul>
-								<?php elseif ( isset( $p['p'][1] ) ) : ?>
-								<p class="mb-bb__p mb-bb__p--mid"><?php echo esc_html( $p['p'][1] ); ?></p>
-								<?php endif; ?>
-							</div>
-							<div class="mb-bb__foot">
-								<?php echo $wu_btn( 'Get a Free Media Plan', 'teal', $wu_lead ); // phpcs:ignore ?>
-								<button class="mb-bb__more-btn" type="button" aria-expanded="false" aria-controls="<?php echo esc_attr( $p['id'] ); ?>-more">More details</button>
-							</div>
-							<div class="mb-bb__more" id="<?php echo esc_attr( $p['id'] ); ?>-more">
-								<button class="mb-bb__x" type="button" aria-label="Close details"><i aria-hidden="true"></i></button>
-								<?php foreach ( array_slice( $p['p'], $p['list'] ? 1 : 2 ) as $wu_p ) : ?><p class="mb-bb__p"><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
-								<?php foreach ( $p['after'] as $wu_p ) : ?><p class="mb-bb__p"><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
-								<p class="mb-bb__best"><span>Best suited for:</span> <?php echo esc_html( $p['best'] ); ?></p>
-							</div>
-						</div>
-						<?php endforeach; ?>
-					</div>
-				</div>
-				</div>
+				<div class="mb-bb__top" aria-hidden="true"></div>
+				<nav class="mb-jump" aria-label="Jump to a service" data-mb-jump>
+					<?php foreach ( $wu_pillars as $p ) : ?><a href="#<?php echo esc_attr( $p['id'] ); ?>"><?php echo esc_html( $p['tab'] ); ?></a><?php endforeach; ?>
+				</nav>
 			</div>
-			<script>(function(){
-				var w = document.querySelector('[data-mb-bb]'); if (!w) return;
-				var chs = [].slice.call(w.querySelectorAll('.mb-bb__ch')), posters = [].slice.call(w.querySelectorAll('.mb-bb__poster')), pans = [].slice.call(w.querySelectorAll('.mb-bb__panel'));
-				var cur = chs[0].getAttribute('data-k');
-				var set = function (k) {
-					if (k === cur) return; var prev = cur; cur = k;
-					chs.forEach(function (b) { var on = b.getAttribute('data-k') === k; b.classList.toggle('is-on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); if (on && b.scrollIntoView && innerWidth < 1024) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' }); });
-					posters.forEach(function (p) { var key = p.getAttribute('data-k'); p.classList.remove('is-was'); if (key === prev) { p.classList.remove('is-on'); p.classList.add('is-was'); } if (key === k) { p.classList.remove('is-on'); void p.offsetWidth; p.classList.add('is-on'); } });
-					pans.forEach(function (p) { p.classList.toggle('is-on', p.getAttribute('data-k') === k); });
-					closeMore();
-				};
-				var keys = chs.map(function (b) { return b.getAttribute('data-k'); });
-				var pin = matchMedia('(min-width: 1270px) and (min-height: 640px)');
-				var site = w.querySelector('.mb-bb__site');
-				var step = function () { return innerHeight * .3; };
-				var startY = function () { return w.getBoundingClientRect().top + scrollY; };
-				var goTo = function (k, jump) {
-					if (pin.matches) { var i = keys.indexOf(k); scrollTo({ top: startY() + (i + .5) * step(), behavior: 'smooth' }); }
-					else { set(k); if (jump) { var y = w.getBoundingClientRect().top + scrollY - 110; scrollTo({ top: y, behavior: 'smooth' }); } }
-				};
-				var onScroll = function () { if (!pin.matches) return; var d = keys.length * step(), pr = Math.min(.9999, Math.max(0, (scrollY - startY()) / d)); w.style.setProperty('--sp', pr.toFixed(4)); set(keys[Math.floor(pr * keys.length)]); };
-				addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll);
-				function closeMore() { pans.forEach(function (p) { p.classList.remove('is-more'); var bt = p.querySelector('.mb-bb__more-btn'); if (bt) bt.setAttribute('aria-expanded', 'false'); }); }
-				pans.forEach(function (p) {
-					var bt = p.querySelector('.mb-bb__more-btn'), x = p.querySelector('.mb-bb__x');
-					if (bt) bt.addEventListener('click', function () { p.classList.add('is-more'); bt.setAttribute('aria-expanded', 'true'); if (x) x.focus(); });
-					if (x) x.addEventListener('click', function () { closeMore(); if (bt) bt.focus(); });
-				});
-				document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMore(); });
-				chs.forEach(function (b) {
-					b.addEventListener('click', function () { goTo(b.getAttribute('data-k')); b.classList.remove('is-swing'); void b.offsetWidth; b.classList.add('is-swing'); });
-					b.addEventListener('keydown', function (e) { var i = chs.indexOf(b), n = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? i - 1 : -9; if (n < -1) return; e.preventDefault(); n = (n + chs.length) % chs.length; chs[n].focus(); goTo(chs[n].getAttribute('data-k')); });
-				});
-				document.addEventListener('click', function (e) {
-					var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
-					var k = a.getAttribute('href').slice(1); if (!chs.some(function (b) { return b.getAttribute('data-k') === k; })) return;
-					e.preventDefault(); goTo(k, true);
-				}, true);
-				var h = location.hash.slice(1); if (h && keys.indexOf(h) > -1) goTo(h, true); onScroll();
-			})();</script>
+			<div class="mb-pillars">
+				<?php foreach ( $wu_pillars as $wu_k => $p ) : ?>
+				<article class="mb-pillar" id="<?php echo esc_attr( $p['id'] ); ?>" data-mb-pillar>
+					<div class="mb-pillar__vis"><span class="mb-pillar__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_k + 1 ) ); ?></span><?php echo $wu_art[ $p['id'] ]; // phpcs:ignore ?></div>
+					<div class="mb-pillar__body">
+						<div class="mb-pc">
+						<h3><?php echo esc_html( $p['h3'] ); ?></h3>
+						<?php foreach ( $p['p'] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
+						</div>
+						<?php if ( $p['list'] ) : ?>
+						<div class="mb-pillar__list">
+							<h4><?php echo esc_html( $p['lead'] ); ?></h4>
+							<ul class="mb-chips"><?php foreach ( $p['list'] as $f ) echo '<li>' . esc_html( $f ) . '</li>'; ?></ul>
+						</div>
+						<?php endif; ?>
+						<?php if ( $p['kick'] || $p['after'] ) : ?>
+						<div class="mb-pillar__angle">
+							<?php if ( $p['kick'] ) : ?><p class="mb-pillar__q"><?php echo esc_html( $p['kick'] ); ?></p><?php endif; ?>
+							<?php foreach ( $p['after'] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
+						</div>
+						<?php endif; ?>
+						<div class="mb-pillar__foot">
+							<p class="mb-best"><span>Best suited for:</span> <?php echo esc_html( $p['best'] ); ?></p>
+							<?php echo $wu_btn( 'Get a Free Media Plan', 'teal', $wu_lead ); // phpcs:ignore ?>
+						</div>
+					</div>
+				</article>
+				<?php endforeach; ?>
+			</div>
+			</div></div>
 		</div>
 	</section>
+
+	<script>
+	// scroll walks the tabs: the section pins, each scroll step drops the passed stone off the slab and opens the next service
+	(function () {
+		var run = document.querySelector('[data-mb-run]'); if (!run) return;
+		var stage = run.querySelector('[data-mb-stage]'), bb = run.querySelector('.mb-bb'), jump = run.querySelector('[data-mb-jump]'), pillars = run.querySelector('.mb-pillars'), root = document.querySelector('.wu-mb');
+		var links = [].slice.call(jump.querySelectorAll('a')), n = links.length, ids = links.map(function (a) { return a.getAttribute('href').slice(1); });
+		var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, wide = function () { return window.matchMedia('(min-width: 900px)').matches; };
+		var faces = [].slice.call(run.querySelectorAll('[data-mb-pillar]')), top = 100, step = 400, on = false, active = -1, internal = false, tick = 0, delta = 0;
+		function measure() {
+			on = wide() && !reduce;
+			run.classList.toggle('mb-pin', on);
+			if (!on) { run.style.height = ''; stage.style.top = ''; pillars.style.minHeight = ''; links.forEach(function (a) { a.classList.remove('is-gone'); }); bb.style.removeProperty('--e'); document.documentElement.classList.remove('mb-nohd'); faces.forEach(function (f) { f.style.transform = f.style.opacity = f.style.visibility = f.style.pointerEvents = ''; }); return; }
+			var cls = root.classList.contains('mb-tabs'); root.classList.remove('mb-tabs');
+			var mh = 0; [].forEach.call(run.querySelectorAll('[data-mb-pillar]'), function (q) { mh = Math.max(mh, q.offsetHeight); });
+			root.classList.add('mb-tabs');
+			pillars.style.minHeight = mh + 'px';
+			var H = stage.offsetHeight; step = Math.max(240, innerHeight * 0.3);
+			top = (H + 150 < innerHeight) ? Math.round((innerHeight - H) / 2) : Math.min(100, innerHeight - H - 14);
+			stage.style.top = top + 'px';
+			run.style.height = (H + n * step) + 'px';
+			upd();
+		}
+		function upd() {
+			tick = 0; if (!on) return;
+			var r = run.getBoundingClientRect(), p = Math.max(0, Math.min(0.9999, (top - r.top) / (n * step)));
+			var e = Math.max(0, Math.min(1, 1 - (r.top - top) / (innerHeight * 0.75)));
+			bb.style.setProperty('--e', e.toFixed(3));
+			document.documentElement.classList.toggle('mb-nohd', r.top < top + 60 && r.bottom > innerHeight * 0.55);
+			var idx = Math.max(0, Math.min(n - 1, Math.floor(p * n) + delta));
+			links.forEach(function (a, i) { a.classList.toggle('is-gone', i < idx); });
+			if (idx !== active && window.__mbShow) { active = idx; if (!links[idx].classList.contains('is-on')) window.__mbShow(ids[idx]); }
+		}
+		function q() { if (!tick) tick = requestAnimationFrame(upd); }
+		function goTo(i) {
+			var r = run.getBoundingClientRect();
+			window.scrollTo(0, scrollY + r.top - top + (i + 0.5) / n * (n * step));
+		}
+		document.addEventListener('click', function (e) {
+			if (internal || !on) return;
+			var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+			var i = ids.indexOf(a.getAttribute('href').slice(1)); if (i < 0) return;
+			e.preventDefault(); e.stopPropagation();
+			if (jump.contains(a)) { var r = run.getBoundingClientRect(), p0 = Math.max(0, Math.min(0.9999, (top - r.top) / (n * step))); delta = i - Math.floor(p0 * n); upd(); }
+			else { delta = 0; goTo(i); }
+		}, true);
+		addEventListener('scroll', q, { passive: true });
+		addEventListener('resize', function () { measure(); });
+		(document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(function () { measure(); var h = ids.indexOf(location.hash.slice(1)); if (h > 0 && on) goTo(h); });
+		measure(); addEventListener('load', function () { measure(); });
+	})();
+	</script>
+
+	<script>
+	// "More details": the quote and the extra paragraphs sit behind a toggle on wide screens, so the card stays short
+	(function () {
+		var root = document.getElementById('mb-services'); if (!root) return;
+		[].forEach.call(root.querySelectorAll('.mb-pillar'), function (p) {
+			var ang = p.querySelector('.mb-pillar__angle'); if (!ang) return;
+			var b = document.createElement('button'); b.type = 'button'; b.className = 'mb-more'; b.setAttribute('aria-expanded', 'false'); b.innerHTML = '<span>More details</span><i aria-hidden="true"></i>';
+			ang.parentNode.insertBefore(b, ang);
+			b.addEventListener('click', function () {
+				var open = p.classList.toggle('is-open'); b.setAttribute('aria-expanded', open ? 'true' : 'false'); b.firstChild.textContent = open ? 'Less' : 'More details';
+				setTimeout(function () { var rl = document.querySelector('.mb-rail'); if (rl) rl.style.height = Math.max(0, p.offsetHeight - 16) + 'px'; window.dispatchEvent(new Event('resize')); }, 480);
+			});
+		});
+	})();
+	</script>
+
+	<script>
+	// the poster board and the tab plate are warped onto the photo's real corners (perspective), so the poster sits on the hoarding like a print
+	(function () {
+		var site = document.querySelector('.mb-bb__site'), board = document.querySelector('.mb-bb__board'), jump = document.querySelector('[data-mb-jump]'); if (!site || !board) return;
+		var IW = 1670, FACE = [[304, 320], [1388, 52], [1410, 560], [262, 688]], PLATE = [[471, 763], [1146, 704], [1151, 802], [471, 853]];
+		function solve(A, b) { var n = 8, i, j, k; for (i = 0; i < n; i++) A[i].push(b[i]); for (i = 0; i < n; i++) { var m = i; for (j = i + 1; j < n; j++) if (Math.abs(A[j][i]) > Math.abs(A[m][i])) m = j; var t = A[i]; A[i] = A[m]; A[m] = t; for (j = i + 1; j < n; j++) { var f = A[j][i] / A[i][i]; for (k = i; k <= n; k++) A[j][k] -= f * A[i][k]; } } var x = []; for (i = n - 1; i >= 0; i--) { var sum = A[i][n]; for (j = i + 1; j < n; j++) sum -= A[i][j] * x[j]; x[i] = sum / A[i][i]; } return x; }
+		function mat(w, h, q, s) { var src = [[0, 0], [w, 0], [w, h], [0, h]], A = [], b = [], i; for (i = 0; i < 4; i++) { var x = src[i][0], y = src[i][1], X = q[i][0] * s, Y = q[i][1] * s; A.push([x, y, 1, 0, 0, 0, -x * X, -y * X]); b.push(X); A.push([0, 0, 0, x, y, 1, -x * Y, -y * Y]); b.push(Y); } var h8 = solve(A, b); return 'matrix3d(' + [h8[0], h8[3], 0, h8[6], h8[1], h8[4], 0, h8[7], 0, 0, 1, 0, h8[2], h8[5], 0, 1].join(',') + ')'; }
+		function place() { var s = site.clientWidth / IW; if (!s) return; board.style.transform = mat(1144, 400, FACE, s); if (jump && window.matchMedia('(min-width: 900px)').matches) jump.style.transform = mat(680, 120, PLATE, s); else if (jump) jump.style.transform = ''; }
+		place(); addEventListener('resize', place); addEventListener('load', place); if (window.ResizeObserver) new ResizeObserver(place).observe(site);
+	})();
+	</script>
 
 	<!-- 3. Campaigns -->
 	<section class="sec ev-sec" id="mb-work">
@@ -571,8 +602,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 				<h2 id="mb-faq-h" class="sh__h"><?php echo $wu_h( 'Frequently Asked', 'Questions' ); // phpcs:ignore ?></h2>
 			</div>
 			<div class="faq">
-				<?php foreach ( $wu_faq as $q ) : ?>
-				<details class="faq__item" name="faq">
+				<?php foreach ( $wu_faq as $wu_fi => $q ) : ?>
+				<details class="faq__item" name="faq"<?php echo 0 === $wu_fi ? ' open' : ''; ?>>
 					<summary class="faq__q"><h3><?php echo esc_html( $q[0] ); ?></h3><span class="faq__dot" aria-hidden="true"></span></summary>
 					<p class="faq__a"><?php echo esc_html( $q[1] ); ?></p>
 				</details>
@@ -635,6 +666,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			</div>
 		</div>
 	</section>
+	<div class="mb-sticky" role="region" aria-label="Quick actions">
+		<?php echo $wu_btn( 'Get a Free Media Plan', 'teal', $wu_lead ); // phpcs:ignore ?>
+		<a class="mb-sticky__wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><?php echo $wu_wa_svg; // phpcs:ignore ?></a>
+	</div>
 </main>
 </div>
 <script>
@@ -659,27 +694,56 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 				.then(function () { btn.disabled = false; });
 		});
 	}
-	// a customer's day: the sticky photo, the day line and the tag follow the service being read
-	var day = document.querySelector('[data-mb-day]');
-	if (day) {
-		var arts = [].slice.call(day.querySelectorAll('[data-mb-pillar]'));
-		var fr = [].slice.call(day.querySelectorAll('.mb-day__f'));
-		var dl = [].slice.call(day.querySelectorAll('.mb-day__line a'));
-		var nEl = day.querySelector('[data-mb-day-n]'), tEl = day.querySelector('[data-mb-day-t]'), pEl = day.querySelector('[data-mb-day-p]');
-		var cur = -1, last = arts.length - 1;
-		var set = function (i) {
-			if (i === cur) return; cur = i; var id = arts[i].id;
-			fr.forEach(function (f) { f.classList.toggle('is-on', f.getAttribute('data-k') === id); });
-			dl.forEach(function (a, k) { a.classList.toggle('is-on', k === i); a.classList.toggle('is-past', k < i); if (k === i) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
-			if (nEl) nEl.textContent = (i < 9 ? '0' : '') + (i + 1);
-			if (tEl && dl[i]) tEl.textContent = dl[i].textContent.trim();
-			var t = last > 0 ? i / last : 1;
-			if (pEl) pEl.style.transform = 'scaleX(' + t + ')';
-			day.style.setProperty('--t', t);
-			day.classList.remove('is-swap'); void day.offsetWidth; day.classList.add('is-swap');
+	// pillars as tabs: one pillar shows at a time (all three stay in the HTML); hero tiles and goal pills open theirs
+	var jump = document.querySelector('[data-mb-jump]');
+	var pills = [].slice.call(document.querySelectorAll('[data-mb-pillar]'));
+	if (jump && pills.length) {
+		var links = [].slice.call(jump.querySelectorAll('a'));
+		var ids = pills.map(function (p) { return p.id; });
+		var show = function (id) {
+			var top = document.querySelector('[data-mb-top]');
+			if (top) [].slice.call(top.querySelectorAll('.mb-bb__poster')).forEach(function (q) { var k = q.getAttribute('data-k'), was = q.classList.contains('is-on'); q.classList.remove('is-was'); if (k === id) { if (!was) { q.classList.remove('is-on'); void q.offsetWidth; q.classList.add('is-on'); } } else if (was) { q.classList.remove('is-on'); q.classList.add('is-was'); } });
+			pills.forEach(function (p) { p.classList.toggle('is-active', p.id === id); if (p.id === id) p.classList.add('is-in'); });
+			var stg = document.querySelector('[data-mb-stage]');
+			if (stg) { var ix = ids.indexOf(id), tints = ['#ffbe64', '#e3cc94', '#ff5a4a', '#5aa0ff', '#a77bff', '#ffa94d']; stg.style.setProperty('--ai', ix); stg.style.setProperty('--tint', tints[ix] || '#ffbe64');
+				var pl = stg.querySelector('.mb-pillars'); if (pl && !pl.querySelector('.mb-rail')) { var r = document.createElement('div'); r.className = 'mb-rail'; r.setAttribute('aria-hidden', 'true'); r.innerHTML = ids.map(function () { return '<i></i>'; }).join('') + '<b></b>'; pl.insertBefore(r, pl.firstChild); } }
+			requestAnimationFrame(function () { var ap = document.getElementById(id), rl = document.querySelector('.mb-rail'); if (ap && rl) { var h = ap.offsetHeight; rl.style.height = h > 80 ? (h - 16) + 'px' : ''; rl.style.bottom = 'auto'; } });
+			var act = document.getElementById(id), prev = pills.filter(function (p) { return p.classList.contains('is-pasted'); })[0];
+			if (act && prev && prev !== act && !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) && window.__mbReady && act.animate) {
+				var dir = pills.indexOf(act) > pills.indexOf(prev) ? 1 : -1, pb = prev.querySelector('.mb-pillar__body'), ab = act.querySelector('.mb-pillar__body');
+				[].forEach.call(document.querySelectorAll('.mb-ghost'), function (g) { g.remove(); });
+				if (pb && ab) {
+					var g = prev.cloneNode(true); g.removeAttribute('id'); g.removeAttribute('data-mb-pillar'); g.className = 'mb-pillar is-active mb-ghost'; g.setAttribute('aria-hidden', 'true');
+					g.style.cssText = 'position:absolute;left:0;right:0;top:0;pointer-events:none;z-index:4;margin:0;';
+					act.parentNode.style.position = 'relative'; act.parentNode.appendChild(g);
+					var o = g.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(' + (-34 * dir) + 'px) scale(.97)' }], { duration: 220, easing: 'cubic-bezier(.4,0,.8,.4)', fill: 'forwards' });
+					o.onfinish = function () { g.remove(); };
+					ab.animate([{ opacity: 0, transform: 'translateY(' + (44 * dir) + 'px) scale(.985)' }, { opacity: 0, transform: 'translateY(' + (44 * dir) + 'px) scale(.985)', offset: .38 }, { opacity: 1, transform: 'none' }], { duration: 620, easing: 'cubic-bezier(.2,.9,.3,1)' });
+				}
+			}
+			if (act) pills.forEach(function (p) { p.classList.toggle('is-pasted', p === act); });
+			links.forEach(function (a) { var on = a.getAttribute('href') === '#' + id; a.classList.toggle('is-on', on); a.setAttribute('aria-selected', on ? 'true' : 'false'); });
 		};
-		var tick = function () { var mid = innerHeight * .55, best = 0; arts.forEach(function (a, k) { if (a.getBoundingClientRect().top < mid) best = k; }); set(best); };
-		tick(); addEventListener('scroll', tick, { passive: true }); addEventListener('resize', tick);
+		window.__mbShow = show; window.dispatchEvent(new Event('scroll'));
+		document.querySelector('.wu-mb').classList.add('mb-tabs');
+		jump.setAttribute('role', 'tablist');
+		// a click on a tab only switches the service: stop it before the smooth-scroll script follows the #link
+		jump.addEventListener('click', function (e) {
+			var a = e.target.closest && e.target.closest('a[href^="#"]'); if (!a) return;
+			var id = a.getAttribute('href').slice(1); if (ids.indexOf(id) < 0) return;
+			e.preventDefault(); e.stopPropagation(); show(id);
+		});
+		links.forEach(function (a) { a.setAttribute('role', 'tab'); });
+		show(ids.indexOf(location.hash.slice(1)) > -1 ? location.hash.slice(1) : ids[0]);
+		setTimeout(function () { window.__mbReady = 1; }, 600);
+		document.addEventListener('click', function (e) {
+			var a = e.target.closest && e.target.closest('a[href^="#"]');
+			if (!a) return;
+			var id = a.getAttribute('href').slice(1);
+			if (ids.indexOf(id) < 0) return;
+			e.preventDefault(); show(id);
+			if (!jump.contains(a)) jump.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		});
 	}
 	// budget bar grows when it scrolls into view; pillars and steps rise in
 	var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;

@@ -1792,6 +1792,7 @@ wiseup_landing_open( 'wu-landing wu-smm-page' );
                     .wu-rv-more { align-self: flex-start; background: none; border: 0; padding: 0; font: inherit; font-weight: 600; font-size: 14px; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; color: #C2F760; }
                     .wu-rv.is-lime .wu-rv-more, .wu-rv.is-cream .wu-rv-more { color: #2c3510; }
                     .wu-rv-more[hidden] { display: none; }
+                    @media (max-width: 767px) { .wu-rv-more { min-height: 44px; padding: 10px 4px; } }
                     .wu-rv-all { align-self: flex-start; color: #C2F760; font-weight: 600; text-decoration: none; }
                     @media (max-width: 1000px) { .wu-rv { flex-basis: calc((100% - 16px) / 2); } }
                     @media (max-width: 640px) { .wu-rv { flex-basis: 88%; } }

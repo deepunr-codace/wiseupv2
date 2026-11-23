@@ -81,6 +81,7 @@ defined( 'ABSPATH' ) || exit;
 .wu-rvs .wu-rv-more { align-self: flex-start; padding: 0; border: 0; background: none; font: inherit; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; color: #C2F760; cursor: pointer; }
 .wu-rvs .wu-rv:is(.is-lime, .is-cream) .wu-rv-more { color: #2c3510; }
 .wu-rvs .wu-rv-more[hidden] { display: none; }
+@media (max-width: 767px) { .wu-rvs .wu-rv-more { min-height: 44px; padding: 10px 4px; } }
 .wu-rvs figcaption strong { display: block; font-size: 15px; font-weight: 600; color: inherit; }
 .wu-rvs figcaption span { font-size: 13px; color: rgb(255 255 255 / .55); }
 .wu-rvs .wu-t-card:is(.is-lime, .is-cream) figcaption span { color: rgb(10 10 10 / .55); }

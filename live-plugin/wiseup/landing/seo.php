@@ -257,7 +257,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-seo-page' )
 			<div class="seo-check-wrap">
 			<div class="seo-check">
 				<div class="seo-check__in">
-					<div class="seo-check__q"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="84" height="84" loading="lazy" decoding="async"><p>How visible is your website on Google, Bing and <span>AI search?</span></p></div>
+					<div class="seo-check__q"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.webp' ); ?>" alt="Wiso, the WiseUp mascot" width="84" height="84" loading="lazy" decoding="async"><p>How visible is your website on Google, Bing and <span>AI search?</span></p></div>
 					<form class="seo-check__f" data-seo-check novalidate>
 						<?php echo $wu_svg( $wu_icons['globe'], 18 ); // phpcs:ignore ?>
 						<input name="seo_url" type="text" inputmode="url" autocomplete="url" maxlength="300" aria-label="Website URL" placeholder="Enter your website URL">
@@ -358,7 +358,7 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 				<?php foreach ( $wu_visibility as $v ) echo '<li>' . ( $v[1] ? $wu_mark( $v[1] ) : '<span class="dm-mark">' . $wu_svg( $wu_icons['spark'], 20 ) . '</span>' ) . '<span>' . esc_html( $v[0] ) . '</span></li>'; // phpcs:ignore ?>
 			</ul>
 			<script>(function(){var u=document.querySelector('.wu-seo .seo-chans');if(!u||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var w=document.createElement('div');w.className='seo-chans-run';u.parentNode.insertBefore(w,u);w.appendChild(u);var c=u.cloneNode(true);c.setAttribute('aria-hidden','true');w.appendChild(c);w.classList.add('is-on');})();</script>
-			<div class="seo-vorb" aria-hidden="true"><span class="seo-vorb__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="" width="120" height="120" loading="lazy" decoding="async"></span><span class="seo-vorb__ring"></span><span class="seo-vorb__ring seo-vorb__ring--2"></span></div>
+			<div class="seo-vorb" aria-hidden="true"><span class="seo-vorb__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.webp' ); ?>" alt="" width="120" height="120" loading="lazy" decoding="async"></span><span class="seo-vorb__ring"></span><span class="seo-vorb__ring seo-vorb__ring--2"></span></div>
 			<script>(function(){var o=document.querySelector('.seo-vorb');var src=[].slice.call(document.querySelectorAll('.wu-seo #visibility .seo-chans:not([aria-hidden]) li'));if(!o||!src.length)return;var n=src.length;src.forEach(function(li,k){var a=k/n*2*Math.PI-Math.PI/2,el=document.createElement('span');el.className='seo-vorb__i';el.style.left=(50+42*Math.cos(a))+'%';el.style.top=(50+42*Math.sin(a))+'%';el.style.setProperty('--d',(k*-.6)+'s');var m=li.querySelector('.dm-mark');var t=(li.querySelector('span:not(.dm-mark)')||{}).textContent||'';el.innerHTML='<span class="seo-vorb__b">'+(m?m.outerHTML:'')+'<em>'+t.replace(/</g,'&lt;')+'</em></span>';o.appendChild(el);});})();</script>
 			<ul class="pm-grid pm-grid--two">
 				<li><span class="pm-ic"><?php echo $wu_svg( $wu_icons['target'], 24 ); // phpcs:ignore ?></span><h3>How WiseUp Helps</h3><p>We build SEO strategies around your business, not pre-defined packages of optimisation activities. Our team assesses your business objectives, target audience, competitors, search demand and website performance to identify where the strongest opportunities lie. Every recommendation is connected to a clear objective: improve organic visibility, attract relevant traffic, increase enquiries and support measurable business growth.</p></li>
@@ -493,7 +493,7 @@ fetch(rf.dataset.endpoint,{method:'POST',headers:{'Content-Type':'application/js
 			?>
 			<div class="seo-stk__orb">
 				<?php echo $wu_ring( array_slice( $wu_tools, 0, 6 ), 'out' ) . $wu_ring( array_slice( $wu_tools, 6 ), 'in' ); // phpcs:ignore ?>
-				<div class="seo-stk__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.gif' ); ?>" alt="Wiso, the WiseUp mascot" width="120" height="120" loading="lazy" decoding="async"><span>WiseUp<br>SEO Stack</span></div>
+				<div class="seo-stk__core"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso-icon.webp' ); ?>" alt="Wiso, the WiseUp mascot" width="120" height="120" loading="lazy" decoding="async"><span>WiseUp<br>SEO Stack</span></div>
 			</div>
 			<ul class="seo-stk__grid">
 				<?php foreach ( $wu_tools as $tl ) echo '<li>' . $wu_tile( $tl ) . '</li>'; // phpcs:ignore ?>

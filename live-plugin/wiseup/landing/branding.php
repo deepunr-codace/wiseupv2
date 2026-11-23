@@ -146,23 +146,6 @@ $wu_guides = array(
 	'Instructions for internal teams and creative partners',
 );
 
-// Brand-book pages drawn for each guideline (SVG, 400 x 440; no text except the "Aa" specimen).
-$wu_mark = '<circle cx="0" cy="0" r="30" fill="none" stroke="#beda52" stroke-width="5"/><path d="M-12 12 0-14 12 12" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="0" cy="22" r="4" fill="#beda52"/>';
-$wu_gpages = array(
-	// 1 logo usage, variations and placement: clear space, minimum size, variations
-	'<g transform="translate(200 150)"><rect x="-86" y="-86" width="172" height="172" rx="6" fill="none" stroke="#fff" stroke-opacity=".35" stroke-dasharray="5 6"/><rect x="-52" y="-52" width="104" height="104" rx="4" fill="none" stroke="#beda52" stroke-opacity=".5"/><g transform="scale(1.35)">' . $wu_mark . '</g><path d="M-86-100v-10M86-100v-10M-86-105H86" stroke="#fff" stroke-opacity=".4"/></g><g transform="translate(96 352)"><rect x="-52" y="-34" width="104" height="68" rx="12" fill="#fff" fill-opacity=".06" stroke="#fff" stroke-opacity=".18"/><g transform="scale(.7)">' . $wu_mark . '</g></g><g transform="translate(200 352)"><rect x="-52" y="-34" width="104" height="68" rx="12" fill="#beda52"/><g transform="scale(.7)"><circle r="30" fill="none" stroke="#11150a" stroke-width="5"/><path d="M-12 12 0-14 12 12" fill="none" stroke="#11150a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g></g><g transform="translate(304 352)"><rect x="-52" y="-34" width="104" height="68" rx="12" fill="#f4f4f6"/><g transform="scale(.7)"><circle r="30" fill="none" stroke="#11150a" stroke-width="5"/><path d="M-12 12 0-14 12 12" fill="none" stroke="#11150a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g></g>',
-	// 2 brand colours and typography
-	'<g><circle cx="92" cy="104" r="50" fill="#beda52"/><circle cx="200" cy="104" r="50" fill="#f4f4f6"/><circle cx="308" cy="104" r="50" fill="#3a3a40"/><circle cx="146" cy="170" r="30" fill="#8fa838"/><circle cx="254" cy="170" r="30" fill="#18181b" stroke="#fff" stroke-opacity=".25"/></g><text x="60" y="324" font-family="Inter,Arial,sans-serif" font-size="128" font-weight="500" letter-spacing="-6" fill="#fff">Aa</text><g stroke="#fff" stroke-opacity=".3" stroke-width="3" stroke-linecap="round"><path d="M250 262h90M250 290h70M250 318h90"/></g><path d="M60 372H340" stroke="#fff" stroke-opacity=".18"/><path d="M60 396H250" stroke="#beda52" stroke-width="4" stroke-linecap="round"/>',
-	// 3 visual elements and design rules: grid, shapes, spacing
-	'<g stroke="#fff" stroke-opacity=".12"><path d="M60 80H340M60 160H340M60 240H340M60 320H340M60 400H340M60 80V400M140 80V400M220 80V400M300 80V400"/></g><circle cx="100" cy="120" r="34" fill="#beda52"/><rect x="180" y="86" width="68" height="68" rx="6" fill="none" stroke="#fff" stroke-width="3"/><path d="M262 154 300 86 338 154z" fill="#fff" fill-opacity=".9"/><rect x="62" y="202" width="116" height="36" rx="18" fill="#beda52" fill-opacity=".25" stroke="#beda52"/><circle cx="238" cy="222" r="24" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="3"/><circle cx="238" cy="222" r="9" fill="#beda52"/><path d="M282 206h56v32h-56z" fill="#fff" fill-opacity=".12"/><path d="M80 290h240M80 322h160M80 354h200" stroke="#fff" stroke-opacity=".28" stroke-width="5" stroke-linecap="round"/>',
-	// 4 brand messaging and tone of voice: a voice, quote marks and lines of copy
-	'<path d="M64 120a20 20 0 0 1 20-20h232a20 20 0 0 1 20 20v108a20 20 0 0 1-20 20H168l-40 40v-40H84a20 20 0 0 1-20-20z" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="3"/><text x="86" y="196" font-family="Georgia,serif" font-size="110" fill="#beda52">&#8220;</text><path d="M150 140h150M150 172h110" stroke="#fff" stroke-width="7" stroke-linecap="round"/><path d="M150 204h70" stroke="#beda52" stroke-width="7" stroke-linecap="round"/><path d="M64 340h272M64 372h200M64 404h236" stroke="#fff" stroke-opacity=".28" stroke-width="6" stroke-linecap="round"/>',
-	// 5 applications across digital and print: card, phone, box, sign
-	'<g transform="translate(106 118)"><rect x="-70" y="-44" width="140" height="88" rx="10" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".3"/><g transform="translate(-34 -2) scale(.55)">' . $wu_mark . '</g><path d="M-4-10h60M-4 8h44" stroke="#fff" stroke-opacity=".4" stroke-width="4" stroke-linecap="round"/></g><g transform="translate(290 118)"><rect x="-34" y="-66" width="68" height="132" rx="14" fill="#0b0b0d" stroke="#fff" stroke-opacity=".4" stroke-width="2"/><rect x="-26" y="-50" width="52" height="34" rx="6" fill="#beda52"/><path d="M-24-4h48M-24 10h32M-24 24h40" stroke="#fff" stroke-opacity=".35" stroke-width="4" stroke-linecap="round"/></g><g transform="translate(108 304)"><path d="M-48-26 0-46 48-26V28L0 48-48 28z" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".35"/><path d="M-48-26 0-6 48-26M0-6V48" fill="none" stroke="#fff" stroke-opacity=".35"/><g transform="translate(18 14) scale(.38)">' . $wu_mark . '</g></g><g transform="translate(290 300)"><rect x="-66" y="-40" width="132" height="56" rx="6" fill="#beda52"/><path d="M-30 16v44M30 16v44" stroke="#fff" stroke-opacity=".5" stroke-width="4"/><path d="M-44-12h88M-44 2h56" stroke="#11150a" stroke-opacity=".65" stroke-width="5" stroke-linecap="round"/></g>',
-	// 6 instructions for internal teams and creative partners: a checklist + two people
-	'<g stroke-linecap="round" stroke-linejoin="round"><g transform="translate(72 120)"><circle r="18" fill="#beda52"/><path d="M-8 1 -2 7 9-6" fill="none" stroke="#11150a" stroke-width="4"/><path d="M40-8h210M40 10h150" stroke="#fff" stroke-opacity=".55" stroke-width="6"/></g><g transform="translate(72 190)"><circle r="18" fill="#beda52"/><path d="M-8 1 -2 7 9-6" fill="none" stroke="#11150a" stroke-width="4"/><path d="M40-8h190M40 10h120" stroke="#fff" stroke-opacity=".55" stroke-width="6"/></g><g transform="translate(72 260)"><circle r="18" fill="none" stroke="#beda52" stroke-width="3"/><path d="M40-8h200M40 10h100" stroke="#fff" stroke-opacity=".3" stroke-width="6"/></g></g><g transform="translate(120 366)"><circle cy="-14" r="14" fill="#fff" fill-opacity=".85"/><path d="M-26 34a26 26 0 0 1 52 0z" fill="#fff" fill-opacity=".85"/></g><g transform="translate(200 366)"><circle cy="-14" r="14" fill="#beda52"/><path d="M-26 34a26 26 0 0 1 52 0z" fill="#beda52"/></g><g transform="translate(280 366)"><circle cy="-14" r="14" fill="#fff" fill-opacity=".4"/><path d="M-26 34a26 26 0 0 1 52 0z" fill="#fff" fill-opacity=".4"/></g>',
-);
-
 // Projects: the doc's placeholder block is not shown; the existing branding case studies stay under its heading.
 $wu_cases = array(
 	array( 'Smoke House', WISEUP_URL . 'assets/landing/img/case-smokehouse.jpg', home_url( '/case-studies/smokehouse/' ) ),
@@ -217,11 +200,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page' );
 	<!-- 1. Hero -->
 	<section class="ev-hero dm-hero br-hero" data-css-intro>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
-		<div class="br-art" aria-hidden="true">
-			<?php foreach ( array( array( 'formaa', 'one' ), array( 'onesto', 'two' ), array( 'popees', 'three' ) ) as $wu_a ) : $wu_ai = WISEUP_ASSETS . '/work/case-' . $wu_a[0] . '-'; ?>
-			<img class="br-art__c br-art__c--<?php echo esc_attr( $wu_a[1] ); ?>" src="<?php echo esc_url( $wu_ai . '540.webp' ); ?>" srcset="<?php echo esc_url( $wu_ai . '360.webp' ); ?> 360w, <?php echo esc_url( $wu_ai . '540.webp' ); ?> 540w, <?php echo esc_url( $wu_ai . '720.webp' ); ?> 720w" sizes="(min-width: 1100px) 22vw, 60vw" width="540" height="540" alt="" loading="eager" decoding="async">
-			<?php endforeach; ?>
-		</div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Branding Agency in Kerala</h1>
@@ -231,6 +209,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page' );
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Start a Branding Project', 'teal', $wu_lead ); // phpcs:ignore ?>
 					<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
+				</div>
+				<div class="br-art" aria-hidden="true">
+					<?php $wu_bi = WISEUP_URL . 'assets/landing/img/br-hero-stationery-'; ?>
+					<img class="br-art__s" src="<?php echo esc_url( $wu_bi . '1000.webp' ); ?>" srcset="<?php echo esc_url( $wu_bi . '640.webp' ); ?> 640w, <?php echo esc_url( $wu_bi . '1000.webp' ); ?> 1000w" sizes="(min-width: 1100px) 40vw, 90vw" width="1000" height="1000" alt="" fetchpriority="high" decoding="async">
 				</div>
 			</div>
 			<dl class="ev-proof">
@@ -286,21 +268,43 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page' );
 				</div>
 				<div class="ev-intro"><p>A strong brand takes more than individual design elements. It requires a clear direction and consistency across every application. WiseUp's branding agency services cover strategy, identity development and creative execution, with each service contributing to how a business presents itself.</p></div>
 			</div>
-			<div class="br-svcs" data-br-svcs>
-				<nav class="br-rail" aria-label="Branding services">
-					<span class="br-rail__line" aria-hidden="true"><i></i></span>
-					<ol>
+			<?php
+			// services story: the stage on the left builds up as the services are read. Images: assets/landing/img/br-svc-{slug}-{900,1400}.webp (a missing one shows an icon panel; print falls back to the stationery mockup)
+			$wu_fslugs = array( 'strategy', 'packaging', 'signage', 'print' );
+			$wu_fimg   = array();
+			foreach ( $wu_services as $wu_k => $sv ) {
+				$slug = isset( $wu_fslugs[ $wu_k ] ) ? $wu_fslugs[ $wu_k ] : '';
+				if ( $slug && file_exists( WISEUP_DIR . 'assets/landing/img/br-svc-' . $slug . '-1400.webp' ) ) { $wu_fimg[ $wu_k ] = array( WISEUP_URL . 'assets/landing/img/br-svc-' . $slug . '-', array( 900, 1400 ) ); }
+				elseif ( 'print' === $slug ) { $wu_fimg[ $wu_k ] = array( WISEUP_URL . 'assets/landing/img/br-hero-stationery-', array( 640, 1000 ) ); }
+			}
+			$wu_fpic = function ( $k, $lazy ) use ( $wu_fimg ) {
+				if ( empty( $wu_fimg[ $k ] ) ) return '';
+				$u = $wu_fimg[ $k ][0]; $w = $wu_fimg[ $k ][1];
+				return '<img src="' . esc_url( $u . $w[1] . '.webp' ) . '" srcset="' . esc_url( $u . $w[0] . '.webp' ) . ' ' . $w[0] . 'w, ' . esc_url( $u . $w[1] . '.webp' ) . ' ' . $w[1] . 'w" sizes="(min-width: 1100px) 44vw, 92vw" width="1000" height="1000" alt="" ' . ( $lazy ? 'loading="lazy" ' : '' ) . 'decoding="async">';
+			};
+			?>
+			<div class="br-flow" data-br-flow>
+				<div class="br-flow__stage" aria-hidden="true">
+					<div class="br-flow__frame">
 						<?php foreach ( $wu_services as $wu_k => $sv ) : ?>
-						<li><a href="#br-s<?php echo (int) $wu_k; ?>"<?php echo 0 === $wu_k ? ' class="is-on"' : ''; ?>><span class="br-rail__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $sv['icon'] ], 20, 1.6 ); // phpcs:ignore ?></span><span><?php echo esc_html( $sv['title'] ); ?></span></a></li>
+						<figure class="br-flow__fig<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" data-i="<?php echo (int) $wu_k; ?>">
+							<?php echo $wu_fpic( $wu_k, $wu_k > 0 ) ?: '<span class="br-flow__ph">' . $wu_svg( $wu_icons[ $sv['icon'] ], 96, 1.1 ) . '</span>'; // phpcs:ignore ?>
+						</figure>
+						<?php endforeach; ?>
+					</div>
+					<ol class="br-flow__rail">
+						<?php foreach ( $wu_services as $wu_k => $sv ) : ?>
+						<li class="<?php echo 0 === $wu_k ? 'is-on' : ''; ?>" data-i="<?php echo (int) $wu_k; ?>"><i class="br-flow__th"<?php if ( ! empty( $wu_fimg[ $wu_k ] ) ) echo ' style="--img:url(' . esc_url( $wu_fimg[ $wu_k ][0] . $wu_fimg[ $wu_k ][1][0] . '.webp' ) . ')"'; ?>><?php if ( empty( $wu_fimg[ $wu_k ] ) ) echo $wu_svg( $wu_icons[ $sv['icon'] ], 22, 1.5 ); // phpcs:ignore ?></i><b><?php echo sprintf( '%02d', $wu_k + 1 ); ?></b><span><?php echo esc_html( $sv['title'] ); ?></span></li>
 						<?php endforeach; ?>
 					</ol>
-				</nav>
-				<div class="br-chaps">
+				</div>
+				<div class="br-flow__list">
 					<?php foreach ( $wu_services as $wu_k => $sv ) : ?>
-					<section class="br-ch" id="br-s<?php echo (int) $wu_k; ?>" data-ch>
-						<header class="br-ch__h"><span class="br-ch__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $sv['icon'] ], 34, 1.4 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $sv['title'] ); ?></h3></header>
-						<div class="br-ch__b">
-							<?php foreach ( $sv['p'] as $wu_i => $wu_p ) : ?><p class="<?php echo 0 === $wu_i ? 'br-ch__lead' : 'br-ch__p'; ?>"><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
+					<article class="br-svc br-svc--flow" id="br-svc-<?php echo (int) $wu_k + 1; ?>" data-i="<?php echo (int) $wu_k; ?>">
+						<?php if ( ! empty( $wu_fimg[ $wu_k ] ) ) : ?><figure class="br-svc__m" aria-hidden="true"><?php echo $wu_fpic( $wu_k, true ); // phpcs:ignore ?></figure><?php endif; ?>
+						<header class="br-svc__h"><span class="br-svc__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $sv['icon'] ], 30, 1.5 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $sv['title'] ); ?></h3></header>
+						<div class="br-svc__b">
+							<?php foreach ( $sv['p'] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
 							<?php if ( ! empty( $sv['list'] ) ) : ?>
 							<div class="br-svc__list">
 								<h4><?php echo esc_html( $sv['list_lead'] ); ?></h4>
@@ -311,22 +315,46 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page' );
 						<?php if ( ! empty( $sv['subs'] ) ) : ?>
 						<div class="br-subs br-subs--<?php echo count( $sv['subs'] ); ?>">
 							<?php foreach ( $sv['subs'] as $sub ) : ?>
-							<section class="br-sub">
-								<span class="br-sub__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $sub[1] ], 22, 1.6 ); // phpcs:ignore ?></span>
-								<h4><?php echo esc_html( $sub[0] ); ?></h4>
-								<?php foreach ( $sub[2] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?>
-							</section>
+							<details class="br-sub" name="br-sub-<?php echo (int) $wu_k; ?>">
+								<summary><span class="br-sub__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $sub[1] ], 22, 1.6 ); // phpcs:ignore ?></span><h4><?php echo esc_html( $sub[0] ); ?></h4><i class="br-sub__x" aria-hidden="true"></i></summary>
+								<div class="br-sub__b"><?php foreach ( $sub[2] as $wu_p ) : ?><p><?php echo esc_html( $wu_p ); ?></p><?php endforeach; ?></div>
+							</details>
 							<?php endforeach; ?>
 						</div>
 						<?php endif; ?>
-					</section>
+					</article>
 					<?php endforeach; ?>
 				</div>
 			</div>
-			<script>(function(){var w=document.querySelector('[data-br-svcs]');if(!w)return;var chs=[].slice.call(w.querySelectorAll('[data-ch]')),links=[].slice.call(w.querySelectorAll('.br-rail a')),bar=w.querySelector('.br-rail__line i');
-var tick=function(){var mid=innerHeight*.42,cur=0;chs.forEach(function(c,i){if(c.getBoundingClientRect().top<mid)cur=i;});links.forEach(function(a,i){a.classList.toggle('is-on',i===cur);a.classList.toggle('is-past',i<cur);});
-var r=w.getBoundingClientRect(),t=Math.min(1,Math.max(0,(innerHeight*.42-r.top)/Math.max(1,r.height-innerHeight*.2)));if(bar)bar.style.transform='scaleY('+t.toFixed(3)+')';};
-tick();addEventListener('scroll',tick,{passive:true});addEventListener('resize',tick);})();</script>
+			<script>(function(){
+				var w = document.querySelector('[data-br-flow]'); if (!w || !('IntersectionObserver' in window)) return;
+				var arts = [].slice.call(w.querySelectorAll('.br-svc--flow')), figs = [].slice.call(w.querySelectorAll('.br-flow__fig')), rail = [].slice.call(w.querySelectorAll('.br-flow__rail li'));
+				var set = function (i) {
+					figs.forEach(function (f, k) { f.classList.toggle('is-on', k === i); f.classList.toggle('is-done', k < i); });
+					rail.forEach(function (r, k) { r.classList.toggle('is-on', k === i); r.classList.toggle('is-done', k < i); });
+					arts.forEach(function (a, k) { a.classList.toggle('is-on', k === i); });
+				};
+				var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) set(+e.target.getAttribute('data-i')); }); }, { rootMargin: '-42% 0px -52% 0px' });
+				arts.forEach(function (a) { io.observe(a); });
+				// parallax glide: each service card drifts, scales and fades with its distance from the screen centre (desktop, motion allowed)
+				var par = matchMedia('(min-width: 1100px) and (min-height: 600px)'), calm = matchMedia('(prefers-reduced-motion: reduce)'), tick = false;
+				var glide = function () {
+					tick = false;
+					if (!par.matches || calm.matches) { arts.forEach(function (a) { a.style.removeProperty('--py'); a.style.removeProperty('--rx'); a.style.removeProperty('--tz'); a.style.removeProperty('--op'); }); return; }
+					var vh = innerHeight;
+					arts.forEach(function (a) {
+						var r = a.getBoundingClientRect(); if (r.bottom < -200 || r.top > vh + 200) return;
+						var n = (r.top + r.height / 2 - vh / 2) / (vh / 2 + r.height / 2); n = Math.max(-1, Math.min(1, n)); var m = Math.abs(n);
+						a.style.setProperty('--py', (n * 46).toFixed(1) + 'px');
+						var d = Math.max(0, m - .16) / .84; a.style.setProperty('--rx', (d * 15).toFixed(2) + 'deg');
+						a.style.setProperty('--tz', (-d * 360).toFixed(0) + 'px');
+						a.style.setProperty('--op', (1 - Math.max(0, m - .25) * .8).toFixed(3));
+					});
+				};
+				var onS = function () { if (!tick) { tick = true; requestAnimationFrame(glide); } };
+				addEventListener('scroll', onS, { passive: true }); addEventListener('resize', onS); glide();
+				rail.forEach(function (r, k) { r.addEventListener('click', function () { arts[k].scrollIntoView({ behavior: 'smooth', block: 'center' }); }); });
+			})();</script>
 		</div>
 	</section>
 
@@ -351,35 +379,32 @@ tick();addEventListener('scroll',tick,{passive:true});addEventListener('resize',
 	<!-- 5. Brand guidelines -->
 	<section class="sec ev-sec" id="br-guidelines">
 		<div class="wrap">
-			<div class="ev-head">
+			<div class="br-gl-head">
 				<div class="sh">
 					<?php echo $wu_eyebrow( 'Guidelines' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Brand Guidelines', 'That Keep Your Identity Consistent' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>A brand identity needs clear standards to remain consistent across different platforms and applications. Brand guidelines document how the visual and communication elements should be used, giving internal teams and external creative partners a common reference.</p></div>
+				<p class="br-lead br-lead--g">A brand identity needs clear standards to remain consistent across different platforms and applications. Brand guidelines document how the visual and communication elements should be used, giving internal teams and external creative partners a common reference.</p>
 			</div>
-			<div class="br-book" data-br-book>
-				<div class="br-book__stage" aria-hidden="true">
-					<span class="br-book__spine"></span>
-					<?php foreach ( $wu_gpages as $wu_k => $wu_pg ) : ?>
-					<svg class="br-book__page<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" viewBox="0 0 400 440" role="presentation" focusable="false"><?php echo $wu_pg; // phpcs:ignore ?></svg>
-					<?php endforeach; ?>
-				</div>
-				<div class="br-book__toc">
-					<h3 class="br-label">These guidelines can cover:</h3>
-					<ul class="br-toc" role="tablist" aria-label="Brand guideline topics">
-						<?php foreach ( $wu_guides as $wu_k => $g ) : ?>
-						<li><button type="button" role="tab" class="br-toc__b<?php echo 0 === $wu_k ? ' is-on' : ''; ?>" aria-selected="<?php echo 0 === $wu_k ? 'true' : 'false'; ?>" data-g="<?php echo (int) $wu_k; ?>"><span class="br-toc__dot" aria-hidden="true"></span><span class="br-toc__t"><?php echo esc_html( $g ); ?></span></button></li>
-						<?php endforeach; ?>
-					</ul>
-					<p class="br-after">Online brand guidelines make these standards accessible to teams working across different locations and platforms. They provide a shared reference for applying the brand identity correctly, whether creating digital content, preparing presentations or producing printed materials.</p>
-				</div>
-			</div>
-			<script>(function(){var w=document.querySelector('[data-br-book]');if(!w)return;var bs=[].slice.call(w.querySelectorAll('.br-toc__b')),pg=[].slice.call(w.querySelectorAll('.br-book__page')),cur=0,tm=null,touched=false,vis=false;
-var set=function(i){cur=i;bs.forEach(function(b,k){var on=k===i;b.classList.toggle('is-on',on);b.setAttribute('aria-selected',on?'true':'false');});pg.forEach(function(p,k){p.classList.toggle('is-on',k===i);});};
-var auto=function(){clearTimeout(tm);if(touched||!vis||matchMedia('(prefers-reduced-motion: reduce)').matches)return;tm=setTimeout(function(){set((cur+1)%bs.length);auto();},3800);};
-bs.forEach(function(b,i){b.addEventListener('click',function(){touched=true;set(i);});b.addEventListener('mouseenter',function(){if(matchMedia('(hover: hover)').matches){touched=true;set(i);}});b.addEventListener('focus',function(){touched=true;set(i);});});
-if('IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;auto();},{threshold:.35}).observe(w);}})();</script>
+			<?php
+			// matching icons for the six guidelines (logo, colour and type, visual rules, tone of voice, applications, teams)
+			$wu_gicons = array(
+				$wu_icons['nib'],
+				'<path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 1.5-2-.6-1.3.3-2.5 1.7-2.5H17a4 4 0 0 0 4-4C21 6.6 17 3 12 3z"/><circle cx="7.5" cy="11" r="1.1"/><circle cx="10" cy="7" r="1.1"/><circle cx="14.5" cy="7" r="1.1"/>',
+				$wu_icons['layers'],
+				$wu_icons['chat'],
+				'<rect x="3" y="5" width="13" height="9" rx="1.5"/><path d="M7 18h5M9.5 14v4"/><rect x="17.5" y="8" width="3.5" height="9" rx="1"/>',
+				$wu_icons['users'],
+			);
+			?>
+			<h3 class="br-label br-gl-label">These guidelines can cover:</h3>
+			<ul class="br-gcards">
+				<?php foreach ( $wu_guides as $wu_i => $g ) : ?>
+				<li class="br-gcard"><span class="br-gcard__i" aria-hidden="true"><?php echo $wu_svg( $wu_gicons[ $wu_i ], 20, 1.8 ); // phpcs:ignore ?></span><p><?php echo esc_html( $g ); ?></p></li>
+				<?php endforeach; ?>
+			</ul>
+			<script>(function(){var l=document.querySelector('.br-gcards');if(!l)return;var p=[].slice.call(l.children);p.forEach(function(e,i){e.style.setProperty('--d',(i*70)+'ms');});if(!('IntersectionObserver' in window)){l.classList.add('is-in');return;}var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){l.classList.add('is-in');io.disconnect();}},{rootMargin:'0px 0px -12% 0px'});io.observe(l);})();</script>
+			<p class="br-after br-after--g">Online brand guidelines make these standards accessible to teams working across different locations and platforms. They provide a shared reference for applying the brand identity correctly, whether creating digital content, preparing presentations or producing printed materials.</p>
 		</div>
 	</section>
 
