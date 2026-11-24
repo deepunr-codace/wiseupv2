@@ -140,3 +140,47 @@ html body .wu-ev .sh, html body .wu-ev .sh__h { max-width: none !important; widt
 html body .wu-ev.wu-seo .sh__h, html body .wu-ev.wu-seo .sh h2, html body .wu-ev #pm-services .sh__h, html body .wu-ev #pm-services .sh__h .sh__a, html body .wu-ev #pm-services .sh__h .sh__b { font-size: var(--fs-h2) !important; line-height: var(--lh-h2) !important; white-space: normal !important; max-width: none !important; }
 html body .wu-ev .dm-hero__pill, html body .wu-ev .ev-hero .eyebrow { height: 32px; display: inline-flex; align-items: center; padding: 0 14px 0 12px !important; }
 @media (max-width: 767px) { html body .wu-ev .dm-hero__pill, html body .wu-ev .ev-hero .eyebrow { height: 28px; } }
+/* header on service pages carries the day/night button too: tighten the menu so it never runs under the buttons */
+@media (min-width: 1200px) and (max-width: 1599px) {
+  html body .wu-chrome .hd__nav { gap: 0 !important; }
+  html body .wu-chrome .hd__link { padding: 10px 9px !important; font-size: 14px !important; }
+  html body .wu-chrome .hd__dot { display: none !important; }
+  html body .wu-chrome .hd__actions { gap: 8px !important; }
+}
+
+/* ===== Performance mobile per the system (<768): hero image on top (320) with the copy overlapping -56, stacked full-width buttons, 2x2 stats, list rows, sticky bottom bar ===== */
+.mb-sticky { display: none; }
+@media (max-width: 767px) {
+  html body .wu-pm .pm-hero--full { padding-top: 0 !important; display: flex; flex-direction: column; }
+  html body .wu-pm .pm-hero--full .pm-bg { position: relative !important; inset: auto !important; order: -1 !important; height: 320px !important; width: 100% !important; margin: 0 !important; overflow: hidden; z-index: 0; }
+  html body .wu-pm .pm-hero--full .pm-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 78% 40%; }
+  html body .wu-pm .pm-hero--full .pm-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .2) 0%, rgba(0, 0, 0, 0) 40%, #000 100%); }
+  html body .wu-pm .pm-hero--full .pm-bg svg { display: none !important; }
+  html body .wu-pm .pm-hero--full .ev-hero__grid { margin-top: -56px; position: relative; z-index: 1; }
+  html body .wu-pm .pm-hero--full .ev-hero__copy { padding-top: 0 !important; min-height: 0 !important; display: block !important; }
+  html body .wu-pm .pm-hero--full .ev-hero__h .sh__a, html body .wu-pm .pm-hero--full .ev-hero__h .sh__b { display: inline !important; font-size: 40px !important; line-height: 44px !important; letter-spacing: -.035em !important; }
+  html body .wu-pm .pm-hero--full .pm-br { display: none; }
+  html body .wu-pm .pm-hero--full .ev-hero__p { font-size: 16px !important; line-height: 26px !important; margin: 24px 0 0 !important; max-width: none !important; }
+  html body .wu-pm .pm-hero--full .ev-btns { display: flex !important; flex-direction: column; gap: 12px !important; margin-top: 32px !important; }
+  html body .wu-pm .pm-hero--full .ev-btns .b { width: 100%; justify-content: center; }
+  html body .wu-pm .pm-hero--full .ev-proof { margin-top: 32px !important; display: grid !important; grid-template-columns: 1fr 1fr; }
+  /* why: list rows (tile 40 left, text right) */
+  html body .wu-pm ul.pm-grid--why { display: block !important; }
+  html body .wu-pm ul.pm-grid--why > li { display: grid !important; grid-template-columns: 40px 1fr; column-gap: 16px; padding: 20px 0 !important; background: none !important; border: 0 !important; border-bottom: 1px solid var(--border) !important; border-radius: 0 !important; }
+  html body .wu-pm ul.pm-grid--why > li .pm-ic { width: 40px !important; height: 40px !important; border-radius: 12px !important; grid-row: 1 / span 2; }
+  html body .wu-pm ul.pm-grid--why > li .pm-ic svg { width: 20px !important; height: 20px !important; }
+  html body .wu-pm ul.pm-grid--why > li h3 { margin: 0 0 8px !important; font-size: 20px !important; line-height: 28px !important; grid-column: 2; }
+  html body .wu-pm ul.pm-grid--why > li p { grid-column: 2; margin: 0 !important; }
+  /* sticky bottom bar */
+  .mb-sticky { position: sticky; bottom: 0; z-index: 20; display: flex; gap: 12px; padding: 12px 20px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, .92) 30%); }
+  .mb-sticky .b { flex: 1; justify-content: center; height: 52px !important; min-height: 52px !important; }
+  .mb-sticky__wa { flex: none; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: #C5E048; color: #0B0B0B; }
+  .mb-sticky__wa svg { width: 24px; height: 24px; }
+  body:has(.mb-sticky) .lead-fab { display: none !important; }
+  body:has(.mb-sticky) .wu-aio3 { bottom: 84px !important; }
+}
+@media (max-width: 767px) {
+  html body .wu-pm ul.pm-grid.pm-grid--why > li, html body .wu-pm ul.pm-grid.pm-grid--why.is-rows > li { background: none !important; border: 0 !important; border-bottom: 1px solid rgba(255, 255, 255, .08) !important; border-radius: 0 !important; box-shadow: none !important; padding: 20px 0 !important; display: grid !important; grid-template-columns: 40px 1fr !important; column-gap: 16px !important; }
+  html body .wu-pm ul.pm-grid.pm-grid--why > li .pm-ic { background: #16161A !important; border: 1px solid rgba(255, 255, 255, .08) !important; color: #C5E048 !important; }
+}
+@media (max-width: 767px) { html body .wu-pm ul.pm-grid.pm-grid--why > li.is-on .pm-ic, html body .wu-pm ul.pm-grid.pm-grid--why > li:hover .pm-ic { background: #16161A !important; color: #C5E048 !important; } html body .wu-pm ul.pm-grid.pm-grid--why > li .pm-ic svg { color: #C5E048 !important; stroke: currentColor; } }

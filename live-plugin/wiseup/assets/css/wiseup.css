@@ -3161,3 +3161,8 @@ img[data-wu-src], img[data-wu-srcset] { visibility: hidden; }
 /* footer links wrap instead of being clipped */
 .ft__col li, .ft__col a { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
 .ft__services ul, .ft__col ul { min-width: 0; }
+/* footer services on phones: two equal columns that wrap, never overlap */
+@media (max-width: 767px) {
+  .ft__top:has(.ft__services) .ft__col ul { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+  .ft__col li, .ft__col a { white-space: normal !important; overflow-wrap: break-word !important; word-break: normal; hyphens: auto; }
+}
