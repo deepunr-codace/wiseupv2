@@ -292,7 +292,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		[960, 622, 'Ad Campaigns'], [1112, 588, 'Sales Funnel'], [1250, 515, 'Targeting'], [1342, 438, 'Growth'],
 		[1382, 350, 'TikTok Ads'], [1388, 255, 'Meta Ads'], [1366, 165, 'Google Ads']
 	], vg = svg.querySelector('[data-pm-valves]'), lg = svg.querySelector('[data-pm-labels]'), html = '', labels = [];
-	var near = function (pt) { var best = 0, bd = 1e9; for (var at = 0; at <= L; at += 4) { var q = gel.getPointAtLength(at), d = (q.x - pt[0]) * (q.x - pt[0]) + (q.y - pt[1]) * (q.y - pt[1]); if (d < bd) { bd = d; best = at; } } return best; };
+	// the path is sampled once (getPointAtLength is slow; it ran 7 times along the whole path at load)
+	var samp = []; for (var at0 = 0; at0 <= L; at0 += 4) { var q0 = gel.getPointAtLength(at0); samp.push([at0, q0.x, q0.y]); }
+	var near = function (pt) { var best = 0, bd = 1e9; samp.forEach(function (q) { var d = (q[1] - pt[0]) * (q[1] - pt[0]) + (q[2] - pt[1]) * (q[2] - pt[1]); if (d < bd) { bd = d; best = q[0]; } }); return best; };
 	spots.forEach(function (pt) {
 		var best = near(pt), q = gel.getPointAtLength(best), r = gel.getPointAtLength(Math.min(L, best + 2)), ang = Math.atan2(r.y - q.y, r.x - q.x) * 180 / Math.PI, d = (best / L * DUR).toFixed(2);
 		html += '<g class="pm-valve" style="--d:' + d + 's" transform="translate(' + q.x.toFixed(1) + ' ' + q.y.toFixed(1) + ') rotate(' + ang.toFixed(1) + ')">' +
@@ -530,15 +532,19 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 			vine.style.setProperty('--by', by.toFixed(1)); vine.style.setProperty('--sy', (scrollY * .6).toFixed(0));
 			boy.classList.add('is-climbing'); clearTimeout(moveT); moveT = setTimeout(function () { boy.classList.remove('is-climbing'); }, 180);
 		};
-		addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(climb); } }, { passive: true });
+		addEventListener('scroll', function () { if (!ticking && boy.offsetParent) { ticking = true; requestAnimationFrame(climb); } }, { passive: true });
 		var place = function () {
+			// all reads first, then the writes (it read and wrote in turn: a forced layout per connector); nothing to do while the kid is hidden
+			if (!boy.offsetParent) return;
 			var r = root.getBoundingClientRect(), vh = innerHeight, span = r.height - vh * .5;
-			[].forEach.call(root.querySelectorAll('[data-pc-node]'), function (n, i) {
-				var st = steps[i]; if (!st) return;
+			var nodes = [].slice.call(root.querySelectorAll('[data-pc-node]'));
+			var tops = nodes.map(function (n, i) {
+				var st = steps[i]; if (!st) return null;
 				var sr = st.getBoundingClientRect(), off = sr.top + sr.height / 2 - r.top;
 				var pr = Math.min(1, Math.max(0, off / span));
-				n.style.top = ((1 - pr) * (vh - 190) + 60 + 4).toFixed(0) + 'px';
+				return ((1 - pr) * (vh - 190) + 60 + 4).toFixed(0) + 'px';
 			});
+			nodes.forEach(function (n, i) { if (tops[i] !== null) n.style.top = tops[i]; });
 		};
 		place(); addEventListener('resize', place); addEventListener('load', place);
 		climb();
@@ -969,7 +975,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		addEventListener('DOMContentLoaded', function () {
 			if (!window.__wuEvMotion || !window.gsap || !window.ScrollTrigger) return;
 			gsap.set(mine, { opacity: 0, y: 56 });
-			ScrollTrigger.batch(mine, { start: 'top 90%', once: true, onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'expo.out', clearProps: 'transform' }); } });
+			// one IntersectionObserver from the engine instead of a ScrollTrigger per block (fewer forced layouts on refresh)
+			if (window.__wuOnceIn) mine.forEach(function (el) { window.__wuOnceIn(el, function (k) { gsap.to(el, { opacity: 1, y: 0, duration: 1.1, delay: k * 0.08, ease: 'expo.out', clearProps: 'transform' }); }); });
+			else ScrollTrigger.batch(mine, { start: 'top 90%', once: true, onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'expo.out', clearProps: 'transform' }); } });
 		});
 		return;
 	}

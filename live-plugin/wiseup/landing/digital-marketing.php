@@ -926,7 +926,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page' );
 		addEventListener('DOMContentLoaded', function () {
 			if (!window.__wuEvMotion || !window.gsap || !window.ScrollTrigger) return;
 			gsap.set(mine, { opacity: 0, y: 56 });
-			ScrollTrigger.batch(mine, { start: 'top 90%', once: true, onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'expo.out', clearProps: 'transform' }); } });
+			// one IntersectionObserver from the engine instead of a ScrollTrigger per block (fewer forced layouts on refresh)
+			if (window.__wuOnceIn) mine.forEach(function (el) { window.__wuOnceIn(el, function (k) { gsap.to(el, { opacity: 1, y: 0, duration: 1.1, delay: k * 0.08, ease: 'expo.out', clearProps: 'transform' }); }); });
+			else ScrollTrigger.batch(mine, { start: 'top 90%', once: true, onEnter: function (b) { gsap.to(b, { opacity: 1, y: 0, duration: 1.1, stagger: 0.08, ease: 'expo.out', clearProps: 'transform' }); } });
 		});
 		return;
 	}

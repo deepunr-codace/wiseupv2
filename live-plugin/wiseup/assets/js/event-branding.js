@@ -12,6 +12,7 @@
 	window.__wuEvMotion = true;
 	var gsap = window.gsap, ST = window.ScrollTrigger, Split = window.SplitText;
 	gsap.registerPlugin(ST);
+	ST.config({ ignoreMobileResize: true });
 	if (Split) gsap.registerPlugin(Split);
 	var EASE = 'expo.out', SOFT = 'power3.out';
 	var page = document.querySelector('.wu-ev');
@@ -19,6 +20,15 @@
 	var finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
 	var $ = function (s, r) { return (r || page).querySelector(s); };
 	var $$ = function (s, r) { return [].slice.call((r || page).querySelectorAll(s)); };
+	// one-shot reveals use a single IntersectionObserver instead of a ScrollTrigger each: every ScrollTrigger is
+	// re-measured (forced layout) on each refresh, which was most of the page's blocking time in PageSpeed
+	var ioFns = new Map();
+	var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+		var k = 0;
+		es.forEach(function (e) { if (!e.isIntersecting) return; var f = ioFns.get(e.target); io.unobserve(e.target); ioFns.delete(e.target); if (f) f(k++); });
+	}, { rootMargin: '0px 0px -10% 0px' }) : null;
+	function onceIn(el, fn) { if (!io) { fn(0); return; } ioFns.set(el, fn); io.observe(el); }
+	window.__wuOnceIn = onceIn;
 
 	// ---------- smooth scroll (homepage settings) ----------
 	if (window.Lenis) {
@@ -38,7 +48,8 @@
 	var lite = matchMedia('(max-width: 767px)').matches;
 	function liteIn(el) {
 		gsap.set(el, { visibility: 'visible' });
-		gsap.from(el, { y: 26, opacity: 0, duration: 0.9, ease: EASE, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+		var tw = gsap.from(el, { y: 26, opacity: 0, duration: 0.9, ease: EASE, paused: true });
+		onceIn(el, function () { tw.play(); });
 	}
 
 	// run fn only once el is near the screen: splitting every heading at load forced layout on the whole page
@@ -67,8 +78,8 @@
 				tw = gsap.from(self.lines, {
 					yPercent: 110, rotate: 2, duration: 1.2, stagger: 0.08, ease: EASE, delay: delay || 0, paused: isIntro && !requested,
 					onComplete: function () { done = true; },
-					scrollTrigger: isIntro ? undefined : { trigger: el, start: 'top 88%', once: true },
 				});
+				if (!isIntro) { tw.pause(); onceIn(el, function () { tw.play(); }); }
 				return tw;
 			},
 		}); }, isIntro);
@@ -85,10 +96,10 @@
 		var from = kind === 'fade' ? { opacity: 0 }
 			: kind === 'scale' ? { opacity: 0, scale: 0.92, y: 30 }
 			: { opacity: 0, y: opts.y || 48 };
-		var to = { opacity: 1, y: 0, scale: 1, duration: kind === 'fade' ? 1 : 1.3, ease: EASE, delay: opts.delay || 0, paused: !!opts.intro, clearProps: 'transform' };
-		if (!opts.intro) to.scrollTrigger = { trigger: el, start: 'top 90%', once: true };
+		var to = { opacity: 1, y: 0, scale: 1, duration: kind === 'fade' ? 1 : 1.3, ease: EASE, delay: opts.delay || 0, paused: true, clearProps: 'transform' };
 		var tw = gsap.fromTo(el, from, to);
 		if (opts.intro) intro.add(function () { tw.play(); }, opts.at || 0);
+		else onceIn(el, function () { tw.play(); });
 	}
 
 	// hero entrance, in order
@@ -134,7 +145,7 @@
 		var tiles = $$('.ev-types li, .ev-venue__list li, .ev-check li, .ev-chips li, .ev-case__stats li', c);
 		if (tiles.length) tl.from(tiles, { y: 14, opacity: 0, duration: 0.7, stagger: 0.04, ease: SOFT, clearProps: 'transform' }, 0.3);
 	}
-	ST.batch(cards, { start: 'top 88%', once: true, onEnter: function (batch) { batch.forEach(playCard); } });
+	cards.forEach(function (c) { onceIn(c, function (k) { playCard(c, k); }); });
 
 	// ---------- parallax ----------
 	$$('.ev-why__n, .ev-cost__n, .ev-chk__n').forEach(function (n) {
@@ -187,14 +198,16 @@
 			if (el.classList.contains('ev-scrub')) return;
 			if (lite) { liteIn(el); return; }
 			whenNear(el, function () { Split.create(el, { type: 'lines', mask: 'lines', linesClass: 'split-line', autoSplit: true, onSplit: function (self) {
-				return gsap.from(self.lines, { yPercent: 105, duration: 1, stagger: 0.06, ease: EASE, scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+				var tw = gsap.from(self.lines, { yPercent: 105, duration: 1, stagger: 0.06, ease: EASE, paused: true });
+				onceIn(el, function () { tw.play(); });
+				return tw;
 			} }); });
 		});
 	}
 	// 4. virtual and hybrid panels open with a top-down wipe
 	$$('#virtual .ev-panel').forEach(function (pnl) {
-		gsap.fromTo(pnl, { clipPath: 'inset(0 0 100% 0 round 24px)' }, { clipPath: 'inset(0 0 0% 0 round 24px)', duration: 1.3, ease: 'expo.inOut', clearProps: 'clipPath',
-			scrollTrigger: { trigger: pnl, start: 'top 85%', once: true } });
+		var tw = gsap.fromTo(pnl, { clipPath: 'inset(0 0 100% 0 round 24px)' }, { clipPath: 'inset(0 0 0% 0 round 24px)', duration: 1.3, ease: 'expo.inOut', clearProps: 'clipPath', paused: true });
+		onceIn(pnl, function () { tw.play(); });
 	});
 
 	// ---------- magnetic buttons (mouse only) ----------
@@ -210,6 +223,7 @@
 		});
 	}
 
-	var go = function () { intro.play(); ST.refresh(); };
+	// ScrollTrigger refreshes by itself on window load; refresh again only if the fonts finished after that
+	var go = function () { intro.play(); if (document.readyState === 'complete') ST.refresh(); };
 	if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
 })();

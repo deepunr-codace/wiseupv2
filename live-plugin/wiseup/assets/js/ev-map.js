@@ -8,6 +8,8 @@
 (function () {
 	var box = document.querySelector('[data-ev-map]');
 	if (!box) return;
+	// built only when the map comes near the screen: drawing it at load (each resize redrew it) cost seconds of main thread in PageSpeed
+	function init() {
 	var glc = box.querySelector('.ev-map__gl'), ovc = box.querySelector('.ev-map__ov');
 	var list = [].slice.call(document.querySelectorAll('[data-ev-city]'));
 	var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -225,7 +227,7 @@
 	function loop(now) { frame(now); raf = vis && !still ? requestAnimationFrame(loop) : 0; }
 	function kick() { if (!raf) raf = requestAnimationFrame(loop); }
 	fit();
-	new ResizeObserver(function () { fit(); kick(); }).observe(box);
+	new ResizeObserver(function () { fit(); if (vis) kick(); }).observe(box);
 	new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis) { last = 0; kick(); } }, { rootMargin: '120px' }).observe(box);
 	box.addEventListener('pointermove', function (e) {
 		var r = box.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
@@ -242,4 +244,8 @@
 		li.addEventListener('focusin', on); li.addEventListener('focusout', off);
 	});
 	if (document.fonts && document.fonts.ready) document.fonts.ready.then(kick);
+	}
+	if (!('IntersectionObserver' in window)) { init(); return; }
+	var gate = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { gate.disconnect(); init(); } }, { rootMargin: '100% 0px 100% 0px' });
+	gate.observe(box);
 })();

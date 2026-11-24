@@ -139,3 +139,45 @@ add_action( 'transition_post_status', function ( $new, $old, $post ) {
 	if ( 'publish' === $new || 'publish' === $old ) wiseup_cs_purge_cache( $post->ID );
 }, 10, 3 );
 add_action( 'before_delete_post', 'wiseup_cs_purge_cache' );
+
+// Case studies: the content screenshots are 0.4-2 MB PNGs/JPGs in the Media library (the Onesto 1024px PNGs took 5 s each). Serve the plugin's WebP copies instead (about 40-80 KB at 1024px), matched by the images' own attachment ids (assets/case-studies/img/manifest.json: id => widths + alt), so no other page is touched (2026-11-24).
+$wiseup_cs_webp = function ( $html ) {
+	if ( false === strpos( $html, 'wp-image-' ) ) return $html;
+	static $man = null;
+	if ( null === $man ) {
+		$raw = @file_get_contents( WISEUP_DIR . 'assets/case-studies/img/manifest.json' );
+		$man = $raw ? json_decode( $raw, true ) : array();
+		if ( ! is_array( $man ) ) $man = array();
+	}
+	if ( ! $man ) return $html;
+	return preg_replace_callback( '/<img\b[^>]*>/i', function ( $m ) use ( $man ) {
+		$tag = $m[0];
+		if ( ! preg_match( '/\bwp-image-(\d+)\b/', $tag, $id ) || ! isset( $man[ $id[1] ] ) ) return $tag;
+		$e    = $man[ $id[1] ];
+		$base = WISEUP_URL . 'assets/case-studies/img/' . $id[1] . '-';
+		$ws   = array_map( 'intval', $e['w'] );
+		$src  = $ws[0];
+		foreach ( $ws as $w ) if ( $w <= 1024 ) $src = $w;
+		$set  = array();
+		foreach ( $ws as $w ) $set[] = $base . $w . '.webp ' . $w . 'w';
+		$tag  = preg_replace( '/\s(src|srcset|data-lazy-src|data-lazy-srcset)\s*=\s*"[^"]*"/i', '', $tag );
+		if ( ! empty( $e['alt'] ) ) $tag = preg_replace( '/\salt\s*=\s*""/i', ' alt="' . esc_attr( $e['alt'] ) . '"', $tag );
+		return preg_replace( '/^<img\b/i', '<img src="' . esc_url( $base . $src . '.webp' ) . '" srcset="' . esc_attr( implode( ', ', $set ) ) . '"', $tag );
+	}, $html );
+};
+add_filter( 'the_content', $wiseup_cs_webp, 97 );
+add_filter( 'render_block', $wiseup_cs_webp, 97 ); // Kadence image blocks
+
+// Old Kadence "openform" modal on every single case study (a Kadence Pro modal element hooked into the footer: Wiso mascot + a Full name / Email / Phone / Services / Description form posting through Kadence, not into Wiseup > Leads). Nothing on the site links to #openform (checked live 2026-11-24), so it was never shown; it only added ~25 KB of hidden HTML and the modal + advanced-form scripts. Remove it; the site's own lead popup is the enquiry path (owner: "if it is the old form, remove it").
+add_filter( 'kadence_blocks_pro_modal_footer_output', function ( $html ) {
+	return ( false !== strpos( (string) $html, 'id="openform"' ) || false !== strpos( (string) $html, 'kb-adv-form-791-cpt-id' ) ) ? '' : $html;
+}, 99 );
+add_action( 'wp_print_footer_scripts', function () {
+	if ( ! is_singular( 'case-studies' ) ) return;
+	global $wp_scripts;
+	if ( ! $wp_scripts instanceof WP_Scripts ) return;
+	foreach ( $wp_scripts->queue as $handle ) {
+		$src = isset( $wp_scripts->registered[ $handle ] ) ? (string) $wp_scripts->registered[ $handle ]->src : '';
+		if ( false !== strpos( $src, 'kt-modal-init' ) || false !== strpos( $src, 'kb-advanced-form-block' ) ) wp_dequeue_script( $handle );
+	}
+}, 1 );

@@ -3166,3 +3166,9 @@ img[data-wu-src], img[data-wu-srcset] { visibility: hidden; }
   .ft__top:has(.ft__services) .ft__col ul { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
   .ft__col li, .ft__col a { white-space: normal !important; overflow-wrap: break-word !important; word-break: normal; hyphens: auto; }
 }
+
+/* Homepage "We're growing" band on phones: press deck centred in the card, label and pile on one axis (owner, 2026-11-24) */
+@media (max-width: 767px) {
+  html body .grow .deck { width: min(100%, 330px); margin: 18px auto 4px; padding-right: 44px; align-self: center; }
+  html body .grow .deck__label { text-align: left; margin-bottom: 52px; }
+}
