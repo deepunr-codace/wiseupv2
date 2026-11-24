@@ -149,3 +149,11 @@ $wiseup_chrome_alts = function ( $html ) {
 };
 add_filter( 'the_content', $wiseup_chrome_alts, 99 );
 add_filter( 'render_block', $wiseup_chrome_alts, 99 ); // blocks rendered outside the main content (e.g. Kadence image blocks)
+
+// The Wiso mascot GIF in the case study pages' content points at uploads/2026/09/Icon-Character.gif, which is missing on the live server (404 in the SEO "broken image" report, 2026-11-24). Serve the plugin's own copy instead, on every page.
+$wiseup_wiso_fix = function ( $html ) {
+	if ( false === stripos( $html, 'Icon-Character.gif' ) ) return $html;
+	return preg_replace( '#https?://[^"\'\s)]*?/wp-content/uploads/2026/09/Icon-Character\.gif#i', WISEUP_URL . 'assets/smm/wiso.gif', $html );
+};
+add_filter( 'the_content', $wiseup_wiso_fix, 98 );
+add_filter( 'render_block', $wiseup_wiso_fix, 98 );
