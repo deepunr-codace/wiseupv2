@@ -2270,3 +2270,13 @@ html body .wu-evb p.ev-iv__note:not(.eyebrow):not(#_):not(#__) { font-size: clam
 html body .wu-evb p.ev-iv__note:not(.eyebrow):not(#_):not(#__) { border-top: 0 !important; margin-top: clamp(20px, 2.6vw, 36px) !important; padding-top: 0 !important; }
 /* The sign-off cards carry their own lime rail (::before at left:0): the card must be its positioning parent, else the rail sits on the page edge */
 .wu-ev #choose .ev-sg__it { position: relative; }
+
+/* Services heading on two lines, one part per line (owner, 2026-11-24) */
+@media (min-width: 768px) {
+  html body .wu-evb #ev-services .sh__h:not(#_) :is(.sh__a, .sh__b) { display: block !important; white-space: nowrap; }
+}
+
+/* Hero glow drift, was an endless GSAP tween (a style pass every frame); transform-only CSS runs on the compositor */
+@keyframes ev-glow-drift { from { transform: none; } to { transform: translate(-8%, 6%) scale(1.12); } }
+.wu-motion .ev-hero__glow { animation: ev-glow-drift 7s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .wu-motion .ev-hero__glow { animation: none; } }

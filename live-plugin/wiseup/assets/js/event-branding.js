@@ -159,11 +159,7 @@
 		// its contact shadow narrows and fades, the reflection sinks and fades, the floor glow dims (CSS reads --lift)
 		var ph = $('.ev-photo', hero);
 		if (ph) gsap.fromTo(ph, { '--lift': 0 }, { '--lift': 1, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: 1.2 } });
-		var glow = $('.ev-hero__glow', hero);
-		if (glow) {
-			var drift = gsap.to(glow, { xPercent: -8, yPercent: 6, scale: 1.12, duration: 7, ease: 'sine.inOut', yoyo: true, repeat: -1 });
-			ST.create({ trigger: hero, start: 'top top', end: 'bottom top', onToggle: function (s) { if (s.isActive) drift.play(); else drift.pause(); } });
-		}
+		// the hero glow drift is a CSS animation now (event-branding.css): an endless GSAP tween restyled the page every frame
 	}
 	// the event-types ticker leans with scroll speed
 	if (ticker) {

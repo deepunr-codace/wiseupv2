@@ -162,6 +162,16 @@ function wiseup_landing_chrome_footer( $lead_source = '', $wp_footer = false ) {
 	if ( $wp_footer ) wp_footer();
 	echo '<script src="' . esc_url( wiseup_versioned( 'js/footer-wordmark.js' ) ) . '"></script>' . "\n";
 	?>
+<style>.wu-off, .wu-off *, .wu-off *::before, .wu-off *::after { animation-play-state: paused !important; }</style>
+<script>
+// CSS animations in sections that are off screen are paused (they ran every frame, SVG ones on the main thread: a style
+// and layout pass per frame on every service page even when idle; PageSpeed, 2026-11-24). They carry on when the section comes near.
+(function () {
+	if (!('IntersectionObserver' in window)) return;
+	var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle('wu-off', !e.isIntersecting); }); }, { rootMargin: '25% 0px 25% 0px' });
+	[].forEach.call(document.querySelectorAll('main section, #wu-smm section, .wu-chrome footer'), function (s) { io.observe(s); });
+})();
+</script>
 <script>
 (function () {
 	var btn = document.querySelector('[data-menu-btn]'), panel = document.querySelector('[data-menu]');
@@ -449,7 +459,13 @@ function wiseup_other_services( $current = '' ) {
 	if ( empty( $s['os_enabled'] ) ) return;
 	$icons = wiseup_os_icons();
 	$cards = array();
+	// a list saved in wp-admin replaces the defaults; fill its empty template / live-URL fields from the built-in item with the
+	// same id, so a service that is live on wiseup.in still shows (live had Performance and Event Branding missing, 2026-11-24)
+	$defs = array();
+	foreach ( wiseup_os_default_items() as $d ) $defs[ $d['id'] ] = $d;
 	foreach ( (array) $s['os_items'] as $it ) {
+		$id = isset( $it['id'] ) ? $it['id'] : '';
+		if ( $id && isset( $defs[ $id ] ) ) foreach ( array( 'tpl', 'live' ) as $f ) { if ( empty( $it[ $f ] ) && ! empty( $defs[ $id ][ $f ] ) ) $it[ $f ] = $defs[ $id ][ $f ]; }
 		$mode = isset( $it['mode'] ) ? $it['mode'] : 'auto';
 		if ( 'hide' === $mode || empty( $it['title'] ) ) continue;
 		$tpls = array_filter( array_map( 'trim', explode( ',', isset( $it['tpl'] ) ? $it['tpl'] : '' ) ) );

@@ -3172,3 +3172,7 @@ img[data-wu-src], img[data-wu-srcset] { visibility: hidden; }
   html body .grow .deck { width: min(100%, 330px); margin: 18px auto 4px; padding-right: 44px; align-self: center; }
   html body .grow .deck__label { text-align: left; margin-bottom: 52px; }
 }
+
+/* typing dots pulse instead of bouncing: moving SVG circles made the browser lay out the page every frame on every page (2026-11-24) */
+.lb__dots circle { animation-name: lb-dot-o; }
+@keyframes lb-dot-o { 0%, 100% { opacity: .35; } 40% { opacity: 1; } }

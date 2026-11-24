@@ -209,3 +209,7 @@
   .lf textarea { min-height: 44px; }
 }
 @media (min-width: 900px) and (max-height: 600px) { .lead__perks li:nth-child(3), .lead__or, .lead__sub { display: none; } }
+
+/* typing dots pulse instead of bouncing: moving SVG circles made the browser lay out the page every frame on every page (2026-11-24) */
+.lb__dots circle { animation-name: lb-dot-o; }
+@keyframes lb-dot-o { 0%, 100% { opacity: .35; } 40% { opacity: 1; } }
