@@ -147,3 +147,6 @@ html .lead[open] .lead__head, html .lead[open] .lf { animation-duration: .4s; }
   html body:has(.wu-ev, #wu-smm) .wu-chrome .hd__dot { display: none !important; }
   html body:has(.wu-ev, #wu-smm) .wu-chrome .hd__actions { gap: 8px !important; }
 }
+/* the header menu pill is solid on service pages, so page content never shows through it while scrolling */
+html body:has(.wu-ev, #wu-smm) .wu-chrome .hd__nav { background: #0e0e10 !important; -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html body:has(.wu-ev, #wu-smm) .wu-chrome .hd.is-docked::before { background: #000 !important; }
