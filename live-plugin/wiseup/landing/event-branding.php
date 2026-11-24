@@ -179,7 +179,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
-			<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Event Branding Agency</h1>
+			<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Event Branding Agency in Kerala</h1>
 			<h2 class="ev-hero__h"><span class="sh__a">Event Branding Agency in Kerala</span> <span class="sh__b">for Events People Remember</span></h2>
 			<p class="ev-hero__p">People form an opinion about your event long before the first speaker takes the stage. The invitation, the entrance, the backdrop, and even the badge are already speaking for you. WiseUp is an event branding company in Kerala that designs, produces, and installs every one of them, so your event looks like one idea from start to finish.</p>
 			<div class="ev-btns">

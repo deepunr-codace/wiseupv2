@@ -29,7 +29,7 @@ wiseup_landing_isolate();
 // old, unused image and lazy-loading this one; the img also opts out of lazy load).
 add_action( 'wp_head', function () {
 	$u = WISEUP_URL . 'assets/landing/img/pm-hero-steps-';
-	echo '<link rel="preload" as="image" href="' . esc_url( $u . '1280.webp' ) . '" imagesrcset="' . esc_url( $u . '900.webp' ) . ' 900w, ' . esc_url( $u . '1280.webp' ) . ' 1280w, ' . esc_url( $u . '1670.webp' ) . ' 1670w" imagesizes="(max-width: 767px) 62vw, 100vw" fetchpriority="high">' . "
+	echo '<link rel="preload" as="image" href="' . esc_url( $u . '1280.webp' ) . '" imagesrcset="' . esc_url( $u . '900.webp' ) . ' 900w, ' . esc_url( $u . '1280.webp' ) . ' 1280w, ' . esc_url( $u . '1440.webp' ) . ' 1440w, ' . esc_url( $u . '1670.webp' ) . ' 1670w" imagesizes="(max-width: 767px) 62vw, 100vw" fetchpriority="high">' . "
 ";
 }, 0 );
 // Motion engine flag before first paint (same as the Event Branding page; removed after 3s if the scripts never start).
@@ -232,7 +232,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 
 	<!-- 1. Hero -->
 	<section class="ev-hero dm-hero pm-hero--img pm-hero--full pm-hero--photo" data-css-intro>
-		<div class="pm-bg" aria-hidden="true"><img class="skip-lazy" data-no-lazy="1" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?> 1280w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="(max-width: 767px) 62vw, 100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
+		<div class="pm-bg" aria-hidden="true"><img class="skip-lazy" data-no-lazy="1" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1280.webp' ); ?> 1280w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1440.webp' ); ?> 1440w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/pm-hero-steps-1670.webp' ); ?> 1670w" sizes="(max-width: 767px) 62vw, 100vw" width="1670" height="942" alt="" fetchpriority="high" decoding="async"><svg class="pm-pipe" viewBox="0 0 1670 942" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" data-pm-pipe>
 			<defs>
 				<linearGradient id="pmp-gel" gradientUnits="userSpaceOnUse" x1="700" y1="724" x2="1420" y2="80"><stop offset="0" stop-color="#4f7f1c"/><stop offset=".6" stop-color="#97b83a"/><stop offset="1" stop-color="#c9d45a"/></linearGradient>
 				<linearGradient id="pmp-kraft" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8ad7c"/><stop offset="1" stop-color="#a88c5c"/></linearGradient>
