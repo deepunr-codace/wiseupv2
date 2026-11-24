@@ -3411,3 +3411,8 @@ html body .wu-seo main > .ev-sec .dm-stack h3 span { background: none !important
 
 /* services headings: one colour, the grey second part removed (owner) */
 .wu-dm .dm-stack h3, .wu-dm .ev-sec .dm-stack h3, .wu-dm .dm-stack h3 span, .wu-dm .ev-sec .dm-stack h3 span, .wu-dm #dm-services h3, .wu-dm #dm-services h3 span { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }
+/* the stage card grows with its text instead of clipping it (narrow desktops) */
+.wu-pm .pmj__stage-in { height: auto !important; min-height: 100%; overflow: visible !important; }
+/* one scroll notch changes the card: shorter steps, and the card switches earlier */
+@media (min-width: 1024px) { .wu-pm .pmj__step { min-height: 30vh !important; } }
+@media (min-width: 1024px) { .wu-pm .pmj__step { height: 30vh !important; min-height: 0 !important; padding-block: 0 !important; overflow: visible; } }

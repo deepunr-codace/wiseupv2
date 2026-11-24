@@ -1373,3 +1373,11 @@ html body .wu-mb .sh__h .sh__a::after { content: " "; }
   html body .wu-mb .mb-hero .ev-hero__h .sh__a::after { content: " "; }
   html body .wu-mb .mb-hero .ev-hero__copy, html body .wu-mb .mb-hero .mb-hero__ps { text-align: left; }
 }
+
+/* ===== stacked cards on the left (same scroll animation as the Social Media content cards): each service is a card that slides up over the previous, which scales down and dims ===== */
+@media (min-width: 900px) {
+  .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillars { position: relative; }
+  .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar { display: grid !important; position: absolute; left: 0; right: 0; top: 0; min-height: 100%; animation: none !important; transform-origin: 50% 0; will-change: transform, opacity; box-sizing: border-box; padding: clamp(24px, 2.4vw, 40px) clamp(24px, 2.6vw, 44px) !important; border-radius: 28px !important; background: #101012 !important; border: 1px solid rgb(255 255 255 / .08) !important; box-shadow: 0 -20px 50px -20px rgb(0 0 0 / .9) !important; align-content: start; overflow: visible; }
+  .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-rail { display: none !important; }
+  .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillars { padding-left: 0 !important; }
+}

@@ -498,17 +498,16 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 		var dir = k > cur ? 1 : -1; cur = k; busy = true;
 		var old = box.cloneNode(true), ob = old.querySelector('[data-pmj-body]');
 		if (ob) ob.removeAttribute('data-pmj-body');
-		old.classList.add('is-ghost'); old.style.zIndex = 2; box.style.zIndex = 1;
+		old.classList.add('is-ghost');
 		box.parentNode.insertBefore(old, box);
 		fill(k);
-		var y = dir * 34;
-		// opacity and movement run on separate clocks so the two cards' text never shows through each other:
-		// the old card is gone by 230ms, the new one starts to appear at 250ms and lands at ~610ms (the phone screen's own .55-.65s)
+		// stacked cards (same as the Social Media content cards): forwards the new card slides up over the old one, which scales down and dims
+		// underneath; backwards the old card slides down and away, uncovering the earlier one
+		var SLIDE = 'cubic-bezier(.2,.9,.3,1)', under = [{ transform: 'scale(1)', opacity: 1 }, { transform: 'scale(.94)', opacity: .45 }], over = dir > 0 ? box : old;
+		if (dir > 0) { old.style.zIndex = 1; box.style.zIndex = 2; } else { old.style.zIndex = 2; box.style.zIndex = 1; }
 		Promise.all([
-			old.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 230, easing: 'cubic-bezier(.4,0,1,1)', fill: 'forwards' }).finished,
-			old.animate([{ transform: 'translateY(0) scale(1)' }, { transform: 'translateY(' + (-y) + 'px) scale(.97)' }], { duration: 360, easing: 'cubic-bezier(.4,0,.9,.5)', fill: 'forwards' }).finished,
-			box.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 360, delay: 250, easing: 'cubic-bezier(.2,.7,.3,1)', fill: 'backwards' }).finished,
-			box.animate([{ transform: 'translateY(' + y + 'px) scale(.985)' }, { transform: 'translateY(0) scale(1)' }], { duration: 480, delay: 130, easing: EASE, fill: 'backwards' }).finished
+			(dir > 0 ? old : box).animate(dir > 0 ? under : under.slice().reverse(), { duration: 640, easing: SLIDE, fill: 'both' }).finished,
+			over.animate(dir > 0 ? [{ transform: 'translateY(108%)' }, { transform: 'translateY(0)' }] : [{ transform: 'translateY(0)' }, { transform: 'translateY(108%)' }], { duration: 640, easing: SLIDE, fill: 'both' }).finished
 		]).then(function () {
 			old.remove(); box.style.zIndex = '';
 			busy = false; if (want >= 0 && want !== cur) { var w = want; want = -1; render(w); } else want = -1;
@@ -554,7 +553,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page' );
 	if (!('IntersectionObserver' in window)) return;
 	var io = new IntersectionObserver(function (es) {
 		es.forEach(function (e) { if (e.isIntersecting) set(+e.target.getAttribute('data-pmj-step')); });
-	}, { rootMargin: '-45% 0px -45% 0px' });
+	}, { rootMargin: '-40% 0px -50% 0px' });
 	steps.forEach(function (s) { io.observe(s); });
 })();
 </script>
