@@ -6,6 +6,7 @@
  *   node scripts/deploy-plugin.mjs live            send what differs, then check the site
  *   node scripts/deploy-plugin.mjs live --dry      only list what would change
  *   node scripts/deploy-plugin.mjs live --rollback put back the files of the last deploy
+ *   node scripts/deploy-plugin.mjs live --cache    clear WP Rocket only (add --priority for priority elements)
  *   add --priority to also clear WP Rocket's priority elements (when hero images change)
  *   add --only a/b.php,c.css to send just those files
  *   add --delete to also remove plugin files that are on the site but no longer in the repo (listed first by --dry)
@@ -29,7 +30,7 @@ const doDelete = process.argv.includes('--delete'), dry = process.argv.includes(
 if (!target) { console.error('usage: deploy-plugin.mjs <local|live> [--dry|--rollback|--priority]'); await quit(1); }
 const cfg = JSON.parse(readFileSync(join(here, '..', '..', '.deploy', target + '.json'), 'utf8'));
 const api = cfg.url.replace(/\/$/, '') + '/wp-json/wiseup/v1/deploy';
-const H = { 'X-Wiseup-Deploy-Key': cfg.key, 'Content-Type': 'application/json', 'User-Agent': 'wiseup-deploy' };
+const H = { 'Cache-Control': 'no-cache', 'X-Wiseup-Deploy-Key': cfg.key, 'Content-Type': 'application/json', 'User-Agent': 'wiseup-deploy' };
 const SKIP = /(^|\/)(\.git|node_modules)(\/|$)|\.before-|\.broken-|\.bak$|\.zip\d*$|\.wudeploy-/;
 const OK = /\.(php|js|css|json|txt|md|svg|webp|png|jpe?g|gif|avif|ico|woff2?|ttf|mp4|webm|mp3|pdf|html)$/i;
 
@@ -44,9 +45,11 @@ function walk(d, out = []) {
 	return out;
 }
 
+if (process.argv.includes('--cache')) { const r = await call('/cache', { method: 'POST', body: JSON.stringify({ priority }) }); console.log(r.status, JSON.stringify(r.body)); await quit(r.status === 200 ? 0 : 1); }
 if (rollback) { const r = await call('/rollback', { method: 'POST', body: '{}' }); console.log(r.status, JSON.stringify(r.body)); await quit(r.status === 200 ? 0 : 1); }
 
-const st = await call('/status');
+// the live server caches GET responses (X-FastCGI-Cache), so every status call gets a fresh query string
+const st = await call('/status?t=' + Date.now());
 if (st.status !== 200) { console.error('status failed', st.status, JSON.stringify(st.body)); await quit(1); }
 const remote = st.body.files || {};
 const local = {};
@@ -89,4 +92,4 @@ for (const u of [cfg.url + '/', cfg.url + '/?wu=' + Date.now()]) {
 	const r = await fetch(u, { headers: { 'User-Agent': 'wiseup-deploy-check' } }); const t = await r.text();
 	console.log('check', r.status, u, /critical error/i.test(t) ? 'CRITICAL ERROR' : 'ok');
 }
-const after = await call('/status'); console.log('live version now', after.body.version);
+const after = await call('/status?t=' + Date.now()); console.log('live version now', after.body.version);

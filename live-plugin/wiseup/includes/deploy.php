@@ -9,6 +9,7 @@
  *   GET  wiseup/v1/deploy/status    plugin version + a sha1 of every plugin file (the script sends only what differs)
  *   POST wiseup/v1/deploy           { version, files: { "rel/path": base64 }, delete: [ "rel/path" ], clear_priority }
  *   POST wiseup/v1/deploy/rollback  puts back the files of the last deploy
+ *   POST wiseup/v1/deploy/cache     clears WP Rocket (page cache + minified files; { priority: true } also priority elements)
  *
  * Safety, in order: only paths inside this plugin with known file types; every file's sha1 must match what was sent;
  * every PHP file is syntax-checked (token_get_all TOKEN_PARSE) before anything is written; the current files are
@@ -28,6 +29,7 @@ function wiseup_deploy_ok_key( WP_REST_Request $r ) {
 add_action( 'rest_api_init', function () {
 	register_rest_route( 'wiseup/v1', '/deploy/status', array( 'methods' => 'GET', 'callback' => 'wiseup_deploy_status', 'permission_callback' => 'wiseup_deploy_ok_key' ) );
 	register_rest_route( 'wiseup/v1', '/deploy', array( 'methods' => 'POST', 'callback' => 'wiseup_deploy_run', 'permission_callback' => 'wiseup_deploy_ok_key' ) );
+	register_rest_route( 'wiseup/v1', '/deploy/cache', array( 'methods' => 'POST', 'callback' => 'wiseup_deploy_cache_route', 'permission_callback' => 'wiseup_deploy_ok_key' ) );
 	register_rest_route( 'wiseup/v1', '/deploy/rollback', array( 'methods' => 'POST', 'callback' => 'wiseup_deploy_rollback_route', 'permission_callback' => 'wiseup_deploy_ok_key' ) );
 } );
 
@@ -63,7 +65,7 @@ function wiseup_deploy_files() {
 }
 
 function wiseup_deploy_status() {
-	return array( 'version' => WISEUP_VERSION, 'php' => PHP_VERSION, 'writable' => is_writable( wiseup_deploy_root() ), 'files' => wiseup_deploy_files(), 'log' => array_slice( (array) get_option( 'wiseup_deploy_log', array() ), 0, 5 ) );
+	return array( 'version' => WISEUP_VERSION, 'php' => PHP_VERSION, 'writable' => is_writable( wiseup_deploy_root() ), 'files' => wiseup_deploy_files(), 'log' => array_slice( (array) get_option( 'wiseup_deploy_log', array() ), 0, 5 ), 'plugins' => array_values( (array) get_option( 'active_plugins', array() ) ), 'server' => isset( $_SERVER['SERVER_SOFTWARE'] ) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '', 'cache_path' => defined( 'RT_WP_NGINX_HELPER_CACHE_PATH' ) ? RT_WP_NGINX_HELPER_CACHE_PATH : '' );
 }
 
 function wiseup_deploy_php_ok( $code, &$err ) {
@@ -133,7 +135,21 @@ function wiseup_deploy_log( $row ) {
 
 function wiseup_deploy_clear_cache( $priority ) {
 	if ( function_exists( 'rocket_clean_domain' ) ) rocket_clean_domain();
+	// server-level page caches (live answers X-FastCGI-Cache: HIT; WP Rocket alone left the old pages there)
+	wiseup_deploy_purge_nginx();
+	do_action( 'rt_nginx_helper_purge_all' );
+	do_action( 'litespeed_purge_all' );
+	do_action( 'breeze_clear_all_cache' );
+	if ( class_exists( 'RunCloud_Hub' ) && method_exists( 'RunCloud_Hub', 'purge_cache_all' ) ) RunCloud_Hub::purge_cache_all();
 	if ( function_exists( 'rocket_clean_minify' ) ) rocket_clean_minify();
+	// rocket_clean_domain() did not empty the page cache when called from REST on live: empty WP Rocket's cache folders directly (cache files only)
+	$rc = wp_normalize_path( WP_CONTENT_DIR ) . '/cache/';
+	foreach ( array( 'wp-rocket', 'min', 'busting' ) as $sub ) {
+		$d = $rc . $sub;
+		if ( ! is_dir( $d ) ) continue;
+		$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $d, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+		foreach ( $it as $f ) { if ( $f->isDir() ) @rmdir( $f->getPathname() ); else @unlink( $f->getPathname() ); }
+	}
 	if ( $priority ) {
 		global $wpdb;
 		foreach ( array( 'wpr_above_the_fold', 'wpr_lazy_render_content' ) as $t ) {
@@ -233,4 +249,30 @@ function wiseup_deploy_rollback_route() {
 	delete_option( 'wiseup_deploy_last' );
 	wiseup_deploy_log( array( 'id' => $id, 'result' => 'manual rollback' ) );
 	return array( 'ok' => true, 'restored' => $id );
+}
+
+function wiseup_deploy_cache_route( WP_REST_Request $r ) {
+	$p = (array) $r->get_json_params();
+	wiseup_deploy_clear_cache( ! empty( $p['priority'] ) );
+	wiseup_deploy_log( array( 'result' => 'cache cleared' . ( ! empty( $p['priority'] ) ? ' (+ priority elements)' : '' ) ) );
+	return array( 'ok' => true, 'rocket' => function_exists( 'rocket_clean_domain' ), 'nginx' => wiseup_deploy_purge_nginx() );
+}
+
+/**
+ * Empty the Nginx FastCGI cache zone (live answers X-FastCGI-Cache: HIT; the "Nginx Cache" plugin there has auto-purge
+ * off, so WP Rocket's clear left old pages in it). Path from NGINX_CACHE_PATH or that plugin's setting; only emptied when
+ * it looks like a cache zone (sub-folders named with 1-2 hex characters, as the plugin itself checks).
+ */
+function wiseup_deploy_purge_nginx() {
+	$path = defined( 'NGINX_CACHE_PATH' ) ? NGINX_CACHE_PATH : get_option( 'nginx_cache_path' );
+	$path = untrailingslashit( wp_normalize_path( (string) $path ) );
+	if ( strlen( $path ) < 5 || '/' !== $path[0] || ! is_dir( $path ) || ! is_writable( $path ) ) return 'skipped';
+	$kids = array_diff( (array) @scandir( $path ), array( '.', '..' ) );
+	foreach ( $kids as $k ) if ( ! is_dir( $path . '/' . $k ) || ! preg_match( '/^[0-9a-f]{1,2}$/', $k ) ) return 'not a cache zone';
+	foreach ( $kids as $k ) {
+		$it = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $path . '/' . $k, FilesystemIterator::SKIP_DOTS ), RecursiveIteratorIterator::CHILD_FIRST );
+		foreach ( $it as $f ) { if ( $f->isDir() ) @rmdir( $f->getPathname() ); else @unlink( $f->getPathname() ); }
+		@rmdir( $path . '/' . $k );
+	}
+	return 'purged ' . count( $kids );
 }

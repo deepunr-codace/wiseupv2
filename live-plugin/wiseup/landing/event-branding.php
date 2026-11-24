@@ -254,13 +254,11 @@ wiseup_landing_open( 'wu-landing wu-ev-page' );
 			<div class="ev-walk"><p class="ev-walk__p" data-wordlit><span class="ev-walk__a">Think back to the last event you attended.</span> You probably cannot recall every slide or speaker, but you remember how it felt to walk in: <mark data-w="0">the arch</mark>, <mark data-w="1">the signage</mark>, <mark data-w="2">the stage lit in one colour story</mark>. That feeling was never an accident. Guests meet your event as a series of small encounters, from the invitation to the registration desk to the kit they carry home, and each one either strengthens the story or weakens it. Our event branding services cover all of them, so nothing feels like an afterthought.</p></div>
 			</div>
 			<script>(function(){
+				// the paragraph lights up line by line as it scrolls through (a CSS mask driven by --p); the words stay plain text in the HTML
 				var p = document.querySelector('[data-wordlit]'); if (!p || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-				var ws = [], tw = document.createTreeWalker(p, NodeFilter.SHOW_TEXT), t, nodes = [];
-				while ((t = tw.nextNode())) nodes.push(t);
-				nodes.forEach(function(n){ var f = document.createDocumentFragment(); n.nodeValue.split(/(\s+)/).forEach(function(x){ if (!x) return; if (/^\s+$/.test(x)) { f.appendChild(document.createTextNode(x)); return; } var s = document.createElement('span'); s.className = 'ev-wl'; s.textContent = x; ws.push(s); f.appendChild(s); }); n.parentNode.replaceChild(f, n); });
-				p.classList.add('is-wl');
-				var go = function(){ var r = p.getBoundingClientRect(), vh = innerHeight, a = vh * .9, b = vh * .35 - r.height * .4; var q = Math.max(0, Math.min(1, (a - r.top) / (a - b))); var n = Math.round(q * ws.length); ws.forEach(function(w, k){ w.classList.toggle('is-lit', k < n); }); };
-				go(); addEventListener('scroll', go, { passive: true }); addEventListener('resize', go);
+				p.classList.add('is-ml');
+				var tick = false, go = function(){ tick = false; var r = p.getBoundingClientRect(), vh = innerHeight, a = vh * .9, b = vh * .35 - r.height * .4; p.style.setProperty('--p', Math.max(0, Math.min(1, (a - r.top) / (a - b))).toFixed(3)); };
+				go(); addEventListener('scroll', function(){ if (!tick) { tick = true; requestAnimationFrame(go); } }, { passive: true }); addEventListener('resize', go);
 			})();</script>
 
 

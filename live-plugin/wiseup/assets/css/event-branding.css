@@ -2202,9 +2202,9 @@ html body .wu-evb #ev-services .ev-head--walk .sh__h { text-align: left !importa
 html body .wu-evb .ev-walk__p:not(#_):not(#__) { margin: 0 !important; max-width: 52rem; font-size: clamp(18px, 1.5vw, 21px) !important; line-height: 1.65 !important; color: #8b8b93 !important; text-align: left !important; }
 .ev-walk__a { color: #fff; font-weight: 600; }
 html body .wu-evb .ev-walk__p mark { background: none !important; color: #fff !important; padding: 0; }
-.ev-walk__p.is-wl .ev-wl { opacity: .16; transition: opacity .35s ease; }
-.ev-walk__p.is-wl .ev-wl.is-lit { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .ev-walk__p.is-wl .ev-wl { transition: none; } }
+/* scroll light-up without per-word spans: lit from the top down to --p, the rest at 16% (owner 2026-11-24: pure HTML) */
+.wu-ev .is-ml { --p: 0; -webkit-mask-image: linear-gradient(180deg, #000 calc(var(--p) * 125% - 25%), rgba(0, 0, 0, .16) calc(var(--p) * 125%)); mask-image: linear-gradient(180deg, #000 calc(var(--p) * 125% - 25%), rgba(0, 0, 0, .16) calc(var(--p) * 125%)); }
+@media (prefers-reduced-motion: reduce) { .wu-ev .is-ml { -webkit-mask-image: none; mask-image: none; } }
 
 
 /* Sign-off sheet, v2 (owner: "signature pole ulla anm pls remove. make the section more beautiful"): signature gone; the counter sits inside a ring of five segments that light lime one by one with the checks. Check rows get hairline dividers and a soft lime wash when ticked. */

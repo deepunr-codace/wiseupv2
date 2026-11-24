@@ -188,10 +188,9 @@
 		$$('#what .ev-lead, #what .ev-fam3__text p, .ev-head--stack > .ev-intro p:first-child, .ev-kl__lead .ev-lead, .ev-price--col p:first-child').forEach(function (el) {
 			el.classList.add('ev-scrub');
 			if (lite) return;
-			whenNear(el, function () { Split.create(el, { type: 'words', onSplit: function (self) {
-				return gsap.fromTo(self.words, { opacity: 0.18 }, { opacity: 1, ease: 'none', stagger: 0.1,
-					scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 48%', scrub: true } });
-			} }); });
+			// no per-word elements: a CSS mask (.is-ml, --p) lights the paragraph from the top as it scrolls
+			el.classList.add('is-ml');
+			gsap.fromTo(el, { '--p': 0 }, { '--p': 1, ease: 'none', scrollTrigger: { trigger: el, start: 'top 82%', end: 'bottom 48%', scrub: true } });
 		});
 		// 3. section intros rise in line by line
 		$$('.ev-head > .ev-intro p').forEach(function (el) {
