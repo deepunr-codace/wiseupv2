@@ -234,9 +234,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			<div class="ev-hero__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Media Buying Agency in Kerala</h1>
 				<h2 class="ev-hero__h"><span class="sh__a">Getting the Right Ad Placement</span> <span class="sh__b">Makes All the Difference</span></h2>
-				<div class="ev-hero__p mb-hero__ps"><p class="mb-hero__lead">Advertising works best when the right audience sees it in the right place. At WiseUp, we make that happen through strategic media planning and buying.</p>
-				<p>WiseUp is a media buying agency in Kerala, specialising in outdoor (OOH), print, and theatre advertising. Based in Kozhikode, we plan and buy media placements across Kerala, helping businesses reach relevant audiences through the right advertising channels.</p>
-				<p>As a media planning and buying agency, we focus on selecting suitable media, negotiating placements, and managing campaigns from planning to execution.</p></div>
+				<div class="ev-hero__p mb-hero__ps"><p class="mb-hero__lead">Advertising works best when the right audience sees it in the right place. At WiseUp, we make that happen through strategic media planning and buying.</p></div>
+				<div class="mb-hero__more"><p>WiseUp is a media buying agency in Kerala, specialising in outdoor (OOH), print, and theatre advertising. Based in Kozhikode, we plan and buy media placements across Kerala, helping businesses reach relevant audiences through the right advertising channels.</p><p>As a media planning and buying agency, we focus on selecting suitable media, negotiating placements, and managing campaigns from planning to execution.</p></div>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Get a Free Media Plan', 'teal', $wu_lead ); // phpcs:ignore ?>
 					<?php echo $wu_btn( 'Chat on WhatsApp', 'night', 'href="' . esc_url( $wu_wa ) . '" target="_blank" rel="noopener"' ); // phpcs:ignore ?>
@@ -259,6 +258,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			</nav>
 		</div>
 	</section>
+
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a media buying agency in Kerala do?',
@@ -347,7 +347,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			var cls = root.classList.contains('mb-tabs'); root.classList.remove('mb-tabs');
 			var mh = 0; [].forEach.call(run.querySelectorAll('[data-mb-pillar]'), function (q) { mh = Math.max(mh, q.offsetHeight); });
 			root.classList.add('mb-tabs');
-			pillars.style.minHeight = mh + 'px';
+			pillars.style.minHeight = (innerWidth >= 1100 ? Math.max(mh, innerHeight - 48) : mh) + 'px'; var m2 = 0; faces.forEach(function (f) { m2 = Math.max(m2, f.scrollHeight); }); if (m2 > pillars.offsetHeight) pillars.style.minHeight = m2 + 'px';
 			var H = stage.offsetHeight; step = Math.max(240, innerHeight * 0.3);
 			top = (H + 150 < innerHeight) ? Math.round((innerHeight - H) / 2) : Math.min(100, innerHeight - H - 14);
 			stage.style.top = top + 'px';

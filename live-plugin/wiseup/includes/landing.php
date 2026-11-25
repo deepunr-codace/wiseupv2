@@ -520,6 +520,11 @@ function wiseup_other_services( $current = '' ) {
 .wu-os__card a:hover .wu-os__go i{rotate:45deg}
 @media (max-width:767px){.wu-os__head{flex-direction:column;align-items:flex-start}.wu-os__nav{display:none}.wu-os__h{font-size:clamp(27px,7.6vw,32px)}.wu-os__card{flex-basis:min(320px,80vw)}.wu-os__card a{min-height:280px}.wu-os__track{padding-bottom:20px}}
 @media (prefers-reduced-motion:reduce){.wu-os__card a,.wu-os__go i{transition:none}}
+/* 3 cards per row inside the page width (owner 2026-11-24); beats the page-layer overrides (service-system.css, media-buying.css) */
+html body section.wu-os .wu-os__track{--os-g:22px;gap:var(--os-g)!important;margin:0!important;padding:6px 0 30px!important;scroll-padding-inline:0!important}
+html body section.wu-os .wu-os__card{flex:0 0 calc((100% - 2 * var(--os-g)) / 3)!important}
+@media (max-width:1023px){html body section.wu-os .wu-os__card{flex-basis:calc((100% - var(--os-g)) / 2)!important}}
+@media (max-width:767px){html body section.wu-os .wu-os__track{--os-g:14px}html body section.wu-os .wu-os__card{flex-basis:86%!important}}
 </style>';
 	}
 	$arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';

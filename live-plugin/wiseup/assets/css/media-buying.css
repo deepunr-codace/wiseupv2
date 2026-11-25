@@ -1381,3 +1381,39 @@ html body .wu-mb .sh__h .sh__a::after { content: " "; }
   .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-rail { display: none !important; }
   .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillars { padding-left: 0 !important; }
 }
+
+/* hero (2026-11-24, owner: content felt stuffed but must stay in the hero): heading across the top, then lead + buttons on the left and the two
+   supporting paragraphs as a quieter column on the right behind a hairline; words unchanged */
+html body .wu-mb .mb-hero__ps .mb-hero__lead { margin-bottom: 0; }
+html body .wu-mb .mb-hero__more p { margin: 0; font-size: 15px; line-height: 24px; color: #a1a1a9; }
+html body .wu-mb .mb-hero__more p + p { margin-top: 12px; }
+html body .wu-mb .mb-hero__more { margin-top: 28px; }
+/* hero (2026-11-25): eyebrow, heading, then lead line, the two supporting paragraphs and the buttons, all under the heading
+   (a hoarding-poster version is kept in the scratchpad as media-buying.*.hoarding-ad) */
+html body .wu-mb .mb-hero .ev-hero__copy > .mb-hero__more { margin: 14px 0 32px; max-width: 640px; }
+html body .wu-mb .mb-hero__more p { font-size: 17px; line-height: 28px; color: #a1a1a9; }
+
+/* services stage from 1100px (2026-11-24, owner: cards touched the hoarding; "make these cards 100vh"): the card column ends 32px
+   before the hoarding (which starts at 43vw), each card is a full screen tall (script: pillars min-height = 100vh - 48px) with its
+   content centred, so the next card never shows under the current one */
+@media (min-width: 1100px) {
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillars { max-width: calc(43vw - max(64px, (100vw - 1440px) / 2 + 64px) - 32px); }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar { align-content: center; }
+}
+@media (min-width: 1100px) {
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__body .mb-pc > h3 { font-size: clamp(1.9rem, 1rem + 1.3vw, 2.6rem) !important; margin-bottom: 12px !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__body .mb-pc > p { font-size: 16px !important; line-height: 1.55 !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__list { margin-top: 16px !important; padding-top: 14px; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-chips { gap: 7px !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-chips li { font-size: 13.5px !important; padding: 7px 14px !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-more { margin-top: 12px; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__foot { margin-top: 14px !important; padding-top: 14px !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__foot .mb-best { font-size: 14.5px; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__foot .b, html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__foot button.b { padding: 12px 22px !important; font-size: 14.5px !important; }
+}
+@media (min-width: 1100px) and (max-height: 820px) {
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__body .mb-pc > h3 { font-size: 1.8rem !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-pillar__body .mb-pc > p { font-size: 15px !important; line-height: 1.5 !important; }
+  html body .wu-mb.mb-tabs #mb-services .mb-run.mb-pin .mb-chips li { font-size: 13px !important; padding: 6px 12px !important; }
+}
+}

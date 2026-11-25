@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) || exit;
 ?>
 <main id="main" tabindex="-1">
 	<section class="hero hero--lunar" id="top" aria-label="WiseUp">
+		<canvas class="hero__vbg" data-hero-vbg aria-hidden="true"></canvas>
 		<div class="hero__orbit" aria-hidden="true" data-orbit>
 			<span class="hero__orb">
 			</span>
@@ -773,6 +774,30 @@ defined( 'ABSPATH' ) || exit;
 		<div class="hero__edge hero__edge--r" aria-hidden="true">
 		</div>
 	</section>
+	<script>
+	/* hover a strip video: it plays in the card and, mirrored on a canvas (no second download), as the hero background */
+	(function () {
+		var cv = document.querySelector('[data-hero-vbg]'); if (!cv || !matchMedia('(hover: hover) and (pointer: fine)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		var hero = cv.parentNode, cx = cv.getContext('2d'), cur = null, raf = 0;
+		function size() { var r = hero.getBoundingClientRect(), k = Math.min(1, 960 / r.width); cv.width = Math.round(r.width * k); cv.height = Math.round(r.height * k); }
+		size(); addEventListener('resize', size);
+		function draw() {
+			raf = 0; if (!cur) return;
+			if (cur.readyState >= 2 && cur.videoWidth) {
+				var W = cv.width, H = cv.height, vr = cur.videoWidth / cur.videoHeight, w = W, h = W / vr;
+				if (h < H) { h = H; w = H * vr; }
+				try { cx.drawImage(cur, (W - w) / 2, (H - h) / 2, w, h); } catch (e) { stop(); return; }
+			}
+			raf = requestAnimationFrame(draw);
+		}
+		function stop() { cur = null; hero.classList.remove('has-vbg'); }
+		document.addEventListener('playing', function (e) {
+			var v = e.target; if (!v.closest || !v.closest('.strip__card')) return;
+			cur = v; hero.classList.add('has-vbg'); if (!raf) raf = requestAnimationFrame(draw);
+		}, true);
+		['pause', 'ended', 'emptied'].forEach(function (t) { document.addEventListener(t, function (e) { if (e.target === cur) stop(); }, true); });
+	})();
+	</script>
 	<script>/* hero strip: swipe on touch screens (owner, 2026-11-05: "swipe to scroll in mobile for hero slider"). Adds to the
 	   strip drift's shared offset window.wuP.v (a larger value moves the cards left); sideways swipes only, so vertical page
 	   scrolling over the cards still works; short glide after release; a swipe does not count as a tap on a card. */
@@ -783,6 +808,16 @@ defined( 'ABSPATH' ) || exit;
 	s.addEventListener('touchmove',function(e){var t=e.touches[0];if(!lock){var ax=Math.abs(t.clientX-x0),ay=Math.abs(t.clientY-y0);if(ax<7&&ay<7)return;lock=ax>ay?'x':'y'}
 	if(lock!=='x')return;e.preventDefault();var d=t.clientX-lx,n=performance.now();P.v-=d;vel=d*16.67/Math.max(8,n-lt);lx=t.clientX;lt=n},{passive:false});
 	s.addEventListener('touchend',function(){if(lock==='x'){block=performance.now();if(Math.abs(vel)>.6)raf=requestAnimationFrame(glide)}lock=''},{passive:true});
+	s.addEventListener('click',function(e){if(performance.now()-block<350){e.preventDefault();e.stopPropagation()}},true);})();</script>
+	<script>/* hero strip: mouse drag (owner, 2026-11-24: "cards should drag to scrollable"); same shared offset as the swipe, glide after
+	   release, a drag over 5px does not open or play a card. Works once the strip is straight (it takes pointer events from then). */
+	(function(){var s=document.querySelector('.hero--lunar .strip');if(!s)return;
+	var P=window.wuP=window.wuP||{v:0},down=0,x0=0,lx=0,lt=0,vel=0,raf=0,moved=0,block=0;
+	function glide(){vel*=.94;P.v-=vel;raf=Math.abs(vel)>.3?requestAnimationFrame(glide):0}
+	s.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse'||e.button!==0||e.target.closest('.strip-nav'))return;down=1;moved=0;cancelAnimationFrame(raf);x0=lx=e.clientX;lt=performance.now();vel=0});
+	addEventListener('pointermove',function(e){if(!down)return;if(!moved&&Math.abs(e.clientX-x0)<5)return;if(!moved){moved=1;s.classList.add('is-drag')}var d=e.clientX-lx,n=performance.now();P.v-=d;vel=d*16.67/Math.max(8,n-lt);lx=e.clientX;lt=n});
+	addEventListener('pointerup',function(){if(!down)return;down=0;s.classList.remove('is-drag');if(moved){block=performance.now();if(Math.abs(vel)>.6)raf=requestAnimationFrame(glide)}});
+	s.addEventListener('dragstart',function(e){e.preventDefault()});
 	s.addEventListener('click',function(e){if(performance.now()-block<350){e.preventDefault();e.stopPropagation()}},true);})();</script>
 	<section class="sec" id="services" aria-labelledby="services-title">
 		<svg class="blob blob--b" viewBox="0 0 200 200" aria-hidden="true">
