@@ -3223,3 +3223,5 @@ html body .grow .grow__stats li + li, html body .grow .grow__stats li:nth-child(
 
 /* no grey dots in the menu (2026-11-25, owner: "remove dots frm menu"); only the current page's lime LED stays */
 html body .hd .hd__link:not(.is-current) .hd__dot, html body .menu a:not(.is-current) .hd__dot, html body .menu summary .hd__dot { display: none !important; }
+/* current-page LED removed too (2026-11-25, owner: "remove active led too"): no dots in the menu at all */
+html body .hd .hd__dot, html body .menu .hd__dot, html body:has(.wu-ev, #wu-smm) .wu-chrome .hd .hd__link.is-current .hd__dot { display: none !important; }
