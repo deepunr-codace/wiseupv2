@@ -1825,3 +1825,6 @@ html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd {
 html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd .hd__logo img { filter: none !important; }
 html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd .hd__cta { color: #fff !important; }
 html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd .hd__call { color: #beda52 !important; background: rgb(14 14 16 / .94) !important; }
+/* Resources dropdown in light mode on this page: its links inherited the page's dark text on the dark panel */
+html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd :is(.hd__drop, .hd__sub, .hd__dd) a { color: #c9c9ce !important; }
+@media (hover: hover) { html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd :is(.hd__drop, .hd__sub, .hd__dd) a:hover { color: #fff !important; } }
