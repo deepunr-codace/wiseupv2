@@ -228,7 +228,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 
 	<!-- 1. Hero -->
 	<section class="ev-hero dm-hero mb-hero mb-hero--photo" data-css-intro>
-		<div class="mb-hbg" aria-hidden="true"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-1400.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-1400.webp' ); ?> 1400w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-street-1670.webp' ); ?> 1670w" sizes="100vw" width="1670" height="940" alt="" fetchpriority="high" decoding="async"></div>
+		<div class="mb-hbg"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-amber-1400.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-amber-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-amber-1400.webp' ); ?> 1400w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-hero-amber-1828.webp' ); ?> 1828w" sizes="100vw" width="1828" height="860" alt="" fetchpriority="high" decoding="async"><div class="mb-hpost" data-mb-hpost><div class="mb-hpost__face" data-mb-hpost-face><div class="mb-mv mb-mv--subs" data-mb-mv><video class="mb-mv__vid" data-mb-vid muted loop playsinline preload="none" poster="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-screen-kollam.webp' ); ?>" data-src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-screen-kollam.mp4' ); ?>" aria-hidden="true"></video><img class="mb-mv__logo" src="<?php echo esc_url( WISEUP_URL . 'assets/brand/wiseup-logo.webp' ); ?>" alt="" width="120" height="44"><div class="mb-mv__sub"><p class="mb-mv__l1">Advertising works best when the right audience sees it in the right place.</p><p class="mb-mv__l2">At WiseUp, we make that happen through strategic media planning and buying.</p></div><div class="mb-mv__grain"></div><div class="mb-mv__scratch"></div></div></div></div></div>
 		<div class="ev-hero__glow" aria-hidden="true"></div>
 		<div class="wrap ev-hero__grid">
 			<div class="ev-hero__copy">
@@ -258,18 +258,48 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			</nav>
 		</div>
 	</section>
+	<script>
+	/* hero: the lead line plays on the cinema screen of the hero photo like an interval ad (perspective via a homography); from 1100px only, the real lead
+	   stays in the copy, visually hidden there */
+	(function () {
+		var w = document.querySelector('[data-mb-hpost]'); if (!w) return;
+		var hbg = w.parentNode, img = hbg.querySelector('img'), face = w.querySelector('[data-mb-hpost-face]'), ps = [].slice.call(face.children);
+		var IW = 1828, IH = 860, FW = 1000, FH = 400, Q = [[988, 230], [1790, 160], [1792, 538], [988, 525]];
+		function solve(A, b) { var n = 8, i, j, k; for (i = 0; i < n; i++) A[i].push(b[i]); for (i = 0; i < n; i++) { var mx = i; for (j = i + 1; j < n; j++) if (Math.abs(A[j][i]) > Math.abs(A[mx][i])) mx = j; var t = A[i]; A[i] = A[mx]; A[mx] = t; for (j = i + 1; j < n; j++) { var f = A[j][i] / A[i][i]; for (k = i; k <= n; k++) A[j][k] -= f * A[i][k]; } } var x = []; for (i = n - 1; i >= 0; i--) { var s = A[i][n]; for (j = i + 1; j < n; j++) s -= A[i][j] * x[j]; x[i] = s / A[i][i]; } return x; }
+		function place() {
+			if (!img.clientWidth) return;
+			var W = img.clientWidth, H = img.clientHeight, sc = Math.max(W / IW, H / IH), op = getComputedStyle(img).objectPosition.split(' ');
+			var px = parseFloat(op[0]) / 100, py = parseFloat(op[1] || '50%') / 100, ox = (W - IW * sc) * (isNaN(px) ? .5 : px) + img.offsetLeft, oy = (H - IH * sc) * (isNaN(py) ? .5 : py) + img.offsetTop;
+			var src = [[0, 0], [FW, 0], [FW, FH], [0, FH]], A = [], b = [];
+			for (var i = 0; i < 4; i++) { var x = src[i][0], y = src[i][1], X = ox + Q[i][0] * sc, Y = oy + Q[i][1] * sc; A.push([x, y, 1, 0, 0, 0, -x * X, -y * X]); b.push(X); A.push([0, 0, 0, x, y, 1, -x * Y, -y * Y]); b.push(Y); }
+			var h = solve(A, b); face.style.transform = 'matrix3d(' + [h[0], h[3], 0, h[6], h[1], h[4], 0, h[7], 0, 0, 1, 0, h[2], h[5], 0, 1].join(',') + ')';
+		}
+		place(); requestAnimationFrame(function () { requestAnimationFrame(function () { w.classList.add('is-up'); }); });
+		// the Kollam teaser plays on the screen (muted, looped; a 960px web copy, loaded after the page, only while the hero is on screen)
+		var vd = w.querySelector('[data-mb-vid]'), con = navigator.connection || {};
+		if (vd && matchMedia('(min-width: 1100px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches && !con.saveData) {
+			var vOn = true, arm = function () { if (!vd.getAttribute('src')) { vd.src = vd.getAttribute('data-src'); } if (vOn) vd.play().catch(function () {}); };
+			if (document.readyState === 'complete') setTimeout(arm, 400); else addEventListener('load', function () { setTimeout(arm, 400); });
+			if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { vOn = e[0].isIntersecting; if (!vd.getAttribute('src')) return; if (vOn) vd.play().catch(function () {}); else vd.pause(); }).observe(hbg);
+		}
+ addEventListener('resize', place); addEventListener('load', place); if (img.decode) img.decode().then(place, function () {});
+
+	})();
+	</script>
 
 
 <?php wiseup_ai_overview( array(
 	'q' => 'What does a media buying agency in Kerala do?',
-	'a' => '<b>WiseUp</b> is a media buying agency in Kerala, based in Kozhikode, specialising in <b>outdoor (OOH), print and theatre advertising</b>, with digital, video and radio campaigns too. We select suitable media, negotiate placements and manage campaigns from planning to execution.',
+	'a' => 'A media buying agency plans, negotiates and books advertising space for businesses. <b>WiseUp</b>, based in Kozhikode, buys <b>outdoor (OOH), print and theatre media</b> across Kerala, supported by digital, video and radio campaigns, and manages each campaign from planning to proof of display.',
 	'points' => array(
-		array( 'Media', 'OOH, print, theatre, digital, video and radio advertising.' ),
-		array( 'How it works', 'Discover, research, plan, negotiate and book, execute and monitor, then verify and report.' ),
-		array( 'Proof', 'Display photographs, newspaper tear sheets and playback confirmations.' ),
-		array( 'Where', 'Based in Kozhikode, working across Kozhikode, Malabar and the rest of Kerala.' ),
+		array( 'Services', 'Hoardings, unipoles, bus shelters and transit branding (OOH); newspaper display, supplements and classifieds (print); pre-show ads and lobby branding (theatre).' ),
+		array( 'Process', 'Discover, research, plan, negotiate and book, execute and monitor, verify and report.' ),
+		array( 'Pricing', 'Commission on media value, flat fee, or monthly retainer. Media, production and installation costs are shared upfront.' ),
+		array( 'Proof', 'Display photographs, newspaper tear sheets and cinema playback confirmations.' ),
+		array( 'Coverage', 'Kozhikode, Malabar, Kochi, Thiruvananthapuram and across Kerala.' ),
 	),
-	'note' => 'Every campaign starts with a free media plan.',
+	'note' => 'Tell us your budget, audience and city, and we’ll recommend the right media mix.',
+	'cta' => 'Get a Free Media Plan',
 	'links' => array( array( 'Services', '#mb-services' ), array( 'Process', '#mb-process' ), array( 'Charges', '#mb-charge' ), array( 'FAQ', '#faq' ) ),
 ) ); ?>
 
