@@ -1639,3 +1639,6 @@ html body .wu-mb .mb-hero__more p { font-size: 17px; line-height: 28px; color: #
 
 /* testimonials heading on one line from 768px (2026-11-25), so "Us" does not drop onto its own line */
 @media (min-width: 768px) { html body .wu-mb #reviews .ev-head, html body .wu-mb #reviews .sh, html body .wu-mb #reviews .sh__h { max-width: none !important; width: 100%; } html body .wu-mb #reviews .ev-head { display: block !important; } }
+
+/* rupee prefix on the hero stats (2026-11-25, owner stats) */
+.wu-mb .ev-stat__pre { margin-right: .04em; }

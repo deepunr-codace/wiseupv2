@@ -244,12 +244,13 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			</div>
 			<dl class="ev-proof">
 				<?php foreach ( array(
-					array( '8', '+', 'Years with CodeAce' ),
-					array( '120', '+', 'Projects delivered' ),
-					array( '14', '', 'Districts of Kerala covered' ),
-					array( '5.0', '★', 'Google rating from client reviews' ),
+					// owner's figures (2026-11-25); [ number, suffix, label, prefix ]
+					array( '50', '+', 'Campaigns Executed' ),
+					array( '500', '+', 'Media Placements' ),
+					array( '1', 'Cr+', 'Media Budget Managed', '₹' ),
+					array( '100', '%', 'Execution Proof' ),
 				) as $wu_st ) : ?>
-				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
+				<div class="ev-stat"><dt><?php echo esc_html( $wu_st[2] ); ?></dt><dd><?php if ( ! empty( $wu_st[3] ) ) : ?><em class="ev-stat__pre"><?php echo esc_html( $wu_st[3] ); ?></em><?php endif; ?><span data-count="<?php echo esc_attr( $wu_st[0] ); ?>"><?php echo esc_html( $wu_st[0] ); ?></span><em><?php echo esc_html( $wu_st[1] ); ?></em></dd></div>
 				<?php endforeach; ?>
 			</dl>
 			<nav class="mb-htiles" aria-label="Our media">
