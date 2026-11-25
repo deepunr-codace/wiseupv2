@@ -202,7 +202,6 @@ $wu_ind = array(
 $wu_cases = array(
 	array( 'Bootland Expo 2026', 'Expo launch campaign', WISEUP_URL . 'assets/landing/img/case-bootland.jpg', '21.6M+', 'Impressions for the launch', 'https://wiseup.in/case-studies/bootland/' ),
 	array( 'Sathya Agencies', 'Brand launch campaign', WISEUP_ASSETS . '/work/case-sathya-720.webp', '1M+', 'Minimum reach on every video', 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ),
-	array( 'Golden Karak', 'Café brand campaign', WISEUP_URL . 'assets/landing/img/case-karak.jpg', '2M+', 'Views on one Instagram Reel', 'https://wiseup.in/case-studies/golden-karak/' ),
 	array( 'Popees', 'Brand campaigns', WISEUP_ASSETS . '/work/case-popees-720.webp', '', '', 'https://wiseup.in/case-studies/popees-brand-campaigns-creative-marketing/' ),
 );
 
