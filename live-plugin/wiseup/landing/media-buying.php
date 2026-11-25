@@ -472,6 +472,20 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 		</div>
 	</section>
 
+
+	<!-- 3b. Testimonials (the shared Google reviews, same as the Social Media / DM / SEO pages) -->
+	<section class="sec ev-sec" id="reviews">
+		<div class="wrap">
+			<div class="ev-head">
+				<div class="sh">
+					<?php echo $wu_eyebrow( 'Testimonials' ); // phpcs:ignore ?>
+					<h2 class="sh__h"><?php echo $wu_h( 'What Our Clients', 'Say About Us' ); // phpcs:ignore ?></h2>
+				</div>
+			</div>
+			<?php include WISEUP_DIR . 'landing/reviews.php'; ?>
+		</div>
+	</section>
+
 	<!-- 4. One strategy -->
 	<section class="sec ev-sec" id="mb-plan">
 		<div class="wrap">

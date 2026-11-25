@@ -1636,3 +1636,6 @@ html body .wu-mb .mb-hero__more p { font-size: 17px; line-height: 28px; color: #
 @media (min-width: 1100px) { html body .wu-mb ul.mb-cases { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; } }
 @media (min-width: 768px) and (max-width: 1099px) { html body .wu-mb ul.mb-cases { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
 .mb-cases li:nth-child(4) { transition-delay: .24s; }
+
+/* testimonials heading on one line from 768px (2026-11-25), so "Us" does not drop onto its own line */
+@media (min-width: 768px) { html body .wu-mb #reviews .ev-head, html body .wu-mb #reviews .sh, html body .wu-mb #reviews .sh__h { max-width: none !important; width: 100%; } html body .wu-mb #reviews .ev-head { display: block !important; } }
