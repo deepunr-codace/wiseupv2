@@ -259,6 +259,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			</nav>
 		</div>
 	</section>
+	<script>(function(){var h=document.querySelector('.wu-mb .mb-hero'),pr=h&&h.querySelector('.ev-proof');if(!h||!pr)return;var set=function(){var hb=h.getBoundingClientRect(),pb=pr.getBoundingClientRect(),bt=0;[].forEach.call(h.querySelectorAll('a'),function(x){if(x.closest('.mb-htiles,.ev-proof,.mb-hbg'))return;var r=x.getBoundingClientRect();if(r.height)bt=Math.max(bt,r.bottom)});if(!bt)bt=pb.top-120;var gap=Math.max(0,pb.top-bt),st=bt+gap*.22,len=Math.max(24,gap*.56);h.style.setProperty('--wb',Math.max(0,hb.bottom-st)+'px');h.style.setProperty('--wf',len+'px');h.style.setProperty('--hd',Math.round(Math.min(pb.top-hb.top-24,Math.max(innerHeight,bt-hb.top+40)))+'px')};set();addEventListener('resize',set);addEventListener('load',set);})();</script>
 	<script>
 	/* hero: the lead line plays on the cinema screen of the hero photo like an interval ad (perspective via a homography); from 1100px only, the real lead
 	   stays in the copy, visually hidden there */
@@ -327,7 +328,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 						<?php endforeach; ?>
 						<span class="mb-bb__glare"></span>
 					</div>
-					<img class="mb-bb__rig" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-1670.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-1670.webp' ); ?> 1672w" sizes="(min-width: 1240px) 1180px, 100vw" width="1670" height="941" alt="" decoding="async">
+					<img class="mb-bb__rig" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-1670.webp' ); ?>" srcset="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-900.webp' ); ?> 900w, <?php echo esc_url( WISEUP_URL . 'assets/landing/img/mb-ang-1670.webp' ); ?> 1672w" sizes="(min-width: 1100px) 60vw, 100vw" width="1670" height="941" alt="" loading="lazy" decoding="async">
 				</div>
 				<div class="mb-bb__top" aria-hidden="true"></div>
 				<nav class="mb-jump" aria-label="Jump to a service" data-mb-jump>
@@ -396,7 +397,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			bb.style.setProperty('--e', e.toFixed(3));
 			document.documentElement.classList.toggle('mb-nohd', r.top < top + 60 && r.bottom > innerHeight * 0.55);
 			var cur = Math.max(0, Math.min(n - 0.001, p * n + delta)), idx = Math.min(n - 1, Math.floor(cur + 0.5));
-			faces.forEach(function (f, i) { var en = i === 0 ? 1 : Math.max(0, Math.min(1, cur - (i - 1))), cv = Math.max(0, Math.min(1, cur - i)); f.style.transform = 'translateY(' + ((1 - en) * 108).toFixed(2) + '%) scale(' + (1 - cv * 0.06).toFixed(4) + ')'; f.style.opacity = '1'; f.style.filter = cv > 0 ? 'brightness(' + (1 - cv * 0.5).toFixed(3) + ')' : ''; f.style.zIndex = String(i + 1); f.style.visibility = ((en <= 0 && i > 0) || cv >= 1 && cur - i >= 1.02) ? 'hidden' : 'visible'; f.style.pointerEvents = i === idx ? 'auto' : 'none'; });
+			faces.forEach(function (f, i) { var en = i === 0 ? 1 : Math.max(0, Math.min(1, cur - (i - 1))), cv = Math.max(0, Math.min(1, cur - i)); f.style.transform = 'translateY(' + ((1 - en) * 108).toFixed(2) + '%) scale(' + (1 - cv * 0.06).toFixed(4) + ')'; var lt = document.documentElement.getAttribute('data-svc-theme') === 'light'; f.style.opacity = lt && cv > 0 ? (1 - cv * 0.45).toFixed(3) : '1'; f.style.filter = cv > 0 && !lt ? 'brightness(' + (1 - cv * 0.5).toFixed(3) + ')' : ''; f.style.zIndex = String(i + 1); f.style.visibility = ((en <= 0 && i > 0) || cv >= 1 && cur - i >= 1.02) ? 'hidden' : 'visible'; f.style.pointerEvents = i === idx ? 'auto' : 'none'; });
 			links.forEach(function (a, i) { a.classList.toggle('is-gone', i < idx); });
 			if (idx !== active && window.__mbShow) { active = idx; if (!links[idx].classList.contains('is-on')) window.__mbShow(ids[idx]); }
 		}

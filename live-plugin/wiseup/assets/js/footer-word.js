@@ -48,7 +48,7 @@
     cols = []; hot = [];
     for (var k = 0; k < LV; k++) {
       var f = k / (LV - 1);
-      if (isLight()) cols.push('hsl(80 ' + (10 + f * 30) + '% ' + (34 - f * 26) + '%)');
+      if (isLight()) cols.push('hsl(0 0% ' + (f * 9).toFixed(1) + '%)'); // light theme: pure black dots (owner, 2026-11-25)
       else cols.push('hsl(' + (128 - f * 55) + ' ' + (56 + f * 26) + '% ' + (38 + f * 42) + '%)');
     }
     hot = isLight() ? ['#3f7d1a', '#4f9a22', '#5aa82a'] : ['#6fd34a', '#8fe05f', '#a8ee7e']; // icons stay in the dots' green

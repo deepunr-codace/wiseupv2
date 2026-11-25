@@ -60,7 +60,7 @@
 		if (now || !('IntersectionObserver' in window)) { fn(); return; }
 		var io = new IntersectionObserver(function (es) {
 			if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); fn(); }
-		}, { rootMargin: '120% 0px 120% 0px' });
+		}, { rootMargin: '45% 0px 45% 0px' });
 		io.observe(el);
 	}
 
