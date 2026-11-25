@@ -203,6 +203,7 @@ $wu_cases = array(
 	array( 'Bootland Expo 2026', 'Expo launch campaign', WISEUP_URL . 'assets/landing/img/case-bootland.jpg', '21.6M+', 'Impressions for the launch', 'https://wiseup.in/case-studies/bootland/' ),
 	array( 'Sathya Agencies', 'Brand launch campaign', WISEUP_ASSETS . '/work/case-sathya-720.webp', '1M+', 'Minimum reach on every video', 'https://wiseup.in/case-studies/sathya-agencies-brand-launch-campaign-kerala/' ),
 	array( 'Golden Karak', 'Café brand campaign', WISEUP_URL . 'assets/landing/img/case-karak.jpg', '2M+', 'Views on one Instagram Reel', 'https://wiseup.in/case-studies/golden-karak/' ),
+	array( 'Popees', 'Brand campaigns', WISEUP_ASSETS . '/work/case-popees-720.webp', '', '', 'https://wiseup.in/case-studies/popees-brand-campaigns-creative-marketing/' ),
 );
 
 $wu_faq = array(
@@ -462,7 +463,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 					<a href="<?php echo esc_url( $c[5] ); ?>" class="mb-case">
 						<img src="<?php echo esc_url( $c[2] ); ?>" alt="<?php echo esc_attr( $c[0] . ' ' . strtolower( $c[1] ) . ' by WiseUp' ); ?>" loading="lazy" decoding="async" width="720" height="540">
 						<span class="mb-case__t"><small><?php echo esc_html( $c[1] ); ?></small><b><?php echo esc_html( $c[0] ); ?></b></span>
-						<span class="mb-case__fig"><b><?php echo esc_html( $c[3] ); ?></b><?php echo esc_html( $c[4] ); ?></span>
+						<?php if ( '' !== $c[3] ) : ?><span class="mb-case__fig"><b><?php echo esc_html( $c[3] ); ?></b><?php echo esc_html( $c[4] ); ?></span><?php endif; ?>
 						<span class="mb-case__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
 					</a>
 				</li>
