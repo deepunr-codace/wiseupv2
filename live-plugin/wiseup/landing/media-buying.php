@@ -275,6 +275,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-mb-page' );
 			var h = solve(A, b); face.style.transform = 'matrix3d(' + [h[0], h[3], 0, h[6], h[1], h[4], 0, h[7], 0, 0, 1, 0, h[2], h[5], 0, 1].join(',') + ')';
 		}
 		place(); requestAnimationFrame(function () { requestAnimationFrame(function () { w.classList.add('is-up'); }); });
+		// subtitles: the two sentences take turns like film subtitles (pauses while the pointer is on them, so they can be selected)
+		var sb = w.querySelector('.mb-mv__sub'), hold = false;
+		if (sb) { sb.addEventListener('pointerenter', function () { hold = true; }); sb.addEventListener('pointerleave', function () { hold = false; });
+			setInterval(function () { if (hold || document.hidden) return; sb.setAttribute('data-line', sb.getAttribute('data-line') === '2' ? '1' : '2'); }, 4800); }
 		// the Kollam teaser plays on the screen (muted, looped; a 960px web copy, loaded after the page, only while the hero is on screen)
 		var vd = w.querySelector('[data-mb-vid]'), con = navigator.connection || {};
 		if (vd && matchMedia('(min-width: 1100px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches && !con.saveData) {
