@@ -1625,3 +1625,9 @@ html body .wu-mb .mb-hero__more p { font-size: 17px; line-height: 28px; color: #
   html body .wu-mb .mb-mv__l1, html body .wu-mb .mb-mv__l2 { font-size: 27px !important; margin: 0 !important; }
   html body .wu-mb .mb-mv__sub[data-line="2"] .mb-mv__l1, html body .wu-mb .mb-mv__sub:not([data-line="2"]) .mb-mv__l2 { opacity: 0; pointer-events: none; }
 }
+/* proper black behind the hero copy (2026-11-25): the photo stays visible only on the right around the screen */
+@media (min-width: 1100px) {
+  html body .wu-mb .mb-hero .mb-hbg::after { content: "" !important; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+    background: linear-gradient(90deg, rgb(0 0 0 / .86) 0%, rgb(0 0 0 / .8) 42%, rgb(0 0 0 / .55) 47%, rgb(0 0 0 / .22) 51.5%, transparent 54.5%), linear-gradient(180deg, transparent 60%, #000 100%) !important; }
+  html body .wu-mb .mb-hpost { z-index: 3; }
+}

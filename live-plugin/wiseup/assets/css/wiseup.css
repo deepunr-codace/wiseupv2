@@ -3206,3 +3206,20 @@ html body .grow .grow__stats li + li, html body .grow .grow__stats li:nth-child(
 .hero--lunar .lunar { position: relative; z-index: 1; }
 /* hero strip mouse drag (2026-11-24) */
 @media (hover: hover) and (pointer: fine) { .hero--lunar .strip.is-flat .strip__track { cursor: grab; user-select: none; } .hero--lunar .strip.is-drag .strip__track, .hero--lunar .strip.is-drag .strip__track * { cursor: grabbing !important; } }
+
+/* Active page = green LED on its nav dot (owner, 2026-11-25). Shown even where dots are hidden (< 1440). */
+@keyframes hd-led { 0%, 100% { box-shadow: 0 0 0 1px rgb(190 218 82 / .35), 0 0 6px 1px rgb(190 218 82 / .75), 0 0 14px 3px rgb(190 218 82 / .35); } 50% { box-shadow: 0 0 0 1px rgb(190 218 82 / .25), 0 0 4px 1px rgb(190 218 82 / .5), 0 0 9px 2px rgb(190 218 82 / .18); } }
+.hd .hd__link.is-current, .hd .hd__link.is-current:not(:hover) { background: transparent; }
+.menu a.is-current { color: inherit; }
+@media (max-width: 1439px) { .hd .hd__link.is-current { position: relative; } .hd .hd__link.is-current .hd__dot { position: absolute; left: 50%; bottom: 2px; translate: -50% 0; width: 5px; height: 5px; } }
+.hd .hd__link.is-current .hd__dot, .menu a.is-current .hd__dot { display: block; width: 6px; height: 6px; scale: 1; background: radial-gradient(circle at 35% 35%, #f2ffc4 0 18%, #beda52 45%, #7fa31c 100%); animation: hd-led 2.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .hd .hd__link.is-current .hd__dot, .menu a.is-current .hd__dot { animation: none; box-shadow: 0 0 6px 1px rgb(190 218 82 / .7); } }
+/* service pages hide the nav dots (1200-2400px, plugin.css / service-system.css, !important) to fit the day/night
+   button: keep the LED there too, under the label so it takes no width */
+@media (min-width: 1200px) and (max-width: 2400px) {
+  html body:has(.wu-ev, #wu-smm) .wu-chrome .hd .hd__link.is-current { position: relative; }
+  html body:has(.wu-ev, #wu-smm) .wu-chrome .hd .hd__link.is-current .hd__dot { display: block !important; position: absolute; left: 50%; bottom: 2px; translate: -50% 0; }
+}
+
+/* no grey dots in the menu (2026-11-25, owner: "remove dots frm menu"); only the current page's lime LED stays */
+html body .hd .hd__link:not(.is-current) .hd__dot, html body .menu a:not(.is-current) .hd__dot, html body .menu summary .hd__dot { display: none !important; }
