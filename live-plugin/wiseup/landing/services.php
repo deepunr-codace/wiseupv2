@@ -46,7 +46,7 @@ $wu_services = array(
 	array( 'Brand Solutions', 'signature', array( 'Logo Design', 'Corporate Identity', 'Consultancy', 'Product Packaging', 'Signage', 'Print Production' ), '', 'Brand Strategy & Identity', 'brand-solutions' ),
 	array( 'Strategic Campaigns', 'megaphone', array( 'OOH Campaigns', 'Print Campaigns', 'Digital Campaigns', 'Video Campaigns', 'Radio Campaigns' ), '', 'Campaigns & Media Buying', 'campaigns' ),
 	array( 'Strategic Planning', 'target', array( 'Market Research', 'Promotional Plans' ), '', 'Brand Strategy & Identity', 'strategic-planning' ),
-	array( 'Media & Release', 'megaphone', array( 'Media Buying', 'Media Planning', 'Media Monitoring', 'Print Media Release' ), '', 'Campaigns & Media Buying', 'media' ),
+	array( 'Media & Release', 'megaphone', array( 'Media Buying', 'Media Planning', 'Media Monitoring', 'Print Media Release' ), 'https://wiseup.in/services/media-buying-agency/', 'Campaigns & Media Buying', 'media' ),
 	array( 'Event Branding', 'box', array( 'Corporate Events', 'Virtual & Hybrid Events', 'Stage, Backdrops & Entrances', 'Badges & Printed Material' ), 'https://wiseup.in/services/event-branding-agency-in-kerala/', 'Packaging Design & Events', 'event-branding' ),
 	array( 'Web Solutions', 'code', array( 'ERP Solutions', 'Business Websites', 'Online Stores' ), '', 'Web Development', 'web' ),
 );

@@ -1818,3 +1818,10 @@ html[data-svc-theme="light"] body .wu-mb section.wu-os:not(#_) .wu-os__card > a 
 html[data-svc-theme="light"] body .wu-mb .wu-os__ic { color: #4d6610 !important; }
 html[data-svc-theme="light"] body .wu-mb .wu-os__ic svg { stroke: #4d6610 !important; color: #4d6610 !important; }
 html[data-svc-theme="light"] body .wu-mb section.wu-os:not(#_) li.wu-os__card { background: transparent !important; box-shadow: none !important; border: 0 !important; }
+/* header black again in light mode (owner: "header black thanne mathi"): the white-header rules were removed from wiseup.css; on this
+   page the header keeps its night look (light-theme tokens would otherwise darken the CTA text and the call icon) */
+html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd {
+  --bg: #000; --card: #0e0e10; --ink: #f4f4f5; --ink-2: #c8c8cd; --mute: #8b8b92; --head-a: #fff; --sub-a: #a3a3a9; --edge: rgb(255 255 255 / .06); --edge-2: rgb(255 255 255 / .12); --teal-hi: #d8ec8a; }
+html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd .hd__logo img { filter: none !important; }
+html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd .hd__cta { color: #fff !important; }
+html[data-svc-theme="light"] body:has(.wu-mb) .wu-chrome .hd .hd__call { color: #beda52 !important; background: rgb(14 14 16 / .94) !important; }

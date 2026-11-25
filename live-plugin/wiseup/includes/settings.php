@@ -58,7 +58,7 @@ function wiseup_os_default_items() {
 		array( 'id' => 'seo', 'mode' => 'auto', 'title' => 'SEO Company', 'text' => 'Be found on Google, Bing and AI search with a plan built around your business.', 'url' => '', 'icon' => 'seo', 'tpl' => 'wiseup-seo', 'live' => 'https://wiseup.in/services/seo-company-in-kerala/' ),
 		array( 'id' => 'performance-marketing', 'mode' => 'auto', 'title' => 'Performance Marketing', 'text' => 'Paid advertising measured by enquiries, leads and sales, not just clicks.', 'url' => '', 'icon' => 'perf', 'tpl' => 'wiseup-performance-marketing,wiseup-performance', 'live' => 'https://wiseup.in/services/performance-marketing-agency-in-kerala/' ),
 		array( 'id' => 'branding', 'mode' => 'auto', 'title' => 'Branding', 'text' => 'Brand identity, logo, packaging and print, shaped by strategy and design.', 'url' => '', 'icon' => 'brand', 'tpl' => 'wiseup-branding', 'live' => '' ),
-		array( 'id' => 'media-buying', 'mode' => 'auto', 'title' => 'Media Buying', 'text' => 'Outdoor, print and theatre placements planned and bought across Kerala.', 'url' => '', 'icon' => 'mb', 'tpl' => 'wiseup-media-buying', 'live' => '' ),
+		array( 'id' => 'media-buying', 'mode' => 'auto', 'title' => 'Media Buying', 'text' => 'Outdoor, print and theatre placements planned and bought across Kerala.', 'url' => '', 'icon' => 'mb', 'tpl' => 'wiseup-media-buying', 'live' => 'https://wiseup.in/services/media-buying-agency/' ),
 		array( 'id' => 'event-branding', 'mode' => 'auto', 'title' => 'Event Branding', 'text' => 'One identity for your event, from the invitation to the stage backdrop.', 'url' => '', 'icon' => 'ev', 'tpl' => 'wiseup-event-branding', 'live' => 'https://wiseup.in/services/event-branding-agency-in-kerala/' ),
 	);
 }
