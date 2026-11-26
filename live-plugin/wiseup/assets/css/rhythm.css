@@ -163,5 +163,16 @@
 	html .pc-pitch__rows { gap: var(--wu-list); }
 }
 
+/* Footer contact column on phones (every template): phone, email and address one under another at the full column
+   width (the shared "2 links per row" rule for footer lists squeezed them into two narrow columns and broke the email
+   mid-word), and the seven social icons on one row, sized to fit the column. */
+@media (max-width: 767px) {
+	html .ft .ft__top .ft__follow ul.ft__contact.ft__contact { grid-template-columns: minmax(0, 1fr) !important; gap: 12px; } /* !important: wiseup.css forces two columns on every footer list with !important */
+	html .ft .ft__top .ft__follow ul.ft__contact a { overflow-wrap: anywhere; word-break: normal; }
+	html .ft .ft__top .ft__follow .ft__social.ft__social { display: flex; flex-wrap: nowrap; justify-content: flex-start; gap: 8px; }
+	html .ft .ft__top .ft__follow .ft__social .ft__soc.ft__soc { width: min(44px, calc((100vw - 2 * var(--gx, 20px) - 48px) / 7)) !important; height: auto !important; aspect-ratio: 1; flex: none; }
+	html .ft .ft__top .ft__follow .ft__social .ft__soc svg { width: 55%; height: 55%; }
+}
+
 /* Landing pages print their own document: no browser default margin around the page. */
 body.wu-landing { margin: 0; }
