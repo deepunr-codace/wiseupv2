@@ -11,13 +11,13 @@
  */
 @media (max-width: 767px) {
 	.wiseup-page-home {
-		--wu-sec: 48px;
+		--wu-sec: 40px;
 		--wu-block: 32px;
 		--wu-card: 24px;
 		--wu-pair: 16px;
 		--wu-list: 12px;
-		--wu-r: 24px;
-		--wu-r-sm: 18px;
+		--wu-r: 20px;
+		--wu-r-sm: 16px;
 	}
 
 	/* ---------- sections ---------- */
@@ -123,4 +123,37 @@
 	.wiseup-page-home .ft__top { row-gap: var(--wu-block); }
 	.wiseup-page-home .ft__follow { padding-top: var(--wu-block); }
 	.wiseup-page-home .ft__base { padding-top: var(--wu-block); padding-bottom: var(--wu-block); }
+
+	/* ================= WiseUp Layout System v1.0, XS (<768) =================
+	   20 side margin · 40 section padding (80 between sections) · eyebrow 28 tall → 16 → H2 32/40 → 16 → intro
+	   → 32 → content · cards p24 r20, 12 apart · buttons h52, full width, stacked 12 apart · inputs h56 r16
+	   · contact rows p16 r16 */
+	html body.wiseup-page-home { --gx: 20px; }
+
+	/* Hero: one screen tall; the wordmark, line and card strip sit as one group centred between the header and the
+	   bottom of the screen. */
+	.wiseup-page-home .hero--lunar.hero--lunar { height: 100svh; min-height: 620px; justify-content: center; padding-top: 154px; padding-bottom: 12px; } /* 68 header + 86: the strip box ends with its arrow row under the cards, so this centres what you see (wordmark top to card bottom) */
+	.wiseup-page-home .hero--lunar .strip { margin-top: 84px !important; } /* the tilted cards rise ~11px above the strip box: 84 leaves 32 under the line; !important beats wiseup.css (44px !important) */
+
+	/* headings */
+	html body.wiseup-page-home main :is(.sh__h, .seq__line) { font-size: 32px; line-height: 40px; font-weight: 500; letter-spacing: -0.03em; }
+	html body.wiseup-page-home main .eyebrow { min-height: 28px; box-sizing: border-box; }
+
+	/* buttons */
+	html body.wiseup-page-home main .b { min-height: 52px; padding: 0 28px; gap: 12px; font-size: 16px; font-weight: 600; }
+	html body.wiseup-page-home main :is(.seq__ctas, .work-more) { display: flex; flex-direction: column; flex-wrap: nowrap; align-items: stretch; gap: 12px; width: 100%; }
+	html body.wiseup-page-home main :is(.seq__ctas, .work-more) > .b { flex: none; width: 100%; padding: 0 28px; font-size: 16px; letter-spacing: 0; white-space: nowrap; }
+	html body.wiseup-page-home main :is(.roots-head, .tier) .b { width: 100%; }
+	html body.wiseup-page-home #contact .bform [data-form-submit] { align-self: stretch; justify-self: stretch; width: 100%; height: 52px; padding: 0 28px; font-size: 16px; margin-top: 12px; }
+
+	/* contact rows and form: each row as tall as its own text (they were all as tall as the 3-line address) */
+	html body.wiseup-page-home .contact__l .contact__rows { grid-auto-rows: auto; }
+	html body.wiseup-page-home .cta-row { padding: 16px; gap: 16px; border-radius: 16px; min-height: 0; height: auto; }
+	html body.wiseup-page-home .bfield :is(input, select) { height: 56px; padding: 0 20px; border-radius: 16px; }
+	html body.wiseup-page-home .bfield textarea { padding: 16px 20px; border-radius: 16px; }
+	html body.wiseup-page-home .bfield__chev { right: 20px; }
+
+	/* FAQ rows */
+	html body.wiseup-page-home .faq__q { padding: 24px; gap: 16px; }
+	html body.wiseup-page-home .faq__a { padding: 0 24px 24px; }
 }
