@@ -222,7 +222,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 			<div class="ev-hero__copy wd-wall__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Website Development Company in Kerala</h1>
 				<h2 class="ev-hero__h"><span class="sh__a">Websites Built for <br class="wd-br">Better Experiences</span> <span class="sh__b">and Business Performance.</span></h2>
-				<p class="ev-hero__p">WiseUp is a <strong>website development company in Kerala</strong>, based in Kozhikode, with web design and development backed by CodeAce's eight years of web engineering experience. We bring design, technology, and strategy together to build websites that communicate business offerings clearly, make navigation simple, and encourage enquiries or sales. From the first page to the final functionality, every element is planned around the website's purpose and business requirements.</p>
+				<p class="ev-hero__p">WiseUp is a website development company in Kerala, based in Kozhikode, with web design and development backed by CodeAce's eight years of web engineering experience. We bring design, technology, and strategy together to build websites that communicate business offerings clearly, make navigation simple, and encourage enquiries or sales. From the first page to the final functionality, every element is planned around the website's purpose and business requirements.</p>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Discuss a Website Project', 'teal', $wu_lead ); // phpcs:ignore ?>
 					<?php echo $wu_btn( 'View Our Work', 'night', 'href="#wd-work"' ); // phpcs:ignore ?>
