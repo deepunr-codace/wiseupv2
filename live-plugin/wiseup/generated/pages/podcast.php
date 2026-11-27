@@ -827,6 +827,9 @@ defined( 'ABSPATH' ) || exit;
 .pc-page .pc-hero__ml { font-family: 'Anek Malayalam', 'Noto Sans Malayalam', sans-serif; font-size: clamp(1.05rem, .92rem + .5vw, 1.35rem); font-weight: 500; line-height: 1.5; letter-spacing: 0; color: var(--ink-2, var(--ink)); }
 .pc-hero__ml mark { background: none; color: #beda52; font-weight: 700; }
 :root[data-theme='light'] .pc-hero__ml mark { color: #5e8a14; }
+.pc-page .pc-hero__ml.pc-hero__sub { font-family: var(--font); font-weight: 500; letter-spacing: -.01em; font-size: clamp(1.15rem, .95rem + .7vw, 1.6rem); }
+.pc-page .pc-hero h1 { font-size: clamp(2.3rem, 1.1rem + 3.7vw, 4.6rem); line-height: 1.02; letter-spacing: -.045em; white-space: nowrap; }
+.pc-page .pc-hero h1 em { display: block; }
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"PodcastSeries","name":"WiseUp Podcast","description":"A Malayalam business podcast with entrepreneurs, creators and changemakers who are building a better tomorrow.","url":"https://wiseup.in/podcast","image":"https://wiseup.in/podcast/banner.jpg","inLanguage":"ml","sameAs":["https://www.youtube.com/@WiseUpPodcast_"]}</script>
 	<div class="pc-page" data-mood="day">
 		<section class="sec pc-hero" id="top" aria-label="WiseUp Podcast">
@@ -844,16 +847,16 @@ defined( 'ABSPATH' ) || exit;
 						</p>
 					</div>
 					<h1 data-split="lines" data-intro data-delay="0.1">
-						The Malayalam Podcast for
+						Kerala’s Leading
 						<em>
-							Online Business
+							Business
 							<span class="nw">
-								Owners.
+								Podcast
 							</span>
 						</em>
 					</h1>
-					<p class="pc-hero__ml pc-ml" lang="ml" data-reveal="up" data-intro data-delay="0.2">
-						ഓൺലൈൻ ബിസിനസ്സ് വളർത്താൻ, ഇനി കാര്യങ്ങൾ കുറച്ചുകൂടി <mark>എളുപ്പം</mark>.
+					<p class="pc-hero__ml pc-hero__sub" data-reveal="up" data-intro data-delay="0.2">
+						Simplifying Your Path to <mark>Business Growth.</mark>
 					</p>
 					<div class="pc-hero__row" data-reveal="up" data-intro data-delay="0.3">
 						<a class="b b--teal" href="https://www.youtube.com/watch?v=h9kHyyUruSg" rel="noopener" target="_blank">
