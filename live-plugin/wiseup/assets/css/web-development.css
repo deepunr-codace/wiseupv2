@@ -1233,3 +1233,14 @@ html body .wu-wd .ev-sec .wd-st__s.is-on h3 { color: #fff; }
   html body .wu-wd .wd-flow__g + .wd-flow__g, html body .wu-wd .wd-flow__g--p { margin-top: 0; }
 }
 @media (max-width: 1023px) { html body .wu-wd .wd-flow__g li span { width: 38px !important; height: 38px !important; } html body .wu-wd .wd-flow__g li span img { width: 22px !important; height: 22px !important; } html body .wu-wd .wd-flow__g li { gap: 8px !important; padding: 5px 10px 5px 5px !important; } html body .wu-wd .wd-flow__g li b { font-size: 13.5px !important; overflow: visible; text-overflow: clip; } }
+
+/* ===== Mobile: extra tool so the technology grid is even; spider sits above the grid like on desktop ===== */
+.wu-wd .wd-flow__mob { display: none !important; }
+@media (max-width: 1023px) {
+  html body .wu-wd .wd-flow__mob { display: flex !important; }
+  html body .wu-wd .wd-flow--scatter .wd-flow__core.is-spider { display: block !important; position: relative !important; left: auto !important; top: auto !important; transform: none !important; width: 120px !important; height: 120px; margin: 4px auto 18px; background: none !important; box-shadow: none !important; }
+  html body .wu-wd .wd-flow--scatter { display: flex; flex-direction: column; }
+  html body .wu-wd .wd-flow--scatter .wd-flow__core.is-spider { order: -1; }
+  .wu-wd .wd-flow__sp img { width: 100%; height: 100%; animation: wd-sp-alive2 2.4s ease-in-out infinite; filter: drop-shadow(0 0 18px rgb(190 218 82 / .45)); }
+  .wu-wd .wd-flow__core.is-spider::before { content: ""; position: absolute; inset: -20%; border-radius: 50%; background: radial-gradient(closest-side, rgb(190 218 82 / .25), transparent); }
+}
