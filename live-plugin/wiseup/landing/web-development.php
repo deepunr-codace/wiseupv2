@@ -221,8 +221,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 		<div class="wrap wd-wall__wrap">
 			<div class="ev-hero__copy wd-wall__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Website Development Company in Kerala</h1>
-				<h2 class="ev-hero__h"><span class="sh__a">Websites Built for Better Experiences</span> <span class="sh__b">and Business Performance.</span></h2>
-				<p class="ev-hero__p">WiseUp is a website development company in Kerala, based in Kozhikode, with web design and development backed by CodeAce's eight years of web engineering experience. We bring design, technology, and strategy together to build websites that communicate business offerings clearly, make navigation simple, and encourage enquiries or sales. From the first page to the final functionality, every element is planned around the website's purpose and business requirements.</p>
+				<h2 class="ev-hero__h"><span class="sh__a">Websites Built for <br class="wd-br">Better Experiences</span> <span class="sh__b">and Business Performance.</span></h2>
+				<p class="ev-hero__p">WiseUp is a <strong>website development company in Kerala</strong>, based in Kozhikode, with web design and development backed by CodeAce's eight years of web engineering experience. We bring design, technology, and strategy together to build websites that communicate business offerings clearly, make navigation simple, and encourage enquiries or sales. From the first page to the final functionality, every element is planned around the website's purpose and business requirements.</p>
 				<div class="ev-btns">
 					<?php echo $wu_btn( 'Discuss a Website Project', 'teal', $wu_lead ); // phpcs:ignore ?>
 					<?php echo $wu_btn( 'View Our Work', 'night', 'href="#wd-work"' ); // phpcs:ignore ?>
@@ -268,18 +268,53 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 				</div>
 				<div class="ev-intro"><p>No two businesses have the same website requirements. Some need a clear online presence, while others need advanced functionality or a complete e-commerce experience. WiseUp provides website development services shaped around business objectives, audience expectations, and the features each project requires.</p></div>
 			</div>
-			<ol class="wd-svc">
-				<?php foreach ( $wu_services as $wu_i => $sv ) : ?>
-				<li class="wd-svc__it">
-					<span class="wd-svc__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $sv[1] ], 26, 1.5 ); // phpcs:ignore ?></span>
-					<div class="wd-svc__b">
-						<h3><?php echo esc_html( $sv[0] ); ?></h3>
-						<p><?php echo esc_html( $sv[2] ); ?></p>
-						<?php if ( $sv[3] ) : ?><ul class="wd-tags"><?php foreach ( $sv[3] as $t ) echo '<li>' . esc_html( $t ) . '</li>'; ?></ul><?php endif; ?>
+			<?php
+			// Fly-through: the section pins and scrolling moves the camera forward through website screens floating in depth;
+			// each service's screen arrives in front as its text comes in. Screens = the owner's real website screenshots.
+			$wu_zx_img  = array( 7, 1, 6, 5, 2, 3 ); // wd-zx-N.webp per service
+			$wu_zx_fill = array( 'case-gloveda.webp', 'case-kpg.webp', 'wd-xr-site-1000.webp', 'case-ceramicrooftiles.webp', 'case-smokehouse.jpg', 'case-erets.jpg' );
+			$wu_zx_pos  = array( array( 4, -2 ), array( -6, 3 ), array( 6, 1 ), array( -3, -3 ), array( 5, 3 ), array( -5, -1 ) ); // x / y offsets (vw / vh)
+			$wu_zx_fp   = array( array( -8, -24 ), array( 32, 20 ), array( 28, -22 ), array( -6, 24 ), array( 34, 16 ), array( 26, -20 ) );
+			?>
+			<div class="wd-zx" data-zx>
+				<div class="wd-zx__pin">
+					<div class="wd-zx__space" aria-hidden="true">
+						<?php foreach ( $wu_zx_fill as $wu_i => $f ) : ?>
+						<figure class="wd-zx__s wd-zx__s--fill" data-z="<?php echo esc_attr( $wu_i + .5 ); ?>" style="--x:<?php echo (int) $wu_zx_fp[ $wu_i ][0]; ?>;--y:<?php echo (int) $wu_zx_fp[ $wu_i ][1]; ?>"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/' . $f ); ?>" alt="" loading="lazy" decoding="async"></figure>
+						<?php endforeach; ?>
+						<?php foreach ( $wu_services as $wu_i => $sv ) : ?>
+						<figure class="wd-zx__s" data-z="<?php echo (int) $wu_i; ?>" style="--x:<?php echo (int) $wu_zx_pos[ $wu_i ][0]; ?>;--y:<?php echo (int) $wu_zx_pos[ $wu_i ][1]; ?>"><div class="wd-zx__bar"><i></i><i></i><i></i><span><?php echo esc_html( $sv[0] ); ?></span></div><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-zx-' . $wu_zx_img[ $wu_i ] . '.webp' ); ?>" alt="" width="1400" height="670" loading="lazy" decoding="async"></figure>
+						<?php endforeach; ?>
 					</div>
-				</li>
-				<?php endforeach; ?>
-			</ol>
+					<ol class="wd-zx__list">
+						<?php foreach ( $wu_services as $wu_i => $sv ) : ?>
+						<li class="wd-zx__it<?php echo 0 === $wu_i ? ' is-on' : ''; ?>">
+							<figure class="wd-zx__mini" aria-hidden="true"><div class="wd-zx__bar"><i></i><i></i><i></i><span><?php echo esc_html( $sv[0] ); ?></span></div><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-zx-' . $wu_zx_img[ $wu_i ] . '.webp' ); ?>" alt="" width="1400" height="670" loading="lazy" decoding="async"></figure>
+							<span class="wd-zx__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?> <i>/ <?php echo esc_html( sprintf( '%02d', count( $wu_services ) ) ); ?></i></span>
+							<h3><?php echo esc_html( $sv[0] ); ?></h3>
+							<p><?php echo esc_html( $sv[2] ); ?></p>
+						</li>
+						<?php endforeach; ?>
+					</ol>
+					<div class="wd-zx__nav" aria-label="Services"><?php foreach ( $wu_services as $wu_i => $sv ) : ?><button type="button" class="wd-zx__tb<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" data-k="<?php echo (int) $wu_i; ?>" aria-label="<?php echo esc_attr( $sv[0] ); ?>"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-zx-' . $wu_zx_img[ $wu_i ] . '.webp' ); ?>" alt="" loading="lazy" decoding="async"><i><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></i></button><?php endforeach; ?></div>
+				</div>
+			</div>
+			<script>(function(){
+var w=document.querySelector('[data-zx]');if(!w)return;
+var ss=[].slice.call(w.querySelectorAll('.wd-zx__s')),its=[].slice.call(w.querySelectorAll('.wd-zx__it')),tbs=[].slice.call(w.querySelectorAll('.wd-zx__tb')),N=its.length,D=800,p=0,tp=0,raf=0,on=false,cur=0;
+var ok=function(){return innerWidth>=1024&&!matchMedia('(prefers-reduced-motion: reduce)').matches;};
+var target=function(){var r=w.getBoundingClientRect(),len=w.offsetHeight-innerHeight;return Math.max(0,Math.min(1,-r.top/len))*(N-1+.75);};
+var draw=function(){raf=0;p+=(tp-p)*.12;if(Math.abs(tp-p)<.0005)p=tp;
+ss.forEach(function(s){var d=p-(+s.getAttribute('data-z')),z=d*D,o=d<0?Math.max(0,1+d*.3):d<.2?1:Math.max(0,1-(d-.2)/.3),b=d>.2?(d-.2)*22:d<-1.2?(-d-1.2)*1.4:0;
+s.style.transform='translate3d('+s.dataset.x+'vw,'+s.dataset.y+'vh,'+z.toFixed(1)+'px)';s.style.opacity=o.toFixed(3);s.style.filter=b>.05?'blur('+b.toFixed(1)+'px)':'';s.style.visibility=o<.01?'hidden':'';});
+var i=Math.max(0,Math.min(N-1,Math.round(p)));if(i!==cur){cur=i;its.forEach(function(e,k){e.classList.toggle('is-on',k===i)});tbs.forEach(function(e,k){e.classList.toggle('is-on',k===i)});}
+
+if(p!==tp)raf=requestAnimationFrame(draw);};
+var kick=function(){if(!on)return;tp=target();if(!raf)raf=requestAnimationFrame(draw);};
+var mode=function(){var m=ok();if(m===on)return;on=m;w.classList.toggle('is-3d',m);if(!m){ss.forEach(function(s){s.style.transform=s.style.opacity=s.style.filter=s.style.visibility=''});its.forEach(function(e){e.classList.add('is-on')});}else{its.forEach(function(e,k){e.classList.toggle('is-on',k===cur)});p=tp=target();draw();}};
+ss.forEach(function(s){s.dataset.x=s.style.getPropertyValue('--x').trim();s.dataset.y=s.style.getPropertyValue('--y').trim();});
+tbs.forEach(function(b,k){b.addEventListener('click',function(){var top=w.getBoundingClientRect().top+scrollY,len=w.offsetHeight-innerHeight;scrollTo({top:top+len*k/(N-1+.75)+2,behavior:'smooth'});});});mode();addEventListener('scroll',kick,{passive:true});addEventListener('resize',function(){mode();kick();});
+})();</script>
 		</div>
 	</section>
 
@@ -308,16 +343,33 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<h2 class="sh__h"><?php echo $wu_h( 'Platforms and Technologies', 'Behind Our Web Solutions' ); // phpcs:ignore ?></h2>
 				</div>
 			</div>
-			<div class="wd-stack">
-				<div class="wd-stack__g">
-					<h3>Website Platforms</h3>
-					<ul class="wd-logos"><?php foreach ( $wu_platforms as $l ) echo $wu_logo( $l ); // phpcs:ignore ?></ul>
-				</div>
-				<div class="wd-stack__g">
+			<?php
+			$wu_fl_t = array(); foreach ( $wu_tech as $wu_i => $l ) $wu_fl_t[] = 40 + $wu_i * 80;
+			$wu_fl_p = array( 100, 220, 340, 460 );
+			?>
+			<div class="wd-flow" data-flow>
+				<svg class="wd-flow__ln" viewBox="0 0 1200 560" aria-hidden="true">
+					<?php foreach ( $wu_fl_t as $wu_i => $y ) : $d = 'M178 ' . $y . ' C390 ' . $y . ' 420 280 560 280'; ?>
+					<path d="<?php echo esc_attr( $d ); ?>" class="b" data-t="<?php echo (int) $wu_i; ?>"/><path d="<?php echo esc_attr( $d ); ?>" class="p" style="--d:<?php echo esc_attr( $wu_i * .37 ); ?>s"/>
+					<?php endforeach; foreach ( $wu_fl_p as $wu_i => $y ) : $d = 'M640 280 C780 280 810 ' . $y . ' 1022 ' . $y; ?>
+					<path d="<?php echo esc_attr( $d ); ?>" class="b" data-p="<?php echo (int) $wu_i; ?>"/><path d="<?php echo esc_attr( $d ); ?>" class="p" style="--d:<?php echo esc_attr( 1.2 + $wu_i * .45 ); ?>s"/>
+					<?php endforeach; ?>
+				</svg>
+				<div class="wd-flow__g wd-flow__g--t">
 					<h3>Development Technologies</h3>
-					<ul class="wd-logos"><?php foreach ( $wu_tech as $l ) echo $wu_logo( $l ); // phpcs:ignore ?></ul>
+					<ul><?php foreach ( $wu_tech as $wu_i => $l ) : ?><li style="--y:<?php echo esc_attr( $wu_fl_t[ $wu_i ] / 5.6 ); ?>%" data-t="<?php echo (int) $wu_i; ?>"><b><?php echo esc_html( $l[0] ); ?></b><span><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ); ?>" alt="<?php echo esc_attr( $l[0] . ' logo' ); ?>" width="34" height="34" loading="lazy" decoding="async"></span></li><?php endforeach; ?></ul>
+				</div>
+				<div class="wd-flow__core" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 8.5h18"/><path d="m9.5 12-2 2 2 2M14.5 12l2 2-2 2"/></svg></div>
+				<div class="wd-flow__g wd-flow__g--p">
+					<h3>Website Platforms</h3>
+					<ul><?php foreach ( $wu_platforms as $wu_i => $l ) : ?><li style="--y:<?php echo esc_attr( $wu_fl_p[ $wu_i ] / 5.6 ); ?>%" data-p="<?php echo (int) $wu_i; ?>"><span><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ); ?>" alt="<?php echo esc_attr( $l[0] . ' logo' ); ?>" width="40" height="40" loading="lazy" decoding="async"></span><b><?php echo esc_html( $l[0] ); ?></b></li><?php endforeach; ?></ul>
 				</div>
 			</div>
+			<script>(function(){var w=document.querySelector('[data-flow]');if(!w)return;
+w.querySelectorAll('li[data-t],li[data-p]').forEach(function(li){var k=li.hasAttribute('data-t')?'data-t':'data-p',v=li.getAttribute(k),ln=w.querySelector('path.b['+k+'="'+v+'"]');
+li.addEventListener('mouseenter',function(){w.classList.add('is-hl');li.classList.add('is-on');ln&&ln.classList.add('is-on')});
+li.addEventListener('mouseleave',function(){w.classList.remove('is-hl');li.classList.remove('is-on');ln&&ln.classList.remove('is-on')});});
+if('IntersectionObserver' in window)new IntersectionObserver(function(es){w.classList.toggle('is-in',es[0].isIntersecting)},{threshold:.25}).observe(w);else w.classList.add('is-in');})();</script>
 		</div>
 	</section>
 
@@ -331,11 +383,23 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 				</div>
 				<div class="ev-intro"><p>A website's value goes beyond its appearance. Its underlying structure, loading speed and features all play a part in creating a smooth and reliable user experience. WiseUp considers these elements during the web development process.</p></div>
 			</div>
-			<ul class="wd-q">
-				<?php foreach ( $wu_quality as $q ) : ?>
-				<li><span class="wd-q__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $q[1] ], 26, 1.5 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $q[0] ); ?></h3><p><?php echo esc_html( $q[2] ); ?></p></li>
-				<?php endforeach; ?>
-			</ul>
+			<div class="wd-ly" data-ly>
+				<div class="wd-ly__scene" aria-hidden="true">
+					<div class="wd-ly__stack wd-ly__stack--img">
+						<img class="wd-ly__pl wd-ly__pl--top" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-ly-1.webp' ); ?>" alt="" width="900" height="725" loading="lazy" decoding="async" style="--k:0">
+						<?php foreach ( array( 2, 3, 4, 5 ) as $wu_k => $wu_n ) : ?><img class="wd-ly__pl" data-l="<?php echo (int) $wu_k; ?>" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-ly-' . $wu_n . '.webp' ); ?>" alt="" width="900" height="700" loading="lazy" decoding="async" style="--k:<?php echo (int) ( $wu_k + 1 ); ?>"><?php endforeach; ?>
+					</div>
+				</div>
+				<ol class="wd-ly__list">
+					<?php foreach ( $wu_quality as $wu_i => $q ) : ?>
+					<li class="wd-ly__it<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" data-i="<?php echo (int) $wu_i; ?>" tabindex="0"><span class="wd-ly__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><div><h3><?php echo esc_html( $q[0] ); ?></h3><p><?php echo esc_html( $q[2] ); ?></p></div></li>
+					<?php endforeach; ?>
+				</ol>
+			</div>
+			<script>(function(){var w=document.querySelector('[data-ly]');if(!w)return;var its=[].slice.call(w.querySelectorAll('.wd-ly__it')),pl=[].slice.call(w.querySelectorAll('.wd-ly__pl[data-l]')),hold=false;
+var set=function(i){its.forEach(function(e,k){e.classList.toggle('is-on',k===i)});pl.forEach(function(e){e.classList.toggle('is-on',+e.getAttribute('data-l')===i)});w.classList.add('has-on');};set(0);
+its.forEach(function(e,k){e.addEventListener('mouseenter',function(){hold=true;set(k)});e.addEventListener('mouseleave',function(){hold=false});e.addEventListener('focus',function(){set(k)});});
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(hold)return;es.forEach(function(e){if(e.isIntersecting)set(+e.target.getAttribute('data-i'))})},{rootMargin:'-45% 0px -45% 0px'});its.forEach(function(e){io.observe(e)});}})();</script>
 		</div>
 	</section>
 
@@ -369,11 +433,37 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 				</div>
 				<div class="ev-intro"><p>Website requirements change according to the nature of a business, the audience it serves and the actions visitors need to take. Different industries may require different layouts, features and content structures.</p></div>
 			</div>
-			<ul class="wd-ind">
-				<?php foreach ( $wu_ind as $ind ) : ?>
-				<li><span class="wd-ind__i" aria-hidden="true"><?php echo $wu_svg( $ind[2], 24, 1.6 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $ind[0] ); ?></h3><p><?php echo esc_html( $ind[1] ); ?></p></li>
-				<?php endforeach; ?>
-			</ul>
+			<div class="wd-dl" data-dl>
+				<div class="wd-dl__stick"><div class="wd-dl__ring" style="--n:<?php echo count( $wu_ind ); ?>">
+					<i class="wd-dl__ticks" aria-hidden="true"></i>
+					<i class="wd-dl__mark" aria-hidden="true"></i>
+					<div class="wd-dl__rot" role="tablist" aria-label="Industries">
+						<?php foreach ( $wu_ind as $wu_i => $ind ) : ?>
+						<button type="button" class="wd-dl__b<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" role="tab" id="wd-dl-t<?php echo (int) $wu_i; ?>" aria-controls="wd-dl-p<?php echo (int) $wu_i; ?>" aria-selected="<?php echo 0 === $wu_i ? 'true' : 'false'; ?>" style="--i:<?php echo (int) $wu_i; ?>"><span class="wd-dl__ic"><?php echo $wu_svg( $ind[2], 26, 1.5 ); // phpcs:ignore ?></span><span class="wd-dl__lb"><?php echo esc_html( $ind[0] ); ?></span></button>
+						<?php endforeach; ?>
+					</div>
+					<div class="wd-dl__core">
+						<?php foreach ( $wu_ind as $wu_i => $ind ) : ?>
+						<div class="wd-dl__p<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" role="tabpanel" id="wd-dl-p<?php echo (int) $wu_i; ?>" aria-labelledby="wd-dl-t<?php echo (int) $wu_i; ?>">
+							<span class="wd-dl__big" aria-hidden="true"><?php echo $wu_svg( $ind[2], 44, 1.3 ); // phpcs:ignore ?></span>
+							<h3><?php echo esc_html( $ind[0] ); ?></h3>
+							<p><?php echo esc_html( $ind[1] ); ?></p>
+						</div>
+						<?php endforeach; ?>
+					</div>
+				</div>
+			</div>
+			</div>
+			<script>(function(){var w=document.querySelector('[data-dl]');if(!w)return;var ring=w.querySelector('.wd-dl__ring'),bs=[].slice.call(w.querySelectorAll('.wd-dl__b')),ps=[].slice.call(w.querySelectorAll('.wd-dl__p')),n=bs.length,cur=-1,on=false,raf=0,p=0,tp=0;
+var show=function(i){if(i===cur)return;cur=i;bs.forEach(function(b,k){b.classList.toggle('is-on',k===i);b.setAttribute('aria-selected',k===i?'true':'false')});ps.forEach(function(e,k){e.classList.toggle('is-on',k===i)});};
+var rot=function(v){ring.style.setProperty('--r',(-v*360/n).toFixed(2)+'deg');show(Math.max(0,Math.min(n-1,Math.round(v))));};
+var len=function(){return w.offsetHeight-innerHeight;};
+var target=function(){var r=w.getBoundingClientRect();return Math.max(0,Math.min(1,-r.top/len()))*(n-1);};
+var draw=function(){raf=0;p+=(tp-p)*.14;if(Math.abs(tp-p)<.001)p=tp;rot(p);if(p!==tp)raf=requestAnimationFrame(draw);};
+var kick=function(){if(!on)return;tp=target();if(!raf)raf=requestAnimationFrame(draw);};
+var mode=function(){var m=!matchMedia('(prefers-reduced-motion: reduce)').matches;on=m;w.classList.toggle('is-pin',m);if(m){p=tp=target();rot(p);}else{rot(cur<0?0:cur);}};
+bs.forEach(function(b,k){b.addEventListener('click',function(){if(!on){rot(k);return;}var top=w.getBoundingClientRect().top+scrollY;scrollTo({top:top+len()*k/(n-1)+2,behavior:'smooth'});});});
+mode();addEventListener('scroll',kick,{passive:true});addEventListener('resize',function(){mode();kick();});})();</script>
 		</div>
 	</section>
 
@@ -431,9 +521,9 @@ w.addEventListener('pointerleave',function(){st.style.setProperty('--mx',0);st.s
 				</div>
 				<div class="ev-intro"><p>Choosing a website development company involves more than comparing designs or platforms. The development approach, technical decisions, and project communication also matter.</p></div>
 			</div>
-			<ul class="wd-pts wd-pts--why">
-				<?php foreach ( $wu_why as $d ) : ?>
-				<li><span class="wd-pts__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $d[1] ], 22, 1.6 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $d[0] ); ?></h3><p><?php echo esc_html( $d[2] ); ?></p></li>
+			<ul class="wd-wy">
+				<?php foreach ( $wu_why as $wu_i => $d ) : ?>
+				<li><span class="wd-wy__top"><span class="wd-wy__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $d[1] ], 24, 1.6 ); // phpcs:ignore ?></span><span class="wd-wy__n" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span></span><h3><?php echo esc_html( $d[0] ); ?></h3><p><?php echo esc_html( $d[2] ); ?></p></li>
 				<?php endforeach; ?>
 			</ul>
 		</div>
