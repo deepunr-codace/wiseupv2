@@ -165,6 +165,26 @@ function wiseup_landing_chrome_footer( $lead_source = '', $wp_footer = false ) {
 	echo '<script src="' . esc_url( wiseup_versioned( 'js/footer-wordmark.js' ) ) . '"></script>' . "\n";
 	?>
 <style>.wu-off, .wu-off *, .wu-off *::before, .wu-off *::after { animation-play-state: paused !important; }</style>
+<style>
+/* ===== Service pages on phones (2026-11-28): one type scale so section headings fit two lines, even spacing, AI Overview close button ===== */
+.wu-aio3__x{display:none}
+@media (max-width:767px){
+html body :is(.wu-ev,#wu-smm) :is(.sec,.ev-sec,section):not(.ev-hero):not(.wd-hero){padding-top:48px!important;padding-bottom:48px!important}
+html body :is(.wu-ev,#wu-smm) :is(.sh__h,h2.sh__h,.wu-smm-h2,section h2):not(.wu-aio3__q):not(.ev-hero__h):not(.wu-hero-title){font-size:24px!important;line-height:1.18!important;letter-spacing:-.035em!important;text-wrap:balance}
+html body .wu-ev section#choose .sh__h,html body .wu-ev .ev-sec h2.sh__h{font-size:24px!important}
+html body :is(.wu-ev,#wu-smm) :is(.sh__h,section h2) :is(.sh__a,.sh__b,span){font-size:inherit!important;line-height:inherit!important;letter-spacing:inherit!important}
+html body :is(.wu-ev,#wu-smm) :is(.ev-hero__h,.wu-hero-title,.wd-hero .ev-hero__h){font-size:30px!important;line-height:1.1!important;letter-spacing:-.035em!important;text-wrap:balance}
+html body :is(.wu-ev,#wu-smm) :is(.ev-hero__h,.wu-hero-title) :is(.sh__a,.sh__b,span){font-size:inherit!important;line-height:inherit!important}
+html body :is(.wu-ev,#wu-smm) :is(.ev-head,.sh){margin-bottom:24px!important}
+html body :is(.wu-ev,#wu-smm) .sh{gap:14px!important}
+html body :is(.wu-ev,#wu-smm) :is(.ev-intro p,.ev-head p,.sh + p){font-size:15.5px!important;line-height:1.65!important}
+html body :is(.wu-ev,#wu-smm) .ev-head{gap:16px!important}
+html body :is(.wu-ev,#wu-smm) section h3:not(.wu-aio3__q){text-wrap:balance}
+.wu-aio3 .wu-aio3__x{display:grid;place-items:center;position:sticky;top:10px;float:right;z-index:3;width:36px;height:36px;margin:10px 10px -46px 0;border:0;border-radius:50%;background:#26262b;color:#fff;cursor:pointer}
+.wu-aio3 .wu-aio3__q{padding-right:40px}
+body:has(.mb-sticky) .wu-aio3{bottom:92px!important}body:has(.mb-sticky) .wu-aio3 .wu-aio3__panel{bottom:148px!important;max-height:calc(100svh - 230px)!important}
+}
+</style>
 <script>
 // CSS animations in sections that are off screen are paused (they ran every frame, SVG ones on the main thread: a style
 // and layout pass per frame on every service page even when idle; PageSpeed, 2026-11-24). They carry on when the section comes near.
@@ -344,12 +364,12 @@ function wiseup_ai_overview( $o ) {
 @media (max-width:640px){.wu-aio3 .wu-aio3__panel,.wu-aio3.is-open .wu-aio3__panel{position:fixed!important;left:12px!important;right:12px!important;top:auto!important;bottom:70px!important;width:auto!important;max-height:calc(100svh - 150px)!important;overflow-y:auto!important;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;border-radius:22px!important;transform:none!important;clip-path:inset(100% 0 0 0 round 22px)!important;transition:clip-path .55s cubic-bezier(.22,1,.36,1)!important}.wu-aio3.is-open .wu-aio3__panel{clip-path:inset(0 0 0 0 round 22px)!important}}
 @media (prefers-reduced-motion:reduce){.wu-aio3,.wu-aio3__panel{transition:none}.wu-aio3__tab svg,.wu-aio3__tab i{animation:none}}
 </style>' . "\n";
-		echo '<script>(function(){var q=function(){document.querySelectorAll(".wu-aio3").forEach(function(b){if(b.dataset.done)return;b.dataset.done=1;b.classList.add("is-js");var show=function(){b.classList.add("is-in");};var t=setTimeout(show,2500);addEventListener("scroll",function(){if(scrollY>240){clearTimeout(t);show();}},{passive:true,once:true});var tab=b.querySelector(".wu-aio3__tab");tab.addEventListener("click",function(){var o=b.classList.toggle("is-open");tab.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(e){if(!b.contains(e.target)){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});document.addEventListener("keydown",function(e){if(e.key==="Escape"){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});b.querySelectorAll(".wu-aio3__cta").forEach(function(c){c.addEventListener("click",function(){b.classList.remove("is-open");});});});};if(document.readyState!=="loading")q();else document.addEventListener("DOMContentLoaded",q);})();</script>' . "\n";
+		echo '<script>(function(){var q=function(){document.querySelectorAll(".wu-aio3").forEach(function(b){if(b.dataset.done)return;b.dataset.done=1;b.classList.add("is-js");var show=function(){b.classList.add("is-in");};var t=setTimeout(show,2500);addEventListener("scroll",function(){if(scrollY>240){clearTimeout(t);show();}},{passive:true,once:true});var tab=b.querySelector(".wu-aio3__tab");tab.addEventListener("click",function(){var o=b.classList.toggle("is-open");tab.setAttribute("aria-expanded",o?"true":"false");});document.addEventListener("click",function(e){if(!b.contains(e.target)){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});document.addEventListener("keydown",function(e){if(e.key==="Escape"){b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");}});b.querySelectorAll(".wu-aio3__x").forEach(function(x){x.addEventListener("click",function(e){e.stopPropagation();b.classList.remove("is-open");tab.setAttribute("aria-expanded","false");});});b.querySelectorAll(".wu-aio3__cta").forEach(function(c){c.addEventListener("click",function(){b.classList.remove("is-open");});});});};if(document.readyState!=="loading")q();else document.addEventListener("DOMContentLoaded",q);})();</script>' . "\n";
 	}
 	$spark  = '<svg viewBox="0 0 24 24" fill="#beda52" aria-hidden="true"><path d="M12 2c.6 5.4 4.6 9.4 10 10-5.4.6-9.4 4.6-10 10-.6-5.4-4.6-9.4-10-10 5.4-.6 9.4-4.6 10-10Z"/></svg>';
 	$points = isset( $o['points'] ) ? $o['points'] : array();
 	echo '<aside class="wu-aio3" aria-label="AI Overview">';
-	echo '<div class="wu-aio3__panel" id="wu-aio3-panel"><div class="wu-aio3__in"><h2 class="wu-aio3__q">' . esc_html( $o['q'] ) . '</h2>';
+	echo '<div class="wu-aio3__panel" id="wu-aio3-panel"><button type="button" class="wu-aio3__x" aria-label="Close AI Overview"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button><div class="wu-aio3__in"><h2 class="wu-aio3__q">' . esc_html( $o['q'] ) . '</h2>';
 	echo '<p class="wu-aio3__a">' . wp_kses( $o['a'], $allowed ) . '</p>';
 	if ( $points ) {
 		echo '<ul class="wu-aio3__pts">';
