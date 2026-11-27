@@ -1,7 +1,8 @@
 <?php
 /**
  * Website Development Company in Kerala ("WiseUp: Web Development" in the page Template dropdown).
- * Structure = the owner's brief (Downloads/website development company in kerala.docx, 2026-11-26): its headings, order,
+ * Copy = the owner's final content (Downloads/website development company in kerala (1).docx, 2026-11-27), word for word.
+ * Earlier structure = the owner's brief (Downloads/website development company in kerala.docx, 2026-11-26): its headings, order,
  * hook line and CTA labels are used as given; the doc gives writer instructions, not copy, so the body copy is written from them.
  * First pass: the structure in the shared service-page design system (event-branding.css, digital-marketing.css, branding.css,
  * service-system.css) plus this page's own pieces in assets/css/web-development.css (.wd-*). Creative pass to follow.
@@ -79,12 +80,12 @@ $wu_icons = array(
 
 // Services (doc H3s, 40-60 words each): [ title, icon, text, platform tags ].
 $wu_services = array(
-	array( 'Custom Website Development', 'code', 'Some businesses need more than a standard template can offer. We plan custom websites around the way your business works: the layouts, features, user journeys and functionality the project calls for. Our development team builds them with the technologies we work with every day, so the website fits your requirements today and leaves room to grow.', array( 'Laravel', 'React', 'Next.js' ) ),
-	array( 'WordPress Website Development', 'wp', 'WordPress suits business websites that need regular content updates. We build on themes or custom designs, add the plugins the site needs and set up the content management system so your team can edit pages, publish posts and update details without touching code.', array( 'WordPress' ) ),
-	array( 'E-commerce Website Development', 'cart', 'An online store has to make buying simple. We set up the product catalogue, product pages, shopping cart, payment gateway integration and order management, and organise categories and checkout so customers can find a product and complete a purchase without friction. We build stores on Shopify and WooCommerce.', array( 'Shopify', 'WooCommerce' ) ),
-	array( 'Business and Corporate Website Development', 'office', 'Websites for businesses, professional services and corporate organisations, planned so visitors find what they came for. Services, company information, contact details and enquiry options are organised into clear layouts that make the business easy to understand and easy to contact.', array() ),
-	array( 'Landing Page Development', 'target', 'A landing page has one job. We build campaign-specific pages with focused messaging, a clear layout, forms and calls to action, for advertising campaigns, product promotions and lead generation, so the people who click an ad arrive on a page built to turn their interest into an enquiry.', array() ),
-	array( 'Website Redesign and Development', 'refresh', 'An existing website can be redesigned to improve its layout, usability, mobile experience and functionality. Where a site is moving to a new design or platform, we migrate the content and keep important existing pages and URLs in place where required, so what already works is not lost.', array() ),
+	array( 'Custom Website Development', 'code', 'Some projects need more than a standard template. Custom website development makes it possible to create layouts, features, and functionality around specific business requirements. From the initial structure to the final build, each element is planned to support the website\'s purpose and provide a consistent experience for visitors.', array() ),
+	array( 'WordPress Website Development', 'wp', 'WordPress provides a flexible platform for business websites, service pages and content-driven websites. WiseUp develops WordPress websites with customised layouts, suitable themes and relevant plugins. The content management system also makes it easier for authorised users to update website pages, images and other content without changing the underlying website structure.', array() ),
+	array( 'E-commerce Website Development', 'cart', 'An online store needs more than an attractive product display. It needs a smooth shopping experience from product browsing to checkout. WiseUp works on e-commerce website design and development, including product catalogues, product pages, shopping carts, and payment gateway integration. Platforms such as Shopify and WooCommerce can support different online store requirements.', array() ),
+	array( 'Business and Corporate Website Development', 'office', 'A business website should make company information easy to find and understand. WiseUp develops websites for businesses and professional organisations, with dedicated sections for services, company information, projects and contact details. Clear page structures and enquiry options help visitors find relevant information and take the next step.', array() ),
+	array( 'Landing Page Development', 'target', 'A landing page gives a specific campaign, service or promotion a focused online destination. Its content and layout are organised around a clear message and action. WiseUp develops landing pages with relevant information, engaging visuals, enquiry forms and calls to action to support advertising campaigns and lead generation.', array() ),
+	array( 'Website Redesign and Development', 'refresh', 'An outdated website can make information difficult to access and affect the overall browsing experience. A redesign can improve page layouts, navigation, mobile responsiveness and functionality while retaining relevant content. Where required, the process can also include content migration and careful handling of existing URLs.', array() ),
 );
 
 // Design that makes navigation feel natural (doc points): [ title, icon, text ].
@@ -103,62 +104,64 @@ $wu_tech      = array( array( 'HTML', 'l-html-5.svg' ), array( 'CSS', 'l-css-3.s
 
 // What goes into a well-developed website (doc H3s): [ title, icon, text ].
 $wu_quality = array(
-	array( 'Responsive Website Structure', 'devices', 'Layouts adapt to each screen size, so the website stays usable on mobile and the navigation stays consistent whether a visitor arrives on a phone, a tablet or a desktop.' ),
-	array( 'Website Speed and Performance', 'speed', 'Optimised images, efficient code and careful use of scripts keep pages loading quickly. A slow page loses visitors before they have read a word, so performance is considered throughout development.' ),
-	array( 'SEO-Friendly Website Structure', 'search', 'Clean URLs, page titles, meta descriptions, a proper heading hierarchy, an XML sitemap and crawlable pages give search engines a clear structure to work with. These foundations support search engine discovery; they do not guarantee rankings on their own.' ),
-	array( 'Security and Functionality', 'shield', 'SSL, secure forms, regular updates and suitable security measures protect the website and its visitors. Before launch, we test forms, links, navigation and integrations to make sure everything works as intended.' ),
+	array( 'Responsive Website Structure', 'devices', 'A well-designed website adjusts to different screen sizes while keeping its content clear and easy to navigate. Responsive development supports a consistent experience across desktops, tablets, and mobile phones.' ),
+	array( 'Website Speed and Performance', 'speed', 'Slow-loading pages can interrupt the browsing experience. Image optimisation, efficient code and suitable development practices help improve loading performance and make website interactions smoother.' ),
+	array( 'SEO-Friendly Website Structure', 'search', 'Search-friendly development starts with a clear page hierarchy, descriptive URLs, suitable metadata, and crawlable content. Elements such as heading structures and XML sitemaps also support search engine discovery. These elements support SEO but don\'t guarantee rankings.' ),
+	array( 'Security and Functionality', 'shield', 'Website security and reliable functionality are important throughout development. SSL configuration, secure forms, and relevant updates help protect website interactions. Testing also checks links, navigation, forms, and integrations before launch.' ),
 );
 
 // Process (doc): [ title, icon, text ].
 $wu_process = array(
-	array( 'Requirement Gathering', 'chat', 'We start by understanding your business objectives, your target audience, what the website needs to do and the functionality you expect.' ),
-	array( 'Planning and Structure', 'map', 'We plan the sitemap, page hierarchy, content requirements and the user journey, so the website has a clear structure before any design begins.' ),
-	array( 'Design and Prototyping', 'pen', 'We develop the layouts and design concepts and share them with you for review and approval.' ),
-	array( 'Website Development', 'code', 'We build the approved design, integrate the required features and configure the selected platform.' ),
-	array( 'Testing and Review', 'check', 'We test responsiveness, forms, links, functionality, browser compatibility and performance, and fix what needs fixing.' ),
-	array( 'Launch and Handover', 'rocket', 'We publish the website and, where it is part of the service, give you the access and guidance you need to manage it.' ),
+	array( 'Requirement Gathering', 'chat', 'The process begins with business objectives, audience expectations, website requirements, and the functionality needed for the project.' ),
+	array( 'Planning and Structure', 'map', 'The sitemap, page hierarchy, content requirements, and user journey are mapped out to establish a clear website structure.' ),
+	array( 'Design and Prototyping', 'pen', 'Page layouts and design concepts are prepared for review. This stage helps establish the visual direction and structure before development begins.' ),
+	array( 'Website Development', 'code', 'The approved designs are developed using the selected platform and technologies. Required features, integrations, and content management functions are configured as part of the build.' ),
+	array( 'Testing and Review', 'check', 'The website is checked across different screen sizes and browsers. Forms, links, navigation, functionality, and performance are reviewed before launch.' ),
+	array( 'Launch and Handover', 'rocket', 'Once approved, the website is made ready for publication. Access details and guidance for managing website content can be provided as part of the agreed handover.' ),
 );
 
 // Industries (doc): [ name, text, icon paths ].
 $wu_ind = array(
-	array( 'E-commerce and Retail', 'Product catalogues, shopping experiences and online payments.', '<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>' ),
-	array( 'Education and Training', 'Course information, admission enquiries and registration features.', '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>' ),
-	array( 'Healthcare and Wellness', 'Service information, appointment enquiries and accessible navigation.', '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M7 11h3l1.5-2 2 4 1.5-2h2"/>' ),
-	array( 'Real Estate', 'Property listings, project details and enquiry forms.', '<path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/>' ),
-	array( 'Hospitality and Travel', 'Service pages, booking enquiries and location information.', '<path d="M3 18h18M5 18v-5a7 7 0 0 1 14 0v5M12 6V4M10 4h4"/>' ),
-	array( 'B2B and Professional Services', 'Service descriptions, company profiles and lead generation forms.', '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/>' ),
+	array( 'E-commerce and Retail', 'Product catalogues, shopping carts, payment options and online purchasing experiences.', '<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>' ),
+	array( 'Education and Training', 'Course information, programme pages, admission enquiries and registration features.', '<path d="m2 9 10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/>' ),
+	array( 'Healthcare and Wellness', 'Service information, practitioner profiles, appointment enquiries and accessible navigation.', '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/><path d="M7 11h3l1.5-2 2 4 1.5-2h2"/>' ),
+	array( 'Real Estate', 'Property listings, project information, image galleries and enquiry forms.', '<path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-6h6v6"/>' ),
+	array( 'Hospitality and Travel', 'Accommodation or service details, location information and booking enquiries.', '<path d="M3 18h18M5 18v-5a7 7 0 0 1 14 0v5M12 6V4M10 4h4"/>' ),
+	array( 'B2B and Professional Services', 'Company profiles, service pages, project information and business enquiry forms.', '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2M3 13h18"/>' ),
 );
 
 // Projects (website work already shown on the SEO page; figures from the CodeAce Website & SEO brochure):
 // [ name, industry, website type, platform, what we delivered, figure, figure label, image (plugin path), logo (plugin path) ].
 $wu_projects = array(
-	array( 'Gloveda', 'Health and personal care', 'E-commerce store', 'Shopify', 'Online store with product pages, cart and checkout, plus digital marketing.', '900+', 'Orders in the first 3 months', 'assets/landing/img/case-gloveda.webp', '' ),
-	array( 'Leyali', 'Retail', 'E-commerce store', 'Shopify', 'Shopify store with a streamlined shopping experience.', '', '', '', 'assets/clients/client-logos-2026/leyali.webp', 'dark' ),
-	array( 'Ikayaa Food Products', 'Food exports', 'B2B export website', '', 'Export-focused business website supporting expansion into new markets.', '15+', 'International markets', '', 'assets/clients/client-logos-2026/ikayaa.webp' ),
-	array( 'KPG Roofings', 'Roofing and building materials', 'Corporate website', '', 'Corporate website and digital presence for a showroom network.', '45+', 'Showrooms connected online', 'assets/landing/img/case-kpg.webp', '' ),
+	array( 'KPG Roofings', '', '', '', '', '', '', 'assets/landing/img/case-kpg.webp', '' ),
+	array( 'Ceramic Roof Tiles', '', '', '', '', '', '', 'assets/landing/img/case-ceramicrooftiles.webp', '' ),
+	array( 'Inchub', '', '', '', '', '', '', '', '' ),
+	array( 'Gloveda', '', '', '', '', '', '', 'assets/landing/img/case-gloveda.webp', '' ),
+	array( 'Leyali', '', '', '', '', '', '', '', 'assets/clients/client-logos-2026/leyali.webp', 'dark' ),
+	array( 'Ikayaa Food Products', '', '', '', '', '', '', '', 'assets/clients/client-logos-2026/ikayaa.webp' ),
 );
 
 // Why WiseUp (doc H3s): [ title, icon, text ].
 $wu_why = array(
-	array( 'Development Aligned with Business Requirements', 'target', 'Website structure and functionality are planned around the purpose of each project, not taken from a fixed template.' ),
-	array( 'Design and Development Under One Approach', 'stack', 'Our designers and developers work as one team, backed by CodeAce, our parent company with eight years of web engineering, so visual design, user experience and code are planned together.' ),
-	array( 'Practical Platform Selection', 'wp', 'We recommend a platform based on what the website needs to do and how it may grow, whether that is WordPress, Shopify, WooCommerce or a custom build.' ),
-	array( 'Focus on User Experience', 'users', 'Responsive layouts, clear navigation and accessible content come first, on every page.' ),
-	array( 'Search-Friendly Technical Foundations', 'search', 'Website structure, metadata, mobile responsiveness and performance are considered during development, not added afterwards.' ),
-	array( 'Project Communication and Support', 'chat', 'You see progress at each stage, review designs before they are built and get a proper handover at launch. Post-launch support is agreed with you as part of the project scope.' ),
+	array( 'Built Around Business Requirements', 'target', 'Website structure and functionality are planned around the purpose of each project, rather than relying on a standard layout for every business.' ),
+	array( 'Design and Development Together', 'stack', 'Visual design, user experience, and technical development are considered as connected parts of the website creation process.' ),
+	array( 'The Right Platform for the Website', 'wp', 'Platform and technology choices are based on project requirements, content management needs, and the functionality involved.' ),
+	array( 'User-Friendly Website Design', 'users', 'Responsive layouts, clear navigation and organised content make it easier for visitors to move through the website.' ),
+	array( 'SEO-Friendly Development', 'search', 'Technical foundations such as page structure, metadata and mobile responsiveness are considered during development to support search engine discovery.' ),
+	array( 'Clear Communication and Support', 'chat', 'Project requirements, feedback, and development updates are communicated throughout the process. Handover and post-launch support are discussed according to the agreed project scope.' ),
 );
 
 $wu_faq = array(
-	array( 'How much does website development cost in Kerala?', 'The cost depends on the type of website, the number of pages, the features and integrations it needs and the platform it is built on. A landing page and a custom e-commerce website are very different projects, so we share a plan and a quote once we understand your requirements.' ),
-	array( 'How long does it take to develop a business website?', 'The timeline depends on the scope of the website, the features involved, how quickly content is ready and the review rounds. Once the requirements are clear, we share a project plan with the stages and an expected timeline, so you know what happens and when.' ),
-	array( 'What is the difference between WordPress and Shopify?', 'WordPress is a content management system suited to business websites, blogs and content-led sites, and can run an online store with WooCommerce. Shopify is a hosted platform built for online stores. The right choice depends on what you sell and how you want to manage the website.' ),
-	array( 'Can you develop a custom website based on my requirements?', 'Yes. Custom websites are planned around your business requirements, including the layout, features, user journeys and integrations it needs. We recommend the technology for the project after understanding what the website has to do, rather than fitting your business into a fixed template.' ),
-	array( 'Do you develop e-commerce websites with payment gateway integration?', 'Yes. We develop online stores with product catalogues, product pages, shopping carts, order management and payment gateway integration. We build e-commerce websites on Shopify and WooCommerce, and choose the payment gateway setup based on your business and the platform used.' ),
-	array( 'Will my website work on mobile phones and tablets?', 'Yes. Every website we develop is responsive, so its layouts adapt to mobile phones, tablets and desktop screens. We test the website on different screen sizes and browsers before launch to check that navigation, content and forms work properly on each device.' ),
-	array( 'Can I update website content without technical knowledge?', 'On content-managed websites, such as those built on WordPress or Shopify, your team can update text, images, products and posts through the dashboard without writing code. We provide guidance on managing the website as part of the handover, where included in the project.' ),
-	array( 'Can you redesign or migrate my existing website?', 'Yes. We can redesign an existing website to improve its layout, usability, mobile experience and functionality, and migrate content to a new design or platform. Where required, we keep important existing pages and URLs in place so that the move does not lose what already works.' ),
-	array( 'Do you provide website maintenance and technical support after launch?', 'Post-launch support can be included in the project scope. What it covers, such as updates, technical fixes or content changes, is agreed with you before the project begins, so you know what support is available once the website is live.' ),
-	array( 'Do you include SEO-friendly structure during website development?', 'Yes. We build in clean URLs, page titles, meta descriptions, a proper heading hierarchy, an XML sitemap and crawlable pages. These technical foundations help search engines discover the website. Ongoing search visibility is the work of our separate SEO service.' ),
+	array( 'How much does website development cost in Kerala?', 'Website development in Kerala typically costs ₹10,000 to ₹1,00,000 for small and mid-sized business websites. E-commerce websites can cost ₹25,000 to ₹2,00,000 or more, while complex web applications and portals may range from ₹2,00,000 to ₹10,00,000+. The final cost depends on the website type, design, features, integrations, and development requirements. Domain renewal, hosting, maintenance, and premium plugins may involve additional costs.' ),
+	array( 'What is the typical timeline for building a business website?', 'A basic business website may take a few weeks to complete, while larger websites with custom designs, multiple pages or advanced functionality can take longer. The timeline depends on the project scope, content readiness and feedback during development.' ),
+	array( 'What is the difference between WordPress and Shopify?', 'WordPress is a flexible content management platform suited to business websites, blogs, and customised websites. Shopify is an e-commerce platform designed to manage online stores, products, payments and orders.' ),
+	array( 'Can a website be developed based on specific business requirements?', 'Yes. Custom website development allows the design, structure, features, and functionality to be planned around specific business needs, rather than relying entirely on a standard template.' ),
+	array( 'Can an e-commerce website include payment gateway integration?', 'Yes. E-commerce websites can include payment gateway integration to accept online payments. Other features may include product catalogues, inventory management, order tracking and shipping integrations, depending on the project requirements.' ),
+	array( 'Will the website work on mobile phones and tablets?', 'A responsive website adjusts its layout and content to different screen sizes. This allows visitors to browse and interact with the website across desktops, tablets and mobile phones.' ),
+	array( 'Can website content be updated without technical knowledge?', 'Yes. Websites built with a content management system (CMS), such as WordPress, allow authorised users to update text, images, pages and other content through an administrative dashboard.' ),
+	array( 'Can an existing website be redesigned or migrated?', 'Yes. An existing website can be redesigned to improve its appearance, navigation, usability and functionality. Website migration can also move content and relevant data to a new platform or hosting environment, depending on the existing setup.' ),
+	array( 'Is website maintenance required after launch?', 'Yes. Regular maintenance helps keep a website updated, secure, and functional. It may include software updates, backups, security checks, bug fixes, and performance monitoring.' ),
+	array( 'Does website development include SEO?', 'SEO-friendly development can include a clear website structure, mobile responsiveness, fast-loading pages, search-friendly URLs, and technical elements that support crawling and indexing. Ongoing SEO activities, such as content optimisation and link building, are generally handled separately.' ),
 );
 add_action( 'wp_head', function () use ( $wu_faq ) {
 	$items = array();
@@ -171,7 +174,8 @@ $wu_map  = wiseup_opt( 'contact_map' );
 $wu_logo = function ( $l ) { return '<li class="wd-logo"><span class="wd-logo__i"><img src="' . esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ) . '" alt="' . esc_attr( $l[0] . ' logo' ) . '" width="40" height="40" loading="lazy" decoding="async"></span><b>' . esc_html( $l[0] ) . '</b></li>'; };
 
 $wu_shot = function ( $pj, $lazy ) {
-	if ( $pj[7] ) return '<img src="' . esc_url( WISEUP_URL . $pj[7] ) . '" alt="' . esc_attr( $pj[0] . ' ' . strtolower( $pj[2] ) . ' by WiseUp' ) . '" width="720" height="540" ' . ( $lazy ? 'loading="lazy" ' : '' ) . 'decoding="async">';
+	if ( $pj[7] ) return '<img src="' . esc_url( WISEUP_URL . $pj[7] ) . '" alt="' . esc_attr( $pj[0] . ' website project by WiseUp' ) . '" width="720" height="540" ' . ( $lazy ? 'loading="lazy" ' : '' ) . 'decoding="async">';
+	if ( ! $pj[8] ) return '<span class="wd-logo-shot is-name"><b>' . esc_html( $pj[0] ) . '</b></span>'; // no image on file yet
 	return '<span class="wd-logo-shot' . ( ! empty( $pj[9] ) ? ' is-dark' : '' ) . '"><img src="' . esc_url( WISEUP_URL . $pj[8] ) . '" alt="' . esc_attr( $pj[0] . ' logo, website project by WiseUp' ) . '" ' . ( $lazy ? 'loading="lazy" ' : '' ) . 'decoding="async"></span>';
 };
 
@@ -218,9 +222,9 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 			<div class="ev-hero__copy wd-wall__copy">
 				<h1 class="eyebrow dm-hero__pill"><span class="eyebrow__dot" aria-hidden="true"></span>Website Development Company in Kerala</h1>
 				<h2 class="ev-hero__h"><span class="sh__a">Websites Built for Better Experiences</span> <span class="sh__b">and Business Performance.</span></h2>
-				<p class="ev-hero__p">WiseUp is a website development company in Kerala, based in Kozhikode, with web design and development backed by CodeAce, our parent company's eight years of web engineering. A well-planned website explains what your business offers, makes it easy for visitors to find what they need and turns that visit into an enquiry or a sale. We design and build websites with that purpose from the first page.</p>
+				<p class="ev-hero__p">WiseUp is a website development company in Kerala, based in Kozhikode, with web design and development backed by CodeAce's eight years of web engineering experience. We bring design, technology, and strategy together to build websites that communicate business offerings clearly, make navigation simple, and encourage enquiries or sales. From the first page to the final functionality, every element is planned around the website's purpose and business requirements.</p>
 				<div class="ev-btns">
-					<?php echo $wu_btn( 'Discuss Your Website', 'teal', $wu_lead ); // phpcs:ignore ?>
+					<?php echo $wu_btn( 'Discuss a Website Project', 'teal', $wu_lead ); // phpcs:ignore ?>
 					<?php echo $wu_btn( 'View Our Work', 'night', 'href="#wd-work"' ); // phpcs:ignore ?>
 				</div>
 			</div>
@@ -251,7 +255,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 		array( 'Where', 'Based in Kozhikode (Calicut), working with businesses across Kerala.' ),
 	),
 	'links'  => array( array( 'Services', '#wd-services' ), array( 'Technologies', '#wd-tech' ), array( 'Process', '#wd-process' ), array( 'FAQ', '#faq' ) ),
-	'cta'    => 'Discuss Your Website',
+	'cta'    => 'Discuss a Website Project',
 ) ); ?>
 
 	<!-- 2. Services -->
@@ -262,7 +266,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<?php echo $wu_eyebrow( 'Services' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Website Development Services', 'for Different Business Needs' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>Every website starts with what the business needs it to do. WiseUp develops websites around your requirements, what your audience expects and the functionality each project needs, from a single landing page to a complete online store.</p></div>
+				<div class="ev-intro"><p>No two businesses have the same website requirements. Some need a clear online presence, while others need advanced functionality or a complete e-commerce experience. WiseUp provides website development services shaped around business objectives, audience expectations, and the features each project requires.</p></div>
 			</div>
 			<ol class="wd-svc">
 				<?php foreach ( $wu_services as $wu_i => $sv ) : ?>
@@ -288,15 +292,10 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<h2 class="sh__h"><?php echo $wu_h( 'Website Design That Makes', 'Navigation Feel Natural' ); // phpcs:ignore ?></h2>
 				</div>
 				<div class="br-split__tx">
-					<p class="br-lead">Visitors decide quickly whether a website is worth their time. Design and usability shape that decision: how a page is laid out, how easy the next step is to find and how comfortable the content is to read.</p>
-					<p>We design layouts with a clear information hierarchy and navigation that shows people where to go, and make every page responsive across desktop, tablet and mobile. Readable typography, consistent visuals and suitable imagery keep the experience steady from page to page, while accessible, intuitive interactions make forms and buttons work the way visitors expect. The design also follows your business's visual identity, so the website feels like part of the same brand your customers already know.</p>
+					<p class="br-lead">Good website design is not only about appearance. It is also about how easily visitors can move through a website and find the information they need. WiseUp brings web design and development together to create experiences that feel clear and consistent.</p>
+					<p>Page layouts, navigation and information hierarchy are planned to make content easy to follow. Responsive design helps maintain usability across desktops, tablets and mobile devices. Typography, imagery, colours and visual elements are selected to create a consistent look, while intuitive interactions make important information and actions easier to access.</p>
 				</div>
 			</div>
-			<ul class="wd-pts">
-				<?php foreach ( $wu_design as $d ) : ?>
-				<li><span class="wd-pts__i" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $d[1] ], 22, 1.6 ); // phpcs:ignore ?></span><h3><?php echo esc_html( $d[0] ); ?></h3><p><?php echo esc_html( $d[2] ); ?></p></li>
-				<?php endforeach; ?>
-			</ul>
 		</div>
 	</section>
 
@@ -308,7 +307,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<?php echo $wu_eyebrow( 'Technologies' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Platforms and Technologies', 'Behind Our Web Solutions' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>We choose the platform for each website based on what it needs to do. Content-led business websites often suit WordPress, online stores suit Shopify or WooCommerce, and projects with specific features may need a custom build. These are the platforms and technologies our development team works with; not every project uses the same stack.</p></div>
 			</div>
 			<div class="wd-stack">
 				<div class="wd-stack__g">
@@ -331,7 +329,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<?php echo $wu_eyebrow( 'Quality' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'What Goes Into a', 'Well-Developed Website?' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>A website can look finished and still fall short. Much of its quality sits underneath the design: how it adapts to screens, how fast it loads, how clearly search engines can read it and how safely it handles visitors' information.</p></div>
+				<div class="ev-intro"><p>A website's value goes beyond its appearance. Its underlying structure, loading speed and features all play a part in creating a smooth and reliable user experience. WiseUp considers these elements during the web development process.</p></div>
 			</div>
 			<ul class="wd-q">
 				<?php foreach ( $wu_quality as $q ) : ?>
@@ -349,7 +347,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<?php echo $wu_eyebrow( 'Process' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'From First Discussion', 'to Website Launch' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>Every project follows the same clear sequence, from understanding what you need to handing over a live website. You review the work at each stage, so there are no surprises at launch.</p></div>
 			</div>
 			<div class="dm-tl" data-tl>
 				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
@@ -370,7 +367,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<?php echo $wu_eyebrow( 'Industries' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Website Solutions', 'Across Industries' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>What a website needs depends on the business behind it. A retailer needs a smooth path to checkout, a training institute needs clear course information and an admissions enquiry, and a real estate developer needs listings people can browse and enquire about. We plan the structure and functionality around how each type of business works.</p></div>
+				<div class="ev-intro"><p>Website requirements change according to the nature of a business, the audience it serves and the actions visitors need to take. Different industries may require different layouts, features and content structures.</p></div>
 			</div>
 			<ul class="wd-ind">
 				<?php foreach ( $wu_ind as $ind ) : ?>
@@ -388,7 +385,6 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 					<?php echo $wu_eyebrow( 'Projects' ); // phpcs:ignore ?>
 					<h2 class="sh__h"><?php echo $wu_h( 'Projects', 'We\'ve Worked On' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>A selection of websites our team has designed and developed, from Shopify stores to corporate and export websites, each planned around how that business sells and how its customers browse.</p></div>
 			</div>
 			<div class="wd-folio" data-folio>
 				<ol class="wd-folio__list">
@@ -397,8 +393,8 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 						<span class="wd-folio__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span>
 						<div class="wd-folio__t">
 							<h3><?php echo esc_html( $pj[0] ); ?></h3>
-							<p class="wd-folio__k"><?php echo esc_html( $pj[1] ); ?> <i aria-hidden="true">/</i> <?php echo esc_html( $pj[2] ); ?><?php if ( $pj[3] ) echo ' <i aria-hidden="true">/</i> ' . esc_html( $pj[3] ); ?></p>
-							<p class="wd-folio__d"><?php echo esc_html( $pj[4] ); ?></p>
+							<?php if ( $pj[1] ) : ?><p class="wd-folio__k"><?php echo esc_html( $pj[1] ); ?> <i aria-hidden="true">/</i> <?php echo esc_html( $pj[2] ); ?><?php if ( $pj[3] ) echo ' <i aria-hidden="true">/</i> ' . esc_html( $pj[3] ); ?></p><?php endif; ?>
+							<?php if ( $pj[4] ) : ?><p class="wd-folio__d"><?php echo esc_html( $pj[4] ); ?></p><?php endif; ?>
 						</div>
 						<span class="wd-folio__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
 						<figure class="wd-folio__m"><?php echo $wu_shot( $pj, true ); // phpcs:ignore ?></figure>
@@ -431,9 +427,9 @@ w.addEventListener('pointerleave',function(){st.style.setProperty('--mx',0);st.s
 			<div class="ev-head">
 				<div class="sh">
 					<?php echo $wu_eyebrow( 'Why WiseUp' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Why Businesses Choose WiseUp', 'for Website Development' ); // phpcs:ignore ?></h2>
+					<h2 class="sh__h"><?php echo $wu_h( 'Why Businesses', 'Choose WiseUp' ); // phpcs:ignore ?></h2>
 				</div>
-				<div class="ev-intro"><p>A website is a long-term part of how a business works, so the way it is planned and built matters as much as how it looks. This is how we work on every website project.</p></div>
+				<div class="ev-intro"><p>Choosing a website development company involves more than comparing designs or platforms. The development approach, technical decisions, and project communication also matter.</p></div>
 			</div>
 			<ul class="wd-pts wd-pts--why">
 				<?php foreach ( $wu_why as $d ) : ?>
@@ -448,7 +444,7 @@ w.addEventListener('pointerleave',function(){st.style.setProperty('--mx',0);st.s
 		<div class="wrap dm-faq">
 			<div class="sh">
 				<?php echo $wu_eyebrow( 'FAQ' ); // phpcs:ignore ?>
-				<h2 id="wd-faq-h" class="sh__h"><?php echo $wu_h( 'What Businesses Often Ask', 'About Website Development' ); // phpcs:ignore ?></h2>
+				<h2 id="wd-faq-h" class="sh__h"><?php echo $wu_h( 'Frequently Asked', 'Questions' ); // phpcs:ignore ?></h2>
 			</div>
 			<div class="faq">
 				<?php foreach ( $wu_faq as $q ) : ?>
@@ -469,9 +465,8 @@ w.addEventListener('pointerleave',function(){st.style.setProperty('--mx',0);st.s
 			<div class="ev-final br-final">
 				<div class="ev-final__copy">
 					<?php echo $wu_eyebrow( 'Get started' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Let\'s Build a Website', 'That Works for Your Business.' ); // phpcs:ignore ?></h2>
-					<p class="ev-final__p">Tell us what your website needs to do. We'll plan the structure, recommend the right platform and show you the plan before we talk about price.</p>
-					<div class="br-final__btn"><?php echo $wu_btn( 'Discuss Your Website', 'teal', $wu_lead ); // phpcs:ignore ?></div>
+					<h2 class="sh__h"><?php echo $wu_h( 'Need a Website That Fits', 'the Way the Business Works?' ); // phpcs:ignore ?></h2>
+					<div class="br-final__btn"><?php echo $wu_btn( 'Talk to Our Development Team', 'teal', $wu_lead ); // phpcs:ignore ?></div>
 				</div>
 				<div class="ev-contact br-contact">
 					<a class="ev-ct ev-ct--wa" href="<?php echo esc_url( $wu_wa ); ?>" target="_blank" rel="noopener">

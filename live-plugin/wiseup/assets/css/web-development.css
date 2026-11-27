@@ -276,3 +276,13 @@ html body .wu-wd .wd-hero--wall { height: 100svh; min-height: 620px; padding: 90
 @keyframes wd-wall-in { from { opacity: 0; --wz: 1.12; } to { opacity: 1; --wz: 1; } }
 @property --wz { syntax: '<number>'; inherits: true; initial-value: 1; }
 @media (prefers-reduced-motion: reduce) { .wu-wd .wd-hero--wall .wd-wall__plane { animation: none; } }
+
+/* stats strip hangs on the hero's bottom edge: half over the wall, half on the page */
+html body .wu-wd .wd-wall__stats { position: relative; z-index: 3; margin-top: calc(-1 * var(--wd-hang, 64px)); }
+html body .wu-wd .wd-wall__stats .ev-proof { margin-top: 0; background: rgb(12 12 14 / .78); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 24px 60px -24px rgb(0 0 0 / .8); }
+html body .wu-wd .wd-hero--wall { padding-bottom: calc(var(--wd-hang, 64px) + 24px); }
+@media (max-width: 767px) { html body .wu-wd { --wd-hang: 48px; } }
+
+/* project with no image on file yet: its name on a dark tile */
+.wu-wd .wd-logo-shot.is-name { background: radial-gradient(80% 80% at 50% 40%, #1c1c1f, #0b0b0c); }
+.wu-wd .wd-logo-shot.is-name b { font-family: var(--font-mark, inherit); font-weight: 600; font-size: clamp(28px, 4vw, 56px); letter-spacing: -.03em; color: #beda52; }
