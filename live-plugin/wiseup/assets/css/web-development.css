@@ -1222,3 +1222,14 @@ html body .wu-wd .ev-sec .wd-st__s.is-on h3 { color: #fff; }
 @media (max-width: 767px) { html body .wu-wd #enquire .ev-final__copy { display: block !important; order: -1; } html body .wu-wd #enquire .br-final__btn { margin-top: 28px; } html body .wu-wd #enquire .br-final__btn .b { display: flex; width: 100% !important; max-width: none; justify-content: center; } html body .wu-wd #enquire .br-final__btn .b * { white-space: nowrap; } }
 @media (max-width: 767px) { html body .wu-wd #enquire .ev-final { padding: 24px 18px !important; } html body .wu-wd #enquire .ev-ct { padding: 14px !important; gap: 12px !important; } html body .wu-wd #enquire .ev-ct__t { font-size: 15.5px !important; line-height: 1.4 !important; min-width: 0; } html body .wu-wd #enquire .ev-ct:not(.br-ct-wide) .ev-ct__t { white-space: nowrap; } html body .wu-wd #enquire .br-ct-wide .ev-ct__t { font-size: 14.5px !important; font-weight: 500; } html body .wu-wd #enquire .ev-ct__i { flex: none; width: 40px !important; height: 40px !important; } }
 @media (max-width: 380px) { html body .wu-wd #enquire .br-final__btn .b { font-size: 14px !important; padding-inline: 14px !important; gap: 8px; } }
+
+/* ===== Mobile fixes (2026-11-28 b): hero pill centred; tool pills as an even two-column grid ===== */
+@media (max-width: 1023px) {
+  html body .wu-wd .wd-hero .dm-hero__pill { align-self: center !important; margin-inline: auto !important; }
+  html body .wu-wd .wd-flow__g ul { display: grid !important; grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  html body .wu-wd .wd-flow__g li { width: auto !important; min-width: 0; flex-direction: row !important; justify-content: flex-start !important; gap: 10px !important; padding: 6px 12px 6px 6px !important; }
+  html body .wu-wd .wd-flow__g li b { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 14px !important; }
+  html body .wu-wd .wd-flow__g li span { flex: none; }
+  html body .wu-wd .wd-flow__g + .wd-flow__g, html body .wu-wd .wd-flow__g--p { margin-top: 0; }
+}
+@media (max-width: 1023px) { html body .wu-wd .wd-flow__g li span { width: 38px !important; height: 38px !important; } html body .wu-wd .wd-flow__g li span img { width: 22px !important; height: 22px !important; } html body .wu-wd .wd-flow__g li { gap: 8px !important; padding: 5px 10px 5px 5px !important; } html body .wu-wd .wd-flow__g li b { font-size: 13.5px !important; overflow: visible; text-overflow: clip; } }
