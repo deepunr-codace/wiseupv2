@@ -31,7 +31,7 @@ add_action( 'wp_head', function () {
 	echo "<script>(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;var d=document.documentElement;d.classList.add('wu-motion');setTimeout(function(){if(!window.__wuEvMotion)d.classList.remove('wu-motion');},3000);})();</script>\n";
 }, 1 );
 add_action( 'wp_head', function () {
-	foreach ( array( 'event-branding.css', 'digital-marketing.css', 'branding.css', 'service-system.css', 'web-development.css' ) as $css ) {
+	foreach ( array( 'event-branding.css', 'digital-marketing.css', 'branding.css', 'service-system.css', 'web-development.css', 'web-development-light.css' ) as $css ) {
 		echo '<link rel="stylesheet" href="' . esc_url( WISEUP_URL . 'assets/css/' . $css . '?ver=' . filemtime( WISEUP_DIR . 'assets/css/' . $css ) ) . "\">\n";
 	}
 }, 8 );
@@ -339,7 +339,7 @@ tbs.forEach(function(b,k){b.addEventListener('click',function(){var top=w.getBou
 try{L=pa.getTotalLength();}catch(e){}
 var X=[.125,.375,.625,.875];
 var draw=function(){raf=0;cur+=(tg-cur)*.12;if(Math.abs(tg-cur)<.0005)cur=tg;var v=cur;w.style.setProperty('--np',v.toFixed(4));
-if(!mob.matches&&L){var pt=pa.getPointAtLength(v*L),p2=pa.getPointAtLength(Math.min(L,v*L+4)),p1=pa.getPointAtLength(Math.max(0,v*L-4)),sx=tr.clientWidth/1200;me.style.left=(pt.x/12)+'%';me.style.top=(140+pt.y)+'px';me.style.setProperty('--a',Math.atan2(p2.y-p1.y,(p2.x-p1.x)*sx)+'rad');if(mk)mk.style.strokeDashoffset=(1-v);}else{me.style.left='';me.style.top=(v*100)+'%';}
+if(!mob.matches&&L){var pt=pa.getPointAtLength(v*L),p2=pa.getPointAtLength(Math.min(L,v*L+4)),p1=pa.getPointAtLength(Math.max(0,v*L-4)),sx=tr.clientWidth/1200;me.style.left=(pt.x/12)+'%';me.style.top=(140+pt.y)+'px';me.style.setProperty('--a',Math.atan2(p2.y-p1.y,(p2.x-p1.x)*sx)+'rad');if(mk)mk.style.strokeDashoffset=(1-v);}else{me.style.left='';me.style.top='calc('+(v*100)+'% - '+(v*58)+'px)';}
 var dm=9;X.forEach(function(x){dm=Math.min(dm,Math.abs(v-x))});me.style.setProperty('--hop',mob.matches?0:Math.max(0,1-dm/.016).toFixed(3));st.forEach(function(s,k){s.classList.toggle('is-on',mob.matches?v>=(k+.15)/4:v>=X[k]+.004);});if(cur!==tg)raf=requestAnimationFrame(draw);};
 var run=w.querySelector('.wd-np__run');var calc=function(){var vh=innerHeight,r;if(!mob.matches&&!calm){r=run.getBoundingClientRect();tg=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-vh)));w.classList.add('is-pin');}else{w.classList.remove('is-pin');r=tr.getBoundingClientRect();tg=Math.max(0,Math.min(1,(vh*.8-r.top)/(r.height+vh*.05)));}if(calm)tg=cur=1;if(!raf)raf=requestAnimationFrame(draw);};
 if(calm)w.classList.add('is-calm');addEventListener('scroll',calc,{passive:true});addEventListener('resize',calc);calc();})();</script>
@@ -489,9 +489,9 @@ var len=function(){return w.offsetHeight-innerHeight;};
 var target=function(){var r=w.getBoundingClientRect();return Math.max(0,Math.min(1,-r.top/len()))*(n-1);};
 var draw=function(){raf=0;p+=(tp-p)*.14;if(Math.abs(tp-p)<.001)p=tp;rot(p);if(p!==tp)raf=requestAnimationFrame(draw);};
 var kick=function(){if(!on)return;tp=target();if(!raf)raf=requestAnimationFrame(draw);};
-var mode=function(){var m=!matchMedia('(prefers-reduced-motion: reduce)').matches;on=m;w.classList.toggle('is-pin',m);if(m){p=tp=target();rot(p);}else{rot(cur<0?0:cur);}};
+var mode=function(){var m=!matchMedia('(prefers-reduced-motion: reduce)').matches&&!matchMedia('(max-width: 767px)').matches;on=m;w.classList.toggle('is-list',matchMedia('(max-width: 767px)').matches);w.classList.toggle('is-pin',m);if(m){p=tp=target();rot(p);}else{rot(cur<0?0:cur);}};
 bs.forEach(function(b,k){b.addEventListener('click',function(){if(!on){rot(k);return;}var top=w.getBoundingClientRect().top+scrollY;scrollTo({top:top+len()*k/(n-1)+2,behavior:'smooth'});});});
-var hd=function(){var r=w.getBoundingClientRect();document.documentElement.classList.toggle('wd-nohd',r.top<=1&&r.bottom>=innerHeight-1);};mode();hd();addEventListener('scroll',function(){kick();hd();},{passive:true});addEventListener('resize',function(){mode();kick();});})();</script>
+var hd=function(){if(!on){document.documentElement.classList.remove('wd-nohd');return;}var r=w.getBoundingClientRect();document.documentElement.classList.toggle('wd-nohd',r.top<=1&&r.bottom>=innerHeight-1);};mode();hd();addEventListener('scroll',function(){kick();hd();},{passive:true});addEventListener('resize',function(){mode();kick();});})();</script>
 		</div>
 	</section>
 

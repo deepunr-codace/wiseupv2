@@ -1,0 +1,164 @@
+/* =====================================================================
+   Web Development page: REAL LIGHT THEME (2026-11-28)
+   Loaded only on this template. The service pages' inverting filter is
+   switched off for .wu-wd (includes/landing.php), so every piece here is a
+   proper light style. Dark islands that stay dark on purpose: the hero
+   (photo wall), the Services fly-through (pinned 3D screens) and the
+   Industries dial (night photographs).
+   ===================================================================== */
+
+/* ---------- tokens and page ground ---------- */
+html[data-svc-theme="light"] body { background: #fff; }
+html[data-svc-theme="light"] body .wu-wd {
+  --surface-0: #ffffff; --surface-1: #f4f4f0; --surface-2: #e9e9e3;
+  --text-1: #0b0b0d; --text-2: #26262b; --text-3: #52525a; --muted: #6b6b73;
+  --lime-tint: rgba(126, 160, 30, .08); --lime-line: rgba(110, 140, 25, .28);
+  --border: rgba(17, 21, 10, .09); --border-strong: rgba(17, 21, 10, .16);
+  --wd-line: rgba(17, 21, 10, .1);
+  --lt-card: linear-gradient(150deg, #fbfbf8, #f1f1ec);
+  --lt-rim: inset 0 0 0 1px rgba(17, 21, 10, .08);
+  --lt-olive: #5f7a12;
+  background: #fff; color: #26262b;
+}
+html[data-svc-theme="light"] body .wu-wd .ev-sec { background: #fff; }
+html[data-svc-theme="light"] body .wu-wd .sh__h .sh__b { color: #8a8a92 !important; }
+html[data-svc-theme="light"] body .wu-wd :is(.ev-intro p, .ev-head p) { color: #52525a !important; }
+html[data-svc-theme="light"] body .wu-wd .eyebrow { background: #0b0b0d !important; color: #fff !important; }
+
+/* ---------- dark islands keep the night palette ---------- */
+html[data-svc-theme="light"] body .wu-wd :is(.wd-hero, #wd-services, #industries) {
+  --surface-0: #050506; --surface-1: #0E0E10; --surface-2: #16161A;
+  --text-1: #F5F5F6; --text-2: #E4E4E7; --text-3: #A1A1A9; --muted: #85858D;
+  --border: rgba(255, 255, 255, .08); --border-strong: rgba(255, 255, 255, .14);
+  --wd-line: rgb(255 255 255 / .09);
+  background: #050506 !important; color: #e4e4e7;
+}
+html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) .sh__h .sh__b { color: #8a8a92 !important; }
+html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) :is(.ev-intro p, .ev-head p) { color: #a8a8b0 !important; }
+html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) .eyebrow { background: #fff !important; color: #0b0b0d !important; }
+/* soft edges where a dark island meets the white page */
+html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) { border-radius: 32px; margin-inline: clamp(8px, 1.2vw, 20px); }
+@media (max-width: 767px) { html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) { border-radius: 22px; margin-inline: 6px; } }
+
+/* header: night look (it sits on the dark hero, then docks into its dark bar) */
+html[data-svc-theme="light"] body:has(.wu-wd) .wu-chrome .hd {
+  --bg: #000; --card: #0e0e10; --ink: #f4f4f5; --ink-2: #c8c8cd; --mute: #8b8b92; --head-a: #fff; --sub-a: #a3a3a9; --edge: rgb(255 255 255 / .06); --edge-2: rgb(255 255 255 / .12); --teal-hi: #d8ec8a; }
+html[data-svc-theme="light"] body:has(.wu-wd) .wu-chrome .hd .hd__cta { color: #fff !important; }
+html[data-svc-theme="light"] body:has(.wu-wd) .wu-chrome .hd .hd__call { color: #beda52 !important; background: rgb(14 14 16 / .94) !important; }
+
+/* ---------- hero stats strip: dark card hanging from the hero ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-wall__stats { --text-1: #F5F5F6; --text-3: #A1A1A9; }
+html[data-svc-theme="light"] body .wu-wd .wd-wall__stats .ev-proof { background: #0b0b0c !important; box-shadow: 0 30px 60px -30px rgba(17, 21, 10, .5) !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-wall__stats :is(dt, dd, b, strong, span) { color: inherit; }
+
+/* ---------- Design: the road on a light page ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-np__lead { color: #26262b; }
+html[data-svc-theme="light"] body .wu-wd .wd-np__svg .rd-sh { stroke: rgba(17, 21, 10, .35); }
+html[data-svc-theme="light"] body .wu-wd .wd-np__svg .rd-edge { stroke: #d9d9d4; opacity: 1; }
+html[data-svc-theme="light"] body .wu-wd .wd-np__pin { box-shadow: 0 0 0 4px #fff, 0 0 0 5px rgba(17, 21, 10, .15); }
+html[data-svc-theme="light"] body .wu-wd .wd-np__st.is-on .wd-np__pin { box-shadow: 0 0 0 4px #fff, 0 0 0 5px rgba(95, 122, 18, .5); }
+@media (max-width: 1023px) {
+  html[data-svc-theme="light"] body .wu-wd .wd-np__st p { color: #8a8a92; }
+  html[data-svc-theme="light"] body .wu-wd .wd-np__st.is-on p, html[data-svc-theme="light"] body .wu-wd .wd-np.is-calm .wd-np__st p { color: #0b0b0d; }
+  html[data-svc-theme="light"] body .wu-wd .wd-np__track::before { background: #26262b; box-shadow: none; }
+}
+
+/* ---------- Technologies: silk on white, glass tiles become paper tiles ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-flow__ln .b { stroke: rgba(17, 21, 10, .22) !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__ln .b.is-on { stroke: #5f7a12 !important; filter: none !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__ln .p { stroke: #7d9a22 !important; filter: none; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__g li span { background: #fff !important; -webkit-backdrop-filter: none; backdrop-filter: none; box-shadow: 0 0 0 1px rgba(17, 21, 10, .08), 0 14px 28px -14px rgba(17, 21, 10, .35) !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__g li.is-on span { box-shadow: 0 0 0 1px #7d9a22, 0 0 0 5px rgba(126, 160, 30, .14), 0 14px 28px -14px rgba(17, 21, 10, .35) !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__g li img[src*="wordpress"], html[data-svc-theme="light"] body .wu-wd .wd-flow__g li img[src*="nextjs"] { filter: none !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__g li b { color: #52525a !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__g--p li b, html[data-svc-theme="light"] body .wu-wd .wd-flow__g li.is-on b { color: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__core.is-spider::before { background: radial-gradient(closest-side, rgba(126, 160, 30, .22), transparent); }
+html[data-svc-theme="light"] body .wu-wd .wd-flow__sp img { filter: drop-shadow(0 0 16px rgba(126, 160, 30, .35)) drop-shadow(0 16px 14px rgba(17, 21, 10, .35)) !important; }
+@media (max-width: 1023px) { html[data-svc-theme="light"] body .wu-wd .wd-flow__g li { background: #f4f4f0 !important; box-shadow: inset 0 0 0 1px rgba(17, 21, 10, .08) !important; } html[data-svc-theme="light"] body .wu-wd .wd-flow__g li b { color: #0b0b0d !important; } }
+
+/* ---------- Quality rows ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-qs, html[data-svc-theme="light"] body .wu-wd .wd-qs li { border-color: rgba(17, 21, 10, .1); }
+html[data-svc-theme="light"] body .wu-wd .ev-sec .wd-qs h3 { color: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-qs p { color: #52525a; }
+html[data-svc-theme="light"] body .wu-wd .g-dev .d { border-color: #7d9a22; box-shadow: 0 10px 26px -12px rgba(95, 122, 18, .45); }
+html[data-svc-theme="light"] body .wu-wd .g-dev .d b { background: rgba(126, 160, 30, .35); }
+html[data-svc-theme="light"] body .wu-wd .g-spd .tr { background: rgba(17, 21, 10, .08); }
+html[data-svc-theme="light"] body .wu-wd .g-spd .pl { background: #7d9a22; box-shadow: 0 0 0 4px rgba(126, 160, 30, .2); }
+html[data-svc-theme="light"] body .wu-wd .g-seo .q { box-shadow: inset 0 0 0 1.5px rgba(17, 21, 10, .25); }
+html[data-svc-theme="light"] body .wu-wd .g-seo .r { background: rgba(17, 21, 10, .1); }
+html[data-svc-theme="light"] body .wu-wd .g-seo .r3 { background: #beda52; box-shadow: none; }
+html[data-svc-theme="light"] body .wu-wd .g-sec .sh { border-color: #7d9a22; }
+html[data-svc-theme="light"] body .wu-wd .g-sec .bd { background: #0b0b0d; }
+
+/* ---------- Process staircase ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-st__ic { background: linear-gradient(145deg, #ffffff, #ececE7); color: #8a8a92; box-shadow: -4px -4px 10px #fff, 6px 8px 16px rgba(17, 21, 10, .14), inset 0 0 0 1px rgba(17, 21, 10, .05); }
+html[data-svc-theme="light"] body .wu-wd .wd-st__s.is-on .wd-st__ic { color: #5f7a12; }
+html[data-svc-theme="light"] body .wu-wd .wd-st__s.is-cur .wd-st__ic { background: #beda52; color: #11150a; box-shadow: 0 0 0 6px rgba(126, 160, 30, .16); }
+html[data-svc-theme="light"] body .wu-wd .wd-st__ledge { background: linear-gradient(180deg, #d6d6d0 0 3px, #ececE7 3px 100%); box-shadow: 0 10px 18px -8px rgba(17, 21, 10, .25); }
+html[data-svc-theme="light"] body .wu-wd .wd-st__s.is-on .wd-st__ledge { background: linear-gradient(180deg, #9fbd2c 0 3px, #eef3dc 3px 100%); box-shadow: 0 12px 22px -10px rgba(95, 122, 18, .35); }
+html[data-svc-theme="light"] body .wu-wd .ev-sec .wd-st__s h3 { color: #a1a1a9; }
+html[data-svc-theme="light"] body .wu-wd .ev-sec .wd-st__s.is-on h3, html[data-svc-theme="light"] body .wu-wd .wd-st:not(.is-live) .wd-st__s h3 { color: #0b0b0d; }
+html[data-svc-theme="light"] body .wu-wd .wd-st__s p { color: #b5b5bc; }
+html[data-svc-theme="light"] body .wu-wd .wd-st__s.is-on p, html[data-svc-theme="light"] body .wu-wd .wd-st:not(.is-live) .wd-st__s p { color: #52525a; }
+/* Wiso glows on a small dark bubble (its GIF has a dark ground) */
+html[data-svc-theme="light"] body .wu-wd .wd-st__wiso { border-radius: 50%; background: radial-gradient(closest-side, #0b0b0c 62%, transparent 72%); }
+
+/* ---------- Projects folio ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-folio__n { color: #a1a1a9; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__t h3 { color: #b5b5bc; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__it.is-on h3 { color: #0b0b0d; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__it.is-on .wd-folio__n { color: #5f7a12; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__k { color: #6b6b73; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__d { color: #52525a; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__go { color: #52525a; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__win { background: #fff; box-shadow: 0 40px 80px -40px rgba(17, 21, 10, .4), 0 0 0 1px rgba(17, 21, 10, .08); }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__bar i { background: rgba(17, 21, 10, .14); }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__bar i:first-child { background: #beda52; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__bar span { background: #f4f4f0; color: #52525a; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__cap { color: #a1a1a9; }
+html[data-svc-theme="light"] body .wu-wd .wd-folio__cap b { color: #5f7a12; }
+@media (max-width: 1023px) { html[data-svc-theme="light"] body .wu-wd .wd-folio__it h3 { color: #0b0b0d !important; } html[data-svc-theme="light"] body .wu-wd .wd-folio__it .wd-folio__n { color: #5f7a12; } }
+
+/* ---------- Why WiseUp cards ---------- */
+html[data-svc-theme="light"] body .wu-wd .wd-wy li { background: var(--lt-card); box-shadow: var(--lt-rim), 0 18px 40px -30px rgba(17, 21, 10, .3); }
+html[data-svc-theme="light"] body .wu-wd .wd-wy li:hover { box-shadow: inset 0 0 0 1px rgba(95, 122, 18, .4), 0 24px 44px -28px rgba(17, 21, 10, .35); }
+html[data-svc-theme="light"] body .wu-wd .wd-wy__i { background: #fff; color: #5f7a12; box-shadow: inset 0 0 0 1px rgba(17, 21, 10, .08); }
+html[data-svc-theme="light"] body .wu-wd .wd-wy__n { color: #a1a1a9; }
+html[data-svc-theme="light"] body .wu-wd .ev-sec .wd-wy h3 { color: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-wy p { color: #52525a; }
+
+/* ---------- FAQ: hairline rows, the open one a soft grey card ---------- */
+html[data-svc-theme="light"] body .wu-wd .faq__item { background: transparent !important; box-shadow: none !important; border: 0 !important; border-bottom: 1px solid rgba(17, 21, 10, .1) !important; border-radius: 0 !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item::before, html[data-svc-theme="light"] body .wu-wd .faq__item::after { display: none !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item[open] { background: #f4f4f0 !important; border-radius: 18px !important; border-bottom-color: transparent !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item :is(.faq__q, .faq__q span, summary) { color: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item .faq__a, html[data-svc-theme="light"] body .wu-wd .faq__item .faq__a p { color: #52525a !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item .faq__q, html[data-svc-theme="light"] body .wu-wd .faq__item .faq__a { padding-inline: 20px !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__dot { border-color: rgba(17, 21, 10, .16) !important; background: #fff !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__dot::before, html[data-svc-theme="light"] body .wu-wd .faq__dot::after { background: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item[open] .faq__dot { border-color: rgba(95, 122, 18, .4) !important; }
+html[data-svc-theme="light"] body .wu-wd .faq__item[open] .faq__dot::before, html[data-svc-theme="light"] body .wu-wd .faq__item[open] .faq__dot::after { background: #5f7a12 !important; }
+
+/* ---------- Other services carousel ---------- */
+html[data-svc-theme="light"] body .wu-wd :is(.wu-os__card, .wu-os a.wu-os__card) { background: var(--lt-card) !important; box-shadow: var(--lt-rim), 0 18px 40px -30px rgba(17, 21, 10, .3) !important; border-color: rgba(17, 21, 10, .08) !important; }
+html[data-svc-theme="light"] body .wu-wd .wu-os :is(.wu-os__t, h3) { color: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .wu-os :is(.wu-os__p, p) { color: #52525a !important; }
+html[data-svc-theme="light"] body .wu-wd .wu-os__go { color: #26262b !important; }
+html[data-svc-theme="light"] body .wu-wd .wu-os :is(.wu-os__ic, .wu-os__i) { background: #fff !important; color: #5f7a12 !important; box-shadow: inset 0 0 0 1px rgba(17, 21, 10, .08) !important; }
+html[data-svc-theme="light"] body .wu-wd .wu-os :is(.wu-os__prev, .wu-os__next, button) { background: #fff !important; color: #0b0b0d !important; box-shadow: inset 0 0 0 1px rgba(17, 21, 10, .12) !important; }
+
+/* ---------- Final CTA: a light card ---------- */
+html[data-svc-theme="light"] body .wu-wd .ev-final { background: var(--lt-card) !important; box-shadow: var(--lt-rim), 0 30px 60px -40px rgba(17, 21, 10, .35) !important; border-color: rgba(17, 21, 10, .08) !important; }
+html[data-svc-theme="light"] body .wu-wd .ev-ct { background: #fff !important; box-shadow: var(--lt-rim) !important; border-color: rgba(17, 21, 10, .08) !important; }
+html[data-svc-theme="light"] body .wu-wd .ev-ct__t { color: #0b0b0d !important; }
+html[data-svc-theme="light"] body .wu-wd .ev-ct__t small { color: #6b6b73 !important; }
+html[data-svc-theme="light"] body .wu-wd .ev-ct__go { background: #f4f4f0 !important; color: #26262b !important; }
+
+/* the site's own light theme (data-theme="light") recolours some headings and text: pin the dark islands' type */
+html[data-svc-theme="light"] body .wu-wd :is(.wd-hero, #wd-services, #industries) .sh__h .sh__a, html[data-svc-theme="light"] body .wu-wd .wd-hero .ev-hero__h .sh__a { color: #fff !important; -webkit-text-fill-color: #fff !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-hero .ev-hero__h .sh__b { color: #8f8f96 !important; -webkit-text-fill-color: #8f8f96 !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-wall__stats .ev-proof dd { color: #fff !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-wall__stats .ev-proof dd em { color: #beda52 !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-wall__stats .ev-proof dt { color: #a1a1a9 !important; }
+html[data-svc-theme="light"] body .wu-wd .wd-np__svg .rd-sh { stroke: rgba(17, 21, 10, .18); }
+html[data-svc-theme="light"] body .wu-wd .eyebrow, html[data-svc-theme="light"] body .wu-wd .eyebrow * { color: #fff !important; -webkit-text-fill-color: #fff !important; opacity: 1 !important; } html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) .eyebrow, html[data-svc-theme="light"] body .wu-wd :is(#wd-services, #industries) .eyebrow * { color: #0b0b0d !important; -webkit-text-fill-color: #0b0b0d !important; }
