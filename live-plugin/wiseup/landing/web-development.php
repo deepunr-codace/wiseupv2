@@ -321,16 +321,28 @@ tbs.forEach(function(b,k){b.addEventListener('click',function(){var top=w.getBou
 	<!-- 3. Design that makes navigation feel natural -->
 	<section class="sec ev-sec" id="wd-design">
 		<div class="wrap">
-			<div class="br-split">
-				<div class="sh">
-					<?php echo $wu_eyebrow( 'Design' ); // phpcs:ignore ?>
-					<h2 class="sh__h"><?php echo $wu_h( 'Website Design That Makes', 'Navigation Feel Natural' ); // phpcs:ignore ?></h2>
+			<div class="wd-np" data-np>
+				<div class="ev-head">
+					<div class="sh">
+						<?php echo $wu_eyebrow( 'Design' ); // phpcs:ignore ?>
+						<h2 class="sh__h"><?php echo $wu_h( 'Website Design That Makes', 'Navigation Feel Natural' ); // phpcs:ignore ?></h2>
+					</div>
+					<div class="ev-intro"><p class="wd-np__lead">Good website design is not only about appearance. It is also about how easily visitors can move through a website and find the information they need. WiseUp brings web design and development together to create experiences that feel clear and consistent.</p></div>
 				</div>
-				<div class="br-split__tx">
-					<p class="br-lead">Good website design is not only about appearance. It is also about how easily visitors can move through a website and find the information they need. WiseUp brings web design and development together to create experiences that feel clear and consistent.</p>
-					<p>Page layouts, navigation and information hierarchy are planned to make content easy to follow. Responsive design helps maintain usability across desktops, tablets and mobile devices. Typography, imagery, colours and visual elements are selected to create a consistent look, while intuitive interactions make important information and actions easier to access.</p>
-				</div>
+				<div class="wd-np__run"><div class="wd-np__track">
+					<svg class="wd-np__svg" viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true"><defs><pattern id="wd-np-asp" patternUnits="userSpaceOnUse" width="90" height="90"><image href="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-asphalt.webp' ); ?>" width="90" height="90" preserveAspectRatio="none"/></pattern><filter id="wd-np-tex" filterUnits="userSpaceOnUse" x="-3000" y="-200" width="7800" height="760"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="1" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .75  0 0 0 0 .75  0 0 0 0 .75  0 0 0 .3 -.1" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gr"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gr"/></feMerge></filter><filter id="wd-np-sh" filterUnits="userSpaceOnUse" x="-3000" y="-200" width="7800" height="760"><feGaussianBlur stdDeviation="12"/></filter><filter id="wd-np-old"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 -.18" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gr"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gr"/></feMerge></filter><mask id="wd-np-m" maskUnits="userSpaceOnUse" x="-50" y="-50" width="1300" height="460"><path class="m" d="M0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180" pathLength="1"/></mask></defs><path class="rd-sh" d="M-2400 180 L0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180 L3600 180"/><path class="rd-edge" d="M-2400 180 L0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180 L3600 180"/><path class="rd-asph" d="M-2400 180 L0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180 L3600 180"/><path class="rd-mid" d="M-2400 180 L0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180 L3600 180"/><path class="rd-lit" d="M0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180" mask="url(#wd-np-m)"/><path class="f" d="M0 180 C60 180 90 90 150 90 S360 270 450 270 S660 90 750 90 S960 270 1050 270 S1160 180 1200 180" pathLength="1"/></svg>
+					<span class="wd-np__me" aria-hidden="true"><span class="wd-np__car is-img"><img class="wd-np__cimg" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-crawler.webp' ); ?>" alt="" width="600" height="300" decoding="async"><span class="wd-np__g"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/i-google-icon.svg' ); ?>" alt="" width="40" height="40"></span></span></span>
+					<ol class="wd-np__list"><li class="wd-np__st is-up" style="--x:12.5%;--y:90"><i class="wd-np__pin" aria-hidden="true"></i><p>Page layouts, navigation and information hierarchy are planned to make content easy to follow.</p></li><li class="wd-np__st is-dn" style="--x:37.5%;--y:270"><i class="wd-np__pin" aria-hidden="true"></i><p>Responsive design helps maintain usability across desktops, tablets and mobile devices.</p></li><li class="wd-np__st is-up" style="--x:62.5%;--y:90"><i class="wd-np__pin" aria-hidden="true"></i><p>Typography, imagery, colours and visual elements are selected to create a consistent look,</p></li><li class="wd-np__st is-dn" style="--x:87.5%;--y:270"><i class="wd-np__pin" aria-hidden="true"></i><p>while intuitive interactions make important information and actions easier to access.</p></li></ol>
+				</div></div>
 			</div>
+			<script>(function(){var w=document.querySelector('[data-np]');if(!w)return;var tr=w.querySelector('.wd-np__track'),pa=w.querySelector('.wd-np__svg .f'),mk=w.querySelector('.wd-np__svg .m'),me=w.querySelector('.wd-np__me'),st=[].slice.call(w.querySelectorAll('.wd-np__st')),L=0,raf=0,cur=0,tg=0,calm=matchMedia('(prefers-reduced-motion: reduce)').matches,mob=matchMedia('(max-width: 1023px)');
+try{L=pa.getTotalLength();}catch(e){}
+var X=[.125,.375,.625,.875];
+var draw=function(){raf=0;cur+=(tg-cur)*.12;if(Math.abs(tg-cur)<.0005)cur=tg;var v=cur;w.style.setProperty('--np',v.toFixed(4));
+if(!mob.matches&&L){var pt=pa.getPointAtLength(v*L),p2=pa.getPointAtLength(Math.min(L,v*L+4)),p1=pa.getPointAtLength(Math.max(0,v*L-4)),sx=tr.clientWidth/1200;me.style.left=(pt.x/12)+'%';me.style.top=(140+pt.y)+'px';me.style.setProperty('--a',Math.atan2(p2.y-p1.y,(p2.x-p1.x)*sx)+'rad');if(mk)mk.style.strokeDashoffset=(1-v);}else{me.style.left='';me.style.top=(v*100)+'%';}
+var dm=9;X.forEach(function(x){dm=Math.min(dm,Math.abs(v-x))});me.style.setProperty('--hop',mob.matches?0:Math.max(0,1-dm/.016).toFixed(3));st.forEach(function(s,k){s.classList.toggle('is-on',mob.matches?v>=(k+.15)/4:v>=X[k]+.004);});if(cur!==tg)raf=requestAnimationFrame(draw);};
+var run=w.querySelector('.wd-np__run');var calc=function(){var vh=innerHeight,r;if(!mob.matches&&!calm){r=run.getBoundingClientRect();tg=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height-vh)));w.classList.add('is-pin');}else{w.classList.remove('is-pin');r=tr.getBoundingClientRect();tg=Math.max(0,Math.min(1,(vh*.8-r.top)/(r.height+vh*.05)));}if(calm)tg=cur=1;if(!raf)raf=requestAnimationFrame(draw);};
+if(calm)w.classList.add('is-calm');addEventListener('scroll',calc,{passive:true});addEventListener('resize',calc);calc();})();</script>
 		</div>
 	</section>
 
@@ -344,31 +356,46 @@ tbs.forEach(function(b,k){b.addEventListener('click',function(){var top=w.getBou
 				</div>
 			</div>
 			<?php
-			$wu_fl_t = array(); foreach ( $wu_tech as $wu_i => $l ) $wu_fl_t[] = 40 + $wu_i * 80;
-			$wu_fl_p = array( 100, 220, 340, 460 );
+			$wu_fx_h = 780; $wu_fx_cy = 390;
+			$wu_fx = function ( $list, $side ) use ( $wu_fx_h, $wu_fx_cy ) {
+				$n = count( $list ); $out = array();
+				foreach ( $list as $k => $l ) {
+					$y = round( 44 + ( $wu_fx_h - 88 ) * ( $n > 1 ? $k / ( $n - 1 ) : .5 ), 1 );
+					$d = 't' === $side ? "M148 $y C360 $y 430 $wu_fx_cy 534 $wu_fx_cy" : "M666 $wu_fx_cy C770 $wu_fx_cy 840 $y 1052 $y";
+					$out[] = array( 'y' => $y, 'd' => $d, 'name' => $l[0], 'logo' => $l[1], 'dark' => ! empty( $l[2] ), 'id' => $side . $k );
+				}
+				return $out;
+			};
+			$wu_fx_t = $wu_fx( $wu_tech, 't' ); $wu_fx_p = $wu_fx( $wu_platforms, 'p' );
 			?>
-			<div class="wd-flow" data-flow>
-				<svg class="wd-flow__ln" viewBox="0 0 1200 560" aria-hidden="true">
-					<?php foreach ( $wu_fl_t as $wu_i => $y ) : $d = 'M178 ' . $y . ' C390 ' . $y . ' 420 280 560 280'; ?>
+			<?php
+			// Scattered "web": [ x, y ] in a 1200 x 440 box, core at 600, 220.
+			$wu_fl_t = array( array( 70, 70 ), array( 255, 38 ), array( 150, 205 ), array( 330, 150 ), array( 60, 360 ), array( 260, 318 ), array( 420, 395 ) );
+			$wu_fl_p = array( array( 860, 55 ), array( 1090, 100 ), array( 1130, 300 ), array( 900, 380 ) );
+			$wu_fl_d = function ( $x, $y ) { $a = atan2( $y - 220, $x - 600 ); $lx = round( 600 + 66 * cos( $a ), 1 ); $ly = round( 220 + 62 * sin( $a ), 1 ); $mx = round( ( $x + $lx ) / 2, 1 ); $my = round( max( $y, $ly ) + 26 + abs( $x - $lx ) * .04, 1 ); return "M$x $y Q$mx $my $lx $ly"; };
+			?>
+			<div class="wd-flow wd-flow--scatter" data-flow>
+				<svg class="wd-flow__ln" viewBox="0 0 1200 440" aria-hidden="true">
+					<?php foreach ( $wu_fl_t as $wu_i => $q ) : $d = $wu_fl_d( $q[0], $q[1] ); ?>
 					<path d="<?php echo esc_attr( $d ); ?>" class="b" data-t="<?php echo (int) $wu_i; ?>"/><path d="<?php echo esc_attr( $d ); ?>" class="p" style="--d:<?php echo esc_attr( $wu_i * .37 ); ?>s"/>
-					<?php endforeach; foreach ( $wu_fl_p as $wu_i => $y ) : $d = 'M640 280 C780 280 810 ' . $y . ' 1022 ' . $y; ?>
+					<?php endforeach; foreach ( $wu_fl_p as $wu_i => $q ) : $d = $wu_fl_d( $q[0], $q[1] ); ?>
 					<path d="<?php echo esc_attr( $d ); ?>" class="b" data-p="<?php echo (int) $wu_i; ?>"/><path d="<?php echo esc_attr( $d ); ?>" class="p" style="--d:<?php echo esc_attr( 1.2 + $wu_i * .45 ); ?>s"/>
 					<?php endforeach; ?>
 				</svg>
 				<div class="wd-flow__g wd-flow__g--t">
 					<h3>Development Technologies</h3>
-					<ul><?php foreach ( $wu_tech as $wu_i => $l ) : ?><li style="--y:<?php echo esc_attr( $wu_fl_t[ $wu_i ] / 5.6 ); ?>%" data-t="<?php echo (int) $wu_i; ?>"><b><?php echo esc_html( $l[0] ); ?></b><span><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ); ?>" alt="<?php echo esc_attr( $l[0] . ' logo' ); ?>" width="34" height="34" loading="lazy" decoding="async"></span></li><?php endforeach; ?></ul>
+					<ul><?php foreach ( $wu_tech as $wu_i => $l ) : ?><li style="--x:<?php echo esc_attr( round( $wu_fl_t[ $wu_i ][0] / 12, 3 ) ); ?>%;--y:<?php echo esc_attr( round( $wu_fl_t[ $wu_i ][1] / 4.4, 3 ) ); ?>%" data-t="<?php echo (int) $wu_i; ?>"><span><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ); ?>" alt="<?php echo esc_attr( $l[0] . ' logo' ); ?>" width="34" height="34" loading="lazy" decoding="async"></span><b><?php echo esc_html( $l[0] ); ?></b></li><?php endforeach; ?></ul>
 				</div>
-				<div class="wd-flow__core" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 8.5h18"/><path d="m9.5 12-2 2 2 2M14.5 12l2 2-2 2"/></svg></div>
+				<div class="wd-flow__core is-spider" aria-hidden="true"><span class="wd-flow__sp"><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-spider.webp' ); ?>" alt="" width="160" height="160" decoding="async"></span></div>
 				<div class="wd-flow__g wd-flow__g--p">
 					<h3>Website Platforms</h3>
-					<ul><?php foreach ( $wu_platforms as $wu_i => $l ) : ?><li style="--y:<?php echo esc_attr( $wu_fl_p[ $wu_i ] / 5.6 ); ?>%" data-p="<?php echo (int) $wu_i; ?>"><span><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ); ?>" alt="<?php echo esc_attr( $l[0] . ' logo' ); ?>" width="40" height="40" loading="lazy" decoding="async"></span><b><?php echo esc_html( $l[0] ); ?></b></li><?php endforeach; ?></ul>
+					<ul><?php foreach ( $wu_platforms as $wu_i => $l ) : ?><li style="--x:<?php echo esc_attr( round( $wu_fl_p[ $wu_i ][0] / 12, 3 ) ); ?>%;--y:<?php echo esc_attr( round( $wu_fl_p[ $wu_i ][1] / 4.4, 3 ) ); ?>%" data-p="<?php echo (int) $wu_i; ?>"><span><img src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/icons/' . $l[1] ); ?>" alt="<?php echo esc_attr( $l[0] . ' logo' ); ?>" width="40" height="40" loading="lazy" decoding="async"></span><b><?php echo esc_html( $l[0] ); ?></b></li><?php endforeach; ?></ul>
 				</div>
 			</div>
 			<script>(function(){var w=document.querySelector('[data-flow]');if(!w)return;
 w.querySelectorAll('li[data-t],li[data-p]').forEach(function(li){var k=li.hasAttribute('data-t')?'data-t':'data-p',v=li.getAttribute(k),ln=w.querySelector('path.b['+k+'="'+v+'"]');
-li.addEventListener('mouseenter',function(){w.classList.add('is-hl');li.classList.add('is-on');ln&&ln.classList.add('is-on')});
-li.addEventListener('mouseleave',function(){w.classList.remove('is-hl');li.classList.remove('is-on');ln&&ln.classList.remove('is-on')});});
+li.addEventListener('mouseenter',function(){w.classList.add('is-hl');li.classList.add('is-on');ln&&ln.classList.add('is-on');var sp=w.querySelector('.wd-flow__sp');if(sp){var r=w.getBoundingClientRect(),q=li.getBoundingClientRect();var ax=q.left+q.width/2-(r.left+r.width/2),ay=q.top+q.height/2-(r.top+r.height/2);}});
+li.addEventListener('mouseleave',function(){w.classList.remove('is-hl');li.classList.remove('is-on');ln&&ln.classList.remove('is-on');var sp=w.querySelector('.wd-flow__sp');sp&&sp.style.removeProperty('--a');});});
 if('IntersectionObserver' in window)new IntersectionObserver(function(es){w.classList.toggle('is-in',es[0].isIntersecting)},{threshold:.25}).observe(w);else w.classList.add('is-in');})();</script>
 		</div>
 	</section>
@@ -383,23 +410,17 @@ if('IntersectionObserver' in window)new IntersectionObserver(function(es){w.clas
 				</div>
 				<div class="ev-intro"><p>A website's value goes beyond its appearance. Its underlying structure, loading speed and features all play a part in creating a smooth and reliable user experience. WiseUp considers these elements during the web development process.</p></div>
 			</div>
-			<div class="wd-ly" data-ly>
-				<div class="wd-ly__scene" aria-hidden="true">
-					<div class="wd-ly__stack wd-ly__stack--img">
-						<img class="wd-ly__pl wd-ly__pl--top" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-ly-1.webp' ); ?>" alt="" width="900" height="725" loading="lazy" decoding="async" style="--k:0">
-						<?php foreach ( array( 2, 3, 4, 5 ) as $wu_k => $wu_n ) : ?><img class="wd-ly__pl" data-l="<?php echo (int) $wu_k; ?>" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/wd-ly-' . $wu_n . '.webp' ); ?>" alt="" width="900" height="700" loading="lazy" decoding="async" style="--k:<?php echo (int) ( $wu_k + 1 ); ?>"><?php endforeach; ?>
-					</div>
-				</div>
-				<ol class="wd-ly__list">
-					<?php foreach ( $wu_quality as $wu_i => $q ) : ?>
-					<li class="wd-ly__it<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" data-i="<?php echo (int) $wu_i; ?>" tabindex="0"><span class="wd-ly__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span><div><h3><?php echo esc_html( $q[0] ); ?></h3><p><?php echo esc_html( $q[2] ); ?></p></div></li>
-					<?php endforeach; ?>
-				</ol>
-			</div>
-			<script>(function(){var w=document.querySelector('[data-ly]');if(!w)return;var its=[].slice.call(w.querySelectorAll('.wd-ly__it')),pl=[].slice.call(w.querySelectorAll('.wd-ly__pl[data-l]')),hold=false;
-var set=function(i){its.forEach(function(e,k){e.classList.toggle('is-on',k===i)});pl.forEach(function(e){e.classList.toggle('is-on',+e.getAttribute('data-l')===i)});w.classList.add('has-on');};set(0);
-its.forEach(function(e,k){e.addEventListener('mouseenter',function(){hold=true;set(k)});e.addEventListener('mouseleave',function(){hold=false});e.addEventListener('focus',function(){set(k)});});
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(hold)return;es.forEach(function(e){if(e.isIntersecting)set(+e.target.getAttribute('data-i'))})},{rootMargin:'-45% 0px -45% 0px'});its.forEach(function(e){io.observe(e)});}})();</script>
+			<ol class="wd-qs" data-qs>
+				<?php $wu_qg = array( '<span class="g-dev"><i class="d"><b></b><b></b><b></b></i></span>', '<span class="g-spd"><i class="tr"><b></b></i><i class="pl"></i></span>', '<span class="g-seo"><i class="q"></i><i class="r r1"></i><i class="r r2"></i><i class="r r3 me"></i></span>', '<span class="g-sec"><i class="sh"></i><i class="bd"><b></b></i></span>' ); foreach ( $wu_quality as $wu_i => $q ) : ?>
+				<li style="--i:<?php echo (int) $wu_i; ?>">
+					<div class="wd-qs__g" aria-hidden="true"><?php echo $wu_qg[ $wu_i ]; // phpcs:ignore ?></div>
+					<h3><?php echo esc_html( $q[0] ); ?></h3>
+					<p><?php echo esc_html( $q[2] ); ?></p>
+				</li>
+				<?php endforeach; ?>
+			</ol>
+			<script>(function(){var w=document.querySelector('[data-qs]');if(!w)return;var ls=[].slice.call(w.children);if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches){ls.forEach(function(l){l.classList.add('is-in')});return;}
+w.classList.add('is-live');var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.classList.toggle('is-in',e.isIntersecting);})},{rootMargin:'-10% 0px -15% 0px'});ls.forEach(function(l){io.observe(l)});})();</script>
 		</div>
 	</section>
 
@@ -412,14 +433,19 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 					<h2 class="sh__h"><?php echo $wu_h( 'From First Discussion', 'to Website Launch' ); // phpcs:ignore ?></h2>
 				</div>
 			</div>
-			<div class="dm-tl" data-tl>
-				<span class="dm-tl__line" aria-hidden="true"><i></i></span>
-				<ol class="dm-tl__list">
+			<div class="wd-st" data-st>
+				<ol class="wd-st__list">
 					<?php foreach ( $wu_process as $wu_i => $s ) : ?>
-					<li class="dm-tl__step"><span class="dm-tl__node" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 24 ); // phpcs:ignore ?></span><div class="dm-tl__card"><h3><span class="dm-tl__n"><?php echo esc_html( sprintf( '%02d.', $wu_i + 1 ) ); ?></span> <?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></div></li>
+					<li class="wd-st__s" style="--k:<?php echo (int) $wu_i; ?>"><span class="wd-st__ic" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 22, 1.5 ); // phpcs:ignore ?></span><i class="wd-st__ledge" aria-hidden="true"></i><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></li>
 					<?php endforeach; ?>
 				</ol>
+				<span class="wd-st__ball wd-st__wiso" aria-hidden="true" data-k="0"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso.gif' ); ?>" alt="" width="80" height="80" loading="lazy" decoding="async"></span>
 			</div>
+			<script>(function(){var w=document.querySelector('[data-st]');if(!w)return;var ss=[].slice.call(w.querySelectorAll('.wd-st__s')),b=w.querySelector('.wd-st__ball'),k=-1,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var put=function(n){var s=ss[n],l=s.querySelector('.wd-st__ledge'),r=w.getBoundingClientRect(),q=l.getBoundingClientRect();b.style.left=(q.left-r.left+q.width*.5)+'px';b.style.top=(q.top-r.top)+'px';};
+var go=function(n){if(n===k)return;var first=k<0;k=n;b.setAttribute('data-k',n);ss.forEach(function(s,i){s.classList.toggle('is-on',i<=n);s.classList.toggle('is-cur',i===n)});put(n);if(!first&&!calm){b.classList.remove('is-hop');void b.offsetWidth;b.classList.add('is-hop');}};
+var calc=function(){var r=w.getBoundingClientRect(),vh=innerHeight,p=(vh*.5-r.top)/(r.height*.9),fl=Math.max(0,Math.min(1,(vh*.75-r.top)/(vh*.6)));w.style.setProperty('--fl',fl.toFixed(3));if(k>=0)put(k);go(Math.max(0,Math.min(ss.length-1,Math.floor(p*ss.length))));};
+if(calm){go(ss.length-1);return;}w.classList.add('is-live');addEventListener('scroll',calc,{passive:true});addEventListener('resize',function(){put(Math.max(k,0))});calc();})();</script>
 		</div>
 	</section>
 
@@ -434,18 +460,20 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 				<div class="ev-intro"><p>Website requirements change according to the nature of a business, the audience it serves and the actions visitors need to take. Different industries may require different layouts, features and content structures.</p></div>
 			</div>
 			<div class="wd-dl" data-dl>
-				<div class="wd-dl__stick"><div class="wd-dl__ring" style="--n:<?php echo count( $wu_ind ); ?>">
+				<div class="wd-dl__stick"><?php
+				$wu_dl_ph = array( 'case-gloveda.webp', 'case-eallisto.webp', 'case-ceramicrooftiles.webp', 'case-kpg.webp', 'case-smokehouse.jpg', 'case-erets.jpg' );
+				?><div class="wd-dl__bg" aria-hidden="true"><?php foreach ( $wu_ind as $wu_i => $ind ) : $wu_f = 'wd-ind-' . ( $wu_i + 1 ) . '.webp'; if ( ! file_exists( WISEUP_DIR . 'assets/landing/img/' . $wu_f ) ) $wu_f = $wu_dl_ph[ $wu_i ]; ?><img class="<?php echo 0 === $wu_i ? 'is-on' : ''; ?>" src="<?php echo esc_url( WISEUP_URL . 'assets/landing/img/' . $wu_f ); ?>" alt="" loading="lazy" decoding="async"><?php endforeach; ?></div><div class="wd-dl__ring" style="--n:<?php echo count( $wu_ind ); ?>">
 					<i class="wd-dl__ticks" aria-hidden="true"></i>
 					<i class="wd-dl__mark" aria-hidden="true"></i>
 					<div class="wd-dl__rot" role="tablist" aria-label="Industries">
 						<?php foreach ( $wu_ind as $wu_i => $ind ) : ?>
-						<button type="button" class="wd-dl__b<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" role="tab" id="wd-dl-t<?php echo (int) $wu_i; ?>" aria-controls="wd-dl-p<?php echo (int) $wu_i; ?>" aria-selected="<?php echo 0 === $wu_i ? 'true' : 'false'; ?>" style="--i:<?php echo (int) $wu_i; ?>"><span class="wd-dl__ic"><?php echo $wu_svg( $ind[2], 26, 1.5 ); // phpcs:ignore ?></span><span class="wd-dl__lb"><?php echo esc_html( $ind[0] ); ?></span></button>
+						<button type="button" class="wd-dl__b<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" role="tab" id="wd-dl-t<?php echo (int) $wu_i; ?>" aria-controls="wd-dl-p<?php echo (int) $wu_i; ?>" aria-selected="<?php echo 0 === $wu_i ? 'true' : 'false'; ?>" style="--i:<?php echo (int) $wu_i; ?>"><span class="wd-dl__ic"><?php $wu_icf = 'assets/landing/img/wd-ic-' . ( $wu_i + 1 ) . '.webp'; if ( file_exists( WISEUP_DIR . $wu_icf ) ) : ?><img class="wd-dl__3d" src="<?php echo esc_url( WISEUP_URL . $wu_icf ); ?>" alt="" width="128" height="128" loading="lazy" decoding="async"><?php else : echo $wu_svg( $ind[2], 26, 1.5 ); endif; // phpcs:ignore ?></span><span class="wd-dl__lb"><?php echo esc_html( $ind[0] ); ?></span></button>
 						<?php endforeach; ?>
 					</div>
-					<div class="wd-dl__core">
+					<div class="wd-dl__core"><span class="wd-dl__lens" aria-hidden="true"><i class="wd-dl__grip"></i><i class="wd-dl__glass"></i><span class="wd-dl__iris"><i style="--a:0deg"></i><i style="--a:45deg"></i><i style="--a:90deg"></i><i style="--a:135deg"></i><i style="--a:180deg"></i><i style="--a:225deg"></i><i style="--a:270deg"></i><i style="--a:315deg"></i></span><i class="wd-dl__glare"></i></span>
 						<?php foreach ( $wu_ind as $wu_i => $ind ) : ?>
 						<div class="wd-dl__p<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" role="tabpanel" id="wd-dl-p<?php echo (int) $wu_i; ?>" aria-labelledby="wd-dl-t<?php echo (int) $wu_i; ?>">
-							<span class="wd-dl__big" aria-hidden="true"><?php echo $wu_svg( $ind[2], 44, 1.3 ); // phpcs:ignore ?></span>
+							<span class="wd-dl__big" aria-hidden="true"><?php $wu_icf = 'assets/landing/img/wd-ic-' . ( $wu_i + 1 ) . '.webp'; if ( file_exists( WISEUP_DIR . $wu_icf ) ) : ?><img class="wd-dl__3d" src="<?php echo esc_url( WISEUP_URL . $wu_icf ); ?>" alt="" width="128" height="128" loading="lazy" decoding="async"><?php else : echo $wu_svg( $ind[2], 44, 1.3 ); endif; // phpcs:ignore ?></span>
 							<h3><?php echo esc_html( $ind[0] ); ?></h3>
 							<p><?php echo esc_html( $ind[1] ); ?></p>
 						</div>
@@ -454,8 +482,8 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es
 				</div>
 			</div>
 			</div>
-			<script>(function(){var w=document.querySelector('[data-dl]');if(!w)return;var ring=w.querySelector('.wd-dl__ring'),bs=[].slice.call(w.querySelectorAll('.wd-dl__b')),ps=[].slice.call(w.querySelectorAll('.wd-dl__p')),n=bs.length,cur=-1,on=false,raf=0,p=0,tp=0;
-var show=function(i){if(i===cur)return;cur=i;bs.forEach(function(b,k){b.classList.toggle('is-on',k===i);b.setAttribute('aria-selected',k===i?'true':'false')});ps.forEach(function(e,k){e.classList.toggle('is-on',k===i)});};
+			<script>(function(){var w=document.querySelector('[data-dl]');if(!w)return;var ring=w.querySelector('.wd-dl__ring'),bs=[].slice.call(w.querySelectorAll('.wd-dl__b')),ps=[].slice.call(w.querySelectorAll('.wd-dl__p')),bg=[].slice.call(w.querySelectorAll('.wd-dl__bg img')),n=bs.length,cur=-1,on=false,raf=0,p=0,tp=0;
+var ac=null,last=0,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;var arm=function(){if(ac)return;try{ac=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}};['pointerdown','keydown','touchstart'].forEach(function(ev){addEventListener(ev,arm,{once:true,passive:true})});var snd=function(){if(!ac||document.hidden)return;var n=ac.currentTime,now=performance.now();if(now-last<160)return;last=now;if(ac.state==='suspended')ac.resume();var out=ac.createGain();out.gain.value=.9;out.connect(ac.destination);var len=.34,buf=ac.createBuffer(1,Math.floor(ac.sampleRate*len),ac.sampleRate),d=buf.getChannelData(0),sr=ac.sampleRate;for(var k=0;k<d.length;k++){var tt=k/sr,env=Math.min(1,tt/.02)*Math.max(0,1-tt/len),step=.5+.5*Math.sin(2*Math.PI*(95+90*tt)*tt);d[k]=(Math.random()*2-1)*env*(.35+.65*step*step);}var src=ac.createBufferSource();src.buffer=buf;var bp=ac.createBiquadFilter();bp.type='bandpass';bp.Q.value=3.5;bp.frequency.setValueAtTime(1500,n);bp.frequency.linearRampToValueAtTime(2600,n+.18);bp.frequency.linearRampToValueAtTime(1900,n+len);var g=ac.createGain();g.gain.value=.05;src.connect(bp);bp.connect(g);g.connect(out);src.start(n);[.42,.5].forEach(function(at){var o=ac.createOscillator(),og=ac.createGain();o.type='sine';o.frequency.value=2730;og.gain.setValueAtTime(.0001,n+at);og.gain.exponentialRampToValueAtTime(.06,n+at+.004);og.gain.setValueAtTime(.06,n+at+.04);og.gain.exponentialRampToValueAtTime(.0001,n+at+.05);o.connect(og);og.connect(out);o.start(n+at);o.stop(n+at+.06);});};var ft=0,focus=function(){if(calm)return;w.classList.remove('is-focus');void w.offsetWidth;w.classList.add('is-focus');clearTimeout(ft);ft=setTimeout(function(){w.classList.remove('is-focus')},1300);snd();};var show=function(i){if(i===cur)return;var first=cur<0;cur=i;if(!first)focus();bs.forEach(function(b,k){b.classList.toggle('is-on',k===i);b.setAttribute('aria-selected',k===i?'true':'false')});ps.forEach(function(e,k){e.classList.toggle('is-on',k===i)});bg.forEach(function(e,k){e.classList.toggle('is-on',k===i)});};
 var rot=function(v){ring.style.setProperty('--r',(-v*360/n).toFixed(2)+'deg');show(Math.max(0,Math.min(n-1,Math.round(v))));};
 var len=function(){return w.offsetHeight-innerHeight;};
 var target=function(){var r=w.getBoundingClientRect();return Math.max(0,Math.min(1,-r.top/len()))*(n-1);};
@@ -463,7 +491,7 @@ var draw=function(){raf=0;p+=(tp-p)*.14;if(Math.abs(tp-p)<.001)p=tp;rot(p);if(p!
 var kick=function(){if(!on)return;tp=target();if(!raf)raf=requestAnimationFrame(draw);};
 var mode=function(){var m=!matchMedia('(prefers-reduced-motion: reduce)').matches;on=m;w.classList.toggle('is-pin',m);if(m){p=tp=target();rot(p);}else{rot(cur<0?0:cur);}};
 bs.forEach(function(b,k){b.addEventListener('click',function(){if(!on){rot(k);return;}var top=w.getBoundingClientRect().top+scrollY;scrollTo({top:top+len()*k/(n-1)+2,behavior:'smooth'});});});
-mode();addEventListener('scroll',kick,{passive:true});addEventListener('resize',function(){mode();kick();});})();</script>
+var hd=function(){var r=w.getBoundingClientRect();document.documentElement.classList.toggle('wd-nohd',r.top<=1&&r.bottom>=innerHeight-1);};mode();hd();addEventListener('scroll',function(){kick();hd();},{passive:true});addEventListener('resize',function(){mode();kick();});})();</script>
 		</div>
 	</section>
 
