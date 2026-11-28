@@ -271,7 +271,7 @@ wiseup_landing_open( 'wu-landing wu-ev-page wu-dm-page wu-pm-page wu-br-page wu-
 			<?php
 			// Fly-through: the section pins and scrolling moves the camera forward through website screens floating in depth;
 			// each service's screen arrives in front as its text comes in. Screens = the owner's real website screenshots.
-			$wu_zx_img  = array( 7, 1, 6, 5, 2, 3 ); // wd-zx-N.webp per service
+			$wu_zx_img  = array( 5, 1, 6, 7, 2, 3 ); // wd-zx-N.webp per service
 			$wu_zx_fill = array( 'case-gloveda.webp', 'case-kpg.webp', 'wd-xr-site-1000.webp', 'case-ceramicrooftiles.webp', 'case-smokehouse.jpg', 'case-erets.jpg' );
 			$wu_zx_pos  = array( array( 4, -2 ), array( -6, 3 ), array( 6, 1 ), array( -3, -3 ), array( 5, 3 ), array( -5, -1 ) ); // x / y offsets (vw / vh)
 			$wu_zx_fp   = array( array( -8, -24 ), array( 32, 20 ), array( 28, -22 ), array( -6, 24 ), array( 34, 16 ), array( 26, -20 ) );
