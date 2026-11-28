@@ -135,10 +135,10 @@ $wu_ind = array(
 $wu_projects = array(
 	array( 'KPG Roofings', '', '', '', '', '', '', 'assets/landing/img/case-kpg.webp', '' ),
 	array( 'Ceramic Roof Tiles', '', '', '', '', '', '', 'assets/landing/img/case-ceramicrooftiles.webp', '' ),
-	array( 'Inchub', '', '', '', '', '', '', '', '' ),
+	array( 'Inchub', '', '', '', '', '', '', 'assets/landing/img/case-inchub.webp', '' ),
 	array( 'Gloveda', '', '', '', '', '', '', 'assets/landing/img/case-gloveda.webp', '' ),
-	array( 'Leyali', '', '', '', '', '', '', '', 'assets/clients/client-logos-2026/leyali.webp', 'dark' ),
-	array( 'Ikayaa Food Products', '', '', '', '', '', '', '', 'assets/clients/client-logos-2026/ikayaa.webp' ),
+	array( 'Leyali', '', '', '', '', '', '', 'assets/landing/img/case-leyali.webp', 'assets/clients/client-logos-2026/leyali.webp', 'dark' ),
+	array( 'Ikayaa Food Products', '', '', '', '', '', '', 'assets/landing/img/case-ikayaa.webp', 'assets/clients/client-logos-2026/ikayaa.webp' ),
 );
 
 // Why WiseUp (doc H3s): [ title, icon, text ].
@@ -439,13 +439,13 @@ w.classList.add('is-live');var io=new IntersectionObserver(function(es){es.forEa
 					<li class="wd-st__s" style="--k:<?php echo (int) $wu_i; ?>"><span class="wd-st__ic" aria-hidden="true"><?php echo $wu_svg( $wu_icons[ $s[1] ], 22, 1.5 ); // phpcs:ignore ?></span><i class="wd-st__ledge" aria-hidden="true"></i><h3><?php echo esc_html( $s[0] ); ?></h3><p><?php echo esc_html( $s[2] ); ?></p></li>
 					<?php endforeach; ?>
 				</ol>
-				<span class="wd-st__ball wd-st__wiso" aria-hidden="true" data-k="0"><img src="<?php echo esc_url( WISEUP_URL . 'assets/smm/wiso.gif' ); ?>" alt="" width="80" height="80" loading="lazy" decoding="async"></span>
+				
 			</div>
-			<script>(function(){var w=document.querySelector('[data-st]');if(!w)return;var ss=[].slice.call(w.querySelectorAll('.wd-st__s')),b=w.querySelector('.wd-st__ball'),k=-1,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
-var put=function(n){var s=ss[n],l=s.querySelector('.wd-st__ledge'),r=w.getBoundingClientRect(),q=l.getBoundingClientRect();b.style.left=(q.left-r.left+q.width*.5)+'px';b.style.top=(q.top-r.top)+'px';};
-var go=function(n){if(n===k)return;var first=k<0;k=n;b.setAttribute('data-k',n);ss.forEach(function(s,i){s.classList.toggle('is-on',i<=n);s.classList.toggle('is-cur',i===n)});put(n);if(!first&&!calm){b.classList.remove('is-hop');void b.offsetWidth;b.classList.add('is-hop');}};
-var calc=function(){var r=w.getBoundingClientRect(),vh=innerHeight,p=(vh*.5-r.top)/(r.height*.9),fl=Math.max(0,Math.min(1,(vh*.75-r.top)/(vh*.6)));w.style.setProperty('--fl',fl.toFixed(3));if(k>=0)put(k);go(Math.max(0,Math.min(ss.length-1,Math.floor(p*ss.length))));};
-if(calm){go(ss.length-1);return;}w.classList.add('is-live');addEventListener('scroll',calc,{passive:true});addEventListener('resize',function(){put(Math.max(k,0))});calc();})();</script>
+			<script>(function(){var w=document.querySelector('[data-st]');if(!w)return;var ss=[].slice.call(w.querySelectorAll('.wd-st__s')),k=-1,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var go=function(n){if(n===k)return;k=n;ss.forEach(function(s,i){s.classList.toggle('is-on',i<=n);s.classList.toggle('is-cur',i===n)});};
+var calc=function(){var r=w.getBoundingClientRect(),p=(innerHeight*.55-r.top)/(r.height*.9);go(Math.max(0,Math.min(ss.length-1,Math.floor(p*ss.length))));};
+var big=matchMedia('(min-width: 1024px)'),h2=w.parentNode.querySelector('.sh__h'),lift=function(){w.style.marginTop='';if(!big.matches||!h2)return;var ls=ss[ss.length-1],last=ls.querySelector('h3');if(!last)return;ls.style.transition='none';ls.style.transform='none';w.style.marginTop=(h2.getBoundingClientRect().top-last.getBoundingClientRect().top)+'px';void ls.offsetWidth;ls.style.transform='';ls.style.transition='';};lift();addEventListener('resize',lift);if(document.fonts)document.fonts.ready.then(lift);
+if(calm){go(ss.length-1);return;}w.classList.add('is-live');addEventListener('scroll',calc,{passive:true});calc();})();</script>
 		</div>
 	</section>
 
@@ -504,38 +504,25 @@ var hd=function(){if(!on){document.documentElement.classList.remove('wd-nohd');r
 					<h2 class="sh__h"><?php echo $wu_h( 'Projects', 'We\'ve Worked On' ); // phpcs:ignore ?></h2>
 				</div>
 			</div>
-			<div class="wd-folio" data-folio>
-				<ol class="wd-folio__list">
-					<?php foreach ( $wu_projects as $wu_i => $pj ) : ?>
-					<li class="wd-folio__it<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" data-i="<?php echo (int) $wu_i; ?>" tabindex="0">
-						<span class="wd-folio__n"><?php echo esc_html( sprintf( '%02d', $wu_i + 1 ) ); ?></span>
-						<div class="wd-folio__t">
-							<h3><?php echo esc_html( $pj[0] ); ?></h3>
-							<?php if ( $pj[1] ) : ?><p class="wd-folio__k"><?php echo esc_html( $pj[1] ); ?> <i aria-hidden="true">/</i> <?php echo esc_html( $pj[2] ); ?><?php if ( $pj[3] ) echo ' <i aria-hidden="true">/</i> ' . esc_html( $pj[3] ); ?></p><?php endif; ?>
-							<?php if ( $pj[4] ) : ?><p class="wd-folio__d"><?php echo esc_html( $pj[4] ); ?></p><?php endif; ?>
-						</div>
-						<span class="wd-folio__go" aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></span>
-						<figure class="wd-folio__m"><?php echo $wu_shot( $pj, true ); // phpcs:ignore ?></figure>
-					</li>
+			<div class="wd-car" data-wd-car>
+				<div class="wd-car__view"><ul class="wd-car__track" aria-label="Website projects">
+					<?php foreach ( $wu_projects as $pj ) : ?>
+					<li class="wd-car__c"><span class="wd-car__img"><?php echo $wu_shot( $pj, true ); // phpcs:ignore ?></span><span class="wd-car__t"><b><?php echo esc_html( $pj[0] ); ?></b><i aria-hidden="true"><?php echo $wu_ne; // phpcs:ignore ?></i></span></li>
 					<?php endforeach; ?>
-				</ol>
-				<div class="wd-folio__stage" aria-hidden="true">
-					<div class="wd-folio__win">
-						<div class="wd-folio__bar"><i></i><i></i><i></i><span data-url><?php echo esc_html( $wu_projects[0][0] ); ?></span></div>
-						<div class="wd-folio__view">
-							<?php foreach ( $wu_projects as $wu_i => $pj ) : ?>
-							<figure class="wd-folio__shot<?php echo 0 === $wu_i ? ' is-on' : ''; ?>" data-i="<?php echo (int) $wu_i; ?>" data-name="<?php echo esc_attr( $pj[0] ); ?>"><?php echo $wu_shot( $pj, $wu_i > 0 ); // phpcs:ignore ?></figure>
-							<?php endforeach; ?>
-						</div>
-					</div>
-					<p class="wd-folio__cap"><b data-cnt>01</b> <span>/ <?php echo esc_html( sprintf( '%02d', count( $wu_projects ) ) ); ?></span></p>
-				</div>
+				</ul></div>
 			</div>
-			<script>(function(){var w=document.querySelector('[data-folio]');if(!w)return;var its=[].slice.call(w.querySelectorAll('.wd-folio__it')),sh=[].slice.call(w.querySelectorAll('.wd-folio__shot')),u=w.querySelector('[data-url]'),c=w.querySelector('[data-cnt]');
-var set=function(i){its.forEach(function(e,k){e.classList.toggle('is-on',k===i)});sh.forEach(function(e,k){e.classList.toggle('is-on',k===i)});u.textContent=sh[i].getAttribute('data-name');c.textContent=(i<9?'0':'')+(i+1);};
-its.forEach(function(e,k){e.addEventListener('mouseenter',function(){set(k)});e.addEventListener('focus',function(){set(k)});});
-var st=w.querySelector('.wd-folio__stage');w.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var r=w.getBoundingClientRect();st.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5).toFixed(3));st.style.setProperty('--my',((e.clientY-r.top)/r.height-.5).toFixed(3));});
-w.addEventListener('pointerleave',function(){st.style.setProperty('--mx',0);st.style.setProperty('--my',0);});})();</script>
+			<script>(function(){var w=document.querySelector('[data-wd-car]');if(!w)return;var view=w.querySelector('.wd-car__view'),g=w.querySelector('.wd-car__track'),still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var orig=[].slice.call(g.children);for(var k=0;k<2;k++)orig.forEach(function(c){var d=c.cloneNode(true);d.setAttribute('aria-hidden','true');g.appendChild(d);});
+var setW=0,measure=function(){setW=g.scrollWidth/3;};measure();addEventListener('resize',measure);addEventListener('load',measure);
+var auto=0,drag=0,cur=null,on=false,hover=0,hk=1,last=performance.now();
+new IntersectionObserver(function(es){on=es[0].isIntersecting;},{rootMargin:'100px'}).observe(view);
+view.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')hover=1;});view.addEventListener('pointerleave',function(){hover=0;});
+(function tick(now){var dt=Math.min(64,now-last);last=now;if(on&&setW){hk+=((hover?.15:1)-hk)*.05;if(!still)auto+=34*hk*dt/1000;var target=auto+(still?0:scrollY*.3)+drag;cur=cur===null?target:cur+(target-cur)*(1-Math.pow(.86,dt/16.67));var x=-(((cur%setW)+setW)%setW);g.style.transform='translate3d('+x+'px,0,0)';}requestAnimationFrame(tick);})(last);
+var down=false,moved=0,x0=0,id=null,vel=0,t0=0,raf=0;var glide=function(){vel*=.93;drag-=vel;raf=Math.abs(vel)>.2?requestAnimationFrame(glide):0;};
+view.addEventListener('pointerdown',function(e){if(e.button)return;cancelAnimationFrame(raf);down=true;moved=0;vel=0;x0=e.clientX;id=e.pointerId;t0=performance.now();});
+addEventListener('pointermove',function(e){if(!down||e.pointerId!==id)return;var d=e.clientX-x0;x0=e.clientX;moved+=Math.abs(d);if(moved>5&&!view.classList.contains('is-drag')){view.classList.add('is-drag');try{view.setPointerCapture(id)}catch(_){}}if(moved>5){drag-=d;var n=performance.now();vel=d*16.67/Math.max(8,n-t0);t0=n;}},{passive:true});
+var end=function(e){if(!down||e.pointerId!==id)return;down=false;if(view.classList.contains('is-drag')){setTimeout(function(){view.classList.remove('is-drag')},0);if(e.type==='pointerup'&&Math.abs(vel)>.5)raf=requestAnimationFrame(glide);}};
+addEventListener('pointerup',end);addEventListener('pointercancel',end);view.addEventListener('dragstart',function(e){e.preventDefault()});})();</script>
 		</div>
 	</section>
 
